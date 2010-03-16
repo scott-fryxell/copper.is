@@ -15,8 +15,13 @@ test:
   pool: 5
   timeout: 5000
 
+
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql
+  encoding: utf8
+  database: communist_biz_thank_you
   pool: 5
-  timeout: 5000
+  username: comrad
+  password: offoff
+  socket: /tmp/mysql.sock
+  host: mysql.communist.biz
