@@ -1,40 +1,37 @@
 <% title "Edit Resource Locations" %>
+<section>
+  <% form_for(@resource) do |f| %>
+    <aside>
+      <%= f.error_messages %>    
+    </aside>
 
-<% form_for(@resource) do |f| %>
-  <%= f.error_messages %>
+    <fieldset>
+      <legend>Modify a resource</legend>
 
-  <p>
-    <%= f.label :scheme %><br />
-    <%= f.text_field :scheme %>
-  </p>
-  <p>
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </p>
-  <p>
-    <%= f.label :domain %><br />
-    <%= f.text_field :domain %>
-  </p>
-  <p>
-    <%= f.label :port %><br />
-    <%= f.text_field :port %>
-  </p>
-  <p>
-    <%= f.label :path %><br />
-    <%= f.text_field :path %>
-  </p>
-  <p>
-    <%= f.label :query %><br />
-    <%= f.text_field :query %>
-  </p>
-  <p>
-    <%= f.label :anchor %><br />
-    <%= f.text_field :anchor %>
-  </p>
-  <p>
+      <label for="resource_scheme"><%= f.label :scheme %></label>
+      <%= f.text_field :scheme %>
+
+      <label for="resource_domain"><%= f.label :domain %></label>
+      <%= f.text_field :domain %>    
+
+      <label for="resource_label"><%= f.label :port %></label>
+      <%= f.text_field :port %>
+
+      <label for="resource_path"><%= f.label :path %></label>
+      <%= f.text_field :path %>
+
+      <label for="resource_query"><%= f.label :query %></label>
+      <%= f.text_field :query %>
+
+      <label for="resource_anchor"><%= f.label :anchor %></label>
+      <%= f.text_field :anchor %>
+
+    </fieldset>
     <%= f.submit 'Update' %>
-  </p>
-<% end %>
+  <% end %>
 
-<%= link_to 'Show', @resource %> |
-<%= link_to 'Back', resources_path %>
+  <nav>
+    <%= link_to 'Show', @resource %> |
+    <%= link_to 'Back', resources_path %>  
+  </nav>  
+</section>

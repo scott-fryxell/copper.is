@@ -1,28 +1,36 @@
-<p>
-  <b>Street1:</b>
-  <%=h @address.street1 %>
-</p>
+<section>
+  <header>
+    <aside>
+      Show the....
+    </aside>
+    <h1>Address</h1>
+    <nav>
+      <%= link_to 'Edit', edit_address_path(@address) %>
+      <%= link_to 'Back', addresses_path %>
+    </nav>
+  </header>
+  <dl>
+    <dt>Street1:</dt>
+    <dd><%=h @address.street1 %></dd>
 
-<p>
-  <b>Street2:</b>
-  <%=h @address.street2 %>
-</p>
+    <dt>Street2:</dt>
+    <dd><%=h @address.street2 %></dd>
 
-<p>
-  <b>City:</b>
-  <%=h @address.city %>
-</p>
+    <dt>City:</dt>
+    <dd><%=h @address.city %></dd>
 
-<p>
-  <b>Zip:</b>
-  <%=h @address.zip %>
-</p>
+    <dt>Zip:</dt>
+    <dd><%=h @address.zip %></dd>
 
-<p>
-  <b>Country:</b>
-  <%=h @address.country %>
-</p>
+    <dt>Country:</dt>
+    <dd><%=h @address.country %></dd>
 
+  </dl>
 
-<%= link_to 'Edit', edit_address_path(@address) %> |
-<%= link_to 'Back', addresses_path %>
+  <footer>
+    <nav>
+      <%= link_to 'Edit', edit_address_path(@address) %>
+      <%= link_to 'Back', addresses_path %>
+    </nav>
+  </footer>
+</section>

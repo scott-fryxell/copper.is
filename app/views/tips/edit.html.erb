@@ -1,21 +1,27 @@
-<% title "Edit Gratuity list" %>
+<% title "Edit a thank you" %>
 
-<% form_for(@tip) do |f| %>
-  <%= f.error_messages %>
+<section>
+  <% form_for(@tip) do |f| %>
+    <aside>
+      <%= f.error_messages %>
+    </aside>
 
-  <p>
-    <%= f.label :url %><br />
-    <%= f.text_area :url %>
-  </p>
-  <p>
-    <%= f.label :amount %><br />
-    <%= f.text_field :amount %>
-  </p>
+    <fieldset>
+      <label for="tip_url"><%= f.label :url %></label>
+      <%= f.text_area :url %>
+      
+      <label for="tip_amount"><%= f.label :amount %></label>
+      <%= f.text_field :amount %>
+    </fieldset>
 
-  <p>
     <%= f.submit 'Update' %>
-  </p>
-<% end %>
 
-<%= link_to 'Show', @tip %> |
-<%= link_to 'Back', tips_path %>
+  <% end %>
+
+  <nav>
+    <%= link_to 'Show', @tip %>
+    <%= link_to 'Back', tips_path %>
+  </nav>  
+</section>
+
+

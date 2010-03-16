@@ -1,24 +1,27 @@
-<% title "Gratuity list" %>
+<% title "Thank you's" %>
 
-<table>
-  <tr>
-    <th>Url</th>
-    <th>Amount</th>
-    <th>User</th>
-  </tr>
+<section id="gratuity_list">
+  <table>
+    <tr>
+      <th>Resource</th>
+      <th>Amount</th>
+      <th>User</th>
+    </tr>
 
-<% @tips.each do |tip| %>
-  <tr>
-    <td><%=h tip.url %></td>
-    <td><%=h tip.amount %></td>
-    <td><%=h tip.user_id %></td>
-    <td><%= link_to 'Show', tip %></td>
-    <td><%= link_to 'Edit', edit_tip_path(tip) %></td>
-    <td><%= link_to 'Destroy', tip, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <% @tips.each do |tip| %>
+    <tr>
+      <td><%=h tip.url %></td>
+      <td><%=h tip.amount %></td>
+      <td><%=h tip.user_id %></td>
+      <td><%= link_to 'Show', tip %></td>
+      <td><%= link_to 'Edit', edit_tip_path(tip) %></td>
+      <td><%= link_to 'Destroy', tip, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+    <% end %>
+  </table>
 
-<br />
+  <nav>
+    <%= link_to 'New tip', new_tip_path %>  
+  </nav>
 
-<%= link_to 'New tip', new_tip_path %>
+</section>

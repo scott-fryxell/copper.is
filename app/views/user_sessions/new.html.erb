@@ -1,15 +1,17 @@
-<% title "Login" %> 
+<% title "Login to the communist thank you " %> 
 <% form_for @user_session do |f| %>
-  <%= f.error_messages %>
-  <p>
-    <%= f.label :email %><br />
+  <aside>
+    <%= f.error_messages %>    
+  </aside>
+  <fieldset>
+    <legend>Log in to thank bitches</legend>
+    <label for="user_email"><%= f.label :email %></label>
     <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+    
+    <label for="user_password"><%= f.label :password %></label>
+    <%= f.password_field :password %>        
+  </fieldset>
+  <%= f.submit "Submit" %>  
 <% end %>
 
 

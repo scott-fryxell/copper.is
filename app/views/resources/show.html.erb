@@ -1,39 +1,46 @@
-<% title "Show Resource location" %>
-<p>
-  <b>Scheme:</b>
-  <%=h @resource.scheme %>
-</p>
+<section>
+  <% title "Show Resource location" %>
+  <header>
+    <aside>
+      Show Resource
+    </aside>
+    <h1><%= title %></h1>
+    <nav>
+      <%= link_to 'Edit', edit_resource_path(@resource) %>
+      <%= link_to 'Back', resources_path %>
+    </nav>
+  </header>
 
-<p>
-  <b>Username:</b>
-  <%=h @resource.username %>
-</p>
+  <dl>
 
-<p>
-  <b>Domain:</b>
-  <%=h @resource.domain %>
-</p>
+    <dt>Scheme:</dt>
+    <dd><%=h @resource.scheme %></dd>
 
-<p>
-  <b>Port:</b>
-  <%=h @resource.port %>
-</p>
+    <dt>Username:</dt>
+    <dd><%=h @resource.username %></dd>
 
-<p>
-  <b>Path:</b>
-  <%=h @resource.path %>
-</p>
+    <dt>Domain:</dt>
+    <dd><%=h @resource.domain %></dd>
 
-<p>
-  <b>Query:</b>
-  <%=h @resource.query %>
-</p>
+    <dt>Port:</dt>
+    <dd><%=h @resource.port %></dd>
 
-<p>
-  <b>Anchor:</b>
-  <%=h @resource.anchor %>
-</p>
+    <dt>Path:</dt>
+    <dd><%=h @resource.path %></dd>
 
+    <dt>Query:</dt>
+    <dd><%=h @resource.query %></dd>
 
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>
+    <dt>Anchor:</dt>
+    <dd><%=h @resource.anchor %></dd>
+
+  </dl>
+
+  <footer>
+    <nav>
+      <%= link_to 'Edit', edit_resource_path(@resource) %>
+      <%= link_to 'Back', resources_path %>
+    </nav>
+  </footer>
+
+</section>

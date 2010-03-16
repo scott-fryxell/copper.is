@@ -1,31 +1,39 @@
-<h1>New address</h1>
+<% title "New Address"%>
+<section>
+  <header>
+    <aside>
+      New Address Form
+    </aside>
+    <h1><%= title %></h1>
+  </header>
 
-<% form_for(@address) do |f| %>
-  <%= f.error_messages %>
+  <% form_for(@address) do |f| %>
+  <fieldset>
+    <legend><%= f.error_messages %></legend>
 
-  <p>
-    <%= f.label :street1 %><br />
+    <label for="address_street1"><%= f.label :street1 %></label>
     <%= f.text_field :street1 %>
-  </p>
-  <p>
-    <%= f.label :street2 %><br />
-    <%= f.text_field :street2 %>
-  </p>
-  <p>
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </p>
-  <p>
-    <%= f.label :zip %><br />
-    <%= f.text_field :zip %>
-  </p>
-  <p>
-    <%= f.label :country %><br />
-    <%= f.text_field :country %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
 
-<%= link_to 'Back', addresses_path %>
+    <label for="address_street2"><%= f.label :street2 %></label>
+    <%= f.text_field :street2 %>
+
+    <label for="address_city"><%= f.label :city %></label>
+    <%= f.text_field :city %>
+
+    <label for="address_zip"><%= f.label :zip %></label>
+    <%= f.text_field :zip %>
+
+    <label for="address_country"><%= f.label :country %></label>
+    <%= f.text_field :country %>
+
+  </fieldset>      
+  <%= f.submit 'Create' %>
+  <% end %>
+
+  <footer>
+    <nav>
+      <%= link_to 'Back', addresses_path %>
+    </nav>
+  </footer>
+
+</section>

@@ -3,14 +3,16 @@
 <html>
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
-    <%= stylesheet_link_tag 'application' %>
+    <link rel="stylesheet" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" href="/stylesheets/error.css" />
+
     <%= yield(:head) %>
   </head>
   <body id="container">
     <header>
-      <p>Welcome to...</p>      
+      <aside>Welcome to...</aside>
       <%- if show_title? -%>
-        <h1><%=h yield(:title) %></h1>
+      <h1><%=h yield(:title) %></h1>
       <%- end -%>
     </header>
     <nav>
@@ -22,14 +24,18 @@
         <li><%= link_to "Login", login_path %></li>
       <% end %>
     </nav>
-    <section>
+    <aside id="response_messages">
       <%- flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-      <%- end -%>            
-      <%= yield %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <%- end -%>              
+    </aside>
+    <section>
+      <%= yield %>        
     </section>
     <footer>
-
+      <address>
+        
+      </address>
     </footer>
     
   </body>

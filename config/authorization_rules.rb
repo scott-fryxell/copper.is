@@ -15,6 +15,7 @@ authorization do
   
   role :guest do
     has_permission_on [:tips, :resources], :to => [:index, :show]
+    has_permission_on [:users], :to => [:new]
   end
   
 end
