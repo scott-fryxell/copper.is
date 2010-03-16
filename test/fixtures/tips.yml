@@ -1,0 +1,24 @@
+# == Schema Information
+# Schema version: 20100309235816
+#
+# Table name: tips
+#
+#  id         :integer         not null, primary key
+#  url        :text
+#  amount     :decimal(, )
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  url: MyText
+  amount: 9.99
+  user_id: 1
+
+two:
+  url: MyText
+  amount: 9.99
+  user_id: 1

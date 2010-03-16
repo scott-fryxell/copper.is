@@ -1,0 +1,21 @@
+<% title "Edit Gratuity list" %>
+
+<% form_for(@tip) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :url %><br />
+    <%= f.text_area :url %>
+  </p>
+  <p>
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </p>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @tip %> |
+<%= link_to 'Back', tips_path %>

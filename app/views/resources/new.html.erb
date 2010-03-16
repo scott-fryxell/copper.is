@@ -1,0 +1,39 @@
+<% title "New Resource Location" %>
+
+<% form_for(@resource) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :scheme %><br />
+    <%= f.text_field :scheme %>
+  </p>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :domain %><br />
+    <%= f.text_field :domain %>
+  </p>
+  <p>
+    <%= f.label :port %><br />
+    <%= f.text_field :port %>
+  </p>
+  <p>
+    <%= f.label :path %><br />
+    <%= f.text_field :path %>
+  </p>
+  <p>
+    <%= f.label :query %><br />
+    <%= f.text_field :query %>
+  </p>
+  <p>
+    <%= f.label :anchor %><br />
+    <%= f.text_field :anchor %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', resources_path %>

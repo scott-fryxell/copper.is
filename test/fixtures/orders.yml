@@ -1,0 +1,27 @@
+# == Schema Information
+# Schema version: 20100309235816
+#
+# Table name: orders
+#
+#  id              :integer         not null, primary key
+#  first_name      :string(255)
+#  last_name       :string(255)
+#  card_type       :string(255)
+#  card_expires_on :date
+#  created_at      :datetime
+#  updated_at      :datetime
+#  ip_address      :string(255)
+#  amount          :decimal(, )
+#
+
+one:
+  first_name: MyString
+  last_name: MyString
+  card_type: MyString
+  card_expires_on: 2010-03-01
+
+two:
+  first_name: MyString
+  last_name: MyString
+  card_type: MyString
+  card_expires_on: 2010-03-01

@@ -1,0 +1,39 @@
+<% title "Show Resource location" %>
+<p>
+  <b>Scheme:</b>
+  <%=h @resource.scheme %>
+</p>
+
+<p>
+  <b>Username:</b>
+  <%=h @resource.username %>
+</p>
+
+<p>
+  <b>Domain:</b>
+  <%=h @resource.domain %>
+</p>
+
+<p>
+  <b>Port:</b>
+  <%=h @resource.port %>
+</p>
+
+<p>
+  <b>Path:</b>
+  <%=h @resource.path %>
+</p>
+
+<p>
+  <b>Query:</b>
+  <%=h @resource.query %>
+</p>
+
+<p>
+  <b>Anchor:</b>
+  <%=h @resource.anchor %>
+</p>
+
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>

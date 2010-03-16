@@ -1,0 +1,28 @@
+<p>
+  <b>Street1:</b>
+  <%=h @address.street1 %>
+</p>
+
+<p>
+  <b>Street2:</b>
+  <%=h @address.street2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%=h @address.city %>
+</p>
+
+<p>
+  <b>Zip:</b>
+  <%=h @address.zip %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @address.country %>
+</p>
+
+
+<%= link_to 'Edit', edit_address_path(@address) %> |
+<%= link_to 'Back', addresses_path %>

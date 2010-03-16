@@ -1,0 +1,4 @@
+module TipsHelper
+  
+  
+end

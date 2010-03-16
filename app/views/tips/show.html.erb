@@ -1,0 +1,21 @@
+<% title "Show Tips" %>
+<p>
+  <b>Url:</b>
+  <%=h @tip.url %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @tip.amount %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @tip.user_id %>
+</p>
+
+<% if permitted_to? :edit, @tip %>
+  <%= link_to 'Edit', edit_tip_path(@tip) %>
+<% end %>
+
+<%= link_to 'Back', tips_path %>

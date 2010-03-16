@@ -1,0 +1,32 @@
+<% title "List Resource Location" %>
+
+<table>
+  <tr>
+    <th>Scheme</th>
+    <th>Username</th>
+    <th>Domain</th>
+    <th>Port</th>
+    <th>Path</th>
+    <th>Query</th>
+    <th>Anchor</th>
+  </tr>
+
+<% @resources.each do |resource| %>
+  <tr>
+    <td><%=h resource.scheme %></td>
+    <td><%=h resource.username %></td>
+    <td><%=h resource.domain %></td>
+    <td><%=h resource.port %></td>
+    <td><%=h resource.path %></td>
+    <td><%=h resource.query %></td>
+    <td><%=h resource.anchor %></td>
+    <td><%= link_to 'Show', resource %></td>
+    <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+    <td><%= link_to 'Destroy', resource, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New resource', new_resource_path %>
