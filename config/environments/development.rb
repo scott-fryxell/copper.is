@@ -33,5 +33,5 @@ config.after_initialize do
 	  :login => "9WBbf95f",
 	  :password => "98VkFr5mDM292kfu",
 	  :test => true
-)
+	)
 end
