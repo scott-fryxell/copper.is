@@ -1,8 +1,34 @@
+
 <% form_for @account do |f| %>
+<aside>
   <%= f.error_messages %>
-  <p>
-    <%= f.label :number %><br />
-    <%= f.text_field :number %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+</aside>
+
+<fieldset>
+
+  <label for="account_type"><%= f.label :card_type %></label>
+  <%= f.text_field :card_type %>
+
+  <label for="account_number"><%= f.label :number %></label>
+  <%= f.text_field :number %>
+
+  <label for="account_verification_value"><%= f.label :verification_value %></label>
+  <%= f.text_field :verification_value %>
+
+  <label for="account_month"><%= f.label :month %></label>
+  <%= f.text_field :month %>
+
+  <label for="account_year"><%= f.label :year %></label>
+  <%= f.text_field :year %>
+
+  <label for="account_first_name"><%= f.label :first_name %></label>
+  <%= f.text_field :first_name %>
+
+  <label for="account_last_name"><%= f.label :last_name %></label>
+  <%= f.text_field :last_name %>
+
+</fieldset>
+
+<%= f.submit "Submit" %>
+
 <% end %>

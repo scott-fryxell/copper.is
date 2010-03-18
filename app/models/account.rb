@@ -13,5 +13,5 @@ class Account < ActiveRecord::Base
   belongs_to :user
   has_one :address
   
-  attr_accessible :number
+  attr_accessible :last_name, :first_name, :card_type, :number, :verification_value, :month, :year 
 end

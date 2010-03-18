@@ -1,17 +1,44 @@
-<% title "Accounts" %>
-
-<table>
-  <tr>
-    <th>Number</th>
-  </tr>
-  <% for account in @accounts %>
+<% title "Accounts Info" %>
+<section>
+  <header>
+    <h1><%= :title %></h1>
+    <nav>
+     <%= link_to "New Account", new_account_path %> 
+    </nav>
+  </header>
+  <table>
     <tr>
-      <td><%=h account.number %></td>
-      <td><%= link_to "Show", account %></td>
-      <td><%= link_to "Edit", edit_account_path(account) %></td>
-      <td><%= link_to "Destroy", account, :confirm => 'Are you sure?', :method => :delete %></td>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Card Type</th>
+      <th>Account Number</th>
+      <th>Verification code</th>
+      <th>Expiration year</th>
+      <th>Expiration month</th>
+      <th>Commands</th>
     </tr>
-  <% end %>
-</table>
-
-<p><%= link_to "New Account", new_account_path %></p>
+    <% for account in @accounts %>
+      <tr>
+        <td><%=h account.first_name %></td>
+        <td><%=h account.last_name %></td>
+        <td><%=h account.card_type %></td>
+        <td><%=h account.number %></td>
+        <td><%=h account.verification_value %></td>
+        <td><%=h account.year %></td>
+        <td><%=h account.month %></td>
+        <td>
+          <nav>
+            <%= link_to "Show", account %>
+            <%= link_to "Edit", edit_account_path(account) %>
+            <%= link_to "Destroy", account, :confirm => 'Are you sure?', :method => :delete %>
+          </nav>        
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <footer>
+    <nav>
+     <%= link_to "New Account", new_account_path %> 
+    </nav>
+  </footer>
+</section>

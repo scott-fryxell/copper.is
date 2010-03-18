@@ -1,8 +1,8 @@
 class TipsController < ApplicationController
-  # GET /tips
-  # GET /tips.xml
   filter_resource_access
-  
+
+  # GET /tips
+  # GET /tips.xml  
   def index
     @tips = Tip.find_all_by_user_id(current_user)
     if @tips.nil?

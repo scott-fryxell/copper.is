@@ -1,5 +1,19 @@
-<% title "New Account" %>
+<% title "Create New Account" %>
 
-<%= render :partial => 'form' %>
+<section>
+  <header>
+    <p>Edit</p>
+    <h1>Account</h1>
+    <nav>
+      <%= link_to "Back to List", accounts_path %>
+    </nav>    
+  </header>
+  <%= render :partial => 'form' %>    
+  <footer>
+    <nav>
+      <%= link_to "Back to List", accounts_path %>
+    </nav>    
+  </footer>
+</section>
 
-<p><%= link_to "Back to List", accounts_path %></p>
+

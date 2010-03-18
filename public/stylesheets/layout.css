@@ -1,0 +1,27 @@
+
+body{
+  width:61em;
+  margin: 0 auto 0 auto;
+  padding:0;
+}
+
+section, header, footer{
+  margin: .5em;
+  padding: .5em;
+}
+
+header nav {
+  float:right;
+}
+header nav a{
+  text-decoration:none;
+}
+header nav a + a:before{
+  content: "|";
+  margin-right: .5em;
+  
+}
+
+table th{
+  font-weight: bold;
+}

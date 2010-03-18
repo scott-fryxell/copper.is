@@ -1,12 +1,39 @@
-<% title "Account" %>
+<% title "Account Info" %>
 
-<p>
-  <strong>Number:</strong>
-  <%=h @account.number %>
-</p>
+<section>
+  <header>
+    <h1><%= :title %></h1>
+    <nav>
+      <%= link_to "Edit", edit_account_path(@account) %> |
+      <%= link_to "Destroy", @account, :confirm => 'Are you sure?', :method => :delete %> |
+      <%= link_to "View All", accounts_path %>
+    </nav>
+  </header>
+  <dl>
+    <dt>First name</dt>
+    <dd><%=h @account.first_name %></dd>
 
-<p>
-  <%= link_to "Edit", edit_account_path(@account) %> |
-  <%= link_to "Destroy", @account, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", accounts_path %>
-</p>
+    <dt>Last name</dt>
+    <dd><%=h @account.last_name %></dd>
+
+    <dt>Type</dt>
+    <dd><%=h @account.card_type %></dd>
+
+    <dt>Number</dt>
+    <dd><%=h @account.number %></dd>
+
+    <dt>Verification</dt>
+    <dd><%=h @account.verification_value %></dd>
+    
+    <dt>Expiration date</dt>
+    <dd><%=h @account.month %>/<%=h @account.year %></dd>
+    
+  </dl>
+  <footer>
+    <nav>
+      <%= link_to "Edit", edit_account_path(@account) %> |
+      <%= link_to "Destroy", @account, :confirm => 'Are you sure?', :method => :delete %> |
+      <%= link_to "View All", accounts_path %>
+    </nav>
+  </footer>
+</section>
