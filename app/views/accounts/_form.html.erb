@@ -7,7 +7,7 @@
 <fieldset>
 
   <label for="account_type"><%= f.label :card_type %></label>
-  <%= f.text_field :card_type %>
+  <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
 
   <label for="account_number"><%= f.label :number %></label>
   <%= f.text_field :number %>
@@ -16,10 +16,10 @@
   <%= f.text_field :verification_value %>
 
   <label for="account_month"><%= f.label :month %></label>
-  <%= f.text_field :month %>
+  <%= f.date_select :month, :discard_day => true, :discard_year => true, :add_month_numbers => true %>
 
   <label for="account_year"><%= f.label :year %></label>
-  <%= f.text_field :year %>
+  <%= f.date_select :year, :discard_day => true, :discard_month => true, :start_year => Date.today.year, :end_year => (Date.today.year+10) %>
 
   <label for="account_first_name"><%= f.label :first_name %></label>
   <%= f.text_field :first_name %>
