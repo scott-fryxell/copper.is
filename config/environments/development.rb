@@ -21,9 +21,17 @@ config.action_mailer.raise_delivery_errors = false
 
 config.after_initialize do
   ActiveMerchant::Billing::Base.mode = :test
-  ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-    :login => "seller_1267471128_biz@mybuys.com",
-    :password => "1267471138",
-    :signature => "Ad9B4K7zA-eD3NMvld9hoLQ6SpgnAqDy-CilXFJL9ZcD43sleNm0Oxp1"
-  )
+
+# Paypal connection, not using currently
+#  ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+#    :login => "seller_1267471128_biz@mybuys.com",
+#    :password => "1267471138",
+#    :signature => "Ad9B4K7zA-eD3NMvld9hoLQ6SpgnAqDy-CilXFJL9ZcD43sleNm0Oxp1"
+#  )
+  
+  ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+	  :login => "9WBbf95f",
+	  :password => "98VkFr5mDM292kfu",
+	  :test => true
+)
 end

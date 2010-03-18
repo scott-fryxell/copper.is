@@ -28,10 +28,20 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 config.after_initialize do
-  ActiveMerchant::Billing::Base.mode = :production
-  ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-    :login => "seller_1229899173_biz_api1.railscasts.com",
-    :password => "FXWU58S7KXFC6HBE",
-    :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
-  )
+  ActiveMerchant::Billing::Base.mode = :test
+  # TODO - set the mode to production when we are actually going to production
+  
+  # Paypal, not using currently
+#  ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
+#    :login => "seller_1229899173_biz_api1.railscasts.com",
+#    :password => "FXWU58S7KXFC6HBE",
+#    :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
+#  )
+
+	::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+	  :login => "9WBbf95f",
+	  :password => "98VkFr5mDM292kfu",
+	  :test => true # TODO - remove this line when we are actually going to production Authorize.net
+	)
+	
 end
