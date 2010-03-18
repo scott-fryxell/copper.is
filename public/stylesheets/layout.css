@@ -10,7 +10,7 @@ section, header, footer{
   padding: .5em;
 }
 
-header nav {
+header nav, footer nav {
   float:right;
 }
 header nav a{
