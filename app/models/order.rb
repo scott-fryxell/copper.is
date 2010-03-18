@@ -20,7 +20,7 @@ class Order < ActiveRecord::Base
   has_many :tips, :through => :user
   has_many :resources, :through => :user
   has_one  :account
-  has_many :transactions
+  has_many :transactions, :class_name => "OrderTransaction"
   
   validate_on_create :validate_card
 
