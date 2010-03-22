@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.xml  
   def index
-    @orders = orders.all
+    @orders = Order.all
 
     respond_to do |format|
       format.html # index.html.erb

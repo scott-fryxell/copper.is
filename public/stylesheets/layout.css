@@ -22,6 +22,19 @@ header nav a + a:before{
   
 }
 
+form{
+  width: 11em;
+}
 table th{
   font-weight: bold;
+}
+
+input, label {
+
+  display: inline-block;
+  clear:right;
+}
+
+input, select{
+  display:inline-block;
 }
