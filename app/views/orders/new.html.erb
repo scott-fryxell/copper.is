@@ -7,9 +7,35 @@
   <% form_for @order do |f| %>
   <fieldset>
     <legend><%= f.error_messages %></legend>
+  
+    <label for="order_first_name"><%= f.label :first_name %></label>
+    <%= f.text_field :first_name %>
+  
+  
+    <label for="order_last_name"><%= f.label :last_name %></label>
+    <%= f.text_field :last_name %>
+  
     
+  
     <label for="order_amount"><%= f.label :amount %></label>
     <%= f.text_field :amount %>
+  
+  
+    <label for="order_cart_type"><%= f.label :card_type %></label>
+    <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+  
+  
+    <label for="order_cart_number"><%= f.label :card_number %></label>
+    <%= f.text_field :card_number %>
+  
+  
+    <label for="order_cart_verification"><%= f.label :card_verification, "Card Verification Value (CVV)" %></label>
+    <%= f.text_field :card_verification %>
+  
+  
+    <label for="order_cart_expires_on"><%= f.label :card_expires_on %></label>
+    <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+
     
   </fieldset>
       
