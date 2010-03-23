@@ -17,7 +17,9 @@
 class Order < ActiveRecord::Base
   has_many :transactions, :class_name => "OrderTransaction"
   belongs_to  :user
-  has_one  :account
+  has_one  :account, :through => :user
+
+  
   
   validate_on_create :validate_card
 

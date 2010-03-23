@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
-    <link rel="stylesheet" href="/stylesheets/reset.css" />
-    <link rel="stylesheet" href="/stylesheets/error.css" />
-    <link rel="stylesheet" href="/stylesheets/layout.css" />
+    <%= stylesheet_link_tag 'reset', 'error', 'layout', 'formtastic', 'formtastic_changes'  %>
+    
     <%= yield(:head) %>
   </head>
   <body id="container">

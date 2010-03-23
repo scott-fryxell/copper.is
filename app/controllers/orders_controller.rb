@@ -30,15 +30,17 @@ class OrdersController < ApplicationController
 
   # POST /orders
   # POST /orders.xml
-  def new
+  def new        
     @order = Order.new
+    @current_user =  current_user
   end
 
   # POST /orders
   # POST /orders.xml
   def create
     @order = Order.new(params[:order])
-    @order.ip_address = request.remote_ip
+    @order.ip_address = request.remote_ip    
+    @order.user_id = current_user.id
     if @order.save
       if @order.purchase
         render :action => "success"

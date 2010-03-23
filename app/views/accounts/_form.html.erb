@@ -1,34 +1,9 @@
 
-<% form_for @account do |f| %>
-<aside>
-  <%= f.error_messages %>
-</aside>
-
-<fieldset>
-
-  <label for="account_type"><%= f.label :card_type %></label>
-  <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
-
-  <label for="account_number"><%= f.label :number %></label>
-  <%= f.text_field :number %>
-
-  <label for="account_verification_value"><%= f.label :verification_value %></label>
-  <%= f.text_field :verification_value %>
-
-  <label for="account_month"><%= f.label :month %></label>
-  <%= f.date_select :month, :discard_day => true, :discard_year => true, :add_month_numbers => true %>
-
-  <label for="account_year"><%= f.label :year %></label>
-  <%= f.date_select :year, :discard_day => true, :discard_month => true, :start_year => Date.today.year, :end_year => (Date.today.year+10) %>
-
-  <label for="account_first_name"><%= f.label :first_name %></label>
-  <%= f.text_field :first_name %>
-
-  <label for="account_last_name"><%= f.label :last_name %></label>
-  <%= f.text_field :last_name %>
-
-</fieldset>
-
-<%= f.submit "Submit" %>
-
+<% semantic_form_for @account do |f| %>
+  <%=f.inputs%>
+  <%=f.buttons%>
 <% end %>
+
+
+
+

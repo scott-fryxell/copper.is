@@ -12,10 +12,14 @@ class AccountsController < ApplicationController
   
   def new
     @account = Account.new
+    
+    @current_user = current_user
   end
   
   def create
+    
     @account = Account.new(params[:account])
+    @account.user = current_user
     if @account.save
       flash[:notice] = "Successfully created account."
       redirect_to @account
