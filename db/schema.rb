@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100322211707) do
+ActiveRecord::Schema.define(:version => 20100323153728) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "number"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20100322211707) do
     t.string   "ip_address"
     t.decimal  "amount"
     t.integer  "user_id"
+    t.integer  "account_id"
   end
 
   create_table "resources", :force => true do |t|

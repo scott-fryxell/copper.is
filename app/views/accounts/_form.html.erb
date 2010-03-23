@@ -1,7 +1,18 @@
 
 <% semantic_form_for @account do |f| %>
-  <%=f.inputs%>
+  <% f.inputs do %>
+  	<%= f.input :first_name %>
+  	<%= f.input :last_name %>
+  	<%= f.input :number, :as => :numeric %>
+  	<%= f.input :card_type, :as => :select, :collection => [["Visa", "visa"], ["MasterCard", "master"], ["Discover", "discover"], ["American Express", "american_express"]] %>
+  	<%= f.input :verification_value, :label => "Card Verification Value (CVV)", :input_html => { :size => 5 } %>
+  	<%= f.input :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+  <% end %>
+  
   <%=f.buttons%>
+  
+  <!-- # test credit card number = 4024007148673576 --> 
+  
 <% end %>
 
 

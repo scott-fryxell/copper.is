@@ -1,0 +1,26 @@
+<% title "Orders" %>
+
+<section id="order_list">
+  <table>
+    <tr>
+      <th>Amount</th>
+      <th>Date</th>
+      <th>Commands</th>
+    </tr>
+
+    <% @orders.each do |tip| %>
+    <tr>
+      <td><%=h order.amount %></td>
+      <td><%=h order.created_at %></td>
+      <td>
+      	<%= link_to 'Show', order %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+
+  <nav>
+    <%= link_to 'New Order', new_order_path %>  
+  </nav>
+
+</section>

@@ -6,7 +6,12 @@
   </header>
   <% semantic_form_for @order do |f| %>
   
-  <%=f.inputs%>
+  <% f.inputs do %>
+  	<%= f.input :amount %>
+    <%= f.input :account %>
+  	
+  <% end %>
+  
   <%=f.buttons%>
   <% end %>
 

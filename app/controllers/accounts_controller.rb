@@ -3,7 +3,7 @@ class AccountsController < ApplicationController
   filter_resource_access
   
   def index
-    @accounts = Account.all
+    @accounts = Account.find_all_by_user_id(current_user)
   end
   
   def show

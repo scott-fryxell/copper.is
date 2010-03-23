@@ -15,12 +15,10 @@
 #
 
 class Order < ActiveRecord::Base
+  attr_accessible :amount, :account_id
   has_many :transactions, :class_name => "OrderTransaction"
-  belongs_to  :user
-  has_one  :account, :through => :user
-
-  
-  
+  belongs_to :account
+  has_one :user, :through => :account
   validate_on_create :validate_card
 
   def purchase
