@@ -10,7 +10,7 @@ authorization do
   end
   
   role :patron do
-    has_permission_on [:tips, :accounts, :resources, :orders, :transactions], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
+    has_permission_on [:addresses, :tips, :accounts, :resources, :orders, :transactions], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
   end
   
   role :guest do

@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def permission_denied 
-    flash[:error] = "no Thank you's for you."
+    flash[:error] = "PERMISSION DENIED"
     redirect_to root_url
   end
     

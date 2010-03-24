@@ -1,0 +1,14 @@
+<% semantic_form_for @address do |f| %>
+  <% f.inputs do %>
+  	<%= f.input :street1 %>
+  	<%= f.input :street2 %>
+  	<%= f.input :city %>
+  	<%= f.input :zip %>
+  	<%= f.input :country, :as => :country %> 
+  <% end %>
+  
+  <%=f.buttons%>
+  
+  <!-- # test credit card number = 4024007148673576 --> 
+  
+<% end %>

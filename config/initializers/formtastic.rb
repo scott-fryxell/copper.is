@@ -7,7 +7,7 @@
 
 # Should select fields have a blank option/prompt by default?
 # Defaults to true.
-# Formtastic::SemanticFormBuilder.include_blank_for_select_by_default = true
+Formtastic::SemanticFormBuilder.include_blank_for_select_by_default = false
 
 # Set the string that will be appended to the labels/fieldsets which are required
 # It accepts string or procs and the default is a localized version of
@@ -32,8 +32,8 @@
 # for the text inside each @<option>@ tag or alongside each radio @<input>@. The first method
 # that is found on the object will be used.
 # Defaults to ["to_label", "display_name", "full_name", "name", "title", "username", "login", "value", "to_s"]
-# Formtastic::SemanticFormBuilder.collection_label_methods = [
-#   "to_label", "display_name", "full_name", "name", "title", "username", "login", "value", "to_s"]
+ Formtastic::SemanticFormBuilder.collection_label_methods = [
+   "to_label", "display_name", "first_name", "name", "title", "username", "login", "value", "to_s", "card_type"]
 
 # Formtastic by default renders inside li tags the input, hints and then
 # errors messages. Sometimes you want the hints to be rendered first than
@@ -44,7 +44,7 @@
 # Specifies if labels/hints for input fields automatically be looked up using I18n.
 # Default value: false. Overridden for specific fields by setting value to true,
 # i.e. :label => true, or :hint => true (or opposite depending on initialized value)
-# Formtastic::SemanticFormBuilder.i18n_lookups_by_default = false
+Formtastic::SemanticFormBuilder.i18n_lookups_by_default = true
 
 # You can add custom inputs or override parts of Formtastic by subclassing SemanticFormBuilder and
 # specifying that class here.  Defaults to SemanticFormBuilder.
