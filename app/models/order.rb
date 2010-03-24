@@ -42,15 +42,14 @@ class Order < ActiveRecord::Base
   def purchase_options
     {
       :ip => ip_address,  
-        :billing_address => {
-          :name     => "Ryan Bates",
-          :address1 => "123 Main St.",
-          :city     => "New York",
-          :state    => "NY",
-          :country  => "US",
-          :zip      => "10001"
-        }
+      :billing_address => {
+        :name     => "#{account.first_name} #{account.last_name}",
+        :address1 => account.address.street1,
+        :city     => account.address.city,
+        :state    => account.address.state,
+        :country  => account.address.country,
+        :zip      => account.address.zip
       }
+    }
   end
-    
 end
