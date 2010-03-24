@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  filter_resource_access
+  # filter_resource_access
 
   # GET /orders/1
   # GET /orders/1.xml  
@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
   # POST /orders.xml
   def new        
     @order = Order.new
+    @user_accounts = Account.find_all_by_user_id(current_user)
     @current_user =  current_user
   end
 
@@ -48,7 +49,7 @@ class OrdersController < ApplicationController
         render :action => "failure"
       end
     else
-      render :action => 'new'
+      render :action => 'failure'
     end
   end
 

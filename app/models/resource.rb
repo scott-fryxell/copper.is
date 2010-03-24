@@ -20,5 +20,7 @@
 class Resource < ActiveRecord::Base
   
   has_many :users, :through => :tips
-  # has_one  :publisher
+  belongs_to :user
+  has_many :tips
+  
 end

@@ -1,25 +1,9 @@
-# == Schema Information
-# Schema version: 20100309235816
-#
-# Table name: orders
-#
-#  id              :integer         not null, primary key
-#  first_name      :string(255)
-#  last_name       :string(255)
-#  card_type       :string(255)
-#  card_expires_on :date
-#  created_at      :datetime
-#  updated_at      :datetime
-#  ip_address      :string(255)
-#  amount          :decimal(, )
-#
-
 class Order < ActiveRecord::Base
   attr_accessible :amount, :account_id
   has_many :transactions, :class_name => "OrderTransaction"
-  belongs_to :account
+  belongs_to :account 
   has_one :user, :through => :account
-  validate_on_create :validate_card
+  # validate_on_create :validate_card
 
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
@@ -29,9 +13,8 @@ class Order < ActiveRecord::Base
   end
 
   def price_in_cents
-    amount * 1000
+    amount * 100
   end
-
 
   private
 
@@ -43,21 +26,22 @@ class Order < ActiveRecord::Base
     end
   end
 
+
   def credit_card
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
     :type               => account.card_type,
-    :number             => account.card_number,
-    :verification_value => account.card_verification,
+    :number             => account.number,
+    :verification_value => account.verification_value,
     :month              => account.card_expires_on.month,
     :year               => account.card_expires_on.year,
     :first_name         => account.first_name,
     :last_name          => account.last_name
-    )
+  )
   end
 
   def purchase_options
     {
-      :ip => ip_address,
+      :ip => ip_address,  
         :billing_address => {
           :name     => "Ryan Bates",
           :address1 => "123 Main St.",

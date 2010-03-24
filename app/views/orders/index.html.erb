@@ -4,16 +4,16 @@
   <table>
     <tr>
       <th>Amount</th>
-      <th>Date</th>
+      <th>Account type</th>
       <th>Commands</th>
     </tr>
 
-    <% @orders.each do |tip| %>
+    <% @orders.each do |o| %>
     <tr>
-      <td><%=h order.amount %></td>
-      <td><%=h order.created_at %></td>
+      <td><%=h o.amount %></td>
+      <td><%=h o.account.card_type %></td>
       <td>
-      	<%= link_to 'Show', order %>
+      	<%= link_to 'Show', o %>
       </td>
     </tr>
     <% end %>

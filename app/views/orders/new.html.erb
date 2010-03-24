@@ -8,7 +8,7 @@
   
   <% f.inputs do %>
   	<%= f.input :amount %>
-    <%= f.input :account %>
+    <%= f.input :account, :collection => @user_accounts, :label_method => :card_type%>
   	
   <% end %>
   
