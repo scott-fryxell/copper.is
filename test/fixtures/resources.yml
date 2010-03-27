@@ -20,19 +20,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  scheme: MyString
-  username: MyString
-  domain: MyString
-  port: 1
-  path: MyString
-  query: MyString
-  anchor: MyString
+  scheme: http
+  port: 80
+  path: /index
+  query: a=1
 
 two:
-  scheme: MyString
-  username: MyString
-  domain: MyString
-  port: 1
-  path: MyString
-  query: MyString
-  anchor: MyString
+  scheme: ftp
+  port: 22
+  path: /admin/login
+  query: password=cheezburger
