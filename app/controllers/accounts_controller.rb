@@ -18,7 +18,6 @@ class AccountsController < ApplicationController
   end
   
   def create
-    
     @account = Account.new(params[:account])
     @account.user = current_user
     if @account.save

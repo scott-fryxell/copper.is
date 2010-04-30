@@ -13,12 +13,20 @@ class AccountsControllerTest < ActionController::TestCase
   
   def test_new
     get :new
+    assert_response :success
     assert_template 'new'
   end
   
   def test_create_invalid
+    # simulate logging in
+    sample = users(:sample)
+    assert_nil controller.session["user_credentials"]
+    assert UserSession.create(sample)
+    assert_equal controller.session["user_credentials"], sample.persistence_token
+
     Account.any_instance.stubs(:valid?).returns(false)
-    post :create
+    get :create
+    assert_response :success
     assert_template 'new'
   end
   

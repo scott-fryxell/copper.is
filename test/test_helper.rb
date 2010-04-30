@@ -38,6 +38,6 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
-=begin
-  TODO Tests need to account for logged in or guest access. 
-=end
+class ActionController::TestCase
+  setup :activate_authlogic
+end

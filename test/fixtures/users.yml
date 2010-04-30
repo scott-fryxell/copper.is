@@ -19,9 +19,10 @@
 #  updated_at         :datetime
 #
 
-one:
-  email: MyString
-  crypted_password: MyString
+sample:
+  email: user@example.com
+  crypted_password: 489eb5775db323e76527cd887f1512200f0dcada01455e58501ca5f8dee406c1eba59810c027a7d8a81440bf15afa74512ab485f4db4c79552fa03ea4ae64163
+  password_salt: jcw-9_MLL4Sy5iBU-cnd
 
 two:
   email: MyString
