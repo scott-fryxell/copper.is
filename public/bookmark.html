@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Bookmarklet </title>
+  </head>
+  
+  <body id="bookmarklet">
+    
+   
+    
+    <script type="text/javascript">
+      var patronize = function(){
+        var url = window.location
+        var service ="http://0.0.0.0:3000/patronize"
+        var request =new XMLHttpRequest();
+        
+        
+        request.open('POST', service , true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        
+        
+        var postBody = encodeURIComponent('patronized') + '=' + encodeURIComponent(window.location);
+        console.debug(postBody);        
+        
+        request.send( postBody );
+        
+        console.debug('url submited');        
+      }
+    </script>
+    <ol>
+      <li><a href="javascript:var url = window.location;var service ='http://0.0.0.0:3000/patronize';var request =new XMLHttpRequest();request.open('POST', service , true);request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');var postBody = encodeURIComponent('patronized') + '=' + encodeURIComponent(window.location);console.debug(postBody);request.send( postBody );console.debug('url submited');">Bookmarklet</a></li>
+      <li><a href="javascript:patronize()">function</a></li>
+    </ol>
+
+    <pre>
+      grab the current window's url. 
+
+      POST to our server. 
+    </pre>
+        
+    <form action="http:/0.0.0.0:3000/patronize" method="post" accept-charset="utf-8">
+      <input type="hidden" name="patronized" value="http://www.google.com"/>
+      
+      <fieldset><input type="submit" value="submit"/></fieldset>
+    </form>
+    
+  </body>
+  
+</html>
+
