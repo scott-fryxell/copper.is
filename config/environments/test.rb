@@ -27,12 +27,8 @@ config.action_mailer.delivery_method = :test
 # like if you have constraints or database-specific column types
 # config.active_record.schema_format = :sql
 
-
-#config.gem "webrat", :version => ">= 1.7.0"
-config.gem "webrat" 
-
-config.gem "rspec", :lib => false, :version => ">= 1.3.0"
-config.gem "rspec-rails", :lib => false, :version => ">= 1.3.2"
+config.gem "webrat",      :version => ">= 0.7.1"
+config.gem "rspec-rails", :version => ">= 1.3.2", :lib => "spec"
 
 config.after_initialize do
   ActiveMerchant::Billing::Base.mode = :test
