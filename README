@@ -1,2 +1,7 @@
 config 
   Integration specifications load all fixtures
+
+Remember, dear child, that config.gem has two parts:
+ 1. The first part is the name of the GEM.
+ 2. The second part is the name of the LIBRARY as it is REQUIRED.
+Often the two are the same.
