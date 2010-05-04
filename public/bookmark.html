@@ -31,10 +31,24 @@
       };
     </script>
 
+    <script type="text/javascript">
+      var patronize_callback = function(w, x) {
+        function deal() {
+          if (x.readyState != 4) { return; }
+          alert(x.status);
+        }
+
+        x.open('GET', 'http://0.0.0.0:3000/patronize?patronized=' + encodeURIComponent(w.location));
+        x.onreadystatechange = deal;
+        x.send();
+      };
+    </script>
+
     <ol>
       <li><a href="javascript:var%20patronize%3Dfunction%28w%2Cx%29%7Bx.open%28%27GET%27%2C%27http%3A%2F%2F0.0.0.0%3A3000%2Fpatronize%3Fpatronized%3D%27%2BencodeURIComponent%28w.location%29%29%3Bx.send%28%29%7D%3Bpatronize%28window%2Cnew%20XMLHttpRequest%29%3B">tip this</a></li>
       <li><a href="javascript:patronize_POST()">Patronize POST</a></li>
       <li><a href="javascript:patronize(window,new XMLHttpRequest)">Patronize GET</a></li>
+      <li><a href="javascript:patronize_callback(window,new XMLHttpRequest)">Patronize GET with alert callback.</a></li>
     </ol>
 
     <pre>
