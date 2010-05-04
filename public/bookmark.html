@@ -32,9 +32,11 @@
     </script>
 
     <script type="text/javascript">
-      var patronize_callback = function(w, x) {
+      var patronize_callback = function (w, x) {
         function deal() {
-          if (x.readyState != 4) { return; }
+          if (x.readyState !== 4) {
+            return;
+          }
           alert(x.status);
         }
 
