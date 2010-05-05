@@ -6,63 +6,62 @@
   </head>
 
   <body id="bookmarklet">
-    <script type="text/javascript">
-      var patronize_POST = function(){
-        var url = window.location;
-        var service = 'http://0.0.0.0:3000/patronize';
-        var request = new XMLHttpRequest();
-        var postBody = encodeURIComponent('patronized') + '=' + encodeURIComponent(window.location);
-        console.debug(postBody);
-        request.open('POST', service , true);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        request.setRequestHeader('Content-Length', postBody.length);
-        request.setRequestHeader('Connection', 'close');
-        request.send( postBody );
-        console.debug('url submitted');
-      }
-    </script>
 
     <!-- Packed and placed in bookmarklet with http://dean.edwards.name/packer/,
          URL escaped using TextMate HTML bundle. -->
     <script type="text/javascript">
-      var patronize = function(w, x) {
-        x.open('GET', 'http://0.0.0.0:3000/patronize?patronized=' + encodeURIComponent(w.location));
-        x.send();
-      };
-    </script>
+      var createXMLHttpRequest = function () {
+        try { return new XMLHttpRequest(); } catch(e) {}
+        try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch (e) {}
+        return null;
+      }
 
-    <script type="text/javascript">
-      var patronize_callback = function (w, x) {
-        function deal() {
+      var loadScript = function (scriptURL) { 
+        var scriptElem = document.createElement('SCRIPT');
+        scriptElem.setAttribute('language', 'JavaScript');
+        scriptElem.setAttribute('src', scriptURL);
+        document.body.appendChild(scriptElem);
+      }
+
+      //load the referenced script
+      var responseHandler = function (json) {
+        var response = eval( "(" + json + ")");
+        loadScript(response.next_url);
+      }
+
+      var patronize = function (w, x) {
+        x.open('GET', 'http://0.0.0.0:3000/patronize?patronized=' + encodeURIComponent(w.location));
+        x.onreadystatechange = function () {
           if (x.readyState !== 4) {
             return;
           }
-          alert(x.status);
+
+          if (x.status === 200){
+            // check the content type of the response should be application/json
+            responseHandler(x.responseText);
+            //parse response and do what the json says
+          }
+          else{
+            //handle non standard http response codes
+            // TODO implement handlers for other status codes 404, 500, 503, 302
+            alert(x.status);
+          }
+
         }
 
-        x.open('GET', 'http://0.0.0.0:3000/patronize?patronized=' + encodeURIComponent(w.location));
-        x.onreadystatechange = deal;
         x.send();
       };
     </script>
 
     <ol>
       <li><a href="javascript:var%20patronize%3Dfunction%28w%2Cx%29%7Bx.open%28%27GET%27%2C%27http%3A%2F%2F0.0.0.0%3A3000%2Fpatronize%3Fpatronized%3D%27%2BencodeURIComponent%28w.location%29%29%3Bx.send%28%29%7D%3Bpatronize%28window%2Cnew%20XMLHttpRequest%29%3B">tip this</a></li>
-      <li><a href="javascript:patronize_POST()">Patronize POST</a></li>
-      <li><a href="javascript:patronize(window,new XMLHttpRequest)">Patronize GET</a></li>
-      <li><a href="javascript:patronize_callback(window,new XMLHttpRequest)">Patronize GET with alert callback.</a></li>
+      <li><a href="javascript:patronize(window,createXMLHttpRequest())">Patronize GET with alert callback.</a></li>
     </ol>
 
     <pre>
       grab the current window's url.
       GET to /patronize URL
     </pre>
-
-    <form action="http:/0.0.0.0:3000/patronize" method="post" accept-charset="utf-8">
-      <input type="hidden" name="patronized" value="http://www.google.com"/>
-      <fieldset><input type="submit" value="submit"/></fieldset>
-    </form>
-
   </body>
 
 </html>
