@@ -24,4 +24,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :tips
 
+  map.mailtest "mailtest", :controller => "mail_test", :action => "create_confirmation"
 end
