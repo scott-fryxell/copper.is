@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Bookmarklet</title>
+  </head>
+
+  <body id="bookmarklet">
+
+    <!-- Packed and placed in bookmarklet with http://dean.edwards.name/packer/,
+         URL escaped using TextMate HTML bundle. -->
+    <script>
+// javascript:function%20loadScript(scriptURL)%20{var%20scriptElem%20=%20document.createElement(%27SCRIPT%27);scriptElem.setAttribute(%27language%27,%20%27JavaScript%27);scriptElem.setAttribute(%27src%27,%20scriptURL);document.body.appendChild(scriptElem);}loadScript(%27http://0.0.0.0:3000/patronize?patronized=%27%20+%20window.location);
+      function loadScript(scriptURL) {
+         var scriptElem = document.createElement('SCRIPT'); 
+         scriptElem.setAttribute('language', 'JavaScript'); 
+         scriptElem.setAttribute('src', scriptURL); 
+         document.body.appendChild(scriptElem);
+      }
+      loadScript('http://0.0.0.0:3000/patronize?patronized=' + window.location);
+    </script>
+
+    <ol>
+      <li><a href="javascript:function%20loadScript(scriptURL)%20{var%20scriptElem%20=%20document.createElement(%27SCRIPT%27);scriptElem.setAttribute(%27language%27,%20%27JavaScript%27);scriptElem.setAttribute(%27src%27,%20scriptURL);document.body.appendChild(scriptElem);}loadScript(%27http://0.0.0.0:3000/patronize?patronized=%27%20+%20window.location);">tip this</a></li>
+      
+    </ol>
+
+    <pre>
+      grab the current window's url.
+      GET to /patronize URL
+    </pre>
+  </body>
+
+</html>
+
