@@ -6,30 +6,25 @@
   </head>
 
   <body id="bookmarklet">
-
-    <!-- Packed and placed in bookmarklet with http://dean.edwards.name/packer/,
-         URL escaped using TextMate HTML bundle. -->
     <script>
-// javascript:function%20loadScript(scriptURL)%20{var%20scriptElem%20=%20document.createElement(%27SCRIPT%27);scriptElem.setAttribute(%27language%27,%20%27JavaScript%27);scriptElem.setAttribute(%27src%27,%20scriptURL);document.body.appendChild(scriptElem);}loadScript(%27http://0.0.0.0:3000/patronize?patronized=%27%20+%20window.location);
-      function loadScript(scriptURL) {
-         var scriptElem = document.createElement('SCRIPT'); 
-         scriptElem.setAttribute('language', 'JavaScript'); 
-         scriptElem.setAttribute('src', scriptURL); 
-         document.body.appendChild(scriptElem);
-      }
-      loadScript('http://0.0.0.0:3000/patronize?patronized=' + window.location);
+      function loadScript() {
+        var scriptElem = document.createElement('SCRIPT');
+        var scriptURL = 'http://0.0.0.0:3000/tips/new.js?patronized=' + window.location;
+        var title = document.getElementsByTagName("TITLE")[0].innerHTML;
+        scriptElem.setAttribute('language', 'JavaScript');
+        scriptElem.setAttribute('src', scriptURL + '&title=' + title);
+        document.body.appendChild(scriptElem);
+      };
+      loadScript();
     </script>
 
     <ol>
-      <li><a href="javascript:function%20loadScript(scriptURL)%20{var%20scriptElem%20=%20document.createElement(%27SCRIPT%27);scriptElem.setAttribute(%27language%27,%20%27JavaScript%27);scriptElem.setAttribute(%27src%27,%20scriptURL);document.body.appendChild(scriptElem);}loadScript(%27http://0.0.0.0:3000/patronize?patronized=%27%20+%20window.location);">tip this</a></li>
-      
+      <li><a href="javascript:function%20loadScript()%20{var%20scriptElem%20=%20document.createElement(%27SCRIPT%27);var%20scriptURL%20=%20%27http://0.0.0.0:3000/tips/new.js?patronized=%27%20+%20window.location;var%20title%20=%20document.getElementsByTagName(%22TITLE%22)[0].innerHTML;scriptElem.setAttribute(%27language%27,%20%27JavaScript%27);scriptElem.setAttribute(%27src%27,%20scriptURL%20+%20%27&title=%27%20+%20title);document.body.appendChild(scriptElem);};loadScript();">tip this</a></li>
     </ol>
 
     <pre>
       grab the current window's url.
-      GET to /patronize URL
+      GET to http://0.0.0.0:300/patronized
     </pre>
   </body>
-
 </html>
-

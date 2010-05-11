@@ -1,0 +1,11 @@
+// When the patron is not logged in redirect to the login page.
+// Keep the tip in the session until user logs in.
+
+var flb = {
+  notify: function (title) {
+    // When the tip is successful notify patron.
+    alert("Title: " + title);
+  }
+}
+
+flb.notify("<%= @title %>");
