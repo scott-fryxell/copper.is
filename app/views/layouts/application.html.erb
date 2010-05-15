@@ -33,6 +33,71 @@
       <%= yield %>
     </section>
 
+
+    <style type="text/css" media="screen">
+      section.debug_info h1 {
+        font-weight: bold;
+        font-size: 1.25em;
+        margin-bottom: 1em;
+        color:blue;
+      }
+
+      section.debug_info h2 {
+        font-weight:bold;
+        color:silver;
+      }
+
+      section.debug_info dl {
+        margin-left:1em;
+
+      }
+      section.debug_info dl dt {
+        width:20%;
+        font-weight:bold;
+        display:inline-block;
+        color:silver;
+      }
+
+      section.debug_info dl dd{
+        float:right;
+        width:70%;
+        color:silver;
+      }
+    </style>
+
+    <section class="debug_info">
+      <h1>Session information</h1>
+      <dl>
+        <% session.each do |param| %>
+          <dt><%= param[0] %></dt>
+          <dd><%= param[1].inspect %></dd>
+        <% end %>
+      </dl>
+    </section>
+    <section class="debug_info">
+      <h1>Request information</h1>
+
+      <h2>path</h2>
+      <dl>
+        <% request.path_parameters.each do |param| %>
+          <dt><%= param[0] %></dt>
+          <dd><%= param[1].inspect %></dd>
+        <% end %>
+      </dl>
+      <h2>parameters</h2>
+      <dl>
+        <% request.request_parameters.each do |param| %>
+          <dt><%= param[0] %></dt>
+          <dd><%= param[1].inspect %></dd>
+        <% end %>
+      </dl>
+      <h2>query info</h2>
+      <dl>
+        <% request.query_parameters.each do |param| %>
+          <dt><%= param[0] %></dt>
+          <dd><%= param[1].inspect %></dd>
+        <% end %>
+      </dl>
     </section>
     <footer>
       <address>
