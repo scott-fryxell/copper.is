@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+ENV['RAILS_ENV'] = 'development'
+require File.expand_path(File.join(File.dirname(__FILE__),"../config/environment"))
+
+user = User.new
+user.email                 = 'test@test.com'
+user.password              = 'test'
+user.password_confirmation = 'test'
+
+user.roles << Role.find_by_name('Patron')
+
+user.save || die("unable to create test user!")
