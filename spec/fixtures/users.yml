@@ -19,9 +19,17 @@
 #  updated_at         :datetime
 #
 
-patron:
+test:
   id: 31337
   email: test@test.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
   persistence_token: <%= Authlogic::Random.hex_token %>
+
+<% Role.find(:all).each do |role| %>
+<%= role.name.downcase %>:
+  email: <%= role.name.downcase %>@test.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt(role.name.downcase + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+<% end %>

@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+ENV['RAILS_ENV'] = ARGV.shift || 'development'
+require File.expand_path(File.join(File.dirname(__FILE__),"../config/environment"))
+
+user = User.new
+user.email                 = 'test@test.com'
+user.password              = 'test'
+user.password_confirmation = user.password
+user.roles << Role.find_by_name('Patron')
+
+user.save || puts("unable to create test user!")
+
+Role.find(:all).each do |role|
+  user = User.new
+  user.email = "#{role.name.downcase}@test.com"
+  user.password = role.name.downcase
+  user.password_confirmation = user.password
+  user.roles << role
+
+  user.save || puts("unable to create sample role user user #{role.name}!")
+end
