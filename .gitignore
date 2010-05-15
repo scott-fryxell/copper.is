@@ -4,3 +4,4 @@ tmp/**/*
 tmp/*
 db/*.sqlite3
 doc/plugins/
+coverage*
