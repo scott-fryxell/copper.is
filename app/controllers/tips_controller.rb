@@ -31,10 +31,11 @@ class TipsController < ApplicationController
     @tip = Tip.new
 
     @current_user = current_user
+    @title = params[:title]
     
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @tip }
+      format.js
     end
   end
 

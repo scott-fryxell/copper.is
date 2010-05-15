@@ -12,11 +12,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :orders
 
-
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
-
-  map.patronize "patronize", :controller => "patronize", :action => "dump"
 
   map.resources :user_sessions
 

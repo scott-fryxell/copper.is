@@ -1,1 +1,0 @@
-alert("where is jquery")
