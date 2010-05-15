@@ -9,7 +9,7 @@ describe "Guest registration" do
 end
 
 describe "Guest login" do
-  fixtures :users, :roles_users
+  fixtures :roles_users, :users
 
   it "should display a success message when a Guest logs in with a known email address and correct password" do
     visit "/"
