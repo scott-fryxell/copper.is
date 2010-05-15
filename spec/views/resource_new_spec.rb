@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe "the resource view" do
+describe "the view for adding a new resource" do
   it "should render properly" do
     resource = mock_model(Resource)
     resource.should_receive(:scheme)
