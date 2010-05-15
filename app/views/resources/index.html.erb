@@ -11,7 +11,7 @@
     <tr>
       <th>Scheme</th>
       <th>Username</th>
-      <th>Domain</th>
+      <th>Hostname</th>
       <th>Port</th>
       <th>Path</th>
       <th>Query</th>
@@ -21,12 +21,12 @@
     <% @resources.each do |resource| %>
     <tr>
       <td><%=h resource.scheme %></td>
-      <td><%=h resource.username %></td>
-      <td><%=h resource.domain %></td>
+      <td><%=h resource.userinfo %></td>
+      <td><%=h resource.host %></td>
       <td><%=h resource.port %></td>
       <td><%=h resource.path %></td>
       <td><%=h resource.query %></td>
-      <td><%=h resource.anchor %></td>
+      <td><%=h resource.fragment %></td>
       <td>
         <nav>
           <%= link_to 'Show', resource %>
