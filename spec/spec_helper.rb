@@ -5,6 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environ
 require 'spec/autorun'
 require 'spec/rails'
 require 'webrat/integrations/rspec-rails'
+require 'lib/mail-test-helper'
 
 # include seed data before running tests (gets cleared out otherwise)
 require "#{Rails.root}/db/seeds.rb"
@@ -37,13 +38,5 @@ module Spec::Rails::Example
     end
 
     Spec::Example::ExampleGroupFactory.register(:integration, self)
-  end
-end
-
-module MailTestHelper
-  FIXTURE_LOAD_PATH = File.join(File.dirname(__FILE__), 'fixtures')
-  
-  def load_mail_fixture(example_message)
-    File.read(File.join(FIXTURE_LOAD_PATH, example_message))
   end
 end
