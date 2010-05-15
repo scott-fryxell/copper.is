@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  filter_resource_access
   
-  #filter_resource_access
   def new
     @user = User.new
   end
