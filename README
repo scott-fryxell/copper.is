@@ -42,3 +42,24 @@ When driving Authlogic from the console, you need to follow these steps:
 9. Check that the session is valid:
 
    new_session.valid?
+
+
+When driving Webrat from the console you need to follow these steps:
+
+1. Bring the Webrat bits into the console:
+
+   require 'webrat/integrations/rspec-rails'
+
+2. Include the configuration to configure Webrat for Rails:
+
+   Webrat.configure do |config|
+     config.mode = :rails
+   end
+
+3. Use class_eval to pull the WebRat methods into the app (integration session) object:
+
+   app.class_eval('include Webrat::Methods')
+
+4. You are ready to go wild!!!
+
+   app.visit '/'
