@@ -3,7 +3,7 @@
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
     <%= stylesheet_link_tag 'reset', 'error', 'layout', 'formtastic', 'formtastic_changes'  %>
-    
+
     <%= yield(:head) %>
   </head>
   <body id="container">
@@ -19,24 +19,25 @@
           <%= link_to "Accounts", accounts_path %>
           <%= link_to "Orders", orders_path %>
         <% else %>
-          <%= link_to "Sign up", new_user_path %>
-          <%= link_to "Login", login_path %>
+          <%= link_to "Log in or sign up", login_path %>
         <% end %>
       </nav>
     </header>
+
     <section>
       <aside id="response_messages">
         <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        <%- end -%>              
-      </aside>      
-      <%= yield %>        
+        <%- end -%>
+      </aside>
+      <%= yield %>
+    </section>
+
     </section>
     <footer>
       <address>
-        
       </address>
     </footer>
-    
+
   </body>
 </html>

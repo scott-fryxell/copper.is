@@ -1,17 +1,49 @@
-<% title "Login to the communist thank you " %> 
-<% form_for @user_session do |f| %>
-  <aside>
-    <%= f.error_messages %>    
-  </aside>
-  <fieldset>
-    <legend>Log in to thank bitches</legend>
-    <label for="user_email"><%= f.label :email %></label>
-    <%= f.text_field :email %>
-    
-    <label for="user_password"><%= f.label :password %></label>
-    <%= f.password_field :password %>        
+<% title "Log in or create an account" %>
+
+<style type="text/css" media="screen">
+/*  html *{ border:1px solid silver;}*/
+  fieldset{
+    display:block;
+    margin: 1em 0 0 1em;
+  }
+  input[type=password]{
+    display:block;
+    margin-left:1.5em;
+  }
+  input[type=text]{
+    display:block;
+  }
+  input[type=radio]{
+    margin-left: 1.5em;
+  }
+  legend{
+    margin-bottom:1.5em;
+    line-height:18px;
+  }
+</style>
+
+<form action="/user_sessions" method="POST" accept-charset="utf-8" id="login_form">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
+  <fieldset id="" class="">
+    <label>Email</label>
+    <input type="text" name="email" value="" id="email"/>
   </fieldset>
-  <%= f.submit "Login" %>  
-<% end %>
+  <fieldset>
+      <legend>Do you have an flb password?</legend>
+      <input type="radio" name="registered" value="no" id="registered_no"/>
+      <label for="registered_no">No, <span>I need an account.</span></label><br/>
 
-
+      <input type="radio" name="registered" value="yes" checked="true" id="registered_yes"/>
+      <label for="registered_yes">Yes, <span>I have a password:</span></label>
+      <input type="password" name="password" value="" id="password"/>
+  </fieldset>
+  <fieldset>
+    <label for="password_confirmation">Password confirmation</label>
+    <input type="password" name="confirmation" value="" id="confirmation"/>
+  </fieldset>
+  <fieldset id="keep">
+     <input type="checkbox" name="keep_me" value="true" id="keep_me"/>
+     <label for="keep_me">Keep me logged in</label>
+   </fieldset>
+   <input type="submit" name="login" value="Log in" id="login"/>
+</form>

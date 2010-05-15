@@ -19,7 +19,8 @@
 #  updated_at         :datetime
 #
 
-one:
+patron:
+  id: 31337
   email: test@test.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>

@@ -6,6 +6,9 @@ require 'spec/autorun'
 require 'spec/rails'
 require 'webrat/integrations/rspec-rails'
 
+# include seed data before running tests (gets cleared out otherwise)
+require "#{Rails.root}/db/seeds.rb"
+
 Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
 Spec::Runner.configure do |config|

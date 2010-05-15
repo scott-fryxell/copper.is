@@ -1,0 +1,3 @@
+one_patron:
+  user_id: 31337
+  role_id: <%= Role.find_by_name('Patron').id %>
