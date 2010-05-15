@@ -1,7 +1,44 @@
-config 
+config
   Integration specifications load all fixtures
 
 Remember, dear child, that config.gem has two parts:
  1. The first part is the name of the GEM.
  2. The second part is the name of the LIBRARY as it is REQUIRED.
 Often the two are the same.
+
+
+When driving Authlogic from the console, you need to follow these steps:
+
+1. Ensure the schema is current.
+
+2. Ensure the seed data is loaded (to ensure the roles are loaded for auth_declarative):
+
+   rake db:seed RAILS_ENV=test
+
+3. Ensure the test fixtures are loaded (so sample user is present):
+
+   rake spec:db:fixtures:load RAILS_ENV=test
+
+4. Start up the console:
+
+   RAILS_ENV=test script/console
+
+5. Make a request, so that the integration session sets up the controller object:
+
+   app.get "/login"
+
+6. Populate the Authlogic Rails controller adapter with the freshly-created controller object:
+
+   Authlogic::Session::Base.controller = Authlogic::ControllerAdapters::RailsAdapter.new(app.controller)
+
+7. Use Authlogic methods directly:
+
+   new_session = UserSession.create(:email=>"test@test.com",:password=>"test")
+
+8. Use 'y <object>' to get a YAML dump of the contents of whatever:
+
+   y new_session
+
+9. Check that the session is valid:
+
+   new_session.valid?
