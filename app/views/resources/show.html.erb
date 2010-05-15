@@ -1,10 +1,10 @@
+<% title "Display resource" %>
 <section>
-  <% title "Show Resource location" %>
   <header>
     <aside>
       Show Resource
     </aside>
-    <h1><%= title %></h1>
+    <h1>Info for resource #<%= @resource.id %></h1>
     <nav>
       <%= link_to 'Edit', edit_resource_path(@resource) %>
       <%= link_to 'Back', resources_path %>
@@ -12,28 +12,32 @@
   </header>
 
   <dl>
-
     <dt>Scheme:</dt>
     <dd><%=h @resource.scheme %></dd>
 
-    <dt>Username:</dt>
-    <dd><%=h @resource.username %></dd>
+    <dt>Userinfo:</dt>
+    <dd><%=h @resource.userinfo %></dd>
 
-    <dt>Domain:</dt>
-    <dd><%=h @resource.domain %></dd>
+    <dt>Host:</dt>
+    <dd><%=h @resource.host %></dd>
 
     <dt>Port:</dt>
     <dd><%=h @resource.port %></dd>
 
+    <dt>Registry:</dt>
+    <dd><%=h @resource.registry %></dd>
+
     <dt>Path:</dt>
     <dd><%=h @resource.path %></dd>
+
+    <dt>Opaque:</dt>
+    <dd><%=h @resource.opaque %></dd>
 
     <dt>Query:</dt>
     <dd><%=h @resource.query %></dd>
 
-    <dt>Anchor:</dt>
-    <dd><%=h @resource.anchor %></dd>
-
+    <dt>Fragment:</dt>
+    <dd><%=h @resource.fragment %></dd>
   </dl>
 
   <footer>
@@ -42,5 +46,4 @@
       <%= link_to 'Back', resources_path %>
     </nav>
   </footer>
-
 </section>
