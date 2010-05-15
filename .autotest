@@ -1,8 +1,6 @@
 require 'autotest/growl'
 require 'autotest/fsevent'
 require "autotest/restart"
-# require 'redgreen/autotest'
-
 
 Autotest.add_hook :initialize do |autotest|
   %w{.git .svn .hg .DS_Store ._* vendor}.each {|exception| autotest.add_exception(exception) }
@@ -13,5 +11,3 @@ Autotest.add_hook :initialize do |autotest|
 
   false
 end
-
-
