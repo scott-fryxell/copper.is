@@ -37,18 +37,33 @@ module ViewDebugHelper
     script << add("<table class='debug'><colgroup id='key-column'/>" )
     popup_header(script, 'Rails Debug Console')
 
-    if ! @controller.params.nil?
+    if !@controller.request.request_parameters.nil? && !@controller.request.request_parameters.empty?
       popup_header(script, 'Request Parameters:')
-      @controller.params.each do |key, value|
+      @controller.request.request_parameters.each do |key, value|
+        popup_data(script, h(key), h(value.inspect).gsub(/,/, ',<br/>')) unless IGNORE.include?(key)
+      end
+    end
+
+    if !@controller.request.path_parameters.nil? && !@controller.request.path_parameters.empty?
+      popup_header(script, 'Path Parameters:')
+      @controller.request.path_parameters.each do |key, value|
+        popup_data(script, h(key), h(value.inspect).gsub(/,/, ',<br/>')) unless IGNORE.include?(key)
+      end
+    end
+
+    if !@controller.request.query_parameters.nil? && !@controller.request.query_parameters.empty?
+      popup_header(script, 'Query Parameters:')
+      @controller.request.query_parameters.each do |key, value|
         popup_data(script, h(key), h(value.inspect).gsub(/,/, ',<br/>')) unless IGNORE.include?(key)
       end
     end
 
     dump_vars(script, 'Session Variables:', @controller.session.instance_variable_get("@data"))
+
     dump_vars(script, 'Flash Variables:', @controller.flash)
-    if view_debug_display_assigns and not @controller.assigns.nil?
+    if view_debug_display_assigns and not assigns.empty?
       popup_header(script, 'Assigned Template Variables:')
-      @controller.assigns.each do |k, v|
+      assigns.each do |k, v|
         if (not @view_debug_ignores) or (not @view_debug_ignores.include?(k))
           popup_data(script, h(k), dump_obj(v)) unless IGNORE.include?(k)
         end
@@ -59,7 +74,7 @@ module ViewDebugHelper
   end
 
   def dump_vars(script, header, vars)
-    return if vars.nil?
+    return if vars.nil? or vars.empty?
     popup_header(script, header)
     vars.each {|k, v| popup_data(script, h(k), dump_obj(v)) unless IGNORE.include?(k)}
   end
@@ -104,8 +119,8 @@ end
 
 class ActionController::Base
   alias :original_flash :flash
-  def flash(refresh = false)
-    original_flash(refresh)
+  def flash
+    original_flash
   end
   @@view_debug_display_assigns = true
   cattr_accessor :view_debug_display_assigns
