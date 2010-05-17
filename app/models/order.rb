@@ -1,17 +1,3 @@
-# == Schema Information
-# Schema version: 20100324194135
-#
-# Table name: orders
-#
-#  id         :integer         not null, primary key
-#  created_at :datetime
-#  updated_at :datetime
-#  ip_address :string(255)
-#  amount     :decimal(, )
-#  user_id    :integer
-#  account_id :integer
-#
-
 class Order < ActiveRecord::Base
   attr_accessible :amount, :account_id
   has_many :transactions, :class_name => "OrderTransaction"

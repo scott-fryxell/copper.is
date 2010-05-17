@@ -1,22 +1,3 @@
-# == Schema Information
-# Schema version: 20100324194135
-#
-# Table name: accounts
-#
-#  id                 :integer         not null, primary key
-#  number             :integer
-#  created_at         :datetime
-#  updated_at         :datetime
-#  card_type          :string(255)
-#  verification_value :integer
-#  first_name         :string(255)
-#  last_name          :string(255)
-#  card_expires_on    :date
-#  user_id            :integer
-#  address_id         :integer
-#
-
-
 class Account < ActiveRecord::Base
   belongs_to :user
   belongs_to :address
