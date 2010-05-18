@@ -28,6 +28,14 @@ module ViewDebugHelper
   private
 
   IGNORE = ['template_root', 'template_class', 'response', '_response', 'template', 'session', '_session', 'url', 'params', '_params', 'variables_added', 'ignore_missing_templates', 'cookies', '_cookies', 'request', '_request', 'logger', 'flash', '_flash', 'headers', '_headers', 'before_filter_chain_aborted' ] unless const_defined?(:IGNORE)
+  ASSIGN_IGNORE = [ "@_current_render", "@_first_render", "@_request",
+                        "@assigns", "@assigns_added", "@authorization_engine",
+                        "@cached_content_for_layout", "@content_for_layout",
+                        "@content_for_title", "@controller", "@cookies",
+                        "@current_user", "@current_user_session", "@helpers",
+                        "@output_buffer", "@raw", "@real_format",
+                        "@show_title", "@template", "@template_format",
+                        "@view_paths"] unless const_defined?(:ASSIGN_IGNORE)
 
   def render_style(script)
     script << add("<style type='text/css'> table.debug {width:100%;border: 0;} table.debug th {text-align: left; background-color:#CCCCCC;font-weight: bold;} table.debug td {background-color:#EEEEEE; vertical-align: top;} table.debug td.key {color: blue;} table.debug td {color: green;}</style>" )
@@ -61,16 +69,24 @@ module ViewDebugHelper
     dump_vars(script, 'Session Variables:', @controller.session.instance_variable_get("@data"))
 
     dump_vars(script, 'Flash Variables:', @controller.flash)
-    if view_debug_display_assigns and not assigns.empty?
+
+    if view_debug_display_assigns and not assigned_variables.empty?
       popup_header(script, 'Assigned Template Variables:')
-      assigns.each do |k, v|
-        if (not @view_debug_ignores) or (not @view_debug_ignores.include?(k))
-          popup_data(script, h(k), dump_obj(v)) unless IGNORE.include?(k)
-        end
+      assigned_variables.each do |k|
+        popup_data(script, h(k), dump_obj(instance_variable_get(k)))
       end
     end
 
     script << add('</table>')
+  end
+
+  # GROSS HAX LOL
+  #
+  # There is apparently not a sane way to get at the instance variables passed
+  # to the ActionView::Base object by the controller, so use introspection and
+  # a blacklist to block all the suspicious customers.
+  def assigned_variables
+    instance_variables.reject {|k| ASSIGN_IGNORE.include?(k)}
   end
 
   def dump_vars(script, header, vars)
