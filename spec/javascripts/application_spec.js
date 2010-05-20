@@ -1,5 +1,5 @@
 require("spec_helper.js");
-require("../../public/javascripts/application.js");
+//require("../../public/behavior/application.js");
 
 Screw.Unit(function(){
   describe("Your application javascript", function(){
