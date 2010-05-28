@@ -1,0 +1,98 @@
+/*
+ * Reset.css
+ * taken from: http://meyerweb.com/eric/thoughts/2007/04/18/reset-reasoning/
+ * this file establishes a visual common denominator from which to build
+ * a web app that will work cross browser
+ */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, figure, footer, header,
+hgroup, menu, nav, section, address {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+  background: transparent;
+}
+/* remember to define focus styles! */
+:focus {
+  outline: 1px solid green;
+}
+body {
+  line-height: 1em;
+  color:#808080;
+  background-color: transparent;
+}
+ol, ul, dl, nav {
+  list-style: none;
+  list-style-position:inside;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  width: 100%;
+  height:25em;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+}
+blockquote, q {
+  quotes: "" "";
+}
+
+article, aside, dialog,
+figure, footer, header,
+hgroup, menu, nav, section {
+  display: block;
+}
+
+p{
+  margin-bottom: 1em;
+}
+table{
+}
+
+section{
+  padding:.5em;
+}
+
+section h1{
+  font-size:1.5em;
+  margin: 1em 0;
+}
+
+iframe{
+  border-style: none;
+  overflow:none;
+  display:none;
+}
+
+a{
+  text-decoration:none;
+  color: #808080;
+  -webkit-text-fill-color: #808080;
+  -webkit-text-stroke: .01em activeborder;
+  font-weight:bold;
+}
+a:hover,a:focus {
+  font-weight:bolder;
+  text-decoration: none;
+}

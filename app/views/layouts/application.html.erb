@@ -2,15 +2,36 @@
 <html lang="en_us" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title><%= h(yield(:title) || "Untitled") %></title>
-    <%= stylesheet_link_tag 'reset', 'error', 'layout', 'formtastic', 'formtastic_changes'  %>
-
+    <style>@import url("/design/index.css");</style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"/>
+    <style>
+      @import url("/design/developer/guide.css");
+    </style>
+    <%= stylesheet_link_tag 'error','formtastic', 'formtastic_changes'  %>
     <%= yield(:head) %>
   </head>
-  <body id="container">
+  <body>
     <header>
-      <%- if show_title? -%>
-        <h1><%=h yield(:title) %></h1>
-      <%- end -%>
+      <a href="/">
+        <img src="/graphics/fun_time.svg" alt="OMFG so fun!!!"/>
+      </a>
+      <nav>
+        <li><a href="/pages">Pages</a></li>
+        <li><a href="/publishers">Publishers</a></li>
+        <li><a href="http://scott@weave.us">Home</a></li>
+        <li><a href="http://blog.weave.us">Blog</a></li>
+      </nav>
+    </header>
+    <section>
+      <!-- TODO only load article when flash message is present -->
+      <article>
+        <%- flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <%- end -%>
+      </article>      
+      <%= yield %>
+    </section>
+    <aside>
       <nav>
         <% if current_user %>
           <%= link_to "Edit Profile", edit_user_path(:current) %>
@@ -21,25 +42,39 @@
         <% else %>
           <%= link_to "Log in or sign up", login_path %>
         <% end %>
-      </nav>
-    </header>
+      </nav>          
+    </aside>
+    <a href="/">
+      <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>      
+    </a>
 
-    <section>
-      <aside id="response_messages">
-        <%- flash.each do |name, msg| -%>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        <%- end -%>
-      </aside>
-      <%= yield %>
-    </section>
 
-    <% if RAILS_ENV == 'development' %>
-    <center><button onclick="show_debug_popup(); return false;">Show debug popup</button></center>
-    <%= debug_popup %>
-    <% end %>
     <footer>
-      <address>
-      </address>
+      <nav>
+        <h2>Policies</h2>
+        <a href="/terms">Terms &amp; Conditions</a>
+        <a href="/privacy">Privacy</a>
+      </nav>
+      <nav>
+        <h2>About</h2>
+        <a href="/contact">Contact</a>
+        <a href="/subscribe">Subscribe</a>
+      </nav>
+      <nav>
+        <h2>News</h2>
+        <a href="http://blog.weave.us">ipseum doceous breasos rodesun</a>
+        <a href="http://blog.weave.us">Loreum opseosis ipseum doceous</a>
+      </nav>
     </footer>
   </body>
+  
+  <% if RAILS_ENV == 'development' %>
+    <developer>
+      <nav>
+        <button onclick="show_debug_popup(); return false;">Show debug popup</button>
+        <%= debug_popup %>
+      </nav>
+    </developer>
+  <% end %>  
+  
 </html>

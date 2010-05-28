@@ -11,7 +11,6 @@ describe "The standard Weave page" do
     it "should link to the blog"
     it "should link to the user's home page"
     it "should contain a contextual 'fun' widget"
-
   end
 
   describe "account section" do
@@ -33,7 +32,5 @@ describe "The standard Weave page" do
     it "should link to a contact and support page"
     it "should link to terms and privacy page"
     it "should contain the last 3 blog entries"
-    it "should contain email opt in form"
-    it "should link to rss feed"
   end
 end

@@ -19,8 +19,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :users
 
-  # TODO: need a "real" homepage for the app.
-  map.root :resources
+  map.index "terms/", :controller => "home", :action => "terms"
+  map.index "privacy/", :controller => "home", :action => "privacy"
+  map.index "contact/", :controller => "home", :action => "contact"
+  map.index "subscribe/", :controller => "home", :action => "subscribe"  
+  map.root :controller => "home", :action => "index"
 
   map.mailtest "mailtest", :controller => "mail_test", :action => "create_confirmation"
 end

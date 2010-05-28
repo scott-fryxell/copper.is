@@ -1,0 +1,8 @@
+html, body{
+  font-family: 'Lucida Grande', Verdana, Arial;
+  font-size: 16px;
+  line-height:18px;
+}
+dt{
+  font-weight:bold;
+}
