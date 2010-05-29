@@ -63,3 +63,7 @@ When driving Webrat from the console you need to follow these steps:
 4. You are ready to go wild!!!
 
    app.visit '/'
+
+
+
+Test credit card number for authorize.net = 4024007148673576 
