@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_sessions
 
   map.resources :users
-
+  map.resources :resources
   map.index "terms/", :controller => "home", :action => "terms"
   map.index "privacy/", :controller => "home", :action => "privacy"
   map.index "contact/", :controller => "home", :action => "contact"
