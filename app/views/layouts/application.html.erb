@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en_US" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title><%= h(yield(:title) || "Untitled") %></title>
-    <style>@import url("/design/index.css");</style>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"/>
+    <title><%= h(yield(:title) || "weave") %></title>
+    <style>
+      @import url("/design/index.css");
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"> </script>
     <style>
       @import url("/design/developer/guide.css");
     </style>
@@ -28,7 +30,7 @@
         <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <%- end -%>
-      </article>      
+      </article>
       <%= yield %>
     </section>
     <aside>
@@ -36,19 +38,14 @@
         <% if current_user %>
           <%= link_to "Edit Profile", edit_user_path(:current) %>
           <%= link_to "Logout", logout_path %>
-          <%= link_to "Tips", tips_path %>
-          <%= link_to "Accounts", accounts_path %>
-          <%= link_to "Orders", orders_path %>
         <% else %>
           <%= link_to "Log in or sign up", login_path %>
         <% end %>
-      </nav>          
+      </nav>
     </aside>
     <a href="/">
-      <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>      
+      <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>
     </a>
-
-
     <footer>
       <nav>
         <h2>Policies</h2>
@@ -66,8 +63,8 @@
         <a href="http://blog.weave.us">Loreum opseosis ipseum doceous</a>
       </nav>
     </footer>
+
   </body>
-  
   <% if RAILS_ENV == 'development' %>
     <developer>
       <nav>
@@ -75,6 +72,7 @@
         <%= debug_popup %>
       </nav>
     </developer>
-  <% end %>  
-  
+  <% end %>
+
+
 </html>
