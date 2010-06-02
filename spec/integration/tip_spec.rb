@@ -19,7 +19,7 @@ describe "Tipping from the service's tip page" do
   it "should tell fans how many tips they've made recently"
   it "should paginate the list of recent tips if it includes more than 20 items"
 
-  describe "and the tip is a duplicate"
+  describe "and the tip is a duplicate" do
     it "should indicate the duplicate tip did not go through"
     it "should include a message encouraging the user to tip elsewhere"
   end
