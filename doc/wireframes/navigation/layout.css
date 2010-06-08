@@ -1,0 +1,152 @@
+html {
+  line-height:18px;
+}
+  html * {
+    -webkit-margin-collapse: collapse;
+  }
+  body {
+    position:relative;
+    width:58.5em;
+    min-height:5em;
+    margin: 0 auto 0 auto;
+    padding:.75em;
+  }
+    body > section, 
+    body > header, 
+    body > nav,
+    body > aside,
+    body > section,
+    body > footer {
+      vertical-align:top;
+      position:relative;
+    }
+  body > header {
+    width: 44.25em;
+    min-height: 3.5em;
+    margin-bottom:.75em;
+    background-image:none;
+  }
+    body > header img {
+      margin-top: .25em;
+      margin-left:.75em;
+      display:inline-block;
+    }
+    body > header nav {
+      margin-left:15em;
+      display:inline-block;
+    }
+      body > header nav li {
+        margin-right: .75em;
+        display:inline-block;
+      }
+        body > header nav li a {
+          font-size: 1.5em;
+        }
+  body > section {
+    display:inline-block;
+    margin-right: .75em;
+    margin-bottom: .5em;
+    width:43.25em;
+    min-height:44em;
+  }
+  body > aside {
+    width: 13.25em;
+    display:inline-block;
+    min-height: 30em;
+  }
+  body > aside nav{
+    margin:2em 0 0 1em;
+  }
+  body > footer {
+    margin-top:.25em;
+    margin-bottom:0em;
+    min-height: 3.5em;
+  }
+    body > footer nav{
+      margin-left:.5em;
+      width: 30%;
+      display:inline-block;
+    }
+      body > footer nav a {
+        margin-left: 1em;
+        display:block;
+        font-size:small;
+      }
+    body > footer #debug {
+      display:block;
+      margin:auto;
+    }
+  body > a {
+    position:absolute;
+    right:2.5em;
+    bottom:7.25em;
+    display:inline-block;
+    vertical-align:top;    
+  }
+  body > a img[item='logo'] {
+    opacity:.40;
+    border:1px solid transparent;
+    -webkit-border-radius: .5em;
+  }
+  body > a img[item='logo']:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+
+
+/*form layout*/
+  body > section >  h1{
+    margin-top: 1em;
+    margin-left: 1.25em;
+    font-size: 2.75em;
+    margin-bottom: .75em;
+  }
+    body > section > form{
+      margin-top:1em;
+      padding: 1em;
+      margin-left: 2em;
+    }
+      body > section > form fieldset {
+        margin-bottom:0;
+      }
+      body > section > form fieldset > legend{
+        display:inline-block;
+        margin-left:   .5em;
+        font-size:     1.25em;
+      }
+      body > section > form fieldset label:first-child {
+        margin-top: 3em;
+        margin-bottom: 2.25em;
+      }
+      body > section > form label {
+        display: inline-block;
+        font-size: 1.5em;
+        margin-left: .55em;
+      }
+      body > section > form input {
+        display:inline-block;
+        width: 16.5em;
+        font-size:1.5em;
+        border: 0.10em solid #808080;
+      }
+        body > section > form input[type=submit] {
+          width: 10em;
+
+          margin-left: 25.85em;
+          margin-top: 2.5em;
+          margin-bottom:0;
+          padding: .25em 0 .25em 0;
+
+          border-width: .13em;
+          border-radius: .25em;
+          -webkit-border-radius: .25em;
+          -moz-border-radius: .25em;
+
+          font-size: 1em;
+          color: #808080;
+          background-color: transparent;
+        }
+    body > section > p {
+      margin-left: 3.30em;
+      font-size: 1.15em;
+    }

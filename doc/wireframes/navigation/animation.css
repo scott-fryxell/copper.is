@@ -1,0 +1,76 @@
+@-webkit-keyframes  pulse {
+  from {
+   opacity:1;
+   -webkit-animation-timing-function: ease-out;
+  }
+  25% {
+   opacity: .66;
+    -webkit-animation-timing-function: ease-in;
+  }
+
+  50% { 
+   opacity: .33;
+   -webkit-animation-timing-function: ease-in;
+  }
+
+  75% {
+   opacity:.66;
+  -webkit-animation-timing-function: ease-out;
+  }
+
+  to {
+   opacity:1;
+   -webkit-animation-timing-function: ease-in;
+  }
+}
+
+@-webkit-keyframes bounce {
+
+   from {
+     top: 1em;
+     -webkit-animation-timing-function: ease-out;
+   }
+
+   25% {
+     top: 1.5em;
+     -webkit-animation-timing-function: ease-in;
+   }
+
+   50% {
+     top: 1em;
+     -webkit-animation-timing-function: ease-out;
+   }
+
+   75% {
+     top: 1.5em;
+     -webkit-animation-timing-function: ease-in;
+   }
+
+   to {
+     top: 1em;
+   }
+
+}
+
+a:hover,a:focus {
+  -webkit-animation-name: pulse;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-direction: normal;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+
+img[item='logo']{ 
+  -webkit-transform: scale(1) rotate(0deg);
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+  -webkit-transition-delay: 200ms;
+  -webkit-transition-timing-function: linear;
+}
+
+img[item='logo']:hover, a.focus {
+  -webkit-transform: scale(1.11) rotate(45deg);
+  -webkit-transition-property: all;
+  -webkit-transition-timing-function: linear;
+  -webkit-transition-duration: 500ms;
+}
