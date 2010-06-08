@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="processor.xsl"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      xmlns:svg="http://www.w3.org/2000/svg" xml:lang="en_US" xml:base="">
+  <head>
+    <xi:include href="navigation.xml" xpointer="id('site_head')"/>
+    <title>Lost password wireframe</title>
+  </head>
+  <body>
+    <xi:include href="navigation.xml" xpointer="id('global')"/>
+    <section id="reset_password">
+      <h1>Reset Password</h1>
+      <form action="" method="get" accept-charset="utf-8">
+        <fieldset>
+          <legend>Please enter your email address to reset your password</legend>
+          <label for="email">Email</label>
+          <input type="text" name="email" id="email" value=""/>
+        </fieldset>
+        <input type="submit" value="Reset Password"/>
+      </form>
+    </section>
+    <xi:include href="navigation.xml" xpointer="id('account')"/>
+    <a href="/">
+      <xi:include href="design.svg" xpointer="id('logo')"/>
+    </a>
+    <xi:include href="navigation.xml" xpointer="id('courtesy')"/>
+  </body>
+
+</html>

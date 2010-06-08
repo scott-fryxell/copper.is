@@ -1,0 +1,57 @@
+<svg >
+  <svg id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 160 160" width="160px" height="160px">
+    <defs>
+      <radialGradient cx="0" cy="0" r="1" id="Gradient" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset="0" stop-color="none"/>
+        <stop offset="1" stop-color="#808080"/>
+      </radialGradient>
+      <radialGradient id="Obj_Gradient" xl:href="#Gradient" gradientTransform="translate(77.17756 81.41072) scale(71.83497)"/>
+      <radialGradient cx="0" cy="0" r="1" id="Gradient_2" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#808080"/>
+        <stop offset=".9285714" stop-color="none"/>
+        <stop offset="1" stop-color="#ffffff"/>
+      </radialGradient>
+      <radialGradient id="Obj_Gradient_2" xl:href="#Gradient_2" gradientTransform="translate(136.43758 22.151682) scale(71.834863)"/>
+      <radialGradient cx="0" cy="0" r="1" id="Gradient_3" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#808080"/>
+        <stop offset=".69047618" stop-color="#000000"/>
+        <stop offset="1" stop-color="#ffffff"/>
+      </radialGradient>
+      <radialGradient id="Obj_Gradient_3" xl:href="#Gradient_3" gradientTransform="translate(49.523129 105.39665) scale(114.04895)"/>
+      <radialGradient cx="0" cy="0" r="1" id="Gradient_4" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#808080"/>
+        <stop offset=".45238096" stop-color="#000000"/>
+        <stop offset="1" stop-color="#ffffff"/>
+      </radialGradient>
+      <radialGradient id="Obj_Gradient_4" xl:href="#Gradient_4" gradientTransform="translate(48.88897 128.890045) scale(96.58115)"/>
+      <radialGradient cx="0" cy="0" r="1" id="Gradient_5" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset=".48412699" stop-color="#e8e8c4" stop-opacity=".19"/>
+        <stop offset="1" stop-color="#808080"/>
+      </radialGradient>
+      <radialGradient id="Obj_Gradient_5" xl:href="#Gradient_5" gradientTransform="translate(105.925926 46.455502) scale(34.226936)"/>
+    </defs>
+    <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity=".98">
+      <title>logo</title>
+      <g>
+        <title>Layer 1</title>
+        <path d="M 21.332638 72.592316 L 79.40683 72.592316 C 83.82511 72.592316 87.40683 76.174034 87.40683 80.592316 L 87.40683 138.66663 C 87.40683 143.0849 83.82511 146.66663 79.40683 146.66663 L 21.332638 146.66663 C 16.91436 146.66663 13.332638 143.0849 13.332638 138.66663 C 13.332638 138.66663 13.332638 138.66663 13.332638 138.66663 L 13.332636 80.592316 C 13.332636 76.174034 16.914358 72.592316 21.332636 72.592316 Z" fill="url(#Obj_Gradient)"/>
+        <path d="M 80.592735 13.333298 L 138.66684 13.333298 C 143.08511 13.333298 146.66684 16.91502 146.66684 21.333298 L 146.66684 79.407486 C 146.66684 83.82577 143.08511 87.407486 138.66684 87.407486 L 80.592735 87.407486 C 76.174454 87.407486 72.592735 83.82577 72.592735 79.407486 C 72.592735 79.407486 72.592735 79.407486 72.592735 79.407486 L 72.592735 21.333298 C 72.592735 16.91502 76.174454 13.333298 80.592735 13.333298 Z" fill="url(#Obj_Gradient_2)"/>
+        <circle cx="79.999214" cy="79.99988" r="66.666695" fill="url(#Obj_Gradient_3)"/>
+        <circle cx="72.592728" cy="87.40838" r="51.852154" fill="url(#Obj_Gradient_4)"/>
+        <circle cx="105.925934" cy="54.074585" r="22.22229" fill="url(#Obj_Gradient_5)"/>
+        <circle cx="105.925934" cy="54.074585" r="22.22229" stroke="#808080" stroke-opacity=".30000001" stroke-linecap="round"  stroke-width="3"/>
+      </g>
+    </g>
+  </svg>
+  <svg id="fun_time" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" width="103px" height="36px" viewBox="25.999 20 103 36" style="enable-background:new 25.999 20 103 36;" xml:space="preserve">
+    <path id="global_nav_1_" style="display:none;fill:none;stroke:#808080;stroke-width:2;" d="M706.127,15.259H29.837
+      c-8.219,0-14.883,5.746-14.883,12.835V56.79c0,7.088,6.664,12.834,14.883,12.834h676.29c8.219,0,14.882-5.746,14.882-12.834V28.094
+      C721.009,21.005,714.346,15.259,706.127,15.259z"/>
+    <rect x="1" y="1" style="display:none;fill:none;stroke:#808080;stroke-width:2;" width="959.999" height="960"/>
+    <path style="fill:#999999;stroke:#999999;stroke-width:2.0688;" d="M127.666,46.333c0,4.418-3.832,8-8.56,8h-82.74
+      c-4.728,0-8.56-3.582-8.56-8v-4c0-4.418,3.832-8,8.56-8h82.74c4.728,0,8.56,3.582,8.56,8V46.333z"/>
+    <text transform="matrix(1 0 0 1 34.4033 41)" style="fill:none;stroke:#808080;stroke-width:0.75; font-family:'MyriadPro-Regular'; font-size:24;">FunTime</text>
+  </svg>
+</svg>
