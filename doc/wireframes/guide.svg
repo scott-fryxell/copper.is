@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 960 880" width="960px" height="880px">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:date>2010-06-03 02:14Z</dc:date>
+    <!-- Produced by OmniGraffle Professional 5.2.2 -->
+  </metadata>
+  <defs>
+    <radialGradient cx="0" cy="0" r="1" id="Gradient" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="gray"/>
+      <stop offset="0" stop-color="none"/>
+      <stop offset="1" stop-color="gray"/>
+    </radialGradient>
+    <radialGradient id="Obj_Gradient" xl:href="#Gradient" gradientTransform="translate(837.17786 681.4104) scale(71.834877)"/>
+    <radialGradient cx="0" cy="0" r="1" id="Gradient_2" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="gray"/>
+      <stop offset=".9285714" stop-color="none"/>
+      <stop offset="1" stop-color="gray"/>
+    </radialGradient>
+    <radialGradient id="Obj_Gradient_2" xl:href="#Gradient_2" gradientTransform="translate(896.43774 622.15137) scale(71.83477)"/>
+    <radialGradient cx="0" cy="0" r="1" id="Gradient_3" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="none"/>
+      <stop offset=".69047618" stop-color="gray"/>
+      <stop offset="1" stop-color="none"/>
+    </radialGradient>
+    <radialGradient id="Obj_Gradient_3" xl:href="#Gradient_3" gradientTransform="translate(809.52344 705.39624) scale(114.04881)"/>
+    <radialGradient cx="0" cy="0" r="1" id="Gradient_4" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="gray"/>
+      <stop offset=".45238096" stop-color="none"/>
+      <stop offset="1" stop-color="gray"/>
+    </radialGradient>
+    <radialGradient id="Obj_Gradient_4" xl:href="#Gradient_4" gradientTransform="translate(808.8893 728.88965) scale(96.58104)"/>
+    <radialGradient cx="0" cy="0" r="1" id="Gradient_5" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="none"/>
+      <stop offset=".48412699" stop-color="#e8e8c4" stop-opacity=".19"/>
+      <stop offset="1" stop-color="none"/>
+    </radialGradient>
+    <radialGradient id="Obj_Gradient_5" xl:href="#Gradient_5" gradientTransform="translate(865.9262 646.45514) scale(34.226895)"/>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Reset Password</title>
+    <g>
+      <title>guide</title>
+      <path d="M 17.333496 80 L 716.0005 80 C 718.20966 80 720.0005 81.790863 720.0005 84 L 720.0005 796 C 720.0005 798.20917 718.20966 800 716.0005 800 L 17.333496 800 C 15.124357 800 13.333496 798.20917 13.333496 796 C 13.333496 796 13.333496 796 13.333496 796 L 13.3334656 84 C 13.3334656 81.790863 15.124327 80 17.333466 80 C 17.333466 80 17.333466 80 17.333466 80 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path d="M 4 0 L 956 0 C 958.20917 13527075e-23 960 1.790861 960 4 L 960 876 C 960 878.20917 958.20917 880 956 880 L 4 880 C 1.790861 880 2705415e-22 878.20917 0 876 C -43565465e-30 876 46925425e-21 876 14166446e-20 876 L -38146973e-12 4 C -38146973e-12 1.790861 1.7908229 -13527075e-23 3.9999619 0 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path d="M 17.333313 13.332998 L 716.0003 13.332998 C 718.20947 13.332998 720.0003 15.123859 720.0003 17.332998 L 720.0003 62.666298 C 720.0003 64.875435 718.20947 66.666298 716.0003 66.666298 L 17.333313 66.666298 C 15.124174 66.666298 13.333313 64.875435 13.333313 62.666298 C 13.333313 62.666298 13.333313 62.666298 13.333313 62.666298 L 13.333311 17.333 C 13.333311 15.123861 15.124172 13.333 17.333311 13.333 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path d="M 737.333 80 L 942.666 80 C 944.8752 80 946.666 81.790863 946.666 84 L 946.666 556 C 946.666 558.20917 944.8752 560 942.666 560 L 737.333 560 C 735.12384 560 733.333 558.20917 733.333 556 C 733.333 556 733.333 556 733.333 556 L 733.333 84 C 733.333 81.790863 735.12384 80 737.333 80 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path d="M 17.333405 813.333 L 942.6664 813.333 C 944.87555 813.333 946.6664 815.12384 946.6664 817.333 L 946.6664 862.66626 C 946.6664 864.87543 944.87555 866.66626 942.6664 866.66626 L 17.333405 866.66626 C 15.124266 866.66626 13.3334045 864.87543 13.3334045 862.66626 C 13.3334045 862.66626 13.3334045 862.66626 13.3334045 862.66626 L 13.333403 817.333 C 13.333403 815.12384 15.124264 813.333 17.333403 813.333 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path d="M 34.666702 53.333298 L 134.2227 53.333298 C 138.64098 53.333298 142.2227 49.75158 142.2227 45.333302 L 142.2227 32.333298 C 142.2227 27.91502 138.64098 24.333298 134.2227 24.333298 L 34.666702 24.333298 C 30.248425 24.333298 26.666702 27.91502 26.666702 32.333298 L 26.666702 45.333298 C 26.666702 49.751575 30.248425 53.333298 34.666702 53.333298 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path d="M 781.333 672.592 L 839.4071 672.592 C 843.8254 672.592 847.4071 676.1737 847.4071 680.592 L 847.4071 738.6662 C 847.4071 743.08447 843.8254 746.6662 839.4071 746.6662 L 781.333 746.6662 C 776.91473 746.6662 773.333 743.08447 773.333 738.6662 C 773.333 738.6662 773.333 738.6662 773.333 738.6662 L 773.333 680.592 C 773.333 676.1737 776.91473 672.592 781.333 672.592 Z" fill="url(#Obj_Gradient)"/>
+      <path d="M 840.593 613.333 L 898.667 613.333 C 903.08527 613.333 906.667 616.91473 906.667 621.333 L 906.667 679.4071 C 906.667 683.82538 903.08527 687.4071 898.667 687.4071 L 840.593 687.4071 C 836.17474 687.4071 832.593 683.82538 832.593 679.4071 C 832.593 679.4071 832.593 679.4071 832.593 679.4071 L 832.593 621.333 C 832.593 616.91473 836.17474 613.333 840.593 613.333 Z" fill="url(#Obj_Gradient_2)"/>
+      <circle cx="839.9995" cy="679.9995" r="66.666634" fill="url(#Obj_Gradient_3)"/>
+      <circle cx="832.593" cy="687.408" r="51.852104" fill="url(#Obj_Gradient_4)"/>
+      <circle cx="865.9262" cy="654.0742" r="22.222246" fill="url(#Obj_Gradient_5)"/>
+      <circle cx="865.9262" cy="654.0742" r="22.222246" stroke="gray" stroke-opacity=".30000001" stroke-linecap="round" stroke-linejoin="bevel" stroke-width="2"/>
+    </g>
+  </g>
+</svg>
