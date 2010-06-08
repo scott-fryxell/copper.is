@@ -8,7 +8,7 @@
     http://www.gnu.org/licenses/lgpl.html
   -->
   <import href="identity.xsl"/>
-  <import href="hacks.xsl"/>
+  <import href="agents.xsl"/>
 
   <template match="xi:include">
     <variable name="href"     select="@href"/>
