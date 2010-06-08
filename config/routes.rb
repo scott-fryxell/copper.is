@@ -4,9 +4,13 @@ ActionController::Routing::Routes.draw do |map|
 
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
-
+  
+  map.password "password", :controller => "password", :action => "reset"
+  map.password "password/reset_confirmation", :controller => "password", :action => "reset_confirmation"
+  map.password "password/change", :controller => "password", :action => "change"
+  map.password "password/change_confirmation", :controller => "password", :action => "change_confirmation"
+  
   map.resources :user_sessions
-
   map.resources :users
   map.resources :resources
   map.index "terms/", :controller => "home", :action => "terms"
