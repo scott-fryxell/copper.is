@@ -30,11 +30,6 @@ hgroup, menu, nav, section, address {
 :focus {
   outline: 1px solid green;
 }
-body {
-  line-height: 1em;
-  color:#808080;
-  background-color: transparent;
-}
 ol, ul, dl, nav {
   list-style: none;
   list-style-position:inside;
@@ -67,18 +62,10 @@ hgroup, menu, nav, section {
 p{
   margin-bottom: 1em;
 }
-table{
-}
-
+table{}
 section{
   padding:.5em;
 }
-
-section h1{
-  font-size:1.5em;
-  margin: 1em 0;
-}
-
 iframe{
   border-style: none;
   overflow:none;

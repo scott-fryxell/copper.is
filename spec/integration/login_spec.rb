@@ -70,4 +70,12 @@ describe "Guest login" do
     click_button "Log in"
     field_with_id('password').value.should == ""
   end
+
+  it "should allow a guest to register for an account"
+  it "should check to make sure user is not already registered for an account"
+  it "should link to a page to retrieve a forgotton password"
+  it "should allow the user to stay logged in for 2 weeks if they want"
+  it "should validate that the email address is valid"
+  it "should require a new user to confirm their password"
+  it "should change the login button to 'Create account' when creating a new account"
 end

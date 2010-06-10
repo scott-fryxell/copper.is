@@ -1,49 +1,36 @@
 <% title "Log in or create an account" %>
 
-<style type="text/css" media="screen">
-/*  html *{ border:1px solid silver;}*/
-  fieldset{
-    display:block;
-    margin: 1em 0 0 1em;
-  }
-  input[type=password]{
-    display:block;
-    margin-left:1.5em;
-  }
-  input[type=text]{
-    display:block;
-  }
-  input[type=radio]{
-    margin-left: 1.5em;
-  }
-  legend{
-    margin-bottom:1.5em;
-    line-height:18px;
-  }
+<style>
+  @import url("/design/login_register.css");
 </style>
+<script src="/behavior/login_register.js"></script>
+<h1>Login or create a new account</h1>
+<form action="/user_sessions" method="POST" accept-charset="utf-8">
 
-<form action="/user_sessions" method="POST" accept-charset="utf-8" id="login_form">
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
-  <fieldset id="" class="">
-    <label>Email</label>
-    <input type="text" name="email" value="" id="email"/>
-  </fieldset>
   <fieldset>
-      <legend>Do you have an flb password?</legend>
-      <input type="radio" name="registered" value="no" id="registered_no"/>
-      <label for="registered_no">No, <span>I need an account.</span></label><br/>
+    <label for="email">Enter your email address</label>
+    <input type="text" name="email" id="email" value=""/>
+  </fieldset>
 
-      <input type="radio" name="registered" value="yes" checked="true" id="registered_yes"/>
-      <label for="registered_yes">Yes, <span>I have a password:</span></label>
-      <input type="password" name="password" value="" id="password"/>
-  </fieldset>
   <fieldset>
-    <label for="password_confirmation">Password confirmation</label>
-    <input type="password" name="confirmation" value="" id="confirmation"/>
+    <legend>Do you have a weave password?</legend>
+    <input type="radio" name="registered" value="no" id="registered_no"/>
+    <label for="registered_no">No, I need an account</label><br/>
+
+    <input type="radio" name="registered" value="yes" checked="true" id="registered_yes"/>
+    <label for="registered_yes">Yes, I have a password:</label>
   </fieldset>
-  <fieldset id="keep">
-     <input type="checkbox" name="keep_me" value="true" id="keep_me"/>
-     <label for="keep_me">Keep me logged in</label>
-   </fieldset>
-   <input type="submit" name="login" value="Log in" id="login"/>
+
+  <fieldset>
+    <label for="password">Enter a password</label>
+    <input type="password" name="password" value="" id="password"/>
+    <input type="checkbox" name="keep_me" value="true" id="keep_me"/>
+    <label for="keep_me" >Keep me logged in</label>
+    <label for="confirm_password">Confirm your password</label>
+    <input type="text" name="confirm_password" id="confirm_password" value=""/>
+  </fieldset>
+
+  <input type="submit" name="login" value="Log in"/>
+  <a href="/password">Forgot my password</a>
 </form>
