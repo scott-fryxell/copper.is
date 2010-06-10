@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 960 960" width="960px" height="960px">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:date>2010-06-07 20:25Z</dc:date>
+    <!-- Produced by OmniGraffle Professional 5.2.2 -->
+  </metadata>
+  <defs>
+    <font-face font-family="Helvetica" font-size="24" units-per-em="1000" underline-position="-75.683594" underline-thickness="49.316406" slope="0" x-height="522.94922" cap-height="717.28516" ascent="770.01953" descent="-229.98047" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Helvetica"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica" font-size="18" units-per-em="1000" underline-position="-75.683594" underline-thickness="49.316406" slope="0" x-height="522.94922" cap-height="717.28516" ascent="770.01953" descent="-229.98047" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Helvetica"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica" font-size="16" units-per-em="1000" underline-position="-75.683594" underline-thickness="49.316406" slope="0" x-height="522.94922" cap-height="717.28516" ascent="770.01953" descent="-229.98047" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Helvetica"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>login/register</title>
+    <g>
+      <title>login/register no</title>
+      <text transform="translate(80 126.33301)" fill="gray">
+        <tspan font-family="Helvetica" font-size="24" font-weight="500" fill="gray" x="0" y="23" textLength="253.46484">Log in or Create a New </tspan>
+        <tspan font-family="Helvetica" font-size="24" font-weight="500" fill="gray" x="252.15234" y="23" textLength="86.71875">Account</tspan>
+      </text>
+      <text transform="translate(80 179.668)" fill="gray">
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="0" y="18" textLength="205.09277">Enter your email address:</tspan>
+      </text>
+      <rect x="80" y="213.33299" width="320" height="29" fill="white"/>
+      <rect x="80" y="213.33299" width="320" height="29" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(80 266.667)" fill="gray">
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="0" y="18" textLength="138.06738">Do you have a W</tspan>
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="137.75098" y="18" textLength="131.08008">eave password?</tspan>
+      </text>
+      <circle cx="113.33365" cy="353.33264" r="6.6666675" fill="white"/>
+      <circle cx="113.33365" cy="353.33264" r="6.6666675" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <circle cx="113.33365" cy="314.33466" r="6.6666675" fill="white"/>
+      <circle cx="113.33365" cy="314.33466" r="6.6666675" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(133.334 302.333)" fill="gray">
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="0" y="18" textLength="150.08203">No, help me log in.</tspan>
+      </text>
+      <text transform="translate(133.334 342.33264)" fill="gray">
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="0" y="18" textLength="12.0058594">Y</tspan>
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="10.3535156" y="18" textLength="180.09668">es, I have a password:</tspan>
+      </text>
+      <ellipse cx="113.33332" cy="314.33383" rx="3.333327" ry="3.2708435" fill="gray"/>
+      <ellipse cx="113.33332" cy="314.33383" rx="3.333327" ry="3.2708435" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(80 379.41599)" fill="gray">
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="0" y="18" textLength="145.072266">Enter a password:</tspan>
+      </text>
+      <rect x="80" y="413.081" width="320" height="29" fill="white"/>
+      <rect x="80" y="413.081" width="320" height="29" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <path d="M 85.00001 561.584 L 208.33301 561.584 C 211.09444 561.584 213.33301 563.82257 213.33301 566.584 L 213.33301 575.584 C 213.33301 578.3454 211.09444 580.584 208.33301 580.584 L 85.00001 580.584 C 82.238586 580.584 80.00001 578.3454 80.00001 575.584 C 80.00001 575.584 80.00001 575.584 80.00001 575.584 L 80.00001 566.584 C 80.00001 563.82257 82.238586 561.584 85.00001 561.584 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(80 561.584)" fill="gray">
+        <tspan font-family="Helvetica" font-size="16" font-weight="500" fill="gray" x="11.963371" y="15" textLength="52.46875">Create </tspan>
+        <tspan font-family="Helvetica" font-size="16" font-weight="500" fill="gray" x="63.55712" y="15" textLength="57.8125">Account</tspan>
+      </text>
+      <text transform="translate(80 470.501)" fill="gray">
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="0" y="18" textLength="42.020508">Confi</tspan>
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="42.020508" y="18" textLength="148.04297">rm your password:</tspan>
+      </text>
+      <rect x="80" y="504.16602" width="320" height="29" fill="white"/>
+      <rect x="80" y="504.16602" width="320" height="29" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>
