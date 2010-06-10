@@ -49,6 +49,10 @@ html {
     width:43.25em;
     min-height:44em;
   }
+    body > section > p {
+      margin-left: 3.30em;
+      font-size: 1.15em;
+    }
   body > aside {
     width: 13.25em;
     display:inline-block;
@@ -93,8 +97,7 @@ html {
     opacity: 1;
   }
 
-
-/*form layout*/
+/* global form layout */
   body > section >  h1{
     margin-top: 1em;
     margin-left: 1.25em;
@@ -114,10 +117,6 @@ html {
         margin-left:   .5em;
         font-size:     1.25em;
       }
-      body > section > form fieldset label:first-child {
-        margin-top: 3em;
-        margin-bottom: 2.25em;
-      }
       body > section > form label {
         display: inline-block;
         font-size: 1.5em;
@@ -128,25 +127,20 @@ html {
         width: 16.5em;
         font-size:1.5em;
         border: 0.10em solid #808080;
+        margin-left:.5em;
       }
         body > section > form input[type=submit] {
           width: 10em;
-
           margin-left: 25.85em;
           margin-top: 2.5em;
           margin-bottom:0;
           padding: .25em 0 .25em 0;
-
           border-width: .13em;
           border-radius: .25em;
           -webkit-border-radius: .25em;
           -moz-border-radius: .25em;
-
           font-size: 1em;
           color: #808080;
           background-color: transparent;
         }
-    body > section > p {
-      margin-left: 3.30em;
-      font-size: 1.15em;
-    }
+
