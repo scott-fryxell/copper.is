@@ -4,7 +4,6 @@
     <title><%= h(yield(:title) || "weave.us") %></title>
     <style>
       @import url("/design/index.css");
-      @import url("/design/developer/guide.css");
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
     <%= yield(:head) %>
@@ -12,7 +11,7 @@
   <body>
     <header>
       <a href="/">
-        <img src="/graphics/fun_time.svg" alt="OMFG so fun!!!"/>
+        <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
       </a>
       <nav>
         <li><a href="/pages">Pages</a></li>
@@ -23,11 +22,11 @@
     </header>
     <section>
       <!-- TODO only load article when flash message is present -->
-      <article>
+      <aside>
         <%- flash.each do |name, msg| -%>
           <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <%- end -%>
-      </article>
+      </aside>
       <%= yield %>
     </section>
     <aside>
