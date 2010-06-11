@@ -1,4 +1,6 @@
 class UserSessionsController < ApplicationController
+  filter_resource_access
+  
   def new
     @user_session = UserSession.new
     @user = User.new
@@ -6,7 +8,7 @@ class UserSessionsController < ApplicationController
   
   def create
     if "yes" == params[:registered]
-      @user_session = UserSession.create(params)
+      @user_session = UserSession.create(params[:user])
       if @user_session.valid?
         flash[:notice] = "Successfully logged in."
         redirect_to root_url
@@ -18,9 +20,16 @@ class UserSessionsController < ApplicationController
       @user = User.new(params[:user])
       @user.roles = [Role.find_by_name("Patron")]
       if @user.save
-        flash[:notice] = "Registration successful."
-        redirect_to root_url
+        @user_session = UserSession.create(params[:user])
+        if @user_session.valid?
+          flash[:notice] = "Registration successful."
+          redirect_to root_url
+        else
+          flash[:notice] = "Login failed."
+          render :action => 'new'
+        end
       else
+        flash[:notice] = "Registration failed."
         render :action => 'new'
       end
     end

@@ -71,7 +71,17 @@ describe "Guest login" do
     field_with_id('password').value.should == ""
   end
 
-  it "should allow a guest to register for an account"
+  it "should allow a guest to register for an account" do
+    visit "/"
+    click_link "Log in or sign up"
+    fill_in "email", :with => "newguy@newguy.com"
+    choose "No, I need an account"
+    fill_in "password", :with => "thepassword"
+    fill_in "password_confirmation", :with => "thepassword"
+    click_button "Log in"
+    response_body.should contain("Registration successful.")
+  end
+  
   it "should check to make sure user is not already registered for an account"
   it "should link to a page to retrieve a forgotton password"
   it "should allow the user to stay logged in for 2 weeks if they want"
