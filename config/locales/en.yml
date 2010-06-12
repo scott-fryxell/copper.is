@@ -3,3 +3,10 @@
 
 en:
   hello: "Hello world"
+  authlogic:
+    error_messages:
+      email_invalid: "You must sign up with a valid email address."
+  activerecord:
+    errors:
+      full_messages:
+          taken: "There is already a Weave account for that email address."

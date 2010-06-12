@@ -13,23 +13,23 @@ class UserSessionsController < ApplicationController
         flash[:notice] = "Successfully logged in."
         redirect_to root_url
       else
-        flash[:notice] = "We didn't recognize your email or password. Please try again."
+        flash[:error] = "We didn't recognize your email or password. Please try again."
         render :action => 'new'
       end
     else
       @user = User.new(params[:user])
-      @user.roles = [Role.find_by_name("Patron")]
+      @user.roles << Role.find_by_name("Patron")
       if @user.save
         @user_session = UserSession.create(params[:user])
         if @user_session.valid?
           flash[:notice] = "Registration successful."
           redirect_to root_url
         else
-          flash[:notice] = "Login failed."
+          flash[:error] = "Login failed."
           render :action => 'new'
         end
       else
-        flash[:notice] = "Registration failed."
+        flash[:error] = @user.errors.full_messages
         render :action => 'new'
       end
     end
