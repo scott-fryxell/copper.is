@@ -10,10 +10,10 @@ class UserSessionsController < ApplicationController
     if "yes" == params[:registered]
       @user_session = UserSession.create(params[:user])
       if @user_session.valid?
-        flash[:notice] = "Successfully logged in."
+        flash[:notice] = t("weave.login_success")
         redirect_to root_url
       else
-        flash[:error] = "We didn't recognize your email or password. Please try again."
+        flash[:error] = @user_session.errors.full_messages
         render :action => 'new'
       end
     else
@@ -22,10 +22,10 @@ class UserSessionsController < ApplicationController
       if @user.save
         @user_session = UserSession.create(params[:user])
         if @user_session.valid?
-          flash[:notice] = "Registration successful."
+          flash[:notice] = t("weave.registration_success")
           redirect_to root_url
         else
-          flash[:error] = "Login failed."
+          flash[:error] = @user.errors.full_messages
           render :action => 'new'
         end
       else
@@ -38,7 +38,7 @@ class UserSessionsController < ApplicationController
   def destroy
     @user_session = UserSession.find
     @user_session.destroy
-    flash[:notice] = "Successfully logged out."
+    flash[:notice] = t("weave.logout_success")
     redirect_to root_url
   end
 end
