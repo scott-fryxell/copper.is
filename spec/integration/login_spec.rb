@@ -1,13 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "Guest registration" do
-  it "should display a registration form when the guest visits the registration url" do
-    visit "/"
-    click_link "Log in or sign up"
-    response_body.should contain("I need an account")
-  end
-end
-
 describe "Guest login" do
   fixtures :roles_users, :users
 
@@ -48,7 +40,7 @@ describe "Guest login" do
     fill_in "password", :with => ""
     choose "Yes, I have a password:"
     click_button "Log in"
-    response_body.should contain("We didn't recognize your email or password")
+    response_body.should contain("You must enter a password")
   end
 
   it "should blank out the email field when the Guest fails to log in" do
@@ -71,11 +63,21 @@ describe "Guest login" do
     field_with_id('password').value.should == ""
   end
 
-  it "should allow a guest to register for an account"
-  it "should check to make sure user is not already registered for an account"
-  it "should link to a page to retrieve a forgotton password"
-  it "should allow the user to stay logged in for 2 weeks if they want"
-  it "should validate that the email address is valid"
-  it "should require a new user to confirm their password"
-  it "should change the login button to 'Create account' when creating a new account"
+  it "should link to a page to retrieve a forgotton password" do
+    visit "/"
+    click_link "Log in or sign up"
+    click_link "Forgot my password"
+    response_body.should contain("Please enter your email address to reset your password")
+  end
+
+  it "should allow the user to stay logged in for 2 weeks if they want" do
+    visit "/"
+    click_link "Log in or sign up"
+    fill_in "email", :with => "test@test.com"
+    fill_in "password", :with => "test"
+    choose "Yes, I have a password:"
+    check "Keep me logged in"
+    click_button "Log in"
+    response_body.should contain("Successfully logged in.")
+  end
 end

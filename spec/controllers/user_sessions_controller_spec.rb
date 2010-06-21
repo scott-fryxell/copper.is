@@ -5,7 +5,7 @@ describe UserSessionsController do
     fixtures :users, :roles_users
 
     before :each do
-      post :create, :email => "test@test.com", :password => "test", :registered => "yes"
+      post :create, :user => {:email => "test@test.com", :password => "test"}, :registered => "yes"
     end
 
     it "should redirect to another page" do
