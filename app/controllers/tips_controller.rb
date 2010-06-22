@@ -4,6 +4,7 @@ class TipsController < ApplicationController
   # GET /tips
   # GET /tips.xml  
   def index
+    @tip = Tip.new
     @tips = Tip.find_all_by_user_id(current_user)
     if @tips.nil?
       
