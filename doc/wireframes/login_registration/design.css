@@ -4,6 +4,7 @@ body > section > form {
 }
   body > section > form > a {
     font-size:1.25em;
+    display:inline-block;
   }
   body > section > form input[type="submit"] {
     margin: 1em 1em 0 2em;
@@ -40,11 +41,12 @@ body > section > form {
 /* registration form display */
     body > section > form.register label[for="password"],
     body > section > form.register label[for="confirm_password"],
-    body > section > form.register input[id="confirm_password"],
-    body  > section > form.register > a {
+    body > section > form.register input[id="confirm_password"]{
       display:inline-block;
     }
-    
+    body  > section > form.register > a {
+      display:none;
+    }
     body > section > form.register fieldset input[id=password] {
       margin-bottom:1.5em;
     }
