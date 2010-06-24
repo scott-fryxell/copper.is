@@ -10,13 +10,13 @@
   </head>
   <body>
     <header>
-      <a href="/">
+	  <a href="/">
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
       </a>
       <nav>
-        <li><a href="/pages">Pages</a></li>
-        <li><a href="/publishers">Publishers</a></li>
-        <li><a href="http://scott@weave.us">Home</a></li>
+        <li><%= link_to "Pages", page_report_path %></li>
+        <li><%= link_to "Publishers", publisher_report_path %></li>
+        <li><%= link_to "Home", root_path %></li>
         <li><a href="http://blog.weave.us">Blog</a></li>
       </nav>
     </header>
@@ -45,13 +45,13 @@
     <footer>
       <nav>
         <h2>Policies</h2>
-        <a href="/terms">Terms &amp; Conditions</a>
-        <a href="/privacy">Privacy</a>
+        <%= link_to "Terms &amp; Conditions", terms_path %>
+        <%= link_to "Privacy", privacy_path %>
       </nav>
       <nav>
         <h2>About</h2>
-        <a href="/contact">Contact</a>
-        <a href="/subscribe">Subscribe</a>
+        <%= link_to "Contact", contact_path %>
+        <%= link_to "Subscribe", subscribe_path %>
       </nav>
       <nav>
         <h2>News</h2>

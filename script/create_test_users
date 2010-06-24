@@ -7,6 +7,16 @@ user.email                 = 'test@test.com'
 user.password              = 'test'
 user.password_confirmation = user.password
 user.roles << Role.find_by_name('Patron')
+user.active = true
+
+user.save || puts("unable to create test user!")
+
+user = User.new
+user.email                 = 'notactive@test.com'
+user.password              = 'test'
+user.password_confirmation = user.password
+user.roles << Role.find_by_name('Patron')
+user.active = false
 
 user.save || puts("unable to create test user!")
 
@@ -16,6 +26,7 @@ Role.find(:all).each do |role|
   user.password = role.name.downcase
   user.password_confirmation = user.password
   user.roles << role
+  user.active = true
 
   user.save || puts("unable to create sample role user user #{role.name}!")
 end

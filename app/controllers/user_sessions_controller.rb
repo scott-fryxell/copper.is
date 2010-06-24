@@ -19,15 +19,10 @@ class UserSessionsController < ApplicationController
     else
       @user = User.new(params[:user])
       @user.roles << Role.find_by_name("Patron")
-      if @user.save
-        @user_session = UserSession.create(params[:user])
-        if @user_session.valid?
-          flash[:notice] = t("weave.registration_success")
-          redirect_to root_url
-        else
-          flash[:error] = @user.errors.full_messages
-          render :action => 'new'
-        end
+      if @user.save_without_session_maintenance
+        @user.deliver_user_activation!
+        flash[:notice] = t("weave.registration_success")
+        redirect_to root_url
       else
         flash[:error] = @user.errors.full_messages
         render :action => 'new'

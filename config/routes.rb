@@ -1,26 +1,45 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :tips
+  map.with_options :controller => 'home' do |home|
+    home.terms      "terms",      :action =>  "terms"
+    home.privacy    "privacy",    :action =>  "privacy"
+    home.contact    "contact",    :action =>  "contact"
+    home.subscribe  "subscribe",  :action =>  "subscribe"
+  end
 
-  map.login "login", :controller => "user_sessions", :action => "new"
-  map.logout "logout", :controller => "user_sessions", :action => "destroy"
-  
-  map.password "password", :controller => "password", :action => "reset"
-  map.password "password/reset_confirmation", :controller => "password", :action => "reset_confirmation"
-  map.password "password/change", :controller => "password", :action => "change"
-  map.password "password/change_confirmation", :controller => "password", :action => "change_confirmation"
-  
-  map.resources :user_sessions
+  map.with_options  :controller => 'reports' do |report|
+    report.page_report        "pages",      :action => "pages"
+    report.publisher_report   "publishers", :action => "publishers"
+  end
+
+  map.with_options :controller => 'user_sessions' do |session|
+    session.login         "login",          :action => "new"
+    session.authenticate  "authenticate",   :action => "create"
+    session.logout        "logout",         :action => "destroy"
+  end
+
+  map.with_options  :controller => 'password_resets' do |password|
+    password.password_reset_new       "password/reset/request", :action => "new"
+    password.password_reset_create    "password/reset/submit",  :action => "create"
+    password.password_reset_edit      "password/reset/:id",     :action => "edit"
+    password.password_reset_update    "password/reset/:id/update",    :action => "update"
+  end
+
+  map.with_options :controller => 'user_activations' do |activations|
+    activations.activate          "activate/:id",               :action => "activate"
+    activations.new_activation    "activate",                   :action => "new"
+    activations.send_activation   "account/activate/request",   :action => "send_activation"
+  end
+
+  # RESTful API
+  map.resources :tips
   map.resources :users
   map.resources :resources
-  map.index "terms/", :controller => "home", :action => "terms"
-  map.index "privacy/", :controller => "home", :action => "privacy"
-  map.index "contact/", :controller => "home", :action => "contact"
-  map.index "subscribe/", :controller => "home", :action => "subscribe"
 
-  map.index "pages/", :controller => "reports", :action => "pages"
-  map.index "publishers/", :controller => "reports", :action => "publishers"
+  # Home
   map.root :controller => "home", :action => "index"
 
+  # Tests
   map.mailtest "mailtest", :controller => "mail_test", :action => "create_confirmation"
+
 end

@@ -1,0 +1,16 @@
+<style>
+  @import url("/design/password.css");
+</style>
+<h1>Change account password</h1>
+<p>Enter new password for account <%= @user.email %></p>
+<%= form_tag password_reset_update_url, :method => :put %>
+  <fieldset>
+    <label for="password">Password</label>
+    <input type="password" name="user[password]" id="password" value=""/>
+    <label for="password_confirmation">Confirm</label>
+    <input type="password" name="user[password_confirmation]" id="confirm" value=""/>
+	<input type="hidden" name="id" value="<%= params[:id] %>" />
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>" />
+  </fieldset>
+  <input type="submit" value="Change Password"/>
+</form>

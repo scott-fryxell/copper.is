@@ -3,10 +3,11 @@
 </style>
 <h1>Reset Password</h1>
 <p>Please enter your email address to reset your password</p>
-<form action="/password/reset_confirmation" method="get" accept-charset="utf-8">
+<%= form_tag password_reset_create_path %>
   <fieldset>
     <label for="email">Email</label>
     <input type="text" name="email" id="email" value=""/>
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>" />
   </fieldset>
-  <input type="submit" value="Send Confirmation"/>
+  <input type="submit" value="Reset Password"/>
 </form>

@@ -5,7 +5,8 @@
 </style>
 <script src="/behavior/login_register.js"></script>
 <h1>Login or create a new account</h1>
-<form action="/user_sessions" method="POST" accept-charset="utf-8">
+
+<%= form_tag authenticate_path, :method => :post %>
 
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
   <fieldset>
@@ -33,5 +34,5 @@
   </fieldset>
 
   <input type="submit" name="login" value="Log in"/>
-  <a href="/password">Forgot my password</a>
+  <%= link_to "Forgot my password", password_reset_new_path %>
 </form>

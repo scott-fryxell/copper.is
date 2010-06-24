@@ -18,4 +18,24 @@ class User < ActiveRecord::Base
       role.name.underscore.to_sym
     end
   end
+
+  def activate!
+    self.active = true
+    save
+  end
+
+  def deliver_user_activation!
+    reset_perishable_token!
+    Notifier.deliver_user_activation(self)
+  end
+
+  def deliver_user_welcome!
+    reset_perishable_token!
+    Notifier.deliver_user_welcome(self)
+  end
+
+  def deliver_password_reset!
+    reset_perishable_token!
+    Notifier.deliver_password_reset(self)
+  end
 end
