@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 960 960" width="960px" height="960px">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:date>2010-06-10 18:31Z</dc:date>
+    <!-- Produced by OmniGraffle Professional 5.2.2 -->
+  </metadata>
+  <defs>
+    <font-face font-family="Helvetica" font-size="16" units-per-em="1000" underline-position="-75.683594" underline-thickness="49.316406" slope="0" x-height="522.94922" cap-height="717.28516" ascent="770.01953" descent="-229.98047" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Helvetica"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica" font-size="24" units-per-em="1000" underline-position="-75.683594" underline-thickness="49.316406" slope="0" x-height="522.94922" cap-height="717.28516" ascent="770.01953" descent="-229.98047" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Helvetica"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Corbel" font-size="36" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Helvetica" font-size="18" units-per-em="1000" underline-position="-75.683594" underline-thickness="49.316406" slope="0" x-height="522.94922" cap-height="717.28516" ascent="770.01953" descent="-229.98047" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Helvetica"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>login/register</title>
+    <g>
+      <title>tips</title>
+      <path d="M 83 413.33328 L 637 413.33328 C 638.65686 413.33328 640 414.67642 640 416.33328 L 640 757 C 640 758.65686 638.65686 760 637 760 L 83 760 C 81.343147 760 80 758.65686 80 757 C 80 757 80 757 80 757 L 79.999985 416.33328 C 79.999985 414.67642 81.34313 413.33328 82.999985 413.33328 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path d="M 83 159.99998 L 637 159.99998 C 638.65686 159.99998 640 161.34312 640 162.99998 L 640 383.66663 C 640 385.32349 638.65686 386.66663 637 386.66663 L 83 386.66663 C 81.343147 386.66663 80 385.32349 80 383.66663 C 80 383.66663 80 383.66663 80 383.66663 L 79.99999 162.99998 C 79.99999 161.34312 81.34314 159.99998 82.99999 159.99998 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <path d="M 485 357.20816 L 621.66663 357.20816 C 624.42804 357.20816 626.66663 359.44675 626.66663 362.20816 L 626.66663 371.20816 C 626.66663 373.96957 624.42804 376.20816 621.66663 376.20816 L 485 376.20816 C 482.2386 376.20816 480 373.96957 480 371.20816 C 480 371.20816 480 371.20816 480 371.20816 L 480 362.20816 C 480 359.44675 482.2386 357.20816 485 357.20816 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(480 357.20816)" fill="gray">
+        <tspan font-family="Helvetica" font-size="16" font-weight="500" fill="gray" x="64.884094" y="15" textLength="16.898438">tip</tspan>
+      </text>
+      <rect x="93.333344" y="186.66669" width="533.33325" height="146.66663" fill="white"/>
+      <rect x="93.333344" y="186.66669" width="533.33325" height="146.66663" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(98.333344 245.5)" fill="#ccc">
+        <tspan font-family="Helvetica" font-size="24" font-weight="500" fill="#ccc" x="71.102203" y="23" textLength="14.660156">T</tspan>
+        <tspan font-family="Helvetica" font-size="24" font-weight="500" fill="#ccc" x="84.883453" y="23" textLength="313.52344">ips pages by pasting the URL</tspan>
+        <tspan font-family="Helvetica" font-size="24" font-weight="500" fill="#ccc" x="397.52798" y="23" textLength="54.703125"> here</tspan>
+      </text>
+      <text transform="translate(79.99997 106.83301)" fill="gray">
+        <tspan font-family="Corbel" font-size="36" font-weight="500" fill="gray" x=".703125" y="34" textLength="20.144531">L</tspan>
+        <tspan font-family="Corbel" font-size="36" font-weight="500" fill="gray" x="20.144531" y="34" textLength="131.80078">eave tips</tspan>
+      </text>
+      <text transform="translate(93.33333 429)" fill="gray">
+        <tspan font-family="Helvetica" font-size="18" font-weight="500" fill="gray" x="0" y="18" textLength="108.043945">Recent tip list</tspan>
+      </text>
+      <rect x="93.333344" y="466.66663" width="533.33325" height="280" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

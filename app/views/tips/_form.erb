@@ -1,0 +1,15 @@
+<style>
+  @import url(/design/tips.css);
+</style>
+<script src="/behavior/tips.js" async="true"></script>
+<h1>Leave a Tip</h1>
+<% form_for(@tip) do |f| %>
+  <aside>
+    <%= f.error_messages %>
+  </aside>
+  <fieldset>
+    <label>Past the URL here to tip some goodness</label>
+    <%= f.text_area :url %>
+  </fieldset>
+  <%= f.submit 'Tip' %>
+<% end %>

@@ -129,6 +129,9 @@ html {
       border: 0.10em solid #808080;
       margin-left:.5em;
     }
+      body > section > form input[type=hidden]{
+        border:none;
+      } 
       body > section > form input[type=submit] {
         width: 10em;
         margin-left: 25.85em;
@@ -143,7 +146,31 @@ html {
         background-color: transparent;
       }
 
-
+  /* global table layout*/
+  body > section > table {
+    margin-left: 3.5em;
+    margin-bottom:2em;
+    border: 0.15em solid #808080;
+    width: 35.25em;
+    height: 23em;
+  }
+    body > section > table caption {
+      font-size: 1.5em;
+      margin:0 0 .5em 0;
+    }
+    body > section > table th{
+      padding: .25em;
+      width: 33%;
+      border: 0.15em solid #808080;
+    }
+    body > section > table td{
+      padding: .25em;
+      width: 33%;
+      border-right: 0.15em dashed #ccc;
+    }
+      body > section > table tr:nth-child(even){
+        background-color: #eee;
+      }
 
 /* error handling TODO need to review and integrate into our CSS.*/
 .fieldWithErrors {
@@ -151,7 +178,6 @@ html {
   background-color: red;
   display: table;
 }
-
 #errorExplanation {
   width: 400px;
   border: 2px solid red;
@@ -160,7 +186,6 @@ html {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-
 #errorExplanation h2 {
   text-align: left;
   font-weight: bold;
@@ -170,16 +195,12 @@ html {
   background-color: #c00;
   color: #fff;
 }
-
 #errorExplanation p {
   color: #333;
   margin-bottom: 0;
   padding: 5px;
 }
-
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
 }
-
-

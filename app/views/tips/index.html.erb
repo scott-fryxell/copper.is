@@ -1,27 +1,23 @@
 <% title "Tips" %>
-
-<section id="gratuity_list">
-  <table>
+<%= render :partial => 'form' %>
+<table>
+  <caption>Recent Tip List</caption>
+  <thead>
     <tr>
       <th>Resource</th>
       <th>Amount</th>
       <th>User</th>
+      <th>Specifics</th>
     </tr>
-
-    <% @tips.each do |tip| %>
-    <tr>
-      <td><%=h tip.url %></td>
-      <td><%=h tip.amount %></td>
-      <td><%=h tip.user_id %></td>
-      <td><%= link_to 'Show', tip %></td>
-      <td><%= link_to 'Edit', edit_tip_path(tip) %></td>
-      <td><%= link_to 'Destroy', tip, :confirm => 'Are you sure?', :method => :delete %></td>
-    </tr>
-    <% end %>
-  </table>
-
-  <nav>
-    <%= link_to 'New tip', new_tip_path %>  
-  </nav>
-
-</section>
+  </thead>
+  <tbody>
+   <% @tips.each do |tip| %>
+     <tr>
+       <td><%=h tip.url %></td>
+       <td><%=h tip.amount %></td>
+       <td><%=h tip.user_id %></td>
+       <td><%= link_to 'Show', tip %></td>
+     </tr>
+   <% end %>
+  </tbody>
+</table>
