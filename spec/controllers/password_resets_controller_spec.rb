@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe PasswordResetsController do
+
   describe "Password reset" do
     fixtures :users, :roles_users
 
@@ -60,8 +61,13 @@ describe PasswordResetsController do
         flash[:notice].should contain("Passwords did not match.")
       end
 
-      it "should display an error when the password is empty" do
+      it "should display an error when the passwords fields are empty" do
         post :update, :id => @user.perishable_token, :user => {:password_confirmation => "", :password => ""}
+        flash[:notice].should contain("Password must be at least 4 characters long")
+      end
+
+      it "should display an error when the password is blank and the confirm password is valid" do
+        post :update, :id => @user.perishable_token, :user => {:password_confirmation => "test", :password => ""}
         flash[:notice].should contain("Password must be at least 4 characters long")
       end
 

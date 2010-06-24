@@ -11,6 +11,7 @@ authorization do
   role :patron do
     has_permission_on [:addresses, :tips, :accounts, :resources, :orders, :transactions], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
     has_permission_on [:user_sessions], :to => [:destroy]
+    has_permission_on [:users], :to => [:edit, :update]
   end
   
   role :guest do

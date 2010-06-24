@@ -27,3 +27,4 @@ en:
     activation_requested: "Please check your email for instructions on activating your account."
     account_already_active: "Your account is already active. Please login."
     password_too_short: "Password must be at least 4 characters long"
+    successfully_updated_user: "Your account has been updated."

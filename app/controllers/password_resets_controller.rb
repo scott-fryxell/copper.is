@@ -16,7 +16,7 @@ class PasswordResetsController < ApplicationController
   def update
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
-    if @user.password.blank? && @user.password_confirmation.blank?
+    if @user.password.blank? || ( @user.password.blank? && @user.password_confirmation.blank? )
       flash[:notice] = t("weave.password_too_short")
       render :action => :edit
     else

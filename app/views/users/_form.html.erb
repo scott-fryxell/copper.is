@@ -1,24 +1,21 @@
+<style>
+  @import url("/design/password.css");
+</style>
+<h1>Manage Your Account</h1>
 <% form_for @user do |f| %>
-  <%= f.error_messages %>
   <fieldset>
-    <legend>Authentication</legend>
-    
-    <label for="email"><%= f.label :email %></label>
-    <%= f.text_field :email %>
-
-    <label for="password"><%= f.label :password %></label>
-    <%= f.password_field :password %>
-    
-    <label for="confirmation_confirmation"><%= f.label :password_confirmation %></label>
-    <%= f.password_field :password_confirmation %>
-
+    <legend>Change your password</legend>
+    <label for="password">New password</label>
+    <input type="password" name="user[password]" id="password" value=""/>
+    <p/>
+    <label for="password_confirmation">Confirm new password</label>
+    <input type="password" name="user[password_confirmation]" id="password_confirmation" value=""/>
   </fieldset>
-  
+
   <fieldset>
     <legend>Billing information</legend>
-    
   </fieldset>
-  
+
   <%= f.submit "Submit" %>
 
 <% end %>
