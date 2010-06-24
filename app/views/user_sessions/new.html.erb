@@ -30,9 +30,11 @@
     <label for="keep_me" >Keep me logged in</label>
     <label for="password_confirmation">Confirm your password</label>
     <input type="password" name="user[password_confirmation]" id="password_confirmation" value=""/>
-    
+
   </fieldset>
 
-  <input type="submit" name="login" value="Log in"/>
+  <input type="submit" name="login" value="Log in" id="submit"/>
+
   <%= link_to "Forgot my password", password_reset_new_path %>
+
 </form>
