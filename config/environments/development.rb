@@ -14,6 +14,7 @@ config.action_view.debug_rjs                         = true
 config.action_controller.perform_caching             = false
 
 # Don't care if the mailer can't send
+config.action_mailer.default_url_options = { :host => "0.0.0.0", :port => 3000, :protocol => 'http' }
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.delivery_method = :sendmail
 
@@ -28,7 +29,7 @@ config.after_initialize do
 #    :password => "1267471138",
 #    :signature => "Ad9B4K7zA-eD3NMvld9hoLQ6SpgnAqDy-CilXFJL9ZcD43sleNm0Oxp1"
 #  )
-  
+
   ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
 	  :login => "9WBbf95f",
 	  :password => "98VkFr5mDM292kfu",

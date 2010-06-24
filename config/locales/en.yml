@@ -6,6 +6,7 @@ en:
   authlogic:
     error_messages:
       email_invalid: "You must sign up with a valid email address."
+      not_active: "Your account hasn't been activated. Check your email for instructions on how to activate it."
   activerecord:
     errors:
       full_messages:
@@ -16,5 +17,13 @@ en:
           "cannot be blank": "You must enter a password"
   weave:
     login_success: "Successfully logged in."
-    registration_success: "Registration successful."
+    registration_success: "Registration successful. Please check your email for instructions on activating your account."
     logout_success: "Successfully logged out."
+    password_reset_instructions_sent: "Check for an email with instructions on resetting your password."
+    email_not_found: "No Weave account exists for that email address."
+    password_changed: "Your password has been changed."
+    account_not_located: "We couldn't locate your account. Request a new token."
+    activation_failed: "We couldn't activate your account. Enter your email address to get an activation email."
+    account_activated: "Your account has been activated."
+    activation_requested: "Please check your email for instructions on activating your account."
+    account_already_active: "Your account is already active. Please login."
