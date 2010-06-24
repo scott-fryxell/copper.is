@@ -1,10 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
-
   map.with_options :controller => 'home' do |home|
-    home.terms      "terms",      :action =>  "terms"
-    home.privacy    "privacy",    :action =>  "privacy"
-    home.contact    "contact",    :action =>  "contact"
-    home.subscribe  "subscribe",  :action =>  "subscribe"
+    home.terms     "terms",     :action => "terms"
+    home.privacy   "privacy",   :action => "privacy"
+    home.contact   "contact",   :action => "contact"
+    home.feed      "subscribe", :action => "subscribe"
   end
 
   map.with_options  :controller => 'reports' do |report|
@@ -41,5 +40,4 @@ ActionController::Routing::Routes.draw do |map|
 
   # Tests
   map.mailtest "mailtest", :controller => "mail_test", :action => "create_confirmation"
-
 end
