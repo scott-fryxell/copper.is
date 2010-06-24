@@ -13,3 +13,7 @@ roles = Role.create([
   { :name => 'Administrator' }, 
   { :name => 'Developer' }
 ])
+
+(1..31).each do |id|
+  BillingPeriod.create(:id => id)
+end

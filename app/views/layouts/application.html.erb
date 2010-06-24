@@ -14,10 +14,10 @@
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
       </a>
       <nav>
-        <li><%= link_to "Pages", page_report_path %></li>
+        <li><%= link_to "Pages",      page_report_path %></li>
         <li><%= link_to "Publishers", publisher_report_path %></li>
-        <li><%= link_to "Home", root_path %></li>
-        <li><a href="http://blog.weave.us">Blog</a></li>
+        <li><%= link_to "Home",       root_path %></li>
+        <li><a href="http://blog.fasterlighterbetter.com">Blog</a></li>
       </nav>
     </header>
     <section>
@@ -32,8 +32,8 @@
     <aside>
       <nav>
         <% if current_user %>
-          <%= link_to "Edit Profile", edit_user_path(current_user) %>
-          <%= link_to "Logout", logout_path %>
+          <%= link_to "Edit Profile",      edit_user_path(current_user) %>
+          <%= link_to "Logout",            logout_path %>
         <% else %>
           <%= link_to "Log in or sign up", login_path %>
         <% end %>
@@ -45,18 +45,18 @@
     <footer>
       <nav>
         <h2>Policies</h2>
-        <%= link_to "Terms &amp; Conditions", terms_path %>
-        <%= link_to "Privacy", privacy_path %>
+        <%= link_to h("Terms & Conditions"), terms_path %>
+        <%= link_to "Privacy",               privacy_path %>
       </nav>
       <nav>
         <h2>About</h2>
-        <%= link_to "Contact", contact_path %>
-        <%= link_to "Subscribe", subscribe_path %>
+        <%= link_to "Contact",   contact_path %>
+        <%= link_to "Subscribe", feed_path %>
       </nav>
       <nav>
         <h2>News</h2>
-        <a href="http://blog.weave.us">ipseum doceous breasos rodesun</a>
-        <a href="http://blog.weave.us">Loreum opseosis ipseum doceous</a>
+        <a href="http://blog.fasterlighterbetter.com">ipseum doceous breasos rodesun</a>
+        <a href="http://blog.fasterlighterbetter.com">Loreum opseosis ipseum doceous</a>
       </nav>
     </footer>
 
@@ -69,6 +69,4 @@
       </nav>
     </developer>
   <% end %>
-
-
 </html>
