@@ -23,7 +23,12 @@ describe PasswordResetsController do
           flash[:notice].should contain("Check for an email with instructions on resetting your password.")
         end
 
-        it "should send an email with instructions on reseting your password" do
+        it "should create an email with instructions on resetting your password" do
+          Notifier.should_receive(:deliver_password_reset)
+          post :create, :email => "test@test.com"
+        end
+
+        it "should send an email" do
           ActionMailer::Base.deliveries.length.should == 1 # enhance test by adding && clause that checks content of the message that was sent
         end
 
@@ -34,6 +39,16 @@ describe PasswordResetsController do
         it "should display an error message" do
           post :create, :email => "unknown@test.com"
           flash[:notice].should contain("No Weave account exists for that email address.")
+        end
+
+        it "should not create an email with instructions on resetting your password" do
+          Notifier.should_not_receive(:deliver_password_reset)
+          post :create, :email => "unknown@test.com"
+        end
+
+        it "should not send an email" do
+          post :create, :email => "unknown@test.com"
+          ActionMailer::Base.deliveries.length.should == 0
         end
 
       end
