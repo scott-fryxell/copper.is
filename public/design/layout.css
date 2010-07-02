@@ -32,7 +32,7 @@ html {
       display:inline-block;
     }
     body > header nav {
-      margin-left:15em;
+      float: right;
       display:inline-block;
     }
       body > header nav li {

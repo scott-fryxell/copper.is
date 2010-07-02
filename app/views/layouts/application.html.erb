@@ -14,6 +14,9 @@
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
       </a>
       <nav>
+        <% permitted_to? :home, :admin do %>
+          <li><%= link_to "Admin",      admin_path %></li>
+        <% end %>
         <li><%= link_to "Pages",      page_report_path %></li>
         <li><%= link_to "Publishers", publisher_report_path %></li>
         <li><%= link_to "Home",       root_path %></li>

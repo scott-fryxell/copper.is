@@ -38,4 +38,9 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.deliver_password_reset(self)
   end
+
+  def self.find_active_users
+    find(:all, :conditions => "active = 't'", :order => "created_at DESC")
+  end
+
 end

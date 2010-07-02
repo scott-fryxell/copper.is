@@ -44,6 +44,16 @@ When driving Authlogic from the console, you need to follow these steps:
    new_session.valid?
 
 
+When utilizing Authlogic in controller tests you must include the following in your spec file:
+
+1. require "authlogic/test_case" #this gives you authlogic's testing tools
+
+2. setup :activate_authlogic  #this activates authlogic so that it can take requests
+
+3. See this page for more details:
+http://yardoc.org/docs/binarylogic-authlogic/Authlogic/TestCase
+
+
 When driving Webrat from the console you need to follow these steps:
 
 1. Bring the Webrat bits into the console:
@@ -66,4 +76,8 @@ When driving Webrat from the console you need to follow these steps:
 
 
 
-Test credit card number for authorize.net = 4024007148673576 
+Test credit card number for authorize.net = 4024007148673576
+
+Declarative Authorization
+- filter_resource_access will not work for controllers that don't have an associated model/class
+- filter_access_to works for controllers with no model

@@ -1,0 +1,36 @@
+<% title "Admin home" %>
+<style>
+  @import url("/design/admin.css");
+</style>
+<section>
+  <h1>Admin home</h1>
+  <section>
+    <h2>Support</h2>
+    <nav>
+      <%= link_to "Users recently added and active", active_users_path %>
+      <a href="#">Users pending verification</a>
+      <a href="#">Users with outstanding password resets</a>
+    </nav>
+  </section>
+  <section>
+    <h2>Operations</h2>
+    <nav>
+      <a href="#">Site monitoring</a>
+      <a href="#">Cluster status</a>
+      <a href="#">Database load</a>
+    </nav>
+  </section>
+  <section>
+    <h2>Marketing</h2>
+    <nav>
+      <a href="#">Analytics</a>
+    </nav>
+  </section>
+  <section>
+    <h2>Finance</h2>
+    <nav>
+      <a href="#">Transaction metrics</a>
+      <a href="#">Billing systems</a>
+    </nav>
+  </section>
+</section>

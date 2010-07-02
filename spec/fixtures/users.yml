@@ -1,4 +1,4 @@
-email1:
+email1: # active patron
   id: 31337
   email: test@test.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>
@@ -6,7 +6,7 @@ email1:
   persistence_token: <%= Authlogic::Random.hex_token %>
   perishable_token: <%= Authlogic::Random.hex_token %>
   active: true
-email2:
+email2: # not active patron
   id: 31338
   email: notactive@test.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>
@@ -14,6 +14,14 @@ email2:
   persistence_token: <%= Authlogic::Random.hex_token %>
   perishable_token: <%= Authlogic::Random.hex_token %>
   active: false
+admin_user:
+  id: 31339
+  email: admin@test.com
+  password_salt: <%= salt = Authlogic::Random.hex_token %>
+  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  perishable_token: <%= Authlogic::Random.hex_token %>
+  active: true
 <% Role.find(:all).each do |role| %>
 <%= role.name.downcase %>:
   email: <%= role.name.downcase %>@test.com

@@ -30,6 +30,14 @@ ActionController::Routing::Routes.draw do |map|
     activations.send_activation   "account/activate/request",   :action => "send_activation"
   end
 
+  map.with_options :controller => 'admin' do |admin|
+    admin.admin      "admin",      :action => "home"
+  end
+
+  map.with_options :controller => 'admin_user_reports' do |reports|
+    reports.active_users      "admin/reports/users/active",    :action => "active"
+  end
+
   # RESTful API
   map.resources :tips
   map.resources :users

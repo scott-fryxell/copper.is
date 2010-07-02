@@ -9,7 +9,7 @@ user.password_confirmation = user.password
 user.roles << Role.find_by_name('Patron')
 user.active = true
 
-user.save || puts("unable to create test user!")
+user.save || puts("unable to create test@test.com user!")
 
 user = User.new
 user.email                 = 'notactive@test.com'
@@ -18,7 +18,16 @@ user.password_confirmation = user.password
 user.roles << Role.find_by_name('Patron')
 user.active = false
 
-user.save || puts("unable to create test user!")
+user.save || puts("unable to create noactive@test.com user!")
+
+user = User.new
+user.email                 = 'admin@test.com'
+user.password              = 'test'
+user.password_confirmation = user.password
+user.roles << Role.find_by_name('Administrator')
+user.active = true
+
+user.save || puts("unable to create admin@test.com user!")
 
 Role.find(:all).each do |role|
   user = User.new
