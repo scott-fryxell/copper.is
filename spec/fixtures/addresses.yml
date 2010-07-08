@@ -1,0 +1,7 @@
+missoula:
+  id: 1337
+  line_1: "150 S 5th E"
+  city: "Missoula"
+  state: 'MT'
+  postal_code: 59801
+  country: 'USA'
