@@ -26,11 +26,10 @@
   <fieldset>
     <label for="password">Enter a password</label>
     <input type="password" name="user[password]" value="" id="password"/>
-    <input type="checkbox" name="keep_me" value="true" id="keep_me"/>
-    <label for="keep_me" >Keep me logged in</label>
+    <input type="checkbox" name="user[remember_me]" value="1" id="remember_me"/>
+    <label for="remember_me" >Keep me logged in</label>
     <label for="password_confirmation">Confirm your password</label>
     <input type="password" name="user[password_confirmation]" id="password_confirmation" value=""/>
-
   </fieldset>
 
   <input type="submit" name="login" value="Log in" id="submit"/>

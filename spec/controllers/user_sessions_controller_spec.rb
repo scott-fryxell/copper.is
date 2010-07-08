@@ -20,4 +20,31 @@ describe UserSessionsController do
       response.should redirect_to(root_url)
     end
   end
+
+  describe "when using 'Remember Me'" do
+    it "should have a default session duration of 2 weeks" do
+      session = UserSession.new
+      session.remember_me = true
+      session.remember_me_for.should == 2.weeks
+    end
+
+    it "should set a browser cookie indicating 'Remember Me' is working" do
+      post :create, :user => { :email => "test@test.com",
+                               :password => "test",
+                               :remember_me => "1" },
+                    :registered => "yes"
+
+      expire_time_from_cookie_string(response, 'user_credentials').should be_close(Time.now + 2.weeks, 2)
+    end
+
+    private
+
+    def expire_time_from_cookie_string(current_response, cookie_name)
+      relevant_cookie = current_response.headers['Set-Cookie'].grep(/^#{cookie_name}/).first
+      parts_list      = relevant_cookie.split('; ')
+      expires         = parts_list.grep(/^expires/).first
+      date_string     = expires.split('=')[1]
+      Time.parse(date_string)
+    end
+  end
 end
