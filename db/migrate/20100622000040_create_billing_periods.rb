@@ -1,7 +1,7 @@
 class CreateBillingPeriods < ActiveRecord::Migration
   def self.up
     create_table :billing_periods do |t|
-      t.timestamps
+      # no attributes, just the IDs
     end
   end
 
