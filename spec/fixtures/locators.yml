@@ -1,0 +1,3 @@
+minimal:
+  scheme: "http"
+  host: "example.com"

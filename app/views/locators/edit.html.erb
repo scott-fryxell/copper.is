@@ -1,0 +1,46 @@
+<% title "Edit Locators" %>
+<section>
+  <% form_for(@locator) do |f| %>
+    <aside>
+      <%= f.error_messages %>
+    </aside>
+
+    <fieldset>
+      <legend>Change a Locator</legend>
+
+      <label for="locator_scheme"><%= f.label :scheme %></label>
+      <%= f.text_field :scheme %>
+
+      <label for="locator_userinfo"><%= f.label :userinfo %></label>
+      <%= f.text_field :userinfo %>
+
+      <label for="locator_host"><%= f.label :host %></label>
+      <%= f.text_field :host %>
+
+      <label for="locator_port"><%= f.label :port %></label>
+      <%= f.text_field :port %>
+
+      <label for="locator_registry"><%= f.label :registry %></label>
+      <%= f.text_field :registry %>
+
+      <label for="locator_path"><%= f.label :path %></label>
+      <%= f.text_field :path %>
+
+      <label for="locator_opaque"><%= f.label :opaque %></label>
+      <%= f.text_field :opaque %>
+
+      <label for="locator_query"><%= f.label :query %></label>
+      <%= f.text_field :query %>
+
+      <label for="locator_fragment"><%= f.label :fragment %></label>
+      <%= f.text_field :fragment %>
+
+    </fieldset>
+    <%= f.submit 'Update' %>
+  <% end %>
+
+  <nav>
+    <%= link_to 'Show', @locator %> |
+    <%= link_to 'Back', locators_path %>
+  </nav>
+</section>

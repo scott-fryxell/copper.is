@@ -41,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   # RESTful API
   map.resources :tips
   map.resources :users
-  map.resources :resources
+  map.resources :locators
 
   # Home
   map.root :controller => "home", :action => "index"
