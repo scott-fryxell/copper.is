@@ -43,7 +43,7 @@ describe UserSessionsController do
       relevant_cookie = current_response.headers['Set-Cookie'].grep(/^#{cookie_name}/).first
       parts_list      = relevant_cookie.split('; ')
       expires         = parts_list.grep(/^expires/).first
-      date_string     = expires.split('=')[1]
+      date_string     = expires.split('=').last
       Time.parse(date_string)
     end
   end
