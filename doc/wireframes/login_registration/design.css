@@ -15,7 +15,7 @@ body > section > form {
     }
     body > section > form fieldset label[for="registered_no"],
     body > section > form fieldset label[for="registered_yes"],
-    body > section > form fieldset label[for="keep_me"] {
+    body > section > form fieldset label[for="remember_me"] {
       font-size:1.25em;
       margin-left:0em;
     }
@@ -24,7 +24,7 @@ body > section > form {
       margin-bottom:1em;
     }
     
-    body > section > form fieldset input[id=keep_me],
+    body > section > form fieldset input[id=rememeber_me],
     body > section > form fieldset input[id=registered_no],
     body > section > form fieldset input[id=registered_yes] {
       display:inline-box;
@@ -50,8 +50,8 @@ body > section > form {
     body > section > form.register fieldset input[id=password] {
       margin-bottom:1.5em;
     }
-    body > section > form.register fieldset label[for="keep_me"],
-    body > section > form.register fieldset input[id="keep_me"] {
+    body > section > form.register fieldset label[for="remember_me"],
+    body > section > form.register fieldset input[id="remember_me"] {
       display:none;
     }
 
