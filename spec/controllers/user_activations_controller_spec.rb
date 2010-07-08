@@ -72,7 +72,12 @@ describe UserActivationsController do
         end
 
         it "should send a welcome email after the account is activated" do
-          ActionMailer::Base.deliveries.length.should == 1 # enhance test by adding && clause that checks content of the message that was sent
+          ActionMailer::Base.deliveries.length.should == 1
+        end
+
+        it "should set the activation date" do
+          @activated_user = User.find_by_email(@user.email)
+          @activated_user.activation_date.should be_close(Time.now, 20)
         end
 
       end

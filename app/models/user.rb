@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   def activate!
     self.active = true
+    self.activation_date = Time.now
     save
   end
 

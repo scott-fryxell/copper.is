@@ -6,6 +6,7 @@ email1: # active patron
   persistence_token: <%= Authlogic::Random.hex_token %>
   perishable_token: <%= Authlogic::Random.hex_token %>
   active: true
+  activation_date: <%= Time.now %>
 email2: # not active patron
   id: 31338
   email: notactive@test.com
@@ -22,6 +23,7 @@ admin_user:
   persistence_token: <%= Authlogic::Random.hex_token %>
   perishable_token: <%= Authlogic::Random.hex_token %>
   active: true
+  activation_date: <%= Time.now %>
 <% Role.find(:all).each do |role| %>
 <%= role.name.downcase %>:
   email: <%= role.name.downcase %>@test.com
@@ -30,4 +32,5 @@ admin_user:
   persistence_token: <%= Authlogic::Random.hex_token %>
   perishable_token: <%= Authlogic::Random.hex_token %>
   active: true
+  activation_date: <%= Time.now %>
 <% end %>
