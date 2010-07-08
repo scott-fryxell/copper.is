@@ -14,6 +14,13 @@ roles = Role.create([
   { :name => 'Developer' }
 ])
 
+card_types = CardType.create([
+  { :name => 'visa' },
+  { :name => 'mastercard' },
+  { :name => 'discover' },
+  { :name => 'americanexpress' }
+])
+
 (1..31).each do |id|
   BillingPeriod.create(:id => id)
 end
