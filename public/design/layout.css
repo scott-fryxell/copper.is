@@ -55,6 +55,11 @@ html {
       font-size: 2.75em;
       margin-bottom: .75em;
     }
+    body > section > section > h2 {
+      font-size: 1.5em;
+      margin-bottom:.75em;
+      margin-top:1.25em;
+    }
     body > section > p {
       margin-left: 3.30em;
       font-size: 1.15em;
@@ -67,11 +72,20 @@ html {
   body > aside nav{
     margin:2em 0 0 1em;
   }
+  body > aside nav a{
+    display:block;
+    margin-bottom: 1em;
+  }
+  
   body > footer {
     margin-top:.25em;
     margin-bottom:0em;
     min-height: 3.5em;
   }
+    body > footer h2{
+      margin-bottom: .5em;
+      font-size:1.25em;
+    }
     body > footer nav{
       margin-left:.5em;
       width: 30%;
@@ -79,8 +93,10 @@ html {
     }
       body > footer nav a {
         margin-left: 1em;
+        margin-bottom: .25em;
         display:block;
-        font-size:small;
+        font-weight: normal;
+        font-size:normal;
       }
     body > footer #debug {
       display:block;
