@@ -9,7 +9,6 @@ describe "Guest login" do
   end
 
   describe "with valid email" do
-
     before(:each) do
       fill_in "email", :with => "test@test.com"
     end
@@ -45,7 +44,6 @@ describe "Guest login" do
   end
 
   describe "with unknown email" do
-
     before(:each) do
       fill_in "email", :with => "unknown@test.com"
     end
@@ -70,12 +68,10 @@ describe "Guest login" do
       click_button "Log in"
       field_with_id('password').value.should == ""
     end
-
   end
 
-  it "should link to a page to retrieve a forgotton password" do
+  it "should link to a page to retrieve a forgotten password" do
     click_link "Forgot my password"
     response_body.should contain("Please enter your email address to reset your password")
   end
-
 end
