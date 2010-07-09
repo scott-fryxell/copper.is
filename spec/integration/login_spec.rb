@@ -42,7 +42,6 @@ describe "Guest login" do
       click_button "Log in"
       response_body.should contain("Successfully logged in.")
     end
-
   end
 
   describe "with unknown email" do
@@ -58,11 +57,11 @@ describe "Guest login" do
       response_body.should contain("We didn't recognize your email or password")
     end
 
-    it "should blank out the email field when the Guest fails to log in" do
+    it "should retain the email field when the Guest fails to log in" do
       fill_in "password", :with => "wrong"
       choose "Yes, I have a password:"
       click_button "Log in"
-      field_with_id('email').value.should == ""
+      field_with_id('email').value.should == "unknown@test.com"
     end
 
     it "should always, for security reasons, blank out the password field when the Guest fails to log in" do

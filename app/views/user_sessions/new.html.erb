@@ -11,7 +11,7 @@
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
   <fieldset>
     <label for="email">Enter your email address</label>
-    <input type="text" name="user[email]" id="email" value=""/>
+    <input type="text" name="user[email]" id="email" value="<%=@user_session.email%>"/>
   </fieldset>
 
   <fieldset>
