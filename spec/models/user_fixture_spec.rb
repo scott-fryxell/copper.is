@@ -33,7 +33,7 @@ describe User do
       @users.detect { |user| user.email == 'notactive@test.com' }.should be_false
     end
 
-    it "should have an activation date" do
+    it "should have an activation date for each user" do
       @users.detect { |user| user.activation_date }.should_not be_nil
     end
   end
