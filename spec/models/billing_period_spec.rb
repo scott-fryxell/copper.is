@@ -13,7 +13,7 @@ describe BillingPeriod do
 
   it "should have a day of the month (ID) for each of the 31 possible billing period start dates" do
     (1..31).each do |id|
-      BillingPeriod.find(id).class.should == BillingPeriod
+      BillingPeriod.find(id).should_not be_nil
       BillingPeriod.find(id).id.should == id
     end
   end
