@@ -1,3 +1,9 @@
 minimal:
+  id: 7331
   scheme: "http"
   host: "example.com"
+second:
+  id: 7332
+  scheme: "http"
+  host: "example2.com"
+  path: "/awesomeness"

@@ -4,9 +4,11 @@ class User < ActiveRecord::Base
   has_one :address
   has_many :accounts
   has_many :orders, :through => :accounts
-  has_many :tips
 
   has_many :transactions, :through => :accounts
+  has_many :tips, :through => :tip_bundles
+  has_many :tip_bundles, :foreign_key => "fan_id"
+
   has_and_belongs_to_many :roles
 
   #AuthLogic validate the uniqueness of the email field by convention
@@ -45,4 +47,12 @@ class User < ActiveRecord::Base
     find(:all, :conditions => "active = 't'", :order => "created_at DESC")
   end
 
+  def rotate_tip_bundle!
+    TipBundle.update(active_tip_bundle.id, :is_active => false)
+    TipBundle.create(:fan => self)
+  end
+
+  def active_tip_bundle
+    tip_bundles.find(:first, :conditions => ["is_active = ?", true])
+  end
 end

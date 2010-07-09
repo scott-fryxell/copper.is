@@ -18,6 +18,21 @@ class Locator < ActiveRecord::Base
     canonical
   end
 
+  def self.parse(url_string)
+    raw_uri = URI.parse(url_string)
+
+    adapted = Locator.new
+    adapted.scheme   = raw_uri.scheme
+    adapted.host     = raw_uri.host
+    adapted.userinfo = raw_uri.userinfo if (raw_uri.userinfo != nil && raw_uri.userinfo != '')
+    adapted.port     = raw_uri.port     if (raw_uri.port != nil && raw_uri.port != '')
+    adapted.path     = raw_uri.path     if (raw_uri.path != nil && raw_uri.path != '')
+    adapted.query    = raw_uri.query    if (raw_uri.query != nil && raw_uri.query != '')
+    adapted.fragment = raw_uri.fragment if (raw_uri.fragment != nil && raw_uri.fragment != '')
+
+    adapted
+  end
+
   private
 
   def canonical_port

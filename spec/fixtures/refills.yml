@@ -1,0 +1,8 @@
+first:
+  amount_in_cents: 1000
+  transaction_id: 13
+  tip_bundle_id: 80085
+second:
+  amount_in_cents: 2000
+  transaction_id: 14
+  tip_bundle_id: 80085

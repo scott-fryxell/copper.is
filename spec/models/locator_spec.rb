@@ -32,6 +32,132 @@ describe Locator do
     end
   end
 
+  describe "when parsing a URL string into a new object" do
+    describe "when parsing http://example.com" do
+      before(:each) do
+        @locator = Locator.parse('http://example.com')
+      end
+
+      it "should see the scheme as 'http'" do
+        @locator.scheme.should == 'http'
+      end
+
+      it "should see the host as 'example.com'" do
+        @locator.host.should == 'example.com'
+      end
+
+      it "should see the port as (by default) 80" do
+        @locator.port.should == 80
+      end
+
+      it "should have a nil path" do
+        @locator.path.should be_nil
+      end
+
+      it "should save without error" do
+        @locator.save.should be_true
+      end
+    end
+
+    describe "when parsing http://example.com/test" do
+      before(:each) do
+        @locator = Locator.parse('http://example.com/test')
+      end
+
+      it "should see the scheme as 'http'" do
+        @locator.scheme.should == 'http'
+      end
+
+      it "should see the host as 'example.com'" do
+        @locator.host.should == 'example.com'
+      end
+
+      it "should see the port as (by default) 80" do
+        @locator.port.should == 80
+      end
+
+      it "should have a path of '/test'" do
+        @locator.path.should == '/test'
+      end
+
+      it "should have a nil fragment" do
+        @locator.fragment.should be_nil
+      end
+
+      it "should save without error" do
+        @locator.save.should be_true
+      end
+    end
+
+    describe "when parsing ftp://thomas.loc.gov:244/00index" do
+      before(:each) do
+        @locator = Locator.parse('ftp://thomas.loc.gov:244/00index')
+      end
+
+      it "should see the scheme as 'ftp'" do
+        @locator.scheme.should == 'ftp'
+      end
+
+      it "should see the host as 'thomas.loc.gov'" do
+        @locator.host.should == 'thomas.loc.gov'
+      end
+
+      it "should see the port as (by default) 22" do
+        @locator.port.should == 244
+      end
+
+      it "should have a path of '00index'" do
+        @locator.path.should == '00index'
+      end
+
+      it "should have a nil query" do
+        @locator.query.should be_nil
+      end
+
+      it "should save without error" do
+        @locator.save.should be_true
+      end
+    end
+
+    describe "when parsing https://scott:awsumpasswud@weave.us/test?notreally=yeah#justkiddin" do
+      before(:each) do
+        @locator = Locator.parse('https://scott:awsumpasswud@weave.us/test?notreally=yeah#justkiddin')
+      end
+
+      it "should see the scheme as 'https'" do
+        @locator.scheme.should == 'https'
+      end
+
+      it "should have userinfo of 'scott:awsumpasswud'" do
+        @locator.userinfo.should == 'scott:awsumpasswud'
+      end
+
+      it "should see the host as 'weave.us'" do
+        @locator.host.should == 'weave.us'
+      end
+
+      it "should see the port as (by default) 443" do
+        @locator.port.should == 443
+      end
+
+      it "should have a path of '/test'" do
+        @locator.path.should == '/test'
+      end
+
+      it "should have a query of 'notreally=yeah'" do
+        @locator.query.should == 'notreally=yeah'
+      end
+
+      it "should have a fragment of 'justkiddin'" do
+        @locator.fragment.should == 'justkiddin'
+      end
+
+      it "should save without error" do
+        @locator.save.should be_true
+      end
+    end
+  end
+
   describe "when working with minimal correct URL" do
     before(:each) do
       @url = Locator.new
