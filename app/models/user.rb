@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   has_one :address
   has_many :accounts
-  has_many :orders, :through => :accounts
 
   has_many :transactions, :through => :accounts
   has_many :tips, :through => :tip_bundles
@@ -54,5 +53,14 @@ class User < ActiveRecord::Base
 
   def active_tip_bundle
     tip_bundles.find(:first, :conditions => ["is_active = ?", true])
+  end
+
+  def tip(url_string, multiplier = 1)
+    raise TipBundleMissing unless active_tip_bundle != nil
+
+    locator = Locator.parse(url_string)
+    Tip.create(:locator    => Locator.parse(url_string),
+               :tip_bundle => active_tip_bundle,
+               :multiplier => multiplier)
   end
 end

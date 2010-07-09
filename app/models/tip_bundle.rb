@@ -1,3 +1,6 @@
+class TipBundleMissing < Exception ; end
+class InsufficientFunds < Exception ; end
+
 class TipBundle < ActiveRecord::Base
   has_many :refills
   has_many :tips

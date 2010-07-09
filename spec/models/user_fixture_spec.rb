@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe User do
-  fixtures :roles_users, :users
+  fixtures :roles_users, :users, :addresses, :accounts
 
   it "should find the sample user from the fixture" do
     User.find_by_email('test@test.com').should_not be_nil
@@ -12,11 +12,29 @@ describe User do
   end
 
   it "should be a patron" do
-    User.find_by_email('test@test.com').roles.collect {|role| role.name }.should include("Patron")
+    User.find_by_email('test@test.com').roles.collect { |role| role.name }.should include("Patron")
   end
 
   it "should default to having no activation date set" do
     User.find_by_email('notactive@test.com').activation_date.should be_nil
+  end
+
+  describe "when creating a tip directly from the User" do
+    it "should fail if no active Tip Bundle exists" do
+      lambda { User.find_by_email('patron@test.com').tip('http://example.com', 1) }.should raise_exception TipBundleMissing
+    end
+
+    it "should fail if the new tip would cause the tip value to drop below the threshold" do
+      fan = users(:patron)
+      transaction = Transaction.create(:account => accounts(:simple), :amount_in_cents => 4)
+
+      bundle = TipBundle.create(:fan => fan)
+      bundle.refills << Refill.create(:transaction => transaction, :amount_in_cents => 3)
+      bundle.save.should be_true
+
+      lambda { fan.tip('http://example.com', 3).should be_valid }.should_not raise_exception InsufficientFunds
+      lambda { fan.tip('http://anotheryourself.com', 1) }.should raise_exception InsufficientFunds
+    end
   end
 
   describe "when loading the list of active users" do
