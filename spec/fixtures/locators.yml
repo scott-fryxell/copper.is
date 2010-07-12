@@ -1,9 +1,9 @@
 minimal:
   id: 7331
   scheme: "http"
-  host: "example.com"
+  site_id: 7654
 second:
   id: 7332
   scheme: "http"
-  host: "example2.com"
+  site_id: 6543
   path: "/awesomeness"

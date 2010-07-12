@@ -1,0 +1,6 @@
+example:
+  id: 7654
+  fqdn: 'example.com'
+example2:
+  id: 6543
+  fqdn: 'example2.com'

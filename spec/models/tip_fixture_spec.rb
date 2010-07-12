@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Tip do
-  fixtures :roles_users, :users, :addresses, :accounts, :transactions, :locators, :tip_bundles, :refills
+  fixtures :roles_users, :users, :addresses, :accounts, :transactions, :sites, :locators, :tip_bundles, :refills
   
   before(:each) do
     @tip = Tip.new(:tip_bundle => tip_bundles(:test),

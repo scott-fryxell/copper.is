@@ -7,7 +7,7 @@ describe Locator do
       @url.scheme = 'http'
       @url.userinfo = 'test:test'
       @url.registry = nil
-      @url.host = 'example.com'
+      @url.site = Site.find_or_create_by_fqdn('example.com')
       @url.port = 8080
       @url.path = '/home'
       @url.opaque = nil
@@ -21,7 +21,7 @@ describe Locator do
     end
 
     it "should always have a hostname" do
-      @url.host = nil
+      @url.site = nil
       @url.save.should be_false
     end
 
@@ -43,7 +43,7 @@ describe Locator do
       end
 
       it "should see the host as 'example.com'" do
-        @locator.host.should == 'example.com'
+        @locator.site.fqdn.should == 'example.com'
       end
 
       it "should see the port as (by default) 80" do
@@ -69,7 +69,7 @@ describe Locator do
       end
 
       it "should see the host as 'example.com'" do
-        @locator.host.should == 'example.com'
+        @locator.site.fqdn.should == 'example.com'
       end
 
       it "should see the port as (by default) 80" do
@@ -99,7 +99,7 @@ describe Locator do
       end
 
       it "should see the host as 'thomas.loc.gov'" do
-        @locator.host.should == 'thomas.loc.gov'
+        @locator.site.fqdn.should == 'thomas.loc.gov'
       end
 
       it "should see the port as (by default) 22" do
@@ -133,7 +133,7 @@ describe Locator do
       end
 
       it "should see the host as 'weave.us'" do
-        @locator.host.should == 'weave.us'
+        @locator.site.fqdn.should == 'weave.us'
       end
 
       it "should see the port as (by default) 443" do
@@ -162,7 +162,7 @@ describe Locator do
     before(:each) do
       @url = Locator.new
       @url.scheme = 'http'
-      @url.host = 'example.com'
+      @url.site = Site.find_or_create_by_fqdn('example.com')
     end
 
     it "should save and be formatted correctly" do
@@ -192,5 +192,15 @@ describe Locator do
       @url.port = 8443
       @url.canonicalized.should == 'https://example.com:8443/'
     end
+  end
+
+  it "should only create a single Site for each fully-qualified domain name" do
+    url1 = Locator.parse('http://example.com/path1')
+    url1.save.should be_true
+
+    url2 = Locator.parse('http://example.com/path2')
+    url2.save.should be_true
+
+    url1.site.should == url2.site
   end
 end

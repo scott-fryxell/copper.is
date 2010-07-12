@@ -1,20 +1,20 @@
 class Locator < ActiveRecord::Base
+  belongs_to :site
+
   has_many :tips
-  
-  validates_presence_of :host
+
+  validates_presence_of :site
   validates_presence_of :scheme
-  
-  validates_format_of :host, :with => /^[a-z0-9\-\.]+$/i
-  
+
   def canonicalized
     canonical = scheme + '://'
     canonical << userinfo + '@' if userinfo
-    canonical << host
+    canonical << site.fqdn
     canonical << canonical_port
     canonical << (path ? path : '/')
     canonical << '?' + query if query
     canonical << '#' + fragment if fragment
-    
+
     canonical
   end
 
@@ -23,7 +23,7 @@ class Locator < ActiveRecord::Base
 
     adapted = Locator.new
     adapted.scheme   = raw_uri.scheme
-    adapted.host     = raw_uri.host
+    adapted.site     = Site.find_or_create_by_fqdn(raw_uri.host)
     adapted.userinfo = raw_uri.userinfo if (raw_uri.userinfo != nil && raw_uri.userinfo != '')
     adapted.port     = raw_uri.port     if (raw_uri.port != nil && raw_uri.port != '')
     adapted.path     = raw_uri.path     if (raw_uri.path != nil && raw_uri.path != '')
