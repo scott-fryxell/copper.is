@@ -1,5 +1,4 @@
-email1: # active patron
-  id: 31337
+active: # active patron
   email: test@test.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
@@ -7,8 +6,7 @@ email1: # active patron
   perishable_token: <%= Authlogic::Random.hex_token %>
   active: true
   activation_date: <%= Time.now %>
-email2: # not active patron
-  id: 31338
+inactive: # not active patron
   email: notactive@test.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
@@ -16,7 +14,6 @@ email2: # not active patron
   perishable_token: <%= Authlogic::Random.hex_token %>
   active: false
 admin_user:
-  id: 31339
   email: admin@test.com
   password_salt: <%= salt = Authlogic::Random.hex_token %>
   crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>

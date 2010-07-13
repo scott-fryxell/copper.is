@@ -8,7 +8,7 @@ describe Notifier do
     ActionMailer::Base.delivery_method = :test
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
-    @user = users(:email1)
+    @user = users(:active)
   end
 
   describe "password reset message" do

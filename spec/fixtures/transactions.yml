@@ -1,8 +1,6 @@
-first:
-  id: 13
-  account_id: 137
+first_transaction:
+  account: simple
   amount_in_cents: 1070
-second:
-  id: 14
-  account_id: 137
+second_transaction:
+  account: simple
   amount_in_cents: 2140

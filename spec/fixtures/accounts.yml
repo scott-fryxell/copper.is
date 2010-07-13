@@ -1,7 +1,6 @@
 simple:
-  id: 137
-  user_id: 31337
-  billing_address_id: 1337
+  user: active
+  billing_address: missoula
   billing_name: "CHOAD T HOCKSLOOGIE"
   expires_on: 2013/4/1
   card_type: <%= CardType.find_by_name('visa') =>

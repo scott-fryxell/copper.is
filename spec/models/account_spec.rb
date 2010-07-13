@@ -5,7 +5,7 @@ describe Account do
 
   before(:each) do
     @account = Account.new
-    @account.user            = users(:email1)
+    @account.user            = users(:active)
     @account.billing_address = addresses(:missoula)
     @account.billing_name    = "CHOAD T HOCKSLOOGIE"
     @account.expires_on      = Date.new(2013, 4, 1)

@@ -1,9 +1,9 @@
 minimal:
-  id: 7331
   scheme: "http"
-  site_id: 7654
-second:
-  id: 7332
+  page: example_page
+  site: site1
+awesome_locator:
   scheme: "http"
-  site_id: 6543
+  page: awesome_page
+  site: site2
   path: "/awesomeness"

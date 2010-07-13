@@ -1,9 +1,9 @@
 one_patron:
-  user_id: 31337
+  user_id: <%= Fixtures.identify(:active) %>
   role_id: <%= Role.find_by_name('Patron').id %>
 one_guest:
-  user_id: 31338
+  user_id: <%= Fixtures.identify(:active) %>
   role_id: <%= Role.find_by_name('Guest').id %>
 one_administrator:
-  user_id: 31339
+  user_id: <%= Fixtures.identify(:admin_user) %>
   role_id: <%= Role.find_by_name('Administrator').id %>

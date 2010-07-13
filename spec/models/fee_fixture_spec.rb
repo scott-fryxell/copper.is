@@ -5,7 +5,7 @@ describe Fee do
 
   before(:each) do
     @fee = Fee.new
-    @fee.transaction = transactions(:first)
+    @fee.transaction = transactions(:first_transaction)
     @fee.amount_in_cents = 70
   end
 

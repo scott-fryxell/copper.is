@@ -58,7 +58,7 @@ describe PasswordResetsController do
     describe "submissions" do
 
       before(:each) do
-        @user = users(:email1)
+        @user = users(:active)
       end
 
       it "should display a success message when the password is valid" do

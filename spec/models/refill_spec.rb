@@ -6,8 +6,8 @@ describe Refill do
   before(:each) do
     @refill = Refill.new
     @refill.amount_in_cents = 10_00
-    @refill.transaction     = transactions(:first)
-    @refill.tip_bundle      = tip_bundles(:test)
+    @refill.transaction     = transactions(:first_transaction)
+    @refill.tip_bundle      = tip_bundles(:test_bundle)
   end
 
   it "should save if all values are acceptable" do

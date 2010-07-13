@@ -1,6 +1,4 @@
-example:
-  id: 7654
+site1:
   fqdn: 'example.com'
-example2:
-  id: 6543
+site2:
   fqdn: 'example2.com'

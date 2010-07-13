@@ -7,7 +7,7 @@ describe TipBundle do
     before(:each) do
       @bundle = TipBundle.new
       @bundle.fan = users(:patron)
-      @bundle.refills = [refills(:first), refills(:second)]
+      @bundle.refills = [refills(:refill1), refills(:refill2)]
     end
 
     it "should save correctly when all the required values are set" do
@@ -48,14 +48,14 @@ describe TipBundle do
   end
 
   it "should find all the associated tips for the bundle" do
-    tip_bundles(:test).tips.should include(tips(:first))
-    tip_bundles(:test).tips.should include(tips(:second))
+    tip_bundles(:test_bundle).tips.should include(tips(:first))
+    tip_bundles(:test_bundle).tips.should include(tips(:second))
   end
 
   describe "when working with users" do
     before(:each) do
       @bundle = TipBundle.new(:fan => users(:patron))
-      @bundle.refills = [refills(:first), refills(:second)]
+      @bundle.refills = [refills(:refill1), refills(:refill2)]
       @bundle.save
     end
 
@@ -84,12 +84,21 @@ describe TipBundle do
     before(:each) do
       @bundle = TipBundle.new
       @bundle.fan = users(:patron)
-      @bundle.refills = [refills(:first), refills(:second)]
+      @bundle.refills = [refills(:refill1), refills(:refill2)]
       @bundle.save
 
-      @bundle.tips << Tip.new(:locator => Locator.parse('http://example.com'),          :multiplier => 2)
-      @bundle.tips << Tip.new(:locator => Locator.parse('http://beefdeed.com/chunder'), :multiplier => 1)
-      @bundle.tips << Tip.new(:locator => Locator.parse('http://beefdeed.com/horde'),   :multiplier => 3)
+      locator1 = Locator.parse('http://example.com')
+      locator1.page = Page.new(:description => 'example page')
+      @bundle.tips << Tip.new(:locator => locator1, :multiplier => 2)
+
+      locator2 = Locator.parse('http://beefdeed.com/chunder')
+      locator2.page = Page.new(:description => 'CHUNDER POW')
+      @bundle.tips << Tip.new(:locator => locator2, :multiplier => 1)
+
+      locator3 = Locator.parse('http://beefdeed.com/horde')
+      locator3.page = Page.new(:description => 'ALL HAIL THE HORDE')
+      @bundle.tips << Tip.new(:locator => locator3, :multiplier => 3)
+
       @bundle.save
     end
 
