@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Account do
-  fixtures :roles_users, :users, :addresses
+  fixtures :users, :roles_users, :addresses
 
   before(:each) do
     @account = Account.new

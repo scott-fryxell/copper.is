@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe "Admin" do
-  fixtures :roles_users, :users
+  fixtures :users, :roles_users
 
   before(:each) do
     visit "/"

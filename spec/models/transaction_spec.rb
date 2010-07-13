@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Transaction do
-  fixtures :roles_users, :users, :addresses, :accounts
+  fixtures :users, :roles_users, :addresses, :accounts
 
   before(:each) do
     @transaction = Transaction.new

@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Password" do
-  fixtures :roles_users, :users
+  fixtures :users, :roles_users
 
   describe "change management" do
 

@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Refill do
-  fixtures :roles_users, :users, :tip_bundles, :addresses, :accounts, :transactions
+  fixtures :users, :roles_users, :tip_bundles, :addresses, :accounts, :transactions
 
   before(:each) do
     @refill = Refill.new

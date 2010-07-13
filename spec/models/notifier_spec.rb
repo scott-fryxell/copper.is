@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Notifier do
-  fixtures :roles_users, :users
+  fixtures :users, :roles_users
   include MailTestHelper
 
   before(:each) do
