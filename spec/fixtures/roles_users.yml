@@ -7,3 +7,8 @@ one_guest:
 one_administrator:
   user_id: <%= Fixtures.identify(:admin_user) %>
   role_id: <%= Role.find_by_name('Administrator').id %>
+<% Role.find(:all).each do |role| %>
+<%= role.name.downcase + '_role' %>:
+  user_id: <%= Fixtures.identify(role.name.downcase.to_sym) %>
+  role_id: <%= role.id %>
+<% end %>
