@@ -55,11 +55,13 @@ class User < ActiveRecord::Base
     tip_bundles.find(:first, :conditions => ["is_active = ?", true])
   end
 
-  def tip(url_string, multiplier = 1)
+  def tip(url_string, description = 'new page', multiplier = 1)
     raise TipBundleMissing unless active_tip_bundle != nil
 
     locator = Locator.parse(url_string)
-    Tip.create(:locator    => Locator.parse(url_string),
+    locator.page = Page.create(:description => description)
+
+    Tip.create(:locator    => locator,
                :tip_bundle => active_tip_bundle,
                :multiplier => multiplier)
   end

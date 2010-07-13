@@ -13,6 +13,7 @@ describe Locator do
       @url.opaque = nil
       @url.query = 'style=minimal'
       @url.fragment = 'about'
+      @url.page = Page.create(:description => 'example page')
     end
 
     it "should always have a scheme" do
@@ -30,12 +31,18 @@ describe Locator do
       @url.save.should be_true
       @url.canonicalized.should == 'http://test:test@example.com:8080/?style=minimal#about'
     end
+
+    it "should be associated with a page" do
+      @url.page = nil
+      @url.save.should be_false
+    end
   end
 
   describe "when parsing a URL string into a new object" do
     describe "when parsing http://example.com" do
       before(:each) do
         @locator = Locator.parse('http://example.com')
+        @locator.page = Page.create(:description => 'example page')
       end
 
       it "should see the scheme as 'http'" do
@@ -62,6 +69,7 @@ describe Locator do
     describe "when parsing http://example.com/test" do
       before(:each) do
         @locator = Locator.parse('http://example.com/test')
+        @locator.page = Page.create(:description => 'example page')
       end
 
       it "should see the scheme as 'http'" do
@@ -92,6 +100,7 @@ describe Locator do
     describe "when parsing ftp://thomas.loc.gov:244/00index" do
       before(:each) do
         @locator = Locator.parse('ftp://thomas.loc.gov:244/00index')
+        @locator.page = Page.create(:description => 'Library of Congress Thomas FTP site index')
       end
 
       it "should see the scheme as 'ftp'" do
@@ -122,6 +131,7 @@ describe Locator do
     describe "when parsing https://scott:awsumpasswud@weave.us/test?notreally=yeah#justkiddin" do
       before(:each) do
         @locator = Locator.parse('https://scott:awsumpasswud@weave.us/test?notreally=yeah#justkiddin')
+        @locator.page = Page.create(:description => 'Sekrit internal Weave interface')
       end
 
       it "should see the scheme as 'https'" do
@@ -163,6 +173,7 @@ describe Locator do
       @url = Locator.new
       @url.scheme = 'http'
       @url.site = Site.find_or_create_by_fqdn('example.com')
+      @url.page = Page.create(:description => 'example page')
     end
 
     it "should save and be formatted correctly" do
@@ -196,9 +207,11 @@ describe Locator do
 
   it "should only create a single Site for each fully-qualified domain name" do
     url1 = Locator.parse('http://example.com/path1')
+    url1.page = Page.create(:description => 'example page 1')
     url1.save.should be_true
 
     url2 = Locator.parse('http://example.com/path2')
+    url2.page = Page.create(:description => 'example page 2')
     url2.save.should be_true
 
     url1.site.should == url2.site

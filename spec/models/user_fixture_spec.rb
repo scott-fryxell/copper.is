@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe User do
-  fixtures :roles_users, :users, :addresses, :accounts
+  fixtures :users, :roles_users, :addresses, :accounts
 
   it "should find the sample user from the fixture" do
     User.find_by_email('test@test.com').should_not be_nil
@@ -32,8 +32,8 @@ describe User do
       bundle.refills << Refill.create(:transaction => transaction, :amount_in_cents => 3)
       bundle.save.should be_true
 
-      lambda { fan.tip('http://example.com', 3).should be_valid }.should_not raise_exception InsufficientFunds
-      lambda { fan.tip('http://anotheryourself.com', 1) }.should raise_exception InsufficientFunds
+      lambda { fan.tip('http://example.com', 'sample page', 3) }.should_not raise_exception InsufficientFunds
+      lambda { fan.tip('http://anotheryourself.com', 'iam lakech', 1) }.should raise_exception InsufficientFunds
     end
   end
 

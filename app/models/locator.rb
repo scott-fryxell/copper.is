@@ -1,10 +1,20 @@
 class Locator < ActiveRecord::Base
+  belongs_to :page
   belongs_to :site
 
   has_many :tips
 
+  validates_presence_of :page
   validates_presence_of :site
   validates_presence_of :scheme
+
+  def host
+    site.fqdn
+  end
+
+  def host=(hostname_string)
+    self.site = Site.find_or_create_by_fqdn(hostname_string)
+  end
 
   def canonicalized
     canonical = scheme + '://'
