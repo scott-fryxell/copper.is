@@ -16,4 +16,8 @@ class Tip < ActiveRecord::Base
       raise(InsufficientFunds, "fan needs to add more money to tip bundle to continue tipping")
     end
   end
+
+  def amount_in_cents
+    tip_bundle.cents_per_tip_point * multiplier
+  end
 end
