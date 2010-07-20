@@ -81,3 +81,7 @@ Test credit card number for authorize.net = 4024007148673576
 Declarative Authorization
 - filter_resource_access will not work for controllers that don't have an associated model/class
 - filter_access_to works for controllers with no model
+
+
+
+When running the Blue Ridge tests from a browser use Firefox.

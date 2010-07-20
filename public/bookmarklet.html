@@ -2,28 +2,13 @@
 <html lang="en_us" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8"/>
-    <title>Bookmarklet</title>
+    <title>bookmarklet test</title>
+
   </head>
+
   <body id="bookmarklet">
-    <script>
-      function loadScript() {
-        var scriptElem = document.createElement('script');
-        var scriptURL = 'http://0.0.0.0:3000/tips/new.js?patronized=' + window.location;
-        var title = document.getElementsByTagName("title")[0].innerHTML;
-        scriptElem.type = 'text/javascript';
-        scriptElem.async = true;
-        scriptElem.src = scriptURL + '&title=' + title;
-        document.body.appendChild(scriptElem);
-      };
-      loadScript();
-    </script>
-    <ol>
-      <li><a href="javascript:function%20loadScript()%20{var%20scriptElem%20=%20document.createElement(%27script%27);var%20scriptURL%20=%20%27http://0.0.0.0:3000/tips/new.js?patronized=%27%20+%20window.location;var%20title%20=%20document.getElementsByTagName(%22title%22)[0].innerHTML;scriptElem.type%20=%20%27text/javascript%27;scriptElem.async%20=%20true;scriptElem.src%20=%20scriptURL%20+%20%27&title=%27%20+%20title;document.body.appendChild(scriptElem);};loadScript();">tip this</a></li>
-    </ol>
-    <pre>
-      grab the current window's url.
-      GET to http://0.0.0.0:3000/tips/new
-    </pre>
+    <h1>Bookmarklet test</h1>
+    <script src="/behavior/bookmarklet.js" charset="utf-8" async="true"></script>
   </body>
+
 </html>
-<!-- TODO: still have bug when tipping a page that is in a frame. www.digg.com as an example -->
