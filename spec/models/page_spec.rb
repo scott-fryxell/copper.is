@@ -30,7 +30,7 @@ describe Page do
   end
 
   it "should return a list of the most tipped pages" do
-    @pages_with_tips = Page.most_tipped
+    @pages_with_tips = Page.most_tips
     @pages_with_tips.should_not be_nil
   end
 

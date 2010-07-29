@@ -3,7 +3,7 @@ class Page < ActiveRecord::Base
   has_many :tips, :through => :locators
   has_and_belongs_to_many :royalty_bundles
 
-  named_scope :most_tipped, :include => [:tips], :group => "pages.id", :order => "count(tips.id) DESC"
+  named_scope :most_tips, :include => [:tips], :group => "pages.id", :order => "count(tips.id) DESC"
 
   validates_presence_of :description
 

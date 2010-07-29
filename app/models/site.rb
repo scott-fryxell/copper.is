@@ -8,7 +8,7 @@ class Site < ActiveRecord::Base
   has_and_belongs_to_many :royalty_bundles
   has_many :tip_royalties, :through => :royalty_bundles # TODO understand why this doesn't work.
 
-  named_scope :most_tipped, :include => [:tips], :group => "sites.fqdn", :order => "count(tips.id) DESC"
+  named_scope :most_tips, :include => [:tips], :group => "sites.fqdn", :order => "count(tips.id) DESC"
   named_scope :limited, lambda { |*num|
     { :limit => num.flatten.first || (defined?(per_page) ? per_page : 10) }
   }
@@ -22,7 +22,7 @@ class Site < ActiveRecord::Base
   end
 
   # TODO discuss performance of SQL vs. ActiveRecord vs named_scope
-  def self.most_tipped_sql(page_size=10, page_number=0)
+  def self.most_tips_sql(page_size=10, page_number=0)
     # Replaced by named_scope :most_tipped
     # SQL way returns hash of two values, the exact values the report wants.
     # The two method arguments make this vunerable to SQL injection attack.
@@ -39,7 +39,7 @@ class Site < ActiveRecord::Base
   end
 
   # see most_tipped_sql
-  def self.most_tipped_activerecord(page_size=10, page_number=0)
+  def self.most_tips_activerecord(page_size=10, page_number=0)
     # Replaced by named_scope :most_tipped
     # ActiveRecord version returns hash of Objects, can then output whatever you want in the report, but might take longer than SQL to then calculate tips count again
     # The two method arguments make this vunerable to SQL injection attack.

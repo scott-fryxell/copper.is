@@ -25,7 +25,7 @@ describe Site do
   end
 
   it "should return a list of the most tipped sites" do
-    @sites_with_tips = Site.most_tipped
+    @sites_with_tips = Site.most_tips
     @sites_with_tips.should_not be_nil
   end
 
