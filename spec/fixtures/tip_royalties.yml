@@ -1,0 +1,32 @@
+tr1:
+  royalty_bundle: rb1
+  tip: c1
+  amount_in_cents: 375
+tr2:
+  royalty_bundle: rb1
+  tip: c2
+  amount_in_cents: 375
+tr3:
+  royalty_bundle: rb1
+  tip: c3
+  amount_in_cents: 375
+tr4:
+  royalty_bundle: rb2
+  tip: c4
+  amount_in_cents: 375
+tr5:
+  royalty_bundle: rb-page-1
+  tip: c1
+  amount_in_cents: 375
+tr6:
+  royalty_bundle: rb-page-1
+  tip: c2
+  amount_in_cents: 375
+tr7:
+  royalty_bundle: rb-page-2
+  tip: c3
+  amount_in_cents: 375
+tr8:
+  royalty_bundle: rb-page-3
+  tip: c4
+  amount_in_cents: 375  

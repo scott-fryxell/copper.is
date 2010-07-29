@@ -24,4 +24,23 @@ describe Page do
     saved_page = Page.find(@page.id)
     saved_page.locators.size.should == 3
   end
+
+  it "should respond when asked how many tips it has received" do
+    @page.tips_earned.should_not be_nil
+  end
+
+  it "should return a list of the most tipped pages" do
+    @pages_with_tips = Page.most_tipped
+    @pages_with_tips.should_not be_nil
+  end
+
+  it "should respond when asked how much revenue it has earned" do
+    @page.revenue_earned.should_not be_nil
+  end
+
+  it "should return a list of the pages with the most revenue" do
+    @pages_with_revenue = Page.most_revenue
+    @pages_with_revenue.should_not be_nil
+  end
+
 end

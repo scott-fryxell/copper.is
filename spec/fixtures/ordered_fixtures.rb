@@ -1,5 +1,6 @@
-ENV["FIXTURE_ORDER"] = 
-  %w( users 
+ENV["FIXTURE_ORDER"] =
+  %w(
+      users
       roles_users
       addresses
       accounts
@@ -9,4 +10,8 @@ ENV["FIXTURE_ORDER"] =
       locators
       tip_bundles
       refills
-      tips ).join(' ')
+      tips
+      royalty_bundles
+      tip_royalties
+      royalty_bundles_sites
+    ).join(' ')

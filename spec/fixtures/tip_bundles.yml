@@ -1,2 +1,5 @@
 test_bundle:
   fan: active
+closed_bundle:
+  fan: active
+  is_active: false

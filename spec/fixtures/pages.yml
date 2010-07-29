@@ -2,3 +2,10 @@ example_page:
   description: 'example page'
 awesome_page:
   description: 'awesome page'
+  royalty_bundles: rb-page-3
+popular_page:
+  description: 'popular page'
+  royalty_bundles: rb-page-1
+boring_page:
+  description: 'boring page'
+  royalty_bundles: rb-page-2

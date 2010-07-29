@@ -4,3 +4,6 @@ first_transaction:
 second_transaction:
   account: simple
   amount_in_cents: 2140
+third_transaction:
+  account: simple
+  amount_in_cents: 1605
