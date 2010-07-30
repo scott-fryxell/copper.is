@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="../progress/processor.xsl"?>
+<!DOCTYPE html>
+<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:xi="http://www.w3.org/2001/XInclude"
+                   xml:base="/Users/scott/Desktop/weave.project/doc/wireframes/notification/">
+  <head>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('global_style')"/>
+    <style>
+      body.guide {background: transparent url('workflow_notification.svg') no-repeat scroll center top;}
+    </style>
+    <script src="../jquery-1.4.2.js"/>
+    <script src="behavior.js"/>
+    <title>Page report wireframe</title>
+  </head>
+  <!-- design options body.guide body.outline -->
+  <body>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('header')"/>
+    <section>
+      <header>
+        <h1>Account activated!</h1>
+        <p id="messages">
+          You're all dressed up and ready to weave.
+        </p>
+        <ol id="errors" >
+          <li>Passwords should be at least 4 characters long</li>
+          <li>That email address is not known to us</li>
+        </ol>
+      </header>
+      <section>
+        <h1>What's Next?</h1>
+        <ol>
+          <li>
+            <h2>Take it to the toolbar</h2>
+            <p>
+              drag this weave bookmarklet to your toolbar
+            </p>
+            <div>&#x27A0;</div>
+            <a id="weave_us" href="#weave" tabindex="1" accesskey="p">weave.us</a>
+          </li>
+          <li>
+            <h2>Fund your <a href="#">Tip Stash</a></h2>
+            <p>
+              You'll need to put some money in your account before
+              showering the web with love
+            </p>
+          </li>
+        </ol>
+      </section>
+    </section>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('account')"/>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('weave_logo')"/>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('footer')"/>
+  </body>
+
+</html>

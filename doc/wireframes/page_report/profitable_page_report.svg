@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 960 960" width="960px" height="960px">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:date>2010-07-26 22:50Z</dc:date>
+    <!-- Produced by OmniGraffle Professional 5.2.3 -->
+  </metadata>
+  <defs>
+    <font-face font-family="Corbel" font-size="36" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Corbel" font-size="24" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Corbel" font-size="16" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Corbel" font-size="14" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Feature Name</title>
+    <g>
+      <title>Profitable pages</title>
+      <text transform="translate(80 125.5)" fill="gray">
+        <tspan font-family="Corbel" font-size="36" font-weight="500" fill="gray" x=".703125" y="34" textLength="21.9375">P</tspan>
+        <tspan font-family="Corbel" font-size="36" font-weight="500" fill="gray" x="21.9375" y="34" textLength="69.20508">ages</tspan>
+      </text>
+      <text transform="translate(93.3331 180.666)" fill="gray">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="0" y="23" textLength="51.257812">www</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="50.554688" y="23" textLength="140.63672">.example.com</tspan>
+      </text>
+      <text transform="translate(93.3331 207.83299)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="15" textLength="11.3125">G</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="11.3125" y="15" textLength="104.203125">onzo publishing</tspan>
+      </text>
+      <path d="M 530.667 180.59201 L 589.33374 180.59201 C 591.5429 180.59201 593.33374 182.38287 593.33374 184.59201 L 593.33374 243.2587 C 593.33374 245.46783 591.5429 247.2587 589.33374 247.2587 L 530.667 247.2587 C 528.45782 247.2587 526.667 245.46783 526.667 243.2587 C 526.667 243.2587 526.667 243.2587 526.667 243.2587 L 526.667 184.59201 C 526.667 182.38287 528.45782 180.59201 530.667 180.59201 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(533.99902 199.425)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="21.129883">$45</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="20.856445" y="13" textLength="32.457031">0,000</tspan>
+      </text>
+      <text transform="translate(93.3331 232.33299)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="17.561523">2,5</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="17.288086" y="13" textLength="63.649414">00,000 tips</tspan>
+      </text>
+      <text transform="translate(181 232.33299)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="103.12012">($0.18 average tip</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="102.91504" y="13" textLength="4.1972656">)</tspan>
+      </text>
+      <text transform="translate(484 125.5)" fill="gray">
+        <tspan font-family="Corbel" font-size="36" font-weight="500" fill="gray" x=".703125" y="34" textLength="21.9375">P</tspan>
+        <tspan font-family="Corbel" font-size="36" font-weight="500" fill="gray" x="21.9375" y="34" textLength="50.554688">rofi</tspan>
+        <tspan font-family="Corbel" font-size="36" font-weight="500" fill="gray" x="72.492188" y="34" textLength="75.67383">table</tspan>
+      </text>
+      <text transform="translate(93.3332 274)" fill="gray">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="0" y="23" textLength="51.257812">www</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="50.554688" y="23" textLength="140.63672">.example.com</tspan>
+      </text>
+      <text transform="translate(93.3331 301.167)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="15" textLength="11.3125">G</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="11.3125" y="15" textLength="104.203125">onzo publishing</tspan>
+      </text>
+      <path d="M 530.667 273.926 L 589.33374 273.926 C 591.5429 273.926 593.33374 275.71686 593.33374 277.926 L 593.33374 336.59268 C 593.33374 338.80182 591.5429 340.59268 589.33374 340.59268 L 530.667 340.59268 C 528.45782 340.59268 526.667 338.80182 526.667 336.59268 C 526.667 336.59268 526.667 336.59268 526.667 336.59268 L 526.667 277.926 C 526.667 275.71686 528.45782 273.926 530.667 273.926 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(533.99902 292.759)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="21.129883">$45</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="20.856445" y="13" textLength="32.457031">0,000</tspan>
+      </text>
+      <text transform="translate(93.3331 325.667)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="17.561523">2,5</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="17.288086" y="13" textLength="63.649414">00,000 tips</tspan>
+      </text>
+      <text transform="translate(181 325.667)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="103.12012">($0.18 average tip</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="102.91504" y="13" textLength="4.1972656">)</tspan>
+      </text>
+      <text transform="translate(93.3333 367.167)" fill="gray">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="0" y="23" textLength="51.257812">www</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="50.554688" y="23" textLength="140.63672">.example.com</tspan>
+      </text>
+      <text transform="translate(93.3333 394.33401)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="15" textLength="11.3125">G</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="11.3125" y="15" textLength="104.203125">onzo publishing</tspan>
+      </text>
+      <path d="M 530.667 367.09299 L 589.33374 367.09299 C 591.5429 367.09299 593.33374 368.88385 593.33374 371.09299 L 593.33374 429.75967 C 593.33374 431.9688 591.5429 433.75967 589.33374 433.75967 L 530.667 433.75967 C 528.45782 433.75967 526.667 431.9688 526.667 429.75967 C 526.667 429.75967 526.667 429.75967 526.667 429.75967 L 526.667 371.09299 C 526.667 368.88385 528.45782 367.09299 530.667 367.09299 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(533.99902 385.926)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="21.129883">$45</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="20.856445" y="13" textLength="32.457031">0,000</tspan>
+      </text>
+      <text transform="translate(93.3333 418.83401)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="17.561523">2,5</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="17.288086" y="13" textLength="63.649414">00,000 tips</tspan>
+      </text>
+      <text transform="translate(181 418.83401)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="103.12012">($0.18 average tip</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="102.91504" y="13" textLength="4.1972656">)</tspan>
+      </text>
+      <text transform="translate(93.3331 458.833)" fill="gray">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="0" y="23" textLength="51.257812">www</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="50.554688" y="23" textLength="140.63672">.example.com</tspan>
+      </text>
+      <text transform="translate(93.3331 486)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="15" textLength="11.3125">G</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="11.3125" y="15" textLength="104.203125">onzo publishing</tspan>
+      </text>
+      <path d="M 530.667 458.759 L 589.33374 458.759 C 591.5429 458.759 593.33374 460.54987 593.33374 462.759 L 593.33374 521.42572 C 593.33374 523.6349 591.5429 525.42572 589.33374 525.42572 L 530.667 525.42572 C 528.45782 525.42572 526.667 523.6349 526.667 521.42572 C 526.667 521.42572 526.667 521.42572 526.667 521.42572 L 526.667 462.759 C 526.667 460.54987 528.45782 458.759 530.667 458.759 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(533.99902 477.592)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="21.129883">$45</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="20.856445" y="13" textLength="32.457031">0,000</tspan>
+      </text>
+      <text transform="translate(93.3331 510.5)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="17.561523">2,5</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="17.288086" y="13" textLength="63.649414">00,000 tips</tspan>
+      </text>
+      <text transform="translate(181 510.5)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="103.12012">($0.18 average tip</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="102.91504" y="13" textLength="4.1972656">)</tspan>
+      </text>
+      <text transform="translate(93.3332 552.167)" fill="gray">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="0" y="23" textLength="51.257812">www</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="50.554688" y="23" textLength="140.63672">.example.com</tspan>
+      </text>
+      <text transform="translate(93.3331 579.33502)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="15" textLength="11.3125">G</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="11.3125" y="15" textLength="104.203125">onzo publishing</tspan>
+      </text>
+      <path d="M 530.667 552.094 L 589.33374 552.094 C 591.5429 552.094 593.33374 553.88483 593.33374 556.094 L 593.33374 614.76074 C 593.33374 616.9699 591.5429 618.76074 589.33374 618.76074 L 530.667 618.76074 C 528.45782 618.76074 526.667 616.9699 526.667 614.76074 C 526.667 614.76074 526.667 614.76074 526.667 614.76074 L 526.667 556.094 C 526.667 553.88483 528.45782 552.094 530.667 552.094 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(533.99902 570.92603)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="21.129883">$45</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="20.856445" y="13" textLength="32.457031">0,000</tspan>
+      </text>
+      <text transform="translate(93.3331 603.83502)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="17.561523">2,5</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="17.288086" y="13" textLength="63.649414">00,000 tips</tspan>
+      </text>
+      <text transform="translate(181 603.83502)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="103.12012">($0.18 average tip</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="102.91504" y="13" textLength="4.1972656">)</tspan>
+      </text>
+      <text transform="translate(93.3333 645.33502)" fill="gray">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="0" y="23" textLength="51.257812">www</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="50.554688" y="23" textLength="140.63672">.example.com</tspan>
+      </text>
+      <text transform="translate(93.3333 672.502)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="15" textLength="11.3125">G</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="11.3125" y="15" textLength="104.203125">onzo publishing</tspan>
+      </text>
+      <path d="M 530.667 645.261 L 589.33374 645.261 C 591.5429 645.261 593.33374 647.0518 593.33374 649.261 L 593.33374 707.92773 C 593.33374 710.1369 591.5429 711.92773 589.33374 711.92773 L 530.667 711.92773 C 528.45782 711.92773 526.667 710.1369 526.667 707.92773 C 526.667 707.92773 526.667 707.92773 526.667 707.92773 L 526.667 649.261 C 526.667 647.0518 528.45782 645.261 530.667 645.261 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(533.99902 664.094)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="21.129883">$45</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="20.856445" y="13" textLength="32.457031">0,000</tspan>
+      </text>
+      <text transform="translate(93.3333 697.002)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="17.561523">2,5</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="17.288086" y="13" textLength="63.649414">00,000 tips</tspan>
+      </text>
+      <text transform="translate(181 697.002)" fill="gray">
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="0" y="13" textLength="103.12012">($0.18 average tip</tspan>
+        <tspan font-family="Corbel" font-size="14" font-weight="500" fill="gray" x="102.91504" y="13" textLength="4.1972656">)</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

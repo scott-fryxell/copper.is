@@ -1,0 +1,75 @@
+<?xml-stylesheet type="text/xsl" href="../progress/processor.xsl"?>
+<!DOCTYPE html>
+<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('global_style')"/>
+    <style>
+      @import url("../navigation/index.css");
+      @import url("design.css");
+    </style>
+    <style>
+      body.guide {background: transparent url('popular_site_report.svg') no-repeat scroll center top;}
+      body.outline * {color:black;outline: 0.1em double  #808080;outline-width:.2em;}
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <script src="behavior.js"></script>
+    <title>Site report wireframe</title>
+  </head>
+  <body class="">
+    <xi:include href="../navigation/index.xhtml" xpointer="id('header')"/>
+    <section>
+      <header>
+        <h1>Sites</h1>
+        <nav>
+          <a href="#">Popular</a>
+          <a href="#" class="selected">Profitable</a>
+          <a href="#">Search</a>
+        </nav>
+      </header>
+      <dl item="us.weave.sites">
+
+        <dt item="site" itemProp="domain">www.example.com</dt>
+          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
+          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
+          <dd itemProp="average_tip">$0.18 average tip</dd>
+          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
+
+        <dt item="site" itemProp="domain">www.example.com</dt>
+          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
+          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
+          <dd itemProp="average_tip">$0.18 average tip</dd>
+          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
+
+        <dt item="site" itemProp="domain">www.example.com</dt>
+          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
+          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
+          <dd itemProp="average_tip">$0.18 average tip</dd>
+          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
+
+        <dt item="site" itemProp="domain">www.example.com</dt>
+          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
+          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
+          <dd itemProp="average_tip">$0.18 average tip</dd>
+          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
+
+        <dt item="site" itemProp="domain">www.example.com</dt>
+          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
+          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
+          <dd itemProp="average_tip">$0.18 average tip</dd>
+          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
+
+        <dt item="site" itemProp="domain">www.example.com</dt>
+          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
+          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
+          <dd itemProp="average_tip">$0.18 average tip</dd>
+          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
+
+      </dl>
+    </section>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('account')"/>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('weave_logo')"/>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('footer')"/>
+
+  </body>
+
+</html>

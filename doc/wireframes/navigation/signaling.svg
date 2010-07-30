@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 960 960" width="960px" height="960px">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:date>2010-07-28 00:57Z</dc:date>
+    <!-- Produced by OmniGraffle Professional 5.2.3 -->
+  </metadata>
+  <defs>
+    <font-face font-family="Corbel" font-size="16" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Corbel" font-size="18" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Consolas" font-size="14" panose-1="2 11 6 9 2 2 4 3 2 4" units-per-em="1000" underline-position="-129.88281" underline-thickness="70.3125" slope="0" x-height="499.02344" cap-height="646.97266" ascent="742.6758" descent="-257.32422" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Consolas"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Notification and signaling</title>
+    <g>
+      <title>Signaling</title>
+      <text transform="translate(733.333 94.33333)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="83.041687" y="15" textLength="47.25">sfryxell</tspan>
+      </text>
+      <text transform="translate(746.66663 185.49998)" fill="gray">
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x=".3515625" y="17" textLength="11.381836">B</tspan>
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x="11.381836" y="17" textLength="48.146484">alance</tspan>
+      </text>
+      <text transform="translate(883.6666 185.49998)" fill="gray">
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x=".10498047" y="17" textLength="49.79004">$10.00</tspan>
+      </text>
+      <text transform="translate(746.66663 205.83333)" fill="gray">
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x=".3515625" y="17" textLength="10.696289">T</tspan>
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x="10.696289" y="17" textLength="21.00586">ips</tspan>
+      </text>
+      <text transform="translate(916.6666 205.83333)" fill="gray">
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x="9765625e-10" y="17" textLength="16.998047">47</tspan>
+      </text>
+      <text transform="translate(746.66663 238.83333)" fill="gray">
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x=".3515625" y="17" textLength="10.6347656">S</tspan>
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x="10.6347656" y="17" textLength="42.996094">pread</tspan>
+      </text>
+      <text transform="translate(907.49994 238.83331)" fill="gray">
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x=".25488281" y="17" textLength="26.490234">&#xA2;21</tspan>
+      </text>
+      <rect x="880" y="235.66666" width="53.666748" height=".125" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(765.1667 147.499985)" fill="gray">
+        <tspan font-family="Corbel" font-size="18" font-weight="500" fill="gray" x=".52490234" y="17" textLength="150.65332">Renewing in 14 days</tspan>
+      </text>
+      <path d="M 737.333 80.00009 L 942.666 80.00009 C 944.8752 80.00009 946.666 81.790955 946.666 84.00009 L 946.666 556.00012 C 946.666 558.2093 944.8752 560.00012 942.666 560.00012 L 737.333 560.00012 C 735.12384 560.00012 733.333 558.2093 733.333 556.00012 C 733.333 556.00012 733.333 556.00012 733.333 556.00012 L 733.333 84.00009 C 733.333 81.790955 735.12384 80.00009 737.333 80.00009 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(841.3337 120.83331)" fill="gray">
+        <tspan font-family="Consolas" font-size="14" font-weight="500" fill="gray" x="9.408203" y="10" textLength="46.183594">logout</tspan>
+      </text>
+      <text transform="translate(776.3337 120.83331)" fill="gray">
+        <tspan font-family="Consolas" font-size="14" font-weight="500" fill="gray" x="5.5595703" y="10" textLength="53.88086">account</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

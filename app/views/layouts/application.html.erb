@@ -18,18 +18,16 @@
           <li><%= link_to "Admin",      admin_path %></li>
         <% end %>
         <li><%= link_to "Pages",      page_report_path %></li>
-        <li><%= link_to "Publishers", publisher_report_path %></li>
+        <li><%= link_to "Sites",      publisher_report_path %></li>
         <li><%= link_to "Home",       root_path %></li>
         <li><a href="http://blog.fasterlighterbetter.com">Blog</a></li>
       </nav>
     </header>
     <section>
-      <!-- TODO only load article when flash message is present -->
-      <aside>
-        <%- flash.each do |name, msg| -%>
-          <%= content_tag :div, msg, :id => "flash_#{name}" %>
-        <%- end -%>
-      </aside>
+      <%- flash.each do |name, msg| -%>
+        <%= content_tag :aside, msg, :id => "flash_#{name}" %>
+      <%- end -%>
+
       <%= yield %>
     </section>
     <aside>
@@ -62,7 +60,6 @@
         <a href="http://blog.fasterlighterbetter.com">Loreum opseosis ipseum doceous</a>
       </nav>
     </footer>
-
   </body>
   <% if RAILS_ENV == 'development' %>
     <developer>

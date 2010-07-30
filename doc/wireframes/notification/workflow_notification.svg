@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 960 960" width="960px" height="960px">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:date>2010-07-28 00:57Z</dc:date>
+    <!-- Produced by OmniGraffle Professional 5.2.3 -->
+  </metadata>
+  <defs>
+    <font-face font-family="Corbel" font-size="24" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Corbel" font-size="16" panose-1="2 11 5 3 2 2 4 2 2 4" units-per-em="1000" underline-position="-92.77344" underline-thickness="58.59375" slope="0" x-height="476.07422" cap-height="665.52734" ascent="952.14844" descent="-268.55469" font-weight="500">
+      <font-face-src>
+        <font-face-name name="Corbel"/>
+      </font-face-src>
+    </font-face>
+    <font-face font-family="Zapf Dingbats" font-size="36" panose-1="5 2 1 2 1 7 4 2 6 9" units-per-em="1000" underline-position="-100.097656" underline-thickness="60.058594" slope="0" x-height="542.48047" cap-height="723.14453" ascent="813.96484" descent="-176.75781" font-weight="500">
+      <font-face-src>
+        <font-face-name name="ZapfDingbatsITC"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
+    <title>Notification and signaling</title>
+    <g>
+      <title>Workflow Notification winner</title>
+      <path d="M 83 213.33398 L 637 213.33398 C 638.65686 213.33398 640 214.67712 640 216.33398 L 640 557.00098 C 640 558.65784 638.65686 560.00098 637 560.00098 L 83 560.00098 C 81.343147 560.00098 80 558.65784 80 557.00098 C 80 557.00098 80 557.00098 80 557.00098 L 79.999985 216.33398 C 79.999985 214.67712 81.34313 213.33398 82.999985 213.33398 Z" fill="#999" fill-opacity=".33000001"/>
+      <path d="M 83 213.33398 L 637 213.33398 C 638.65686 213.33398 640 214.67712 640 216.33398 L 640 557.00098 C 640 558.65784 638.65686 560.00098 637 560.00098 L 83 560.00098 C 81.343147 560.00098 80 558.65784 80 557.00098 C 80 557.00098 80 557.00098 80 557.00098 L 79.999985 216.33398 C 79.999985 214.67712 81.34313 213.33398 82.999985 213.33398 Z" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(93.3333 225.50134)" fill="#6c6c6c">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="#6c6c6c" x=".46875" y="23" textLength="22.101562">W</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="#6c6c6c" x="22.101562" y="23" textLength="52.066406">hat's </tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="#6c6c6c" x="74.63672" y="23" textLength="17.648438">N</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="#6c6c6c" x="91.816406" y="23" textLength="41.425781">ext?</tspan>
+      </text>
+      <rect x="93.333313" y="266.66675" width="533.333" height="280" fill="white"/>
+      <rect x="93.333313" y="266.66675" width="533.333" height="280" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"/>
+      <text transform="translate(133.33299 292.167)" fill="gray">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x=".46875" y="23" textLength="20.660156">M</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="20.660156" y="23" textLength="23.4375">ak</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="43.628906" y="23" textLength="195.02344">e it easy on yourself</tspan>
+      </text>
+      <path d="M 417.33325 346.667 L 556.00024 346.667 C 558.2094 346.667 560.00024 348.45786 560.00024 350.667 L 560.00024 396.0003 C 560.00024 398.20944 558.2094 400.0003 556.00024 400.0003 L 417.33325 400.0003 C 415.12411 400.0003 413.33325 398.20944 413.33325 396.0003 C 413.33325 396.0003 413.33325 396.0003 413.33325 396.0003 L 413.33325 350.667 C 413.33325 348.45786 415.12411 346.667 417.33325 346.667 Z" fill="#999" fill-opacity=".24"/>
+      <path d="M 417.33325 346.667 L 556.00024 346.667 C 558.2094 346.667 560.00024 348.45786 560.00024 350.667 L 560.00024 396.0003 C 560.00024 398.20944 558.2094 400.0003 556.00024 400.0003 L 417.33325 400.0003 C 415.12411 400.0003 413.33325 398.20944 413.33325 396.0003 C 413.33325 396.0003 413.33325 396.0003 413.33325 396.0003 L 413.33325 350.667 C 413.33325 348.45786 415.12411 346.667 417.33325 346.667 Z" stroke="#f60" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      <text transform="translate(413.33325 358.833)" fill="#f60">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="#f60" x="27.19661" y="23" textLength="92.27344">weave.us</tspan>
+      </text>
+      <text transform="translate(133.33299 427.167)" fill="gray">
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x=".46875" y="23" textLength="13.042969">F</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="gray" x="13.042969" y="23" textLength="92.308594">und your </tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="#f60" x="104.17969" y="23" textLength="14.261719">T</tspan>
+        <tspan font-family="Corbel" font-size="24" font-weight="500" fill="#f60" x="117.972656" y="23" textLength="75.375">ip stash</tspan>
+      </text>
+      <text transform="translate(146.66667 466.667)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="15" textLength="10.1328125">Y</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="8.8828125" y="15" textLength="187.13281">ou'll need to put some mone</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="195.9375" y="15" textLength="59.273438">y in your </tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="34" textLength="14.8515625">ac</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="14.9296875" y="34" textLength="276.09375">count before showering the web with love</tspan>
+      </text>
+      <text transform="translate(146.66663 350.333)" fill="gray">
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="15" textLength="11.359375">D</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="11.359375" y="15" textLength="186.17969">rag this weave bookmarklet </tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x=".3125" y="34" textLength="98.42969">to your toolbar</tspan>
+        <tspan font-family="Corbel" font-size="16" font-weight="500" fill="gray" x="97.88281" y="34" textLength="4.2265625">.</tspan>
+      </text>
+      <text transform="translate(360.00104 360.9993)" fill="#f60">
+        <tspan font-family="Zapf Dingbats" font-size="36" font-weight="500" fill="#f60" x="0" y="29" textLength="31.429688">&#x27A0;</tspan>
+      </text>
+    </g>
+  </g>
+</svg>

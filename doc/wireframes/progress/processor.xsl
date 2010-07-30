@@ -1,14 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <stylesheet version="1.0" xmlns="http://www.w3.org/1999/XSL/Transform"
-                          xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
                           xmlns:xi="http://www.w3.org/2001/XInclude">
-  <!--
-  Copyright (C) 2006 Jason Davis, www.browserland.org
-  This transformation (including hacks.xsl) is licensed under the LGPL:
-    http://www.gnu.org/licenses/lgpl.html
-  -->
-  <import href="identity.xsl"/>
-  <import href="agents.xsl"/>
+
+  <template match="node()|@*">
+    <copy><apply-templates select="node()|@*"/></copy>
+  </template>
+<import href="agents.xsl"/>
 
   <template match="xi:include">
     <variable name="href"     select="@href"/>

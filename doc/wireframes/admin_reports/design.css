@@ -2,7 +2,9 @@ body > section > form{
   margin-left: 3.5em;
   margin-bottom:2em;
   border: 0.15em solid #808080;
+  border-radius: .5em;
   -webkit-border-radius: .5em;
+  -moz-border-radius: .5em;
   background-color: #ddd;
   width: 33em;
   height: 12em;

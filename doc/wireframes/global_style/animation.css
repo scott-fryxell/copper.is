@@ -1,0 +1,82 @@
+@-webkit-keyframes  pulse {
+  from {
+   opacity:1;
+   -webkit-animation-timing-function: ease-in;
+  }
+  50% {
+   opacity: .5;
+    -webkit-animation-timing-function: ease-in-out;
+  }
+
+  to {
+   opacity:1;
+   -webkit-animation-timing-function: ease-out;
+  }
+}
+@-webkit-keyframes  pulse-font {
+  from {
+    -webkit-text-stroke-color:gray;
+    -webkit-text-stroke-width:1px;
+    -webkit-text-fill-color:#808080;
+    
+  }
+  50% {
+    -webkit-text-stroke-color:#F60;
+    -webkit-text-stroke-width:2px;
+    -webkit-text-fill-color:transparent;
+  }
+
+  to {
+    -webkit-text-stroke-color:gray;
+    -webkit-text-stroke-width:1px;
+    -webkit-text-fill-color:#808080;
+  }
+}
+
+
+@-webkit-keyframes bounce {
+
+   from {
+     top: 1em;
+     -webkit-animation-timing-function: ease-out;
+   }
+
+   25% {
+     top: 1.5em;
+     -webkit-animation-timing-function: ease-in;
+   }
+
+   50% {
+     top: 1em;
+     -webkit-animation-timing-function: ease-out;
+   }
+
+   75% {
+     top: 1.5em;
+     -webkit-animation-timing-function: ease-in;
+   }
+
+   to {
+     top: 1em;
+   }
+
+}
+
+@-webkit-keyframes point {
+
+   from {
+     right: 0;
+     -webkit-animation-timing-function: ease-out;
+   }
+
+   50% {
+     right: .5em;
+     -webkit-animation-timing-function: ease-in-out;
+   }
+
+   to {
+     right: 0;
+     -webkit-animation-timing-function: ease-in;
+   }
+
+}
