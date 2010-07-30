@@ -1,30 +1,13 @@
 class ReportsController < ApplicationController
+
+  def sites
+    @tips = Site.most_tips
+    @revenue = Site.most_revenue
+  end
+
   def pages
-    # placeholder
-  end
-
-  def publishers
-    #placeholder
-  end
-
-  def sites_most_tips
-    @sites = Site.most_tips
-    redirect_to sites_most_tips_url
-  end
-
-  def sites_most_revenue
-    @sites = Site.most_revenue
-    redirect_to sites_most_revenue_url
-  end
-
-  def pages_most_tips
-    @pages = Page.most_tips
-    redirect_to pages_most_tips_url
-  end
-
-  def pages_most_revenue
-    @pages = Page.most_revenue
-    redirect_to pages_most_revenue_url
+    @tips = Page.most_tips
+    @revenue = Page.most_revenue
   end
 
 end

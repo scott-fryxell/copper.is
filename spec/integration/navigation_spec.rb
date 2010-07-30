@@ -30,7 +30,7 @@ describe "The standard Weave page" do
       assert_have_selector "body > header > nav"
       click_link "Pages"
     end
-    it "should link to the publishers report" do
+    it "should link to the Sites report" do
       visit "/"
       assert_have_selector "body > header > nav"
       click_link "Sites"

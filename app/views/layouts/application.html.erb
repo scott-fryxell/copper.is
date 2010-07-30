@@ -10,7 +10,9 @@
   </head>
   <body>
     <header>
-	  <a href="/">
+
+
+      <a href="/">
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
       </a>
       <nav>
@@ -30,19 +32,33 @@
 
       <%= yield %>
     </section>
-    <aside>
-      <nav>
-        <% if current_user %>
-          <%= link_to "Edit Profile",      edit_user_path(current_user) %>
-          <%= link_to "Logout",            logout_path %>
-        <% else %>
-          <%= link_to "Log in or sign up", login_path %>
-        <% end %>
-      </nav>
+    <aside id="account" itemscope="true" itemtype="http://weave.us/User#account">
+      <header>
+        <h1 itemprop="name"><% if current_user %>current_user.name<% end %></h1>
+        <nav>
+          <% if current_user %>
+            <%= link_to "account",      edit_user_path(current_user) %>
+            <%= link_to "logout",            logout_path %>
+          <% else %>
+            <%= link_to "Log in or sign up", login_path %>
+          <% end %>
+        </nav>
+      </header>
+      <dl>
+        <dt>Pays out in</dt>
+        <dd itemprop="billing_period">14<span itemprop="interval">days</span></dd>
+        <dt>Balance</dt>
+        <dd itemprop="balance"><span itemprop="currency">$</span>10.00</dd>
+        <dt>Tips</dt>
+        <dd itemprop="tips">47</dd>
+        <dt>Spread</dt>
+        <dd itemprop="distribution"><span itemprop="currency">¢</span>22</dd>
+      </dl>
     </aside>
-    <a href="/">
+    <figure accesskey="l" tabindex="2" id="weave_logo">
+      
       <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>
-    </a>
+    </figure>
     <footer>
       <nav>
         <h2>Policies</h2>

@@ -26,11 +26,8 @@ hgroup, menu, nav, section, address {
   vertical-align: baseline;
   background: transparent;
 }
-/* remember to define focus styles! */
-:focus {
-  outline: 1px solid green;
-}
-ol, ul, dl, nav {
+
+ol, ul, dl, nav, menu {
   list-style: none;
   list-style-position:inside;
 }
@@ -52,34 +49,13 @@ q:before, q:after {
 blockquote, q {
   quotes: "" "";
 }
-
 article, aside, dialog,
 figure, footer, header,
 hgroup, menu, nav, section {
   display: block;
 }
-
-p{
-  margin-bottom: 1em;
-}
-table{}
-section{
-  padding:.5em;
-}
 iframe{
   border-style: none;
-  overflow:none;
+  overflow: hidden;
   display:none;
-}
-
-a{
-  text-decoration:none;
-  color: #808080;
-  -webkit-text-fill-color: #808080;
-  -webkit-text-stroke: .01em activeborder;
-  font-weight:bold;
-}
-a:hover,a:focus {
-  font-weight:bolder;
-  text-decoration: none;
 }

@@ -6,13 +6,14 @@ ActionController::Routing::Routes.draw do |map|
     home.feed      "subscribe", :action => "subscribe"
   end
 
+  map.with_options  :controller => 'bookmarklet' do |bookmarklet|
+    bookmarklet.instructions  "bookmarklet", :action => "instructions"
+  end
+
+
   map.with_options  :controller => 'reports' do |report|
     report.page_report        "pages",                      :action => "pages"
-    report.publisher_report   "publishers",                 :action => "publishers"
-    report.sites_most_tips    "reports/sites/tips/most",    :action => "sites_most_tips"
-    report.sites_most_revenue "reports/sites/revenue/most", :action => "sites_most_revenue"
-    report.pages_most_tips    "reports/pages/tips/most",    :action => "pages_most_tips"
-    report.pages_most_revenue "reports/pages/revenue/most", :action => "pages_most_revenue"
+    report.publisher_report   "sites",                      :action => "sites"
   end
 
   map.with_options :controller => 'user_sessions' do |session|

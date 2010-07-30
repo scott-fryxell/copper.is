@@ -1,0 +1,85 @@
+li.selected{
+  text-decoration:underline;
+}
+body > section > header{
+  position:relative;
+  margin-bottom: 1em;
+}
+  body > section > header > h1{
+    font-size: 2.28em; /*36px*/
+    display:inline-block;
+  }
+  body > section > header > nav{
+    z-index:10;
+    background-color: white;
+    position:absolute;
+    top:2em;
+    right:4em;
+    text-align:middle;
+    padding:1.25em;
+    display:inline-block;
+  }
+    body > section > header > nav a {
+      display:none;
+      font-size:1.25em;
+    }
+    body > section > header > nav a.selected {
+      display:block;
+      text-align:center;
+      font-weight:normal;
+      font-size:2.25em;
+      text-decoration: underline;
+    }
+    body > section > header > nav:hover {
+      border: 0.20em solid #808080;
+      -webkit-border-radius: .5em;
+      -moz-border-radius: .5em;
+      border-radius: .5em;
+    }
+    body > section > header > nav:hover a {
+      margin-bottom:.5em;
+      display:block;
+      text-align:center;
+    }
+
+  body > section > ul {
+    position:relative;
+    margin-left: 1.5em;
+    margin-bottom: 1.5em;
+  }
+    body > section > ul > li {
+      display:inline-block;
+      margin: 0;
+    }
+    body > section > ul > li[itemprop="domain"] {
+      width: 15em;
+      font-size: 1.5em;
+      font-weight: normal;
+    }
+    body > section > ul > li[itemprop="publisher"] {
+      display:block;
+      margin-left:0;
+      width: 15em;
+    }
+    body > section > ul > li[itemprop="earned"] {}
+    body > section > ul > li[itemprop="tips"] {
+      position:absolute;
+      top:0;
+      right:9.5em;
+      width: 4em;
+      height: 4em;
+      margin-top:-1em;
+      padding: 1em 1em .5em .5em;
+      font-size: .75em;
+      text-align: center;
+
+      border: 0.20em solid #808080;
+      -webkit-border-radius: .5em;
+      -moz-border-radius: .5em;
+      border-radius: .5em;
+    }
+    body > section > ul > li[itemprop="average"] {
+      display:inline-block;
+      margin-left:1em;
+      margin-bottom: .5em;
+    }

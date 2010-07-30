@@ -11,8 +11,8 @@ html {
     margin: 0 auto 0 auto;
     padding:.75em;
   }
-    body > section, 
-    body > header, 
+    body > section,
+    body > header,
     body > nav,
     body > aside,
     body > section,
@@ -21,7 +21,7 @@ html {
       position:relative;
     }
   body > header {
-    width: 44.25em;
+    width: 40em;
     min-height: 3.5em;
     margin-bottom:.75em;
     background-image:none;
@@ -32,7 +32,7 @@ html {
       display:inline-block;
     }
     body > header nav {
-      float: right;
+      margin-left:15em;
       display:inline-block;
     }
       body > header nav li {
@@ -44,82 +44,130 @@ html {
         }
   body > section {
     display:inline-block;
-    margin-right: .75em;
+    margin-right: .65em;
     margin-bottom: .5em;
-    width:43.25em;
+    margin-left:3.25em;
+    width:40em;
     min-height:44em;
   }
-    body > section > h1{
-      margin-top: 1em;
-      margin-left: 1.25em;
+    body > section > header h1{
+      margin-top: .5em;
+      margin-left: .25em;
       font-size: 2.75em;
-      margin-bottom: .75em;
+      margin-bottom: .60em;
     }
-    body > section > section > h2 {
-      font-size: 1.5em;
-      margin-bottom:.75em;
-      margin-top:1.25em;
+    body > section > header > p{
+      margin-left:.5em;
     }
     body > section > p {
       margin-left: 3.30em;
       font-size: 1.15em;
     }
-  body > aside {
-    width: 13.25em;
-    display:inline-block;
-    min-height: 30em;
-  }
-  body > aside nav{
-    margin:2em 0 0 1em;
-  }
-  body > aside nav a{
-    display:block;
-    margin-bottom: 1em;
-  }
-  
+    body > aside {
+      width: 13.20em;
+      display:inline-block;
+      min-height: 30em;
+
+      border: .15em solid #808080;
+      -moz-border-radius: .3em;
+      border-radius: .3em;
+    }
+      body > aside > header {
+        margin-top:.75em;
+        text-align: center;
+        margin-bottom: 0;
+      }
+        body > aside > header > nav {
+          margin:0;
+          padding:0;
+        }
+          body > aside > header > nav a {
+            -webkit-text-stroke: .02em #808080;
+            text-decoration: underline;
+            padding-left: .5em;
+          }
+      body > aside > dl {
+        margin-top: 1.25em;
+        margin-left: .75em;
+        font-size: 1.15em;
+      }
+        body > aside > dl > dt {
+          font-weight: normal;
+          width: 6.25em;
+
+          display:inline-block;
+        }
+          body > aside > dl > dt:first-child {
+            margin-left: 1em;
+            width: 4.5em;
+            margin-bottom:1em;
+          }
+        body > aside > dl > dd {
+          display:inline-block;
+          width:3.5em;
+          text-align:right;
+          padding-bottom:.5em;
+        }
+        body > aside > dl > dd[itemprop="billing_period"] {
+          width:3.5em;
+        }
+          body > aside > dl > dd[itemprop="billing_period"] span {
+            padding:.25em;
+          }
+        body > aside > dl > dd[itemprop="tips"] {
+          border-bottom: .15em solid #808080;
+        }
   body > footer {
+    border: .15em solid #808080;
+    -moz-border-radius: .3em;
+    border-radius: .3em;
+
     margin-top:.25em;
     margin-bottom:0em;
-    min-height: 3.5em;
+    min-height: 8.25em;
   }
-    body > footer h2{
-      margin-bottom: .5em;
-      font-size:1.25em;
-    }
     body > footer nav{
-      margin-left:.5em;
-      width: 30%;
+      margin-top:.75em;
+      margin-left:1em;
+      width: 29%;
       display:inline-block;
     }
+    body > footer nav h2{
+      font-size:1.5em;
+      margin-bottom:.5em;
+    }
       body > footer nav a {
-        margin-left: 1em;
-        margin-bottom: .25em;
         display:block;
-        font-weight: normal;
-        font-size:normal;
+        margin-bottom: .25em;
+        margin-left: 1em;
+        font-size: 1em;
       }
     body > footer #debug {
       display:block;
       margin:auto;
     }
-  body > a {
-    position:absolute;
-    right:2.5em;
-    bottom:7.25em;
-    display:inline-block;
-    vertical-align:top;    
-  }
-  body > a img[item='logo'] {
-    opacity:.40;
-    border:1px solid transparent;
-    -webkit-border-radius: .5em;
-  }
-  body > a img[item='logo']:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
+    body > figure {
+      position:absolute;
+      right:2.5em;
+      bottom:10em;
+      display:inline-block;
+      vertical-align:top;
+      opacity:.55;
+      -webkit-transform: scale(1) rotate(0deg);
+      -webkit-transition-property: all;
+      -webkit-transition-duration:  1s;
+      -webkit-transition-delay: 150ms;
+    }
+      body > figure:hover {
+        -webkit-transition-duration: 500ms;
+        -webkit-transition-duration:  2s;
+        -webkit-transition-property: all;
+        -webkit-transition-delay: 200ms;
+        -webkit-transform: scale(1.11) rotate(45deg);
+        cursor: pointer;
+      }
 
-/* global form layout */
+  /* global form layout */
   body > section > form{
     margin-top:1em;
     padding: 1em;
@@ -128,11 +176,11 @@ html {
     body > section > form fieldset {
       margin-bottom:0;
     }
-    body > section > form fieldset > legend{
-      display:inline-block;
-      margin-left:   .5em;
-      font-size:     1.25em;
-    }
+      body > section > form fieldset > legend{
+        display:inline-block;
+        margin-left:   .5em;
+        font-size:     1.25em;
+      }
     body > section > form label {
       display: inline-block;
       font-size: 1.5em;
@@ -145,9 +193,6 @@ html {
       border: 0.10em solid #808080;
       margin-left:.5em;
     }
-      body > section > form input[type=hidden]{
-        border:none;
-      } 
       body > section > form input[type=submit] {
         width: 10em;
         margin-left: 25.85em;
@@ -159,64 +204,50 @@ html {
         -webkit-border-radius: .25em;
         -moz-border-radius: .25em;
         font-size: 1em;
-        background-color: transparent;
       }
 
-  /* global table layout*/
-  body > section > table {
-    margin-left: 3.5em;
-    margin-bottom:2em;
-    border: 0.15em solid #808080;
-    width: 35.25em;
-    height: 23em;
-  }
-    body > section > table caption {
-      font-size: 1.5em;
-      margin:0 0 .5em 0;
-    }
-    body > section > table th{
-      padding: .25em;
-      width: 33%;
-      border: 0.15em solid #808080;
-    }
-    body > section > table td{
-      padding: .25em;
-      width: 33%;
-      border-right: 0.15em dashed #ccc;
-    }
-      body > section > table tr:nth-child(even){
-        background-color: #eee;
+  /* navigation stylings */
+      #messages{
+        border: .15em solid #808080;
+        -moz-border-radius: .3em;
+        border-radius: .3em;
+        margin-left:.6em;
+        width: 32.7em;
+        min-height:4em;
+        margin-bottom:1em;
+        padding:1em;
+      }
+      #errors{
+        margin-left:.6em;
+        width: 32.7em;
+        min-height:4em;
+        border: .15em solid red;
+        -moz-border-radius: .3em;
+        border-radius: .3em;
+        background-color: #FFCEAD;
+        padding:1em;
+        list-style: circle inside;
+      }
+      #errors li{
+        margin-bottom:.5em;
+        color:red;
       }
 
-/* error handling TODO need to review and integrate into our CSS.*/
-.fieldWithErrors {
-  padding: 2px;
-  background-color: red;
-  display: table;
-}
-#errorExplanation {
-  width: 400px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-#errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: -7px;
-  background-color: #c00;
-  color: #fff;
-}
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 5px;
-}
-#errorExplanation ul li {
-  font-size: 12px;
-  list-style: square;
-}
+      :focus{
+        outline:1px dotted gray;
+      }
+      a {
+        text-decoration:none;
+        color: #808080;
+        font-weight:normal;
+        -webkit-text-stroke-color:gray;
+        -webkit-text-stroke-width:1px;
+
+        font-weight:normal;
+      }
+      a:hover{
+        text-decoration: none;
+        -webkit-animation-name: pulse-font;
+        -webkit-animation-duration: 3s;
+        -webkit-animation-iteration-count: infinite;
+      }
