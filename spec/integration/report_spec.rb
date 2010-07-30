@@ -9,7 +9,7 @@ describe "Reports" do
   
   describe "sites" do
     before(:each) do
-      click_link "Publishers"
+      click_link "Sites"
     end
     
     describe "with the most tips" do

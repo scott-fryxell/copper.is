@@ -33,7 +33,7 @@ describe "The standard Weave page" do
     it "should link to the publishers report" do
       visit "/"
       assert_have_selector "body > header > nav"
-      click_link "Publishers"
+      click_link "Sites"
 
     end
     it "should link to the blog"
