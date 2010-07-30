@@ -74,11 +74,11 @@ var FLB = {
             break;
           default:
             FLB.notify_fan("Somehting has gone horribly wrong with your tip. \n \n Pray for it's soul", http.status);
-            return -1
+            return -1;
             break;
         }
       }
-    }
+    };
   },
 
   notify_fan: function (notice, status_code) {
@@ -88,7 +88,6 @@ var FLB = {
     div.innerHTML= "<h3>" + notice + "</h3><p> status code: " + status_code + "</p>";
     div.setAttribute('style', 'position:fixed; top:6em; left:2em; z-index:9001; background:white;');
   }
-
-}
-// FLB.init(FLB.get_http());
+};
+FLB.init(FLB.get_http());
 

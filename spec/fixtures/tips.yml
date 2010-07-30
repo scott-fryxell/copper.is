@@ -3,4 +3,34 @@ first:
   locator: minimal
 second:
   tip_bundle: test_bundle
-  locator: second
+  locator: awesome_locator
+third:
+  tip_bundle: test_bundle
+  locator: awesome_locator
+fourth:
+  tip_bundle: test_bundle
+  locator: popular_locator
+fifth:
+  tip_bundle: test_bundle
+  locator: popular_locator
+sixth:
+  tip_bundle: test_bundle
+  locator: popular_locator
+seventh:
+  tip_bundle: test_bundle
+  locator: popular_locator
+eigth:
+  tip_bundle: test_bundle
+  locator: boring_locator
+c1:
+  tip_bundle: closed_bundle
+  locator: popular_locator
+c2:
+  tip_bundle: closed_bundle
+  locator: popular_locator
+c3:
+  tip_bundle: closed_bundle
+  locator: boring_locator
+c4:
+  tip_bundle: closed_bundle
+  locator: awesome_locator

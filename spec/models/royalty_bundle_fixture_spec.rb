@@ -37,7 +37,7 @@ describe RoyaltyBundle do
     end
 
     it "should be able to tally the total value of the associated tips" do
-      @bundle.total_amount_in_cents.should == 30_00
+      @bundle.total_amount_in_cents.should == 7_50
     end
   end
 

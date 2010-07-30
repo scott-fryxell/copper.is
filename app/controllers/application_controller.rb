@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   def permission_denied
     flash[:error] = t("weave.permission_denied")
     respond_to do |format|
-      format.html { redirect_to(:back) rescue redirect_to('/') }
+      format.html { redirect_to root_url }
       format.xml  { head :unauthorized }
       format.js   { head :unauthorized }
     end

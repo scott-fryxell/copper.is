@@ -1,6 +1,7 @@
 class Tip < ActiveRecord::Base
   belongs_to :tip_bundle
-  belongs_to :locator
+  belongs_to :locator, :counter_cache => true
+  has_one :tip_royalty
 
   validates_presence_of :tip_bundle
   validates_presence_of :locator

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100714222933) do
+ActiveRecord::Schema.define(:version => 20100729010806) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "number",                             :null => false
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20100714222933) do
     t.datetime "updated_at"
     t.integer  "site_id"
     t.integer  "page_id"
+    t.integer  "tips_count", :default => 0
   end
 
   create_table "order_transactions", :force => true do |t|
@@ -93,6 +94,11 @@ ActiveRecord::Schema.define(:version => 20100714222933) do
     t.datetime "updated_at"
   end
 
+  create_table "pages_royalty_bundles", :id => false, :force => true do |t|
+    t.integer "page_id"
+    t.integer "royalty_bundle_id"
+  end
+
   create_table "refills", :force => true do |t|
     t.integer  "tip_bundle_id",   :null => false
     t.integer  "transaction_id",  :null => false
@@ -119,6 +125,11 @@ ActiveRecord::Schema.define(:version => 20100714222933) do
     t.integer  "cycle_started_quarter", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "royalty_bundles_sites", :id => false, :force => true do |t|
+    t.integer "royalty_bundle_id"
+    t.integer "site_id"
   end
 
   create_table "sites", :force => true do |t|

@@ -6,3 +6,7 @@ refill2:
   transaction: second_transaction
   tip_bundle: test_bundle
   amount_in_cents: 2000
+refill3:
+  transaction: third_transaction
+  tip_bundle: closed_bundle
+  amount_in_cents: 1500
