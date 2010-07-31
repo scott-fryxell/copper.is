@@ -12,8 +12,8 @@ ActionController::Routing::Routes.draw do |map|
 
 
   map.with_options  :controller => 'reports' do |report|
-    report.page_report        "pages",                      :action => "pages"
-    report.publisher_report   "sites",                      :action => "sites"
+    report.pages_report    "report/pages",   :action => "pages"
+    report.sites_report    "report/sites",   :action => "sites"
   end
 
   map.with_options :controller => 'user_sessions' do |session|

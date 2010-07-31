@@ -12,7 +12,7 @@ describe "Password" do
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
       click_button "Log in"
-      click_link "Edit Profile"
+      click_link "Account"
     end
 
     it "should link to a page allowing the user to change their password" do

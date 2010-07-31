@@ -7,21 +7,21 @@ describe ReportsController do
 
     describe "with most tips report" do
       before(:each) do
-        get :sites_most_tips
+        get :sites
       end
       it "should produce a page containing a list of the sites with the most tips" do
-        response.should redirect_to(sites_most_tips_url)
-        assigns['sites'].should_not be_nil
+        response.should render_template('sites')
+        assigns['tips'].should_not be_nil
       end
     end
 
     describe "with the most revenue report" do
       before(:each) do
-        get :sites_most_revenue
+        get :sites
       end
       it "should product a page containing a list of the sites with the most revenue" do
-        response.should redirect_to(sites_most_revenue_url)
-        assigns['sites'].should_not be_nil
+        response.should render_template('sites')
+        assigns['revenue'].should_not be_nil
       end
     end
 
@@ -31,21 +31,21 @@ describe ReportsController do
 
     describe "with the most tips report" do
       before(:each) do
-        get :pages_most_tips
+        get :pages
       end
       it "should produce a page containing a list of the pages with the most tips" do
-        response.should redirect_to(pages_most_tips_url)
-        assigns['pages'].should_not be_nil
+        response.should render_template('pages')
+        assigns['tips'].should_not be_nil
       end
     end
 
     describe "with the most revenue report" do
       before(:each) do
-        get :pages_most_revenue
+        get :pages
       end
       it "should produce a page containing a list of the pages with the most revenue" do
-        response.should redirect_to(pages_most_revenue_url)
-        assigns['pages'].should_not be_nil
+        response.should render_template('pages')
+        assigns['revenue'].should_not be_nil
       end
     end
 

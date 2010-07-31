@@ -19,8 +19,8 @@
         <% permitted_to? :home, :admin do %>
           <li><%= link_to "Admin",      admin_path %></li>
         <% end %>
-        <li><%= link_to "Pages",      page_report_path %></li>
-        <li><%= link_to "Sites",      publisher_report_path %></li>
+        <li><%= link_to "Pages",      pages_report_path %></li>
+        <li><%= link_to "Sites",      sites_report_path %></li>
         <li><%= link_to "Home",       root_path %></li>
         <li><a href="http://blog.fasterlighterbetter.com">Blog</a></li>
       </nav>
