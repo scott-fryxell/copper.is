@@ -12,54 +12,14 @@
     </nav>
   </header>
 
+  <% @tips.each do |t| %>
   <ul itemscope="true" itemtype="http://weave.us/page">
-    <li itemprop="domain">www.example.com</li>
-    <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-    <li itemprop="earned">$450,000 <span>earned</span></li>
-    <li itemprop="average">$0.18 <span>average tip</span></li>
-    <li itemprop="tips">400,000 <span>tips</span></li>
+    <li itemprop="domain"><%=h t.description %></li>
+    <li itemprop="publisher"><a href="#">#publisher#</a></li>
+    <li itemprop="earned">$<%=h t.revenue_earned %> <span>earned</span></li>
+    <li itemprop="average">$<%=h t.revenue_earned/t.tips_earned %> <span>average tip</span></li>
+    <li itemprop="tips"><%=h t.tips_earned %> <span>tips</span></li>
   </ul>
-  <ul itemscope="true" itemtype="http://weave.us/page">
-    <li itemprop="domain">www.example.com</li>
-    <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-    <li itemprop="earned">$450,000 <span>earned</span></li>
-    <li itemprop="average">$0.18 <span>average tip</span></li>
-    <li itemprop="tips">400,000 <span>tips</span></li>
-  </ul>
-  <ul itemscope="true" itemtype="http://weave.us/page">
-    <li itemprop="domain">www.example.com</li>
-    <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-    <li itemprop="earned">$450,000 <span>earned</span></li>
-    <li itemprop="average">$0.18 <span>average tip</span></li>
-    <li itemprop="tips">400,000 <span>tips</span></li>
-  </ul>
-  <ul itemscope="true" itemtype="http://weave.us/page">
-    <li itemprop="domain">www.example.com</li>
-    <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-    <li itemprop="earned">$450,000 <span>earned</span></li>
-    <li itemprop="average">$0.18 <span>average tip</span></li>
-    <li itemprop="tips">400,000 <span>tips</span></li>
-  </ul>
-  <ul itemscope="true" itemtype="http://weave.us/page">
-    <li itemprop="domain">www.example.com</li>
-    <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-    <li itemprop="earned">$450,000 <span>earned</span></li>
-    <li itemprop="average">$0.18 <span>average tip</span></li>
-    <li itemprop="tips">400,000 <span>tips</span></li>
-  </ul>
-  <ul itemscope="true" itemtype="http://weave.us/page">
-    <li itemprop="domain">www.example.com</li>
-    <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-    <li itemprop="earned">$450,000 <span>earned</span></li>
-    <li itemprop="average">$0.18 <span>average tip</span></li>
-    <li itemprop="tips">400,000 <span>tips</span></li>
-  </ul>
-  <ul itemscope="true" itemtype="http://weave.us/page">
-    <li itemprop="domain">www.example.com</li>
-    <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-    <li itemprop="earned">$450,000 <span>earned</span></li>
-    <li itemprop="average">$0.18 <span>average tip</span></li>
-    <li itemprop="tips">400,000 <span>tips</span></li>
-  </ul>
+  <% end %>
 
 </section>

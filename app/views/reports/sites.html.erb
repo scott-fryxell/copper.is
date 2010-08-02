@@ -11,43 +11,15 @@
       <a href="#">Search</a>
     </nav>
   </header>
+
   <dl item="us.weave.sites">
-
-    <dt item="site" itemProp="domain">www.example.com</dt>
-      <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-      <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-      <dd itemProp="average_tip">$0.18 average tip</dd>
-      <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-    <dt item="site" itemProp="domain">www.example.com</dt>
-      <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-      <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-      <dd itemProp="average_tip">$0.18 average tip</dd>
-      <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-    <dt item="site" itemProp="domain">www.example.com</dt>
-      <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-      <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-      <dd itemProp="average_tip">$0.18 average tip</dd>
-      <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-    <dt item="site" itemProp="domain">www.example.com</dt>
-      <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-      <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-      <dd itemProp="average_tip">$0.18 average tip</dd>
-      <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-    <dt item="site" itemProp="domain">www.example.com</dt>
-      <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-      <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-      <dd itemProp="average_tip">$0.18 average tip</dd>
-      <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-    <dt item="site" itemProp="domain">www.example.com</dt>
-      <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-      <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-      <dd itemProp="average_tip">$0.18 average tip</dd>
-      <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
+    <% @tips.each do |t| %>
+    <dt item="site" itemProp="domain"><%=h t.fqdn %></dt>
+      <dd itemProp="publisher"><a href="#">#publisher-name#</a></dd>
+      <dd itemProp="total_earned">$<%=h t.revenue_earned %> <span>earned</span></dd>
+      <dd itemProp="average_tip">$<%=h t.revenue_earned/t.tips_earned %> <span>average tip</span></dd>
+      <dd itemProp="total_tips"><%=h t.tips_earned %> <span>tips</span></dd>
+    </dt>
+    <% end %>
   </dl>
 </section>
