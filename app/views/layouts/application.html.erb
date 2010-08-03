@@ -21,7 +21,13 @@
         <% end %>
         <li><%= link_to "Pages",      pages_report_path %></li>
         <li><%= link_to "Sites",      sites_report_path %></li>
-        <li><%= link_to "Home",       root_path %></li>
+        <li>
+          <% if current_user %>
+            <%= link_to "Home",       tips_path %>
+          <% else %>
+            <%= link_to "Home",       root_path %>
+          <% end %>
+        </li>
         <li><a href="http://blog.fasterlighterbetter.com">Blog</a></li>
       </nav>
     </header>
@@ -34,11 +40,18 @@
     </section>
     <aside id="account" itemscope="true" itemtype="http://weave.us/User#account">
       <header>
-        <h1 itemprop="name"><% if current_user %>current_user.name<% end %></h1>
+        <h1 itemprop="name">
+          <% if current_user %>
+            <%= "Logged in as: #{current_user.email}" %>
+          <% end %>
+        </h1>
         <nav>
           <% if current_user %>
-            <%= link_to "account",      edit_user_path(current_user) %>
-            <%= link_to "logout",            logout_path %>
+            <%= link_to "Account",      edit_user_path(current_user) %>
+            <%= link_to "Sign out",            logout_path %>
+            <% permitted_to? :home, :admin do %>
+              <li><%= link_to "Admin Panel",      admin_path %></li>
+            <% end %>
           <% else %>
             <%= link_to "Log in or sign up", login_path %>
           <% end %>
