@@ -16,7 +16,7 @@
   <% @revenue.each do |r| %>
   <li>
     <dl itemscope="true" itemtype="http://weave.us/site">
-      <dt item="site" itemprop="site"><a href="<%= r.fqdn %>" /><%=h r.fqdn %></a></dt>
+      <dt item="site" itemprop="site"><a href="<%=h "http://#{r.fqdn}" %>" /><%=h r.fqdn %></a></dt>
       <dd itemprop="publisher"><a href="#">#publisher-name#</a></dd>
       <dd itemprop="earned">$<%=h r.revenue_earned %> <span>earned</span></dd>
       <% if r.tips_earned != 0%>
@@ -32,7 +32,7 @@
   <% @tips.each do |t| %>
   <li>
     <dl itemscope="true" itemtype="http://weave.us/site">
-      <dt itemprop="site"><a href="<%=h t.fqdn %>"><%=h t.fqdn %></a></dt>
+      <dt itemprop="site"><a href="<%=h "http://#{t.fqdn}" %>"><%=h t.fqdn %></a></dt>
       <dd itemprop="publisher"><a href="#">#publisher-name#</a></dd>
       <dd itemprop="earned">$<%=h t.revenue_earned %> <span>earned</span></dd>
       <dd itemprop="average">$<%=h t.revenue_earned/t.tips_earned %> <span>average tip</span></dd>
