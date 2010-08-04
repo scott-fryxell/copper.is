@@ -1,5 +1,5 @@
 require("spec_helper.js");
-require("../../public/behavior/login_register.js");
+require("../../public/login_register/behavior.js");
 
 Screw.Unit(function (){
   

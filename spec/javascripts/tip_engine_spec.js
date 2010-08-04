@@ -1,5 +1,5 @@
 require("spec_helper.js");
-require("../../public/behavior/tip_engine.js");
+require("../../public/bookmarklet/tip_engine.js");
 
 Screw.Unit(function () {
 
