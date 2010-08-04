@@ -1,70 +1,49 @@
-<?xml-stylesheet type="text/xsl" href="../progress/processor.xsl"?>
 <!DOCTYPE html>
-<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:xi="http://www.w3.org/2001/XInclude" >
   <head>
-    <xi:include href="../navigation/index.xhtml" xpointer="id('global_style')"/>
+    <title>Site report wireframe</title>
     <style>
-      @import url("../navigation/index.css");
       @import url("design.css");
     </style>
-    <style>
-      body.guide {background: transparent url('popular_site_report.svg') no-repeat scroll center top;}
-      body.outline * {color:black;outline: 0.1em double  #808080;outline-width:.2em;}
-    </style>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-    <script src="behavior.js"></script>
-    <title>Site report wireframe</title>
+    <script src="../behavior/jquery.js" />
+    <script src="../behavior/reports.js" />
   </head>
   <body class="">
     <xi:include href="../navigation/index.xhtml" xpointer="id('header')"/>
     <section>
       <header>
-        <h1>Sites</h1>
         <nav>
-          <a href="#">Popular</a>
-          <a href="#" class="selected">Profitable</a>
+          <a href="#popular">Popular</a>
+          <a href="#profitable">Profitable</a>
           <a href="#">Search</a>
         </nav>
+        <h1>Sites</h1>
       </header>
-      <dl item="us.weave.sites">
-
-        <dt item="site" itemProp="domain">www.example.com</dt>
-          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-          <dd itemProp="average_tip">$0.18 average tip</dd>
-          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-        <dt item="site" itemProp="domain">www.example.com</dt>
-          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-          <dd itemProp="average_tip">$0.18 average tip</dd>
-          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-        <dt item="site" itemProp="domain">www.example.com</dt>
-          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-          <dd itemProp="average_tip">$0.18 average tip</dd>
-          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-        <dt item="site" itemProp="domain">www.example.com</dt>
-          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-          <dd itemProp="average_tip">$0.18 average tip</dd>
-          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-        <dt item="site" itemProp="domain">www.example.com</dt>
-          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-          <dd itemProp="average_tip">$0.18 average tip</dd>
-          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-        <dt item="site" itemProp="domain">www.example.com</dt>
-          <dd itemProp="publisher"><a href="#">Gonzo publishing</a></dd>
-          <dd itemProp="total_earned">$450,000 <span>earned</span></dd>
-          <dd itemProp="average_tip">$0.18 average tip</dd>
-          <dd itemProp="total_tips">400,000 <span>tips</span></dd>
-
-      </dl>
+      <ol id="profitable">
+        <li>
+          <dl itemscope="true" itemtype="http://weave.us/site">
+            <dt itemprop="site">www.pandaswithguns.com</dt>
+            <dd itemprop="publisher"><a href="#">fat bear publishing</a></dd>
+            <dd itemprop="tips">400,000 <span>tips</span></dd>
+            <dd itemprop="average">$0.18 average tip</dd>
+            <dd itemprop="earned">$450,000 <span>earned</span></dd>
+          </dl>
+        </li>
+      </ol>
+      
+      <ol id="popular">
+        <li>
+          <dl itemscope="true" itemtype="http://weave.us/site">
+            <dt itemprop="site">www.hot_for_panda_hugs.com</dt>
+            <dd itemprop="publisher"><a href="#">black eye'd partners</a></dd>
+            <dd itemprop="earned">$450,000 <span>earned</span></dd>
+            <dd itemprop="average">$0.18 average tip</dd>
+            <dd itemprop="tips">400,000 <span>tips</span></dd>
+          </dl>
+        </li>
+      </ol>
+      
     </section>
     <xi:include href="../navigation/index.xhtml" xpointer="id('account')"/>
     <xi:include href="../navigation/index.xhtml" xpointer="id('weave_logo')"/>

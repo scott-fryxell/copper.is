@@ -1,6 +1,4 @@
-body > section > h1 {
-  margin-left:.75em;
-}
+@import url("../design/index.css");
 
 body > section > section {
   margin-bottom:2em;
@@ -11,14 +9,12 @@ body > section > section {
   -moz-border-radius: .5em;
   border-radius: .5em;
   background-color: #ddd;
-  
 }
 
 body > section > section > nav {
   border: 0.15em solid #808080;
   padding: 1em;
   background-color: #ffffff;
-  
 }
 
 body > section > section > nav > a {

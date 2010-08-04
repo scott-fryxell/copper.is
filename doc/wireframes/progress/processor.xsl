@@ -4,7 +4,7 @@
   <template match="node()|@*">
     <copy><apply-templates select="node()|@*"/></copy>
   </template>
-<import href="agents.xsl"/>
+
 
   <template match="xi:include">
     <variable name="href"     select="@href"/>

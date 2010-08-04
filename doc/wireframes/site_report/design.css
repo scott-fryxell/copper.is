@@ -1,62 +1,42 @@
-li.selected{
-  text-decoration:underline;
-}
-body > section > header > h1{
-  font-size: 2.25em; /*36px*/
-  display:inline-block;
-}
-body > section > header > nav{
+@import url("../design/index.css");
+@import url("../design/reports.css");
+
+*[itemprop="site"] {
   font-size: 1.5em;
-  float:right;
-  width: 10em;
+  font-weight: normal;
+}
+*[itemtype="http://weave.us/site"] > *[itemprop="publisher"] {
+  display:block;
+  padding:.5em 0;
+  width: 15em;
+}
+*[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
+  display:inline-block;
+
+}
+*[itemtype="http://weave.us/site"] > *[itemprop="average"] {
+  display:inline-block;
+  margin-left:1em;
+  margin-bottom: .5em;
+}
+*[itemtype="http://weave.us/site"] > *[itemprop="tips"],
+*[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
   display:inline-block;
 }
 
-body > section > aside{
-  float:right;
+#popular    *[itemtype="http://weave.us/site"] > *[itemprop="tips"],
+#profitable *[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
+  position:absolute;
+  top:0;
+  right:5em;
+  width: 4em;
+  height: 4em;
+  padding: 1em 1em .5em .5em;
+  font-size: .75em;
+  text-align: center;
+  border-top: 0.20em solid #808080;
+  border-bottom: 0.20em solid #808080;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  border-radius: .75em;
 }
-body > section > dl[item="site"] {
-  margin-left: 3em;
-  margin-bottom: 1em;
-}
-  body > section > dl[item="site"]  > dd{
-    display:inline-block;
-    margin: 0 0 0 -1em;
-  }
-  body > section > dl > dt[itemProp="total_tips"],
-  body > section > dl > dt[itemProp="total_earned"]{
-    float:left;
-    display: inline-block;
-    width: 3.5em;
-    height:4em;
-    font-size: .75em;
-    text-align: center;
-    padding: 1em 1em 0 .5em;
-    border: 0.20em solid #808080;
-    border-radius: .5em;
-    -webkit-border-radius: .5em;
-    -moz-border-radius: .5em;
-    margin-left:none;
-  }
-
-  body > section > dl > dd[itemProp="domain"] {
-    width: 18em;
-    margin: 0 0 0 1em;
-    font-size: 1.5em;
-    font-weight: normal;
-  }
-  body > section > dl > dd[itemProp="publisher"] {
-    margin-left:1.5em;
-    width: 30em;
-
-  }
-  body > section > dl > dd[itemProp="total_earned"],
-  body > section > dl > dd[itemProp="total_tips"] {
-    margin-left:1.5em;
-    width:10;
-  }
-  body > section > dl > dd[itemProp="average_tip"] {
-    margin-left:15em;
-    width:10em;
-    margin-bottom: .5em;
-  }

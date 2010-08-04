@@ -1,77 +1,48 @@
-  <?xml-stylesheet type="text/xsl" href="../progress/processor.xsl"?>
+<?xml-stylesheet type="text/xsl" href="../progress/processor.xsl"?>
 <!DOCTYPE html>
 <html lang="en_us" xmlns="http://www.w3.org/1999/xhtml"
                    xmlns:xi="http://www.w3.org/2001/XInclude" >
   <head>
-    <xi:include href="../navigation/index.xhtml" xpointer="id('global_style')"/>
-    <style>
-      body.guide {background: transparent url('popular_page_report.svg') no-repeat scroll center top;}
-    </style>
-    <script src="../jquery-1.4.2.js"></script>
-    <script src="behavior.js"></script>
     <title>Page report wireframe</title>
+    <style>
+      @import url("design.css");
+    </style>
+    <script src="../global_behavior/jquery.js" />
+    <script src="../global_behavior/reports.js" />
   </head>
   <body>
     <xi:include href="../navigation/index.xhtml" xpointer="id('header')"/>
     <section>
       <header>
-        <h1>Pages</h1>
         <nav>
           <a href="#popular" class="selected">Popular</a>
           <a href="#profitable">Profitable</a>
           <a href="#search">Search</a>
         </nav>
+        <h1>Pages</h1>
       </header>
-
-      <ul itemscope="true" itemtype="http://weave.us/page">
-        <li itemprop="domain">www.example.com</li>
-        <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-        <li itemprop="earned">$450,000 <span>earned</span></li>
-        <li itemprop="average">$0.18 <span>average tip</span></li>
-        <li itemprop="tips">400,000 <span>tips</span></li>
-      </ul>
-      <ul itemscope="true" itemtype="http://weave.us/page">
-        <li itemprop="domain">www.example.com</li>
-        <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-        <li itemprop="earned">$450,000 <span>earned</span></li>
-        <li itemprop="average">$0.18 <span>average tip</span></li>
-        <li itemprop="tips">400,000 <span>tips</span></li>
-      </ul>
-      <ul itemscope="true" itemtype="http://weave.us/page">
-        <li itemprop="domain">www.example.com</li>
-        <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-        <li itemprop="earned">$450,000 <span>earned</span></li>
-        <li itemprop="average">$0.18 <span>average tip</span></li>
-        <li itemprop="tips">400,000 <span>tips</span></li>
-      </ul>
-      <ul itemscope="true" itemtype="http://weave.us/page">
-        <li itemprop="domain">www.example.com</li>
-        <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-        <li itemprop="earned">$450,000 <span>earned</span></li>
-        <li itemprop="average">$0.18 <span>average tip</span></li>
-        <li itemprop="tips">400,000 <span>tips</span></li>
-      </ul>
-      <ul itemscope="true" itemtype="http://weave.us/page">
-        <li itemprop="domain">www.example.com</li>
-        <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-        <li itemprop="earned">$450,000 <span>earned</span></li>
-        <li itemprop="average">$0.18 <span>average tip</span></li>
-        <li itemprop="tips">400,000 <span>tips</span></li>
-      </ul>
-      <ul itemscope="true" itemtype="http://weave.us/page">
-        <li itemprop="domain">www.example.com</li>
-        <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-        <li itemprop="earned">$450,000 <span>earned</span></li>
-        <li itemprop="average">$0.18 <span>average tip</span></li>
-        <li itemprop="tips">400,000 <span>tips</span></li>
-      </ul>
-      <ul itemscope="true" itemtype="http://weave.us/page">
-        <li itemprop="domain">www.example.com</li>
-        <li itemprop="publisher"><a href="#">Gonzo publishing</a></li>
-        <li itemprop="earned">$450,000 <span>earned</span></li>
-        <li itemprop="average">$0.18 <span>average tip</span></li>
-        <li itemprop="tips">400,000 <span>tips</span></li>
-      </ul>
+      <ol id="popular" tabindex="1" class="selected">
+        <li>
+          <dl itemscope="true" itemtype="http://weave.us/page">
+            <dt itemprop="page"><a href="#pandas">The world's been taken over by pandas!</a></dt>
+            <dd itemprop="publisher"><a href="#">Gonzo publishing</a></dd>
+            <dd itemprop="earned">$450,000 <span>earned</span></dd>
+            <dd itemprop="average">$0.18 <span>average tip</span></dd>
+            <dd itemprop="tips">400,000 <span>tips</span></dd>
+          </dl>
+        </li>
+      </ol>
+      <ol id="profitable" tabindex="2">
+        <li>
+          <dl itemscope="true" itemtype="http://weave.us/page">
+            <dt itemprop="page"><a href="#pandas">So many gay pandas.</a></dt>
+            <dd itemprop="publisher"><a href="#">Thanks media</a></dd>
+            <dd itemprop="tips">400,000 <span>tips</span></dd>
+            <dd itemprop="average">$0.18 <span>average tip</span></dd>
+            <dd itemprop="earned">$450,000 <span>earned</span></dd>
+          </dl>
+        </li>
+      </ol>
 
     </section>
     <xi:include href="../navigation/index.xhtml" xpointer="id('account')"/>

@@ -1,25 +1,45 @@
 <% title "Pages" %>
 <style>
-  @import url("/design/page_report.css");
+  @import url("/design/reports.css");
+  @import url("/page_report/design.css");
 </style>
-<section>
   <header>
-    <h1>Pages</h1>
     <nav>
       <a href="#popular" class="selected">Popular</a>
       <a href="#profitable">Profitable</a>
       <a href="#search">Search</a>
     </nav>
+    <h1>Pages</h1>
   </header>
 
-  <% @tips.each do |t| %>
-  <ul itemscope="true" itemtype="http://weave.us/page">
-    <li itemprop="domain"><%=h t.description %></li>
-    <li itemprop="publisher"><a href="#">#publisher#</a></li>
-    <li itemprop="earned">$<%=h t.revenue_earned %> <span>earned</span></li>
-    <li itemprop="average">$<%=h t.revenue_earned/t.tips_earned %> <span>average tip</span></li>
-    <li itemprop="tips"><%=h t.tips_earned %> <span>tips</span></li>
-  </ul>
-  <% end %>
+  <ol id="popular" tabindex="1" class="selected">
+    <% @tips.each do |t| %>
+    <li>
+      <dl itemscope="true" itemtype="http://weave.us/page">
+        <dt itemprop="page"><a href="t.locator.canonicalized"><%=h t.description %></a></dt>
+        <dd itemprop="publisher"><a href="#">Gonzo publishing</a></dd>
+        <dd itemprop="earned">$<%=h t.revenue_earned %> <span>earned</span></dd>
+        <% if t.tips_earned != 0 %>
+        <dd itemprop="average">$0.18 <%=h t.revenue_earned/t.tips_earned %> </dd>
+        <% end %>
+        <dd itemprop="tips"><%=h t.tips_earned %> <span>tips</span></dd>
+      </dl>
+    </li>
+    <% end %>
+  </ol>
 
-</section>
+  <ol id="profitable" tabindex="2" class="selected">
+    <% @revenue.each do |t| %>
+    <li>
+      <dl itemscope="true" itemtype="http://weave.us/page">
+        <dt itemprop="page"><a href="r.locator.canonicalized"><%=h r.description %></a></dt>
+        <dd itemprop="publisher"><a href="#">Gonzo publishing</a></dd>
+        <dd itemprop="earned">$<%=h r.revenue_earned %> <span>earned</span></dd>
+        <% if r.tips_earned != 0 %>
+        <dd itemprop="average">$0.18 <%=h r.revenue_earned/r.tips_earned %> </dd>
+        <% end %>
+        <dd itemprop="tips"><%=h r.tips_earned %> <span>tips</span></dd>
+      </dl>
+    </li>
+    <% end %>
+  </ol>

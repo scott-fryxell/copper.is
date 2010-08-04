@@ -1,4 +1,4 @@
-/* login form display*/
+@import url("../design/index.css");
 body > section > form {
   margin-right: 13em;
 }

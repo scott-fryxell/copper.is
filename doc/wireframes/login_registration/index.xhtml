@@ -1,33 +1,17 @@
+<?xml-stylesheet type="text/xsl" href="../progress/processor.xsl"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US">
+<html lang="en_us" xmlns="http://www.w3.org/1999/xhtml"
+                   xmlns:xi="http://www.w3.org/2001/XInclude">
   <head>
+    <title>Login and registration wireframes</title>
     <style>
-      @import url('../navigation/index.css');
       @import url('design.css');
     </style>
-    <style>
-      body.wireframe{background: transparent url('register.svg') no-repeat scroll center top;}
-      body.navigation{background: transparent url('../navigation/navigation.svg') no-repeat scroll center top;}
-      body.guide{background: transparent url('../guide.svg') no-repeat scroll center top;}
-      body.outline * {color:black;outline: 0.1em double  black;outline-width:.2em;}
-    </style>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
-    <script src="behavior.js"></script>
-    <title>Login and registration wireframes</title>
+    <script src="../behavior/jquery.js"/>
+    <script src="behavior.js"/>
   </head>
   <body class="">
-    <header>
-      <a href="/">
-        <img src="../navigation/fun_time.svg" alt="OMFG so fun!!!"/>
-      </a>
-      <nav>
-        <li><a href="/pages">Pages</a></li>
-        <li><a href="/publishers">Publishers</a></li>
-        <li><a href="http://scott@weave.us">Home</a></li>
-        <li><a href="http://blog.weave.us">Blog</a></li>
-      </nav>
-    </header>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('header')"/>
     <section>
       <h1>Login or create a new account</h1>
       <form action="" method="get" accept-charset="utf-8">
@@ -58,24 +42,9 @@
         <a href="#">Forgot my password</a>
       </form>
     </section>
-    <aside></aside>
-    <a href="/"><img item="logo" src="../navigation/logo.svg" alt="weave logo" /></a>
-    <footer>
-      <nav>
-       <h2>Policies</h2>
-       <a href="/terms">Terms &amp; Conditions</a>
-       <a href="/privacy">Privacy</a>
-      </nav>
-      <nav>
-        <h2>About</h2>
-        <a href="/contact">Contact</a>
-        <a href="/subscribe">Subscribe</a>
-      </nav>
-      <nav>
-        <h2>News</h2>
-        <a href="http://blog.weave.us">ipseum doceous breasos rodesun</a>
-        <a href="http://blog.weave.us">Loreum opseosis ipseum doceous</a>
-      </nav>
-    </footer>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('account')"/>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('weave_logo')"/>
+    <xi:include href="../navigation/index.xhtml" xpointer="id('footer')"/>
+
   </body>
 </html>
