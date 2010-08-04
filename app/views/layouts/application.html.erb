@@ -30,10 +30,15 @@
       </nav>
     </header>
     <section>
-      <%- flash.each do |name, msg| -%>
-        <%= content_tag :aside, msg, :id => "flash_#{name}" %>
-      <%- end -%>
-
+      <header>
+        <%- flash.each do |name, msg| -%>
+            <%= "<ol id=#{name}" %>
+              <%- msg.each do |m| -%>
+                <li><%= m %></li>
+              <%- end -%>
+            </ol>
+        <%- end -%>
+      </header>
       <%= yield %>
     </section>
     <aside id="account" itemscope="true" itemtype="http://weave.us/User#account">
@@ -67,7 +72,7 @@
       </dl>
     </aside>
     <figure accesskey="l" tabindex="2" id="weave_logo">
-      
+
       <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>
     </figure>
     <footer>

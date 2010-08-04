@@ -203,17 +203,7 @@ html {
       }
 
   /* navigation stylings */
-      #messages{
-        border: .15em solid #808080;
-        -moz-border-radius: .3em;
-        border-radius: .3em;
-        margin-left:.6em;
-        width: 32.7em;
-        min-height:4em;
-        margin-bottom:1em;
-        padding:1em;
-      }
-      #errors{
+      body > section > header >#error, #notice{
         margin-left:.6em;
         width: 32.7em;
         min-height:4em;
@@ -223,10 +213,21 @@ html {
         background-color: #FFCEAD;
         padding:1em;
         list-style: circle inside;
+        margin-bottom: 1em;
       }
-      #errors li{
+      body > section > header > #error li{
         margin-bottom:.5em;
         color:red;
+      }
+      body > section > header > #notice {
+        border: .15em solid #808080;
+        -moz-border-radius: .3em;
+        border-radius: .3em;
+        background-color: transparent
+      }
+      body > section > header > #notice li{
+        margin-bottom:.5em;
+        color:#808080;
       }
       :focus{
         outline:1px dotted gray;
