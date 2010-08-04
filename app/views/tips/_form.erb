@@ -3,13 +3,14 @@
 </style>
 <script src="/behavior/tips.js" async="true"></script>
 <h1>Leave a Tip</h1>
+
 <% form_for(@tip) do |f| %>
   <aside>
     <%= f.error_messages %>
   </aside>
   <fieldset>
-    <label>Paste a URL here to leave a tip.</label>
-    <%= f.text_area :url %>
+    <label for="uri">Paste a URL here to leave a tip.</label>
+    <textarea name="tip[uri]" value="" id="uri"></textarea>
   </fieldset>
   <%= f.submit 'Tip' %>
 <% end %>

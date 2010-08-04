@@ -39,6 +39,9 @@ class Locator < ActiveRecord::Base
     adapted.path     = raw_uri.path     if (raw_uri.path != nil && raw_uri.path != '')
     adapted.query    = raw_uri.query    if (raw_uri.query != nil && raw_uri.query != '')
     adapted.fragment = raw_uri.fragment if (raw_uri.fragment != nil && raw_uri.fragment != '')
+    # TODO next line is temporary until we figure out how to pull a better page description than the URL
+    # See bug 13: https://bugs.fasterlighterbetter.com/issues/13
+    adapted.page = Page.find_or_create_by_description(url_string)
 
     adapted
   end

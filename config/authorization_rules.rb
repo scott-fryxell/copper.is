@@ -18,6 +18,8 @@ authorization do
     has_permission_on [:accounts, :addresses, :tips, :locators, :orders, :transactions], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
     has_permission_on [:user_sessions], :to => [:destroy]
     has_permission_on [:users], :to => [:edit, :update]
+    has_permission_on [:sites, :pages], :to => [:index, :show, :new, :create]
+
   end
 
   role :guest do

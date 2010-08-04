@@ -3,7 +3,7 @@ class Page < ActiveRecord::Base
   has_many :tips, :through => :locators
   has_and_belongs_to_many :royalty_bundles
 
-  named_scope :most_tips, :include => [:tips], :group => "pages.id", :order => "count(tips.id) DESC"
+  named_scope :most_tips, :include => [:tips], :conditions => "tips.locator_id = locators.id", :group => "pages.id", :order => "count(tips.id) DESC"
 
   validates_presence_of :description
 
@@ -27,6 +27,7 @@ class Page < ActiveRecord::Base
     from pages p, pages_royalty_bundles prb, tip_royalties tr
     where p.id = prb.page_id
     and prb.royalty_bundle_id = tr.royalty_bundle_id
+    and tr.amount_in_cents > 0
     group by p.id, p.description
     order by sum(tr.amount_in_cents) desc
     ")

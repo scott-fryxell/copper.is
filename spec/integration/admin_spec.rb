@@ -25,7 +25,7 @@ describe "Admin" do
 
     describe "access" do
       before(:each) do
-        click_link "Logout"
+        click_link "Sign out"
         click_link "Log in or sign up"
       end
 
@@ -82,7 +82,7 @@ describe "Admin" do
     end
 
     it "should not be available to non-admin users" do
-      click_link "Logout"
+      click_link "Sign out"
       click_link "Log in or sign up"
       fill_in "email", :with => "test@test.com"
       fill_in "password", :with => "test"

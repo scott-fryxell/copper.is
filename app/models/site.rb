@@ -8,7 +8,7 @@ class Site < ActiveRecord::Base
   has_and_belongs_to_many :royalty_bundles
   has_many :tip_royalties, :through => :royalty_bundles # TODO understand why this doesn't work.
 
-  named_scope :most_tips, :include => [:tips], :group => "sites.fqdn", :order => "count(tips.id) DESC"
+  named_scope :most_tips, :include => [:tips], :conditions => "tips.locator_id = locators.id", :group => "sites.fqdn", :order => "count(tips.id) DESC"
   named_scope :limited, lambda { |*num|
     { :limit => num.flatten.first || (defined?(per_page) ? per_page : 10) }
   }
@@ -79,6 +79,7 @@ class Site < ActiveRecord::Base
     from sites s, royalty_bundles_sites rbs, tip_royalties tr
     where s.id = rbs.site_id
     and rbs.royalty_bundle_id = tr.royalty_bundle_id
+    and tr.amount_in_cents > 0
     group by s.fqdn
     order by sum(tr.amount_in_cents) desc
     ")

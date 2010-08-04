@@ -15,6 +15,11 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation
 
+  def active_tips
+    bundle = self.active_tip_bundle
+    tips = Tip.find_all_by_tip_bundle_id(bundle.id, :order => "created_at desc")
+  end
+
   def role_symbols
     roles.map do |role|
       role.name.underscore.to_sym

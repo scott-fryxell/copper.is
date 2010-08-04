@@ -36,14 +36,14 @@ describe "Reports" do
     describe "with the most tips" do
       it "should" do
         assert_have_selector "body > section > section > ul"
-        response_body.should contain("popular page")
+        response_body.should contain("http://popular.com/popular/page/path")
       end
     end
 
     describe "with the most revenue" do
       it "should" do
         assert_have_selector "body > section > section > ul"
-        response_body.should contain("popular page")
+        response_body.should contain("http://popular.com/popular/page/path")
       end
     end
 

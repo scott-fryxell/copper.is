@@ -29,3 +29,4 @@ en:
     password_too_short: "Password must be at least 4 characters long"
     successfully_updated_user: "Your account has been updated."
     permission_denied: "PERMISSION DENIED"
+    tip_success: "Tip successfully created."

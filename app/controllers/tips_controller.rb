@@ -1,13 +1,13 @@
 class TipsController < ApplicationController
-  filter_resource_access
+  filter_access_to :index, :show, :create, :edit, :update, :destroy, :new, :attribute_check => false
 
   # GET /tips
-  # GET /tips.xml  
+  # GET /tips.xml
   def index
     @tip = Tip.new
-    @tips = Tip.find_all_by_user_id(current_user)
+    @tips = Tip.find_all_by_tip_bundle_id(current_user.tip_bundles.id)
     if @tips.nil?
-      
+
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -32,8 +32,8 @@ class TipsController < ApplicationController
     @tip = Tip.new
 
     @current_user = current_user
-    @title = params[:title]
-    
+    #@title = params[:title]
+
     respond_to do |format|
       format.html # new.html.erb
       format.js
@@ -48,32 +48,13 @@ class TipsController < ApplicationController
   # POST /tips
   # POST /tips.xml
   def create
-    @tip = Tip.new(params[:tip])
+    @tip = Tip.build(current_user, params[:tip][:uri])
 
-    @tip.user_id = current_user.id
-      
-    
-    @tip_url = URI.split(@tip.url)
-    # todo put tipped url's into the resources table
-    # @resource = Resource.new
-    # 
-    # @resource.scheme   = @tip_url.scheme
-    # @resource.userinfo = @tip_url.userinfo
-    # @resource.host     = @tip_url.host
-    # @resource.port     = @tip_url.port
-    # @resource.registry = @tip_url.registry
-    # @resource.path     = @tip_url.path
-    # @resource.opaque   = @tip_url.opaque
-    # @resource.query    = @tip_url.query
-    # @resource.fragment = @tip_url.fragment
-    # 
-    # resource.save
-    
     respond_to do |format|
       if @tip.save
-        flash[:notice] = 'Tip was successfully created.'
-        format.html { redirect_to(@tip) }
-        format.xml  { render :xml => @tip, :status => :created, :location => @tip }
+        flash[:notice] = t("weave.tip_success")
+        format.html { redirect_to(tips_url) }
+        #format.xml  { render :xml => @tip, :status => :created, :location => @tip }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @tip.errors, :status => :unprocessable_entity }

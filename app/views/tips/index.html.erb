@@ -1,21 +1,21 @@
 <% title "Tips" %>
 <%= render :partial => 'form' %>
 <table>
-  <caption>Recent Tip List</caption>
+  <caption>My current tips</caption>
   <thead>
     <tr>
-      <th>Resource</th>
-      <th>Amount</th>
-      <th>User</th>
-      <th>Specifics</th>
+      <th>Locator</th>
+      <th>Multplier</th>
+      <th>Date</th>
+      <th>Details</th>
     </tr>
   </thead>
   <tbody>
-   <% @tips.each do |tip| %>
+   <% @current_user.active_tips.each do |tip| %>
      <tr>
-       <td><%=h tip.url %></td>
-       <td><%=h tip.amount %></td>
-       <td><%=h tip.user_id %></td>
+       <td><a href='<%=h tip.locator.canonicalized %>' target='new'><%=h tip.locator.canonicalized %></td>
+       <td><%=h tip.multiplier %></td>
+       <td><%=h tip.created_at %></td>
        <td><%= link_to 'Show', tip %></td>
      </tr>
    <% end %>
