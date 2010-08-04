@@ -72,30 +72,51 @@ describe "Account" do
 
   describe "activation" do
 
-    before(:each) do
-      visit "/activate/123_bad_token"
+    describe "with a good token" do
+      before(:each) do
+        @user = users(:inactive)
+        visit "/activate/#{@user.perishable_token}"
+      end
+
+      it "should display a welcome page with bookmarklet installation instructions" do
+        response_body.should contain("Drag this Weave bookmarklet to your browser toolbar. You can then tip sites as you browse them.")
+        assert_have_selector "body > section > section > ol > li > a", :id => "weave_us"
+      end
+
+      it "should automatically log the user in" do
+        response_body.should contain("Logged in as: notactive@test.com")
+      end
+
     end
 
-    it "should display an error message when user tries to use an invalid token to activate their account" do
-      response_body.should contain("We couldn't activate your account. Enter your email address to get an activation email.")
-    end
+    describe "with a bad token" do
 
-    it "should display a failure message when a user requests an activation email with a known email address that is already activated" do
-      fill_in "email", :with => "test@test.com"
-      click_button "Request Activation"
-      response_body.should contain("Your account is already active. Please login.")
-    end
+      before(:each) do
+        visit "/activate/123_bad_token"
+      end
 
-    it "should display a failure message when a user requests an activation email with an unknown email address" do
-      fill_in "email", :with => "unknownemail@unknown.com"
-      click_button "Request Activation"
-      response_body.should contain("No Weave account exists for that email address.")
-    end
+      it "should display an error message when user tries to use an invalid token to activate their account" do
+        response_body.should contain("We couldn't activate your account. Enter your email address to get an activation email.")
+      end
 
-    it "should display a success message when a user requests an an activation email with a known email address that is not yet activated" do
-      fill_in "email", :with => "notactive@test.com"
-      click_button "Request Activation"
-      response_body.should contain("Please check your email for instructions on activating your account.")
+      it "should display a failure message when a user requests a new activation email with a known email address that is already activated" do
+        fill_in "email", :with => "test@test.com"
+        click_button "Request Activation"
+        response_body.should contain("Your account is already active. Please login.")
+      end
+
+      it "should display a failure message when a user requests a new activation email with an unknown email address" do
+        fill_in "email", :with => "unknownemail@unknown.com"
+        click_button "Request Activation"
+        response_body.should contain("No Weave account exists for that email address.")
+      end
+
+      it "should display a success message when a user requests a new activation email with a known email address that is not yet activated" do
+        fill_in "email", :with => "notactive@test.com"
+        click_button "Request Activation"
+        response_body.should contain("Please check your email for instructions on activating your account.")
+      end
+
     end
 
   end

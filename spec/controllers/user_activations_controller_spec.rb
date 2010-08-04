@@ -20,7 +20,7 @@ describe UserActivationsController do
       end
 
       it "should send an email with activation instructions" do
-        ActionMailer::Base.deliveries.length.should == 1 # enhance test by adding && clause that checks content of the message that was sent
+        ActionMailer::Base.deliveries.length.should == 1 # TODO enhance test by adding && clause that checks content of the message that was sent
       end
     end
 
@@ -57,7 +57,21 @@ describe UserActivationsController do
       end
 
       it "should allow user to activate the account when perishable token is valid" do
+        @activated_user = User.find_by_email(@user.email)
+        @activated_user.active.should be_true
+      end
+
+      it "should display a message indicating successful activation" do
         flash[:notice].should contain("Your account has been activated.")
+      end
+
+      it "should display a welcome page" do
+        response.should render_template('welcome')
+      end
+
+      it "should automatically log the user in" do
+        @current_user_session = UserSession.find
+        @current_user_session.should_not be_nil
       end
 
       it "should send a welcome email after the account is activated" do
@@ -71,8 +85,11 @@ describe UserActivationsController do
     end
 
     describe "with invalid token" do
-      it "should redirect to a page for requesting a new token when the perishable token is not valid" do
+      before(:each) do
         post :activate, :id => "123badtoken"
+      end
+
+      it "should redirect to a page for requesting a new token when the perishable token is not valid" do
         flash[:notice].should contain("We couldn't activate your account. Enter your email address to get an activation email.")
       end
     end
