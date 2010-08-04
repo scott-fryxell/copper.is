@@ -17,7 +17,11 @@ class User < ActiveRecord::Base
 
   def active_tips
     bundle = self.active_tip_bundle
-    tips = Tip.find_all_by_tip_bundle_id(bundle.id, :order => "created_at desc")
+    if bundle
+      tips = Tip.find_all_by_tip_bundle_id(bundle.id, :order => "created_at desc")
+    else
+      tips = []
+    end
   end
 
   def role_symbols
