@@ -1,5 +1,4 @@
-@import url("../global_style/index.css");
-@import url("../global_style/reports.css");
+@import url("/design/reports.css");
 
 *[itemprop="site"] {
   font-size: 1.5em;

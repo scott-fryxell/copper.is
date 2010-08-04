@@ -1,7 +1,3 @@
-html * {
-  -webkit-transition-property: all;
-  -webkit-transition-duration:  1s;
-}
 body > section > header{
   position:relative;
   margin-bottom: 1em;

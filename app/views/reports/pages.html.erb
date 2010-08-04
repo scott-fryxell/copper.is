@@ -1,8 +1,8 @@
 <% title "Pages" %>
 <style>
-  @import url("/design/reports.css");
   @import url("/page_report/design.css");
 </style>
+<script src="/behavior/reports.js"> </script>
   <header>
     <nav>
       <a href="#popular" class="selected">Popular</a>
@@ -12,7 +12,7 @@
     <h1>Pages</h1>
   </header>
 
-  <ol id="popular" tabindex="1" class="selected">
+  <ol id="popular" tabindex="1">
     <% @tips.each do |t| %>
     <li>
       <dl itemscope="true" itemtype="http://weave.us/page">
@@ -28,7 +28,7 @@
     <% end %>
   </ol>
 
-  <ol id="profitable" tabindex="2" class="selected">
+  <ol id="profitable" tabindex="2">
     <% @revenue.each do |r| %>
     <li>
       <dl itemscope="true" itemtype="http://weave.us/page">
