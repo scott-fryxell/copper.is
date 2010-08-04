@@ -14,14 +14,14 @@ describe "Reports" do
 
     describe "with the most tips" do
       it "should" do
-        assert_have_selector "body > section > section > dl"
+        assert_have_selector "body > section > ol > li dl"
         response_body.should contain("popular.com")
       end
     end
 
     describe "with the most revenue" do
       it "should" do
-        assert_have_selector "body > section > section > dl"
+        assert_have_selector "body > section > ol > li > dl"
         response_body.should contain("popular.com")
       end
     end
@@ -35,14 +35,14 @@ describe "Reports" do
 
     describe "with the most tips" do
       it "should" do
-        assert_have_selector "body > section > section > ul"
+        assert_have_selector "body > section > ol > li > dl"
         response_body.should contain("http://popular.com/popular/page/path")
       end
     end
 
     describe "with the most revenue" do
       it "should" do
-        assert_have_selector "body > section > section > ul"
+        assert_have_selector "body > section > ol > li > dl"
         response_body.should contain("http://popular.com/popular/page/path")
       end
     end

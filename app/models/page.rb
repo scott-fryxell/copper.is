@@ -33,4 +33,7 @@ class Page < ActiveRecord::Base
     ")
   end
 
+  def primary_locator
+    locators.first
+  end
 end

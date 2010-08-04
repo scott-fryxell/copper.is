@@ -43,4 +43,9 @@ describe Page do
     @pages_with_revenue.should_not be_nil
   end
 
+  it "should return the primary locator for a page" do
+    @page.save.should be_true
+    @page.locators << Locator.parse('http://example.com/path1')
+    @page.primary_locator.should_not be_nil
+  end
 end
