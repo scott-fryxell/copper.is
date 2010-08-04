@@ -3,6 +3,7 @@
 <style>
   @import url("/login_register/design.css");
 </style>
+<script src="/behavior/weave.js"></script>
 <script src="/login_register/behavior.js"></script>
 <h1>Login or create a new account</h1>
 
@@ -11,12 +12,12 @@
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
   <fieldset>
     <label for="email">Enter your email address</label>
-    <input type="text" name="user[email]" id="email" value="<%=@user_session.email%>"/>
+    <input type="text" tabindex="1" name="user[email]" id="email" value="<%=@user_session.email%>"/>
   </fieldset>
 
   <fieldset>
     <legend>Do you have a weave password?</legend>
-    <input type="radio" name="registered" value="no" id="registered_no"/>
+    <input type="radio" name="registered" tabindex="4" value="no" id="registered_no"/>
     <label for="registered_no">No, I need an account</label><br/>
 
     <input type="radio" name="registered" value="yes" checked="true" id="registered_yes"/>
@@ -25,14 +26,14 @@
 
   <fieldset>
     <label for="password">Enter a password</label>
-    <input type="password" name="user[password]" value="" id="password"/>
+    <input type="password"  tabindex="2" name="user[password]" value="" id="password"/>
     <input type="checkbox" name="user[remember_me]" value="1" id="remember_me"/>
     <label for="remember_me" >Keep me logged in</label>
     <label for="password_confirmation">Confirm your password</label>
     <input type="password" name="user[password_confirmation]" id="password_confirmation" value=""/>
   </fieldset>
 
-  <input type="submit" name="login" value="Log in" id="submit"/>
+  <input type="submit" tabindex="3" name="login" value="Log in" id="submit"/>
 
   <%= link_to "Forgot my password", password_reset_new_path %>
 

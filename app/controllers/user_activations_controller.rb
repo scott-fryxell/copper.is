@@ -11,7 +11,7 @@ class UserActivationsController < ApplicationController
           flash[:notice] = t("weave.account_activated")
           UserSession.create(@user, false)
           @user.deliver_user_welcome!
-          render 'welcome'
+          redirect_to instructions_url
         else
           flash[:notice]  = t("weave.activation_failed")
           render :action => 'new'

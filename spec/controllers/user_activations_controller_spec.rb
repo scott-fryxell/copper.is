@@ -66,7 +66,7 @@ describe UserActivationsController do
       end
 
       it "should display a welcome page" do
-        response.should render_template('welcome')
+        response.should redirect_to('bookmarklet')
       end
 
       it "should automatically log the user in" do

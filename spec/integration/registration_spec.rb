@@ -79,7 +79,7 @@ describe "Account" do
       end
 
       it "should display a welcome page with bookmarklet installation instructions" do
-        response_body.should contain("Drag this Weave bookmarklet to your browser toolbar. You can then tip sites as you browse them.")
+        response_body.should contain("Install the Weave bookmarklet")
         assert_have_selector "body > section > section > ol > li > a", :id => "weave_us"
       end
 

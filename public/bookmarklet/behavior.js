@@ -1,28 +1,36 @@
 var FLB = {
   options: {
     server: "http://0.0.0.0:3000",
-    page: window.location,
-    title: document.getElementsByTagName("title")[0].innerHTML
   },
-
-  get_http: function () {
-    return (window.XMLHttpRequest)? new XMLHttpRequest(): new ActiveXObject("MSXML2.XMLHTTP");
-  },
-
   init: function (http) {
     http.open("GET", this.options.server + "/tips/new.js", true);
     http.onreadystatechange = this.get_token(http);
     http.send();
   },
-
+  get_http: function () {
+    return (window.XMLHttpRequest)? new XMLHttpRequest(): new ActiveXObject("MSXML2.XMLHTTP");
+  },
   tip_page: function (token, http) {
+  
+    var url = "" + window.location
+    var tip_uri = url.split("?uri=")[1].split("&title=")[0];
+    console.debug(tip_uri)
+
+    var tip_title = url.split("&title=")[1];
+    console.debug(tip_title);
+    
     http.open("POST", this.options.server + "/tips", true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
 
     http.onreadystatechange = this.tip_response(http);
-    http.send("authenticity_token=" + token + "&tip[url]=" + this.options.page + "&title=" + this.options.title );
+    
+    var post = {
+      authenticity_token: token,
+      title: tip_title,
+      "tip[uri]": tip_uri
+    }
+    http.send($.param(post) );
   },
-
   get_token: function (http) {
     return function() {
       if(http.readyState == 4){
@@ -43,7 +51,6 @@ var FLB = {
       }
     }
   },
-
   tip_response: function (http) {
     return function(){
       if(http.readyState == 4) {
@@ -80,13 +87,12 @@ var FLB = {
       }
     };
   },
-
   notify_fan: function (notice, status_code) {
     var div = document.createElement("div");
     div.setAttribute('id', 'flb');
     document.body.appendChild(div);
     div.innerHTML= "<h3>" + notice + "</h3><p> status code: " + status_code + "</p>";
-    div.setAttribute('style', 'position:fixed; top:6em; left:2em; z-index:9001; background:white;');
+
   }
 };
 FLB.init(FLB.get_http());

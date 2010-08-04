@@ -10,4 +10,5 @@ var flb = {
     });
   }
 }
-$(document).ready(flb.onLoad);
+
+$(document).ready(flb.init);
