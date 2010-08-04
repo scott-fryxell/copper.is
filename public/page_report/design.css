@@ -1,46 +1,6 @@
 li.selected{
   text-decoration:underline;
 }
-body > section > header{
-  position:relative;
-  margin-bottom: 1em;
-}
-  body > section > header > h1{
-    font-size: 2.28em; /*36px*/
-    display:inline-block;
-  }
-  body > section > header > nav{
-    z-index:10;
-    background-color: white;
-    position:absolute;
-    top:2em;
-    right:4em;
-    text-align:middle;
-    padding:1.25em;
-    display:inline-block;
-  }
-    body > section > header > nav a {
-      display:none;
-      font-size:1.25em;
-    }
-    body > section > header > nav a.selected {
-      display:block;
-      text-align:center;
-      font-weight:normal;
-      font-size:2.25em;
-      text-decoration: underline;
-    }
-    body > section > header > nav:hover {
-      border: 0.20em solid #808080;
-      -webkit-border-radius: .5em;
-      -moz-border-radius: .5em;
-      border-radius: .5em;
-    }
-    body > section > header > nav:hover a {
-      margin-bottom:.5em;
-      display:block;
-      text-align:center;
-    }
 
   body > section > ul {
     position:relative;
