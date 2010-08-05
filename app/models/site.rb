@@ -8,7 +8,10 @@ class Site < ActiveRecord::Base
   has_and_belongs_to_many :royalty_bundles
   has_many :tip_royalties, :through => :royalty_bundles # TODO understand why this doesn't work.
 
-  named_scope :most_tips, :include => [:tips], :conditions => "tips.locator_id = locators.id", :group => "sites.fqdn", :order => "count(tips.id) DESC"
+  named_scope :most_tips, :include => [:tips],
+                          :conditions => "tips.locator_id = locators.id",
+                          :group => "sites.fqdn",
+                          :order => "count(tips.id) DESC"
   named_scope :limited, lambda { |*num|
     { :limit => num.flatten.first || (defined?(per_page) ? per_page : 10) }
   }
@@ -51,7 +54,7 @@ class Site < ActiveRecord::Base
     :offset => page_size * page_number
     )
   end
-  
+
   #TODO review performance of 'revenue_earned' vs 'revenue_earned_sql'
   def revenue_earned
     @revenue = 0

@@ -5,10 +5,8 @@ class TipsController < ApplicationController
   # GET /tips.xml
   def index
     @tip = Tip.new
-    @tips = Tip.find_all_by_tip_bundle_id(current_user.tip_bundles.id)
-    if @tips.nil?
+    @tips = current_user.active_tips
 
-    end
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tips }
