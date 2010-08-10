@@ -1,24 +1,26 @@
 require "rubygems"
 require "active_merchant"
- 
+
 ActiveMerchant::Billing::Base.mode = :test
 
-gateway = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-  :login => "9WBbf95f",
-  :password => "98VkFr5mDM292kfu",
-  :test => true
+gateway = ActiveMerchant::Billing::BraintreeGateway.new(
+  :environment  => :sandbox,
+  :merchant_id  => "4hg2r8h74wh586qq",
+  :public_key   => "2t58wq6qs4cz8d8k",
+  :private_key  => "vyd3fmwsmnnxrm42",
+  :test         => true
 )
- 
+
 credit_card = ActiveMerchant::Billing::CreditCard.new(
   :type               => "visa",
-  :number             => "4024007148673576",
+  :number             => "4111111111111111",
   :verification_value => "123",
   :month              => 1,
   :year               => Time.now.year+1,
-  :first_name         => "Ryan",
-  :last_name          => "Bates"
+  :first_name         => "Princess",
+  :last_name          => "Nell"
 )
- 
+
 if credit_card.valid?
   response = gateway.authorize(1000, credit_card, :ip => "127.0.0.1")
   if response.success?
