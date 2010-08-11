@@ -44,23 +44,24 @@ html {
         }
   body > section {
     display:inline-block;
-    margin-right: .65em;
+    margin-right: 2em;
     margin-bottom: .5em;
-    margin-left:3.25em;
-    width:40em;
+    margin-left:3em;
+    width:38em;
     min-height:44em;
   }
-    body > section > header h1{
+    body > section > header h1,
+    body > section > h1{
       margin-top: .5em;
-      margin-left: .25em;
       font-size: 2.75em;
       margin-bottom: .60em;
     }
     body > section > header > p{
       margin-left:.5em;
+
     }
     body > section > p {
-      margin-left: 3.30em;
+/*      margin-left: 3.30em;*/
       font-size: 1.15em;
     }
     body > aside {
@@ -166,28 +167,28 @@ html {
   /* global form layout */
   body > section > form{
     margin-top:1em;
-    padding: 1em;
-    margin-left: 2em;
+/*    padding: 1em;*/
+/*    margin-left: 2em;*/
   }
     body > section > form fieldset {
       margin-bottom:0;
     }
       body > section > form fieldset > legend{
         display:inline-block;
-        margin-left:   .5em;
+/*        margin-left:   .5em;*/
         font-size:     1.25em;
       }
     body > section > form label {
       display: inline-block;
       font-size: 1.5em;
-      margin-left: .55em;
+/*      margin-left: .55em;*/
     }
     body > section > form input {
       display:inline-block;
       width: 16.5em;
       font-size:1.5em;
       border: 0.10em solid #808080;
-      margin-left:.5em;
+/*      margin-left:.5em;*/
     }
       body > section > form input[type=submit] {
         width: 10em;
@@ -203,7 +204,7 @@ html {
       }
 
   /* navigation stylings */
-      body > section > header >#error, #notice{
+    body > section > header >#error, #notice{
         margin-left:.6em;
         width: 32.7em;
         min-height:4em;
