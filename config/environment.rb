@@ -22,9 +22,7 @@ Rails::Initializer.run do |config|
   config.gem "authlogic"
   config.gem 'ruby-openid', :lib => "openid"
   config.gem "activemerchant", :lib => "active_merchant"
-
   config.gem "declarative_authorization", :source => "http://www.gemcutter.org"
-
   config.gem 'formtastic'
 
   # Only load the plugins named here, in the order given (default is alphabetical).

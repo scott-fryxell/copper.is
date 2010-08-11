@@ -28,20 +28,18 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 config.after_initialize do
-  ActiveMerchant::Billing::Base.mode = :test
-  # TODO - set the mode to production when we are actually going to production
-  
-  # Paypal, not using currently
-#  ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-#    :login => "seller_1229899173_biz_api1.railscasts.com",
-#    :password => "FXWU58S7KXFC6HBE",
-#    :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
-#  )
+  ActiveMerchant::Billing::Base.mode = :test # TODO - set the mode to production when we go live
 
-	::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-	  :login => "9WBbf95f",
-	  :password => "98VkFr5mDM292kfu",
-	  :test => true # TODO - remove this line when we are actually going to production Authorize.net
-	)
-	
+  ::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
+    :environment  => :sandbox, # TODO - remove this line when going to production with Braintree
+    :merchant_id  => "4hg2r8h74wh586qq",
+    :public_key   => "2t58wq6qs4cz8d8k",
+    :private_key  => "vyd3fmwsmnnxrm42",
+    :test         => true # TODO - remove this line when going to production with Braintree
+  )
+  # ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
+  #   :login => "9WBbf95f",
+  #   :password => "98VkFr5mDM292kfu",
+  #   :test => true # TODO - remove this line when we are actually going to production Authorize.net
+  # )
 end
