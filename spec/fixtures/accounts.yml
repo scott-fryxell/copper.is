@@ -3,5 +3,6 @@ simple:
   billing_address: missoula
   billing_name: "CHOAD T HOCKSLOOGIE"
   expires_on: 2013/4/1
-  card_type: <%= CardType.find_by_name('visa') =>
+  card_type_id: <%= CardType.find_by_name('visa').id %>
   number: 4242424242424242
+  verification_code: 123
