@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Tip do
-  fixtures :users, :roles_users, :tip_bundles, :addresses, :accounts, :transactions
+  fixtures :users, :roles_users, :tip_bundles, :addresses, :accounts, :transactions, :refills
 
   before(:each) do
     @uri = 'http://www.example.com/page/content.html'

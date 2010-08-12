@@ -1,0 +1,4 @@
+one:
+  ip_address: "127.0.0.1"
+  account: simple
+  amount_in_cents: 1000
