@@ -20,7 +20,9 @@ describe UserActivationsController do
       end
 
       it "should send an email with activation instructions" do
-        ActionMailer::Base.deliveries.length.should == 1 # TODO enhance test by adding && clause that checks content of the message that was sent
+        ActionMailer::Base.deliveries.length.should == 1
+        # TODO enhance test by adding matcher that checks content of the message that was sent
+        # response.should send_email(*args, &block)
       end
     end
 
