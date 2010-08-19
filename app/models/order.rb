@@ -29,6 +29,8 @@ class Order < ActiveRecord::Base
     end
   end
 
+  private
+
   def purchase
     response = GATEWAY.purchase(amount_in_cents, credit_card, purchase_options)
     order_transactions.create!(:action => "purchase", :amount_in_cents => amount_in_cents, :response => response)
@@ -41,8 +43,6 @@ class Order < ActiveRecord::Base
     self.transaction.split_refill_and_fee
     self.transaction
   end
-
-  private
 
   def validate_card
     if account

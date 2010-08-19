@@ -21,8 +21,8 @@ class Transaction < ActiveRecord::Base
     (amount_in_cents == fee.amount_in_cents + refill.amount_in_cents)
   end
 
-  def split_refill_and_fee(fee_percent=Configuration.find_by_property(Configuration::FEE_PERCENT).value)
-    fee_percent.is_a?(Integer) ? fee_percent : fee_percent = fee_percent.to_i
+  def split_refill_and_fee(percent=Configuration.find_by_property(Configuration::FEE_PERCENT).value)
+    fee_percent = percent.is_a?(Integer) ? percent : percent.to_i
     if fee_percent == 0 || fee_percent >= 100
       return "the fee rate is incorrect"
     else

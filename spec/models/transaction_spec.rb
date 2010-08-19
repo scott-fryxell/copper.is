@@ -57,7 +57,7 @@ describe Transaction do
       end
 
       it "should use the default fee_percent from the database if none is passed as an argument" do
-        @transaction.split_refill_and_fee.should be_true
+        @transaction.split_refill_and_fee.should_not be_nil
       end
 
       it "should report an error if the parameter given cannot be converted to an integer" do
