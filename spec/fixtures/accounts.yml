@@ -4,5 +4,5 @@ simple:
   billing_name: "CHOAD T HOCKSLOOGIE"
   expires_on: 2013/4/1
   card_type_id: <%= CardType.find_by_name('visa').id %>
-  number: 4242424242424242
+  number: 4111111111111111
   verification_code: 123

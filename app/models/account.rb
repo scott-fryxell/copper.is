@@ -3,6 +3,7 @@ class Account < ActiveRecord::Base
   belongs_to :billing_address, :class_name => "Address", :foreign_key => "billing_address_id"
   belongs_to :card_type
   has_many :orders
+  has_many :transactions
 
   validates_presence_of :user
   validates_presence_of :billing_address

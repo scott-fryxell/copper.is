@@ -47,6 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :tips
   map.resources :users
   map.resources :locators
+  map.resources :orders
 
   # Home
   map.root :controller => "home", :action => "index"

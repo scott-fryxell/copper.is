@@ -1,9 +1,12 @@
 first_transaction:
   account: simple
   amount_in_cents: 1070
+  order: o1070
 second_transaction:
   account: simple
   amount_in_cents: 2140
+  order: o2140
 third_transaction:
   account: simple
   amount_in_cents: 1605
+  order: o1605

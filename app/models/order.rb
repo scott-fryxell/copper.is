@@ -1,22 +1,45 @@
 class Order < ActiveRecord::Base
-  attr_accessible :amount, :account_id
-  has_many :transactions, :class_name => "OrderTransaction"
+  has_many :order_transactions# , :class_name => "OrderTransaction"
+  has_one :transaction # soon to be renamed payment
   belongs_to :account
   has_one :user, :through => :account
 
   validates_presence_of :amount_in_cents
   validates_numericality_of :amount_in_cents, :integer_only => true
   validates_presence_of :ip_address
-  validates_format_of :ip_address, :with => /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/
+  validates_format_of :ip_address,
+                      :with => /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/,
+                      :message => "not a valid IP address"
   validates_presence_of :account_id
-  validate_on_create :validate_card
-  validate_on_update :validate_card
+  validate :validate_card
+
+  attr_accessible :amount, :account_id
+  #attr_accessor :number, :verification_code
+
+  def place_order
+    if save
+      if purchase
+        trigger_payment_refill_fee # Need logging of the success of this method
+        return true
+      else
+        return false
+      end
+    else
+      return false
+    end
+  end
 
   def purchase
     response = GATEWAY.purchase(amount_in_cents, credit_card, purchase_options)
-    transactions.create!(:action => "purchase", :amount => amount_in_cents, :response => response)
+    order_transactions.create!(:action => "purchase", :amount_in_cents => amount_in_cents, :response => response)
     #cart.update_attribute(:purchased_at, Time.now) if response.success?
     response.success?
+  end
+
+  def trigger_payment_refill_fee
+    self.transaction = Transaction.create(:amount_in_cents => amount_in_cents, :account => account)
+    self.transaction.split_refill_and_fee
+    self.transaction
   end
 
   private
@@ -37,8 +60,8 @@ class Order < ActiveRecord::Base
   def credit_card
     @credit_card ||= ActiveMerchant::Billing::CreditCard.new(
     :type               => account.card_type.name,
-    :number             => account.number,
-    :verification_value => account.verification_code,
+    :number             => account.number.to_s(),
+    :verification_value => account.verification_code.to_s(),
     :month              => account.expires_on.month,
     :year               => account.expires_on.year,
     :first_name         => account.billing_name.split(' ')[1],
@@ -50,12 +73,12 @@ class Order < ActiveRecord::Base
     {
       :ip => ip_address,
       :billing_address => {
-        :name     => "#{account.billing_name}",
-        :address1 => account.address.street1,
-        :city     => account.address.city,
-        :state    => account.address.state,
-        :country  => account.address.country,
-        :zip      => account.address.zip
+        :name     => account.billing_name,
+        :address1 => account.billing_address.line_1,
+        :city     => account.billing_address.city,
+        :state    => account.billing_address.state,
+        :country  => account.billing_address.country,
+        :zip      => account.billing_address.postal_code
       }
     }
   end

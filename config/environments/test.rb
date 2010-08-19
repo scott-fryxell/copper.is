@@ -34,4 +34,14 @@ config.gem "rspec-rails", :version => ">= 1.3.2", :lib => "spec"
 config.after_initialize do
   ActiveMerchant::Billing::Base.mode = :test
   ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
+
+  # Braintree sandbox account
+  # ::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
+  # :environment  => :sandbox,
+  # :merchant_id  => "4hg2r8h74wh586qq",
+  # :public_key   => "2t58wq6qs4cz8d8k",
+  # :private_key  => "vyd3fmwsmnnxrm42",
+  # :test         => true
+  # )
+
 end

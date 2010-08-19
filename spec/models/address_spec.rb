@@ -7,7 +7,7 @@ describe Address do
     @address.city        = "Missoula"
     @address.state       = 'MT'
     @address.postal_code = 59801
-    @address.country     = 'USA'
+    @address.country     = 'US'
   end
 
   it "should save if all values are acceptable" do
@@ -50,8 +50,8 @@ describe Address do
     @address.save.should be_false
   end
 
-  it "should default the country to 'USA'" do
+  it "should default the country to 'US'" do
     address = Address.new
-    address.country.should == 'USA'
+    address.country.should == 'US'
   end
 end

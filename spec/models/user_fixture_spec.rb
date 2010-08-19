@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe User do
-  fixtures :users, :roles_users, :addresses, :accounts
+  fixtures :users, :roles_users, :addresses, :accounts, :orders
 
   it "should find the sample user from the fixture" do
     User.find_by_email('test@test.com').should_not be_nil
@@ -26,7 +26,7 @@ describe User do
 
     it "should fail if the new tip would cause the tip value to drop below the threshold" do
       fan = users(:patron)
-      transaction = Transaction.create(:account => accounts(:simple), :amount_in_cents => 4)
+      transaction = Transaction.create(:account => accounts(:simple), :order => orders(:o4),:amount_in_cents => 4)
 
       bundle = TipBundle.create(:fan => fan)
       bundle.refills << Refill.create(:transaction => transaction, :amount_in_cents => 3)

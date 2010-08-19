@@ -2,6 +2,7 @@ ENV["FIXTURE_ORDER"] =
   %w(
       users
       roles_users
+      configurations
       addresses
       accounts
       transactions

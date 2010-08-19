@@ -4,10 +4,9 @@ describe Order do
   fixtures :users, :accounts, :orders
 
   before(:each) do
-    # @order = orders(:one)
     @order = Order.new
     @order.ip_address = "127.0.0.1"
-    @order.amount_in_cents = 1000
+    @order.amount_in_cents = 2500
     @order.account = accounts(:simple)
   end
 
@@ -29,6 +28,7 @@ describe Order do
     @order.save.should be_false
     @order.ip_address = "0.0.0.0.0"
     @order.save.should be_false
+    @order.errors.on(:ip_address).should == "not a valid IP address"
   end
 
   it "should have an account" do
@@ -52,4 +52,29 @@ describe Order do
     @order.save.should be_false
   end
 
+  describe "purchase sequence" do
+
+    it "should have a purchase method that succeeds when the order is valid" do
+      @order.save
+      @order.purchase.should be_true
+      @order.order_transactions.should_not be_nil
+    end
+
+    it "should have a method that creates a new payment, fee, and refill when the purchase goes through" do
+      # TODO - when BogusGateway is fixed do @order.purchase inside this test as well
+      @order.save
+      @order.transaction.should be_nil
+      @order.trigger_payment_refill_fee
+      @order.transaction.should_not be_nil
+      @order.transaction.fee.should_not be_nil
+      @order.transaction.refill.should_not be_nil
+    end
+
+    it "should have a method that saves, purchases, and creates the payment/refill/fee all at once" do
+      @order.place_order.should be_true
+      # @order.transaction.should_not be_nil
+      # @order.transaction.fee.should_not be_nil
+      # @order.transaction.refill.should_not be_nil
+    end
+  end
 end

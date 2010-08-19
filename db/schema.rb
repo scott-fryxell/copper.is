@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100811223425) do
+ActiveRecord::Schema.define(:version => 20100818194529) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "number",                             :null => false
@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(:version => 20100811223425) do
   end
 
   create_table "addresses", :force => true do |t|
-    t.string   "line_1",                         :null => false
+    t.string   "line_1",                        :null => false
     t.string   "line_2"
-    t.string   "city",                           :null => false
-    t.string   "postal_code",                    :null => false
-    t.string   "country",     :default => "USA", :null => false
+    t.string   "city",                          :null => false
+    t.string   "postal_code",                   :null => false
+    t.string   "country",     :default => "US", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                          :null => false
+    t.string   "state",                         :null => false
     t.string   "territory"
   end
 
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20100811223425) do
 
   create_table "card_types", :force => true do |t|
     t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "configurations", :force => true do |t|
+    t.string   "property"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20100811223425) do
   create_table "order_transactions", :force => true do |t|
     t.integer  "order_id"
     t.string   "action"
-    t.integer  "amount"
+    t.integer  "amount_in_cents"
     t.boolean  "success"
     t.string   "authorization"
     t.string   "message"
@@ -168,6 +175,7 @@ ActiveRecord::Schema.define(:version => 20100811223425) do
     t.integer  "amount_in_cents", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "order_id"
   end
 
   create_table "users", :force => true do |t|
