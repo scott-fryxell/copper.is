@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(:version => 20100818194529) do
   end
 
   create_table "addresses", :force => true do |t|
-    t.string   "line_1",                        :null => false
+    t.string   "line_1",                                       :null => false
     t.string   "line_2"
-    t.string   "city",                          :null => false
-    t.string   "postal_code",                   :null => false
-    t.string   "country",     :default => "US", :null => false
+    t.string   "city",                                         :null => false
+    t.string   "postal_code",                                  :null => false
+    t.string   "country",     :limit => nil, :default => "US", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",                         :null => false
+    t.string   "state",                                        :null => false
     t.string   "territory"
   end
 
