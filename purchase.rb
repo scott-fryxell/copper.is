@@ -25,7 +25,7 @@ if credit_card.valid?
   response = gateway.authorize(1000, credit_card, :ip => "127.0.0.1")
   if response.success?
     gateway.capture(1000, response.authorization)
-    puts "Purchase complete!"
+    puts "Authorization complete!"
   else
     puts "Error: #{response.message}"
   end
