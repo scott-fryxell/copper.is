@@ -75,6 +75,9 @@ When driving Webrat from the console you need to follow these steps:
    app.visit '/'
 
 
+Test credit card numbers for specs:
+- Good card: 4111111111111111
+- Bad card: 1111111111111111
 
 Test credit card number for authorize.net = 4024007148673576
 

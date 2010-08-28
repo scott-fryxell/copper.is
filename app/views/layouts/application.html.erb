@@ -61,14 +61,20 @@
         </nav>
       </header>
       <dl>
-        <dt>Pays out in</dt>
-        <dd itemprop="billing_period">14<span itemprop="interval">days</span></dd>
-        <dt>Balance</dt>
-        <dd itemprop="balance"><span itemprop="currency">$</span>10.00</dd>
-        <dt>Tips</dt>
-        <dd itemprop="tips">47</dd>
-        <dt>Spread</dt>
-        <dd itemprop="distribution"><span itemprop="currency">¢</span>22</dd>
+        <% if current_user %>
+          <% if current_user.funds_for_tipping? %>
+            <dt>Pays out in</dt>
+            <dd itemprop="billing_period">14<span itemprop="interval">days</span></dd>
+            <dt>Balance</dt>
+            <dd itemprop="balance"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></dd>
+            <dt><%= link_to "Tips", tips_path %></dt>
+            <dd itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></dd>
+            <dt>Spread</dt>
+            <dd itemprop="distribution"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.cents_per_tip_point) %></dd>
+          <% else %>
+            <%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
+          <% end %>
+        <% end %>
       </dl>
     </aside>
     <figure accesskey="l" tabindex="2" id="weave_logo">

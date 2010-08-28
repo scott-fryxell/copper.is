@@ -7,6 +7,7 @@ class Account < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :billing_address
+  validates_associated :billing_address
   validates_presence_of :billing_name
   validates_presence_of :number
   validates_presence_of :expires_on

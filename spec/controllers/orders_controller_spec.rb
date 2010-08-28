@@ -17,107 +17,105 @@ describe OrdersController do
     @address = addresses(:missoula)
   end
 
-  def valid_post(place_order)
-    post :create, { :order => {
+  def valid_post(method, commit, account, address)
+    post method, { :order => {
                       :amount_in_cents => 1666
                     },
                     :account => {
-                      :billing_name => @account.billing_name,
-                      :number => @account.number,
-                      :card_type_id => @account.card_type_id,
-                      :verification_code => @account.verification_code,
-                      :expires_on => @account.expires_on
+                      :billing_name => account.billing_name,
+                      :number => account.number,
+                      :card_type_id => account.card_type_id,
+                      :verification_code => account.verification_code,
+                      :expires_on => account.expires_on
+
                     },
                     :billing_address => {
-                      :line_1 => @address.line_1,
-                      :city => @address.city,
-                      :state => @address.state,
-                      :postal_code => @address.postal_code,
-                      :country => @address.country
+                      :line_1 => address.line_1,
+                      :city => address.city,
+                      :state => address.state,
+                      :postal_code => address.postal_code,
+                      :country => address.country
                     },
-                    :place_order => place_order
+                    :commit => commit
                   }
   end
 
-  def invalid_order(place_order)
+  def invalid_order(method, commit, account, address)
     # Forcing failure with an invalid amount_in_cents
-    post :create, { :order => {
+    post method, { :order => {
                       :amount_in_cents => "not an integer"
                     },
                     :account => {
-                      :billing_name => @account.billing_name,
-                      :number => @account.number,
-                      :card_type_id => @account.card_type_id,
-                      :verification_code => @account.verification_code,
-                      :expires_on => @account.expires_on
+                      :billing_name => account.billing_name,
+                      :number => account.number,
+                      :card_type_id => account.card_type_id,
+                      :verification_code => account.verification_code,
+                      :expires_on => account.expires_on
                     },
                     :billing_address => {
-                      :line_1 => @address.line_1,
-                      :city => @address.city,
-                      :state => @address.state,
-                      :postal_code => @address.postal_code,
-                      :country => @address.country
+                      :line_1 => address.line_1,
+                      :city => address.city,
+                      :state => address.state,
+                      :postal_code => address.postal_code,
+                      :country => address.country
                     },
-                    :place_order => place_order
+                    :commit => commit
                   }
   end
 
-  def invalid_account(place_order)
+  def invalid_account(method, commit, account, address)
     # Forcing failure at gateway with a bad account number
-    post :create,  { :order => {
+    post method,  { :order => {
                       :amount_in_cents => 1600
                     },
                     :account => {
-                      :billing_name => @account.billing_name,
+                      :billing_name => account.billing_name,
                       :number => 2,
-                      :card_type_id => @account.card_type_id,
-                      :verification_code => @account.verification_code,
-                      :expires_on => @account.expires_on
+                      :card_type_id => account.card_type_id,
+                      :verification_code => account.verification_code,
+                      :expires_on => account.expires_on
                     },
                     :billing_address => {
-                      :line_1 => @address.line_1,
-                      :city => @address.city,
-                      :state => @address.state,
-                      :postal_code => @address.postal_code,
+                      :line_1 => address.line_1,
+                      :city => address.city,
+                      :state => address.state,
+                      :postal_code => address.postal_code,
                       :country => "vuvuzela"
                     },
-                    :place_order => place_order
+                    :commit => commit
                   }
   end
 
   describe "when preparing an order" do
     describe "with valid information" do
       before(:each) do
-        valid_post(nil)
+        valid_post("prepare", "Continue", @account, @address)
       end
 
       it "should render the page to confirm your order" do
-        response.should render_template('confirm')
+        response.should render_template('prepare')
       end
 
-      it "should initialize billing_address, account, and order for the confirmation page" do
+      it "should initialize billing_address, account, and order for the prepare page" do
         assigns['billing_address'].should_not be_nil
-        assigns['billing_address'].size.should == 5
         assigns['account'].should_not be_nil
-        assigns['account'].size.should == 5
         assigns['order'].should_not be_nil
-        assigns['order'].size.should == 1
       end
-
-      it "should prefill a hidden form on the confirmation page with the billing_address, account, and order values"
 
     end
 
     describe "with invalid order details" do
       before(:each) do
-        invalid_order(nil)
+        invalid_order("prepare", "Continue", @account, @address)
       end
 
       it "should redirect to the new order page" do
         response.should render_template('new')
       end
 
-      it "should display the errors to the user"
+      it "should display the errors to the user" do
+        flash[:error].should_not be_nil
+      end
 
     end
   end
@@ -126,7 +124,7 @@ describe OrdersController do
 
     describe "with valid information" do
       before(:each) do
-        valid_post("1")
+        valid_post("create", "Make Payment", @account, @address)
       end
 
       it "should display a success message when the order saves and the purchase saves" do
@@ -134,7 +132,7 @@ describe OrdersController do
       end
 
       it "should render the order confirmed page" do
-        response.should render_template('success')
+        response.should render_template('show')
       end
 
       it "should create an order transaction record associated with the order" do
@@ -165,11 +163,11 @@ describe OrdersController do
 
     describe "with invalid order details" do
       before(:each) do
-        invalid_order("1")
+        invalid_order("create", "Make Payment", @account, @address)
       end
 
       it "should display a failure messages if the order does not save" do
-          flash[:notice].should contain("order failed")
+        flash[:error].should_not be_nil
       end
 
       it "should route to an order failure page" do
@@ -179,14 +177,16 @@ describe OrdersController do
 
     describe "with invalid account details" do
       before(:each) do
-        invalid_account("1")
+        invalid_account("create", "Make Payment", @account, @address)
       end
 
       it "should display a failure message if the order saves but the purchase does not go through" do
-        flash[:notice].should contain("order failed")
+        flash[:error].should_not be_nil
       end
 
-      it "should display the errors from the gateway"
+      it "should display the errors from the gateway" do
+        flash[:error].should contain("Type is not the correct card type")
+      end
 
       it "should route to an order failure page" do
         response.should render_template('new')

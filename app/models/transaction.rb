@@ -1,3 +1,5 @@
+class InvalidSplit < Exception ; end
+
 class Transaction < ActiveRecord::Base
   # TODO - rename this model to Payment, so not confused with OrderTransaction
   belongs_to :account
@@ -21,20 +23,19 @@ class Transaction < ActiveRecord::Base
     (amount_in_cents == fee.amount_in_cents + refill.amount_in_cents)
   end
 
-  def split_refill_and_fee(percent=Configuration.find_by_property(Configuration::FEE_PERCENT).value)
+  def split_refill_and_fee(percent = Configuration.find_by_property(Configuration::FEE_PERCENT).value)
     fee_percent = percent.is_a?(Integer) ? percent : percent.to_i
     if fee_percent == 0 || fee_percent >= 100
       return "the fee rate is incorrect"
     else
       split = calculate_split(fee_percent)
-      self.fee = Fee.create(:amount_in_cents => split[:fee])
-      self.refill = Refill.create(:amount_in_cents => split[:refill], :tip_bundle => user.active_tip_bundle)
+      self.fee = Fee.new(:amount_in_cents => split[:fee])
+      self.refill = Refill.new(:amount_in_cents => split[:refill], :tip_bundle => user.active_tip_bundle)
       if valid_split?
         self.save
       else
-        return "invalid split"
+        raise InvalidSplit
       end
-      self
     end
   end
 

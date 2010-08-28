@@ -5,7 +5,9 @@ class Locator < ActiveRecord::Base
   has_many :tips
 
   validates_presence_of :page
+  validates_associated :page
   validates_presence_of :site
+  validates_associated :site
   validates_presence_of :scheme
 
   def host
@@ -28,23 +30,49 @@ class Locator < ActiveRecord::Base
     canonical
   end
 
-  def self.parse(url_string)
-    raw_uri = URI.parse(url_string)
-
-    adapted = Locator.new
-    adapted.scheme   = raw_uri.scheme
-    adapted.site     = Site.find_or_create_by_fqdn(raw_uri.host)
-    adapted.userinfo = raw_uri.userinfo if (raw_uri.userinfo != nil && raw_uri.userinfo != '')
-    adapted.port     = raw_uri.port     if (raw_uri.port != nil && raw_uri.port != '')
-    adapted.path     = raw_uri.path     if (raw_uri.path != nil && raw_uri.path != '')
-    adapted.query    = raw_uri.query    if (raw_uri.query != nil && raw_uri.query != '')
-    adapted.fragment = raw_uri.fragment if (raw_uri.fragment != nil && raw_uri.fragment != '')
-    # TODO next line is temporary until we figure out how to pull a better page description than the URL
-    # See bug 13: https://bugs.fasterlighterbetter.com/issues/13
-    adapted.page = Page.find_or_create_by_description(url_string)
-
-    adapted
+  def self.find_or_init_by_url(url_string)
+    candidate = parse(url_string)
+    if candidate
+      existing = find(:first,
+                      :conditions => { :scheme   => candidate.scheme,
+                                       :site_id  => candidate.site.id,
+                                       :userinfo => candidate.userinfo,
+                                       :port     => candidate.port,
+                                       :path     => candidate.path,
+                                       :query    => candidate.query,
+                                       :fragment => candidate.fragment }
+                      )
+      if existing
+        existing
+      else
+        candidate
+      end
+    end
   end
+
+  def self.parse(url_string)
+    case
+    # Host name, no path, no scheme
+    when url_string.match(/^[a-z0-9\-\.]+\.[a-z0-9]{2,3}\/?$/i):
+      url_string = url_string.sub("/","") # remove trailing / character
+      adapted = Locator.new
+      adapted.scheme = 'http'
+      adapted.site = Site.find_or_initialize_by_fqdn(url_string)
+      adapted.port = '80'
+    # Host name, path, no scheme
+    when url_string.match(/^[a-z0-9\-\.]+\/.+$/i):
+      adapted = parse_helper('http://' + url_string)
+    else
+      adapted = parse_helper(url_string)
+    end
+
+    if adapted && adapted.scheme && adapted.site
+      adapted
+    else
+      nil
+    end
+  end
+
 
   private
 
@@ -57,4 +85,28 @@ class Locator < ActiveRecord::Base
       ':' + port.to_s
     end
   end
+
+  def self.parse_helper(url_string)
+    begin
+      raw_uri = URI.parse(url_string)
+
+      if raw_uri.host && raw_uri.host.match(/^[a-z0-9\-\.]+\.[a-z0-9\/]{2,3}$/i)
+        adapted = Locator.new
+        adapted.scheme   = raw_uri.scheme
+        adapted.site     = Site.find_or_initialize_by_fqdn(raw_uri.host)
+        adapted.userinfo = raw_uri.userinfo if (raw_uri.userinfo != nil && raw_uri.userinfo != '')
+        adapted.port     = raw_uri.port     if (raw_uri.port != nil && raw_uri.port != '')
+        adapted.path     = raw_uri.path     if (raw_uri.path != nil && raw_uri.path != '' && raw_uri.path != '/')
+        adapted.query    = raw_uri.query    if (raw_uri.query != nil && raw_uri.query != '')
+        adapted.fragment = raw_uri.fragment if (raw_uri.fragment != nil && raw_uri.fragment != '')
+
+        adapted
+      else
+        nil
+      end
+    rescue URI::InvalidURIError
+      nil
+    end
+  end
+
 end

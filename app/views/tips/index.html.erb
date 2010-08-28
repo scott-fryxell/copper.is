@@ -1,5 +1,9 @@
 <% title "Tips" %>
+<% if @has_funds %>
 <%= render :partial => 'form' %>
+<% else %>
+<%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
+<% end %>
 <table>
   <caption>My current tips</caption>
   <thead>
@@ -13,7 +17,9 @@
   <tbody>
    <% @current_user.active_tips.each do |tip| %>
      <tr>
-       <td><a href='<%=h tip.locator.canonicalized %>' target='new'><%=h tip.locator.canonicalized %></td>
+       <td><a href='<%=h tip.locator.canonicalized %>' target='new'>
+         <%=h tip.locator.canonicalized %>
+       </td>
        <td><%=h tip.multiplier %></td>
        <td><%=h tip.created_at %></td>
        <td><%= link_to 'Show', tip %></td>

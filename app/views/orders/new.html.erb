@@ -1,0 +1,85 @@
+<style>
+@import url('/orders/design.css');
+</style>
+<script src="/orders/behavior.js"></script>
+  <h1>Refill your tip stash</h1>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna
+    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit
+    esse cillum dolore eu fugiat nulla pariatur.
+  </p>
+
+  <% form_for @order, :url => (order_prepare_path) do |f| %>
+      <h1>Select your monthly tip stash amount</h1>
+      <%= f.text_field :amount_in_cents  %>
+      <%= f.check_box :rebill %>
+      <label for="rebill">Refill automatically each month</label>
+    </fieldset>
+    <fieldset>
+      <label for="amount">
+        <span>+<%= @fee_percent %>%</span>
+        <span>$xx.xx</span>
+      </label>
+      <label for="total">
+        <span>Total</span>
+        <span>$xx.xx</span>
+      </label>
+    </fieldset>
+    
+    <fieldset>
+      <h1>Payment options</h1>
+      <% fields_for :account do |a| %>
+
+      <label for="card_type_id">Card Type</label>
+      <%= a.select(:card_type_id, @card_types) %>
+
+      <label for="billing_name">Cardholder Name</label>
+      <%= a.text_field :billing_name %>
+
+      <label for="number">Card Number</label>
+      <%= a.text_field :number %>
+
+      <label for="expires_on">Expiration Date</label>
+      <%= a.date_select :expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true %>
+
+      <label for="verification_code">CVV<sub>2</sub></label>
+      <%= a.text_field :verification_code, :size => 3, :maxlength => 3 %>
+
+      <% end %>
+    </fieldset>
+
+    <fieldset>
+      <h1>Billing Address</h1>
+      <% fields_for :billing_address do |b| %>
+
+      <label for="line_1">Address</label>
+      <%= b.text_field :line_1 %>
+
+      <label for="line_2">Address2</label>
+      <%= b.text_field :line_2 %>
+
+      <label for="city">City</label>
+      <%= b.text_field :city %>
+
+      <label for="state">State</label>
+      <%= b.select(:state, @states) %>
+
+      <label for="postal_code">Zip Code</label>
+      <%= b.text_field :postal_code %>
+
+      <label for="country">Country</label>
+      <%= b.select(:country, @countries)%>
+
+      <label for="phone">Billing Phone</label>
+      <%= b.text_field :phone %>
+
+      <% end %>
+    </fieldset>
+    
+    <%= submit_tag "Continue" %>
+    
+    <% end %>
+  </form>

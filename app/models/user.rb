@@ -16,11 +16,20 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation
 
   def active_tips
-    bundle = self.active_tip_bundle
+    bundle = active_tip_bundle
     if bundle
-      tips = Tip.find_all_by_tip_bundle_id(bundle.id, :order => "created_at desc")
+      bundle.tips
     else
-      tips = []
+      []
+    end
+  end
+
+  def funds_for_tipping?
+    if (active_tip_bundle.cents_per_tip_point > Tip::MINIMUM_TIP_VALUE) ||
+      (active_tip_bundle.allocated_funds > 0 && active_tip_bundle.tip_points == 0)
+      true
+    else
+      false
     end
   end
 
@@ -57,21 +66,30 @@ class User < ActiveRecord::Base
 
   def rotate_tip_bundle!
     TipBundle.update(active_tip_bundle.id, :is_active => false)
-    TipBundle.create(:fan => self)
+    TipBundle.create(:fan => self) # TODO: we're changing the default behavior here
   end
 
   def active_tip_bundle
-    tip_bundles.find(:first, :conditions => ["is_active = ?", true])
+    tip_bundles.find(:first, :conditions => ["is_active = ?", true]) || TipBundle.new(:fan => self) # TODO: see below
   end
 
   def tip(url_string, description = 'new page', multiplier = 1)
-    raise TipBundleMissing unless active_tip_bundle != nil
+    locator = Locator.find_or_init_by_url(url_string)
 
-    locator = Locator.parse(url_string)
-    locator.page = Page.create(:description => description)
+    if locator
+      locator.page = Page.create(:description => description) unless locator.page
 
-    Tip.create(:locator    => locator,
-               :tip_bundle => active_tip_bundle,
-               :multiplier => multiplier)
+      tip = Tip.new(:locator    => locator,
+                    :tip_bundle => active_tip_bundle,
+                    :multiplier => multiplier)
+      if tip.valid?
+        tip.save
+        tip
+      else
+        nil
+      end
+    else
+      nil
+    end
   end
 end

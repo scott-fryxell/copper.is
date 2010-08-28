@@ -10,7 +10,7 @@ class TipBundle < ActiveRecord::Base
 
   validates_presence_of :fan
   validates_presence_of :refills, :on => :update
-  validates_presence_of :billing_period
+  validates_presence_of :billing_period# TODO , :default => BillingPeriod.find(Time.now.day)
 
   validates_uniqueness_of :fan_id, :scope => :is_active, :if => :is_active
 
@@ -23,6 +23,10 @@ class TipBundle < ActiveRecord::Base
   end
 
   def cents_per_tip_point
-    allocated_funds / tip_points
+    if tip_points != 0
+      allocated_funds / tip_points
+    else
+      0
+    end
   end
 end

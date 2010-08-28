@@ -6,6 +6,7 @@ require 'spec/autorun'
 require 'spec/rails'
 require 'webrat/integrations/rspec-rails'
 require 'lib/mail-test-helper'
+require 'lib/active_merchant_bogus_helper'
 
 # include seed data before running tests (gets cleared out otherwise)
 require "#{Rails.root}/db/seeds.rb"

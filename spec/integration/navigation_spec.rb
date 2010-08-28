@@ -40,7 +40,7 @@ describe "The standard Weave page" do
   end
 
   describe "account section" do
-    describe "when logged in as a fan" do
+    describe "when logged in as a fan with a filled account" do
       before(:each) do
         click_link "Log in or sign up"
         fill_in "email", :with => "test@test.com"
@@ -63,12 +63,50 @@ describe "The standard Weave page" do
       end
 
       it "should link to a tip page for a fan" do
-        click_link "Home"
+        click_link "Tips"
         response_body.should contain("Leave a Tip")
       end
 
-      it "should link to a fan home page"
+      it "should display the tip fund balance" do
+        response_body.should contain("Balance $30")
+      end
 
+      it "should display the number of current tips" do
+        response_body.should contain("Tips 8")
+      end
+
+      it "should display the current value of each tip" do
+        response_body.should contain("Spread $3.75")
+      end
+
+      it "should link to a fan home page"
+    end
+
+    describe "when logged in as a fan with no refill" do
+      before(:each) do
+        click_link "Log in or sign up"
+        fill_in "email", :with => "patron@test.com"
+        fill_in "password", :with => "test"
+        choose "Yes, I have a password:"
+        click_button "Log in"
+      end
+
+      it "should have an account section" do
+        assert_have_selector "body > aside", :id => 'account'
+      end
+
+      it "should display the current user's name on the page" do
+        response_body.should contain("Logged in as: patron@test.com")
+      end
+
+      it "should link to a logout action" do
+        click_link "Sign out"
+        response_body.should contain("Successfully logged out.")
+      end
+
+      it "should encourage the fan to fund their account" do
+        response_body.should contain("You need to refill your account in order to make tips.")
+      end
     end
 
     describe "when logged in as a publisher" do

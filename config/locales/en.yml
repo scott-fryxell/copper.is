@@ -30,3 +30,5 @@ en:
     successfully_updated_user: "Your account has been updated."
     permission_denied: "PERMISSION DENIED"
     tip_success: "Tip successfully created."
+    tip_failed: "That is not a valid URL."
+    no_funds_for_tipping: "You need to refill your account in order to make tips."

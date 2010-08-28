@@ -203,6 +203,7 @@ describe Locator do
       @url.port = 8443
       @url.canonicalized.should == 'https://example.com:8443/'
     end
+
   end
 
   it "should only create a single Site for each fully-qualified domain name" do
@@ -215,5 +216,104 @@ describe Locator do
     url2.save.should be_true
 
     url1.site.should == url2.site
+  end
+
+  describe "parse method" do
+    describe "when working with valid URL strings" do
+      it "should return a Locator object for the URL 'http://example.com'" do
+        Locator.parse('http://example.com').should_not be_nil
+      end
+
+      it "should not save the Locator object" do
+        Locator.parse('http://example.com').id.should be_nil
+      end
+
+      it "should not create the assocaite page object" do
+        Locator.parse('http://example.com').page.should be_nil
+      end
+
+      it "should default the scheme to http if one is not provided" do
+        Locator.parse('www.example.com').scheme.should_not be_nil
+      end
+
+      it "should set the path to nil if the path consists only '/'" do
+        Locator.parse("stars.com/").path.should be_nil
+      end
+
+      it "should set a path if it is more than '/'" do
+        Locator.parse("stars.com/page1.html").path.should == "/page1.html"
+      end
+    end
+
+    describe "when working with invalid URL strings" do
+      it "should return nil for the URL 'foobar'" do
+        Locator.parse('foobar').should be_nil
+      end
+
+      it "should return nil for the URL 'two words'" do
+        Locator.parse('two words').should be_nil
+      end
+
+      it "should return nil for the URL 'foobar.netnet'" do
+        Locator.parse('foobar.netnet').should be_nil
+      end
+
+      it "should return nil for the URL 'foobar/'" do
+        Locator.parse('foobar/').should be_nil
+      end
+
+      it "should return nil for the URL 'http://foobar'" do
+        Locator.parse('http://foobar').should be_nil
+      end
+
+      it "should return nil for the URL 'http://foobar/'" do
+        Locator.parse('http://foobar/').should be_nil
+      end
+
+      it "should return nil for the URL 'http://www.foobar/'" do
+        Locator.parse('http://www.foobar/').should be_nil
+      end
+    end
+  end
+
+  describe "when finding an existing locator or creating a new locator" do
+    before(:each) do
+      @existing = Locator.find_or_init_by_url('http://stars.com')
+      @existing.page = Page.create(:description => 'example page')
+      @existing.save
+    end
+
+    it "should find an existing locator if it already exists" do
+      @new = Locator.find_or_init_by_url('http://stars.com')
+      @new.id.should == @existing.id
+    end
+
+    it "should find an existing locator even if the scheme is missing from the url given to the function" do
+      @new = Locator.find_or_init_by_url('stars.com')
+      @new.id.should == @existing.id
+    end
+
+    it "should find an existing locator if a path of '/' is the difference between the url given to the function and the existing locator" do
+      @new = Locator.find_or_init_by_url('http://stars.com/')
+      @new.id.should == @existing.id
+    end
+
+    it "should find an existing locator if a path of '/' and missing scheme is the difference between the url given to the function and the existing locator" do
+      @new = Locator.find_or_init_by_url('stars.com/')
+      @new.id.should == @existing.id
+    end
+
+    it "should not find an existing locator if 'www' is the difference between the url given to the function and the existing locator" do
+      @new = Locator.find_or_init_by_url('http://www.stars.com')
+      @new.id.should be_nil
+    end
+
+    it "should set the path to nil if the path consists only '/'" do
+      Locator.find_or_init_by_url("stars.com/").path.should be_nil
+    end
+
+    it "should return nil if the url provided is bad" do
+      Locator.find_or_init_by_url("badurl").should be_nil
+    end
   end
 end

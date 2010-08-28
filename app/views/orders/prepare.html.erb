@@ -1,0 +1,49 @@
+<style>
+  @import url('/orders/design.css');
+</style>
+<script src="/orders/behavior.js"></script>
+
+<section >
+  <h1>Confirm your Refill</h1>
+  <dl>
+    <dt>Amount</dt>
+    <dd><%=@order[:amount_in_cents]%></dd>
+  </dl>
+  <dl itemscope="true" itemtype="http://weave.us/credit_card">
+    <dt>Payment</dt>
+    <dd itemprop="name"><%=@account[:billing_name]%></dd>
+    <dd itemprop="card_type_id"><%=CardType.find_by_id(@account[:card_type_id]).name%></dd>
+    <dd itemprop="number"><%=@account[:number]%></dd>
+    <dd itemprop="expires_on"><%=@account[:expires_on]%></dd>
+  </dl>
+
+  <dl itemscope="true" itemtype="http://weave.us/address">
+    <dt>Address</dt>
+    <dd itemprop="address"><%=@billing_address[:line_1]%></dd>
+    <dd itemprop="address2"><%=@billing_address[:line_2]%></dd>
+    <dd itemprop="city"><%=@billing_address[:city]%></dd>
+    <dd itemprop="state"><%=@billing_address[:state]%></dd>
+    <dd itemprop="postal_code"><%=@billing_address[:postal_code]%></dd>
+    <dd itemprop="country"><%=@billing_address[:country]%></dd>
+    <dd itemprop="phone"><%=@billing_address[:phone]%></dd>
+  </dl>
+
+  <%= form_tag( '/orders', :method => :post ) %>
+    <input type="hidden" id="amount_in_cents" name="order[amount_in_cents]" value="<%=@order[:amount_in_cents]%>" />
+    <input type="hidden" id="rebill" name="rebill" value=""/>
+    <input type="hidden" id="billing_name" name="account[billing_name]" value="<%=@account[:billing_name]%>"/>
+    <input type="hidden" id="card_type_id" name="account[card_type_id]" value="<%=@account[:card_type_id]%>"/>
+    <input type="hidden" id="number" name="account[number]" value="<%=@account[:number]%>"/>
+    <input type="hidden" id="expires_on" name="account[expires_on]" value="<%=@account[:expires_on]%>"/>
+    <input type="hidden" id="verification_code" name="account[verification_code]" value="<%=@account[:verification_code]%>"/>
+    <input type="hidden" id="line_1" name="billing_address[line_1]" value="<%=@billing_address[:line_1]%>"/>
+    <input type="hidden" id="line_2" name="billing_address[line_2]" value="<%=@billing_address[:line_2]%>"/>
+    <input type="hidden" id="city" name="billing_address[city]" value="<%=@billing_address[:city]%>"/>
+    <input type="hidden" id="state" name="billing_address[state]" value="<%=@billing_address[:state]%>"/>
+    <input type="hidden" id="postal_code" name="billing_address[postal_code]" value="<%=@billing_address[:postal_code]%>"/>
+    <input type="hidden" id="country" name="billing_address[country]" value="<%=@billing_address[:country]%>"/>
+    <input type="hidden" id="phone" name="billing_address[phone]" value="<%=@billing_address[:phone]%>"/>
+    <input type="submit" name="change" value="Change"/>
+    <input type="submit" name="commit" value="Make Payment"/>
+  </form>
+</section>

@@ -7,16 +7,20 @@ module LayoutHelper
     @content_for_title = page_title.to_s
     @show_title = show_title
   end
-  
+
   def show_title?
     @show_title
   end
-  
+
   def stylesheet(*args)
     content_for(:head) { stylesheet_link_tag(*args) }
   end
-  
+
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
+  end
+
+  def cents_to_dollars(amount_in_cents)
+    amount_in_dollars = "%.2f" % (amount_in_cents / 100.0)
   end
 end

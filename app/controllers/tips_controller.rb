@@ -1,20 +1,18 @@
 class TipsController < ApplicationController
   filter_access_to :index, :show, :create, :edit, :update, :destroy, :new, :attribute_check => false
 
-  # GET /tips
-  # GET /tips.xml
   def index
     @tip = Tip.new
     @tips = current_user.active_tips
+    @has_funds = current_user.funds_for_tipping?
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tips }
     end
+
   end
 
-  # GET /tips/1
-  # GET /tips/1.xml
   def show
     @tip = Tip.find(params[:id])
 
@@ -24,70 +22,51 @@ class TipsController < ApplicationController
     end
   end
 
-  # GET /tips/new
-  # GET /tips/new.xml
   def new
     @tip = Tip.new
 
     @current_user = current_user
     #@title = params[:title]
+    @has_funds = current_user.funds_for_tipping?
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.js
+
+    if @has_funds
+      respond_to do |format|
+        format.html # new.html.erb
+        format.js
+      end
+    else
+      respond_to do |format|
+        flash[:error] = t("weave.no_funds_for_tipping")
+        format.html { redirect_to :controller => 'orders', :action => 'new'}#(orders_new_url) }
+      end
     end
   end
 
-  # GET /tips/1/edit
-  def edit
-    @tip = Tip.find(params[:id])
-  end
-
-  # POST /tips
-  # POST /tips.xml
   def create
-    @tip = Tip.build(current_user, params[:tip][:uri])
+    begin
+      @tip = current_user.tip(params[:tip][:uri])
 
-    respond_to do |format|
-      if @tip.save
-        flash[:notice] = t("weave.tip_success")
-        format.html { redirect_to(tips_url) }
-        #format.xml  { render :xml => @tip, :status => :created, :location => @tip }
+      if @tip && @tip.valid?
+        respond_to do |format|
+          flash[:notice] = t("weave.tip_success")
+          format.html { redirect_to :action => "index" }
+          #format.xml  { render :xml => @tip, :status => :created, :location => @tip }
+        end
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @tip.errors, :status => :unprocessable_entity }
+        respond_to do|format|
+          flash[:error] = t("weave.tip_failed")
+          format.html { redirect_to :action => "new" }
+          #format.xml  { render :xml => @tip.errors, :status => :unprocessable_entity }
+        end
+      end
+
+    rescue InsufficientFunds
+      respond_to do |format|
+        flash[:error] = t("weave.no_funds_for_tipping")
+        format.html { redirect_to :controller => 'orders', :action => 'new'}#(orders_new_url) }
       end
     end
+
   end
-
-  # PUT /tips/1
-  # PUT /tips/1.xml
-  # TODO verify that user is logged in before attempting to add tip
-  def update
-    @tip = Tip.find(params[:id])
-    @tip.user_id = current_user.id
-    respond_to do |format|
-      if @tip.update_attributes(params[:tip])
-        flash[:notice] = 'Tip was successfully updated.'
-        format.html { redirect_to(@tip) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @tip.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /tips/1
-  # DELETE /tips/1.xml
-  def destroy
-    @tip = Tip.find(params[:id])
-    @tip.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(tips_url) }
-      format.xml  { head :ok }
-    end
-  end
-
 end

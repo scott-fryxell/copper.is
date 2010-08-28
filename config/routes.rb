@@ -43,6 +43,10 @@ ActionController::Routing::Routes.draw do |map|
     reports.active_users      "admin/reports/users/active",    :action => "active"
   end
 
+  map.with_options :controller => 'orders' do |order|
+    order.order_prepare   "order/prepare",    :action => "prepare"
+  end
+
   # RESTful API
   map.resources :tips
   map.resources :users

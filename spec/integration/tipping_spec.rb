@@ -3,16 +3,18 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe "Tipping" do
   fixtures :users, :roles_users, :addresses, :accounts, :transactions, :pages, :sites, :locators, :tip_bundles, :refills, :tips, :royalty_bundles, :tip_royalties, :royalty_bundles_sites
 
-  describe "a page" do
+  describe "as a guest " do
+    it "should not be available" do
+      visit "/tips/new"
+      response_body.should contain("PERMISSION DENIED")
+      visit "/tips"
+      response_body.should contain("PERMISSION DENIED")
+    end
 
-    it "should display some stats about the page when a tip has occurred"
-    it "should display the total amount of money the page has received"
-    it "should display how much money the page has received in the last month"
-    it "should display other sites the publisher owns"
-    it "should display a link to view the publisher's info"
+    it "should save a failed tip attempt in the session while the guest logs in"
   end
 
-  describe "from the service's tip page" do
+  describe "from the UI as an authenticated fan with an active tip bundle" do
     before(:each) do
       visit "/"
       click_link "Log in or sign up"
@@ -48,8 +50,14 @@ describe "Tipping" do
       response_body.should contain("Tip successfully created.")
     end
 
-    it "should encourage the user to tip if they haven't tipped in the last week"
+    it "should not allow a URL without a host to be tipped" do
+      fill_in "uri", :with => "foobar"
+      click_button "tip"
+      response_body.should contain("That is not a valid URL.")
+    end
 
+    it "should encourage the user to tip if they haven't tipped in the last week"
+    it "should not have to worry about duplicate tips (same page in any 24 hour period)"
     it "should tell fans how many tips they've made recently"
     it "should paginate the list of recent tips if it includes more than 20 items"
 
@@ -70,22 +78,63 @@ describe "Tipping" do
       it "should include the human-readable time since the tip was given"
     end
 
-  end
-
-  describe "as a fan" do
-    it "should be logged in to make a tip" do
-      visit "/tips/new"
-      response_body.should contain("PERMISSION DENIED")
+    describe "after tipping a page" do
+      it "should display some stats about the page when a tip has occurred"
+      it "should display the total amount of money the page has received"
+      it "should display how much money the page has received in the last month"
+      it "should display other sites the publisher owns"
+      it "should display a link to view the publisher's info"
     end
 
-    it "should be logged in to see tips" do
+  end
+
+  describe "from the UI as an authenticated fan without any funds" do
+    before(:each) do
+      visit "/"
+      click_link "Log in or sign up"
+      fill_in "email", :with => "patron@test.com"
+      fill_in "password", :with => "test"
+      choose "Yes, I have a password:"
+      click_button "Log in"
       visit "/tips"
-      response_body.should contain("PERMISSION DENIED")
     end
 
-    it "should have a tip queued up while they go through the authentication process"
-    it "should have funds availabile for the tip"
-    it "should not have to worry about duplicate tips (same page in any 24 hour period)"
-  end
+    it "should alert that there are no funds available for tipping" do
+      response_body.should contain("You need to refill your account in order to make tips")
+    end
 
+    describe "attempting to make tips" do
+      before(:each) do
+        visit "/tips/new"
+      end
+
+      it "should place the user into the refill process" do
+        response_body.should contain("Select your monthly tip stash amount")
+      end
+
+      it "should store the failed tip in the session during the refill process"
+
+      it "should after completing the refill process return the user to the tip page with the failed tip prefilled in the form" do
+        pending("deciding exactly what the flow should be and how the implementation will look")
+        fill_in "order_amount_in_cents", :with => "1000"
+        fill_in "account_billing_name", :with => "Martha Washington"
+        fill_in "account_number", :with => "4111111111111111"
+        fill_in "account_card_type_id", :with => "1"
+        fill_in "account_verification_code", :with => "123"
+        fill_in "account_expires_on_1i", :with => "2012"
+        fill_in "account_expires_on_2i", :with => "6"
+        fill_in "billing_address_line_1", :with => "1304 N. Sedgwick Street"
+        fill_in "billing_address_city", :with => "Chicago"
+        fill_in "billing_address_state", :with => "IL"
+        fill_in "billing_address_postal_code", :with => "60610"
+        fill_in "billing_address_country", :with => "US"
+        click_button "continue"
+        click_button "Make Payment"
+        response_body.should contain("successful purchase")
+        assert_have_selector "form", :id => "new_tip"
+        assert_have_selector "body > section > form > fieldset > textarea", :id => "uri", :value => "http://wooloo.dk"
+        field_with_id('uri').value.should == "http://wooloo.dk"
+      end
+    end
+  end
 end

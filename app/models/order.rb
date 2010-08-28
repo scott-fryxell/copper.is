@@ -10,16 +10,17 @@ class Order < ActiveRecord::Base
   validates_format_of :ip_address,
                       :with => /\A(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)(?:\.(?:25[0-5]|(?:2[0-4]|1\d|[1-9])?\d)){3}\z/,
                       :message => "not a valid IP address"
-  validates_presence_of :account_id
+  validates_presence_of :account
+  validates_associated :account
   validate :validate_card
 
-  attr_accessible :amount, :account_id
-  #attr_accessor :number, :verification_code
+  attr_accessible :amount_in_cents, :account_id
+  attr_accessor :rebill
 
   def place_order
     if save
       if purchase
-        trigger_payment_refill_fee # Need logging of the success of this method
+        create_payment! # TODO Need logging of the success of this method
         return true
       else
         return false
@@ -34,11 +35,10 @@ class Order < ActiveRecord::Base
   def purchase
     response = GATEWAY.purchase(amount_in_cents, credit_card, purchase_options)
     order_transactions.create!(:action => "purchase", :amount_in_cents => amount_in_cents, :response => response)
-    #cart.update_attribute(:purchased_at, Time.now) if response.success?
     response.success?
   end
 
-  def trigger_payment_refill_fee
+  def create_payment!
     self.transaction = Transaction.create(:amount_in_cents => amount_in_cents, :account => account)
     self.transaction.split_refill_and_fee
     self.transaction
@@ -64,8 +64,8 @@ class Order < ActiveRecord::Base
     :verification_value => account.verification_code.to_s(),
     :month              => account.expires_on.month,
     :year               => account.expires_on.year,
-    :first_name         => account.billing_name.split(' ')[1],
-    :last_name          => account.billing_name.split(' ')[2]
+    :first_name         => account.billing_name.split(' ')[0],
+    :last_name          => account.billing_name.split(' ')[1]
   )
   end
 
@@ -82,4 +82,5 @@ class Order < ActiveRecord::Base
       }
     }
   end
+
 end
