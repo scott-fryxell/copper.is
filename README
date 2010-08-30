@@ -88,3 +88,10 @@ Declarative Authorization
 
 
 When running the Blue Ridge tests from a browser use Firefox.
+
+We've adopted an event based approach to adding functionality to the user agent.
+
+Take a look at /public/agent/behavior.js. 
+specifically the success event (200). the client will look for a meta tag with the name event_trigger. any value in this tag will trigger an event of the same name within the browser. the bookmarklet /public/bookmarklet/behavior.js uses this approach extensively.
+
+to register an event use the jquery bind method: $(document).bind("foo", function (){/* bar full of functionality goes here*/}); and it will be triggered via $(document).trigger("foo");
