@@ -23,4 +23,9 @@ card_types = CardType.create([
 
 (1..31).each do |id|
   BillingPeriod.create(:id => id)
+
+configurations = Configuration.create([
+  { :property => 'fee_percent', :value => '7'}
+])
+
 end
