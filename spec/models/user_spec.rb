@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe User do
-  fixtures :users, :roles_users, :addresses, :accounts, :orders
+  fixtures :users, :roles_users, :addresses, :accounts, :orders, :transactions, :tip_bundles, :tips
 
   it "should find the sample user from the fixture" do
     User.find_by_email('test@test.com').should_not be_nil
