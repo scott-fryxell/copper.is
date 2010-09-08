@@ -89,19 +89,4 @@ describe User do
     end
   end
 
-  describe "active_bundle_tip_point_value
- method" do
-    it "should return the amount_in_cents value per tip for a user with active tips" do
-      @user = User.find_by_email('test@test.com')
-      @user.active_bundle_tip_point_value.should be > 0
-      @user.active_bundle_tip_point_value.should be_an_instance_of Fixnum
-    end
-
-    it "should return 0 for a user with no active tips" do
-      @user = User.find_by_email('publisher@test.com')
-      @user.active_bundle_tip_point_value.should be == 0
-      @user.active_bundle_tip_point_value.should be_an_instance_of Fixnum
-    end
-  end
-
 end
