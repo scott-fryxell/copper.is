@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   def active_tips
     bundle = active_tip_bundle
     if bundle
-      bundle.tips
+      tips = Tip.find_all_by_tip_bundle_id(bundle.id, :order => "created_at DESC")
     else
       []
     end
