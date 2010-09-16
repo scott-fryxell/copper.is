@@ -1,0 +1,198 @@
+body > aside {
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+  opacity: 0;
+  background-color: transparent;  
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  background-repeat:repeat;
+  position:fixed;
+  top: 0px;
+  left: 0px;
+}
+body.open > aside {
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+  
+  background-color: rgb(0, 0, 0);
+  opacity: 0.5;
+}
+
+body{
+  color:#808080;
+  border:transparent;
+  background-color: transparent;
+}
+  body > section{
+    outline: none;
+    display:none;
+  }
+    body > section > header > #error, #notice{
+     margin-top:1.5em;
+     margin-left:4em;
+     width: 32.7em;
+     min-height:4em;
+     border: .15em solid red;
+     -moz-border-radius: .3em;
+     border-radius: .3em;
+     background-color: #FFCEAD;
+     padding:1em;
+     list-style: circle inside;
+     margin-bottom: 1em;
+    }
+    body > section > header > #error li{
+     margin-bottom:.5em;
+     color:red;
+    }
+    body > section > header > #notice {
+     border: .15em solid #808080;
+     -moz-border-radius: .3em;
+     border-radius: .3em;
+     background-color: transparent
+    }
+    body > section > header > #notice li{
+     margin-bottom:.5em;
+     color:#808080;
+    }   
+    body > section > header > p{
+      position:absolute;
+      top: .75em;
+      left: 5.75em;
+      padding:0;
+      font-size: 2em;
+      text-align: right;
+    }
+    body > section.workflow {
+      position:absolute;
+      bottom: 0;
+      left: 20%;
+      width:auto;
+      border: .15em solid #808080;
+      -moz-border-radius: 1em 1em 0 0;
+      border-radius: 1em 1em 0 0;
+      background:white;
+      padding:1em;
+    }
+    body > section.workflow > header {
+
+    }
+      body > section.workflow > header > h1{
+        margin-top: 1.25em;
+        margin-left: .5em;
+        display:inline-block;
+      }
+      body > section.workflow > header > span.close{
+        float:right;
+        color:#808080;
+        font-size:2em;
+      }
+        body > section.workflow > header > span.close:hover{
+          cursor:pointer;
+        }
+    body > section.notify {
+      position:absolute;
+      top: 20%;
+      left: 20%;
+      width:50em;
+      border: .15em solid #808080;
+      -moz-border-radius: 1em 1em 1em 1em;
+      border-radius: 1em 1em 1em 1em;
+      background:white;
+      padding:1em;
+      opacity:.95;
+    }
+    body > section.alert {
+      background:#;
+      position:absolute;
+      bottom: 20%;
+      left: 20%;
+      width:40em;
+      border: .15em solid red;
+      -moz-border-radius: .3em;
+      border-radius: .3em;
+      background-color: #FFCEAD;
+      opacity:.95;
+      padding:1em;
+      margin-bottom: 1em;
+    }
+      body > section.alert header h1{
+        color:red;
+        opacity:1;
+      }
+      body > section.alert > header > span{
+        float:right;
+        color:red;
+      }
+        body > section.alert > header > span:hover{
+          cursor:pointer;
+        }
+      body > section.alert > ol {
+          list-style: circle inside;
+      }
+        body > section.alert > ol >li{
+          color:red;
+        }
+    body > section > form {
+      position:relative;
+      overflow:hidden;
+      margin-top: 2em;
+    }
+    body > section > form input{
+      color:808080;      
+    } 
+      body > section > form > input[type=submit] {
+        -webkit-transition-property: all;
+        -webkit-transition-duration:  1s;
+        color:#808080;
+        font-size:1.5em;
+        background: transparent;
+        border: .10em solid #808080;
+        width: 10em;
+        margin-left: 17em;
+        margin-top: 2.5em;
+        margin-bottom:0;
+        padding: .25em 0 .25em 0;
+        border-radius: .25em;
+        -moz-border-radius: .25em;
+      }
+      body > section > form > input[type=submit]:hover {
+        -webkit-transition-property: all;
+        -webkit-transition-duration:  1s;
+        color:white;
+        font-size:1.5em;
+        background: #808080;
+        border: .10em solid #EEEEEE;
+        width: 10em;
+        margin-left: 17em;
+        margin-top: 2.5em;
+        margin-bottom:0;
+        padding: .25em 0 .25em 0;
+        border-radius: .25em;
+        -moz-border-radius: .25em;
+      }
+      body > section > form > fieldset{
+        border:none;
+        margin-bottom:1em;
+      }
+        body > section > form > fieldset > label{
+          display:inline-block;
+          width:10em;
+          font-size:1.5em;
+        }
+        body > section > form > fieldset > input {
+          display:inline-block;
+          width: 16.5em;
+          font-size:1.5em;
+          border: 0.10em solid #808080;
+          margin-left:.5em;
+        }
+          body > section > form > fieldset > input[id=remember_me]{
+            width:.75em;
+            margin:.7em 0 0 10.75em;
+          }
+          body > section > form fieldset label[for="remember_me"] {
+            font-size:1.25em;
+            margin-left:0em;
+          }
+

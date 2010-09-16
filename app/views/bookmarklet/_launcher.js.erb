@@ -1,0 +1,18 @@
+<% cache do %>
+  function load_flb(url){
+    var f=document.createElement('iframe');
+    f.frameborder = 0;
+    f.allowtransparency = true;
+    f.style.position = "absolute";
+    f.style.top= "0";
+    f.style.padding= "0";
+    f.style.margin= "0";
+    f.style.left = "0";
+    f.scrolling = "no";
+    f.width = "100%";
+    f.height = "100%";
+    f.src= url + "#/" + window.location + "&title=" + document.getElementsByTagName("title")[0].innerHTML;
+    document.body.appendChild(f);
+  };
+  load_flb("<%=request.scheme%>://<%=request.host%>:<%=request.port%>/agent");
+<% end %>
