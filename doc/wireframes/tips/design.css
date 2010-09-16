@@ -14,7 +14,7 @@ body > section > form > fieldset legend{
   position:absolute;
   top: 6em;
   left: 25%;
-  margin-top: 2em;
+  margin-top: .5em;
   color: #CCC
 }
 body > section > form > fieldset textarea {

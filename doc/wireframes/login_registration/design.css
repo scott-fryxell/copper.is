@@ -23,7 +23,7 @@ body > section > form {
     body > section > form fieldset label[for="registered_yes"]{
       margin-bottom:1em;
     }
-    
+
     body > section > form fieldset input[id=rememeber_me],
     body > section > form fieldset input[id=registered_no],
     body > section > form fieldset input[id=registered_yes] {
