@@ -1,0 +1,32 @@
+<meta name="event_trigger" content="login_display">
+<header>
+  <h1>Weave.us</h1>
+  <span class="close">x</span>
+  <%- flash.each do |name, msg| -%>
+      <%= "<ol id=#{name}" %>
+        <%- msg.each do |m| -%>
+          <li><%= m %></li>
+        <%- end -%>
+      </ol>
+  <%- end -%>
+</header>
+<%= form_tag authenticate_path, :method => :post %>
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
+  <fieldset>
+    <label for="email">Email address</label>
+    <input type="text" tabindex="1" name="user[email]" id="email" value="<%=@user_session.email%>"/>
+  </fieldset>
+
+  <fieldset>
+    <label for="password">Password</label>
+    <input type="password"  tabindex="2" name="user[password]" value="" id="password"/>
+
+  </fieldset>
+  
+  <fieldset>
+    <input type="checkbox" name="user[remember_me]" value="1" id="remember_me"/>
+    <label for="remember_me" >Keep me logged in</label>
+  </fieldset>
+  <input type="hidden" name="registered" value="yes">
+  <input type="submit" tabindex="3" name="login" value="Log in" id="submit"/>
+</form>

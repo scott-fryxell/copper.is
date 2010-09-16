@@ -45,26 +45,43 @@ class TipsController < ApplicationController
 
   def create
     begin
-      @tip = current_user.tip(params[:tip][:uri])
+      if request.xhr?
+        @tip = current_user.tip(params[:uri], params[:title] )
+      else
+        @tip = current_user.tip(params[:tip][:uri])
+      end
 
       if @tip && @tip.valid?
-        respond_to do |format|
-          flash[:notice] = t("weave.tip_success")
-          format.html { redirect_to :action => "index" }
-          #format.xml  { render :xml => @tip, :status => :created, :location => @tip }
+
+        if request.xhr?
+          render :action => 'show_ajax', :layout => false
+        else
+          respond_to do |format|
+            flash[:notice] = t("weave.tip_success")
+            format.html { redirect_to :action => "index" }
+            #format.xml  { render :xml => @tip, :status => :created, :location => @tip }
+          end
         end
       else
-        respond_to do|format|
-          flash[:error] = t("weave.tip_failed")
-          format.html { redirect_to :action => "new" }
-          #format.xml  { render :xml => @tip.errors, :status => :unprocessable_entity }
+        if request.xhr?
+          render :action => 'error_ajax', :layout => false
+        else
+          respond_to do|format|
+            flash[:error] = t("weave.tip_failed")
+            format.html { redirect_to :action => "new" }
+            #format.xml  { render :xml => @tip.errors, :status => :unprocessable_entity }
+          end
         end
       end
 
     rescue InsufficientFunds
-      respond_to do |format|
-        flash[:error] = t("weave.no_funds_for_tipping")
-        format.html { redirect_to :controller => 'orders', :action => 'new'}#(orders_new_url) }
+      if request.xhr?
+        render :action => 'funds_ajax', :layout => false
+      else
+        respond_to do |format|
+          flash[:error] = t("weave.no_funds_for_tipping")
+          format.html { redirect_to :controller => 'orders', :action => 'new'}#(orders_new_url) }
+        end
       end
     end
 
