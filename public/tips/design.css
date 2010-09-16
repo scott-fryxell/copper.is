@@ -1,34 +1,38 @@
 body > section > form{
-  margin-left: 3.5em;
+
   margin-bottom:2em;
   border: 0.15em solid #808080;
-  -webkit-border-radius: .5em;
   -moz-border-radius: .5em;
   border-radius: .5em;
   background-color: #ddd;
-  width: 33em;
-  height: 12em;
+  height: 16em;
 }
 body > section > form div{
   display:none!important;
 }
+body > section > form > fieldset {
+  position:relative;
+}
+:focus{
+  outline:none;
+}
 body > section > form > fieldset > label{
   position:absolute;
-  top: 4.5em;
+  top: 2.5em;
   left: 5.5em;
-  margin-top: 3.5em;
+  margin-top: .5em;
   color: #CCC
 }
 body > section > form > fieldset textarea {
-  border: 0.05em solid #808080;
   background-color: white;
-  width: 21.75em;
+  width: 24.25em;
   height: 6em;
   font-size: 1.5em;
-  margin-left:.-1em;
+  margin:1em;
+  border:.1em solid gray;
 }
 body > section > form > input[type=submit]{
-  margin-top:1em;
-  margin-left: 23em;
+  margin-top:0;
+  margin-left: 28em;
   background-color: white;
 }

@@ -29,7 +29,7 @@
         <li><a href="http://blog.fasterlighterbetter.com">Blog</a></li>
       </nav>
     </header>
-    <section>
+    <section id="weave">
       <header>
         <%- flash.each do |name, msg| -%>
             <%= "<ol id=#{name}" %>
@@ -76,11 +76,10 @@
           <% end %>
         <% end %>
       </dl>
+      <figure accesskey="l" tabindex="2" id="weave_logo">
+        <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>
+      </figure>
     </aside>
-    <figure accesskey="l" tabindex="2" id="weave_logo">
-
-      <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>
-    </figure>
     <footer>
       <nav>
         <h2>Policies</h2>

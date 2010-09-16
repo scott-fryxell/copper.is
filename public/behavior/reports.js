@@ -1,7 +1,5 @@
 $(document).ready(function() {
-
-  var url = window.location + "";
-
+  var url = new String(window.location);
   if( url.search("#") == -1) {
     var a = $("body > section > header > nav > a:first-child");
     a.addClass("selected");

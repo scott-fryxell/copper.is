@@ -1,3 +1,7 @@
+body > section > form {
+  position:relative;
+}
+
 body > section > form label {
   width: 6em;
 }

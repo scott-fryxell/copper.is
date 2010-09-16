@@ -15,11 +15,13 @@ html {
     body > header,
     body > nav,
     body > aside,
-    body > section,
     body > footer {
       vertical-align:top;
       position:relative;
     }
+  body > section {
+    min-height: 44em;
+  }
   body > header {
     width: 40em;
     min-height: 3.5em;
@@ -28,7 +30,7 @@ html {
   }
     body > header img {
       margin-top: .25em;
-      margin-left:.75em;
+
       display:inline-block;
     }
     body > header nav {
@@ -46,27 +48,27 @@ html {
     display:inline-block;
     margin-right: .65em;
     margin-bottom: .5em;
-    margin-left:3.25em;
+
     width:40em;
     min-height:44em;
   }
-    body > section > header h1{
+    body > section > header h1,
+    body > section > h1{
       margin-top: .5em;
-      margin-left: .25em;
-      font-size: 2.75em;
+      font-size: 2.25em;
       margin-bottom: .60em;
     }
     body > section > header > p{
       margin-left:.5em;
     }
     body > section > p {
-      margin-left: 3.30em;
       font-size: 1.15em;
     }
     body > aside {
+      margin-top:3.75em;
       width: 13.20em;
       display:inline-block;
-      min-height: 30em;
+      min-height: 25em;
 
       border: .15em solid #808080;
       -moz-border-radius: .3em;
@@ -124,8 +126,7 @@ html {
   }
     body > footer nav{
       margin-top:.75em;
-      margin-left:1em;
-      width: 29%;
+      width: 33%;
       display:inline-block;
     }
     body > footer nav h2{
@@ -142,10 +143,10 @@ html {
       display:block;
       margin:auto;
     }
-    body > figure {
+    body > aside >figure {
       position:absolute;
-      right:4em;
-      bottom:11em;
+      left:1.5em;
+      bottom:1em;
       display:inline-block;
       vertical-align:top;
       opacity:.55;
@@ -154,7 +155,7 @@ html {
       -webkit-transition-duration:  1s;
       -webkit-transition-delay: 150ms;
     }
-      body > figure:hover {
+      body > aside > figure:hover {
         -webkit-transition-duration: 500ms;
         -webkit-transition-duration:  2s;
         -webkit-transition-property: all;
@@ -163,50 +164,11 @@ html {
         cursor: pointer;
       }
 
-  /* global form layout */
-  body > section > form{
-    margin-top:1em;
-    padding: 1em;
-    margin-left: 2em;
-  }
-    body > section > form fieldset {
-      margin-bottom:0;
-    }
-      body > section > form fieldset > legend{
-        display:inline-block;
-        margin-left:   .5em;
-        font-size:     1.25em;
-      }
-    body > section > form label {
-      display: inline-block;
-      font-size: 1.5em;
-      margin-left: .55em;
-    }
-    body > section > form input {
-      display:inline-block;
-      width: 16.5em;
-      font-size:1.5em;
-      border: 0.10em solid #808080;
-      margin-left:.5em;
-    }
-      body > section > form input[type=submit] {
-        width: 10em;
-        margin-left: 25.85em;
-        margin-top: 2.5em;
-        margin-bottom:0;
-        padding: .25em 0 .25em 0;
-        border-width: .13em;
-        border-radius: .25em;
-        -webkit-border-radius: .25em;
-        -moz-border-radius: .25em;
-        font-size: 1em;
-      }
-
   /* navigation stylings */
-      body > section > header >#error, #notice{
+      body > section > header > #error, #notice{
         margin-left:.6em;
-        width: 32.7em;
-        min-height:4em;
+        margin-right:.6em;
+        min-height:2em;
         border: .15em solid red;
         -moz-border-radius: .3em;
         border-radius: .3em;
@@ -247,3 +209,40 @@ html {
         -webkit-animation-duration: 3s;
         -webkit-animation-iteration-count: infinite;
       }
+
+      /* global form layout */
+      body > section > form{
+
+      }
+        body > section > form fieldset {
+          margin-bottom:0;
+        }
+          body > section > form fieldset > legend{
+            display:inline-block;
+            margin-left:   .5em;
+            font-size:     1.25em;
+          }
+        body > section > form label {
+          display: inline-block;
+          font-size: 1.5em;
+        }
+        body > section > form input {
+          display:inline-block;
+          width: 16.5em;
+          font-size:1.5em;
+          border: 0.10em solid #808080;
+          margin-left:.5em;
+        }
+          body > section > form input[type=submit] {
+            width: 10em;
+            margin-left: 25.85em;
+            margin-top: 2.5em;
+            margin-bottom:0;
+            padding: .25em 0 .25em 0;
+            border-width: .13em;
+            border-radius: .25em;
+            -webkit-border-radius: .25em;
+            -moz-border-radius: .25em;
+            font-size: 1em;
+          }
+

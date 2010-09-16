@@ -65,7 +65,4 @@
    }
 }
 
-html * {
-  -webkit-transition-property: all;
-  -webkit-transition-duration:  1s;
-}
+

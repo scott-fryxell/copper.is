@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US">
+  <head>
+    <style>
+      @import url('../navigation/index.css');
+      @import url('design.css');
+    </style>
+    <style>
+      body.wireframe{background: transparent url('register.svg') no-repeat scroll center top;}
+      body.navigation{background: transparent url('../navigation/navigation.svg') no-repeat scroll center top;}
+      body.guide{background: transparent url('../guide.svg') no-repeat scroll center top;}
+      body.outline * {color:black;outline: 0.1em double  black;outline-width:.2em;}
+    </style>
+    <link rel="stylesheet" href="screw.css" type="text/css" charset="utf-8" /> 
+    <script type="text/javascript" src="../../../vendor/plugins/blue-ridge/lib/blue-ridge.js"></script>
+
+    <title>Login and registration wireframes</title>
+  </head>
+  <body class="">
+
+    <section>
+      <h1>Login or create a new account</h1>
+      <form action="" method="get" accept-charset="utf-8">
+        <fieldset>
+          <label for="email">Enter your email address</label>
+          <input type="text" name="email" id="email" value=""/>
+        </fieldset>
+
+        <fieldset>
+          <legend>Do you have an weave password?</legend>
+          <input type="radio" name="registered" value="no" id="registered_no"/>
+          <label for="registered_no">No, I need an account</label><br/>
+
+          <input type="radio" name="registered" value="yes" checked="true" id="registered_yes"/>
+          <label for="registered_yes">Yes, I have a password</label>
+        </fieldset>
+
+        <fieldset>
+          <label for="password">Enter a password</label>
+          <input type="password" name="password" value="" id="password"/>
+          <input type="checkbox" name="remember_me" value="1" id="remember_me"/>
+          <label for="remember_me" >Keep me logged in</label>
+          <label for="confirm_password">Confirm your password</label>
+          <input type="text" name="email" id="confirm_password" value=""/>
+        </fieldset>
+
+        <input type="submit" name="login" value="Log in" id="submit"/>
+        <a href="#">Forgot my password</a>
+      </form>
+    </section>
+ 
+  </body>
+</html>

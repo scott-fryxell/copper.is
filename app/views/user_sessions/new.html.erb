@@ -1,9 +1,7 @@
 <% title "Log in or create an account" %>
-
 <style>
   @import url("/login_register/design.css");
 </style>
-<script src="/behavior/weave.js"></script>
 <script src="/login_register/behavior.js"></script>
 <h1>Login or create a new account</h1>
 
@@ -11,7 +9,7 @@
 
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
   <fieldset>
-    <label for="email">Enter your email address</label>
+    <label for="email">Email address</label>
     <input type="text" tabindex="1" name="user[email]" id="email" value="<%=@user_session.email%>"/>
   </fieldset>
 
