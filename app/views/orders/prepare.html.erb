@@ -4,7 +4,7 @@
 <script src="/orders/behavior.js"></script>
 
 <section >
-  <h1>Confirm your Refill</h1>
+  <h2>Confirm your Refill</h2>
   <dl>
     <dt>Amount</dt>
     <dd><%=@order[:amount_in_cents]%></dd>
@@ -12,7 +12,7 @@
   <dl itemscope="true" itemtype="http://weave.us/credit_card">
     <dt>Payment</dt>
     <dd itemprop="name"><%=@account[:billing_name]%></dd>
-    <dd itemprop="card_type_id"><%=CardType.find_by_id(@account[:card_type_id]).name%></dd>
+    <dd itemprop="type"><%=CardType.find_by_id(@account[:card_type_id]).name%></dd>
     <dd itemprop="number"><%=@account[:number]%></dd>
     <dd itemprop="expires_on"><%=@account[:expires_on]%></dd>
   </dl>

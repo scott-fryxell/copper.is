@@ -116,8 +116,30 @@ describe "Placing an order" do
       it "should display a success page when the order is processed" do
         click_button "continue"
         click_button "Make Payment"
-        response_body.should contain("successful purchase")
+        response_body.should contain("Refill Complete")
       end
+
+      it "should display the total, refill, and fee values on the order success page" do
+        click_button "continue"
+        click_button "Make Payment"
+        response_body.should contain("Total 1000")
+        response_body.should contain("Refill $xx.xx")
+        response_body.should contain("Fee $xx.xx")
+      end
+
+      it "should display the order number on the order success page" do
+        click_button "continue"
+        click_button "Make Payment"
+        response_body.should contain("Order # -NUMBER-")
+      end
+
+      it "should display the payment method on the order success page" do
+        click_button "continue"
+        click_button "Make Payment"
+        response_body.should contain("visa 4111111111111111")
+      end
+
+      it "should obfuscate the card number by only displaying the last four digits"
     end
 
     describe "when submitting invalid order information" do
@@ -146,7 +168,8 @@ describe "Placing an order" do
         click_button "Make Payment"
       end
 
-      it "should redirect back to the page the fan was previously on"
+      it "should redirect to the tip page by default"
+      it "should redirect back to the page the fan was previously on before starting the order process"
       it "should redirect to the tip page and prefill the URL to be tipped if the fan entered the refill process after an insufficient funds error during tipping"
       it "should display the correct refill amount in the account pane" do
       end
