@@ -63,7 +63,7 @@ body > section > p {
     body > section > form > fieldset > input[name=cvv2] {
       width: 3em;
     }
-    body > section > form > fieldset > select[name=state], 
+    body > section > form > fieldset > select[name=state],
     body > section > form > fieldset > select[name=country] {
       margin-right: 7em;
     }
@@ -103,9 +103,9 @@ body > section > p {
       body > section dl dd {
         margin-left: 13em;
       }
-      
+
       body > section dl[itemtype="http://weave.us/address"] dd {
-        width: 10em;
+        width: 12em;
       }
       body > section dl[itemtype="http://weave.us/address"] dd[itemprop=city]{
         width: auto;
@@ -122,14 +122,41 @@ body > section > p {
         display: inline;
         margin-left: 1em;
       }
+      body > section dl[itemtype="http://weave.us/order_number"] dt {
+        width: 3.5em;
+      }
+      body > section dl[itemtype="http://weave.us/order_number"] dd[itemprop=number] {
+        margin-left: 7.5em;
+      }
+      body > section dl[itemtype="http://weave.us/refill_totals"] dt[itemprop=refill] {
+        display: block;
+        font-size:.75em;
+      }
+      body > section dl[itemtype="http://weave.us/refill_totals"] dt[itemprop=fee] {
+        display: block;
+        font-size:.75em;
+      }
+      body > section dl[itemtype="http://weave.us/refill_totals"] dd[itemprop=total] {
+
+      }
+      body > section dl[itemtype="http://weave.us/refill_totals"] dd[itemprop=refill] {
+        font-style: italic;
+        display: block;
+        font-size:.75em;
+      }
+      body > section dl[itemtype="http://weave.us/refill_totals"] dd[itemprop=fee] {
+        font-style: italic;
+        display: block;
+        font-size:.75em;
+      }
 
     body > section > form > input[name=change]{
       display:inline-block;
       margin-left: 0;
-      
+
     }
-    
-    
+
+
     body > section > form > input[name=make_payment]{
       display:inline-block;
       margin-left: 5em;

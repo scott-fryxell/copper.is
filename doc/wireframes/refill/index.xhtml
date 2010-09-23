@@ -18,9 +18,9 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit,
         sed do eiusmod tempor incididunt ut labore et dolore magna
         aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-        Duis aute irure dolor in reprehenderit in voluptate velit 
-        esse cillum dolore eu fugiat nulla pariatur. 
+        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur.
       </p>
 
       <form action="#" method="GET" accept-charset="utf-8">
@@ -87,24 +87,24 @@
           <select name="state">
             <option>CA</option>
           </select>
-          
+
           <label for="zip">Zip Code</label>
           <input type="text" name="zip"/>
-          
+
           <label for="country">Country</label>
           <select name="country">
             <option value="USA">USA!</option>
             <option value="USA">USA!!</option>
             <option value="USA">USA!!!!</option>
           </select>
-          
+
           <label for="phone">Billing Phone</label>
           <input type="text" name="phone" value=""/>
         </fieldset>
         <input type="submit" name="continue" value="Continue"/>
       </form>
     </section>
-    <section>
+    <section style="display:block;">
       <h1>Confirm your Refill</h1>
       <dl>
         <dt>Amount</dt>
@@ -132,6 +132,40 @@
         <input type="submit" name="make_payment" value="Make Payment"/>
       </form>
     </section>
+
+    <section>
+      <h1>Refill Complete</h1>
+      <dl itemscope="true" itemtype="http://weave.us/order_number">
+        <dt>Order #</dt>
+        <dd itemprop="number">12665666791</dd>
+      </dl>
+      <dl itemscope="true" itemtype="http://weave.us/refill_totals">
+        <dt itemprop="total">Total</dt>
+        <dt itemprop="refill">Refill</dt>
+        <dt itemprop="fee">Fee</dt>
+        <dd itemprop="total">$10.70</dd>
+        <dd itemprop="refill">$10.00</dd>
+        <dd itemprop="fee">$00.70</dd>
+      </dl>
+
+      <dl itemscope="true" itemtype="http://weave.us/credit_card">
+        <dt>Payment</dt>
+        <dd itemprop="name">Harry Handsome</dd>
+        <dd itemprop="type">Visa</dd>
+        <dd itemprop="number">...4532</dd>
+      </dl>
+      <dl itemscope="true" itemtype="http://weave.us/address">
+        <dt>Address</dt>
+        <dd itemprop="address">591a dolores st</dd>
+        <dd itemprop="address2">apartment b</dd>
+        <dd itemprop="city">San Francisco</dd>
+        <dd itemprop="state">CA</dd>
+        <dd itemprop="zip_code">94110</dd>
+        <dd itemprop="country">United States</dd>
+        <dd itemprop="phone">415.269.5665</dd>
+      </dl>
+    </section>
+
     <xi:include href="../navigation/index.xhtml" xpointer="id('account')"/>
     <xi:include href="../navigation/index.xhtml" xpointer="id('weave_logo')"/>
     <xi:include href="../navigation/index.xhtml" xpointer="id('footer')"/>
