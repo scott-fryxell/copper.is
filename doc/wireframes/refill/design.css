@@ -76,7 +76,6 @@ body > section > p {
     body > section > dl  > dd{
       display: inline-block;
       font-weight:normal;
-      width: 0;
       margin: .5em 0 0 0;
     }
       body > section h2,
@@ -103,17 +102,24 @@ body > section > p {
       body > section dl dd {
         margin-left: 13em;
       }
-
+      body > section dl {
+        margin-top:1em;
+      }
       body > section dl[itemtype="http://weave.us/address"] dd {
-        width: 12em;
+        display:block;
+        margin-left:13em;
+      }
+      body > section dl[itemtype="http://weave.us/address"] dd[itemprop=address] {
+        display:inline-block;
+        margin-left:.75em;
       }
       body > section dl[itemtype="http://weave.us/address"] dd[itemprop=city]{
         width: auto;
       }
       body > section dl[itemtype="http://weave.us/address"] dd[itemprop=state]{
-        display: inline;
-        margin-left: .25em;
-        width: 1em;
+        display: inline-block;
+        margin-left: 13em;
+        width: 1.5em;
       }
         body > section dl[itemtype="http://weave.us/address"] dd[itemprop=state]:after {
           content:',';
@@ -122,31 +128,39 @@ body > section > p {
         display: inline;
         margin-left: 1em;
       }
-      body > section dl[itemtype="http://weave.us/order_number"] dt {
-        width: 3.5em;
-      }
-      body > section dl[itemtype="http://weave.us/order_number"] dd[itemprop=number] {
-        margin-left: 7.5em;
-      }
-      body > section dl[itemtype="http://weave.us/refill_totals"] dt[itemprop=refill] {
-        display: block;
-        font-size:.75em;
-      }
-      body > section dl[itemtype="http://weave.us/refill_totals"] dt[itemprop=fee] {
-        display: block;
-        font-size:.75em;
-      }
-      body > section dl[itemtype="http://weave.us/refill_totals"] dd[itemprop=total] {
+      
+      
+      body > section dl{
 
+      }
+      body > section dl dt{
+
+        width:8em;
+        margin:0;
+      }
+      body > section dl dd{
+        margin-left:1em;
+        width:13em;
+      }
+      body > section dl[itemtype="http://weave.us/refill_totals"] dt:first-child {
+        font-size:1.5em;
+        width:8em;
+        margin-left:0;
+      }
+      
+      body > section dl[itemtype="http://weave.us/refill_totals"] dt {
+        font-style:italic;
+        font-size:.75em;
+        width: 15em;
+        margin-left:2em;
       }
       body > section dl[itemtype="http://weave.us/refill_totals"] dd[itemprop=refill] {
         font-style: italic;
-        display: block;
         font-size:.75em;
+        width: 20em;
       }
       body > section dl[itemtype="http://weave.us/refill_totals"] dd[itemprop=fee] {
         font-style: italic;
-        display: block;
         font-size:.75em;
       }
 
