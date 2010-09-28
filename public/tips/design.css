@@ -36,3 +36,7 @@ body > section > form > input[type=submit]{
   margin-left: 28em;
   background-color: white;
 }
+
+body > section > table td:nth-child(even){
+  width: 10em;
+}

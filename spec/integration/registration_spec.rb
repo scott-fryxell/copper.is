@@ -7,7 +7,7 @@ describe "Account" do
 
     before(:each) do
       visit "/"
-      click_link "Log in or sign up"
+      click_link "Sign in or sign up"
       choose "No, I need an account"
     end
 
@@ -19,7 +19,7 @@ describe "Account" do
       fill_in "email", :with => "newguy@newguy.com"
       fill_in "password", :with => "thepassword"
       fill_in "password_confirmation", :with => "thepassword"
-      click_button "Log in"
+      click_button "Sign in"
       response_body.should contain("Registration successful. Please check your email for instructions on activating your account.")
     end
 
@@ -27,7 +27,7 @@ describe "Account" do
       fill_in "email", :with => "test@test.com"
       fill_in "password", :with => "test"
       fill_in "password_confirmation", :with => "test"
-      click_button "Log in"
+      click_button "Sign in"
       response_body.should contain("There is already a Weave account for that email address.")
     end
 
@@ -35,7 +35,7 @@ describe "Account" do
       fill_in "email", :with => "testtest"
       fill_in "password", :with => "test"
       fill_in "password_confirmation", :with => "test"
-      click_button "Log in"
+      click_button "Sign in"
       response_body.should contain("You must sign up with a valid email address.")
     end
 
@@ -43,7 +43,7 @@ describe "Account" do
       fill_in "email", :with => "confirmme@test.com"
       fill_in "password", :with => "test"
       fill_in "password_confirmation", :with => ""
-      click_button "Log in"
+      click_button "Sign in"
       response_body.should contain("Passwords did not match.")
     end
 
@@ -51,7 +51,7 @@ describe "Account" do
       fill_in "email", :with => "confirmme@test.com"
       fill_in "password", :with => "tes"
       fill_in "password_confirmation", :with => "tes"
-      click_button "Log in"
+      click_button "Sign in"
       response_body.should contain("Password must be at least 4 characters long")
     end
 
@@ -59,12 +59,12 @@ describe "Account" do
       fill_in "email", :with => "newguy@newguy.com"
       fill_in "password", :with => "thepassword"
       fill_in "password_confirmation", :with => "thepassword"
-      click_button "Log in"
-      click_link "Log in or sign up"
+      click_button "Sign in"
+      click_link "Sign in or sign up"
       fill_in "email", :with => "newguy@newguy.com"
       fill_in "password", :with => "thepassword"
       choose "Yes, I have a password:"
-      click_button "Log in"
+      click_button "Sign in"
       response_body.should contain("Your account hasn't been activated. Check your email for instructions on how to activate it.")
     end
 

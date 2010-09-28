@@ -42,11 +42,11 @@ describe "The standard Weave page" do
   describe "account section" do
     describe "when logged in as a fan with a filled account" do
       before(:each) do
-        click_link "Log in or sign up"
+        click_link "Sign in or sign up"
         fill_in "email", :with => "test@test.com"
         fill_in "password", :with => "test"
         choose "Yes, I have a password:"
-        click_button "Log in"
+        click_button "Sign in"
       end
 
       it "should have an account section" do
@@ -84,11 +84,11 @@ describe "The standard Weave page" do
 
     describe "when logged in as a fan with no refill" do
       before(:each) do
-        click_link "Log in or sign up"
+        click_link "Sign in or sign up"
         fill_in "email", :with => "patron@test.com"
         fill_in "password", :with => "test"
         choose "Yes, I have a password:"
-        click_button "Log in"
+        click_button "Sign in"
       end
 
       it "should have an account section" do
@@ -111,11 +111,11 @@ describe "The standard Weave page" do
 
     describe "when logged in as a publisher" do
       before(:each) do
-        click_link "Log in or sign up"
+        click_link "Sign in or sign up"
         fill_in "email", :with => "publisher@test.com"
         fill_in "password", :with => "test"
         choose "Yes, I have a password:"
-        click_button "Log in"
+        click_button "Sign in"
       end
 
       it "should link to a publisher home page for a publisher"
@@ -124,11 +124,11 @@ describe "The standard Weave page" do
 
     describe "when logged in as an administrator" do
       before(:each) do
-        click_link "Log in or sign up"
+        click_link "Sign in or sign up"
         fill_in "email", :with => "admin@test.com"
         fill_in "password", :with => "test"
         choose "Yes, I have a password:"
-        click_button "Log in"
+        click_button "Sign in"
       end
 
       it "should link to a administrators home page for an administrator" do
@@ -140,7 +140,7 @@ describe "The standard Weave page" do
 
     describe "when not logged in" do
       it "should include a login or register widget when guest is unknown" do
-        click_link "Log in or sign up"
+        click_link "Sign in or sign up"
       end
     end
   end

@@ -11,7 +11,9 @@
 </header>
 <dl >
   <dt>Title</dt>
-    <dd><%=h @tip.locator.page.description %></dd>
+    <dd>
+      <%=h CGI::unescape(@tip.locator.page.description) %>
+    </dd>
   <dt>Url:</dt>
     <dd><%=h @tip.locator.canonicalized %></dd>
   <dt>Multiplier:</dt>

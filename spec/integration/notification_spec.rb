@@ -5,7 +5,7 @@ describe "Notification" do
 
   before(:each) do
     visit "/"
-    click_link "Log in or sign up"
+    click_link "Sign in or sign up"
   end
 
   describe "when an error is thrown" do
@@ -13,7 +13,7 @@ describe "Notification" do
       fill_in "email", :with => "baduser@test.com"
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
-      click_button "Log in"
+      click_button "Sign in"
     end
 
     it "should display the proper error notification UI" do
@@ -28,7 +28,7 @@ describe "Notification" do
       fill_in "email", :with => "test@test.com"
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
-      click_button "Log in"
+      click_button "Sign in"
     end
 
     it "should display the proper success notification UI" do

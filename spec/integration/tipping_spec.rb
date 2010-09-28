@@ -17,11 +17,11 @@ describe "Tipping" do
   describe "from the UI as an authenticated fan with an active tip bundle" do
     before(:each) do
       visit "/"
-      click_link "Log in or sign up"
+      click_link "Sign in or sign up"
       fill_in "email", :with => "test@test.com"
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
-      click_button "Log in"
+      click_button "Sign in"
       click_link "Home"
     end
 
@@ -34,7 +34,7 @@ describe "Tipping" do
     end
 
     it "should include a list of recent tips made by that user" do
-      assert_have_selector "body > section > table > caption", :content => "My current tips"
+
       assert_have_selector "body > section > table > tbody > tr > td", :content => "http://example.com/"
     end
 
@@ -91,11 +91,11 @@ describe "Tipping" do
   describe "from the UI as an authenticated fan without any funds" do
     before(:each) do
       visit "/"
-      click_link "Log in or sign up"
+      click_link "Sign in or sign up"
       fill_in "email", :with => "patron@test.com"
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
-      click_button "Log in"
+      click_button "Sign in"
       visit "/tips"
     end
 

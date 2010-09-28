@@ -60,11 +60,11 @@ describe "Placing an order" do
   describe "when logged in as a fan" do
     before(:each) do
       visit "/"
-      click_link "Log in or sign up"
+      click_link "Sign in or sign up"
       fill_in "email", :with => "test@test.com"
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
-      click_button "Log in"
+      click_button "Sign in"
       click_link "Home"
       visit "/orders/new"
     end

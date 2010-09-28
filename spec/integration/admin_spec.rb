@@ -5,11 +5,11 @@ describe "Admin" do
 
   before(:each) do
     visit "/"
-    click_link "Log in or sign up"
+    click_link "Sign in or sign up"
     fill_in "email", :with => "admin@test.com"
     fill_in "password", :with => "test"
     choose "Yes, I have a password:"
-    click_button "Log in"
+    click_button "Sign in"
     visit "/admin"
   end
 
@@ -26,7 +26,7 @@ describe "Admin" do
     describe "access" do
       before(:each) do
         click_link "Sign out"
-        click_link "Log in or sign up"
+        click_link "Sign in or sign up"
       end
 
       it "should not be given to guests" do
@@ -38,7 +38,7 @@ describe "Admin" do
         fill_in "email", :with => "patron@test.com"
         fill_in "password", :with => "test"
         choose "Yes, I have a password:"
-        click_button "Log in"
+        click_button "Sign in"
         visit "/admin"
         response_body.should contain("PERMISSION DENIED")
       end
@@ -47,7 +47,7 @@ describe "Admin" do
         fill_in "email", :with => "publisher@test.com"
         fill_in "password", :with => "test"
         choose "Yes, I have a password:"
-        click_button "Log in"
+        click_button "Sign in"
         visit "/admin"
         response_body.should contain("PERMISSION DENIED")
       end
@@ -56,7 +56,7 @@ describe "Admin" do
         fill_in "email", :with => "developer@test.com"
         fill_in "password", :with => "test"
         choose "Yes, I have a password:"
-        click_button "Log in"
+        click_button "Sign in"
         visit "/admin"
         response_body.should contain("PERMISSION DENIED")
       end
@@ -83,11 +83,11 @@ describe "Admin" do
 
     it "should not be available to non-admin users" do
       click_link "Sign out"
-      click_link "Log in or sign up"
+      click_link "Sign in or sign up"
       fill_in "email", :with => "test@test.com"
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
-      click_button "Log in"
+      click_button "Sign in"
       visit "/admin/reports/users/active"
       response_body.should contain("PERMISSION DENIED")
     end

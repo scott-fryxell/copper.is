@@ -14,11 +14,6 @@
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
       </a>
       <nav>
-        <% permitted_to? :home, :admin do %>
-          <li><%= link_to "Admin",      admin_path %></li>
-        <% end %>
-        <li><%= link_to "Pages",      pages_report_path %></li>
-        <li><%= link_to "Sites",      sites_report_path %></li>
         <li>
           <% if current_user %>
             <%= link_to "Home",       tips_path %>
@@ -26,6 +21,11 @@
             <%= link_to "Home",       root_path %>
           <% end %>
         </li>
+        <% permitted_to? :home, :admin do %>
+          <li><%= link_to "Admin",      admin_path %></li>
+        <% end %>
+        <li><%= link_to "Pages",      pages_report_path %></li>
+        <li><%= link_to "Sites",      sites_report_path %></li>
         <li><a href="http://blog.fasterlighterbetter.com">Blog</a></li>
       </nav>
     </header>
@@ -56,14 +56,14 @@
               <li><%= link_to "Admin Panel",      admin_path %></li>
             <% end %>
           <% else %>
-            <%= link_to "Log in or sign up", login_path %>
+            <%= link_to "Sign in or sign up", login_path %>
           <% end %>
         </nav>
       </header>
       <dl>
         <% if current_user %>
           <% if current_user.funds_for_tipping? %>
-            <dt>Pays out in</dt>
+            <dt>Cycle ends in</dt>
             <dd itemprop="billing_period">14<span itemprop="interval">days</span></dd>
             <dt>Balance</dt>
             <dd itemprop="balance"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></dd>

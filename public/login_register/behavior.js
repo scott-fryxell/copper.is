@@ -5,6 +5,6 @@ $(document).ready(function() {
   });
   $("#registered_yes").change(function() {
     $('form').removeClass("register");
-    $("input[type=submit]").attr("value","Log in");
+    $("input[type=submit]").attr("value","Sign in");
   });
 });

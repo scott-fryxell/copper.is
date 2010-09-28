@@ -8,9 +8,9 @@ Screw.Unit(function (){
       expect( $('#submit').attr("value") ).to(equal,"Create Account" );
     });
 
-    it("should change the login button to 'log in' when logging in to the service", function() {
+    it("should change the login button to 'Sign in' when logging in to the service", function() {
       $("#registered_yes").change();
-      expect( $('#submit').attr("value") ).to(equal,"Log in" );
+      expect( $('#submit').attr("value") ).to(equal,"Sign in" );
     });
   })
 });

@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
   def index
-    if request.xhr?
-      render :action => 'index_ajax', :layout => false
-    end
+    @pages = Page.most_tips
   end
 end

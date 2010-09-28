@@ -16,8 +16,16 @@
     <% @tips.each do |t| %>
     <li>
       <dl itemscope="true" itemtype="http://weave.us/page">
-        <dt itemprop="page"><a href="<%=t.primary_locator.canonicalized %>"><%=h t.description %></a></dt>
-        <dd itemprop="publisher"><a href="<%=t.primary_locator.canonicalized %>"><%=h t.primary_locator.canonicalized %></a></dd>
+        <dt itemprop="page">
+          <a href="<%=t.primary_locator.canonicalized %>">
+            <%=h CGI::unescape(t.description) %>
+          </a>
+        </dt>
+        <dd itemprop="publisher">
+          <a href="<%=t.primary_locator.canonicalized %>">
+            <%=h t.primary_locator.canonicalized %>
+          </a>
+        </dd>
         <dd itemprop="earned">$<%=h t.revenue_earned %> <span>earned</span></dd>
         <% if t.tips_earned != 0 %>
         <dd itemprop="average">$0.18 <%=h t.revenue_earned/t.tips_earned %> </dd>
