@@ -1,0 +1,93 @@
+body > section {
+  padding: 1em;
+  margin-top: 2.75em;
+  margin-left: .75em;
+  width: 33em;
+  min-height: 18em;
+  border: .15em solid #808080;
+  -moz-border-radius: .5em;
+  border-radius: .5em;
+  background-color: #DDDDDD;
+}
+  body > section > h1{
+    font-size: 1.5em;
+    margin: 0 0 .6em 0;
+  }
+  body > section > span.close{
+    position:absolute;
+    top:0;
+    right:0;
+  }
+  body > section ol{
+    padding: 1em;
+    min-height: 15.5em;
+    border: .10em solid #808080;
+    background-color: white;
+  }
+    body > section ol > li{
+      margin: 0 0 1.5em 0;
+    }
+    body > section ol li h2 {
+      font-size:1.5em;
+      margin: .7em 0 1em 0;
+    }
+    body > section ol li p {
+      margin: 0 0 0 1em;
+    }
+    body > section ol > li:first-child p {
+      display:inline-block;
+      width:13em;
+    }
+    body > section ol > li div {
+      font-family:"Zapf Dingbats";
+      color:#f60;
+      display:inline-block;
+      margin: 0 0 0 0;
+      margin-left:.5em;
+      vertical-align:middle;
+      font-size:2.5em;
+      position:relative;
+      -webkit-animation-name: point;
+      -webkit-animation-duration: 2.5s;
+      -webkit-animation-direction: normal;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-timing-function: ease-in-out;
+    }
+    body > section ol > li > a {
+      text-align:center;
+      font-size: 1.25em;
+      border: .10em solid #f60;
+      -moz-border-radius: .3em;
+      border-radius: .3em;
+
+      color:#F60;
+      font-weight:normal;
+
+      background-color: #E7E7E7;
+      display:inline-block;
+      padding:1em;
+      margin: 0;
+    }
+    body > section ol > li > a:focus{
+      outline:none;
+    }
+    body section h1 {
+      margin:1em 0;
+      font-size:2em;
+    }
+    body section  ol li textarea {
+      font-size:1em;
+      padding:.25em;
+      margin-top:3em;
+      display:block;
+      width:30em;
+      height:27em;
+    }
+    body section  ol li figure {
+      margin-top:3em;
+    }
+    body section ol li figure img {
+      margin:0 auto;
+      margin-top:1em;
+      display:block;
+    }
