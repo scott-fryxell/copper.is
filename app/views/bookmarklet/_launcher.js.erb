@@ -1,20 +1,20 @@
-<% cache do %>
-javascript:var f=document.createElement('iframe');
-f.id='weave';
-f.frameborder=0;
-f.allowtransparency=true;
-f.style.position='absolute';
-f.style.top='0';
-f.style.padding='0';
-f.style.zIndex='1000'
-f.style.margin='0';
-f.style.border='none';
-f.style.left='0';
-f.scrolling='no';
-f.width='100%';
-f.height='100%';
-f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/agent#/'+
-window.location+'&title='+
-document.getElementsByTagName('title')[0].innerHTML;
-document.body.appendChild(f);
-<% end %>
+(function(){
+  var f=document.createElement('iframe');
+  f.id='weave';
+  f.frameborder=0;
+  f.allowtransparency=true;
+  f.style.position='absolute';
+  f.style.top='0';
+  f.style.padding='0';
+  f.style.zIndex='1000';
+  f.style.margin='0';
+  f.style.border='none';
+  f.style.left='0';
+  f.scrolling='no';
+  f.width='100%';
+  f.height='100%';
+  f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/agent#/'+
+  window.location+'&title='+
+  document.getElementsByTagName('title')[0].innerHTML;
+  document.body.appendChild(f);
+})()
