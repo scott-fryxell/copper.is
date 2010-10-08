@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en_us" xmlns="http://www.w3.org/1999/xhtml"
-                   xmlns:xi="http://www.w3.org/2001/XInclude" >
+                   xmlns:x="http://www.w3.org/2001/XInclude" >
   <head>
     <title>Site report wireframe</title>
     <style>
       @import url("design.css");
     </style>
-    <script src="../behavior/jquery.js" />
-    <script src="../behavior/reports.js" />
+    <script src="../../../public/behavior/jquery.js" />
+    <script src="../../../public/behavior/xinclude.js" />
+    <script src="../../../public/behavior/reports.js" />
   </head>
   <body class="">
-    <xi:include href="../navigation/index.xhtml" xpointer="id('header')"/>
+    <x:include href="../navigation/index.xhtml" xpointer="id('header')"/>
     <section>
       <header>
+        <hgroup>
+          <span>report</span>
+          <h1>sites</h1>
+          <h2>pages</h2>
+        </hgroup>
+        
         <nav>
-          <a href="#popular">Popular</a>
-          <a href="#profitable">Profitable</a>
-          <a href="#">Search</a>
+          <a href="#sites">Sites</a>
+          <a href="#pages">$ Earned</a>
         </nav>
-        <h1>Sites</h1>
+        <input type="search" value="" name="search" id="search" />
       </header>
-      <ol id="profitable">
+      h
+      <ol id="sites">
         <li>
           <dl itemscope="true" itemtype="http://weave.us/site">
             <dt itemprop="site">www.pandaswithguns.com</dt>
@@ -32,7 +39,7 @@
         </li>
       </ol>
       
-      <ol id="popular">
+      <ol id="pages">
         <li>
           <dl itemscope="true" itemtype="http://weave.us/site">
             <dt itemprop="site">www.hot_for_panda_hugs.com</dt>
@@ -45,9 +52,9 @@
       </ol>
       
     </section>
-    <xi:include href="../navigation/index.xhtml" xpointer="id('account')"/>
-    <xi:include href="../navigation/index.xhtml" xpointer="id('weave_logo')"/>
-    <xi:include href="../navigation/index.xhtml" xpointer="id('footer')"/>
+    <x:include href="../navigation/index.xhtml" xpointer="id('account')"/>
+    <x:include href="../navigation/index.xhtml" xpointer="id('weave_logo')"/>
+    <x:include href="../navigation/index.xhtml" xpointer="id('footer')"/>
 
   </body>
 
