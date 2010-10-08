@@ -1,13 +1,15 @@
-<style>
-  @import url("/password/design.css");
-</style>
-<h1>Activate Account</h1>
-<p>Please enter your email address to request an activation email</p>
-<%= form_tag send_activation_path %>
-  <fieldset>
-    <label for="email">Email</label>
-    <input type="text" name="email" id="email" value=""/>
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>" />
-  </fieldset>
-  <input type="submit" value="Request Activation"/>
-</form>
+<section>
+  <style>
+    @import url("/password/design.css");
+  </style>
+  <h1>Activate Account</h1>
+  <p>Please enter your email address to request an activation email</p>
+  <%= form_tag send_activation_path %>
+    <fieldset>
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" value=""/>
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>" />
+    </fieldset>
+    <input type="submit" value="Request Activation"/>
+  </form>
+</section>

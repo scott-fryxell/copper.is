@@ -1,11 +1,11 @@
-<style>
-@import url('/orders/design.css');
-
-p {
-  margin-bottom: 1em;
-}
-</style>
-<script src="/orders/behavior.js"></script>
+<section>
+  <style>
+    @import url('/orders/design.css');
+    p {
+      margin-bottom: 1em;
+    }
+  </style>
+  <script src="/orders/behavior.js"></script>
   <h1>Refill your tip stash</h1>
   <p>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit,
@@ -17,22 +17,23 @@ p {
   </p>
 
   <% form_for @order, :url => (order_prepare_path) do |f| %>
-      <h1>Select your monthly tip stash amount</h1>
-      <%= f.text_field :amount_in_cents  %>
-      <%= f.check_box :rebill %>
-      <label for="rebill">Refill automatically each month</label>
-    </fieldset>
+
     <fieldset>
-      <label for="amount">
-        <span>+<%= @fee_percent %>%</span>
-        <span>$xx.xx</span>
-      </label>
-      <label for="total">
-        <span>Total</span>
-        <span>$xx.xx</span>
-      </label>
+      <%= f.text_field :amount_in_cents  %>
+      <label for="amount">My Budget</label>
+      <input type="text" name="amount" value="10.00">
+      <label for="fee">Weave Fee</label>
+      <input type="text" name="fee" value=".70">
+      <label for="total">Total</label>
+      <input type="text" name="total" value="10.70">
+      
     </fieldset>
     
+    <fieldset>
+      <%= f.check_box :rebill %>
+      <label for="rebill">Refill automatically each month</label>      
+    </fieldset>
+
     <fieldset>
       <h1>Payment options</h1>
       <% fields_for :account do |a| %>
@@ -82,8 +83,9 @@ p {
 
       <% end %>
     </fieldset>
-    
+
     <%= submit_tag "Continue" %>
-    
+
     <% end %>
-  </form>
+  </form>  
+</section>

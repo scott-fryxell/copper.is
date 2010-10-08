@@ -1,5 +1,5 @@
-<% title "New Locator" %>
 <section>
+  <% title "New Locator" %>
   <header>
     <aside>
       Locator Form For...
@@ -12,7 +12,6 @@
   <% form_for(@locator) do |f| %>
   <fieldset>
     <legend><%= f.error_messages %></legend>
-
     <label for="locator_scheme"><%= f.label :scheme %></label>
     <%= f.text_field :scheme %>
     <label for="locator_userinfo"><%= f.label :userinfo %></label>

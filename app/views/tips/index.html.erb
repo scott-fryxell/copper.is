@@ -1,52 +1,32 @@
-<% title "Tips" %>
-<% if @has_funds %>
-<%= render :partial => 'form' %>
-<% else %>
-<%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
-<% end %>
-<style type="text/css" media="screen">
-  th {
-    font-size: 1.5em;
-    padding-bottom:1em;
-  }
-  td a {
-    display:block;
-
-    font-size: .75em;
-  }
-  td a:first-child {
-    font-size: 1em;
-  }
-
-  td a.locator{
-    margin-left:.5em;
-    margin-bottom:1em;
-  }
-
-</style>
-<table>
-  <thead>
-    <tr>
-      <th>Locator</th>
-      <!-- <th>Multiplier</th> -->
-      <th>Date</th>
-    </tr>
-  </thead>
-  <tbody>
-   <% @current_user.active_tips.each do |tip| %>
-     <tr>
-       <td>
-
-         <a href='<%=h tip.locator.canonicalized %>' target='new'>
-          <%=h CGI::unescape(tip.locator.page.description) %>
-         </a>
-         <a href='<%=h tip.locator.canonicalized %>' target='new' class="locator">
-          <%=h tip.locator.canonicalized %>
-         </a>
-       </td>
-       <!-- <td><%=h tip.multiplier %></td> -->
-       <td><%=h tip.created_at.strftime("%B %e, %Y") %></td>
-     </tr>
-   <% end %>
-  </tbody>
-</table>
+<section>
+  <% title "Tips" %>
+  <% if @has_funds %>
+  <%= render :partial => 'form' %>
+  <% else %>
+  <%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
+  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>Locator</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @current_user.active_tips.each do |tip| %>
+       <tr>
+         <td>
+           <a href='<%=h tip.locator.canonicalized %>' target='new'>
+            <%=h CGI::unescape(tip.locator.page.description) %>
+           </a>
+           <a href='<%=h tip.locator.canonicalized %>' target='new' class="locator">
+            <%=h tip.locator.canonicalized %>
+           </a>
+         </td>
+         <td><%=h tip.created_at.strftime("%B %e, %Y") %></td>
+       </tr>
+     <% end %>
+    </tbody>
+  </table>
+</section>
+<%= render :partial => 'shared/account' %>

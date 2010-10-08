@@ -1,0 +1,44 @@
+*[itemtype="http://weave.us/page"] > *[itemprop="title"] {
+  width:27.5em;
+  margin-right:1em;
+  display:inline-block;
+  font-size: 1.25em;
+  font-weight: normal;
+}
+*[itemtype="http://weave.us/page"] > *[itemprop="url"] {
+  display:inline-block;
+  font-size:.88em;
+  padding:.5em 0;
+  width:38em;
+  margin-right:1em;
+}
+*[itemtype="http://weave.us/page"] > *[itemprop="earned"] {
+  display:inline-block;
+
+}
+*[itemtype="http://weave.us/page"] > *[itemprop="average"] {
+  display:inline-block;
+  margin-left:1em;
+  margin-bottom: .5em;
+}
+*[itemtype="http://weave.us/page"] > *[itemprop="tips"] {
+  float:right;
+  display:inline-block;
+  margin-top:-4em;
+  margin-right:1em;
+}
+*[itemtype="http://weave.us/page"] > *[itemprop="earned"] {
+  display:inline-block;
+}
+#popular    *[itemtype="http://weave.us/page"] > *[itemprop="tips"],
+#profitable *[itemtype="http://weave.us/page"] > *[itemprop="earned"] {
+  width: 4em;
+  height: 4em;
+  padding: 1em 1em .5em .5em;
+  font-size: .75em;
+  text-align: center;
+  border-top: 0.20em solid #808080;
+  border-bottom: 0.20em solid #808080;
+  -moz-border-radius: 1em;
+  border-radius: .75em;
+}

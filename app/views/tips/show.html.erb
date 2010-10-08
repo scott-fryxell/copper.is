@@ -1,34 +1,37 @@
-<% title "a thank you" %>
 <section>
-  <header>
-    <aside>
-      Tip Details
-    </aside>
-    <h1><%= :title %></h1>
-    <nav>
-      <% title "Tip Details" %>
-      <% if permitted_to? :edit, @tip %>
-        <%= link_to 'Edit', edit_tip_path(@tip) %>
-      <% end %>
-      <%= link_to 'Back', tips_path %>
-    </nav>
-  </header>
-  <dl>
-    <dt>Url:</dt>
-      <dd><%=h @tip.locator.canonicalized %></dd>
-    <dt>Multiplier:</dt>
-      <dd><%=h @tip.multiplier %></dd>
-    <dt> User ID:</dt>
-      <dd>###</dd>
-  </dl>
+  <% title "a thank you" %>
+  <section>
+    <header>
+      <aside>
+        Tip Details
+      </aside>
+      <h1><%= :title %></h1>
+      <nav>
+        <% title "Tip Details" %>
+        <% if permitted_to? :edit, @tip %>
+          <%= link_to 'Edit', edit_tip_path(@tip) %>
+        <% end %>
+        <%= link_to 'Back', tips_path %>
+      </nav>
+    </header>
+    <dl>
+      <dt>Url:</dt>
+        <dd><%=h @tip.locator.canonicalized %></dd>
+      <dt>Multiplier:</dt>
+        <dd><%=h @tip.multiplier %></dd>
+      <dt> User ID:</dt>
+        <dd>###</dd>
+    </dl>
 
-  <footer>
-    <nav>
-      <% if permitted_to? :edit, @tip %>
-        <%= link_to 'Edit', edit_tip_path(@tip) %>
-      <% end %>
-      <%= link_to 'Back', tips_path %>
-    </nav>
-  </footer>
+    <footer>
+      <nav>
+        <% if permitted_to? :edit, @tip %>
+          <%= link_to 'Edit', edit_tip_path(@tip) %>
+        <% end %>
+        <%= link_to 'Back', tips_path %>
+      </nav>
+    </footer>
 
+  </section>
 </section>
+<%= render :partial => 'shared/account' %>
