@@ -3,34 +3,49 @@ class Page < ActiveRecord::Base
   has_many :tips, :through => :locators
   has_and_belongs_to_many :royalty_bundles
 
-  named_scope :most_tips, :include => [:tips], :conditions => "tips.locator_id = locators.id", :group => "pages.id", :order => "count(tips.id) DESC"
-
   validates_presence_of :description
 
   def tips_earned
     tips.count
   end
 
-  def revenue_earned # TODO find_by_sql would probably be faster
-    @revenue = 0
-    @rb = self.royalty_bundles
-    @rb.each do |x|
-      @bundle = RoyaltyBundle.find_by_id(x.id)
-      @revenue += @bundle.tip_royalties.sum('amount_in_cents')
-    end
-    return @revenue
+  def revenue_earned # TODO straight SQL would probably be faster
+    royalty_bundles.inject(0) { |sum, bundle| sum + bundle.tip_royalties.sum('amount_in_cents') }
   end
 
-  def self.most_revenue # TODO review SQL for efficiency vs. activerecord
-    Page.find_by_sql("
-    select p.id, p.description, sum(tr.amount_in_cents) total_revenue
-    from pages p, pages_royalty_bundles prb, tip_royalties tr
-    where p.id = prb.page_id
-    and prb.royalty_bundle_id = tr.royalty_bundle_id
-    and tr.amount_in_cents > 0
-    group by p.id, p.description
-    order by sum(tr.amount_in_cents) desc
-    ")
+  # We could (and used to) do this as a named scope, but PostgreSQL, rightly,
+  # complains about loose use of grouping and aggregation, and trying to horn
+  # in the correct subselect into a named scope got grotesque pretty quickly.
+  def self.most_tips
+    Page.find_by_sql <<-CHUBBA
+        SELECT pages.*
+          FROM pages,
+               (SELECT pages.id       page_id,
+                       COUNT(tips.id) num_tips
+                  FROM pages
+            INNER JOIN locators ON locators.page_id = pages.id
+            INNER JOIN tips     ON tips.locator_id  = locators.id
+              GROUP BY pages.id) tip_counts
+         WHERE tip_counts.page_id = pages.id
+      ORDER BY tip_counts.num_tips DESC
+    CHUBBA
+  end
+
+  def self.most_revenue
+    Page.find_by_sql <<-WHANKABOOM
+        SELECT p.id,
+               p.description,
+               SUM(tr.amount_in_cents) total_revenue
+          FROM pages p,
+               pages_royalty_bundles prb,
+               tip_royalties tr
+         WHERE p.id = prb.page_id
+           AND prb.royalty_bundle_id = tr.royalty_bundle_id
+           AND tr.amount_in_cents > 0
+      GROUP BY p.id,
+               p.description
+      ORDER BY total_revenue desc
+    WHANKABOOM
   end
 
   def primary_locator

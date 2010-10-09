@@ -1,7 +1,7 @@
 class TightenUpAccounts < ActiveRecord::Migration
   def self.up
     # number [NON-NULL]
-    change_column(:accounts, :number, :integer, {:null => false})
+    change_column(:accounts, :number, :string, {:null => false, :limit => 16})
 
     # card_type          => card_type_id [NON-NULL] (normalization)
     remove_column(:accounts, :card_type)
