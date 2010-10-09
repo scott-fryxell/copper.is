@@ -1,13 +1,11 @@
 class ReportsController < ApplicationController
-
   def sites
-    @tips = Site.most_tips
-    @revenue = Site.most_revenue
+    @most_tipped  = Site.most_tips
+    @most_revenue = Site.most_revenue
   end
 
   def pages
-    @tips = Page.most_tips
-    @revenue = Page.most_revenue
+    @most_tipped  = Page.most_tips
+    @most_revenue = Page.most_revenue
   end
-
 end

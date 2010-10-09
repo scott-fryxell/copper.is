@@ -13,7 +13,7 @@
 </header>
 
 <ol id="profitable" class="selected">
-  <% @revenue.each do |r| %>
+  <% @most_revenue.each do |r| %>
   <li>
     <dl itemscope="true" itemtype="http://weave.us/site">
       <dt item="site" itemprop="site"><a href="<%=h "http://#{r.fqdn}" %>" /><%=h r.fqdn %></a></dt>
@@ -29,7 +29,7 @@
 </ol>
 
 <ol id="popular">
-  <% @tips.each do |t| %>
+  <% @most_tipped.each do |t| %>
   <li>
     <dl itemscope="true" itemtype="http://weave.us/site">
       <dt itemprop="site"><a href="<%=h "http://#{t.fqdn}" %>"><%=h t.fqdn %></a></dt>
