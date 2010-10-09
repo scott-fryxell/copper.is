@@ -16,8 +16,8 @@ describe UserSessionsController do
       flash[:notice].should contain("Successfully logged in")
     end
 
-    it "should redirect the user to the main page" do
-      response.should redirect_to(root_url)
+    it "should redirect the user to the default page for users, which is their tips list" do
+      response.should redirect_to(tips_url)
     end
   end
 
