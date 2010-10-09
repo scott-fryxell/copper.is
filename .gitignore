@@ -1,7 +1,8 @@
 .DS_Store
+config/database.yml
+db/*.sqlite3
+doc/plugins/
 log/*.log
 tmp/**/*
 tmp/*
-db/*.sqlite3
-doc/plugins/
 coverage*
