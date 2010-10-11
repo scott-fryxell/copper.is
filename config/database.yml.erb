@@ -1,0 +1,28 @@
+# PostgreSQL defaults
+defaults: &defaults
+  adapter:            postgresql
+  host:               localhost
+  schema_search_path: public
+  encoding:           utf8
+  template:           template1
+
+development:
+  <<: *defaults
+  database: #{application}_development
+  username: #{user}
+  password: #{db_password}
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *defaults
+  database: #{application}_test
+  username: #{user}
+  password: #{db_password}
+
+production:
+  <<: *defaults
+  database: #{application}
+  username: #{user}
+  password: #{db_password}
