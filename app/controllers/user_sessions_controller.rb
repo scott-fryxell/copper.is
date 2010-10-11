@@ -8,7 +8,6 @@ class UserSessionsController < ApplicationController
     if request.xhr?
       render :action => 'new_ajax', :layout => false
     end
-
   end
 
   def create
@@ -50,6 +49,4 @@ class UserSessionsController < ApplicationController
     flash[:notice] = t("weave.logout_success")
     redirect_to root_url
   end
-
-
 end

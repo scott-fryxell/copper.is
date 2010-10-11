@@ -7,10 +7,10 @@
 
 <%= form_tag authenticate_path, :method => :post %>
 
-  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" id="authenticity_token"/>
   <fieldset>
     <label for="email">Email address</label>
-    <input type="text" tabindex="1" name="user[email]" id="email" value="<%=@user_session.email%>"/>
+    <input type="text" tabindex="1" name="user[email]" id="email" value="<%= @user_session.email %>"/>
   </fieldset>
 
   <fieldset>
