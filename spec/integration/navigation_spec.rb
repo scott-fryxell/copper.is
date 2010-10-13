@@ -5,17 +5,10 @@ describe "The standard Weave page" do
     visit "/"
   end
 
-  it "should contain a logo" do
-    assert_have_selector "body img[item=logo]"
-  end
-
   it "should contain a global nav section" do
     assert_have_selector "body > header"
   end
 
-  it "should contain an account section" do
-    assert_have_selector "body > aside"
-  end
   it "should contain a courtesy nav section" do
     assert_have_selector "body > footer"
   end
@@ -26,12 +19,9 @@ describe "The standard Weave page" do
   describe "global navigation" do
     it "should link to the pages report" do
       assert_have_selector "body > header > nav"
-      click_link "Pages"
+      click_link "Discover"
     end
-    it "should link to the sites report" do
-      assert_have_selector "body > header > nav"
-      click_link "Sites"
-    end
+
     it "should link to the blog"
     it "should contain a contextual 'fun' widget" do
       assert_have_selector "body > header > a > img"
@@ -40,7 +30,7 @@ describe "The standard Weave page" do
   end
 
   describe "account section" do
-    describe "when logged in as a fan with a filled account" do
+    describe "when signed in as a fan with a filled account" do
       before(:each) do
         click_link "Sign in or sign up"
         fill_in "email", :with => "test@test.com"
@@ -48,18 +38,24 @@ describe "The standard Weave page" do
         choose "Yes, I have a password:"
         click_button "Sign in"
       end
+      
+      it "should link to the tips" do
+        assert_have_selector "body > header > nav"
+        click_link "Tip"
+      end
+      
 
       it "should have an account section" do
         assert_have_selector "body > aside", :id => 'account'
       end
 
       it "should display the current user's name on the page" do
-        response_body.should contain("Logged in as: test@test.com")
+        response_body.should contain("test@test.com")
       end
 
-      it "should link to a logout action" do
+      it "should link to a sign out action" do
         click_link "Sign out"
-        response_body.should contain("Successfully logged out.")
+        response_body.should contain("Successfully signed out.")
       end
 
       it "should link to a tip page for a fan" do
@@ -82,7 +78,7 @@ describe "The standard Weave page" do
       it "should link to a fan home page"
     end
 
-    describe "when logged in as a fan with no refill" do
+    describe "when signed in as a fan with no refill" do
       before(:each) do
         click_link "Sign in or sign up"
         fill_in "email", :with => "patron@test.com"
@@ -96,12 +92,12 @@ describe "The standard Weave page" do
       end
 
       it "should display the current user's name on the page" do
-        response_body.should contain("Logged in as: patron@test.com")
+        response_body.should contain("patron@test.com")
       end
 
       it "should link to a logout action" do
         click_link "Sign out"
-        response_body.should contain("Successfully logged out.")
+        response_body.should contain("Successfully signed out.")
       end
 
       it "should encourage the fan to fund their account" do
@@ -109,7 +105,7 @@ describe "The standard Weave page" do
       end
     end
 
-    describe "when logged in as a publisher" do
+    describe "when signed in as a publisher" do
       before(:each) do
         click_link "Sign in or sign up"
         fill_in "email", :with => "publisher@test.com"
@@ -122,7 +118,7 @@ describe "The standard Weave page" do
     end
 
 
-    describe "when logged in as an administrator" do
+    describe "when signed in as an administrator" do
       before(:each) do
         click_link "Sign in or sign up"
         fill_in "email", :with => "admin@test.com"
@@ -132,13 +128,13 @@ describe "The standard Weave page" do
       end
 
       it "should link to a administrators home page for an administrator" do
-        click_link "Admin Panel"
+        click_link "Admin"
         response_body.should contain("Admin home")
       end
 
     end
 
-    describe "when not logged in" do
+    describe "when not signed in" do
       it "should include a login or register widget when guest is unknown" do
         click_link "Sign in or sign up"
       end

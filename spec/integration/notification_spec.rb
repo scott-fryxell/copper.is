@@ -8,7 +8,7 @@ describe "Notification" do
     click_link "Sign in or sign up"
   end
 
-  describe "when an error is thrown" do
+  describe "when an message for the user is set" do
     before(:each) do
       fill_in "email", :with => "baduser@test.com"
       fill_in "password", :with => "test"
@@ -16,24 +16,8 @@ describe "Notification" do
       click_button "Sign in"
     end
 
-    it "should display the proper error notification UI" do
-      assert_have_selector "body > section > header > ol", :id => 'error'
-      assert_have_no_selector "body > section > header > ol", :id => 'notice'
-    end
-
-  end
-
-  describe "when a success flash message is thrown" do
-    before(:each) do
-      fill_in "email", :with => "test@test.com"
-      fill_in "password", :with => "test"
-      choose "Yes, I have a password:"
-      click_button "Sign in"
-    end
-
-    it "should display the proper success notification UI" do
-      assert_have_selector "body > section > header > ol", :id => 'notice'
-      assert_have_no_selector "body > section > header > ol", :id => 'error'
+    it "should display in the header of the UI" do
+      assert_have_selector "body > header > ol > li"
     end
 
   end

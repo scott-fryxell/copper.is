@@ -7,9 +7,9 @@ describe "Reports" do
     visit "/"
   end
 
-  describe "sites" do
+  describe "reporting" do
     before(:each) do
-      click_link "Sites"
+      click_link "Discover"
     end
 
     describe "with the most tips" do
@@ -23,27 +23,6 @@ describe "Reports" do
       it "should" do
         assert_have_selector "body > section > ol > li > dl"
         response_body.should contain("popular.com")
-      end
-    end
-
-  end
-
-  describe "pages" do
-    before(:each) do
-      click_link "Pages"
-    end
-
-    describe "with the most tips" do
-      it "should" do
-        assert_have_selector "body > section > ol > li > dl"
-        response_body.should contain("http://popular.com/popular/page/path")
-      end
-    end
-
-    describe "with the most revenue" do
-      it "should" do
-        assert_have_selector "body > section > ol > li > dl"
-        response_body.should contain("http://popular.com/popular/page/path")
       end
     end
 

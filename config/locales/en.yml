@@ -17,7 +17,7 @@ en:
   weave:
     login_success: "Successfully logged in."
     registration_success: "Registration successful. Please check your email for instructions on activating your account."
-    logout_success: "Successfully logged out."
+    logout_success: "Successfully signed out."
     password_reset_instructions_sent: "Check for an email with instructions on resetting your password."
     email_not_found: "No Weave account exists for that email address."
     password_changed: "Your password has been changed."

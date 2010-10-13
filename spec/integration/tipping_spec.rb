@@ -109,7 +109,7 @@ describe "Tipping" do
       end
 
       it "should place the user into the refill process" do
-        response_body.should contain("Select your monthly tip stash amount")
+        response_body.should contain("My Budget")
       end
 
       it "should store the failed tip in the session during the refill process"

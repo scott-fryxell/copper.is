@@ -70,13 +70,13 @@ describe "Placing an order" do
     end
 
     it "should be possible" do
-      response_body.should contain("Select your monthly tip stash amount")
+      response_body.should contain("My Budget")
     end
 
     it "should display an SSL secured form for submitting an order"
 
     it "should display a form with all of the required form fields" do
-      assert_have_selector "input", :id => 'order_amount_in_cents'
+      assert_have_selector "select", :id => 'order_amount_in_cents'
       assert_have_selector "input", :type=> 'checkbox', :id => 'order_rebill'
       assert_have_selector "select", :id => 'account_card_type_id'
       assert_have_selector "input", :id => 'account_billing_name'
@@ -104,13 +104,13 @@ describe "Placing an order" do
 
       it "should display a page allowing confiration of order details" do
         click_button "continue"
-        response_body.should contain("Confirm your Refill")
+        response_body.should contain("Refill Confirmatio")
       end
 
       it "should allow order details to be changed after initial submit" do
         click_button "continue"
         click_button "Change"
-        response_body.should contain("Select your monthly tip stash amount")
+        response_body.should contain("My Budget")
       end
 
       it "should display a success page when the order is processed" do

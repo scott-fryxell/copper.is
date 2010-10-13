@@ -80,11 +80,11 @@ describe "Account" do
 
       it "should display a welcome page with bookmarklet installation instructions" do
         response_body.should contain("Install the Weave bookmarklet")
-        assert_have_selector "body > section > section > ol > li > a", :id => "weave_us"
+        assert_have_selector "body > section > ol > li > a", :id => "weave_us"
       end
 
       it "should automatically log the user in" do
-        response_body.should contain("Logged in as: notactive@test.com")
+        response_body.should contain("notactive@test.com")
       end
 
     end
