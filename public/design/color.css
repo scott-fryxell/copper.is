@@ -2,3 +2,10 @@ html * {
   color: #808080;
   background-color: transparent;
 }
+html {
+  background-color: gray;
+}
+
+html > body {
+  background-color: white;
+}

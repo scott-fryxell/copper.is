@@ -2,7 +2,7 @@ body > section {
   padding: 1em;
   margin-top: 2.75em;
   margin-left: .75em;
-  width: 33em;
+  width: 42em;
   min-height: 18em;
   border: .15em solid #808080;
   -moz-border-radius: .5em;
@@ -36,7 +36,7 @@ body > section {
     }
     body > section ol > li:first-child p {
       display:inline-block;
-      width:13em;
+      width:21em;
     }
     body > section ol > li div {
       font-family:"Zapf Dingbats";
@@ -59,10 +59,8 @@ body > section {
       border: .10em solid #f60;
       -moz-border-radius: .3em;
       border-radius: .3em;
-
       color:#F60;
       font-weight:normal;
-
       background-color: #E7E7E7;
       display:inline-block;
       padding:1em;
@@ -77,10 +75,11 @@ body > section {
     }
     body section  ol li textarea {
       font-size:1em;
-      padding:.25em;
+      padding:.5em;
       margin-top:3em;
+      margin-left:1em;
       display:block;
-      width:30em;
+      width:37em;
       height:27em;
     }
     body section  ol li figure {

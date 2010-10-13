@@ -5,219 +5,104 @@ html {
     -webkit-margin-collapse: collapse;
   }
   body {
-    position:relative;
     width:58.5em;
     min-height:5em;
-    margin: 0 auto 0 auto;
-    padding:.75em;
+    margin: 1em auto 1em auto;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
   }
+    body a {
+      text-decoration:none;
+      color: #808080;
+      font-weight:normal;
+      -webkit-text-stroke-color:gray;
+      -webkit-text-stroke-width:.01em;
+
+      font-weight:normal;
+    }
+    body a:hover{
+      text-decoration: none;
+      -webkit-animation-name: pulse-font;
+      -webkit-animation-duration: 3s;
+      -webkit-animation-iteration-count: infinite;
+    }
     body > section,
     body > header,
     body > nav,
-    body > aside,
     body > footer {
       vertical-align:top;
       position:relative;
+      margin-right:1.5em;
+      margin-left:1.5em;      
     }
-  body > section {
-    min-height: 44em;
-  }
-  body > header {
-    width: 40em;
-    min-height: 3.5em;
-    margin-bottom:.75em;
-    background-image:none;
-  }
-    body > header img {
-      margin-top: .25em;
-
-      display:inline-block;
+    body > div {
+      text-align:right;
+      font-size:.80em;
+      padding: .5em 1em 0 1em;
     }
-    body > header nav {
-      margin-left:15em;
-      display:inline-block;
+      body > div > a {
+        padding-right:.5em;
+        text-decoration:underline;
+      }
+      body > div > span {
+        padding-right:.5em;
+      }
+    body > header {
     }
-      body > header nav li {
-        margin-right: .75em;
+      body > header img {
         display:inline-block;
       }
-        body > header nav li a {
-          font-size: 1.5em;
+      body > header nav {
+        margin-left:14em;
+        display:inline-block;
+      }
+        body > header nav li {
+          margin-left: 1em;
+          display:inline-block;
         }
-  body > section {
+          body > header nav li a {
+            font-size: 1.5em;
+          }
+      body > header > ol {
+        margin:1em 0;
+        min-height:1.5em;
+      }
+      body > header > ol > li {
+        font-size:1.10em;
+        background:#FFFFCC;
+        padding:.25em;
+        border:.10em solid #FFFFCC;
+        border-radius:.25em;
+        -moz-border-radius:.25em;
+      }
+      body > header > div > span {
+        padding-right:.5em;
+      }
+    body > section {
     display:inline-block;
-    margin-right: .65em;
     margin-bottom: .5em;
-
     width:40em;
     min-height:44em;
   }
-    body > section > header h1,
-    body > section > h1{
-      margin-top: .5em;
-      font-size: 2.25em;
-      margin-bottom: .60em;
-    }
-    body > section > header > p{
-      margin-left:.5em;
-    }
-    body > section > p {
-      font-size: 1.15em;
-    }
-    body > aside {
-      margin-top:3.75em;
-      width: 13.20em;
-      display:inline-block;
-      min-height: 25em;
-
-      border: .15em solid #808080;
-      -moz-border-radius: .3em;
-      border-radius: .3em;
-    }
-      body > aside > header {
-        margin-top:.75em;
-        text-align: center;
-        margin-bottom: 0;
+      body > section > header h1,
+      body > section > h1{
+        margin-top: .5em;
+        font-size: 2.25em;
+        margin-bottom: .60em;
       }
-        body > aside > header > nav {
-          margin:0;
-          padding:0;
-        }
-          body > aside > header > nav a {
-            -webkit-text-stroke: .02em #808080;
-            text-decoration: underline;
-            padding-left: .5em;
-          }
-      body > aside > dl {
-        margin-top: 1.25em;
-        margin-left: .75em;
+      body > section > p {
         font-size: 1.15em;
       }
-        body > aside > dl > dt {
-          font-weight: normal;
-          width: 6.25em;
-
-          display:inline-block;
+        body > section > header > p {
+          margin-left:.5em;
         }
-          body > aside > dl > dt:first-child {
-            margin-left: 1em;
-            width: 5.5em;
-            margin-bottom:1em;
-          }
-        body > aside > dl > dd {
-          display:inline-block;
-          width:3.5em;
-          text-align:right;
-          padding-bottom:.5em;
-        }
-        body > aside > dl > dd[itemprop="billing_period"] {
-          width:3.5em;
-        }
-          body > aside > dl > dd[itemprop="billing_period"] span {
-            padding:.25em;
-          }
-        body > aside > dl > dd[itemprop="tips"] {
-          border-bottom: .15em solid #808080;
-        }
-  body > footer {
-    margin-top:.25em;
-    margin-bottom:0em;
-    min-height: 8.25em;
-  }
-    body > footer nav{
-      margin-top:.75em;
-      width: 33%;
-      display:inline-block;
-    }
-    body > footer nav h2{
-      font-size:1.5em;
-      margin-bottom:.5em;
-    }
-      body > footer nav a {
-        display:block;
-        margin-bottom: .25em;
-        margin-left: 1em;
-        font-size: 1em;
-      }
-    body > footer #debug {
-      display:block;
-      margin:auto;
-    }
-    body > aside >figure {
-      position:absolute;
-      left:1.5em;
-      bottom:1em;
-      display:inline-block;
-      vertical-align:top;
-      opacity:.55;
-      -webkit-transform: scale(1) rotate(0deg);
-      -webkit-transition-property: all;
-      -webkit-transition-duration:  1s;
-      -webkit-transition-delay: 150ms;
-    }
-      body > aside > figure:hover {
-        -webkit-transition-duration: 500ms;
-        -webkit-transition-duration:  2s;
-        -webkit-transition-property: all;
-        -webkit-transition-delay: 200ms;
-        -webkit-transform: scale(1.11) rotate(45deg);
-        cursor: pointer;
-      }
-
-  /* navigation stylings */
-      body > section > header > #error, #notice{
-        margin-left:.6em;
-        margin-right:.6em;
-        min-height:2em;
-        border: .15em solid red;
-        -moz-border-radius: .3em;
-        border-radius: .3em;
-        background-color: #FFCEAD;
-        padding:1em;
-        list-style: circle inside;
-        margin-bottom: 1em;
-      }
-      body > section > header > #error li{
-        margin-bottom:.5em;
-        color:red;
-      }
-      body > section > header > #notice {
-        border: .15em solid #808080;
-        -moz-border-radius: .3em;
-        border-radius: .3em;
-        background-color: transparent
-      }
-      body > section > header > #notice li{
-        margin-bottom:.5em;
-        color:#808080;
-      }
-      :focus{
-        outline:1px dotted gray;
-      }
-      a {
-        text-decoration:none;
-        color: #808080;
-        font-weight:normal;
-        -webkit-text-stroke-color:gray;
-        -webkit-text-stroke-width:.01em;
-
-        font-weight:normal;
-      }
-      a:hover{
-        text-decoration: none;
-        -webkit-animation-name: pulse-font;
-        -webkit-animation-duration: 3s;
-        -webkit-animation-iteration-count: infinite;
-      }
-
-      /* global form layout */
       body > section > form{
 
       }
         body > section > form fieldset {
           margin-bottom:0;
         }
-          body > section > form fieldset > legend{
+          body > section > form fieldset > legend {
             display:inline-block;
             margin-left:   .5em;
             font-size:     1.25em;
@@ -230,19 +115,37 @@ html {
           display:inline-block;
           width: 16.5em;
           font-size:1.5em;
-          border: 0.10em solid #808080;
-          margin-left:.5em;
+          border: 0.15em solid gray;
+          border-radius:.21em;
+          -moz-border-radius:.21em;
+          padding:.21em;
         }
-          body > section > form input[type=submit] {
-            width: 10em;
-            margin-left: 25.85em;
-            margin-top: 2.5em;
-            margin-bottom:0;
-            padding: .25em 0 .25em 0;
-            border-width: .13em;
-            border-radius: .25em;
-            -webkit-border-radius: .25em;
-            -moz-border-radius: .25em;
-            font-size: 1em;
-          }
-
+        body > section > form input[type=submit] {
+          width: 10em;
+          margin: 2.5em 0 0 1em;
+          padding: .25em 0 .25em 0;
+          border-width: .13em;
+          border-radius: .25em;
+          -webkit-border-radius: .25em;
+          -moz-border-radius: .25em;
+          font-size: 1em;
+        }
+    body > footer {
+      margin:.25em 1.5em;
+      min-height: 7em;
+    }
+      body > footer > nav {
+        margin-top:.75em;
+        width: 32%;
+        display:inline-block;
+      }
+        body > footer > nav > h2 {
+          font-size:1.5em;
+          margin-bottom:.5em;
+        }
+        body > footer > nav > a {
+          display:block;
+          margin-bottom: .25em;
+          margin-left: 1em;
+          font-size: 1em;
+        }

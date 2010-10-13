@@ -1,5 +1,4 @@
-body > section > form{
-
+body > section > form {
   margin-bottom:2em;
   border: 0.15em solid #808080;
   -moz-border-radius: .5em;
@@ -7,36 +6,54 @@ body > section > form{
   background-color: #ddd;
   height: 16em;
 }
-body > section > form div{
-  display:none!important;
-}
-body > section > form > fieldset {
-  position:relative;
-}
-:focus{
-  outline:none;
-}
-body > section > form > fieldset > label{
-  position:absolute;
-  top: 2.5em;
-  left: 5.5em;
-  margin-top: .5em;
-  color: #CCC
-}
-body > section > form > fieldset textarea {
-  background-color: white;
-  width: 24.25em;
-  height: 6em;
-  font-size: 1.5em;
-  margin:1em;
-  border:.1em solid gray;
-}
-body > section > form > input[type=submit]{
-  margin-top:0;
-  margin-left: 28em;
-  background-color: white;
-}
-
-body > section > table td:nth-child(even){
-  width: 10em;
-}
+  body > section > form > div {
+    display:none!important;
+  }
+  body > section > form > fieldset {
+    position:relative;
+  }
+    body > section > form > fieldset > label{
+      position:absolute;
+      top: 2.5em;
+      left: 5.5em;
+      margin-top: .5em;
+      color: #CCC
+    }
+    body > section > form > fieldset textarea {
+      background-color: white;
+      width: 24em;
+      height: 6em;
+      font-size: 1.5em;
+      margin:1em;
+      border:.1em solid gray;
+    }
+  body > section > form > input[type=submit] {
+    margin-top:0;
+    margin-left: 28em;
+    background-color: white;
+  }
+    body > section > table > tbody > tr > td:nth-child(even){
+      width: 16em;
+      text-align:right;
+    }
+    body > section > table > thead > tr > th {
+      font-size: 1.5em;
+      padding-bottom:1em;
+    }
+    body > section > table > thead > tr > th:nth-child(even) {
+      text-align:center;
+    }
+    body > section > table > tbody > tr > td {
+      width:53em;
+    }
+      body > section > table > tbody > tr > td a {
+        display:block;
+        font-size: .75em;
+      }
+      body > section > table > tbody > tr > td a:first-child {
+        font-size: 1em;
+      }
+      body > section > table > tbody > tr > td a.locator{
+        margin-left:.5em;
+        margin-bottom:1em;
+      }

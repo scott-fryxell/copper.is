@@ -2,8 +2,6 @@ html * {
   -webkit-transition-property: all;
   -webkit-transition-duration:  1s;
 }
-
-/* login form display*/
 body > section > form {
   margin-top: 3em;
   margin-right: 13em;
@@ -20,51 +18,45 @@ body > section > form {
     body > section > form > fieldset > input {
       margin-left: 0;
     }
-
-    body > section > form fieldset legend{
-      padding-top:.5em;
+    body > section > form > fieldset > input[id=email] {
+      margin-bottom:.75em;
     }
-    body > section > form fieldset label[for="registered_no"],
-    body > section > form fieldset label[for="registered_yes"],
-    body > section > form fieldset label[for="remember_me"] {
+    body > section > form > fieldset > label[for="registered_no"],
+    body > section > form > fieldset > label[for="registered_yes"],
+    body > section > form > fieldset > label[for="remember_me"] {
       font-size:1.25em;
       margin-left:0em;
     }
-
-    body > section > form fieldset label[for="registered_yes"]{
+    body > section > form > fieldset > label[for="registered_yes"]{
       margin-bottom:1em;
     }
-
-    body > section > form fieldset input[id=remember_me],
-    body > section > form fieldset input[id=registered_no],
-    body > section > form fieldset input[id=registered_yes] {
+    body > section > form > fieldset > input[id=remember_me],
+    body > section > form > fieldset > input[id=registered_no],
+    body > section > form > fieldset > input[id=registered_yes] {
       width:.75em;
       margin:.7em 0 0 1.5em;
     }
-
-    body > section > form fieldset label[for="password"],
-    body > section > form fieldset label[for="password_confirmation"],
-    body > section > form fieldset input[id=password_confirmation] {
+    body > section > form > fieldset > label[for="password"],
+    body > section > form > fieldset > label[for="password_confirmation"],
+    body > section > form > fieldset > input[id=password_confirmation] {
       display:none;
-    }
-
-/* registration form display */
-    body > section > form.register label[for="password"],
-    body > section > form.register label[for="password_confirmation"],
-    body > section > form.register input[id="password_confirmation"]{
-      display:inline-block;
     }
     body > section > form.register > a {
       display:none;
     }
-    body > section > form.register fieldset input[id=password] {
-      margin-bottom:1.5em;
-    }
-    body > section > form.register fieldset label[for="remember_me"],
-    body > section > form.register fieldset input[id="remember_me"] {
-      display:none;
-    }
+    body > section > form.register > fieldset > label[for="password"],
+    body > section > form.register > fieldset > label[for="password_confirmation"],
+    body > section > form.register > fieldset > input[id="password_confirmation"]{
+      display:inline-block;
 
-    body > section > form.register input[type="submit"] {
+    }
+    body > section > form.register > input[type="submit"] {
       width:10em;
     }
+      body > section > form.register > fieldset > input[id=password] {
+        margin-bottom:1em;
+      }
+      body > section > form.register > fieldset > label[for="remember_me"],
+      body > section > form.register > fieldset > input[id="remember_me"] {
+        display:none;
+      }

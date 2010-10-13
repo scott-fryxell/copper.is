@@ -1,41 +1,38 @@
 @import url("/design/reports.css");
-
 *[itemprop="site"] {
   font-size: 1.5em;
   font-weight: normal;
 }
-*[itemtype="http://weave.us/site"] > *[itemprop="publisher"] {
-  display:block;
-  padding:.5em 0;
-  width: 15em;
-}
-*[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
-  display:inline-block;
-
-}
-*[itemtype="http://weave.us/site"] > *[itemprop="average"] {
-  display:inline-block;
-  margin-left:1em;
-  margin-bottom: .5em;
-}
-*[itemtype="http://weave.us/site"] > *[itemprop="tips"],
-*[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
-  display:inline-block;
-}
-
-#popular    *[itemtype="http://weave.us/site"] > *[itemprop="tips"],
-#profitable *[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
-  position:absolute;
-  top:0;
-  right:2em;
-  width: 3em;
-  height: 2em;
-  padding: 1em .5em .5em .5em;
-  font-size: 1em;
-  text-align: center;
-  border-top: 0.15em solid #808080;
-  border-bottom: 0.15em solid #808080;
-  -webkit-border-radius: 1em;
-  -moz-border-radius: 1em;
-  border-radius: .75em;
-}
+  *[itemtype="http://weave.us/site"] > *[itemprop="publisher"] {
+    display:block;
+    padding:.5em 0;
+    width: 15em;
+  }
+  *[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
+    display:inline-block;
+  }
+  *[itemtype="http://weave.us/site"] > *[itemprop="average"] {
+    display:inline-block;
+    margin-left:1em;
+    margin-bottom: .5em;
+  }
+  *[itemtype="http://weave.us/site"] > *[itemprop="tips"],
+  *[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
+    display:inline-block;
+  }
+    #popular    *[itemtype="http://weave.us/site"] > *[itemprop="tips"],
+    #profitable *[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
+      position:absolute;
+      top:0;
+      right:2em;
+      width: 3em;
+      height: 2em;
+      padding: 1em .5em .5em .5em;
+      font-size: 1em;
+      text-align: center;
+      border-top: 0.15em solid #808080;
+      border-bottom: 0.15em solid #808080;
+      -webkit-border-radius: 1em;
+      -moz-border-radius: 1em;
+      border-radius: .75em;
+    }
