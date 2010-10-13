@@ -125,7 +125,7 @@ describe Notifier do
       end
 
       it "should contain additional copy" do
-        @message.body.should =~ /The next step is to fund your tip stash so that you can begin rewarding your favorite creators./
+        @message.body.should =~ /The next step is to fund your tip fund so that you can begin rewarding your favorite creators./
       end
 
     end
