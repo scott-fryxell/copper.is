@@ -2,175 +2,89 @@ body > section > p {
   width:35em;
   font-size: 1em;
 }
+body > section > form {
+  margin-bottom: 2em;
+}
+  body > section > form > input[type="submit"] {
+    margin-left: 0;
+  }
   body > section > form > fieldset > label {
     width: 15em;
     font-size: 1em;
     margin-bottom: 1em;
   }
   body > section > form > fieldset > input {
-    width: 10em;
+    width: 13em;
     font-size: 1em;
     margin-bottom: 1em;
   }
   body > section > form > fieldset > select {
-    font-size: 1.0em;
+    font-size: 1em;
   }
-    body > section > form > input[type="submit"] {
-      margin-left: 25em;
-    }
-    body > section > form > fieldset > h1 {
-      font-size: 1.5em;
-      font-weight: normal;
-      margin:1em 0;
-    }
-    body > section > form > fieldset > label[for="rebill"] {
-      display:inline-block;
-      padding: .5em 0;
-      font-size: 1em;
-    }
-    body > section > form > fieldset > input[name="rebill"] {
-      display:inline-block;
-      margin: 0 0 0 8em;
-      padding: .5em 0;
-      width: .75em;
-      vertical-align:middle;
-    }
-    body > section > form > fieldset > input[name=amount] {
-      width: 7em;
-      text-align:right;
-    }
-    body > section > form > fieldset > label > span {
-      text-align:right;
-      display:inline-block;
-      width: 3em;
-    }
-    body > section > form > fieldset > label[for=total] {
-      margin-top:.5em;
-      display:block;
-      border-top:.10em solid #808080;
-      width: 7em;
-      text-align:right;
-      padding: .5em 0 .5em 0;
-    }
-    body > section > form > fieldset > label[for=amount] {
-      padding-top: .25em;
-      text-align:right;
-      display:block;
-      width: 7em;
-    }
-    body > section > form > fieldset > input[name=cvv2] {
-      width: 3em;
-    }
-    body > section > form > fieldset > select[name=state],
-    body > section > form > fieldset > select[name=country] {
-      margin-right: 7em;
-    }
-    body > section > form {
-      margin-bottom: 2em;
-    }
+  body > section > form > fieldset > h1 {
+    font-size: 1.5em;
+    font-weight: normal;
+    margin:1em 0;
+    border-top: .15em solid gray;
+    padding-top:1em;
+  }
+  body > section > form > fieldset > input[id=account_verification_code] {
+    width: 3em;
+  }
+  body > section > form > fieldset > select[id=billing_address_state],
+  body > section > form > fieldset > select[id=billing_address_country] {
+    width:10.5em;
+    margin-right: 10em;
+  }
 
-/* confirmation page */
-    body > section > dl  > dt,
-    body > section > dl  > dd{
-      display: inline-block;
-      font-weight:normal;
-      margin: .5em 0 0 0;
-    }
-      body > section h2,
-      body > section dl dt{
-        display:inline-block;
-        font-size: 1.5em;
-        font-weight: normal;
-        margin:1em 0 0 0;
-      }
-      body > section dl[itemtype="http://weave.us/credit_card"] dd[itemprop=name] {
-        width:12em;
-      }
-      body > section dl[itemtype="http://weave.us/credit_card"] dd[itemprop=type] {
-        width:auto;
-        display:inline-block;
-        margin-left:13.25em;
-        margin-right: 1em;
-      }
-      body > section dl[itemtype="http://weave.us/credit_card"] dd[itemprop=number] {
-        display:inline-block;
-        margin-left:0;
-        width: auto;
-      }
-      body > section dl dd {
-        margin-left: 13em;
-      }
-      body > section dl {
-        margin-top:1em;
-      }
-      body > section dl[itemtype="http://weave.us/address"] dd {
-        display:block;
-        margin-left:13em;
-      }
-      body > section dl[itemtype="http://weave.us/address"] dd[itemprop=address] {
-        display:inline-block;
-        margin-left:.75em;
-      }
-      body > section dl[itemtype="http://weave.us/address"] dd[itemprop=city]{
-        width: auto;
-      }
-      body > section dl[itemtype="http://weave.us/address"] dd[itemprop=state]{
-        display: inline-block;
-        margin-left: 13em;
-        width: 1.5em;
-      }
-        body > section dl[itemtype="http://weave.us/address"] dd[itemprop=state]:after {
-          content:',';
-        }
-      body > section dl[itemtype="http://weave.us/address"] dd[itemprop=zip_code] {
-        display: inline;
-        margin-left: 1em;
-      }
+  body > section > form > fieldset#budget {
+    width:21em;
+    padding:1em;
+    margin: 2em 1em 1em 1em;
+    border: .15em solid gray;
+    border-radius: .21em;
+  }
+  body > section > form > fieldset#budget label,
+  body > section > form > fieldset#budget input {
+    display:inline-block;
+    text-align:right;
+  }
+  body > section > form > fieldset#budget label {
+    width: 8em;
+    text-align:right;
+    margin-right: 2em;
+  }
+  body > section > form > fieldset#budget input, span#fee, span#total {
+    font-size:1em;
+    text-align: right;
+    display:inline-block;
+    margin-right:.5em;
+    border:none;
+    width: 3em;
+  }
+  body > section > form > fieldset#budget label[for=order_amount_in_cents] {
+    margin-right: 1em;
+  }
 
+  body > section > form > fieldset#budget > span.money {
+    font-size:1em;
+  }
+  body > section > form > fieldset#budget > hr {
+    width:10em;
+    margin-left:3.5em;
+  }
 
-      body > section dl{
-
-      }
-      body > section dl dt{
-
-        width:8em;
-        margin:0;
-      }
-      body > section dl dd{
-        margin-left:1em;
-        width:13em;
-      }
-      body > section dl[itemtype="http://weave.us/refill_totals"] dt:first-child {
-        font-size:1.5em;
-        font-style:normal;
-        width:8em;
-        margin-left:0;
-      }
-
-      body > section dl[itemtype="http://weave.us/refill_totals"] dt {
-        font-style:italic;
-        font-size:.75em;
-        width: 15em;
-        margin-left:2em;
-      }
-      body > section dl[itemtype="http://weave.us/refill_totals"] dd[itemprop=refill] {
-        font-style: italic;
-        font-size:.75em;
-        width: 20em;
-      }
-      body > section dl[itemtype="http://weave.us/refill_totals"] dd[itemprop=fee] {
-        font-style: italic;
-        font-size:.75em;
-      }
-
-    body > section > form > input[name=change]{
-      display:inline-block;
-      margin-left: 0;
-
-    }
-
-
-    body > section > form > input[name=make_payment]{
-      display:inline-block;
-      margin-left: 5em;
-    }
+  body > section > form > fieldset#refill {
+    margin-top:1em;
+  }
+  body > section > form > fieldset#refill > label {
+    display:inline-block;
+    padding: .5em 0;
+    font-size: 1em;
+  }
+  body > section > form > fieldset#refill > input {
+    display:inline-block;
+    margin: 0 .5em 0 5.5em;
+    padding: .5em 0;
+    width: 1em;
+  }

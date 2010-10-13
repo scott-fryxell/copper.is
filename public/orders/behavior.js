@@ -1,20 +1,13 @@
 $(document).ready(function(event) {
-  $("input[name=amount]").focus();
+  $("select[id=order_amount_in_cents]").focus();
 
-  $("input[name=amount]").blur(function(event) {
-    var tip_stash = this.value;
-    if(tip_stash.search(/^[0-9]/)){
-      tip_stash = new Number(tip_stash.split("$")[1].valueOf() );
-    }else{
-      tip_stash = new Number(tip_stash);
-    }
-    var shakedown =  (tip_stash * 0.07);
-
-    console.debug(shakedown);
-    $("label[for=amount] span:nth-child(2)").text(("$" + shakedown).slice(0, 5));
-
-    console.debug(tip_stash + shakedown);
-    $("label[for=total] span:nth-child(2)").text("$" + (tip_stash + shakedown));
+  $("select[id=order_amount_in_cents]").change(function(event) {
+    var tip_stash = new Number(this.value);
+    var shakedown =  (tip_stash / 10 *.70);
+    $("fieldset#budget > #fee").text( "$" + (Math.round(shakedown) / 100).toFixed(2));
+    $("fieldset#budget > #total").text( "$" + (( tip_stash + shakedown) /100 ).toFixed(2));
   });
- 
+
+  $("select[id=order_amount_in_cents] option[value=1000]").attr('selected', 'selected');
+  $("select[id=order_amount_in_cents]").change();
 });

@@ -1,13 +1,11 @@
 <section>
   <style>
-    @import url('/orders/design.css');
+    @import url('/orders/design_prepare.css');
   </style>
-  <script src="/orders/behavior.js"></script>
-  
-  <h2>Confirm your Refill</h2>
-  <dl>
+  <h1>Refill Confirmation</h1>
+  <dl itemscope="true" itemtype="http://weave.us/fund">
     <dt>Amount</dt>
-    <dd><%=@order[:amount_in_cents]%></dd>
+    <dd>$<%=@order[:amount_in_cents]%></dd>
   </dl>
   <dl itemscope="true" itemtype="http://weave.us/credit_card">
     <dt>Payment</dt>
