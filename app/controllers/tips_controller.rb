@@ -64,6 +64,7 @@ class TipsController < ApplicationController
         end
       else
         if request.xhr?
+          flash[:error] = t("weave.tip_failed")
           render :action => 'error_ajax', :layout => false
         else
           respond_to do|format|

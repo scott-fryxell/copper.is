@@ -52,8 +52,8 @@ $(document).bind("tip_error", function (event, xhr, options){
   /*
     TODO implement or remove.
   */
-  // and stup the console object.
-  console.debug("there was a tip error");
+  $(document).trigger("alert_start", xhr);
+  console.debug("there was a tip error", xhr, event);
 });
 
 $(document).bind("login_submit", function (event, options){

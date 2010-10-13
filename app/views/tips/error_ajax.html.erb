@@ -1,11 +1,8 @@
 <meta name="event_trigger" content="tip_error"/>
-<header>
-  <h1>Weave.us</h1>
-  <%- flash.each do |name, msg| -%>
-      <%= "<ol id=#{name}" %>
-        <%- msg.each do |m| -%>
-          <li><%= m %></li>
-        <%- end -%>
-      </ol>
-  <%- end -%>
-</header>
+<%- flash.each do |name, msg| -%>
+  <%= "<ol id=#{name}" %>
+    <%- msg.each do |m| -%>
+      <li><%= m %></li>
+    <%- end -%>
+  </ol>
+<%- end -%>
