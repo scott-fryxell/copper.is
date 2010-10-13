@@ -9,6 +9,15 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <div>
+      <% if current_user %>
+        <span><%= current_user.email %></span>
+        <%= link_to "Account", edit_user_path(current_user) %>
+        <%= link_to "Sign out", logout_path %>
+      <% else %>
+        <%= link_to "Sign in or sign up", login_path %>
+      <% end %>
+    </div>
     <header>
       <a href="/">
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
@@ -21,65 +30,30 @@
             <%= link_to "Home",       root_path %>
           <% end %>
         </li>
+        <% if current_user %>
+          <li>
+            <%= link_to "Tip",       tips_path %>
+          </li>
+
+          <li>
+            <%= link_to "Fund",       new_order_path %>
+          </li>
+        <% end %>
         <% permitted_to? :home, :admin do %>
           <li><%= link_to "Admin",      admin_path %></li>
         <% end %>
-        <li><%= link_to "Pages",      pages_report_path %></li>
-        <li><%= link_to "Sites",      sites_report_path %></li>
+        <li><%= link_to "Discover",      pages_report_path %></li>
         <li><a href="http://blog.fasterlighterbetter.com">Blog</a></li>
       </nav>
-    </header>
-    <section id="weave">
-      <header>
+      <ol>
         <%- flash.each do |name, msg| -%>
-            <%= "<ol id=#{name}" %>
-              <%- msg.each do |m| -%>
-                <li><%= m %></li>
-              <%- end -%>
-            </ol>
+          <%- msg.each do |m| -%>
+            <li><%= m %></li>
+          <%- end -%>
         <%- end -%>
-      </header>
-      <%= yield %>
-    </section>
-    <aside id="account" itemscope="true" itemtype="http://weave.us/User#account">
-      <header>
-        <h1 itemprop="name">
-          <% if current_user %>
-            <%= "Logged in as: #{current_user.email}" %>
-          <% end %>
-        </h1>
-        <nav>
-          <% if current_user %>
-            <%= link_to "Account",      edit_user_path(current_user) %>
-            <%= link_to "Sign out",            logout_path %>
-            <% permitted_to? :home, :admin do %>
-              <li><%= link_to "Admin Panel",      admin_path %></li>
-            <% end %>
-          <% else %>
-            <%= link_to "Sign in or sign up", login_path %>
-          <% end %>
-        </nav>
-      </header>
-      <dl>
-        <% if current_user %>
-          <% if current_user.funds_for_tipping? %>
-            <dt>Cycle ends in</dt>
-            <dd itemprop="billing_period">14<span itemprop="interval">days</span></dd>
-            <dt>Balance</dt>
-            <dd itemprop="balance"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></dd>
-            <dt><%= link_to "Tips", tips_path %></dt>
-            <dd itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></dd>
-            <dt>Spread</dt>
-            <dd itemprop="distribution"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.cents_per_tip_point) %></dd>
-          <% else %>
-            <%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
-          <% end %>
-        <% end %>
-      </dl>
-      <figure accesskey="l" tabindex="2" id="weave_logo">
-        <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>
-      </figure>
-    </aside>
+      </ol>
+    </header>
+    <%= yield %>
     <footer>
       <nav>
         <h2>Policies</h2>
@@ -97,13 +71,28 @@
         <a href="http://blog.fasterlighterbetter.com">Loreum opseosis ipseum doceous</a>
       </nav>
     </footer>
+    <% if RAILS_ENV == 'development' %>
+      <style>
+        html > body > developer {
+          position:absolute;
+          bottom:0;
+          left:0;
+        }
+        html > body > developer button {
+          border:.10em solid gray;
+          -mox-border-radius: .5em;
+          border-radius: .5em;
+          color:gray;
+          padding:1em;
+        }
+      </style>
+      <developer>
+        <nav>
+          <button onclick="show_debug_popup(); return false;">Show debug popup</button>
+          <%= debug_popup %>
+        </nav>
+      </developer>
+    <% end %>
+
   </body>
-  <% if RAILS_ENV == 'development' %>
-    <developer>
-      <nav>
-        <button onclick="show_debug_popup(); return false;">Show debug popup</button>
-        <%= debug_popup %>
-      </nav>
-    </developer>
-  <% end %>
 </html>
