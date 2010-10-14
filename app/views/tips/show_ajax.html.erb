@@ -1,22 +1,35 @@
 <meta name="event_trigger" content="tip_success"/>
-<header>
-  <h1>Tipped</h1>
-  <%- flash.each do |name, msg| -%>
-      <%= "<ol id=#{name}" %>
-        <%- msg.each do |m| -%>
-          <li><%= m %></li>
-        <%- end -%>
-      </ol>
-  <%- end -%>
-</header>
-<dl >
-  <dt>Title</dt>
-    <dd>
-      <%=h CGI::unescape(@tip.locator.page.description) %>
-    </dd>
-  <dt>Url:</dt>
-    <dd><%=h @tip.locator.canonicalized %></dd>
-  <dt>Multiplier:</dt>
-    <dd><%=h @tip.multiplier %></dd>
-</dl>
-<%= render :partial => 'shared/dashboard' %>
+<section itemscope="true" itemtype="http://weave.us/tip">
+  <header>
+    <h1>You left a tip</h1>
+    <%- flash.each do |name, msg| -%>
+        <%= "<ol id=#{name}" %>
+          <%- msg.each do |m| -%>
+            <li><%= m %></li>
+          <%- end -%>
+        </ol>
+    <%- end -%>
+  </header>
+  <h2>Page:</h2>
+  <p itemprop="description"><%=h CGI::unescape(@tip.locator.page.description) %></p>
+  <p itemprop="url"><%=h @tip.locator.canonicalized %></p>
+  <button>Add memo</button>
+  <form>
+    <fieldset>
+      <label for="note">note</label>
+      <textarea name="note"></textarea>
+    </fieldset>
+    <input type="submit" name="" value="add note">
+  </form>
+</section>
+<aside itemscope="true" itemtype="http://weave.us/activity">
+  <h2>Your activity</h2>
+  <time itemprop="date" datetime="1996-01-26">January 2010</time>
+  <h3>Starting bal:</h3>
+  <p itemprop="balance">$10</p>
+  <h3>Tips</h3>
+  <p itemprop="tips">22</p>
+  <hr />
+  <h3>Spread</h3>
+  <p itemprop="spread">$ 0.95</p>
+</aside>

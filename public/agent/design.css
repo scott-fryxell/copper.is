@@ -1,109 +1,162 @@
-body > aside {
-  -webkit-transition-property: all;
-  -webkit-transition-duration:  1s;
-  opacity: 0;
-  background-color: transparent;  
-  z-index: 0;
-  height: 100%;
-  width: 100%;
-  background-repeat:repeat;
-  position:fixed;
-  top: 0px;
-  left: 0px;
-}
-body.open > aside {
-  -webkit-transition-property: all;
-  -webkit-transition-duration:  1s;
-  
-  background-color: rgb(0, 0, 0);
-  opacity: 0.5;
-}
-
 body{
   color:#808080;
   border:transparent;
   background-color: transparent;
 }
-  body > section{
+  body > section {
     outline: none;
     display:none;
   }
-    body > section > header > #error, #notice{
-     margin-top:1.5em;
-     margin-left:4em;
-     width: 32.7em;
-     min-height:4em;
-     border: .15em solid red;
-     -moz-border-radius: .3em;
-     border-radius: .3em;
-     background-color: #FFCEAD;
-     padding:1em;
-     list-style: circle inside;
-     margin-bottom: 1em;
+  body > section > header > ol {
+    margin-top:1.5em;
+    margin-left:4em;
+    width: 32.7em;
+    min-height:4em;
+    border: .15em solid red;
+    -moz-border-radius: .3em;
+    border-radius: .3em;
+    background-color: #FFFFCC;
+    padding:1em;
+    list-style: circle inside;
+    margin-bottom: 1em;
+  }
+  body > section > header > li {
+    margin-bottom:.5em;
+    color:red;
+  }
+  body > section > header > p {
+    position:absolute;
+    top: .75em;
+    left: 5.75em;
+    padding:0;
+    font-size: 2em;
+    text-align: right;
+  }
+  body > section.workflow {
+    position:absolute;
+    bottom: 0;
+    left: 20%;
+    width:auto;
+    border: .15em solid #808080;
+    -moz-border-radius: 1em 1em 0 0;
+    border-radius: 1em 1em 0 0;
+    background:white;
+    padding:1em;
     }
-    body > section > header > #error li{
-     margin-bottom:.5em;
-     color:red;
-    }
-    body > section > header > #notice {
-     border: .15em solid #808080;
-     -moz-border-radius: .3em;
-     border-radius: .3em;
-     background-color: transparent
-    }
-    body > section > header > #notice li{
-     margin-bottom:.5em;
-     color:#808080;
-    }   
-    body > section > header > p{
-      position:absolute;
-      top: .75em;
-      left: 5.75em;
-      padding:0;
-      font-size: 2em;
-      text-align: right;
-    }
-    body > section.workflow {
-      position:absolute;
-      bottom: 0;
-      left: 20%;
-      width:auto;
-      border: .15em solid #808080;
-      -moz-border-radius: 1em 1em 0 0;
-      border-radius: 1em 1em 0 0;
-      background:white;
-      padding:1em;
-    }
-    body > section.workflow > header {
-
-    }
-      body > section.workflow > header > h1{
-        margin-top: 1.25em;
-        margin-left: .5em;
-        display:inline-block;
-      }
-      body > section.workflow > header > span.close{
-        float:right;
-        color:#808080;
-        font-size:2em;
-      }
-        body > section.workflow > header > span.close:hover{
-          cursor:pointer;
-        }
+  body > section.workflow > header > h1 {
+    margin-top: 1.25em;
+    margin-left: .5em;
+    display:inline-block;
+  }
+  body > section.workflow > header > span.close {
+    float:right;
+    color:#808080;
+    font-size:2em;
+  }
+  body > section.workflow > header > span.close:hover {
+    cursor:pointer;
+  }
     body > section.notify {
+      vertical-align:top;
       position:absolute;
-      top: 20%;
-      left: 20%;
-      width:50em;
-      border: .15em solid #808080;
+      top: 21%;
+      left: 13%;
+      border: .15em solid gray;
       -moz-border-radius: 1em 1em 1em 1em;
       border-radius: 1em 1em 1em 1em;
       background:white;
-      padding:1em;
       opacity:.95;
+      padding:0;
+    }
+    body > section.notify > section {
+      vertical-align:top;
+      display:inline-block;
+      padding: 1em;
+      border-right:.15em solid gray;
+      margin-right: -6px;
+      min-height:12em;
+    }
+    body > section.notify section > header {
+      margin-bottom:1em;
+      margin-left: 1em;
+    }
+    body > section.notify section > header > h1 {
+      font-size:2em;
+    }
+    body > section.notify > section > h2 {
+      display:inline-block;
+      vertical-align:top;
+      margin: 0 1em 0 1em;
+      font-size:1.25em;
+    }
+    body > section.notify > section > p {
+      display:inline-block;
+    }
+    body > section.notify > section > *[itemprop=description] {
+      font-size: 1.15em;
+      width:21em;
+    }
+
+    body > section.notify > section > *[itemprop=url] {
+      font-style: italic;
+      font-size:.75em;
+      display:block;
+      margin-top:1em;
+      margin-left:8em;
+      width:21em;
+    }
+
+    body > section.notify > section > button {
+      display:block;
+      border: .15em solid gray;
+      margin-top: 1em;
+      margin-left: 5em;
+      background-color: white;
+      font-size: 1.15em;
+      color:gray;
+      padding: .25em 2em;
+      border-radius:.25em;
+    }
+
+    body > section.notify > section > form {
+      display:none;
+    }
+    body > section.notify > aside {
+      display:inline-block;
+      width:13em;
+      min-height:12em;
+    }
+    body > section.notify > aside h2 {
+      margin: .75em 0 .5em .5em; 
+      font-size:1.5em;
+    }
+    body > section.notify > aside time {
+      margin-left: 1em;
+    }
+    body > section.notify > aside h3 {
+      display:inline-block;
+      width: 7em;
+      font-size:1em;
+      margin-top:1em;
+      margin-left:1em;
+    }
+    body > section.notify > aside p {
+      margin-top: 1em;
+      display:inline-block;
+      text-align: right;
+      width: 3em;
+      font-size:1em;
+    }
+    body > section.notify > aside hr {
+      margin-top: 1em;
+      padding: 0;
+      border: .10em solid gray;
+    }
+    body > section.notify > aside p[itemprop=spread] {
+      margin-bottom:1em;
     }
     body > section.alert {
-      background:#;
+      background:#FFFFCC;
       position:absolute;
       bottom: 20%;
       left: 20%;
@@ -116,30 +169,27 @@ body{
       padding:1em;
       margin-bottom: 1em;
     }
-      body > section.alert header h1{
-        color:red;
-        opacity:1;
-      }
-      body > section.alert > header > span{
-        float:right;
-        color:red;
-      }
-        body > section.alert > header > span:hover{
-          cursor:pointer;
-        }
-      body > section.alert > ol {
-          list-style: circle inside;
-      }
-        body > section.alert > ol >li{
-          color:red;
-        }
+    body > section.alert header h1 {
+      color:red;
+      opacity:1;
+    }
+    body > section.alert > header > span {
+      float:right;
+      color:red;
+    }
+    body > section.alert > header > span:hover {
+      cursor:pointer;
+    }
+    body > section.alert > ol {
+      list-style: circle inside;
+    }
     body > section > form {
       position:relative;
       overflow:hidden;
       margin-top: 2em;
     }
-    body > section > form input{
-      color:808080;      
+    body > section > form input {
+      color:gray;
     } 
       body > section > form > input[type=submit] {
         -webkit-transition-property: all;
@@ -171,11 +221,11 @@ body{
         border-radius: .25em;
         -moz-border-radius: .25em;
       }
-      body > section > form > fieldset{
+      body > section > form > fieldset {
         border:none;
         margin-bottom:1em;
       }
-        body > section > form > fieldset > label{
+        body > section > form > fieldset > label {
           display:inline-block;
           width:10em;
           font-size:1.5em;
@@ -187,12 +237,11 @@ body{
           border: 0.10em solid #808080;
           margin-left:.5em;
         }
-          body > section > form > fieldset > input[id=remember_me]{
+          body > section > form > fieldset > input[id=remember_me] {
             width:.75em;
             margin:.7em 0 0 10.75em;
           }
-          body > section > form fieldset label[for="remember_me"] {
+          body > section > form fieldset label[for=remember_me] {t
             font-size:1.25em;
             margin-left:0em;
           }
-
