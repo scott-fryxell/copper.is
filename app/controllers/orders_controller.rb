@@ -43,9 +43,9 @@ class OrdersController < ApplicationController
   def new_helper
     @order = Order.new
     @fee_percent = Configuration.find_by_property(Configuration::FEE_PERCENT).value
-    @card_types = CardType.find(:all, :order => :id).map {|c| [c.name, c.id] }
-    @states = [ ["California", "CA"] ] # TODO - move to database
-    @countries = [ ["United States", "US"] ] # TODO - move to database
+    @card_types = CardType.find(:all, :order => :id).map {|c| [c.name.capitalize, c.id] }
+    @states = State.find(:all, :order => :name).map {|s| [s.name.capitalize, s.abbreviation] }
+    @countries = Country.find(:all, :order => :name).map {|c| [c.name, c.abbreviation] }
   end
 
   def assemble_order!

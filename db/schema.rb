@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100819063749) do
+ActiveRecord::Schema.define(:version => 20101015004854) do
 
   create_table "accounts", :force => true do |t|
     t.string   "number",             :limit => 16,   :null => false
@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(:version => 20100819063749) do
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "countries", :force => true do |t|
+    t.string "name"
+    t.string "abbreviation"
   end
 
   create_table "fees", :force => true do |t|
@@ -146,6 +151,11 @@ ActiveRecord::Schema.define(:version => 20100819063749) do
   end
 
   add_index "sites", ["fqdn"], :name => "index_sites_on_fqdn", :unique => true
+
+  create_table "states", :force => true do |t|
+    t.string "name"
+    t.string "abbreviation"
+  end
 
   create_table "tip_bundles", :force => true do |t|
     t.boolean  "is_active",         :default => true
