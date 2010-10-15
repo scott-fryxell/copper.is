@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20101015004854) do
     t.integer  "multiplier",    :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "note"
   end
 
   create_table "transactions", :force => true do |t|

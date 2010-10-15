@@ -13,6 +13,19 @@ class TipsController < ApplicationController
 
   end
 
+  def update
+    @tip = Tip.find(params[:id])
+
+    if params[:tip][:note] && params[:tip][:note] != ""
+      @tip.note = params[:tip][:note]
+      @tip.save
+    end
+
+    if request.xhr?
+      render :action => 'notes_ajax', :layout => false
+    end
+  end
+
   def show
     @tip = Tip.find(params[:id])
 

@@ -1,4 +1,8 @@
 <meta name="event_trigger" content="tip_success"/>
+<script src="/bookmarklet/behavior.tip_success.js"></script>
+<style>
+  @import url(/bookmarklet/design.tip_success.css);
+</style>
 <section itemscope="true" itemtype="http://weave.us/tip">
   <header>
     <h1>You left a tip</h1>
@@ -13,23 +17,26 @@
   <h2>Page:</h2>
   <p itemprop="description"><%=h CGI::unescape(@tip.locator.page.description) %></p>
   <p itemprop="url"><%=h @tip.locator.canonicalized %></p>
-  <button>Add memo</button>
+  <button id="<%=@tip.id%>">Add memo</button>
   <form>
+    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
+    <input name="_method" type="hidden" value="put">
     <fieldset>
-      <label for="note">note</label>
-      <textarea name="note"></textarea>
+      <label for="note">Notes:</label>
+      <textarea name="tip[note]"></textarea>
     </fieldset>
-    <input type="submit" name="" value="add note">
+    <input type="submit" name="cancel" value="cancel" />
+    <input type="submit" name="save" value="save" />
   </form>
 </section>
 <aside itemscope="true" itemtype="http://weave.us/activity">
   <h2>Your activity</h2>
-  <time itemprop="date" datetime="1996-01-26">January 2010</time>
+  <time itemprop="date" datetime="2010-10">October 2010</time>
   <h3>Starting bal:</h3>
-  <p itemprop="balance">$10</p>
+  <p itemprop="balance"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></p>
   <h3>Tips</h3>
-  <p itemprop="tips">22</p>
+  <p itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></p>
   <hr />
   <h3>Spread</h3>
-  <p itemprop="spread">$ 0.95</p>
+  <p itemprop="spread"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.cents_per_tip_point) %></p>
 </aside>

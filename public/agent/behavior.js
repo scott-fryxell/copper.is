@@ -18,11 +18,10 @@ $(document).bind("200", function (event, xhr, options){
 $(document).bind("notify", function (event, xhr, options) {
   $("section.notify").append(xhr.responseText);
   $("body").addClass("open");
-  $("section.notify").fadeIn(800).delay(1000).fadeOut(800)
 
-  setTimeout(function() {
-    $("body").removeClass("open");
-  }, 2600);
+  $("section.notify").fadeIn(800).delay(1000).fadeOut(800);
+
+  $("body").delay(2600).removeClass("open");
 
 });
 
@@ -61,12 +60,11 @@ $(document).keyup(function(event) {
   /*
     TODO needs to be aware of what mode app is in (workflow, open, notify, alert)
   */
-  // Enable esc
   if (event.keyCode == 27 ){
     if($("body.open").length == 1 )
-      $(document).trigger("workflow_end");
+      $(document).trigger("notify");
     else
-      $(document).trigger("workflow_start");
+      $(document).trigger("notify");
   }
 
 });

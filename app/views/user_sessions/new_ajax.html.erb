@@ -2,6 +2,7 @@
 <header>
   <h1>Sign in to Weave.us</h1>
   <span class="close">x</span>
+  <a href="/login">need an account?</a>
 </header>
 <%= form_tag authenticate_path, :method => :post %>
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>

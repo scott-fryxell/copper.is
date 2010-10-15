@@ -46,6 +46,11 @@ body > section > form {
     body > section > table > tbody > tr > td {
       width:53em;
     }
+      body > section > table > tbody > tr > td > p{
+        margin-bottom:1em;
+        margin-left:.5em;
+      }
+
       body > section > table > tbody > tr > td a {
         display:block;
         font-size: .75em;

@@ -22,6 +22,9 @@
            <a href='<%=h tip.locator.canonicalized %>' target='new' class="locator">
             <%=h tip.locator.canonicalized %>
            </a>
+           <p>
+            <%=h tip.note %>
+           </p>
          </td>
          <td><%=h tip.created_at.strftime("%B %e, %Y") %></td>
        </tr>

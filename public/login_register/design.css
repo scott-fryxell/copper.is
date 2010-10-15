@@ -48,15 +48,14 @@ body > section > form {
     body > section > form.register > fieldset > label[for="password_confirmation"],
     body > section > form.register > fieldset > input[id="password_confirmation"]{
       display:inline-block;
-
     }
     body > section > form.register > input[type="submit"] {
       width:10em;
     }
-      body > section > form.register > fieldset > input[id=password] {
-        margin-bottom:1em;
-      }
-      body > section > form.register > fieldset > label[for="remember_me"],
-      body > section > form.register > fieldset > input[id="remember_me"] {
-        display:none;
-      }
+    body > section > form.register > fieldset > input[id=password] {
+      margin-bottom:1em;
+    }
+    body > section > form.register > fieldset > label[for="remember_me"],
+    body > section > form.register > fieldset > input[id="remember_me"] {
+      display:none;
+    }
