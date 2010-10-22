@@ -21,12 +21,12 @@ class Order < ActiveRecord::Base
     if save
       if purchase
         create_payment! # TODO Need logging of the success of this method
-        return true
+        true
       else
-        return false
+        false
       end
     else
-      return false
+      false
     end
   end
 

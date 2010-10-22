@@ -1,8 +1,8 @@
 class OrderTransaction < ActiveRecord::Base
   belongs_to :order
-  
+
   serialize :params
-  
+
   def response=(response)
       self.success       = response.success?
       self.authorization = response.authorization

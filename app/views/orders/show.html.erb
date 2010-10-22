@@ -1,21 +1,22 @@
 <section>
   <style>
     @import url('/orders/design.css');
+    @import url('/orders/design_show.css');
   </style>
   <script src="/orders/behavior.js"></script>
 
-  <h2>Refill Complete</h2>
+  <h1>Refill Complete</h1>
   <dl itemscope="true" itemtype="http://weave.us/order">
     <dt>Order #</dt>
-    <dd itemprop="number">-NUMBER-</dd>
+    <dd itemprop="number"><%= @order.id %></dd>
   </dl>
   <dl itemscope="true" itemtype="http://weave.us/refill_totals">
     <dt>Total</dt>
-      <dd itemprop="total"><%=@order[:amount_in_cents]%></dd>
+      <dd itemprop="total">$<%=@order[:amount_in_cents]%></dd>
     <dt>Refill</dt>
-      <dd itemprop="refill">$xx.xx</dd>
+      <dd itemprop="refill">$<%= @order.transaction.refill.amount_in_cents %></dd>
     <dt>Fee</dt>
-      <dd itemprop="fee">$xx.xx</dd>
+      <dd itemprop="fee">$<%= @order.transaction.fee.amount_in_cents %></dd>
   </dl>
 
   <dl itemscope="true" itemtype="http://weave.us/credit_card">

@@ -122,15 +122,15 @@ describe "Placing an order" do
       it "should display the total, refill, and fee values on the order success page" do
         click_button "continue"
         click_button "Make Payment"
-        response_body.should contain("Total 1000")
-        response_body.should contain("Refill $xx.xx")
-        response_body.should contain("Fee $xx.xx")
+        response_body.should contain("Total $1000")
+        response_body.should contain("Refill $930")
+        response_body.should contain("Fee $70")
       end
 
       it "should display the order number on the order success page" do
         click_button "continue"
         click_button "Make Payment"
-        response_body.should contain("Order # -NUMBER-")
+        response_body.should contain(/Order # *\n *[0-9]{6,12}/i)
       end
 
       it "should display the payment method on the order success page" do
