@@ -34,7 +34,7 @@ describe UserSessionsController do
                                :remember_me => "1" },
                     :registered => "yes"
 
-      expire_time_from_cookie_string(response, 'user_credentials').should be_close(Time.now + 2.weeks, 2)
+      expire_time_from_cookie_string(response, 'user_credentials').should be_close(Time.now + 2.weeks, 2.hours)
     end
 
     private
