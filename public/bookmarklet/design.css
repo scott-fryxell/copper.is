@@ -74,12 +74,13 @@ body > section {
     }
     body section  ol li textarea {
       font-size:1em;
-      padding:.5em;
+      padding:1.5em 0 0 1em;
       margin-top:3em;
-      margin-left:1em;
+      margin-left:1.5em;
       display:block;
-      width:37em;
-      height:27em;
+      width:60em;
+      height:15em;
+      font-size: .5em;
     }
     body section  ol li figure {
       margin-top:3em;

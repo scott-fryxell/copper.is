@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.with_options  :controller => 'bookmarklet' do |bookmarklet|
     bookmarklet.instructions  "bookmarklet", :action => "instructions"
+    bookmarklet.weave  "bookmarklet/weave.js", :action => "weave"
   end
 
 

@@ -19,9 +19,10 @@ $(document).bind("notify", function (event, xhr, options) {
   $("section.notify").append(xhr.responseText);
   $("body").addClass("open");
 
-  $("section.notify").fadeIn(800).delay(1000).fadeOut(800);
-
-  $("body").delay(2600).removeClass("open");
+  $("section.notify").fadeIn(800).delay(1000).fadeOut(800, function(){
+    window.parent.postMessage("notify_complete",  "*");
+    $("body").removeClass("open");
+  });
 
 });
 
