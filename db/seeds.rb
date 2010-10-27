@@ -23,6 +23,7 @@ card_types = CardType.create([
 
 (1..31).each do |id|
   BillingPeriod.create(:id => id)
+end
 
 configurations = Configuration.create([
   { :property => 'fee_percent', :value => '7'}
@@ -333,4 +334,3 @@ countries = Country.create([
   { :abbreviation => "ZW", :name => "Zimbabwe" },
   { :abbreviation => "ZZ", :name => "Unknown or unspecified country" }
 ])
-end
