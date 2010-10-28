@@ -20,7 +20,7 @@
     f.scrolling='no';
     f.width='100%';
     f.height='100%';
-    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/agent#/' +
+    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/agent/#/' +
       window.location + '&title=' +
       document.getElementsByTagName('title')[0].innerHTML;
     document.body.appendChild(f);
