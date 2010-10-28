@@ -23,13 +23,6 @@
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
       </a>
       <nav>
-        <li>
-          <% if current_user %>
-            <%= link_to "Home",       tips_path %>
-          <% else %>
-            <%= link_to "Home",       root_path %>
-          <% end %>
-        </li>
         <% if current_user %>
           <li>
             <%= link_to "Tip",       tips_path %>
