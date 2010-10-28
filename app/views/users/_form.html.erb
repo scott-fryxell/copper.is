@@ -1,21 +1,29 @@
 <style>
-  @import url("/password/design.css");
+  @import url("/account/design.css");
 </style>
-<h1>Manage Your Account</h1>
-<% form_for @user do |f| %>
+<h1>Account information</h1>
+<% form_for @user, :url => (update_email_name_path) do |f| %>
+  <fieldset>
+    <label for="user_name">Name</label>
+    <%= f.text_field :name %>
+
+    <label for="user_email">Email</label>
+    <%= f.text_field :email %>
+  </fieldset>
+  <%= f.submit "Save" %>
+<% end %>
+  
+<% form_for @user, :url => (update_password_path)  do |f| %>
   <fieldset>
     <legend>Change your password</legend>
-    <label for="password">New password</label>
+    <label for="current_password">Current password</label>
+    <input type="password" name="user[current_password]" id="current_password" value=""/>
+
+    <label for="user_password">New password</label>
     <input type="password" name="user[password]" id="password" value=""/>
-    <p/>
+
     <label for="password_confirmation">Confirm new password</label>
     <input type="password" name="user[password_confirmation]" id="password_confirmation" value=""/>
   </fieldset>
-
-  <fieldset>
-    <legend>Billing information</legend>
-  </fieldset>
-
-  <%= f.submit "Submit" %>
-
+  <%= f.submit "Change password" %>
 <% end %>

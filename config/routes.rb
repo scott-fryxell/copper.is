@@ -48,6 +48,12 @@ ActionController::Routing::Routes.draw do |map|
     order.order_prepare   "order/prepare",    :action => "prepare"
   end
 
+  map.with_options :controller => 'users' do |user|
+    user.update_email_name   "users/:id/update_email_name",    :action => "update_email_name"
+    user.update_password   "users/:id/update_password",    :action => "update_password"
+  end
+
+
   # RESTful API
   map.resources :tips
   map.resources :users
