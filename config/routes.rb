@@ -49,8 +49,8 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.with_options :controller => 'users' do |user|
-    user.update_email_name   "users/:id/update_email_name",    :action => "update_email_name"
-    user.update_password   "users/:id/update_password",    :action => "update_password"
+    user.update_email_name   "users/update_email_name",    :action => "update_email_name"
+    user.update_password   "users/update_password",    :action => "update_password"
   end
 
 

@@ -15,7 +15,7 @@ describe UsersController do
 
       before :each do
         @user = user_session
-        put :update_password, :user => {:current_password => "test", :password => "new" , :password_confirmation => "new"}
+        put :update_password, :user => {:current_password => "test", :password => "newone" , :password_confirmation => "newone"}
       end
 
       it "should return a message indicating success" do
@@ -23,7 +23,7 @@ describe UsersController do
       end
 
       it "should display the account page" do
-        response.should redirect_to(accounts_url)
+        response.should render_template('edit')
       end
     end
 
@@ -39,7 +39,7 @@ describe UsersController do
       end
 
       it "should display the account page" do
-        response.should redirect_to(accounts_url)
+        response.should render_template('edit')
       end
     end
 
