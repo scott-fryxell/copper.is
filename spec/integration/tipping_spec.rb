@@ -22,7 +22,7 @@ describe "Tipping" do
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
       click_button "Sign in"
-      click_link "Home"
+      click_link "Tip"
     end
 
     it "should include a visually offset area into which page URLs can be pasted" do

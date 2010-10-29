@@ -65,7 +65,6 @@ describe "Placing an order" do
       fill_in "password", :with => "test"
       choose "Yes, I have a password:"
       click_button "Sign in"
-      click_link "Home"
       visit "/orders/new"
     end
 
