@@ -1,9 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   map.with_options :controller => 'home' do |home|
-    home.terms     "terms",     :action => "terms"
-    home.privacy   "privacy",   :action => "privacy"
-    home.contact   "contact",   :action => "contact"
-    home.feed      "subscribe", :action => "subscribe"
+    home.terms      "terms",      :action => "terms"
+    home.privacy    "privacy",    :action => "privacy"
+    home.contact    "contact",    :action => "contact"
+    home.subscribe  "subscribe",  :action => "subscribe"
+  end
   end
 
   map.with_options  :controller => 'bookmarklet' do |bookmarklet|
