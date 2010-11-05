@@ -36,7 +36,7 @@ describe "Account" do
       fill_in "password", :with => "test"
       fill_in "password_confirmation", :with => "test"
       click_button "Sign in"
-      response_body.should contain("You must sign up with a valid email address.")
+      response_body.should contain("You must use a valid email address.")
     end
 
     it "should require a new user to confirm their password" do

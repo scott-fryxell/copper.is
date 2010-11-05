@@ -39,6 +39,39 @@ class User < ActiveRecord::Base
     end
   end
 
+  def new_email_submit(new_email)
+    current_email = self.email # hold on to the existing email
+    self.email = new_email
+    if self.valid?
+      self.email = current_email # set the email back to the current email
+      self.new_email = new_email # put the new email in the new_email field
+      if save
+        self.deliver_email_change_notify! # send notifcation to existing address
+        self.deliver_email_change_confirm! # send confirmation email to new address
+      else
+        false
+      end
+    end
+  end
+
+  def new_email_confirmed!
+    unless self[:new_email].blank?
+      email = self[:email]
+      self[:email] = self[:new_email]
+      if self.valid?
+        self[:new_email] = nil
+        self[:new_email_token] = nil
+        save
+      else
+        self[:email] = email
+        self.new_email_token = nil
+        return false
+      end
+    else
+      false
+    end
+  end
+
   def activate!
     self.active = true
     self.activation_date = Time.now
@@ -58,6 +91,15 @@ class User < ActiveRecord::Base
   def deliver_password_reset!
     reset_perishable_token!
     Notifier.deliver_password_reset(self)
+  end
+
+  def deliver_email_change_notify!
+    Notifier.deliver_email_change_notify(self)
+  end
+
+  def deliver_email_change_confirm!
+    reset_new_email_token!
+    Notifier.deliver_email_change_confirm(self)
   end
 
   def self.find_active_users
@@ -91,5 +133,12 @@ class User < ActiveRecord::Base
     else
       nil
     end
+  end
+
+  private
+
+  def reset_new_email_token!
+    self.new_email_token = Authlogic::Random.hex_token[0..40]
+    save
   end
 end

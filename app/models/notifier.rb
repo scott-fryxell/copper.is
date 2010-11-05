@@ -27,4 +27,22 @@ class Notifier < ActionMailer::Base
     body
   end
 
+  def email_change_notify(user)
+    from          'service@weave.us'
+    subject       'Your Weave email address has changed'
+    recipients    user.email
+    sent_on       Time.now
+    content_type  'multipart/alternative'
+    body          :user => user
+  end
+
+  def email_change_confirm(user)
+    from          'service@weave.us'
+    subject       'Confirm your new Weave email address'
+    recipients    user.email
+    sent_on       Time.now
+    content_type  'multipart/alternative'
+    body          :user => user
+  end
+
 end

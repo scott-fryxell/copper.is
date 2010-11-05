@@ -141,4 +141,89 @@ describe Notifier do
 
   end
 
+  describe "user email change notification to existing address" do
+
+    before(:each) do
+      @user.new_email = "newemail@test.com"
+      @user.save
+      @message = Notifier.create_email_change_notify(@user)
+    end
+
+    it "should render successfully" do
+      lambda {@message}.should_not raise_error
+    end
+
+    it "should be from the right address" do
+      @message.from[0].should =~/service@weave.us/
+    end
+
+    it "should have the correct subject line" do
+      @message.subject.should =~ /Your Weave email address has changed/
+    end
+
+    describe "body" do
+
+      it "should contain a message indicating that a new email address has been attachd to the account" do
+        @message.body.should =~ /You recently changed the email address for your Weave account./
+      end
+
+      it "should have a link for help if user did not make this request" do
+        @message.body.should =~ /support\/compromised_account/
+      end
+    end
+
+    it "should deliver successfully" do
+      lambda {Notifier.deliver(@message)}.should_not raise_error
+    end
+
+    it "should deliver one message" do
+      Notifier.deliver(@message)
+      ActionMailer::Base.deliveries.length.should == 1
+    end
+
+  end
+
+  describe "user email change confirmation to new address" do
+
+    before(:each) do
+      @user.new_email = "newemail@test.com"
+      @user.new_email_token = Authlogic::Random.hex_token[0..100]
+      @user.save
+      @message = Notifier.create_email_change_confirm(@user)
+    end
+
+    it "should render successfully" do
+      lambda {@message}.should_not raise_error
+    end
+
+    it "should be from the right address" do
+      @message.from[0].should =~/service@weave.us/
+    end
+
+    it "should have the correct subject line" do
+      @message.subject.should =~ /Confirm your new Weave email address/
+    end
+
+    describe "body" do
+
+      it "should contain a message indicating that the new address is awaiting confirmation" do
+        @message.body.should =~ /A request has been made to change the email address of your Weave account/
+      end
+
+      it "should have a link for the user to confirm the new email address" do
+        @message.body.should =~ /confirm_new_email\/#{@user.new_email_token}/
+      end
+    end
+
+    it "should deliver successfully" do
+      lambda {Notifier.deliver(@message)}.should_not raise_error
+    end
+
+    it "should deliver one message" do
+      Notifier.deliver(@message)
+      ActionMailer::Base.deliveries.length.should == 1
+    end
+
+  end
+
 end

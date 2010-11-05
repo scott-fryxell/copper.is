@@ -1,0 +1,8 @@
+<p>
+  You recently changed the email address for your Weave account.
+  To confirm your new email, please click the link in the message sent to that address (<%= @user.new_email %>).
+  If you did not request this change, and believe your Weave account has been compromised, contact Weave support at the link below.
+</p>
+<p>
+  <%= link_to compromised_account_url, compromised_account_url %>
+</p>

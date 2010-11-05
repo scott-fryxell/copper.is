@@ -5,11 +5,15 @@ ActionController::Routing::Routes.draw do |map|
     home.contact    "contact",    :action => "contact"
     home.subscribe  "subscribe",  :action => "subscribe"
   end
+
+  map.with_options  :controller => 'support' do |support|
+    support.support               "support",                      :action => "home"
+    support.compromised_account   "support/compromised_account",  :action => "compromised_account"
   end
 
   map.with_options  :controller => 'bookmarklet' do |bookmarklet|
-    bookmarklet.instructions  "bookmarklet", :action => "instructions"
-    bookmarklet.weave  "bookmarklet/weave.js", :action => "weave"
+    bookmarklet.instructions  "bookmarklet",    :action => "instructions"
+    bookmarklet.weave  "bookmarklet/weave.js",  :action => "weave"
   end
 
 
@@ -25,10 +29,10 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.with_options  :controller => 'password_resets' do |password|
-    password.password_reset_new       "password/reset/request", :action => "new"
-    password.password_reset_create    "password/reset/submit",  :action => "create"
-    password.password_reset_edit      "password/reset/:id",     :action => "edit"
-    password.password_reset_update    "password/reset/:id/update",    :action => "update"
+    password.password_reset_new       "password/reset/request",     :action => "new"
+    password.password_reset_create    "password/reset/submit",      :action => "create"
+    password.password_reset_edit      "password/reset/:id",         :action => "edit"
+    password.password_reset_update    "password/reset/:id/update",  :action => "update"
   end
 
   map.with_options :controller => 'user_activations' do |activations|
@@ -50,8 +54,9 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.with_options :controller => 'users' do |user|
-    user.update_email_name   "users/update_email_name",    :action => "update_email_name"
-    user.update_password   "users/update_password",    :action => "update_password"
+    user.update_user   "users/update_user",           :action => "update_user"
+    user.update_password   "users/update_password",   :action => "update_password"
+    user.confirm_new_email  "confirm_new_email/:id",  :action => "confirm_new_email"
   end
 
 

@@ -20,4 +20,14 @@ describe HomeController do
     get :subscribe
     response.should render_template('subscribe')
   end
+
+  it "should have an index page" do
+    get :index
+    response.should render_template('index')
+  end
+
+  it "it should make a list of tipped pages available to the index page" do
+    get :index
+    assigns['pages'].size.should_not be_nil
+  end
 end
