@@ -3,6 +3,7 @@ ENV["FIXTURE_ORDER"] =
       users
       roles_users
       configurations
+      tip_rates
       addresses
       accounts
       transactions

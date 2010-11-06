@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101105071323) do
+ActiveRecord::Schema.define(:version => 20101105232357) do
 
   create_table "accounts", :force => true do |t|
     t.string   "number",             :limit => 16,   :null => false
@@ -163,6 +163,10 @@ ActiveRecord::Schema.define(:version => 20101105071323) do
     t.integer  "billing_period_id", :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tip_rates", :force => true do |t|
+    t.integer "amount_in_cents"
   end
 
   create_table "tip_royalties", :force => true do |t|

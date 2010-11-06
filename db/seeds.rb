@@ -25,6 +25,14 @@ card_types = CardType.create([
   BillingPeriod.create(:id => id)
 end
 
+tip_rates = TipRate.create([
+  { :amount_in_cents => 5 },
+  { :amount_in_cents => 10 },
+  { :amount_in_cents => 25 },
+  { :amount_in_cents => 50 },
+  { :amount_in_cents => 100 }
+])
+
 configurations = Configuration.create([
   { :property => 'fee_percent', :value => '7'}
 ])

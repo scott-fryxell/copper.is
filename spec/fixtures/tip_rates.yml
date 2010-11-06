@@ -1,0 +1,10 @@
+5:
+  amount_in_cents: 5
+10:
+  amount_in_cents: 10
+25:
+  amount_in_cents: 25
+50:
+  amount_in_cents: 50
+100:
+  amount_in_cents: 100
