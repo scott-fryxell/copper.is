@@ -17,10 +17,6 @@ describe "The standard Weave page" do
   end
 
   describe "global navigation" do
-    it "should link to the pages report" do
-      assert_have_selector "body > header > nav"
-      click_link "Discover"
-    end
 
     it "should link to the blog"
     it "should contain a contextual 'fun' widget" do
@@ -38,12 +34,6 @@ describe "The standard Weave page" do
         choose "Yes, I have a password:"
         click_button "Sign in"
       end
-      
-      it "should link to the tips" do
-        assert_have_selector "body > header > nav"
-        click_link "Tip"
-      end
-      
 
       it "should have an account section" do
         assert_have_selector "body > aside", :id => 'account'

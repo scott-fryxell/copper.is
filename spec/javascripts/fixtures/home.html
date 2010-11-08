@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en_US">
+  <head>
+    <style>
+      @import url('design.css');
+    </style>
+    <link rel="stylesheet" href="screw.css" type="text/css" charset="utf-8" /> 
+    <script type="text/javascript" src="../../../vendor/plugins/blue-ridge/lib/blue-ridge.js"></script>
+    <title>homepage spec</title>
+  </head>
+  <body>
+    <section>
+      <header>
+        <span>x</span>
+        <h1>
+          See something cool on the internets? Tip it
+        </h1>
+        <figure accesskey="l" tabindex="2" id="weave_logo">
+          <img src="/graphics/person.svg" alt="weave logo"/>
+        </figure>
+        <a href="/signup">Get Started <span> ➠</span></a>
+      </header>
+      <form action="/search" method="get" accept-charset="utf-8">
+        <label for="sort">sort by:</label>
+        <select name="sort" id="sort" size="1">
+          <option value="new">new</option>
+          <option value="most_tipped">Highest Tips</option>
+          <option value="most_profitable">Profitable</option>
+          <option value="trending">trending</option>
+        </select>
+        <input type="search" placeholder="Search" name="search" value="" />
+      </form>
+      <ol>
+        <li itemscope="true" itemtype="http://weave.us/tip">
+          <aside>
+            <span itemprop="tips">16</span>
+            <span itemprop="total">$22.50</span>
+          </aside>
+          <section>
+            <h2 itemprop="title">
+              <a href="/locator/1" itemprop="locator">
+                lead with title
+              </a>
+            </h2>
+            <p itemprop="publisher">
+              publisher name
+            </p>
+          </section>
+          <div>
+            <a href="#">Tip</a>
+          </div>
+        </li>
+        <li itemscope="true" itemtype="http://weave.us/tip">
+          <aside>
+            <span itemprop="tips">160</span>
+            <span itemprop="total">$121</span>
+          </aside>
+          <section>
+            <h2 itemprop="title">
+              <a href="/locator/1" itemprop="locator">
+                lead with title it can be very long sometimes
+              </a>
+            </h2>
+            <p itemprop="publisher">
+              publisher name
+            </p>
+          </section>
+          <div>
+            <a href="#">Tip</a>
+          </div>
+        </li>
+        <li itemscope="true" itemtype="http://weave.us/tip">
+          <aside>
+            <span itemprop="tips">8</span>
+            <span itemprop="total">$1.50</span>
+          </aside>
+          <section>
+            <h2 itemprop="title">
+              <a href="/locator/1" itemprop="locator">
+                lead with title. sometimes it can be very long.
+              </a>
+            </h2>
+            <p itemprop="publisher">
+              publisher name  
+            </p>
+          </section>
+          <div>
+            <a href="#">Tip</a>
+          </div>
+        </li>
+        <li itemscope="true" itemtype="http://weave.us/tip">
+          <aside>
+            <span itemprop="tips">34</span>
+            <span itemprop="total">$15.75</span>
+          </aside>
+          <section>
+            <h2 itemprop="title">
+              <a href="/locator/1" itemprop="locator">
+                Fed Will Buy $600 Billion in Debt, Hoping to Spur Growth
+              </a>
+            </h2>
+            <p itemprop="publisher">
+              publisher name  
+            </p>
+          </section>
+          <div>
+            <a href="#">Tip</a>
+          </div>
+        </li>
+        <li itemscope="true" itemtype="http://weave.us/tip">
+          <aside>
+            <span itemprop="tips">160</span>
+            <span itemprop="total">$121</span>
+          </aside>
+          <section>
+            <h2 itemprop="title">
+              <a href="/locator/1" itemprop="locator">
+                lead with title it can be very long sometimes
+              </a>
+            </h2>
+            <p itemprop="publisher">
+              publisher name
+            </p>
+          </section>
+          <div>
+            <a href="#">Tip</a>
+          </div>
+        </li>
+        <li itemscope="true" itemtype="http://weave.us/tip">
+          <aside>
+            <span itemprop="tips">14</span>
+            <span itemprop="total">$5.75</span>
+          </aside>
+          <section>
+            <h2 itemprop="title">
+              <a href="/locator/1" itemprop="locator">
+                Fed Will Buy $600 Billion in Debt, Hoping to Spur Growth
+              </a>
+            </h2>
+            <p itemprop="publisher">
+              publisher name
+            </p>
+          </section>
+          <div>
+            <a href="#">Tip</a>
+          </div>
+        </li>
+
+      </ol>
+    </section>
+  </body>
+</html>

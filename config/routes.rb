@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
     home.privacy    "privacy",    :action => "privacy"
     home.contact    "contact",    :action => "contact"
     home.subscribe  "subscribe",  :action => "subscribe"
+    home.about     "about",     :action => "about"
   end
 
   map.with_options  :controller => 'support' do |support|

@@ -1,0 +1,163 @@
+body > section {
+  width:55.5em;
+}
+  body > section > header {
+    position:relative;
+    border: .15em solid gray;
+    min-height: 2.5em;
+    background:white;
+    margin:0;
+    width: 58.5em;
+    margin-left: -1.65em;
+    margin-bottom: 1em;
+    -webkit-transition-property: all;
+    -webkit-transition-duration:  1s;
+  }
+    body > section > header > h1 {
+      text-align:center;
+      width: 10em;
+      line-height:1.5em;
+      font-size:2.5em;
+      display:inline-block;
+      min-height:3em;
+      padding:1em;
+    }
+    body > section > header > figure {
+      display:inline-block;
+      vertical-align:top;
+      margin-left:2.5em;
+      padding-top:1em;
+      opacity:1;
+      height:auto;
+    }
+      body > section > header > figure > img{
+        vertical-align:middle;
+        width:13em;
+        height:13em;
+      }
+    body > section > header > a {
+      display:inline-block;
+      position:absolute;
+      bottom:.5em;
+      right:.5em;
+      font-size: 1.5em;
+    }
+    body > section > header > span {
+      position:absolute;
+      top:.5em;
+      right:.5em;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+  body > section > header.minimized {
+  }
+    body > section > header.minimized h1, 
+    body > section > header.minimized figure,
+    body > section > header.minimized figure img {
+      height:0;
+      width:0;
+      display:none;
+    }
+    body > section > header.minimized > a {
+      left:.5em;
+      width:6em;
+    }
+  body > section > form {
+    width: 55em;
+    vertical-align: middle;
+    margin-bottom: 1em;
+  }
+    body > section > form > input {
+      float: right;
+      width:7em ;
+    }
+  body > section > ol {
+    -webkit-padding-start: 0;
+    margin-top:2em;
+    vertical-align:top;
+  }
+  *[itemtype="http://weave.us/most_tipped"] {
+    display:inline-block;
+  }
+  *[itemtype="http://weave.us/most_revenue"] {
+    display:inline-block;
+    float:right;
+  }
+  *[itemtype="http://weave.us/tip"] {
+    vertical-align:top;
+    border:.15em solid gray;
+    margin-bottom:2em;
+    -moz-border-radius : .25em;
+    border-radius : .25em;
+    width:26.75em;
+    height:6em;
+    overflow:hidden;
+    display:none;
+  }
+  *[itemtype="http://weave.us/tip"]:nth-child(n+4) {
+    display:block;
+  }
+    *[itemtype="http://weave.us/tip"] > aside {
+      float:left;
+      display:inline-block;
+
+      padding:.5em;
+    /*  outline:.15em dotted green;*/
+      text-align:center;
+      width:4em;
+
+    }
+    *[itemtype="http://weave.us/tip"] > section {
+      display:inline-block;
+      min-height: 5.5em;
+      padding:.5em;
+      max-width:15em;
+      border-left: .15em solid gray;
+    /*  outline:.15em dotted yellow;*/
+    }
+    *[itemtype="http://weave.us/tip"] > div {
+      float:right;
+      display:inline-block;
+      min-height: 5em;
+      margin-right:1em;
+      padding-right:.5em;
+      width:3em;
+    /*  outline:.15em dotted yellow;*/
+
+    }
+      *[itemtype="http://weave.us/tip"] > div a {
+        margin-top:1.25em;
+        display:inline-block;
+        background-color : gray;
+        -moz-border-radius : .75em;
+        border-radius : .75em;
+        font-weight:bold;
+        font-size:1.5em;
+        padding:.5em .5em;
+        color:white;
+      }
+      *[itemtype="http://weave.us/tip"] > div > a:hover {
+        -moz-border-radius : .75em;
+        border-radius : .75em;
+      }
+    *[itemtype="http://weave.us/tip"] *[itemprop="tips"] {
+      min-width:2.5em;
+      display:inline-block;
+      font-size:1.5em;
+      line-height: 2.5em;
+    }
+    *[itemtype="http://weave.us/tip"] *[itemprop="total"] {
+      display:inline-block;
+      font-size:1em;
+      line-height: 1.5em;
+    }
+    *[itemtype="http://weave.us/tip"] *[itemprop="title"] {
+      font-size:1.25em;
+      line-height: 1em;
+    }
+    *[itemtype="http://weave.us/tip"] *[itemprop="locator"] {
+    margin-top:.5em;
+    width:17em;
+    overflow:hidden;
+    font-size:.75em;
+  }

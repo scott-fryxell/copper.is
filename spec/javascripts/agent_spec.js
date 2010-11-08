@@ -7,12 +7,12 @@ Screw.Unit(function (){
     before(function() {
       clean_up();
     });
-    
+
     it("should notify the user about magic beans", function (){
       var s="body > section.notify > h1";
       $(document).trigger("notify", {"responseText":"<h1>magic beans are good</h1>"});
       /*
-        TODO also test that the ui has slide down. 
+        TODO also test that the ui has slide down.
       */
       expect($(s)).to(match_selector, s);
     });
@@ -21,7 +21,6 @@ Screw.Unit(function (){
       var s = "body > section.workflow > header > .close";
       $("section.workflow").append("<header><h1>header text</h1><span class='close'>x</span></header>")
       $(document).trigger("workflow_start");
-      
       expect($(s)).to(match_selector, s);
     });
 
@@ -61,12 +60,12 @@ Screw.Unit(function (){
       $("section.alert > header > .close").click();
       expect($(s).innerHTML).to(be_null);
     });
-    
+
     it("should close the workflow when the x is clicked", function(){
       var s ="body > section.workflow > ol";
       $("section.workflow > header > span").click();
       expect($(s).innerHTML).to(be_null);
-      
+
     });
   });
 });

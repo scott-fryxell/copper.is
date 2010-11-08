@@ -1,2 +1,31 @@
-<%= render :partial => 'about/content' %>
-<%= render :partial => 'shared/dashboard' %>
+<section>
+  <script src="/behavior.js" type="text/javascript" charset="utf-8" async="true"></script>
+  <script src="/behavior/jquery.cookie.js" type="text/javascript" charset="utf-8" async="true"></script>
+  <style type="text/css" media="screen">
+    @import url(/design.css);
+  </style>
+  <% if current_user %>
+  <% else%>
+    <header>
+      <span>X</span>
+      <h1>
+        See something cool on the internets? Tip it
+      </h1>
+      <figure accesskey="l" tabindex="2" id="weave_logo">
+        <img src="/graphics/person.svg" alt="weave logo"/>
+      </figure>
+      <a href="/login">Get Started <span> ➠</span></a>
+    </header>
+  <% end %>
+  <form action="/search" method="get" accept-charset="utf-8">
+    <label for="sort">sort by:</label>
+    <select name="sort" id="sort" size="1">
+      <option value="most_tipped">Highest Tips</option>
+      <option value="most_profitable">Profitable</option>
+      <option value="new">new</option>
+      <option value="trending">trending</option>
+    </select>
+    <input type="search" placeholder="Search" name="search" value="" />
+  </form>
+  <%= render :partial => 'pages' %>
+</section>

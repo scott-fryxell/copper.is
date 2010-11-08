@@ -28,6 +28,7 @@ class Page < ActiveRecord::Base
               GROUP BY pages.id) tip_counts
          WHERE tip_counts.page_id = pages.id
       ORDER BY tip_counts.num_tips DESC
+      LIMIT 6
     CHUBBA
   end
 
@@ -45,6 +46,7 @@ class Page < ActiveRecord::Base
       GROUP BY p.id,
                p.description
       ORDER BY total_revenue desc
+      LIMIT 6
     WHANKABOOM
   end
 

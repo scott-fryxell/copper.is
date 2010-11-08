@@ -12,8 +12,13 @@
     <div>
       <% if current_user %>
         <span><%= current_user.email %></span>
-        <%= link_to "Settings", edit_user_path(current_user) %>
+        <%= link_to "Account", edit_user_path(current_user) %>
         <%= link_to "Sign out", logout_path %>
+        
+        <% permitted_to? :home, :admin do %>
+          <%=link_to "Admin", admin_path %>
+        <% end %>
+
       <% else %>
         <%= link_to "Sign in or sign up", login_path %>
       <% end %>
@@ -22,22 +27,6 @@
       <a href="/">
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
       </a>
-      <nav>
-        <% if current_user %>
-          <li>
-            <%= link_to "Tip",       tips_path %>
-          </li>
-
-          <li>
-            <%= link_to "Fund",       new_order_path %>
-          </li>
-        <% end %>
-        <% permitted_to? :home, :admin do %>
-          <li><%= link_to "Admin",      admin_path %></li>
-        <% end %>
-        <li><%= link_to "Discover",      pages_report_path %></li>
-        <li><a href="http://blog.fasterlighterbetter.com">Blog</a></li>
-      </nav>
       <ol>
         <%- flash.each do |name, msg| -%>
           <%- msg.each do |m| -%>
@@ -56,36 +45,13 @@
       <nav>
         <h2>About</h2>
         <%= link_to "Contact",   contact_path %>
-        <%= link_to "Subscribe", subscribe_path %>
+        <%= link_to "Subscribe", feed_path %>
       </nav>
       <nav>
-        <h2>News</h2>
-        <a href="http://blog.fasterlighterbetter.com">ipseum doceous breasos rodesun</a>
-        <a href="http://blog.fasterlighterbetter.com">Loreum opseosis ipseum doceous</a>
+        <h2>Blog</h2>
+        <a href="/blog">ipseum doceous breasos rodesun</a>
+        <a href="/blog">Loreum opseosis ipseum doceous</a>
       </nav>
     </footer>
-    <% if RAILS_ENV == 'development' %>
-      <style>
-        html > body > developer {
-          position:absolute;
-          bottom:0;
-          left:0;
-        }
-        html > body > developer button {
-          border:.10em solid gray;
-          -mox-border-radius: .5em;
-          border-radius: .5em;
-          color:gray;
-          padding:1em;
-        }
-      </style>
-      <developer>
-        <nav>
-          <button onclick="show_debug_popup(); return false;">Show debug popup</button>
-          <%= debug_popup %>
-        </nav>
-      </developer>
-    <% end %>
-
   </body>
 </html>
