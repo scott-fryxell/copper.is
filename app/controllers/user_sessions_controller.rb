@@ -61,8 +61,10 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    current_user_session.destroy
+    @user_session = UserSession.find
+    @user_session.destroy
     flash[:notice] = t("weave.logout_success")
     redirect_to root_url
   end
+
 end

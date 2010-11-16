@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
 
   #AuthLogic validate the uniqueness of the email field by convention
   #validates_uniqueness_of :email
-  validates_uniqueness_of :facebook_uid
+
+  #todo figure out how to support this and our email
+  #validates_uniqueness_of :facebook_uid
   
   attr_accessible :email, :password, :password_confirmation
 
