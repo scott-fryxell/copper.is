@@ -47,4 +47,15 @@ describe UserSessionsController do
       Time.parse(date_string)
     end
   end
+
+  describe "Authorizing and authenticating with facebook connect" do
+    before :each do
+      post :fb_authenticate, :user => {:email => "test@test.com", :password => "test"}, :registered => "yes"
+    end
+
+    it "should description" do
+
+    end
+  end
+
 end

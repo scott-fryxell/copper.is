@@ -9,10 +9,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101105232357) do
+ActiveRecord::Schema.define(:version => 20101111003811) do
 
   create_table "accounts", :force => true do |t|
-    t.string   "number",             :limit => 16,   :null => false
+    t.integer  "number",                             :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "verification_code"
@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(:version => 20101105232357) do
   end
 
   create_table "addresses", :force => true do |t|
-    t.string   "line_1",      :limit => nil,                   :null => false
+    t.string   "line_1",                                       :null => false
     t.string   "line_2"
-    t.string   "city",        :limit => nil,                   :null => false
-    t.string   "postal_code", :limit => nil,                   :null => false
+    t.string   "city",                                         :null => false
+    t.string   "postal_code",                                  :null => false
     t.string   "country",     :limit => nil, :default => "US", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",       :limit => 2,                     :null => false
-    t.string   "territory",   :limit => nil
+    t.string   "state",                                        :null => false
+    t.string   "territory"
     t.string   "phone"
   end
 
@@ -199,8 +199,8 @@ ActiveRecord::Schema.define(:version => 20101105232357) do
     t.string   "crypted_password"
     t.string   "password_salt"
     t.string   "persistence_token"
-    t.integer  "login_count",        :default => 0,     :null => false
-    t.integer  "failed_login_count", :default => 0,     :null => false
+    t.integer  "login_count",                       :default => 0,     :null => false
+    t.integer  "failed_login_count",                :default => 0,     :null => false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
@@ -208,12 +208,14 @@ ActiveRecord::Schema.define(:version => 20101105232357) do
     t.string   "last_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "perishable_token",   :default => "",    :null => false
-    t.boolean  "active",             :default => false
+    t.string   "perishable_token",                  :default => "",    :null => false
+    t.boolean  "active",                            :default => false
     t.datetime "activation_date"
     t.string   "name"
     t.string   "new_email"
     t.string   "new_email_token"
+    t.integer  "facebook_uid",         :limit => 8
+    t.string   "facebook_session_key"
   end
 
 end

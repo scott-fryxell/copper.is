@@ -1,28 +1,20 @@
 <!DOCTYPE html>
-<html lang="en_US" xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" lang="en_US">
+
   <head>
     <title><%= h(yield(:title) || "weave.us") %></title>
     <style>
       @import url("/design/index.css");
     </style>
-    <script src="/behavior/jquery.js"></script>
+    <script src="/behavior/jquery.js" type="text/javascript" charset="utf-8"></script>
     <%= yield(:head) %>
+    <style type="text/css" media="screen">
+      body > header > a > img {
+        margin-top:1em;
+      }
+    </style>
   </head>
   <body>
-    <div>
-      <% if current_user %>
-        <span><%= current_user.email %></span>
-        <%= link_to "Settings", edit_user_path(current_user) %>
-        <%= link_to "Sign out", logout_path %>
-        
-        <% permitted_to? :home, :admin do %>
-          <%=link_to "Admin", admin_path %>
-        <% end %>
-
-      <% else %>
-        <%= link_to "Sign in or sign up", login_path %>
-      <% end %>
-    </div>
     <header>
       <a href="/">
         <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
@@ -35,6 +27,8 @@
         <%- end -%>
       </ol>
     </header>
+
+
     <%= yield %>
     <footer>
       <nav>
@@ -53,5 +47,7 @@
         <a href="/blog">Loreum opseosis ipseum doceous</a>
       </nav>
     </footer>
+    <%= fb_connect_javascript_tag %>
+    <%= init_fb_connect "XFBML", :js => :jquery %>
   </body>
 </html>

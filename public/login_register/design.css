@@ -1,10 +1,10 @@
-html * {
+body > section > form * {
   -webkit-transition-property: all;
   -webkit-transition-duration:  1s;
 }
 body > section > form {
   margin-top: 3em;
-  margin-right: 13em;
+  margin-right: 5em;
 }
   body > section > form > a {
     font-size:1.25em;
@@ -19,6 +19,9 @@ body > section > form {
       margin-left: 0;
     }
     body > section > form > fieldset > input[id=email] {
+      margin-bottom:.75em;
+    }
+    body > section > form > fieldset > label[for="email"] {
       margin-bottom:.75em;
     }
     body > section > form > fieldset > label[for="registered_no"],
@@ -58,4 +61,35 @@ body > section > form {
     body > section > form.register > fieldset > label[for="remember_me"],
     body > section > form.register > fieldset > input[id="remember_me"] {
       display:none;
+    }
+
+    body > aside {
+      font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
+      background-color:#F2F2F2;
+      color:#333;
+      display:inline-block;
+      width:21em;
+      border-radius: .5em;
+      min-height: 11em;
+      margin-left:2em;
+      margin-top: 5em;
+      border: 1px solid #D2D2D2;
+    }
+    body > aside h2 {
+      text-align:center;
+      color:#333;
+      font-size:1.25em;
+      margin:1em;
+    }
+    body > section {
+      width:29em;
+    }
+    body > aside p {
+      text-align:center;
+      color:#333;
+      margin-bottom:1em;
+    }
+    body > aside a {
+      display:block;
+      margin:2em 0 1em 7.5em;
     }

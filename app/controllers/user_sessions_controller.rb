@@ -8,6 +8,8 @@ class UserSessionsController < ApplicationController
     if request.xhr?
       render :action => 'new_ajax', :layout => false
     end
+
+    render :action => 'new', :layout => 'layouts/signup'
   end
 
   def create
@@ -25,7 +27,7 @@ class UserSessionsController < ApplicationController
         if request.xhr?
           render :action => 'new_ajax', :layout => false
         else
-          render :action => 'new'
+          render :action => 'new', :layout => 'layouts/signup'
         end
       end
 
@@ -43,9 +45,23 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def fb_authenticate
+    @user_session = UserSession.new(params[:user_session])
+
+    if @user_session.save
+      flash[:notice] = "Sign in successful!"
+      respond_to do |format|
+        format.html { redirect_to root_url }
+      end
+    else
+      respond_to do |format|
+        format.html { render :action => :new }
+      end
+    end
+  end
+
   def destroy
-    @user_session = UserSession.find
-    @user_session.destroy
+    current_user_session.destroy
     flash[:notice] = t("weave.logout_success")
     redirect_to root_url
   end

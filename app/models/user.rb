@@ -12,8 +12,16 @@ class User < ActiveRecord::Base
 
   #AuthLogic validate the uniqueness of the email field by convention
   #validates_uniqueness_of :email
-
+  validates_uniqueness_of :facebook_uid
+  
   attr_accessible :email, :password, :password_confirmation
+
+  def before_connect(facebook_session)
+    self.name = facebook_session.user.name
+    self.roles << Role.find_by_name("Patron")
+    self.active = true
+    self.activation_date = Time.now
+  end
 
   def active_tips
     bundle = active_tip_bundle

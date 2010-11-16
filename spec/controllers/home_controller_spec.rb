@@ -28,6 +28,6 @@ describe HomeController do
 
   it "it should make a list of tipped pages available to the index page" do
     get :index
-    assigns['pages'].size.should_not be_nil
+    assigns['most_tips'].size.should_not be_nil
   end
 end

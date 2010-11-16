@@ -25,7 +25,7 @@ authorization do
 
   role :guest do
     has_permission_on [:reports, :locators], :to => [:index, :show]
-    has_permission_on [:user_sessions], :to => [:new, :create]
+    has_permission_on [:user_sessions], :to => [:new, :create, :fb_authenticate]
   end
 
 end

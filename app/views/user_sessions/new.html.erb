@@ -8,7 +8,6 @@
 
   <%= form_tag authenticate_path, :method => :post %>
 
-    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>" id="authenticity_token"/>
     <fieldset>
       <label for="email">Email address</label>
       <input type="text" tabindex="1" name="user[email]" id="email" value="<%=@user_session.email%>"/>
@@ -38,3 +37,8 @@
 
   </form>
 </section>
+<aside>
+  <h2>Use your Facebook account to sign up.</h2>
+  <%= authlogic_facebook_login_button :js => :jquery, :controller => 'fb_authenticate' %>
+</aside>
+

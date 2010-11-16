@@ -21,26 +21,3 @@
     </li>
   <% end %>
 </ol>
-<ol itemscope="true" itemtype="http://weave.us/most_revenue">
-  <% @most_revenue.each do |page| %>
-    <li itemscope="true" itemtype="http://weave.us/tip">
-      <aside>
-        <span itemprop="tips"><%=h page.tips.size %></span>
-        <span itemprop="total">$<%=h page.revenue_earned %></span>
-      </aside>
-      <section>
-        <h2 itemprop="title">
-          <a href="<%=h page.locators[0].canonicalized %>">
-            <%=h CGI::unescape(page.description) %>
-          </a>
-        </h2>
-        <p itemprop="locator">
-          <%=h page.locators[0].canonicalized %>
-        </p>
-      </section>
-      <div>
-        <a href="#">Tip</a>
-      </div>
-    </li>
-  <% end %>
-</ol>
