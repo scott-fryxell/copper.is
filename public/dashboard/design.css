@@ -1,72 +1,44 @@
-body > aside {
-  margin-top:3.75em;
-  width: 13.20em;
-  display:inline-block;
-  min-height: 16em;
-  border: .15em solid #808080;
-  -moz-border-radius: .3em;
-  border-radius: .3em;
+aside[itemtype="http://weave.us/user#account"] {
+  display: inline-block;
 }
-  body > aside > header {
-    margin-top:.75em;
-    text-align: center;
-    margin-bottom: 0;
+  aside[itemtype="http://weave.us/user#account"] > h1{
+    margin-top:0;
+    margin-bottom:.5em;
+    font-size:1.5em;
   }
-    body > aside > header > nav {
-      margin:0;
-      padding:0;
-    }
-      body > aside > header > nav a {
-        -webkit-text-stroke: .02em #808080;
-        text-decoration: underline;
-        padding-left: .5em;
-      }
-  body > aside > dl {
-    margin-top: 1.25em;
-    margin-left: .75em;
-    font-size: 1.15em;
+  aside[itemtype="http://weave.us/user#account"] > dl {
+    width: 15em;
+    margin-left:1em;
   }
-    body > aside > dl > dt {
-      font-weight: normal;
-      width: 6.25em;
+    aside[itemtype="http://weave.us/user#account"] > dl > dt {
+      font-size: 1.25em;
+      font-weight:normal;
+      width:8em;
+      margin-bottom:.5em;
       display:inline-block;
     }
-      body > aside > dl > dt:first-child {
-        margin-left: 1em;
-        width: 5.5em;
-        margin-bottom:1em;
-      }
-      body > aside > dl > dd {
-        display:inline-block;
-        width:3.5em;
-        text-align:right;
-        padding-bottom:.5em;
-      }
-      body > aside > dl > dd[itemprop="tips"] {
-        border-bottom: .15em solid #808080;
-      }
-      body > aside > dl > dd[itemprop="billing_period"] {
-        width:3.5em;
-      }
-        body > aside > dl > dd[itemprop="billing_period"] span {
-          padding:.25em;
-        }
-  body > aside > figure {
-    padding:0;
-    margin-left:1.40em;
-    margin-top:1em;
-    display:block;
-    opacity:.55;
-    -webkit-transform: scale(1) rotate(0deg);
-    -webkit-transition-property: all;
-    -webkit-transition-duration:  1s;
-    -webkit-transition-delay: 150ms;
+    aside[itemtype="http://weave.us/user#account"] > dl > dd {
+      text-align:right;
+      font-size:1.5em;
+      width:3em;
+      display:inline-block;
+      text-decoration:right;
+    }
+  aside[itemtype="http://weave.us/user#account"] > button {
+    padding:.25em 1em;
+    border:.20em solid gray;
+    background-color:white;
+    -moz-border-radius:.5em;
+    border-radius:.5em;
+    padding: .25em 2em;
   }
-  body > aside > figure:hover {
-    -webkit-transition-duration: 500ms;
-    -webkit-transition-duration:  2s;
-    -webkit-transition-property: all;
-    -webkit-transition-delay: 200ms;
-    -webkit-transform: scale(1.11) rotate(45deg);
-    cursor: pointer;
-  }
+    aside[itemtype="http://weave.us/user#account"] > button#add-funds {
+      position:absolute;
+      bottom:1em;
+      right:15em;
+    }
+    aside[itemtype="http://weave.us/user#account"] > button#change-rate {
+      position:absolute;
+      bottom:1em;
+      right:3em;
+    }

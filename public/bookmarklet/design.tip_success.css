@@ -3,7 +3,7 @@ body > section.notify > section {
   display:inline-block;
   padding: 1em;
   border-right:.15em solid gray;
-  margin-right: -6px;
+  margin-right: 1em;
   min-height:12em;
 }
 body > section.notify > section * {
@@ -47,6 +47,7 @@ body > section.notify > section > button {
   font-size: 1.15em;
   color:gray;
   padding: .25em 2em;
+  -moz-border-radius:.25em;
   border-radius:.25em;
 }
 body > section.notify > section > button.display-form {
@@ -87,42 +88,4 @@ body > section.notify > section > form > fieldset > textarea {
   width:23em;
   height:4em;
   color:gray;
-}
-body > section.notify > aside {
-  display:inline-block;
-  width:13em;
-  min-height:12em;
-}
-body > section.notify > aside > h2 {
-  margin: .75em 0 .5em .5em; 
-  font-size:1.5em;
-}
-body > section.notify > aside > time {
-  margin-left: 1em;
-}
-body > section.notify > aside > h3 {
-  display:inline-block;
-  width: 7em;
-  font-size:1em;
-  margin-top:1em;
-  margin-left:1em;
-}
-body > section.notify > aside > hr {
-  margin-top: 1em;
-  padding: 0;
-  border: .10em solid gray;
-}
-body > section.notify > aside > p {
-  margin-top: 1em;
-  display:inline-block;
-  text-align: right;
-  width: 3em;
-  font-size:1em;
-}
-body > section.notify > aside > p[itemprop=spread] {
-  margin-bottom:1em;
-}
-body > section.notify > aside > p > a {
-  text-decoration:none;
-  color: gray;
 }

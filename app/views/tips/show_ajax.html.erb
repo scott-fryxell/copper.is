@@ -29,14 +29,5 @@
     <input type="submit" name="save" value="save" />
   </form>
 </section>
-<aside itemscope="true" itemtype="http://weave.us/activity">
-  <h2>Your activity</h2>
-  <time itemprop="date" datetime="2010-10">October 2010</time>
-  <h3>Starting bal:</h3>
-  <p itemprop="balance"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></p>
-  <h3>Tips</h3>
-  <p itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></p>
-  <hr />
-  <h3>Spread</h3>
-  <p itemprop="spread"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.cents_per_tip_point) %></p>
-</aside>
+
+

@@ -1,10 +1,30 @@
+<% title "Tips" %>
+<style>
+  @import url(/tips/design.css);
+</style>
+<script src="/tips/behavior.js" async="true"></script>
+<h1>My Tips</h1>
 <section>
-  <% title "Tips" %>
-  <% if @has_funds %>
-  <%= render :partial => 'form' %>
-  <% else %>
-  <%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
-  <% end %>
+  <header>
+      <% form_for(@tip) do |f| %>
+        <aside>
+          <%= f.error_messages %>
+        </aside>
+        <fieldset>
+          <label for="uri">Leave a Tip</label>
+          <textarea name="tip[uri]" value="" id="uri"></textarea>
+        </fieldset>
+        <%= f.submit 'Tip' %>
+      <% end %>
+    <% if @has_funds %>
+    <% else %>
+      <%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
+    <% end %>
+    
+    <%= render :partial => 'shared/dashboard' %>
+  </header>
+
+  <%= render :partial => 'shared/search_form' %>
   <table>
     <thead>
       <tr>
@@ -32,4 +52,3 @@
     </tbody>
   </table>
 </section>
-<%= render :partial => 'shared/dashboard' %>

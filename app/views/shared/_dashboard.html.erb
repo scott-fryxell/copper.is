@@ -1,32 +1,18 @@
 <% if current_user %>
-  <style type="text/css" media="screen">
+  <style>
     @import url(/dashboard/design.css);
-    aside > h2 {
-      text-align: center;
-      font-size: 1.25em;
-      margin-top:1em;
-    }
   </style>
-  <aside id="account" itemscope="true" itemtype="http://weave.us/User#account">
-    <h2><%= link_to "Fund", new_order_path %></h2>
+  <aside itemscope="true" itemtype="http://weave.us/user#account">
+    <h1>Fund</h1>
     <dl>
-      <% if current_user %>
-        <% if current_user.funds_for_tipping? %>
-          <dt>Cycle ends in</dt>
-          <dd itemprop="billing_period">14<span itemprop="interval">days</span></dd>
-          <dt>Balance</dt>
-          <dd itemprop="balance"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></dd>
-          <dt><%= link_to "Tips", tips_path %></dt>
-          <dd itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></dd>
-          <dt>Spread</dt>
-          <dd itemprop="distribution"><span itemprop="currency">$</span><%= cents_to_dollars(current_user.active_tip_bundle.cents_per_tip_point) %></dd>
-        <% else %>
-          <%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
-        <% end %>
-      <% end %>
+      <dt>Balance</dt>
+      <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></dd>
+      <dt>Tips</dt>
+      <dd itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></dd>
+      <dt>Rate</dt>
+      <dd itemprop="rate">$1</dd>
     </dl>
-    <figure accesskey="l" tabindex="2" id="weave_logo">
-      <img item="logo" src="/graphics/logo.svg" alt="weave logo"/>
-    </figure>
+    <button id="add-funds">Add $</button>
+    <button id="change-rate">Change rate</button>
   </aside>
 <% end %>

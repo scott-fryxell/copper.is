@@ -1,38 +1,59 @@
-body > section > form {
-  margin-bottom:2em;
-  border: 0.15em solid #808080;
-  -moz-border-radius: .5em;
-  border-radius: .5em;
-  background-color: #ddd;
-  height: 16em;
+body > h1 {
+  font-size:2.5em;
+  margin:0 .5em .5em .5em;
 }
-  body > section > form > div {
-    display:none!important;
-  }
-  body > section > form > fieldset {
+body > section {
+  width: 59em;
+  margin:0;
+}
+  body > section > header {
+    padding:1.5em;
+    border-top: .15em solid gray;
+    border-bottom: .15em solid gray;
+    margin:0;
     position:relative;
+    height:9em;
   }
-    body > section > form > fieldset > label{
-      position:absolute;
-      top: 2.5em;
-      left: 5.5em;
-      margin-top: .5em;
-      color: #CCC
+    body > section > header > form {
+      display:inline-block;
+      vertical-align:top;
+      margin-right:18em;
     }
-    body > section > form > fieldset textarea {
-      background-color: white;
-      width: 24em;
-      height: 6em;
-      font-size: 1.5em;
-      margin:1em;
-      border:.1em solid gray;
-    }
-  body > section > form > input[type=submit] {
-    margin-top:0;
-    margin-left: 28em;
-    background-color: white;
+      body > section > header > form > fieldset > label {
+        display:block;
+        margin-bottom:.5em;
+        font-size: 1.5em;
+      }
+      body > section > header > form > fieldset > textarea {
+        background-color:white;
+        width: 30em;
+        height: 8em;
+        border:.25em solid gray;
+        margin-bottom:.5em;
+      }
+      body > section > header > form > input {
+        margin-left: 24.75em;
+        padding:.25em 2em;
+        border:.25em solid gray;
+        background-color:white;
+        -moz-border-radius:.5em;
+        border-radius:.5em;
+
+      }
+  body > section > form#search {
+    padding:1em;
+    vertical-align: middle;
+    margin-bottom: 1em;
   }
-    body > section > table > tbody > tr > td:nth-child(even){
+    body > section > form#search > input {
+      float: right;
+      width:7em ;
+    }
+  body > section > table  {
+    margin:1em;
+    width:55em;
+  }
+    body > section > table > tbody > tr > td:nth-child(even) {
       width: 16em;
       text-align:right;
     }
@@ -46,11 +67,10 @@ body > section > form {
     body > section > table > tbody > tr > td {
       width:53em;
     }
-      body > section > table > tbody > tr > td > p{
+      body > section > table > tbody > tr > td > p {
         margin-bottom:1em;
         margin-left:.5em;
       }
-
       body > section > table > tbody > tr > td a {
         display:block;
         font-size: .75em;
@@ -58,7 +78,7 @@ body > section > form {
       body > section > table > tbody > tr > td a:first-child {
         font-size: 1em;
       }
-      body > section > table > tbody > tr > td a.locator{
+      body > section > table > tbody > tr > td a.locator {
         margin-left:.5em;
         margin-bottom:1em;
       }

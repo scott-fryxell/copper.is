@@ -62,15 +62,6 @@ body > section {
       left:.5em;
       width:6em;
     }
-  body > section > form {
-    width: 55em;
-    vertical-align: middle;
-    margin-bottom: 1em;
-  }
-    body > section > form > input {
-      float: right;
-      width:7em ;
-    }
   body > section > ol {
     -webkit-padding-start: 0;
     margin-top:2em;
