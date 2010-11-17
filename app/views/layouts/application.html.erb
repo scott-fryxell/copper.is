@@ -11,6 +11,7 @@
   <body>
     <div>
       <% if current_user %>
+        <%= link_to "My Tips", tips_path %>
         <span><%= current_user.email %></span>
         <%= link_to "Settings", edit_user_path(current_user) %>
         <%= link_to "Sign out", logout_path %>
