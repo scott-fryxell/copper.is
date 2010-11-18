@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Guest login" do
-  fixtures :roles_users, :users
+  fixtures :roles_users, :tip_rates, :users
 
   before(:each) do
     visit "/"

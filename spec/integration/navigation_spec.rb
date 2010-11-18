@@ -62,7 +62,7 @@ describe "The standard Weave page" do
       end
 
       it "should display the current value of each tip" do
-        response_body.should contain("Spread $3.75")
+        response_body.should contain("Rate $0.25")
       end
 
       it "should link to a fan home page"

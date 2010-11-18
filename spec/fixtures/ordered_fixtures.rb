@@ -1,9 +1,9 @@
 ENV["FIXTURE_ORDER"] =
   %w(
+      tip_rates
       users
       roles_users
       configurations
-      tip_rates
       addresses
       accounts
       transactions

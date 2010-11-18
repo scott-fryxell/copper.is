@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe User do
-  fixtures :users, :roles_users, :addresses, :accounts, :orders, :transactions, :refills, :tip_bundles, :tips
+  fixtures :tip_rates, :users, :roles_users, :addresses, :accounts, :orders, :transactions, :refills, :tip_bundles, :tips
 
   it "should find the sample user from the fixture" do
     User.find_by_email('test@test.com').should_not be_nil
@@ -17,6 +17,17 @@ describe User do
 
   it "should default to having no activation date set" do
     User.find_by_email('notactive@test.com').activation_date.should be_nil
+  end
+
+  it "should have a tip rate" do
+    User.find_by_email('test@test.com').tip_rate.should_not be_nil
+    #amount_in_cents.should == 25
+  end
+
+  it "should allow a tip rate to be assigned to it" do
+    u = User.find_by_email('notactive@test.com')
+    u.tip_rate = TipRate.find_by_amount_in_cents(10)
+    u.save.should be_true
   end
 
   describe "when creating a tip directly from the User" do
@@ -52,6 +63,15 @@ describe User do
       tip = fan.tip('example.com/somepath/morepath', 'description', 3)
       tip.multiplier.should == 3
     end
+
+    it "should fail if the user does not have a tip rate selected" do
+      fan = users(:active)
+      fan.tip_rate = nil
+      fan.save
+      tip = fan.tip('www.happy-times.com', 'page title')
+      tip.should be_nil
+    end
+
   end
 
   describe "when loading the list of active users" do

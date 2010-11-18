@@ -10,7 +10,13 @@
       <dt>Tips</dt>
       <dd itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></dd>
       <dt>Rate</dt>
-      <dd itemprop="rate">$1</dd>
+      <dd itemprop="rate">
+        <% if current_user.tip_rate != nil %>
+          $<%= cents_to_dollars(current_user.tip_rate.amount_in_cents) %>
+        <% else %>
+          <%= link_to "Select", edit_user_path(current_user) %> a rate
+        <% end %>
+      </dd>
     </dl>
     <button id="add-funds">Add $</button>
     <button id="change-rate">Change rate</button>

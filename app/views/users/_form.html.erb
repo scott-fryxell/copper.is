@@ -9,10 +9,13 @@
 
     <label for="user_email">Email</label>
     <%= f.text_field :email %>
+
+    <label for="user_tip_rate">Tip Rate</label>
+    <%= f.select(:tip_rate_id, @tip_rates) %>
   </fieldset>
   <%= f.submit "Save" %>
 <% end %>
-  
+
 <% form_for @user, :url => (update_password_path)  do |f| %>
   <fieldset>
     <legend>Change your password</legend>

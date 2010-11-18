@@ -10,12 +10,14 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
+  belongs_to :tip_rate
+
   #AuthLogic validate the uniqueness of the email field by convention
   #validates_uniqueness_of :email
 
   #todo figure out how to support this and our email
   #validates_uniqueness_of :facebook_uid
-  
+
   attr_accessible :email, :password, :password_confirmation
 
   def before_connect(facebook_session)
@@ -127,13 +129,15 @@ class User < ActiveRecord::Base
 
   def tip(url_string, description = 'new page', multiplier = 1)
     locator = Locator.find_or_init_by_url(url_string)
-
-    if locator
+    amount_in_cents = self.tip_rate.amount_in_cents if self.tip_rate != nil
+    if locator && amount_in_cents
       locator.page = Page.create(:description => description) unless locator.page
 
-      tip = Tip.new(:locator    => locator,
-                    :tip_bundle => active_tip_bundle,
-                    :multiplier => multiplier)
+      tip = Tip.new(:locator         => locator,
+                    :tip_bundle      => active_tip_bundle,
+                    :multiplier      => multiplier,
+                    :amount_in_cents => amount_in_cents
+                    )
       if tip.valid?
         tip.save
         tip

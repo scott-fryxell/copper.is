@@ -89,15 +89,15 @@ describe TipBundle do
 
       locator1 = Locator.parse('http://example.com')
       locator1.page = Page.new(:description => 'example page')
-      @bundle.tips << Tip.new(:locator => locator1, :multiplier => 2)
+      @bundle.tips << Tip.new(:locator => locator1, :multiplier => 2, :amount_in_cents => 25)
 
       locator2 = Locator.parse('http://beefdeed.com/chunder')
       locator2.page = Page.new(:description => 'CHUNDER POW')
-      @bundle.tips << Tip.new(:locator => locator2, :multiplier => 1)
+      @bundle.tips << Tip.new(:locator => locator2, :multiplier => 1, :amount_in_cents => 25)
 
       locator3 = Locator.parse('http://beefdeed.com/horde')
       locator3.page = Page.new(:description => 'ALL HAIL THE HORDE')
-      @bundle.tips << Tip.new(:locator => locator3, :multiplier => 3)
+      @bundle.tips << Tip.new(:locator => locator3, :multiplier => 3, :amount_in_cents => 25)
 
       @bundle.save
     end
@@ -114,8 +114,12 @@ describe TipBundle do
       @bundle.tip_points.should == 6
     end
 
-    it "should be able to determine the per-tip value of each tip" do
-      @bundle.cents_per_tip_point.should == 5_00
+    it "should be able to determine the value of all the tips" do
+      total = 0
+      @bundle.tips.each do |tip|
+        total = total + tip.tip_value
+      end
+      total.should == 1_50
     end
   end
 end

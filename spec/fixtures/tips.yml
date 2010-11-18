@@ -1,36 +1,48 @@
 first:
   tip_bundle: test_bundle
   locator: minimal
+  amount_in_cents: 25
 second:
   tip_bundle: test_bundle
   locator: awesome_locator
+  amount_in_cents: 25
 third:
   tip_bundle: test_bundle
   locator: awesome_locator
+  amount_in_cents: 25
 fourth:
   tip_bundle: test_bundle
   locator: popular_locator
+  amount_in_cents: 25
 fifth:
   tip_bundle: test_bundle
   locator: popular_locator
+  amount_in_cents: 25
 sixth:
   tip_bundle: test_bundle
   locator: popular_locator
+  amount_in_cents: 25
 seventh:
   tip_bundle: test_bundle
   locator: popular_locator
+  amount_in_cents: 25
 eigth:
   tip_bundle: test_bundle
   locator: boring_locator
+  amount_in_cents: 25
 c1:
   tip_bundle: closed_bundle
   locator: popular_locator
+  amount_in_cents: 25
 c2:
   tip_bundle: closed_bundle
   locator: popular_locator
+  amount_in_cents: 25
 c3:
   tip_bundle: closed_bundle
   locator: boring_locator
+  amount_in_cents: 25
 c4:
   tip_bundle: closed_bundle
   locator: awesome_locator
+  amount_in_cents: 25

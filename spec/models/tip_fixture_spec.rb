@@ -5,7 +5,8 @@ describe Tip do
 
   before(:each) do
     @tip = Tip.new(:tip_bundle => tip_bundles(:test_bundle),
-                   :locator    => locators(:minimal))
+                   :locator    => locators(:minimal),
+                   :amount_in_cents => 25)
   end
 
   it "should always be associated with a tip bundle" do

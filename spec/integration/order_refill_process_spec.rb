@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Placing an order" do
-  fixtures :users, :roles_users, :addresses, :accounts, :transactions
+  fixtures :tip_rates, :users, :roles_users, :addresses, :accounts, :transactions
 
   def valid_post
     fill_in "order_amount_in_cents", :with => "1000"

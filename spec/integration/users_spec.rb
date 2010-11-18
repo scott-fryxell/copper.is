@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Users" do
-  fixtures :users, :roles_users
+  fixtures :tip_rates, :users, :roles_users
 
   describe "account settings" do
     before(:each) do

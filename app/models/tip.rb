@@ -9,6 +9,7 @@ class Tip < ActiveRecord::Base
   validates_presence_of :tip_bundle
   validates_presence_of :locator
   validates_associated :locator
+  validates_presence_of :amount_in_cents
 
   validates_numericality_of :multiplier, :only_integer => true, :greater_than => 0
 
@@ -22,7 +23,11 @@ class Tip < ActiveRecord::Base
     end
   end
 
-  def amount_in_cents
-    tip_bundle.cents_per_tip_point * multiplier
+  # def amount_in_cents
+  #   tip_bundle.cents_per_tip_point * multiplier
+  # end
+
+  def tip_value
+    amount_in_cents * multiplier
   end
 end

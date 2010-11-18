@@ -82,7 +82,7 @@ class TipsController < ApplicationController
         else
           respond_to do|format|
             flash[:error] = t("weave.tip_failed")
-            format.html { redirect_to :action => "new" }
+            format.html { redirect_to :action => "index" }
             #format.xml  { render :xml => @tip.errors, :status => :unprocessable_entity }
           end
         end
