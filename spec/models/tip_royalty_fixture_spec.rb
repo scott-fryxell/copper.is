@@ -9,7 +9,7 @@ describe TipRoyalty do
     @bundle.cycle_started_quarter = 1
 
     @royalty = TipRoyalty.new
-    @royalty.amount_in_cents = 3_75
+    @royalty.amount_in_cents = 25
     @royalty.royalty_bundle = @bundle
     @royalty.tip = tips(:first)
   end
