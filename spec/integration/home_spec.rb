@@ -17,7 +17,7 @@ describe "Home Page" do
       click_button "Sign in"
       response_body.should contain("Successfully logged in.")
 
-      assert_have_no_selector 'body > section > header'
+      assert_have_no_selector 'body > section > header > figure'
 
     end
 

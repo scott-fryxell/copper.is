@@ -36,7 +36,7 @@ describe "The standard Weave page" do
       end
 
       it "should have an account section" do
-        assert_have_selector "body > aside", :id => 'account'
+        assert_have_selector "body > section > header > aside", :id => 'account'
       end
 
       it "should display the current user's name on the page" do
@@ -78,7 +78,7 @@ describe "The standard Weave page" do
       end
 
       it "should have an account section" do
-        assert_have_selector "body > aside", :id => 'account'
+        assert_have_selector "body > section > header > aside", :id => 'account'
       end
 
       it "should display the current user's name on the page" do
