@@ -1,32 +1,104 @@
-<style>
-  @import url("/account/design.css");
-</style>
-<h1>Account Settings</h1>
-<% form_for @user, :url => (update_user_path) do |f| %>
-  <fieldset>
-    <label for="user_name">Name</label>
-    <%= f.text_field :name %>
+<section>
+  <style>
+    @import url("/account/design.css?2");
+  </style>
+  <script src="/account/behavior.js"></script>
+  <h1>Setting things up</h1>
+  <p>
+    Turn the red sections green and you are good to go.
+  </p>
+  <details id="bookmarklet" open="closed" class="required">
+    <summary>
+      Install the bookmarklet
+    </summary>
+    <p>
+      Drag bookmarklet to your browser toolbar.
+    </p>
+    <p>
+      <span>&#x27A0;</span>
+      <a id="weave_us" href="<%= render :partial => 'bookmarklet/wrapped_launcher.js' %>" tabindex="1" accesskey="p">weave</a>
+    </p>
+  </details>
+  <details id="authorize" open="closed" class="required">
+    <summary>Authorize Tips</summary>
+    <p>
+      Log into your PayPal account to authorize us to pay the sites you tip
+    </p>
+    <p>
+      <a href="#">Authorize</a>
+    </p>
+  </details>
+  <details id="tip_rate" open="closed" class="required">
+    <summary>Select your tip rate</summary>
+    <p>
+      Select the amount you want each tip to be.
+    </p>
+    <% form_for @user, :url => (update_user_path) do |f| %>
+      <fieldset>
+        <label for="user_tip_rate_id">Tip Rate</label>
+        <select name="user[tip_rate_id]" id="user_tip_rate_id">
+          <option value="5">$0.05</option>
+          <option value="10">$0.10</option>
+          <option value="50">$0.25</option>
+          <option value="50" selected="true">$0.50</option>
+          <option value="75">$0.75</option>
+          <option value="100">$1.00</option>
+          <option value="200">$2.00</option>
+          <option value="300">$3.00</option>
+          <option value="500">$5.00</option>
+        </select>
+      </fieldset>
+    <% end %>
+  </details>
 
-    <label for="user_email">Email</label>
-    <%= f.text_field :email %>
+  <h1>Other settings</h1>
+  <p>
+    Stuff you can do if your into it.
+  </p>
+  <details id="personal" open="closed" class="optional">
+    <summary>Account Settings</summary>
+    <p>
+      manage your name and email
+    </p>
+    <% form_for @user, :url => (update_user_path) do |f| %>
+      <fieldset>
+        <label for="user_name">Name</label>
+        <%= f.text_field :name %>
 
-    <label for="user_tip_rate">Tip Rate</label>
-    <%= f.select(:tip_rate_id, @tip_rates) %>
-  </fieldset>
-  <%= f.submit "Save" %>
-<% end %>
+        <label for="user_email">Email</label>
+        <%= f.text_field :email %>
 
-<% form_for @user, :url => (update_password_path)  do |f| %>
-  <fieldset>
-    <legend>Change your password</legend>
-    <label for="current_password">Current password</label>
-    <input type="password" name="user[current_password]" id="current_password" value=""/>
+      </fieldset>
+      <%= f.submit "Save" %>
+    <% end %>
+  </details>
+  <details id="password" open="closed" class="optional">
+    <summary>Change your password</summary>
+    <p>
+      Manage your weave password
+    </p>
+    <% form_for @user, :url => (update_password_path)  do |f| %>
+      <fieldset>
+        <label for="current_password">Current password</label>
+        <input type="password" name="user[current_password]" id="current_password" value=""/>
 
-    <label for="user_password">New password</label>
-    <input type="password" name="user[password]" id="password" value=""/>
+        <label for="user_password">New password</label>
+        <input type="password" name="user[password]" id="password" value=""/>
 
-    <label for="password_confirmation">Confirm new password</label>
-    <input type="password" name="user[password_confirmation]" id="password_confirmation" value=""/>
-  </fieldset>
-  <%= f.submit "Change password" %>
-<% end %>
+        <label for="password_confirmation">Confirm new password</label>
+        <input type="password" name="user[password_confirmation]" id="password_confirmation" value=""/>
+      </fieldset>
+      <%= f.submit "Change password" %>
+    <% end %>
+
+  </details>
+  <details id="badge" open="closed" class="optional">
+    <summary>Use the badge</summary>
+    <p>
+      Copy the contents of this box into the content you've created
+    </p>
+    <textarea name="copy">
+      <img style="cursor:pointer; width:222px; height:222px" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bookmarklet/badge.png" onclick="<%= render :partial => 'bookmarklet/launcher.js' %>"/>
+    </textarea>
+  </details>
+</section>
