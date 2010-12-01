@@ -6,3 +6,4 @@ log/*.log
 tmp/**/*
 tmp/*
 coverage*
+.bundle
