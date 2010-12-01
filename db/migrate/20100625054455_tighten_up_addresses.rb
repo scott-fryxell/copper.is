@@ -9,8 +9,8 @@ class TightenUpAddresses < ActiveRecord::Migration
     change_column(:addresses, :line_1,      :varchar, {:null => false})
     change_column(:addresses, :city,        :varchar, {:null => false})
     # The Rails PostgreSQL adapter is too dumb to understand a limit declaration on a char column
-    execute 'ALTER TABLE addresses ALTER COLUMN state TYPE CHAR(2)'
-    execute 'ALTER TABLE addresses ALTER COLUMN state SET NOT NULL'
+    # execute 'ALTER TABLE addresses ALTER COLUMN state TYPE CHAR(2)'
+    # execute 'ALTER TABLE addresses ALTER COLUMN state SET NOT NULL'
     change_column(:addresses, :postal_code, :varchar, {:null => false})
     change_column(:addresses, :country,     :varchar, {:null => false, :default => 'USA'})
   end
