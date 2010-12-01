@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en_US" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title><%= h(yield(:title) || "weave.us") %></title>
+    <title><%= h(yield(:title) || "weave") %></title>
     <style>
       @import url("/design/index.css");
     </style>
@@ -25,9 +25,7 @@
       <% end %>
     </div>
     <header>
-      <a href="/">
-        <img src="/graphics/fun_time.svg" alt="So fun!!!"/>
-      </a>
+      <a href="/">weave</a>
       <ol>
         <%- flash.each do |name, msg| -%>
           <%- msg.each do |m| -%>

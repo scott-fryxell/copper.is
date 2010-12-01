@@ -7,17 +7,15 @@ body > section {
   margin:0;
 }
   body > section > header {
-    padding:1.5em;
     border-top: .15em solid gray;
     border-bottom: .15em solid gray;
     margin:0;
     position:relative;
-    height:9em;
   }
     body > section > header > form {
+      margin:1em 17.5em 1em 1.5em;
       display:inline-block;
       vertical-align:top;
-      margin-right:18em;
     }
       body > section > header > form > fieldset > label {
         display:block;
@@ -40,15 +38,9 @@ body > section {
         border-radius:.5em;
 
       }
-  body > section > form#search {
-    padding:1em;
-    vertical-align: middle;
-    margin-bottom: 1em;
-  }
-    body > section > form#search > input {
-      float: right;
-      width:7em ;
-    }
+      body > section > form#search {
+        padding:1em 1.5em !important;
+      }
   body > section > table  {
     margin:1em;
     width:55em;

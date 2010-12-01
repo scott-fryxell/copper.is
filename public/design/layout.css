@@ -48,9 +48,12 @@ html {
       }
     body > header {
     }
-      body > header img {
-        display:inline-block;
-      }
+     body > header a {
+       display:inline-block;
+       font-size:2.5em;
+       font-weight:normal;
+       font-family:'Andale Mono';
+     }
       body > header nav {
         margin-left:14em;
         display:inline-block;

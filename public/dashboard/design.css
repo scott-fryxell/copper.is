@@ -1,5 +1,6 @@
 aside[itemtype="http://weave.us/user#account"] {
   display: inline-block;
+  padding:1em;
 }
   aside[itemtype="http://weave.us/user#account"] > h1{
     margin-top:0;
@@ -24,6 +25,14 @@ aside[itemtype="http://weave.us/user#account"] {
       display:inline-block;
       text-decoration:right;
     }
+    aside[itemtype="http://weave.us/user#account"] > dl > dd > a {
+      text-decoration: none;
+      color:gray;
+    }
+      aside[itemtype="http://weave.us/user#account"] > dl > dd > a:hover {
+        text-decoration: underline;
+      }
+
   aside[itemtype="http://weave.us/user#account"] > button {
     padding:.25em 1em;
     border:.20em solid gray;
@@ -31,14 +40,16 @@ aside[itemtype="http://weave.us/user#account"] {
     -moz-border-radius:.5em;
     border-radius:.5em;
     padding: .25em 2em;
+    color:gray;
+    cursor:pointer;
   }
     aside[itemtype="http://weave.us/user#account"] > button#add-funds {
       position:absolute;
       bottom:1em;
-      right:15em;
+      right:14em;
     }
     aside[itemtype="http://weave.us/user#account"] > button#change-rate {
       position:absolute;
       bottom:1em;
-      right:3em;
+      right:2em;
     }
