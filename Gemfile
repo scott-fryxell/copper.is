@@ -1,8 +1,10 @@
-gem 'authlogic', '1.0'
+gem 'authlogic'
 gem 'ruby-openid'
 
 gem 'formtastic'
 gem "facebooker"
+
+gem 'activemerchant'
 
 source :gemcutter
 gem 'declarative_authorization'
