@@ -29,7 +29,7 @@ en:
     password_too_short: "Password must be at least 4 characters long"
     current_password_is_invalid: "The current password is incorrect."
     user_update_success: "Your account has been updated."
-    email_change_needs_confirmation: "Check your email ({{new_email}}) to confirm your new address. Until then, notifications will continue to be sent to your current email address."
+    email_change_needs_confirmation: "Check your email (%{new_email}) to confirm your new address. Until then, notifications will continue to be sent to your current email address."
     email_changed: "Your email has been changed."
     email_change_failure: "There was a problem updating your email address. Please check your account settings."
     password_update_success: "Your password has been changed."

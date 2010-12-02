@@ -19,8 +19,8 @@ describe "The standard Weave page" do
   describe "global navigation" do
 
     it "should link to the blog"
-    it "should contain a contextual 'fun' widget" do
-      assert_have_selector "body > header > a > img"
+    it "should contain a logo" do
+      assert_have_selector "body > header > a"
     end
 
   end
