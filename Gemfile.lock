@@ -1,20 +1,20 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    actionmailer (2.3.5)
-      actionpack (= 2.3.5)
-    actionpack (2.3.5)
-      activesupport (= 2.3.5)
-      rack (~> 1.0.0)
+    actionmailer (2.3.9)
+      actionpack (= 2.3.9)
+    actionpack (2.3.9)
+      activesupport (= 2.3.9)
+      rack (~> 1.1.0)
     activemerchant (1.9.1)
       activesupport (>= 2.3.2)
       braintree (>= 2.0.0)
       builder (>= 2.0.0)
-    activerecord (2.3.5)
-      activesupport (= 2.3.5)
-    activeresource (2.3.5)
-      activesupport (= 2.3.5)
-    activesupport (2.3.5)
+    activerecord (2.3.9)
+      activesupport (= 2.3.9)
+    activeresource (2.3.9)
+      activesupport (= 2.3.9)
+    activesupport (2.3.9)
     authlogic (2.1.6)
       activesupport
     braintree (2.6.2)
@@ -29,13 +29,13 @@ GEM
       i18n (>= 0.4.0)
     i18n (0.5.0)
     json_pure (1.4.6)
-    rack (1.0.1)
-    rails (2.3.5)
-      actionmailer (= 2.3.5)
-      actionpack (= 2.3.5)
-      activerecord (= 2.3.5)
-      activeresource (= 2.3.5)
-      activesupport (= 2.3.5)
+    rack (1.1.0)
+    rails (2.3.9)
+      actionmailer (= 2.3.9)
+      actionpack (= 2.3.9)
+      activerecord (= 2.3.9)
+      activeresource (= 2.3.9)
+      activesupport (= 2.3.9)
       rake (>= 0.8.3)
     rake (0.8.7)
     ruby-openid (2.1.8)
@@ -49,5 +49,5 @@ DEPENDENCIES
   declarative_authorization
   facebooker
   formtastic
-  rails (= 2.3.5)
+  rails (= 2.3.9)
   ruby-openid
