@@ -6,10 +6,6 @@ GEM
     actionpack (2.3.9)
       activesupport (= 2.3.9)
       rack (~> 1.1.0)
-    activemerchant (1.9.1)
-      activesupport (>= 2.3.2)
-      braintree (>= 2.0.0)
-      builder (>= 2.0.0)
     activerecord (2.3.9)
       activesupport (= 2.3.9)
     activeresource (2.3.9)
@@ -17,19 +13,14 @@ GEM
     activesupport (2.3.9)
     authlogic (2.1.6)
       activesupport
-    braintree (2.6.2)
-      builder
-    builder (3.0.0)
     declarative_authorization (0.5.1)
     facebooker (1.0.75)
       json_pure (>= 1.0.0)
-    formtastic (1.1.0)
-      actionpack (>= 2.3.0)
-      activesupport (>= 2.3.0)
-      i18n (>= 0.4.0)
-    i18n (0.5.0)
     json_pure (1.4.6)
+    nokogiri (1.4.3.1)
     rack (1.1.0)
+    rack-test (0.5.6)
+      rack (>= 1.0)
     rails (2.3.9)
       actionmailer (= 2.3.9)
       actionpack (= 2.3.9)
@@ -37,17 +28,34 @@ GEM
       activeresource (= 2.3.9)
       activesupport (= 2.3.9)
       rake (>= 0.8.3)
+    rails-footnotes (3.6.7)
     rake (0.8.7)
+    rspec (1.3.1)
+    rspec-rails (1.3.3)
+      rack (>= 1.0.0)
+      rspec (= 1.3.1)
     ruby-openid (2.1.8)
+    spork (0.8.4)
+    sqlite3-ruby (1.3.2)
+    webrat (0.7.1)
+      nokogiri (>= 1.2.0)
+      rack (>= 1.0)
+      rack-test (>= 0.5.3)
+    wirble (0.1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  activemerchant
   authlogic
   declarative_authorization
   facebooker
-  formtastic
-  rails (= 2.3.9)
+  rails (~> 2.3.9)
+  rails-footnotes
+  rspec (~> 1.3.1)
+  rspec-rails (~> 1.3.3)
   ruby-openid
+  spork
+  sqlite3-ruby
+  webrat
+  wirble
