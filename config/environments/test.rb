@@ -28,20 +28,3 @@ config.action_mailer.default_url_options = { :host => "0.0.0.0", :port => 3000, 
 # like if you have constraints or database-specific column types
 # config.active_record.schema_format = :sql
 
-config.gem "webrat",      :version => ">= 0.7.1"
-config.gem "rspec-rails", :version => ">= 1.3.2", :lib => "spec"
-
-config.after_initialize do
-  ActiveMerchant::Billing::Base.mode = :test
-  ::GATEWAY = ActiveMerchant::Billing::BogusGateway.new
-
-  # Braintree sandbox account
-  # ::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
-  # :environment  => :sandbox,
-  # :merchant_id  => "4hg2r8h74wh586qq",
-  # :public_key   => "2t58wq6qs4cz8d8k",
-  # :private_key  => "vyd3fmwsmnnxrm42",
-  # :test         => true
-  # )
-
-end

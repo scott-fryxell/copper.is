@@ -18,32 +18,6 @@ config.action_mailer.default_url_options = { :host => "0.0.0.0", :port => 3000, 
 config.action_mailer.raise_delivery_errors = true
 config.action_mailer.delivery_method = :sendmail
 
-#braintree password: tipper123
-
 config.after_initialize do
-  ActiveMerchant::Billing::Base.mode = :test
-
-# Braintree sandbox account
-  ::GATEWAY = ActiveMerchant::Billing::BraintreeGateway.new(
-    :environment  => :sandbox,
-    :merchant_id  => "4hg2r8h74wh586qq",
-    :public_key   => "2t58wq6qs4cz8d8k",
-    :private_key  => "vyd3fmwsmnnxrm42",
-    :test         => true
-  )
-
-# Paypal connection, not currently using
-  # ::GATEWAY = ActiveMerchant::Billing::PaypalGateway.new(
-  #   :login => "seller_1267471128_biz@mybuys.com",
-  #   :password => "1267471138",
-  #   :signature => "Ad9B4K7zA-eD3NMvld9hoLQ6SpgnAqDy-CilXFJL9ZcD43sleNm0Oxp1"
-  # )
-
-# Authorize.net connection, not currently using
-  # ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetGateway.new(
-  #   :login => "9WBbf95f",
-  #   :password => "98VkFr5mDM292kfu",
-  #   :test => true
-  # )
 
 end

@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe User do
-  fixtures :tip_rates, :users, :roles_users, :addresses, :accounts, :orders, :transactions, :refills, :tip_bundles, :tips
+  fixtures :tip_rates, :users, :roles_users, :addresses, :accounts, :transactions, :refills, :tip_bundles, :tips
 
   it "should find the sample user from the fixture" do
     User.find_by_email('test@test.com').should_not be_nil
@@ -31,21 +31,7 @@ describe User do
   end
 
   describe "when creating a tip directly from the User" do
-    it "should fail if no funds are available" do
-      lambda { User.find_by_email('patron@test.com').tip('http://example.com', 1) }.should raise_exception InsufficientFunds
-    end
-
-    it "should fail if the new tip would cause the tip value to drop below the threshold" do
-      fan = users(:patron)
-      transaction = Transaction.create(:account => accounts(:simple), :order => orders(:o4),:amount_in_cents => 4)
-
-      bundle = TipBundle.create(:fan => fan)
-      bundle.refills << Refill.create(:transaction => transaction, :amount_in_cents => 3)
-      bundle.save.should be_true
-
-      lambda { fan.tip('http://example.com', 'sample page', 3) }.should_not raise_exception InsufficientFunds
-      lambda { fan.tip('http://anotheryourself.com', 'iam lakech', 1) }.should raise_exception InsufficientFunds
-    end
+    it "should fail if no funds are available" 
 
     it "should complain if the tip url is not valid" do
       fan = users(:active)

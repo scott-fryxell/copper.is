@@ -15,11 +15,6 @@
         </fieldset>
         <%= f.submit 'Tip' %>
       <% end %>
-    <% if @has_funds %>
-    <% else %>
-      <%= link_to t("weave.no_funds_for_tipping"), new_order_path %>
-    <% end %>
-    
     <%= render :partial => 'shared/dashboard' %>
   </header>
 

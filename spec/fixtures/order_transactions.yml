@@ -1,8 +1,0 @@
-one:
-  action: "purchase"
-  amount_in_cents: 1000
-  success: true
-  authorization:
-  message: "this is a message"
-  params:
-  order: one

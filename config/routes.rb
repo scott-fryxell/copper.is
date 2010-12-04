@@ -51,10 +51,6 @@ ActionController::Routing::Routes.draw do |map|
     reports.active_users      "admin/reports/users/active",    :action => "active"
   end
 
-  map.with_options :controller => 'orders' do |order|
-    order.order_prepare   "order/prepare",    :action => "prepare"
-  end
-
   map.with_options :controller => 'users' do |user|
     user.update_user   "users/update_user",           :action => "update_user"
     user.update_password   "users/update_password",   :action => "update_password"
@@ -66,7 +62,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :tips
   map.resources :users
   map.resources :locators
-  map.resources :orders
 
   # Home
   map.root :controller => "home", :action => "index"

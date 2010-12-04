@@ -62,36 +62,12 @@ describe "The standard Weave page" do
       end
 
       it "should display the current value of each tip" do
-        response_body.should contain("Rate $0.25")
+        response_body.should contain("$0.25")
       end
 
-      it "should link to a fan home page"
-    end
-
-    describe "when signed in as a fan with no refill" do
-      before(:each) do
-        click_link "Sign in or sign up"
-        fill_in "email", :with => "patron@test.com"
-        fill_in "password", :with => "test"
-        choose "Yes, I have a password:"
-        click_button "Sign in"
-      end
-
-      it "should have an account section" do
-        assert_have_selector "body > section > header > aside", :id => 'account'
-      end
-
-      it "should display the current user's name on the page" do
-        response_body.should contain("patron@test.com")
-      end
-
-      it "should link to a logout action" do
-        click_link "Sign out"
-        response_body.should contain("Successfully signed out.")
-      end
-
-      it "should encourage the fan to fund their account" do
-        response_body.should contain("You need to refill your account in order to make tips.")
+      it "should link to a fan tip page" do
+        response_body.should contain("My Tips")
+        assert_have_selector "body > div > a"
       end
     end
 

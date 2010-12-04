@@ -38,26 +38,14 @@ class TipsController < ApplicationController
   def new
     @tip = Tip.new
 
-    @current_user = current_user
-    #@title = params[:title]
-    @has_funds = current_user.funds_for_tipping?
+    @user = current_user
 
-
-    if @has_funds
-      respond_to do |format|
-        format.html # new.html.erb
-        format.js
-      end
-    else
-      respond_to do |format|
-        flash[:error] = t("weave.no_funds_for_tipping")
-        format.html { redirect_to :controller => 'orders', :action => 'new'}#(orders_new_url) }
-      end
+    respond_to do |format|
+      format.js
     end
   end
 
   def create
-    begin
       if request.xhr?
         @tip = current_user.tip(params[:uri], params[:title] )
       else
@@ -87,17 +75,5 @@ class TipsController < ApplicationController
           end
         end
       end
-
-    rescue InsufficientFunds
-      if request.xhr?
-        render :action => 'funds_ajax', :layout => false
-      else
-        respond_to do |format|
-          flash[:error] = t("weave.no_funds_for_tipping")
-          format.html { redirect_to :controller => 'orders', :action => 'new'}#(orders_new_url) }
-        end
-      end
-    end
-
   end
 end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116205804) do
+ActiveRecord::Schema.define(:version => 20101204053412) do
 
   create_table "accounts", :force => true do |t|
     t.string   "number",             :limit => 16,   :null => false
@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(:version => 20101116205804) do
   end
 
   create_table "addresses", :force => true do |t|
-    t.string   "line_1",      :limit => nil,                   :null => false
+    t.string   "line_1",                                       :null => false
     t.string   "line_2"
-    t.string   "city",        :limit => nil,                   :null => false
-    t.string   "postal_code", :limit => nil,                   :null => false
+    t.string   "city",                                         :null => false
+    t.string   "postal_code",                                  :null => false
     t.string   "country",     :limit => nil, :default => "US", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "state",       :limit => 2,                     :null => false
-    t.string   "territory",   :limit => nil
+    t.string   "state"
+    t.string   "territory"
     t.string   "phone"
   end
 
@@ -90,14 +90,6 @@ ActiveRecord::Schema.define(:version => 20101116205804) do
     t.text     "params"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "orders", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "ip_address"
-    t.integer  "amount_in_cents"
-    t.integer  "account_id"
   end
 
   create_table "pages", :force => true do |t|
@@ -215,9 +207,9 @@ ActiveRecord::Schema.define(:version => 20101116205804) do
     t.string   "name"
     t.string   "new_email"
     t.string   "new_email_token"
-    t.integer  "tip_rate_id"
     t.integer  "facebook_uid",         :limit => 8
     t.string   "facebook_session_key"
+    t.integer  "tip_rate_id"
   end
 
 end

@@ -18,9 +18,6 @@ class Tip < ActiveRecord::Base
 
   before_save do |tip|
     bundle = tip.tip_bundle
-    if (bundle.allocated_funds / (bundle.tip_points + tip.multiplier)) < MINIMUM_TIP_VALUE
-      raise(InsufficientFunds, "fan needs to add more money to tip bundle to continue tipping")
-    end
   end
 
   # def amount_in_cents

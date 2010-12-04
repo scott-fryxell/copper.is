@@ -54,13 +54,9 @@ describe TipsController do
         post :create, { :tip => {:uri => "http://thisisfun.net"} }
       end
 
-      it "should redirect to the refill process" do
-        response.should redirect_to(:controller => 'orders', :action => 'new')
-      end
+      it "should redirect to the refill process"
 
-      it "should alert that the user is out of funds to tip" do
-        flash[:error].should contain("You need to refill your account in order to make tips.")
-      end
+      it "should alert that the user is out of funds to tip"
     end
 
     describe "the index action" do
