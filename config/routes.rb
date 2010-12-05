@@ -24,10 +24,10 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.with_options :controller => 'user_sessions' do |session|
-    session.login           "login",           :action => "new"
-    session.authenticate    "authenticate",    :action => "create"
-    session.fb_authenticate "fb_authenticate", :action => "fb_authenticate"
-    session.logout          "logout",          :action => "destroy"
+    session.signin        "signin",         :action => "new"
+    session.authenticate  "authenticate",   :action => "create"
+    session.start         "start",          :action => "start"
+    session.signout       "signout",        :action => "destroy"
   end
 
   map.with_options  :controller => 'password_resets' do |password|

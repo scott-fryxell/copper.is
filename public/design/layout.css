@@ -34,26 +34,23 @@ html {
       margin-right:1.5em;
       margin-left:1.5em;
     }
-    body > div {
-      text-align:right;
-      font-size:.80em;
-      padding: .5em 1em 0 1em;
-    }
-      body > div > a {
-        padding-right:.5em;
-        text-decoration:underline;
-      }
-      body > div > span {
-        padding-right:.5em;
-      }
     body > header {
+      padding-top: 1em;
     }
      body > header a {
        display:inline-block;
        font-size:2.5em;
        font-weight:normal;
        font-family:'Andale Mono';
+       height:2em;
      }
+       body > header > iframe {
+         display:inline-block;
+         margin-left:15em;
+         width:23em;
+         height:6em;
+         float:right;
+       }
       body > header nav {
         margin-left:14em;
         display:inline-block;
@@ -98,7 +95,7 @@ html {
         body > section > header > p {
           margin-left:.5em;
         }
-      body > section > form{
+      body > section > form {
 
       }
         body > section > form fieldset {
