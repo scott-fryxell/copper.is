@@ -9,23 +9,17 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <div>
-      <% if current_user %>
-        <%= link_to "My Tips", tips_path %>
-        <span><%= current_user.email %></span>
-        <%= link_to "Settings", edit_user_path(current_user) %>
-        <%= link_to "Sign out", logout_path %>
-        
-        <% permitted_to? :home, :admin do %>
-          <%=link_to "Admin", admin_path %>
-        <% end %>
-
-      <% else %>
-        <%= link_to "Sign in or sign up", login_path %>
-      <% end %>
-    </div>
     <header>
       <a href="/">weave</a>
+      <% if current_user %>
+      <nav>
+        <li><%= link_to "My Tips", tips_path %></li>
+        <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+        <li><%= link_to "Sign out", signout_path %></li>
+      </nav>
+      <% else %>
+        <iframe src="http://dirtywhitecouch.rpxnow.com/openid/embed?token_url=http%3A%2F%2Fdirtywhitecouch.com%2Fuser_sessions%2Fcreate" scrolling="no" frameBorder="no" allowtransparency="true"></iframe>
+      <% end %>
       <ol>
         <%- flash.each do |name, msg| -%>
           <%- msg.each do |m| -%>
