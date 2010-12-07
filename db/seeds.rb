@@ -19,6 +19,7 @@ roles = Role.create([
 ])
 
 configurations = Configuration.create([
-  { :property => 'fee_percent', :value => '7'}
+  { :property => 'fee_percent', :value => '7'},
+  { :property => 'default_tip_rate', :value => '50'}
 ])
 

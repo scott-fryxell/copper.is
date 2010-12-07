@@ -37,7 +37,7 @@ body > section,
 body > header {
   padding-top: 1em;
 }
-body > header a {
+body > header > a {
  display:inline-block;
  font-size:2.5em;
  font-weight:normal;
@@ -52,7 +52,7 @@ body > header nav li {
   display:inline-block;
 }
 body > header nav li a {
-  font-size: 1.5em;
+  font-size: 1.25em;
 }
 body > header > ol {
   margin:1em 0;

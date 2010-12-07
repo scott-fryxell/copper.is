@@ -13,8 +13,8 @@
       <a href="/">weave</a>
       <% if current_user %>
         <nav>
+          <li><%= link_to current_user.username, edit_user_path(current_user) %></li>
           <li><%= link_to "My Tips", tips_path %></li>
-          <li><%= link_to "Settings", edit_user_path(current_user) %></li>
           <li><%= link_to "Sign out", signout_path %></li>
         </nav>
       <% else %>

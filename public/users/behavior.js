@@ -1,4 +1,10 @@
 $(document).ready(function () {
+
+  if (window.location.pathname == '/users/current/edit'){
+    $('body').addClass('new_user');
+  }
+
+
   $('details > summary').click(function (event){
     if ($(this).parent('details').attr('open') == 'open')
       $(this).parent('details').attr('open', 'close')

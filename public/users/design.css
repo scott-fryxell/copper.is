@@ -63,7 +63,6 @@ body > section > details > form > fieldset > input {
 body > section > details.completed {
   border-color: green;
 }
-
 body > section > details.completed > summary {
   color: green;
 }
@@ -73,22 +72,6 @@ body > section > details.completed > summary:after {
   float: right;
   content: "√";
 }
-
-body > section > details.required {
-  background-color: red;
-  border-color: red;
-}
-body > section > details.required * {
-  color: white;
-}
-body > section > details.required > summary:after {
-  color: green;
-  display: inline-block;
-  float: right;
-  content: "ˇ";
-  color: white;
-}
-
 body > section > details[open=open] {
   -webkit-transition: all 1s ease-out;
   background-color: #DDDDDD;
@@ -101,6 +84,19 @@ body > section > details[open=open] * {
 body > section > details[open=open] summary:after {
   content: "X";
   color: gray;
+  display: inline-block;
+  float: right;
+}
+
+body.new_user > section > details.required {
+  background-color: red;
+  border-color: red;
+}
+body.new_user > section > details.required * {
+  color: white;
+}
+body.new_user > section > details.required > summary:after {
+  color: white;
 }
 
 body > section > details#tip_rate > form > fieldset > label {
@@ -113,11 +109,6 @@ body > section > details#tip_rate > form > fieldset > select {
   background-color: white;
   font-size: 2em;
 }
-
-body > section > details#password > form > fieldset > input#old_password {
-  margin-bottom: 2em;
-}
-
 body > section > details#bookmarklet > p > span {
   font-family: "Zapf Dingbats";
   color: #f60;
@@ -149,7 +140,6 @@ body > section > details#bookmarklet > p > a {
 body > section > details#bookmarklet > p > a:focus {
   outline: none;
 }
-
 body > section > details#badge > textarea {
   background-color: white;
   padding: 1.5em 0 0 1em;
