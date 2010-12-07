@@ -3,7 +3,6 @@ class ConnectTipsToBundlesAndLocators < ActiveRecord::Migration
     create_table :tips, :force => true do |t|
       t.references :tip_bundle, :null => false
       t.references :locator, :null => false
-      t.integer    :multiplier, :default => 1
 
       t.timestamps
     end

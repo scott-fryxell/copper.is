@@ -11,7 +11,7 @@ class Tip < ActiveRecord::Base
   validates_associated :locator
   validates_presence_of :amount_in_cents
 
-  validates_numericality_of :multiplier, :only_integer => true, :greater_than => 0
+  # validates_numericality_of :multiplier, :only_integer => true, :greater_than => 0
 
   # minimum value per tip, in cents
   Tip::MINIMUM_TIP_VALUE = 1
@@ -25,6 +25,6 @@ class Tip < ActiveRecord::Base
   # end
 
   def tip_value
-    amount_in_cents * multiplier
+    amount_in_cents
   end
 end

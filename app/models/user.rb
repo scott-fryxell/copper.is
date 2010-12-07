@@ -7,16 +7,10 @@ class User < ActiveRecord::Base
     c.account_mapping_mode :internal
   end
 
-  has_one :address
-  has_many :accounts
-
-  has_many :transactions, :through => :accounts
   has_many :tips, :through => :tip_bundles
   has_many :tip_bundles, :foreign_key => "fan_id"
 
   has_and_belongs_to_many :roles
-
-  belongs_to :tip_rate
 
   #AuthLogic validate the uniqueness of the email field by convention
   #validates_uniqueness_of :email
@@ -47,10 +41,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_active_users
-    find(:all, :conditions => "active = 't'", :order => "created_at DESC")
-  end
-
   def rotate_tip_bundle!
     TipBundle.update(active_tip_bundle.id, :is_active => false)
     TipBundle.create(:fan => self) # TODO: we're changing the default behavior here
@@ -60,15 +50,15 @@ class User < ActiveRecord::Base
     tip_bundles.find(:first, :conditions => ["is_active = ?", true]) || TipBundle.new(:fan => self) # TODO: see below
   end
 
-  def tip(url_string, description = 'new page', multiplier = 1)
+  def tip(url_string, description = 'new page')
     locator = Locator.find_or_init_by_url(url_string)
-    amount_in_cents = self.tip_rate.amount_in_cents if self.tip_rate != nil
+    amount_in_cents = self.tip_preference_in_cents
+
     if locator && amount_in_cents
       locator.page = Page.create(:description => description) unless locator.page
 
       tip = Tip.new(:locator         => locator,
                     :tip_bundle      => active_tip_bundle,
-                    :multiplier      => multiplier,
                     :amount_in_cents => amount_in_cents
                     )
       if tip.valid?

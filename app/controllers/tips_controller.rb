@@ -4,7 +4,6 @@ class TipsController < ApplicationController
   def index
     @tip = Tip.new
     @tips = current_user.active_tips
-    @has_funds = current_user.funds_for_tipping?
 
     respond_to do |format|
       format.html # index.html.erb

@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.with_options  :controller => 'bookmarklet' do |bookmarklet|
-    bookmarklet.weave  "bookmarklet/weave",  :action => "weave"
+    bookmarklet.weave  "bookmarklet/weave.js",  :action => "weave"
   end
 
   map.signin "signin", :controller => "user_sessions", :action => "new"

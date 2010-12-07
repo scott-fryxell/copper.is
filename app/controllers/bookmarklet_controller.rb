@@ -1,9 +1,6 @@
 class BookmarkletController < ApplicationController
 
-  def instructions
-  end
-
   def weave
-    render :action => 'weave', :layout => false
+    render :action => 'weave.js', :layout => false
   end
 end

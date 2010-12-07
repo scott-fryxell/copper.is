@@ -181,9 +181,8 @@ ActiveRecord::Schema.define(:version => 20101206000448) do
   end
 
   create_table "tips", :force => true do |t|
-    t.integer  "tip_bundle_id",                  :null => false
-    t.integer  "locator_id",                     :null => false
-    t.integer  "multiplier",      :default => 1
+    t.integer  "tip_bundle_id",   :null => false
+    t.integer  "locator_id",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "note"

@@ -5,18 +5,14 @@
   <aside id="account" itemscope="true" itemtype="http://weave.us/user#account">
     <h1>Fund</h1>
     <dl>
-      <dt>Balance</dt>
-      <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></dd>
       <dt>Tips</dt>
       <dd itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></dd>
       <dt>Rate</dt>
       <dd itemprop="rate">
-        <% if current_user.tip_rate != nil %>
-          $<%= cents_to_dollars(current_user.tip_rate.amount_in_cents) %>
-        <% else %>
-          <%= link_to "Select", edit_user_path(current_user) %> a rate
-        <% end %>
+        $<%= cents_to_dollars(current_user.tip_preference_in_cents) %>
       </dd>
+      <dt>Balance</dt>
+      <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></dd>
     </dl>
     <button id="add-funds">Add $</button>
     <button id="change-rate">Change rate</button>
