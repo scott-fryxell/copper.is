@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101204053412) do
+ActiveRecord::Schema.define(:version => 20101206000448) do
 
   create_table "accounts", :force => true do |t|
     t.string   "number",             :limit => 16,   :null => false
@@ -136,6 +136,17 @@ ActiveRecord::Schema.define(:version => 20101204053412) do
     t.integer "site_id"
   end
 
+  create_table "rpx_identifiers", :force => true do |t|
+    t.string   "identifier",    :null => false
+    t.string   "provider_name"
+    t.integer  "user_id",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rpx_identifiers", ["identifier"], :name => "index_rpx_identifiers_on_identifier", :unique => true
+  add_index "rpx_identifiers", ["user_id"], :name => "index_rpx_identifiers_on_user_id"
+
   create_table "sites", :force => true do |t|
     t.string   "fqdn",       :null => false
     t.datetime "created_at"
@@ -188,27 +199,14 @@ ActiveRecord::Schema.define(:version => 20101204053412) do
   end
 
   create_table "users", :force => true do |t|
+    t.string   "username"
     t.string   "email"
-    t.string   "crypted_password"
-    t.string   "password_salt"
     t.string   "persistence_token"
-    t.integer  "login_count",                       :default => 0,     :null => false
-    t.integer  "failed_login_count",                :default => 0,     :null => false
-    t.datetime "last_request_at"
-    t.datetime "current_login_at"
-    t.datetime "last_login_at"
-    t.string   "current_login_ip"
-    t.string   "last_login_ip"
+    t.integer  "login_count",             :default => 1,  :null => false
+    t.integer  "tip_preference_in_cents", :default => 50, :null => false
+    t.integer  "failed_login_count",      :default => 0,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "perishable_token",                  :default => "",    :null => false
-    t.boolean  "active",                            :default => false
-    t.datetime "activation_date"
-    t.string   "name"
-    t.string   "new_email"
-    t.string   "new_email_token"
-    t.integer  "facebook_uid",         :limit => 8
-    t.string   "facebook_session_key"
     t.integer  "tip_rate_id"
   end
 

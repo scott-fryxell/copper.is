@@ -8,13 +8,10 @@
   <% else%>
     <header>
       <span>X</span>
-      <h1>
-        See something cool on the internets? Tip it
-      </h1>
       <figure accesskey="l" tabindex="2" id="weave_logo">
         <img src="/graphics/person.svg" alt="weave logo"/>
       </figure>
-      <a href="/users/start">Get Started <span> ➠</span></a>
+      <%= rpx_embed( :app_name => 'dirtywhitecouch', :return_url => user_sessions_url) %>
     </header>
   <% end %>
 

@@ -4,7 +4,7 @@ authorization do
     has_permission_on [:admin], :to => [:home]
     has_permission_on [:accounts, :addresses, :tips, :locators, :transactions], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
     has_permission_on [:user_sessions], :to => [:destroy]
-    has_permission_on [:users], :to => [:edit, :update]
+    has_permission_on [:users], :to => [:index, :edit, :update]
     has_permission_on [:admin_user_reports], :to => [:active]
   end
 
@@ -15,15 +15,13 @@ authorization do
   end
 
   role :patron do
-    has_permission_on [:accounts, :addresses, :tips, :locators, :transactions], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
-    has_permission_on [:user_sessions], :to => [:destroy]
-    has_permission_on [:users], :to => [:edit, :update_password, :update_user, :confirm_new_email]
-    has_permission_on [:sites, :pages], :to => [:index, :show, :new, :create]
+    has_permission_on [:tips, :transactions], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
+    has_permission_on [:user_sessions], :to => [:destroy, :create]
+    has_permission_on [:users], :to => [:show, :new, :create, :edit, :update]
   end
 
   role :guest do
-    has_permission_on [:reports, :locators], :to => [:index, :show]
-    has_permission_on [:user_sessions], :to => [:new, :create, :fb_authenticate]
+    has_permission_on [:user_sessions], :to => [:create]
   end
 
 end

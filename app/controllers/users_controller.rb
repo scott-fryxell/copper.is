@@ -6,79 +6,33 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new
+    @user = User.new(params[:user])
+
+    if @user.save
+      flash[:notice] = "Successfully registered user."
+      redirect_to account_path
+    else
+      render :action => 'new'
+    end
+  end
+
+  def show
+    @user = current_user
   end
 
   def edit
     @user = current_user
-    @tip_rates = TipRate.find(:all, :order => :amount_in_cents).map {|r| [r.amount_in_cents, r.id] }
+    @user.valid?
   end
 
-  def update_password
+  def update
     @user = current_user
-    @tip_rates = TipRate.find(:all, :order => :amount_in_cents).map {|r| [r.amount_in_cents, r.id] }
-    @salt = @user.password_salt
-    @password_encrypted = Authlogic::CryptoProviders::Sha512.encrypt(params[:user][:current_password] + @salt)
-
-    if @password_encrypted != @user.crypted_password
-      flash[:notice] = t("weave.current_password_is_invalid")
-      render :action => :edit
-    elsif params[:user][:password].blank? || ( params[:user][:password].blank? && params[:user][:password_confirmation].blank? )
-      flash[:notice] = t("weave.password_too_short")
-      render :action => :edit
+    @user.attributes = params[:user]
+    if @user.save
+      flash[:notice] = "Successfully updated user."
+      redirect_back_or_default account_path
     else
-      if @user.update_attributes(params[:user])
-        flash[:notice] = t("weave.password_update_success")
-        render :action => :edit
-      else
-        flash[:notice] = @user.errors.full_messages
-        render :action => :edit
-      end
-    end
-  end
-
-  def update_user
-    @tip_rates = TipRate.find(:all, :order => :amount_in_cents).map {|r| [r.amount_in_cents, r.id] }
-    @user = current_user
-    if params[:user][:email] == @user.email
-      @user.name = params[:user][:name] # why doesn't update_attributes work?
-      @user.tip_rate_id = params[:user][:tip_rate_id]
-      @user.save
-      flash[:notice] = t("weave.user_update_success")
-      render :edit
-    # section that handles email changes
-    elsif params[:user][:email] != @user.email && !params[:user][:email].blank?
-      @user.name = params[:user][:name] # set any vars other than email
-      @user.tip_rate_id = params[:user][:tip_rate_id]
-      if @user.new_email_submit(params[:user][:email])
-        flash[:notice] = t("weave.email_change_needs_confirmation", :new_email => @user.new_email)
-        render :edit
-      else
-        flash[:notice] = @user.errors.full_messages
-        render :action => :edit
-      end
-    else
-      flash[:notice] = @user.errors.full_messages
-      render :action => :edit
-    end
-  end
-
-  def confirm_new_email
-    @user = User.find_by_new_email_token(params[:id]) # we could add a timeout on the token, say 1 week with: (params[:id], 1.week)
-    @tip_rates = TipRate.find(:all, :order => :amount_in_cents).map {|r| [r.amount_in_cents, r.id] }
-    if @user && @user == current_user
-      if @user.new_email_confirmed!
-        flash[:notice] = t("weave.email_changed")
-        render :action => 'edit'
-      else
-        flash[:notice]  = t("weave.email_change_failure")
-        render :action => 'edit'
-      end
-    else
-      @user = current_user
-      flash[:notice]  = t("weave.email_change_failure")
       render :action => 'edit'
     end
   end
-
 end

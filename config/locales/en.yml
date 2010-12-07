@@ -3,9 +3,11 @@
 
 en:
   authlogic:
-    error_messages:
-      email_invalid: "You must use a valid email address."
-      not_active: "Your account hasn't been activated. Check your email for instructions on how to activate it."
+    registration_new: "Welcome! see those red boxes? turn them green and you're ready to go!"
+    signin_success: "howdy. Successfully signed in."
+    signout_success: "Successfully signed out."
+    account_review: 'Welcome back! Please review your account setting before continuing..'
+    failed_signin: 'Failed to signin. something may be wrong with our system, or maybe the internets are dead.'
   activerecord:
     errors:
       full_messages:
@@ -15,25 +17,7 @@ en:
           "is not valid": "We didn't recognize your email or password. Please try again."
           "cannot be blank": "You must enter a password"
   weave:
-    login_success: "Successfully logged in."
-    registration_success: "Registration successful. Please check your email for instructions on activating your account."
-    logout_success: "Successfully signed out."
-    password_reset_instructions_sent: "Check for an email with instructions on resetting your password."
-    email_not_found: "No Weave account exists for that email address."
-    password_changed: "Your password has been changed."
-    account_not_located: "We couldn't locate your account. Request a new token."
-    activation_failed: "We couldn't activate your account. Enter your email address to get an activation email."
-    account_activated: "Your account has been activated."
-    activation_requested: "Please check your email for instructions on activating your account."
-    account_already_active: "Your account is already active. Please login."
-    password_too_short: "Password must be at least 4 characters long"
-    current_password_is_invalid: "The current password is incorrect."
     user_update_success: "Your account has been updated."
-    email_change_needs_confirmation: "Check your email (%{new_email}) to confirm your new address. Until then, notifications will continue to be sent to your current email address."
-    email_changed: "Your email has been changed."
-    email_change_failure: "There was a problem updating your email address. Please check your account settings."
-    password_update_success: "Your password has been changed."
     permission_denied: "PERMISSION DENIED"
     tip_success: "Tip successfully created."
     tip_failed: "That is not a valid URL."
-    no_funds_for_tipping: "You need to refill your account in order to make tips."

@@ -5,33 +5,17 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  # ensure_application_is_installed_by_facebook_user
-
-  before_filter :set_facebook_session
-  helper_method :facebook_session
-
-  helper_method :current_user
+  helper_method :current_user, :current_user_session
   private
 
   def current_user_session
     return @current_user_session if defined?(@current_user_session)
-    
-    if facebook_session
-      @current_user_session = facebook_session
-    else
-      @current_user_session = UserSession.find
-    end
+    @current_user_session = UserSession.find
   end
 
   def current_user
     return @current_user if defined?(@current_user)
-    
-    if facebook_session
-      @current_user = User.find_by_facebook_uid(facebook_session.user.uid)
-    else
-      @current_user = current_user_session && current_user_session.record
-    end
-    # @current_user = current_user_session && facebook_session.user
+    @current_user = current_user_session && current_user_session.record
   end
 
   protected
@@ -45,7 +29,4 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Scrub sensitive parameters from your log
-  filter_parameter_logging :password
-  filter_parameter_logging :fb_sig_friends
 end

@@ -12,13 +12,15 @@
     <header>
       <a href="/">weave</a>
       <% if current_user %>
-      <nav>
-        <li><%= link_to "My Tips", tips_path %></li>
-        <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-        <li><%= link_to "Sign out", signout_path %></li>
-      </nav>
+        <nav>
+          <li><%= link_to "My Tips", tips_path %></li>
+          <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+          <li><%= link_to "Sign out", signout_path %></li>
+        </nav>
       <% else %>
-        <iframe src="http://dirtywhitecouch.rpxnow.com/openid/embed?token_url=http%3A%2F%2Fdirtywhitecouch.com%2Fuser_sessions%2Fcreate" scrolling="no" frameBorder="no" allowtransparency="true"></iframe>
+        <nav>
+          <li><%= rpx_popup( :link_text => "Sign in", :app_name => RPX_APP_NAME, :return_url => user_sessions_url, :unobtrusive => false ) %></li>
+        </nav>
       <% end %>
       <ol>
         <%- flash.each do |name, msg| -%>

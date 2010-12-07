@@ -20,4 +20,6 @@ config.action_mailer.delivery_method = :sendmail
 
 config.after_initialize do
 
+config.log_level = :debug
+
 end

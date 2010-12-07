@@ -33,7 +33,7 @@
     <p>
       Select the amount you want each tip to be.
     </p>
-    <% form_for @user, :url => (update_user_path) do |f| %>
+    <% form_for @user, :url => (edit_user_path) do |f| %>
       <fieldset>
         <label for="user_tip_rate_id">Tip Rate</label>
         <select name="user[tip_rate_id]" id="user_tip_rate_id">
@@ -51,47 +51,6 @@
     <% end %>
   </details>
 
-  <h1>Other settings</h1>
-  <p>
-    Stuff you can do if your into it.
-  </p>
-  <details id="personal" open="closed" class="optional">
-    <summary>Account Settings</summary>
-    <p>
-      manage your name and email
-    </p>
-    <% form_for @user, :url => (update_user_path) do |f| %>
-      <fieldset>
-        <label for="user_name">Name</label>
-        <%= f.text_field :name %>
-
-        <label for="user_email">Email</label>
-        <%= f.text_field :email %>
-
-      </fieldset>
-      <%= f.submit "Save" %>
-    <% end %>
-  </details>
-  <details id="password" open="closed" class="optional">
-    <summary>Change your password</summary>
-    <p>
-      Manage your weave password
-    </p>
-    <% form_for @user, :url => (update_password_path)  do |f| %>
-      <fieldset>
-        <label for="current_password">Current password</label>
-        <input type="password" name="user[current_password]" id="current_password" value=""/>
-
-        <label for="user_password">New password</label>
-        <input type="password" name="user[password]" id="password" value=""/>
-
-        <label for="password_confirmation">Confirm new password</label>
-        <input type="password" name="user[password_confirmation]" id="password_confirmation" value=""/>
-      </fieldset>
-      <%= f.submit "Change password" %>
-    <% end %>
-
-  </details>
   <details id="badge" open="closed" class="optional">
     <summary>Use the badge</summary>
     <p>

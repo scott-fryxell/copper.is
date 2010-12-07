@@ -1,12 +1,13 @@
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.9' unless defined? RAILS_GEM_VERSION
+# RAILS_GEM_VERSION = '2.3.9' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -24,7 +25,7 @@ Rails::Initializer.run do |config|
   # config.gem "declarative_authorization", :source => "http://www.gemcutter.org"
   # config.gem 'formtastic'
   # config.gem "facebooker"
-  
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -43,4 +44,10 @@ Rails::Initializer.run do |config|
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+
+  RPX_API_KEY = ENV['RARS_RPX_API_KEY']
+  RPX_APP_NAME = ENV['RARS_RPX_APP_NAME']
+  raise "RPX/Janrain Engage API key must be defined ENV['RARS_RPX_API_KEY']" unless RPX_API_KEY
+  raise "RPX/Janrain Engage Application Name must be defined ENV['RARS_RPX_APP_NAME']" unless RPX_APP_NAME
+
 end
