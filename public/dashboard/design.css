@@ -2,54 +2,67 @@ aside[itemtype="http://weave.us/user#account"] {
   display: inline-block;
   padding:1em;
 }
-  aside[itemtype="http://weave.us/user#account"] > h1{
-    margin-top:0;
-    margin-bottom:.5em;
-    font-size:1.5em;
-  }
-  aside[itemtype="http://weave.us/user#account"] > dl {
-    width: 15em;
-    margin-left:1em;
-  }
-    aside[itemtype="http://weave.us/user#account"] > dl > dt {
-      font-size: 1.25em;
-      font-weight:normal;
-      width:8em;
-      margin-bottom:.5em;
-      display:inline-block;
-    }
-    aside[itemtype="http://weave.us/user#account"] > dl > dd {
-      text-align:right;
-      font-size:1.5em;
-      width:3em;
-      display:inline-block;
-      text-decoration:right;
-    }
-    aside[itemtype="http://weave.us/user#account"] > dl > dd > a {
-      text-decoration: none;
-      color:gray;
-    }
-      aside[itemtype="http://weave.us/user#account"] > dl > dd > a:hover {
-        text-decoration: underline;
-      }
-
-  aside[itemtype="http://weave.us/user#account"] > button {
-    padding:.25em 1em;
-    border:.20em solid gray;
-    background-color:white;
-    -moz-border-radius:.5em;
-    border-radius:.5em;
-    padding: .25em 2em;
-    color:gray;
-    cursor:pointer;
-  }
-    aside[itemtype="http://weave.us/user#account"] > button#add-funds {
-      position:absolute;
-      bottom:1em;
-      right:14em;
-    }
-    aside[itemtype="http://weave.us/user#account"] > button#change-rate {
-      position:absolute;
-      bottom:1em;
-      right:2em;
-    }
+aside[itemtype="http://weave.us/user#account"] > h1{
+  margin-top:0;
+  margin-bottom:.5em;
+  font-size:1.5em;
+}
+aside[itemtype="http://weave.us/user#account"] > dl {
+  width: 15em;
+  margin-left:1em;
+}
+aside[itemtype="http://weave.us/user#account"] > dl > dt {
+  font-size: 1.25em;
+  font-weight:normal;
+  width:8em;
+  margin-bottom:.5em;
+  display:inline-block;
+}
+aside[itemtype="http://weave.us/user#account"] > dl > dd {
+  text-align:right;
+  font-size:1.5em;
+  width:3em;
+  display:inline-block;
+  text-decoration:right;
+}
+aside[itemtype="http://weave.us/user#account"] > dl > dd > a {
+  text-decoration: none;
+  color:gray;
+}
+aside[itemtype="http://weave.us/user#account"] > dl > dd > a:hover {
+  text-decoration: underline;
+}
+aside[itemtype="http://weave.us/user#account"] > button {
+  padding:.25em 1em;
+  border:.20em solid gray;
+  background-color:white;
+  -moz-border-radius:.5em;
+  border-radius:.5em;
+  padding: .25em 2em;
+  color:gray;
+  cursor:pointer;
+}
+body > section > header > form {
+  margin:1em 17.5em 1em 1.5em;
+  display:inline-block;
+  vertical-align:top;
+}
+body > section > header > form > fieldset > label {
+  display:block;
+  margin-bottom:.5em;
+  font-size: 1.5em;
+}
+body > section > header > form > fieldset > textarea {
+  background-color:white;
+  width: 30em;
+  height: 8em;
+  border:.25em solid gray;
+  margin-bottom:.5em;
+}
+body > section > header > form > input {
+  padding:.25em 2em;
+  border:.25em solid gray;
+  background-color:white;
+  -moz-border-radius:.5em;
+  border-radius:.5em;
+}

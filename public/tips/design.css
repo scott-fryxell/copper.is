@@ -6,71 +6,45 @@ body > section {
   width: 59em;
   margin:0;
 }
-  body > section > header {
-    border-top: .15em solid gray;
-    border-bottom: .15em solid gray;
-    margin:0;
-    position:relative;
-  }
-    body > section > header > form {
-      margin:1em 13.5em 1em 1.5em;
-      display:inline-block;
-      vertical-align:top;
-    }
-      body > section > header > form > fieldset > label {
-        display:block;
-        margin-bottom:.5em;
-        font-size: 1.5em;
-      }
-      body > section > header > form > fieldset > textarea {
-        background-color:white;
-        width: 30em;
-        height: 8em;
-        border:.25em solid gray;
-        margin-bottom:.5em;
-      }
-      body > section > header > form > input {
-        margin-left: 29.5em;
-        padding:.25em 2em;
-        border:.25em solid gray;
-        background-color:white;
-        -moz-border-radius:.5em;
-        border-radius:.5em;
-
-      }
-      body > section > form#search {
-        padding:1em 1.5em !important;
-      }
-  body > section > table  {
-    margin:1em;
-    width:55em;
-  }
-    body > section > table > tbody > tr > td:nth-child(even) {
-      width: 16em;
-      text-align:right;
-    }
-    body > section > table > thead > tr > th {
-      font-size: 1.5em;
-      padding-bottom:1em;
-    }
-    body > section > table > thead > tr > th:nth-child(even) {
-      text-align:center;
-    }
-    body > section > table > tbody > tr > td {
-      width:53em;
-    }
-      body > section > table > tbody > tr > td > p {
-        margin-bottom:1em;
-        margin-left:.5em;
-      }
-      body > section > table > tbody > tr > td a {
-        display:block;
-        font-size: .75em;
-      }
-      body > section > table > tbody > tr > td a:first-child {
-        font-size: 1em;
-      }
-      body > section > table > tbody > tr > td a.locator {
-        margin-left:.5em;
-        margin-bottom:1em;
-      }
+body > section > header {
+  border-top: .15em solid gray;
+  border-bottom: .15em solid gray;
+  margin:0;
+  position:relative;
+}
+body > section > form#search {
+  padding:1em 1.5em !important;
+}
+body > section > table  {
+  margin:1em;
+  width:55em;
+}
+body > section > table > tbody > tr > td:nth-child(even) {
+  width: 16em;
+  text-align:right;
+}
+body > section > table > thead > tr > th {
+  font-size: 1.5em;
+  padding-bottom:1em;
+}
+body > section > table > thead > tr > th:nth-child(even) {
+  text-align:center;
+}
+body > section > table > tbody > tr > td {
+  width:53em;
+}
+body > section > table > tbody > tr > td > p {
+  margin-bottom:1em;
+  margin-left:.5em;
+}
+body > section > table > tbody > tr > td a {
+  display:block;
+  font-size: .75em;
+}
+body > section > table > tbody > tr > td a:first-child {
+  font-size: 1em;
+}
+body > section > table > tbody > tr > td a.locator {
+  margin-left:.5em;
+  margin-bottom:1em;
+}

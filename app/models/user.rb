@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def active_tip_total_in_cents 
+    active_tips.count * self.tip_preference_in_cents
+  end
+
   def funds_for_tipping?
     if (active_tip_bundle.cents_per_tip_point > Tip::MINIMUM_TIP_VALUE) ||
       (active_tip_bundle.allocated_funds > 0 && active_tip_bundle.tip_points == 0)

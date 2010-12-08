@@ -12,9 +12,7 @@
         $<%= cents_to_dollars(current_user.tip_preference_in_cents) %>
       </dd>
       <dt>Balance</dt>
-      <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_bundle.allocated_funds) %></dd>
+      <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_total_in_cents) %></dd>
     </dl>
-    <button id="add-funds">Add $</button>
-    <button id="change-rate">Change rate</button>
   </aside>
 <% end %>
