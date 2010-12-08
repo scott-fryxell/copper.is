@@ -51,7 +51,7 @@ body > section > header > span {
   cursor: pointer;
 }
 body > section > header.minimized {}
-body > section > header.minimized h1, 
+body > section > header.minimized h1,
 body > section > header.minimized figure,
 body > section > header.minimized iframe,
 body > section > header.minimized figure img {
@@ -63,14 +63,41 @@ body > section > header.minimized > a {
   left:.5em;
   width:6em;
 }
+body > section > header > iframe {
+  display:inline-block;
+  width:23em;
+  height:15em;
+}
+body > section > h2 {
+  font-size: 1.75em;
+  margin-bottom: 1em;
+  font-weight:bold;
+  color:  green;
+}
+body > section > p {
+  font-size: 1.5em;
+  width: 21em;
+  margin-bottom: 1em;
+
+  line-height: 1.15em;
+}
+body > section > p > a {
+  color: blue;
+}
 body > section > ol {
   -webkit-padding-start: 0;
   margin-top:2em;
   vertical-align:top;
   width:55.5em;
 }
-body > section header > iframe {
-  display:inline-block;
-  width:23em;
-  height:15em;
+body > section > ul {
+  list-style: circle inside ;
+  font-size: 1.5em;
+  width: 21em;
+  margin-bottom: 1em;
+  line-height: 1.15em;
+
+}
+body > section > ul > li {
+  color:  green;
 }
