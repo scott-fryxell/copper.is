@@ -4,7 +4,7 @@
 en:
   authlogic:
     registration_new: "Welcome! see those red boxes? turn them green and you're ready to go!"
-    signin_success: "howdy. Successfully signed in."
+    signin_success: "Successfully signed in"
     signout_success: "Successfully signed out."
     account_review: 'Welcome back! Please review your account setting before continuing..'
     failed_signin: 'Failed to signin. something may be wrong with our system, or maybe the internets are dead.'
