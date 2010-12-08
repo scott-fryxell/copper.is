@@ -8,8 +8,9 @@
     f=document.createElement('iframe');
     f.id='weave';
     f.frameborder=0;
+    f.scrolling=0;
     f.target='weave';
-    f.allowtransparency=true;
+    f.allowtransparency='allowtransparency';
     f.style.position='absolute';
     f.style.top='0';
     f.style.padding='0';
@@ -20,7 +21,7 @@
     f.scrolling='no';
     f.width='100%';
     f.height='100%';
-    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/agent/#/' +
+    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bookmarklet/agent/#/' +
       window.location + '&title=' +
       document.getElementsByTagName('title')[0].innerHTML;
     document.body.appendChild(f);

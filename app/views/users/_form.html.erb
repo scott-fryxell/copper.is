@@ -16,7 +16,7 @@
     </p>
     <p>
       <span>&#x27A0;</span>
-      <a id="weave_us" href="<%= render :partial => 'bookmarklet/wrapped_launcher.js' %>" tabindex="1" accesskey="p">weave</a>
+      <a id="weave_us" href="<%= render :partial => 'home/wrapped_launcher.js' %>" tabindex="1" accesskey="p">weave</a>
     </p>
   </details>
   <details id="authorize" open="closed" class="required">
@@ -57,7 +57,7 @@
       Copy the contents of this box into the content you've created
     </p>
     <textarea name="copy">
-      <img style="cursor:pointer; width:222px; height:222px" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bookmarklet/badge.png" onclick="<%= render :partial => 'bookmarklet/launcher.js' %>"/>
+      <img style="cursor:pointer; width:222px; height:222px" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bookmarklet/badge.png" onclick="<%= render :partial => 'home/launcher.js' %>"/>
     </textarea>
   </details>
 </section>
