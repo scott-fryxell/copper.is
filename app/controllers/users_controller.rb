@@ -18,6 +18,13 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @user.to_xml }
+      format.json  { render :json => @user.to_json }
+    end
+
   end
 
   def edit
@@ -27,10 +34,15 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.attributes = params[:user]
+    @user.tip_preference_in_cents = params[:user][:tip_preference_in_cents]
     if @user.save
-      flash[:notice] = "Successfully updated user."
-      redirect_back_or_default account_path
+
+      if request.xhr?
+        render :action => 'update', :layout => false
+      else
+        flash[:notice] = "Successfully updated user."
+        render :action => 'edit'
+      end
     else
       render :action => 'edit'
     end

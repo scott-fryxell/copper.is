@@ -16,12 +16,13 @@ authorization do
 
   role :patron do
     has_permission_on [:tips, :transactions], :to => [:index, :show, :new, :create, :edit, :update, :destroy]
-    has_permission_on [:user_sessions], :to => [:destroy, :create]
-    has_permission_on [:users], :to => [:show, :new, :create, :edit, :update]
+    has_permission_on [:user_sessions], :to => [:destroy]
+    has_permission_on [:users], :to => [:new, :create, :edit, :update, :show]
   end
 
   role :guest do
-    has_permission_on [:user_sessions], :to => [:create]
+
+
   end
 
 end
