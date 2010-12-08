@@ -107,7 +107,7 @@ body > section > details#tip_rate > form > fieldset > select {
   display: inline-block;
   margin-left: 1em;
   background-color: white;
-  font-size: 2em;
+  font-size: 1.25em;
 }
 body > section > details#bookmarklet > p > span {
   font-family: "Zapf Dingbats";

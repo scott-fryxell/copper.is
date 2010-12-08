@@ -18,7 +18,7 @@ $(document).ready(function () {
     $('details#bookmarklet > summary').click();
   })
 
-  $('details#tip_rate > form > fieldset > select').click(function (event) {
+  $('details#tip_rate > form > fieldset > select').change(function (event) {
     $('details#tip_rate').removeClass('required');
     $('details#tip_rate').addClass('completed');
     $('details#tip_rate > summary').click();
