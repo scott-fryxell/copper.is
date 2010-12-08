@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def active_tip_total_in_cents 
-    active_tips.count * self.tip_preference_in_cents
+    active_tip_bundle.tip_points
   end
 
   def funds_for_tipping?

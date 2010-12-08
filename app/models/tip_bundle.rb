@@ -20,7 +20,7 @@ class TipBundle < ActiveRecord::Base
   end
 
   def tip_points
-    tips.sum('multiplier')
+    tips.sum('amount_in_cents')
   end
 
   def cents_per_tip_point
