@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101206000448) do
+ActiveRecord::Schema.define(:version => 20101209214804) do
 
   create_table "accounts", :force => true do |t|
     t.string   "number",             :limit => 16,   :null => false
@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(:version => 20101206000448) do
   end
 
   create_table "addresses", :force => true do |t|
-    t.string   "line_1",                                       :null => false
+    t.string   "line_1",                        :null => false
     t.string   "line_2"
-    t.string   "city",                                         :null => false
-    t.string   "postal_code",                                  :null => false
-    t.string   "country",     :limit => nil, :default => "US", :null => false
+    t.string   "city",                          :null => false
+    t.string   "postal_code",                   :null => false
+    t.string   "country",     :default => "US", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
@@ -199,7 +199,6 @@ ActiveRecord::Schema.define(:version => 20101206000448) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
-    t.string   "email"
     t.string   "persistence_token"
     t.integer  "login_count",             :default => 1,  :null => false
     t.integer  "tip_preference_in_cents", :default => 50, :null => false

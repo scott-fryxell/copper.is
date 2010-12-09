@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   #AuthLogic validate the uniqueness of the email field by convention
   #validates_uniqueness_of :email
 
-  attr_accessible :email
+  attr_accessible :username
 
   def active_tips
     bundle = active_tip_bundle

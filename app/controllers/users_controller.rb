@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.tip_preference_in_cents = params[:user][:tip_preference_in_cents]
+
     if @user.save
 
       if request.xhr?
@@ -44,7 +45,12 @@ class UsersController < ApplicationController
         render :action => 'edit'
       end
     else
-      render :action => 'edit'
+      if request.xhr?
+        render :action => 'failed_update', :layout => false
+      else
+        flash[:notice] = "Unable to save user changes."
+        render :action => 'edit'
+      end
     end
   end
 end

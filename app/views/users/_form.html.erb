@@ -22,10 +22,9 @@
   <details id="authorize" open="closed" class="required">
     <summary>Authorize Tips</summary>
     <p>
-      Log into your PayPal account to authorize us to pay the sites you tip
-    </p>
-    <p>
-      This part is coming in the next couple of days. until then you can tip with the bookmarklet all's you want
+      This part is coming soon. Until then you can
+      tip with the bookmarklet all's you want. Eventually
+      we'll start taking your money.
     </p>
   </details>
   <details id="tip_rate" open="closed" class="">
@@ -33,7 +32,9 @@
     <p>
       Select the amount you want each tip to be.
     </p>
-    <% form_for @user, :url => (user_path) do |f| %>
+    <form action="" method="post" accept-charset="utf-8">
+      <input name="_method" type="hidden" value="put">
+      <input name="authenticity_token" type="hidden" value="<%=form_authenticity_token%>">
       <fieldset>
         <label for="user_tip_preference_in_cents">Tip Rate</label>
         <select name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
@@ -48,7 +49,7 @@
           <option value="500">$5.00</option>
         </select>
       </fieldset>
-    <% end %>
+    </form>
   </details>
 
   <details id="badge" open="closed" class="optional">
