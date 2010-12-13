@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe TipsController do
-  fixtures :tip_rates, :users, :roles_users, :addresses, :accounts, :transactions, :pages, :sites, :locators, :tip_bundles, :refills, :tips, :royalty_bundles, :tip_royalties, :royalty_bundles_sites
+  fixtures :users, :roles_users, :pages, :sites, :locators, :tip_bundles, :tips, :royalty_bundles, :tip_royalties, :royalty_bundles_sites
   setup :activate_authlogic
 
   def user_session_with_funds
@@ -44,29 +44,4 @@ describe TipsController do
     end
   end
 
-  describe "Fan without any funds" do
-    before(:each) do
-      @user = user_session_with_no_funds
-    end
-
-    describe "the create action" do
-      before(:each) do
-        post :create, { :tip => {:uri => "http://thisisfun.net"} }
-      end
-
-      it "should redirect to the refill process"
-
-      it "should alert that the user is out of funds to tip"
-    end
-
-    describe "the index action" do
-      before(:each) do
-        get :index
-      end
-
-      it "should return an empty list of active tips" do
-        assigns['tips'].size.should == 0
-      end
-    end
-  end
 end

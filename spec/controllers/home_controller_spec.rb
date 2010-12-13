@@ -26,8 +26,5 @@ describe HomeController do
     response.should render_template('index')
   end
 
-  it "it should make a list of tipped pages available to the index page" do
-    get :index
-    assigns['most_tips'].size.should_not be_nil
-  end
+  it "it should make a list of tipped pages available to the index page" 
 end

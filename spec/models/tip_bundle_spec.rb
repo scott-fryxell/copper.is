@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe TipBundle do
-  fixtures :users, :roles_users, :addresses, :accounts, :transactions, :tip_bundles, :refills, :tips
+  fixtures :users, :roles_users, :transactions, :tip_bundles, :tips
 
   describe "when creating a new tip bundle" do
     before(:each) do
@@ -14,22 +14,9 @@ describe TipBundle do
       @bundle.save.should be_true
     end
 
-    it "should require an association with a billing period" do
-      @bundle.billing_period = nil
-      @bundle.save.should be_false
-    end
-
     it "should require an association with a fan (user)" do
       @bundle.fan = nil
       @bundle.save.should be_false
-    end
-
-    it "should have some Refills associated with it" do
-      @bundle.refills.size.should == 2
-    end
-
-    it "should default to having a billing cycle day of the month (ID) of the 1st" do
-      @bundle.billing_period.id.should == 1
     end
 
     it "should default to active upon creation" do
@@ -84,7 +71,6 @@ describe TipBundle do
     before(:each) do
       @bundle = TipBundle.new
       @bundle.fan = users(:patron)
-      @bundle.refills = [refills(:refill1), refills(:refill2)]
       @bundle.save
 
       locator1 = Locator.parse('http://example.com')
@@ -106,9 +92,6 @@ describe TipBundle do
       @bundle.tips.size.should == 3
     end
 
-    it "should be able to display the current allocated funds" do
-      @bundle.allocated_funds.should == 30_00
-    end
 
     it "should be able to sum the total tip points associated with the bundle" do
       @bundle.tip_points.should == 6

@@ -48,23 +48,23 @@ describe "Home Page" do
       end
     end
 
-    describe "searching and sorting" do
-      it "should contain a search box" do
-        assert_have_selector "body > section > form > input[type=search]"
-      end
-
-      it "should contain a sort selector" do
-        assert_have_selector "body > section > form > select[name=sort]"
-      end
-      it "should contain a label for sort" do
-        assert_have_selector "body > section > form > label[for=sort]"
-      end
-      it "should contain 6 trending tips" do
-        assert_have_selector "body > section > ol"
-        assert_have_selector "body > section > ol > li"
-      end
-
-    end
+    # describe "searching and sorting" do
+    #   it "should contain a search box" do
+    #     assert_have_selector "body > section > form > input[type=search]"
+    #   end
+    # 
+    #   it "should contain a sort selector" do
+    #     assert_have_selector "body > section > form > select[name=sort]"
+    #   end
+    #   it "should contain a label for sort" do
+    #     assert_have_selector "body > section > form > label[for=sort]"
+    #   end
+    #   it "should contain 6 trending tips" do
+    #     assert_have_selector "body > section > ol"
+    #     assert_have_selector "body > section > ol > li"
+    #   end
+    # 
+    # end
 
   end
 

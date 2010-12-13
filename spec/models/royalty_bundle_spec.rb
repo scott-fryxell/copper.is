@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe RoyaltyBundle do
-  fixtures :users, :roles_users, :addresses, :accounts, :tip_bundles, :refills, :tips
+  fixtures :users, :roles_users,:tip_bundles, :tips
 
   before(:each) do
     @bundle = RoyaltyBundle.new

@@ -1,35 +1,13 @@
-active: # active patron
-  email: test@test.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
+patron: # active patron
+  username: test
   persistence_token: <%= Authlogic::Random.hex_token %>
-  perishable_token: <%= Authlogic::Random.hex_token %>
-  active: true
-  activation_date: <%= Time.now %>
-  tip_rate: 25
-inactive: # not active patron
-  email: notactive@test.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
-  persistence_token: <%= Authlogic::Random.hex_token %>
-  perishable_token: <%= Authlogic::Random.hex_token %>
-  active: false
+  tip_preference_in_cents: 25
 admin_user:
-  email: admin@test.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
+  username: admin
   persistence_token: <%= Authlogic::Random.hex_token %>
-  perishable_token: <%= Authlogic::Random.hex_token %>
-  active: true
-  activation_date: <%= Time.now %>
 <% Role.find(:all).each do |role| %>
 <%= role.name.downcase %>:
-  email: <%= role.name.downcase %>@test.com
-  password_salt: <%= salt = Authlogic::Random.hex_token %>
-  crypted_password: <%= Authlogic::CryptoProviders::Sha512.encrypt("test" + salt) %>
+  username: <%= role.name.downcase %>
   persistence_token: <%= Authlogic::Random.hex_token %>
-  perishable_token: <%= Authlogic::Random.hex_token %>
-  active: true
-  activation_date: <%= Time.now %>
-  tip_rate: 25
+  tip_preference_in_cents: 25
 <% end %>

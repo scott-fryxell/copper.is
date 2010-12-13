@@ -11,55 +11,9 @@
 
 ActiveRecord::Schema.define(:version => 20101209214804) do
 
-  create_table "accounts", :force => true do |t|
-    t.string   "number",             :limit => 16,   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "verification_code"
-    t.string   "billing_name",       :limit => 4096, :null => false
-    t.date     "expires_on",                         :null => false
-    t.integer  "user_id",                            :null => false
-    t.integer  "billing_address_id",                 :null => false
-    t.integer  "card_type_id",                       :null => false
-  end
-
-  create_table "addresses", :force => true do |t|
-    t.string   "line_1",                        :null => false
-    t.string   "line_2"
-    t.string   "city",                          :null => false
-    t.string   "postal_code",                   :null => false
-    t.string   "country",     :default => "US", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "state"
-    t.string   "territory"
-    t.string   "phone"
-  end
-
-  create_table "billing_periods", :force => true do |t|
-  end
-
-  create_table "card_types", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "configurations", :force => true do |t|
     t.string   "property"
     t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "countries", :force => true do |t|
-    t.string "name"
-    t.string "abbreviation"
-  end
-
-  create_table "fees", :force => true do |t|
-    t.integer  "transaction_id",  :null => false
-    t.integer  "amount_in_cents"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,18 +34,6 @@ ActiveRecord::Schema.define(:version => 20101209214804) do
     t.integer  "tips_count", :default => 0
   end
 
-  create_table "order_transactions", :force => true do |t|
-    t.integer  "order_id"
-    t.string   "action"
-    t.integer  "amount_in_cents"
-    t.boolean  "success"
-    t.string   "authorization"
-    t.string   "message"
-    t.text     "params"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "pages", :force => true do |t|
     t.string   "description", :null => false
     t.datetime "created_at"
@@ -101,14 +43,6 @@ ActiveRecord::Schema.define(:version => 20101209214804) do
   create_table "pages_royalty_bundles", :id => false, :force => true do |t|
     t.integer "page_id"
     t.integer "royalty_bundle_id"
-  end
-
-  create_table "refills", :force => true do |t|
-    t.integer  "tip_bundle_id",   :null => false
-    t.integer  "transaction_id",  :null => false
-    t.integer  "amount_in_cents", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "roles", :force => true do |t|
@@ -155,11 +89,6 @@ ActiveRecord::Schema.define(:version => 20101209214804) do
 
   add_index "sites", ["fqdn"], :name => "index_sites_on_fqdn", :unique => true
 
-  create_table "states", :force => true do |t|
-    t.string "name"
-    t.string "abbreviation"
-  end
-
   create_table "tip_bundles", :force => true do |t|
     t.boolean  "is_active",         :default => true
     t.integer  "fan_id"
@@ -187,14 +116,6 @@ ActiveRecord::Schema.define(:version => 20101209214804) do
     t.datetime "updated_at"
     t.string   "note"
     t.integer  "amount_in_cents"
-  end
-
-  create_table "transactions", :force => true do |t|
-    t.integer  "account_id",      :null => false
-    t.integer  "amount_in_cents", :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "order_id"
   end
 
   create_table "users", :force => true do |t|
