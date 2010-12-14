@@ -12,10 +12,6 @@ roles = Role.create([
   { :name => 'Guest' },
   { :name => 'Administrator' },
   { :name => 'Developer' },
-  { :name => 'FaceBook' },
-  { :name => 'MySpace' },
-  { :name => 'Google' },
-  { :name => 'OpenID' }
 ])
 
 configurations = Configuration.create([
