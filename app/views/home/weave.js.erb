@@ -1,8 +1,7 @@
 (function(){
   var f = document.getElementById('weave');
   if (f) {
-    f.contentWindow.postMessage('re_tip', '<%=request.scheme%>://<%=request.host%>:<%=request.port%>');
-    f.style.zIndex=1000;
+    console.debug("this shouldn't have happened. Iframes should be cleaned up.")
   }
   else {
     f=document.createElement('iframe');
@@ -11,25 +10,25 @@
     f.scrolling=0;
     f.target='weave';
     f.allowtransparency='allowtransparency';
-    f.style.position='absolute';
+    f.style.position='fixed';
     f.style.top='0';
     f.style.padding='0';
-    f.style.zIndex='1000';
+    f.style.zIndex='-1000';
     f.style.margin='0';
     f.style.border='none';
     f.style.left='0';
+    f.style.background.color='transparent';
     f.scrolling='no';
+    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bookmarklet/agent/#/' +
+      window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
+    document.body.appendChild(f);
     f.width='100%';
     f.height='100%';
-    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bookmarklet/agent/#/' +
-      window.location + '&title=' +
-      document.getElementsByTagName('title')[0].innerHTML;
-    document.body.appendChild(f);
+    f.style.zIndex='1000';
     window.addEventListener('message',function(event) {
       if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
-        console.debug(event.origin);
         if (event.data == 'notify_complete') {
-          document.getElementById('weave').style.zIndex = -100;
+          document.body.removeChild(f);
         }
       }
     });

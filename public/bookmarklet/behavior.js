@@ -1,3 +1,7 @@
+var FLB = {
+  tip: {}
+};
+
 $(document).ready(function() {
    $(document).trigger("tip_determine");
    $(document).trigger("tip_token_get");
@@ -5,13 +9,8 @@ $(document).ready(function() {
 });
 
 $(document).bind("tip_determine", function (event, xhr, options){
-  /*
-    TODO make sure this code is still necessary
-  */
-  if(FLB.location) 
-    var location = new String(FLB.location);
-  else
-    var location = new String(window.location);
+
+  var location = new String(window.location);
 
   //assumes loaded in an iframe with  the url to be tipped appended
   if(location.split("#/")[1] && location.split("&title=")[1] ){
@@ -25,7 +24,7 @@ $(document).bind("tip_determine", function (event, xhr, options){
 $(document).bind("tip_token_get", function (event, xhr, options){
   // get authenticity token
   $.ajax({
-    url: "/tips/new.js", 
+    url: "/tips/new.js",
     async:false
   });
 });
@@ -44,10 +43,6 @@ $(document).bind("tip_success", function (event, xhr, options){
   $(document).trigger("notify", xhr, options);
 });
 
-$(document).bind("tip_bundle_empty", function (event, xhr, options){
-  $(document).trigger("open", "/orders/new");
-});
-
 $(document).bind("tip_error", function (event, xhr, options){
   /*
     TODO implement or remove.
@@ -58,7 +53,7 @@ $(document).bind("tip_error", function (event, xhr, options){
 
 $(document).bind("login_submit", function (event, options){
   $.post("/authenticate", $("section.workflow form").serialize());
-  $(document).trigger("workflow_end");  
+  $(document).trigger("workflow_end");
 });
 
 $(document).bind("login_get", function (event){
@@ -71,7 +66,7 @@ $(document).bind("login_display", function (event){
     $(document).trigger("login_submit");
     return false;
   });
-  
+
   $("section.workflow > header > .click").click(function (){
     $(document).trigger("end_workflow");
     return false;
@@ -84,10 +79,6 @@ $(document).bind("login_display", function (event){
 $(document).bind("login_success", function (event){
   $(document).trigger("tip_token_get");
   $(document).trigger("tip_submit");
-});
-
-$(document).bind("lost_password", function (event, xhr, options){
-  $(document).trigger("open", "/lost_password");
 });
 
 $(document).bind("401", function (event, response, options){

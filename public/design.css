@@ -101,3 +101,7 @@ body > section > ul {
 body > section > ul > li {
   color:  green;
 }
+body > section > ul > li a {
+  color:green;
+  text-decoration:underline;
+}
