@@ -1,49 +1,94 @@
+
+<% if current_user %>
+<style>
+  @import url(/tips/design.css);
+</style>
+<h1>My Tips</h1>
+<section>
+  <header>
+      <% form_for(@tip) do |f| %>
+        <aside>
+          <%= f.error_messages %>
+        </aside>
+        <fieldset>
+          <label for="uri">Paste a Tip</label>
+          <textarea name="tip[uri]" value="" id="uri"></textarea>
+        </fieldset>
+        <%= f.submit 'Tip' %>
+      <% end %>
+    <%= render :partial => 'shared/dashboard' %>
+  </header>
+  <table>
+    <thead>
+      <tr>
+        <th>Tip</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @current_user.active_tips.each do |tip| %>
+       <tr>
+         <td>
+           <a href='<%=h tip.locator.canonicalized %>' target='new'>
+            <%=h CGI::unescape(tip.locator.page.description) %>
+           </a>
+           <a href='<%=h tip.locator.canonicalized %>' target='new' class="locator">
+            <%=h tip.locator.canonicalized %>
+           </a>
+           <p>
+            <%=h tip.note %>
+           </p>
+         </td>
+         <td><%=h tip.created_at.strftime("%B %e, %Y") %></td>
+       </tr>
+     <% end %>
+    </tbody>
+  </table>
+</section>
+<% else%>
 <section>
   <script src="/behavior/jquery.cookie.js" type="text/javascript" charset="utf-8" async="true"></script>
   <script src="/behavior.js" type="text/javascript" charset="utf-8" async="true"></script>
   <style type="text/css" media="screen">
     @import url(/design.css);
   </style>
-  <% if current_user %>
-    <header>
-      <h1>coming soon! </h1>
-    </header>
-  <% else%>
-    <header>
-      <span>X</span>
-      <figure accesskey="l" tabindex="2" id="weave_logo">
-        <img src="/graphics/person.png" alt="weave logo"/>
-      </figure>
-      <%= rpx_embed( :app_name => 'dirtywhitecouch', :return_url => user_sessions_url) %>
-    </header>
+  <header>
+    <span>X</span>
+    <figure accesskey="l" tabindex="2" id="weave_logo">
+      <img src="/graphics/person.png" alt="weave logo"/>
+    </figure>
+    <%= rpx_embed( :app_name => 'dirtywhitecouch', :return_url => user_sessions_url) %>
 
-    <p>
-      We have created a service that we care about and want to share. 
-      It was originally just something we wanted to use in our small 
-      community of artists and musicians here in San Francisco, but we
-      realized it could be useful anywhere. It's called Weave and 
-      it allows anyone to tip any URL
-    </p>
+  </header>
 
-    <p>
-      <a href="http://www.youtube.com/watch?v=AKwZSoIrAnY">Videos</a>,
-      <a href="http://www.myloveforyou.typepad.com/">blogs</a>,
-      <a href="http://defianceohio.terrorware.com/audio/">music</a>, 
-      <a href="http://tofuttibreak.tumblr.com/">general weirdness</a>,
-      the list is kinda endless.
-    </p>
-    <h2>Setting it up is simple</h2>
-    <ul>
-      <li>Sign in</li>
-      <li>Drag the bookmark to your toolbar</li>
-      <li>Authorize us to use your PayPal account</li>
-      <li>Click the bookmark whenever the web rings your bell.</li>
-    </ul>
-    <p>
-      You can use the service as much or as little as you'd like.
-      We'll take care of finding and paying the artist.
-    </p>
-  <% end %>
+  <p>
+    We have created a service that we care about and want to share. 
+    It was originally just something we wanted to use in our small 
+    community of artists and musicians here in San Francisco, but we
+    realized it could be useful anywhere. It's called Weave and 
+    it allows anyone to tip any URL
+  </p>
 
-
+  <p>
+    <a href="http://www.youtube.com/watch?v=AKwZSoIrAnY">Videos</a>,
+    <a href="http://www.myloveforyou.typepad.com/">blogs</a>,
+    <a href="http://defianceohio.terrorware.com/audio/">bands</a>, 
+    <a href="http://tofuttibreak.tumblr.com/">general weirdness</a>,
+    the list is kinda endless.
+  </p>
+  <h2>Setting it up is simple</h2>
+  <ul>
+    <li><%= rpx_popup(:link_text => "Sign in", :app_name => 'dirtywhitecouch', :return_url => user_sessions_url, :unobtrusive => false  ) %></li>
+    <li>Drag the bookmark to your toolbar</li>
+    <li>Authorize us to use your PayPal account</li>
+    <li>Click the bookmark when visiting pages you enjoy</li>
+  </ul>
+  <p>
+    You can use the service as much or as little as you'd like.
+    We'll take care of finding and paying the artist.
+  </p>
 </section>
+<% end %>
+
+
+

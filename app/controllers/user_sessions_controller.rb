@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
       else
         if @user_session.registration_complete?
           flash[:notice] = t('authlogic.signin_success')
-          redirect_to tips_path
+          redirect_to root_url
         else
           flash[:notice] = t('authlogic.account_review')
           redirect_to edit_user_path( :current )

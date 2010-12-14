@@ -2,22 +2,18 @@ ActionController::Routing::Routes.draw do |map|
   map.with_options :controller => 'home' do |home|
     home.terms      "terms",      :action => "terms"
     home.privacy    "privacy",    :action => "privacy"
-    home.contact    "contact",    :action => "contact"
-    home.subscribe  "subscribe",  :action => "subscribe"
-    home.about      "about",      :action => "about"
   end
 
-  map.with_options  :controller => 'home' do |bookmarklet|
-    bookmarklet.weave  "bookmarklet/weave.js",  :action => "weave"
-    bookmarklet.weave  "bookmarklet/agent",  :action => "agent"
-  end
 
-  map.signin "signin", :controller => "user_sessions", :action => "new"
+  map.signin  "signin", :controller => "user_sessions", :action => "new"
   map.signout "signout", :controller => "user_sessions", :action => "destroy"
 
 
-  map.signin "signin", :controller => "user_sessions", :action => "new"
-  map.signout "signout", :controller => "user_sessions", :action => "destroy"
+  map.blog       "blog", :controller => "home", :action => "blog"
+  map.agent      "bookmarklet/agent", :controller => "home", :action => "agent"
+  map.weave      "bookmarklet/weave.js", :controller => "home", :action => "weave"
+  map.signin     "signin", :controller => "user_sessions", :action => "new"
+  map.signout    "signout", :controller => "user_sessions", :action => "destroy"
   map.addrpxauth "addrpxauth", :controller => "users", :action => "addrpxauth", :method => :post
 
 
