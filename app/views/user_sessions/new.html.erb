@@ -1,0 +1,13 @@
+<meta name="event_trigger" content="login_display">
+<style type="text/css" media="screen">
+  iframe {
+    display:block;
+  }
+  h1 {
+    font-size:1.75em;
+    margin-left:.5em;
+    margin-bottom: .5em;
+  }
+</style>
+<h1 id="dirtywhitecouch.com_signin">Sign in to your weave account</h1>
+<%= rpx_embed( :app_name => 'dirtywhitecouch', :return_url => user_sessions_url) %>

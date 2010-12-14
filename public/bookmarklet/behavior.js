@@ -57,7 +57,7 @@ $(document).bind("login_submit", function (event, options){
 });
 
 $(document).bind("login_get", function (event){
-  $("section.workflow ").load('/login');
+  $("section.workflow ").load('/signin');
 });
 
 $(document).bind("login_display", function (event){
