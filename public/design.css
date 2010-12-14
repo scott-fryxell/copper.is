@@ -26,7 +26,7 @@ body > section > header > figure {
   display:inline-block;
   vertical-align:top;
   margin-left:5em;
-  margin-right:10em;
+  margin-right:15em;
   padding-top:1em;
   opacity:1;
   height:auto;
@@ -68,29 +68,29 @@ body > section > header > iframe {
   width:23em;
   height:15em;
 }
-body > section > h2 {
+body > section > article > h2 {
   font-size: 1.75em;
   margin-bottom: 1em;
   font-weight:bold;
   color:  green;
 }
-body > section > p {
+body > section > article > p {
   font-size: 1.5em;
   width: 21em;
   margin-bottom: 1em;
 
   line-height: 1.15em;
 }
-body > section > p > a {
+body > section > article > p > a {
   color: blue;
 }
-body > section > ol {
+body > section > article > ol {
   -webkit-padding-start: 0;
   margin-top:2em;
   vertical-align:top;
   width:55.5em;
 }
-body > section > ul {
+body > section > article > ul {
   list-style: circle inside ;
   font-size: 1.5em;
   width: 25em;
@@ -98,10 +98,10 @@ body > section > ul {
   line-height: 1.15em;
 
 }
-body > section > ul > li {
+body > section > article > ul > li {
   color:  green;
 }
-body > section > ul > li a {
+body > section > article > ul > li a {
   color:green;
   text-decoration:underline;
 }
