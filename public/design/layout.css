@@ -18,6 +18,7 @@ body a {
   -webkit-text-stroke-color:gray;
   -webkit-text-stroke-width:.01em;
   font-weight:normal;
+
 }
 body a:hover {
   text-decoration: none;
@@ -25,10 +26,10 @@ body a:hover {
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
 }
-body > section,
-  body > header,
-  body > nav,
-  body > footer {
+body > section ,
+body > header ,
+body > nav ,
+body > footer {
   vertical-align:top;
   position:relative;
   margin-right:1.5em;
@@ -43,15 +44,15 @@ body > header > a {
  font-weight:normal;
  font-family:'Andale Mono';
 }
-body > header nav {
+body > header > nav {
   float:right;
   display:inline-block;
 }
-body > header nav li {
+body > header > nav > li {
   margin-left: 1em;
   display:inline-block;
 }
-body > header nav li a {
+body > header > nav > li > a {
   font-size: 1.25em;
 }
 body > header > ol {
@@ -125,9 +126,11 @@ body > footer {
   min-height: 7em;
 }
 body > footer > nav {
+  vertical-align:top;
   margin-top:.75em;
   margin-right:2.5em;
   display:inline-block;
+  min-height:4em;
 }
 body > footer > nav:nth-child(1) {
  margin-right:14.5em;
@@ -144,8 +147,8 @@ body > footer > nav > h2 {
   margin-bottom:.5em;
 }
 body > footer > nav > a {
-          display:block;
-          margin-bottom: .25em;
-          margin-left: 1em;
-          font-size: 1em;
-        }
+  display:block;
+  margin-bottom: .25em;
+  margin-left: 1em;
+  font-size: 1em;
+}
