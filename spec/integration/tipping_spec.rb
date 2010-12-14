@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Tipping" do
-  fixtures :tip_rates, :users, :roles_users, :addresses, :accounts, :transactions, :pages, :sites, :locators, :tip_bundles, :refills, :tips, :royalty_bundles, :tip_royalties, :royalty_bundles_sites
+  fixtures :users, :roles_users, :pages, :sites, :locators, :tip_bundles, :tips, :royalty_bundles, :tip_royalties, :royalty_bundles_sites
 
   describe "as a guest " do
     it "should not be available" do
