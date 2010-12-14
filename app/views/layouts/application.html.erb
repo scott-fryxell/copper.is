@@ -15,11 +15,8 @@
       <% if current_user %>
         <nav>
           <li><%= link_to current_user.username, edit_user_path(current_user) %></li>
-          <li><%= link_to "My Tips", tips_path %></li>
           <li><%= link_to "Sign out", signout_path %></li>
         </nav>
-      <% else %>
-      
       <% end %>
       <ol>
         <%- flash.each do |name, msg| -%>
@@ -37,14 +34,8 @@
         <%= link_to "Privacy",               privacy_path %>
       </nav>
       <nav>
-        <h2>About</h2>
-        <%= link_to "Contact",   contact_path %>
-        <%= link_to "Subscribe", subscribe_path %>
-      </nav>
-      <nav>
         <h2>Blog</h2>
-        <a href="/blog">ipseum doceous breasos rodesun</a>
-        <a href="/blog">Loreum opseosis ipseum doceous</a>
+        <a href="/blog#hello_world">hello world</a>
       </nav>
     </footer>
   </body>
