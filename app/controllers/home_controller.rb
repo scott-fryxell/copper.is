@@ -3,7 +3,6 @@ class HomeController < ApplicationController
 
     if current_user
       @tip = Tip.new
-      @tips = current_user.active_tips
 
       respond_to do |format|
         format.html # index.html.erb
