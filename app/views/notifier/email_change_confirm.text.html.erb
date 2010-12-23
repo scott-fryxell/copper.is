@@ -1,7 +1,0 @@
-<p>
-  A request has been made to change the email address of your Weave account.
-  To confirm <%= @user.new_email %> as the new email, follow this link or copy paste it into your browser address bar:
-</p>
-<p>
-  <%= link_to confirm_new_email_url(@user.new_email_token), confirm_new_email_url(@user.new_email_token) %>
-</p>

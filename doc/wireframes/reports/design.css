@@ -5,27 +5,27 @@
   font-size: 1.5em;
   font-weight: normal;
 }
-*[itemtype="http://weave.us/site"] > *[itemprop="publisher"] {
+*[itemtype="http://dirtywhitecouch.com/site"] > *[itemprop="publisher"] {
   display:block;
   padding:.5em 0;
   width: 15em;
 }
-*[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
+*[itemtype="http://dirtywhitecouch.com/site"] > *[itemprop="earned"] {
   display:inline-block;
 
 }
-*[itemtype="http://weave.us/site"] > *[itemprop="average"] {
+*[itemtype="http://dirtywhitecouch.com/site"] > *[itemprop="average"] {
   display:inline-block;
   margin-left:1em;
   margin-bottom: .5em;
 }
-*[itemtype="http://weave.us/site"] > *[itemprop="tips"],
-*[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
+*[itemtype="http://dirtywhitecouch.com/site"] > *[itemprop="tips"],
+*[itemtype="http://dirtywhitecouch.com/site"] > *[itemprop="earned"] {
   display:inline-block;
 }
 
-#popular    *[itemtype="http://weave.us/site"] > *[itemprop="tips"],
-#profitable *[itemtype="http://weave.us/site"] > *[itemprop="earned"] {
+#popular    *[itemtype="http://dirtywhitecouch.com/site"] > *[itemprop="tips"],
+#profitable *[itemtype="http://dirtywhitecouch.com/site"] > *[itemprop="earned"] {
   position:absolute;
   top:0;
   right:5em;

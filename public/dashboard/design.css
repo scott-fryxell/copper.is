@@ -1,38 +1,38 @@
-aside[itemtype="http://weave.us/user#account"] {
+aside[itemtype="http://dirtywhitecouch.com/user#account"] {
   display: inline-block;
   padding:1em;
 }
-aside[itemtype="http://weave.us/user#account"] > h1{
+aside[itemtype="http://dirtywhitecouch.com/user#account"] > h1{
   margin-top:0;
   margin-bottom:.5em;
   font-size:1.5em;
 }
-aside[itemtype="http://weave.us/user#account"] > dl {
+aside[itemtype="http://dirtywhitecouch.com/user#account"] > dl {
   width: 15em;
   margin-left:1em;
 }
-aside[itemtype="http://weave.us/user#account"] > dl > dt {
+aside[itemtype="http://dirtywhitecouch.com/user#account"] > dl > dt {
   font-size: 1.25em;
   font-weight:normal;
   width:8em;
   margin-bottom:.5em;
   display:inline-block;
 }
-aside[itemtype="http://weave.us/user#account"] > dl > dd {
+aside[itemtype="http://dirtywhitecouch.com/user#account"] > dl > dd {
   text-align:right;
   font-size:1.5em;
   width:3em;
   display:inline-block;
   text-decoration:right;
 }
-aside[itemtype="http://weave.us/user#account"] > dl > dd > a {
+aside[itemtype="http://dirtywhitecouch.com/user#account"] > dl > dd > a {
   text-decoration: none;
   color:gray;
 }
-aside[itemtype="http://weave.us/user#account"] > dl > dd > a:hover {
+aside[itemtype="http://dirtywhitecouch.com/user#account"] > dl > dd > a:hover {
   text-decoration: underline;
 }
-aside[itemtype="http://weave.us/user#account"] > button {
+aside[itemtype="http://dirtywhitecouch.com/user#account"] > button {
   padding:.25em 1em;
   border:.20em solid gray;
   background-color:white;

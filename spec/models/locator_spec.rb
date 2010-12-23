@@ -128,9 +128,9 @@ describe Locator do
       end
     end
 
-    describe "when parsing https://scott:awsumpasswud@weave.us/test?notreally=yeah#justkiddin" do
+    describe "when parsing https://scott:awsumpasswud@dirtywhitecouch.com/test?notreally=yeah#justkiddin" do
       before(:each) do
-        @locator = Locator.parse('https://scott:awsumpasswud@weave.us/test?notreally=yeah#justkiddin')
+        @locator = Locator.parse('https://scott:awsumpasswud@dirtywhitecouch.com/test?notreally=yeah#justkiddin')
         @locator.page = Page.create(:description => 'Sekrit internal Weave interface')
       end
 
@@ -142,8 +142,8 @@ describe Locator do
         @locator.userinfo.should == 'scott:awsumpasswud'
       end
 
-      it "should see the host as 'weave.us'" do
-        @locator.site.fqdn.should == 'weave.us'
+      it "should see the host as 'dirtywhitecouch.com'" do
+        @locator.site.fqdn.should == 'dirtywhitecouch.com'
       end
 
       it "should see the port as (by default) 443" do

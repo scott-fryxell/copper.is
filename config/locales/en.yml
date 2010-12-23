@@ -11,12 +11,8 @@ en:
   activerecord:
     errors:
       full_messages:
-          taken: "There is already a Weave account for that email address."
-          confirmation: "Passwords did not match."
-          too_short: "Password must be at least 4 characters long"
-          "is not valid": "We didn't recognize your email or password. Please try again."
-          "cannot be blank": "You must enter a password"
-  weave:
+          taken: "There is already a dirtywhitecouch.com account for that email address."
+  dirtywhitecouch:
     user_update_success: "Your account has been updated."
     permission_denied: "PERMISSION DENIED"
     tip_success: "Tip successfully created."

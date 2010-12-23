@@ -57,18 +57,18 @@ class TipsController < ApplicationController
           render :action => 'show_ajax', :layout => false
         else
           respond_to do |format|
-            flash[:notice] = t("weave.tip_success")
+            flash[:notice] = t("dirtywhitecouch.tip_success")
             format.html { redirect_to :action => "index" }
             #format.xml  { render :xml => @tip, :status => :created, :location => @tip }
           end
         end
       else
         if request.xhr?
-          flash[:error] = t("weave.tip_failed")
+          flash[:error] = t("dirtywhitecouch.tip_failed")
           render :action => 'error_ajax', :layout => false
         else
           respond_to do|format|
-            flash[:error] = t("weave.tip_failed")
+            flash[:error] = t("dirtywhitecouch.tip_failed")
             format.html { redirect_to :action => "index" }
             #format.xml  { render :xml => @tip.errors, :status => :unprocessable_entity }
           end
