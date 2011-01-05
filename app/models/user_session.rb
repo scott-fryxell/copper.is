@@ -12,7 +12,6 @@ class UserSession < Authlogic::Session::Base
    def map_rpx_data
      # map core profile data using authlogic indirect column names
      self.attempted_record.send("#{klass.login_field}=", @rpx_data['profile']['preferredUsername'] ) if attempted_record.send(klass.login_field).blank?
-     # self.attempted_record.send("#{klass.email_field}=", @rpx_data['profile']['email'] ) if attempted_record.send(klass.email_field).blank?
      self.attempted_record.roles << Role.find_by_name('Patron')
    end
 

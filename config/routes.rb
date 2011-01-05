@@ -16,8 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_sessions
   map.resources :tips
   map.resources :users
-  map.resources :locators
-
+  
   map.root :controller => "home", :action => "index"
 
 end

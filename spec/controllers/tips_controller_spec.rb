@@ -5,7 +5,7 @@ describe TipsController do
   setup :activate_authlogic
 
   def user_session_with_funds
-    UserSession.create(users(:active))
+    UserSession.create(users(:patron))
   end
 
   def user_session_with_no_funds

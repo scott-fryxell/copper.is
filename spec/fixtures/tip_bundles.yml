@@ -1,5 +1,5 @@
-test_bundle:
-  fan: active
+active_bundle:
+  fan: patron
 closed_bundle:
-  fan: active
+  fan: patron
   is_active: false

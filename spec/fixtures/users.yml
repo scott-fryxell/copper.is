@@ -1,5 +1,5 @@
 patron: # active patron
-  username: test
+  username: joe_fan
   persistence_token: <%= Authlogic::Random.hex_token %>
   tip_preference_in_cents: 25
 admin_user:
@@ -11,3 +11,7 @@ admin_user:
   persistence_token: <%= Authlogic::Random.hex_token %>
   tip_preference_in_cents: 25
 <% end %>
+patron_test: # active patron
+  username: bundle
+  persistence_token: <%= Authlogic::Random.hex_token %>
+  tip_preference_in_cents: 25

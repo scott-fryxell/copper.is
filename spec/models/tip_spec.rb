@@ -4,7 +4,7 @@ describe Tip do
   fixtures :users, :roles_users, :pages, :sites, :locators, :tip_bundles
 
   before(:each) do
-    @tip = Tip.new(:tip_bundle => tip_bundles(:test_bundle),
+    @tip = Tip.new(:tip_bundle => tip_bundles(:active_bundle),
                    :locator    => locators(:minimal),
                    :amount_in_cents => 25)
   end

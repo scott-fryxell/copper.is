@@ -26,19 +26,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def active_tip_total_in_cents 
-    active_tip_bundle.tip_points
-  end
-
-  def funds_for_tipping?
-    if (active_tip_bundle.cents_per_tip_point > Tip::MINIMUM_TIP_VALUE) ||
-      (active_tip_bundle.allocated_funds > 0 && active_tip_bundle.tip_points == 0)
-      true
-    else
-      false
-    end
-  end
-
   def role_symbols
     roles.map do |role|
       role.name.underscore.to_sym

@@ -1,10 +1,13 @@
 $(document).ready(function () {
-  $('body > section > header > span').click(function () {
-    $(document).trigger("minimize_call_to_action");
-  });
+  
+  if( $('body > section > header > span') ){ 
+    $('body > section > header > span').click(function () {
+      $(document).trigger("minimize_call_to_action");
+    });
 
-  if( $.cookie('showed_cta') ) {
-    $(document).trigger("minimize_call_to_action");
+    if( $.cookie('showed_cta') ) {
+      $(document).trigger("minimize_call_to_action");
+    }
   }
 });
 

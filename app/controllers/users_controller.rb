@@ -37,11 +37,10 @@ class UsersController < ApplicationController
     @user.tip_preference_in_cents = params[:user][:tip_preference_in_cents]
 
     if @user.save
-
       if request.xhr?
         render :action => 'update', :layout => false
       else
-        flash[:notice] = "Successfully updated user."
+        flash[:notice] = "Your account has been updated."
         render :action => 'edit'
       end
     else

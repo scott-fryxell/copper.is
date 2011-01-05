@@ -97,10 +97,6 @@ ActiveRecord::Schema.define(:version => 20101209214804) do
     t.datetime "updated_at"
   end
 
-  create_table "tip_rates", :force => true do |t|
-    t.integer "amount_in_cents"
-  end
-
   create_table "tip_royalties", :force => true do |t|
     t.integer  "royalty_bundle_id", :null => false
     t.integer  "tip_id",            :null => false
@@ -126,7 +122,6 @@ ActiveRecord::Schema.define(:version => 20101209214804) do
     t.integer  "failed_login_count",      :default => 0,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tip_rate_id"
   end
 
 end
