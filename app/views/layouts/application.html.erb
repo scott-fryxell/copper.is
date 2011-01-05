@@ -2,6 +2,8 @@
 <html lang="en_US" xmlns="http://www.w3.org/1999/xhtml" >
   <head>
     <meta name="google-site-verification" content="hYO-TI12-3_8evWkUu0XoheN8yV4UcbX83AqxCMQtVI" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
     <title>dirtywhitecouch.com - <%= h(yield(:title) || "Home") %></title>
     <style>
       @import url("/design/index.css");
@@ -10,6 +12,32 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <!--[if IE]>
+      <script type="text/javascript"
+       src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+
+      <style>
+       .chromeFrameInstallDefaultStyle {
+         width: 100%; /* default is 800px */
+         border: 5px solid blue;
+       }
+      </style>
+
+      <div id="prompt">
+
+      </div>
+
+      <script>
+       window.attachEvent("onload", function() {
+         CFInstall.check({
+           mode: "inline",
+           node: "prompt",
+           destination: "http://dirtywhitecouch.com"
+         });
+       });
+      </script>
+    <![endif]-->
+
     <header>
       <a href="/">dwc</a>
       <% if current_user %>
@@ -41,5 +69,7 @@
         <h2><a href="mailto:us@dirtywhitecouch.com">Contact</a></h2>
       </nav>
     </footer>
+
+
   </body>
 </html>
