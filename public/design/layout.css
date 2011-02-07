@@ -15,16 +15,18 @@ body a {
   text-decoration:none;
   color: #808080;
   font-weight:normal;
-  -webkit-text-stroke-color:gray;
+/*  -webkit-text-stroke-color:gray;
   -webkit-text-stroke-width:.01em;
-  font-weight:normal;
+*/
+
 
 }
 body a:hover {
   text-decoration: none;
-  -webkit-animation-name: pulse-font;
+/*  -webkit-animation-name: pulse-font;
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
+*/
 }
 body > section ,
 body > header ,
