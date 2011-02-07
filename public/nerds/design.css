@@ -41,6 +41,7 @@ body > section > details[open=open] > section {
 }
 body > section > details[open=open] > aside {
   border:.15em solid orange;
+  background: white;
   position: absolute;
   float:right;
   top: -1px;
@@ -65,6 +66,7 @@ body > section > details[open=open] > aside > img {
   margin-right: 1em;
   border-radius:.25em;
   -moz-border-radius:.25em;
+  max-width:8em;
 }
 body > section > details[open=open] > aside > a {
   display:inline-block;
@@ -106,14 +108,27 @@ body > section > details > aside > dl > dd {
   margin-top:.5em;
 }
 body > section > details > section > details {
-  margin-left:19em;
-  width: 10em;
+  margin-left:0em;
+  width: 15em;
   display: inline-block;
 }
 body > section > details > section > details > summary {
   cursor:pointer;
   margin-top:2em;
-  font-size:.75em;
+  margin-bottom:2em;
+  font-size:.85em;
   text-decoration: underline;
 }
-
+body > section > details > section > details[open=open] > summary {
+  text-decoration: none;
+}
+body > section > details > section > details > dl > dt {
+  width:9em;
+  font-size:.85em;
+  display:inline-block;
+  margin-bottom:.25em;
+}
+body > section > details > section > details > dl > dd {
+  display:inline-block;
+  margin-bottom:.5em
+}

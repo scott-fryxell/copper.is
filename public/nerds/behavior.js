@@ -1,3 +1,4 @@
+var feed;
 $(document).ready(function (event){
   $.getJSON('http://pipes.yahoo.com/pipes/pipe.run',
     {
@@ -72,8 +73,12 @@ function add_format(event){
   var dl = $( document.createElement("dl") )
          .append("<dt>duration</dt> <dd itemprop='duration'>" + format.duration + '</dd>')
          .append("<dt>Size</dt> <dd itemprop='size'>" + format.size + '</dd>')
-
-  $(this).parent().append(dl);
+         .append("<dt>Aspect Ratio</dt> <dd itemprop='pixel_aspect_ratio'>" + format.pixel_aspect_ratio + '</dd>')
+         .append("<dt>Width</dt> <dd itemprop='width'>" + format.width + '</dd>')
+         .append("<dt>Height</dt> <dd itemprop='height'>" + format.height + '</dd>')
+         .append("<dt>Codec</dt> <dd itemprop='video_codec'>" + format.video_codec + '</dd>');
+         
+  $(this).append(dl);
   $(this).unbind("click.add_format");
 };
 
