@@ -17,6 +17,7 @@ body > section > details > summary {
   cursor: pointer;
 }
 body > section > details > summary > h2 {
+  font-weight:normal;
   display: inline-block;
   width:19em;
 }
@@ -26,7 +27,7 @@ body > section > details > summary > time {
   vertical-align:top;
   width:9em;
 }
-body > section > details[open] > summary h2 {
+body > section > details[open] > summary > h2 {
   text-decoration:none;
 }
 body > section > details[open=open] {
@@ -89,7 +90,6 @@ body > section > details[open=closed] > section {
 body > section > details[open=closed] > aside {
   display:none !important;
 }
-
 body > section > details > aside > dl {
   vertical-align:top;
   width:30em;

@@ -1,0 +1,15 @@
+body > section > details > summary > h2 {
+  font-weight:normal;
+  float: left;
+  margin-bottom:.5em;
+}
+body > section > details > summary > time {
+  display: inline-block;
+}
+body > section > details[open=open] > aside > a {
+  padding:.15em 1em .55em 1em;
+}
+body > section > details > section > details > dl > dt {
+  float:left;
+
+} 
