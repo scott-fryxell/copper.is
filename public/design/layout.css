@@ -40,11 +40,21 @@ body > footer {
 body > header {
   padding-top: 1em;
 }
+
 body > header > a {
  display:inline-block;
  font-size:2.5em;
  font-weight:normal;
  font-family:'Andale Mono';
+}
+body > header > hgroup {
+  font-size:2em;
+  display:inline-block;
+  margin-left:5em;
+}
+body > header > hgroup > h1 {
+  display:inline-block;
+  margin-left:1em;
 }
 body > header > nav {
   float:right;
@@ -90,9 +100,7 @@ body > section > p {
 body > section > header > p {
   margin-left:.5em;
 }
-body > section > form {
-
-}
+body > section > form {}
 body > section > form fieldset {
   margin-bottom:0;
 }

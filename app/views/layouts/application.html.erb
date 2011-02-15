@@ -3,12 +3,13 @@
   <head>
     <meta name="google-site-verification" content="hYO-TI12-3_8evWkUu0XoheN8yV4UcbX83AqxCMQtVI" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <title><%= h(yield(:title) || "Home") %> - dirtywhitecouch.com</title>
+    <title>dirtywhitecouch.com</title>
     <style>
       @import url("/design/index.css");
     </style>
     <script src="/behavior/jquery.js"></script>
     <%= yield(:head) %>
+    <%= csrf_meta_tag %>
   </head>
   <body>
     <!--[if IE]>
@@ -45,28 +46,18 @@
           <li><%= link_to "Sign out", signout_path %></li>
         </nav>
       <% end %>
-      <ol>
-        <%- flash.each do |name, msg| -%>
-          <%- msg.each do |m| -%>
-            <li><%= m %></li>
-          <%- end -%>
+      <hgroup>
+        <h1><a href="/blog#hello_world">Blog</a></h1>
+        <h1><a href="mailto:scott@fasterlighterbetter.com">Contact</a></h1>
+      </hgroup>
+      <ol id="flash">
+        <%- flash.each do |msg| -%>
+          <li class="<%= msg[0]%>"><%= msg[1] %></li>
         <%- end -%>
       </ol>
     </header>
     <%= yield %>
     <footer>
-      <nav>
-        <h2>Policies</h2>
-      </nav>
-      <nav>
-        <h2 id="blog">Blog</h2>
-        <a href="/blog#hello_world">hello world</a>
-      </nav>
-      <nav id="contact">
-        <h2><a href="mailto:scott@fasterlighterbetter.com">Contact</a></h2>
-      </nav>
     </footer>
-
-
   </body>
 </html>
