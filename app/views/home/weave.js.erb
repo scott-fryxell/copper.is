@@ -28,7 +28,8 @@
     window.addEventListener('message',function(event) {
       if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
         if (event.data == 'notify_complete') {
-          document.body.removeChild(f);
+          var weave = document.getElementById('weave');
+          document.body.removeChild(weave);
         }
       }
     }, false);
