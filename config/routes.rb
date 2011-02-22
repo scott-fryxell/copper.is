@@ -1,22 +1,20 @@
 ActionController::Routing::Routes.draw do |map|
-  map.with_options :controller => 'home' do |home|
-    home.terms      "terms",      :action => "terms"
-    home.privacy    "privacy",    :action => "privacy"
-  end
 
   map.signin  "signin", :controller => "user_sessions", :action => "new"
   map.signout "signout", :controller => "user_sessions", :action => "destroy"
 
-  map.blog       "blog",                    :controller => "home", :action => "blog"
-  map.agent      "bookmarklet/agent",       :controller => "home", :action => "agent"
-  map.weave      "bookmarklet/launcher.js", :controller => "home", :action => "weave"
-  map.signin     "signin",                  :controller => "user_sessions", :action => "new"
-  map.signout    "signout",                 :controller => "user_sessions", :action => "destroy"
+  match '/terms', :to => 'home#terms'
+  match '/privacy', :to => 'home#privacy'
+  match '/blog', :to => 'home#blog'
+  match '/bookmarklet/agent', :to => 'home#agent'
+  match '/bookmarklet/launcher.js', :to => 'home#weave'
 
-  map.resources :user_sessions
-  map.resources :tips
-  map.resources :users
+  match '/signin', :to => 'user_sessions#new'
+  match '/signout', :to => 'user_sessions#destroy'
+
+  resources :user_sessions
+  resources :tips
+  resources :users
   
-  map.root :controller => "home", :action => "index"
-
+  root :to => 'home#index'
 end

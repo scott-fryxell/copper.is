@@ -1,5 +1,5 @@
-source :gemcutter
-gem 'rails', '= 2.3.5'
+source 'http://rubygems.org'
+gem 'rails', '3.0.4'
 gem 'declarative_authorization'
 gem 'authlogic', '= 2.1.6'
 gem 'rpx_now', '= 0.6.23'
@@ -10,7 +10,7 @@ group :development do
   gem "spork"
   gem "sqlite3-ruby", :require => "sqlite3"
   gem 'wirble'
-  gem 'rails-footnotes'
+  # gem 'rack-bug'
 end
 
 group :test do

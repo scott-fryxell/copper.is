@@ -6,13 +6,9 @@
     </style>
     <header>
       <% form_for(@tip) do |f| %>
-        <aside>
-          <%= f.error_messages %>
-        </aside>
         <fieldset>
           <label for="uri">Paste a Tip</label>
           <textarea name="tip[uri]" value="" id="uri"></textarea>
-
         </fieldset>
         <%= f.submit 'Tip' %>
       <% end %>

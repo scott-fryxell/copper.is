@@ -1,7 +1,6 @@
 class UserSession < Authlogic::Session::Base
   remember_me_for 14.days
-  rpx_key RPX_API_KEY
-
+  rpx_key DirtyWhiteCouch::Application.config.rpx_api_key
 
   private
 

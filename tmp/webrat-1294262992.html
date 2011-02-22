@@ -1,0 +1,238 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Action Controller: Exception caught</title>
+  <style>
+    body { background-color: #fff; color: #333; }
+
+    body, p, ol, ul, td {
+      font-family: verdana, arial, helvetica, sans-serif;
+      font-size:   13px;
+      line-height: 18px;
+    }
+
+    pre {
+      background-color: #eee;
+      padding: 10px;
+      font-size: 11px;
+    }
+
+    a { color: #000; }
+    a:visited { color: #666; }
+    a:hover { color: #fff; background-color:#000; }
+  </style>
+</head>
+<body>
+
+<h1>
+  NameError in
+  Home#index
+</h1>
+
+<p>
+  Showing <i>app/views/layouts/application.html.erb</i> where line <b>#6</b> raised:
+  <pre><code>undefined local variable or method `dirtywhitecouch' for #&lt;ActionView::Base:0x102dc9918&gt;</code></pre>
+</p>
+
+<p>Extracted source (around line <b>#6</b>):
+<pre><code>3:   &lt;head&gt;
+4:     &lt;meta name=&quot;google-site-verification&quot; content=&quot;hYO-TI12-3_8evWkUu0XoheN8yV4UcbX83AqxCMQtVI&quot; /&gt;
+5:     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;chrome=1&quot; /&gt;
+6:     &lt;title&gt;&lt;%= h(yield(:title) || &quot;Home&quot;) - dirtywhitecouch.com %&gt;&lt;/title&gt;
+7:     &lt;style&gt;
+8:       @import url(&quot;/design/index.css&quot;);
+9:     &lt;/style&gt;
+</code></pre></p>
+
+<p></p>
+
+
+
+
+<p><code>RAILS_ROOT: /Users/scott/Desktop/weave.project</code></p>
+
+<div id="traces">
+  
+    
+    <a href="#" onclick="document.getElementById('Framework-Trace').style.display='none';document.getElementById('Full-Trace').style.display='none';document.getElementById('Application-Trace').style.display='block';; return false;">Application Trace</a> |
+  
+    
+    <a href="#" onclick="document.getElementById('Application-Trace').style.display='none';document.getElementById('Full-Trace').style.display='none';document.getElementById('Framework-Trace').style.display='block';; return false;">Framework Trace</a> |
+  
+    
+    <a href="#" onclick="document.getElementById('Application-Trace').style.display='none';document.getElementById('Framework-Trace').style.display='none';document.getElementById('Full-Trace').style.display='block';; return false;">Full Trace</a> 
+  
+
+  
+    <div id="Application-Trace" style="display: block;">
+      <pre><code>/Users/scott/Desktop/weave.project/app/views/layouts/application.html.erb:6:in `_run_erb_app47views47layouts47application46html46erb'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:34:in `send'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:34:in `render_without_template_tracking'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:306:in `with_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:30:in `render_without_template_tracking'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/test_case.rb:20:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/template.rb:205:in `render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:265:in `render_without_mock_proxy'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:352:in `_render_with_layout'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:262:in `render_without_mock_proxy'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1250:in `render_for_file'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:945:in `render_without_benchmark'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1326:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1332:in `perform_action_without_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:617:in `call_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/flash.rb:146:in `perform_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `send'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `process_without_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:606:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:391:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:386:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/routing/route_set.rb:437:in `call'</code></pre>
+    </div>
+  
+    <div id="Framework-Trace" style="display: none;">
+      <pre><code>/Users/scott/Desktop/weave.project/vendor/plugins/rspec-rails/lib/spec/rails/extensions/action_view/base.rb:27:in `render'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec-rails/lib/spec/rails/extensions/action_view/base.rb:27:in `render'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:87:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:121:in `_call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:106:in `call'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_methods.rb:40:in `instance_eval'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_methods.rb:40:in `execute'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/timeout.rb:53:in `timeout'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_methods.rb:37:in `execute'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_group_methods.rb:214:in `run_examples'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_group_methods.rb:212:in `each'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_group_methods.rb:212:in `run_examples'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_group_methods.rb:103:in `run'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/example_group_runner.rb:23:in `run'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/example_group_runner.rb:22:in `each'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/example_group_runner.rb:22:in `run'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/options.rb:152:in `run_examples'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/command_line.rb:9:in `run'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/bin/spec:5</code></pre>
+    </div>
+  
+    <div id="Full-Trace" style="display: none;">
+      <pre><code>/Users/scott/Desktop/weave.project/app/views/layouts/application.html.erb:6:in `_run_erb_app47views47layouts47application46html46erb'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:34:in `send'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:34:in `render_without_template_tracking'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:306:in `with_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/renderable.rb:30:in `render_without_template_tracking'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/test_case.rb:20:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/template.rb:205:in `render_template'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:265:in `render_without_mock_proxy'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec-rails/lib/spec/rails/extensions/action_view/base.rb:27:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:352:in `_render_with_layout'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_view/base.rb:262:in `render_without_mock_proxy'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec-rails/lib/spec/rails/extensions/action_view/base.rb:27:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1250:in `render_for_file'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:945:in `render_without_benchmark'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:51:in `render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1326:in `default_render'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:1332:in `perform_action_without_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:617:in `call_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:610:in `perform_action_without_benchmark'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:308:in `realtime'
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.5/lib/active_support/core_ext/benchmark.rb:17:in `ms'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/rescue.rb:160:in `perform_action_without_flash'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/flash.rb:146:in `perform_action'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `send'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:532:in `process_without_filters'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/filters.rb:606:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:391:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/base.rb:386:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/routing/route_set.rb:437:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:87:in `dispatch'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:121:in `_call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:130:in `build_middleware_stack'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:29:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:29:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.5/lib/active_record/connection_adapters/abstract/query_cache.rb:34:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:9:in `cache'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.5/lib/active_record/query_cache.rb:28:in `call'
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.5/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/string_coercion.rb:25:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.0.1/lib/rack/head.rb:9:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.0.1/lib/rack/methodoverride.rb:24:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/params_parser.rb:15:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/session/cookie_store.rb:93:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/failsafe.rb:26:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `synchronize'
+/Library/Ruby/Gems/1.8/gems/rack-1.0.1/lib/rack/lock.rb:11:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/dispatcher.rb:106:in `call'
+/Library/Ruby/Gems/1.8/gems/rack-1.0.1/lib/rack/lint.rb:47:in `_call'
+/Library/Ruby/Gems/1.8/gems/rack-1.0.1/lib/rack/lint.rb:35:in `call'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/integration.rb:316:in `process'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/integration.rb:197:in `get'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/integration.rb:499:in `__send__'
+/Library/Ruby/Gems/1.8/gems/actionpack-2.3.5/lib/action_controller/integration.rb:499:in `get'
+/Library/Ruby/Gems/1.8/gems/webrat-0.7.2/lib/webrat/adapters/rails.rb:50:in `send'
+/Library/Ruby/Gems/1.8/gems/webrat-0.7.2/lib/webrat/adapters/rails.rb:50:in `do_request'
+/Library/Ruby/Gems/1.8/gems/webrat-0.7.2/lib/webrat/adapters/rails.rb:15:in `get'
+(__FORWARDABLE__):3:in `__send__'
+(__FORWARDABLE__):3:in `get'
+/Library/Ruby/Gems/1.8/gems/webrat-0.7.2/lib/webrat/core/session.rb:278:in `send'
+/Library/Ruby/Gems/1.8/gems/webrat-0.7.2/lib/webrat/core/session.rb:278:in `process_request'
+/Library/Ruby/Gems/1.8/gems/webrat-0.7.2/lib/webrat/core/session.rb:119:in `request_page'
+/Library/Ruby/Gems/1.8/gems/webrat-0.7.2/lib/webrat/core/session.rb:217:in `visit'
+/Library/Ruby/Gems/1.8/gems/webrat-0.7.2/lib/webrat/core/methods.rb:7:in `visit'
+spec/integration/guest_spec.rb:19
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_methods.rb:40:in `instance_eval'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_methods.rb:40:in `execute'
+/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/timeout.rb:53:in `timeout'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_methods.rb:37:in `execute'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_group_methods.rb:214:in `run_examples'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_group_methods.rb:212:in `each'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_group_methods.rb:212:in `run_examples'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/example/example_group_methods.rb:103:in `run'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/example_group_runner.rb:23:in `run'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/example_group_runner.rb:22:in `each'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/example_group_runner.rb:22:in `run'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/options.rb:152:in `run_examples'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/lib/spec/runner/command_line.rb:9:in `run'
+/Users/scott/Desktop/weave.project/vendor/plugins/rspec/bin/spec:5</code></pre>
+    </div>
+  
+</div>
+
+
+
+
+
+
+
+<h2 style="margin-top: 30px">Request</h2>
+<p><b>Parameters</b>: <pre>None</pre></p>
+
+<p><a href="#" onclick="document.getElementById('session_dump').style.display='block'; return false;">Show session dump</a></p>
+<div id="session_dump" style="display:none"><pre class='debug_dump'>--- 
+</pre></div>
+
+
+<h2 style="margin-top: 30px">Response</h2>
+<p><b>Headers</b>: <pre>{&quot;Content-Type&quot;=&gt;&quot;text/html&quot;,
+ &quot;Cache-Control&quot;=&gt;&quot;no-cache&quot;}</pre></p>
+
+
+
+</body>
+</html>

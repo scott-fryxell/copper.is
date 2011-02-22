@@ -1,9 +1,4 @@
-.DS_Store
-config/database.yml
+.bundle
 db/*.sqlite3
-doc/plugins/
 log/*.log
 tmp/**/*
-tmp/*
-coverage*
-.bundle

@@ -1,8 +1,6 @@
 # Perl version by John Gruber, adapted into Ruby from
 # http://daringfireball.net/2007/03/javascript_bookmarklet_builder
-
 require 'uri'
-
 module Bookmarklet
   def Bookmarklet.escape(unformatted_source)
     source = unformatted_source
@@ -12,7 +10,6 @@ module Bookmarklet
     source.gsub!(/^\s+/m, '')          # Kill line-leading whitespace
     source.gsub!(/\s+$/m, '')          # Kill line-ending whitespace
     source.gsub!(/\n/m,   '')          # Kill newlines
-
     "javascript:" + URI.escape(source, /['" \x00-\x1f\x7f-\xff]/)
   end
 end

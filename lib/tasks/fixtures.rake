@@ -10,7 +10,7 @@ namespace :db do
       require 'active_record/fixtures'
       ordered_fixtures = Hash.new
       ENV["FIXTURE_ORDER"].split.each { |fx| ordered_fixtures[fx] = nil }
-      other_fixtures = Dir.glob(File.join(RAILS_ROOT, 'spec', 'fixtures', '*.{yml,csv}')).collect { |file| File.basename(file, '.*') }.reject {|fx| ordered_fixtures.key? fx }
+      other_fixtures = Dir.glob(File.join(Rails.root, 'spec', 'fixtures', '*.{yml,csv}')).collect { |file| File.basename(file, '.*') }.reject {|fx| ordered_fixtures.key? fx }
       ActiveRecord::Base.establish_connection(ENV['RAILS_ENV'])
       (ordered_fixtures.keys + other_fixtures).each do |fixture|
         Fixtures.create_fixtures('spec/fixtures',  fixture)
@@ -24,7 +24,7 @@ namespace :db do
       ordered_fixtures = Hash.new
       ENV["FIXTURE_ORDER"].split.reverse.each { |fx| ordered_fixtures[fx] = nil }
       # get any other fixtures not listed in the ordered_fixtures.rb file and store them as other_fixtures
-      other_fixtures = Dir.glob(File.join(RAILS_ROOT, 'spec', 'fixtures', '*.{yml,csv}')).collect { |file| File.basename(file, '.*') }.reject {|fx| ordered_fixtures.key? fx }
+      other_fixtures = Dir.glob(File.join(Rails.root, 'spec', 'fixtures', '*.{yml,csv}')).collect { |file| File.basename(file, '.*') }.reject {|fx| ordered_fixtures.key? fx }
       ActiveRecord::Base.establish_connection(ENV['RAILS_ENV'])
       (ordered_fixtures.keys + other_fixtures).each do |fixture|
         ActiveRecord::Base.connection.update "DELETE FROM #{fixture}"

@@ -53,14 +53,14 @@ class Locator < ActiveRecord::Base
   def self.parse(url_string)
     case
     # Host name, no path, no scheme
-    when url_string.match(/^[a-z0-9\-\.]+\.[a-z0-9]{2,3}\/?$/i):
+    when url_string.match(/^[a-z0-9\-\.]+\.[a-z0-9]{2,3}\/?$/i)
       url_string = url_string.sub("/","") # remove trailing / character
       adapted = Locator.new
       adapted.scheme = 'http'
       adapted.site = Site.find_or_initialize_by_fqdn(url_string)
       adapted.port = '80'
     # Host name, path, no scheme
-    when url_string.match(/^[a-z0-9\-\.]+\/.+$/i):
+    when url_string.match(/^[a-z0-9\-\.]+\/.+$/i)
       adapted = parse_helper('http://' + url_string)
     else
       adapted = parse_helper(url_string)
