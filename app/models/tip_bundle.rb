@@ -7,7 +7,7 @@ class TipBundle < ActiveRecord::Base
   belongs_to :fan, :class_name => "User", :foreign_key => "fan_id"
 
   validates_presence_of :fan
-
+  
   # validates_presence_of :refills, :on => :update
   #   validates_presence_of :billing_period# TODO , :default => BillingPeriod.find(Time.now.day)
   #

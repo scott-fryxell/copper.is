@@ -1,20 +1,16 @@
-ActionController::Routing::Routes.draw do |map|
+DirtyWhiteCouch::Application.routes.draw do
 
-  map.signin  "signin", :controller => "user_sessions", :action => "new"
-  map.signout "signout", :controller => "user_sessions", :action => "destroy"
-
-  match '/terms', :to => 'home#terms'
-  match '/privacy', :to => 'home#privacy'
-  match '/blog', :to => 'home#blog'
-  match '/bookmarklet/agent', :to => 'home#agent'
-  match '/bookmarklet/launcher.js', :to => 'home#weave'
-
-  match '/signin', :to => 'user_sessions#new'
-  match '/signout', :to => 'user_sessions#destroy'
-
-  resources :user_sessions
   resources :tips
   resources :users
-  
+  resources :user_sessions
+
+
+  get 'blog', :to => 'home#blog'
+  get 'bookmarklet/agent', :to => 'home#agent'
+  get 'bookmarklet/launcher.js', :to => 'home#weave'
+  match 'signin', :to => 'user_sessions#new'
+  match 'signout', :to => 'user_sessions#destroy'
+
+
   root :to => 'home#index'
 end

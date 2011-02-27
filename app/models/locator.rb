@@ -73,7 +73,6 @@ class Locator < ActiveRecord::Base
     end
   end
 
-
   private
 
   def canonical_port

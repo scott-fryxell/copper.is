@@ -1,12 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe TipBundle do
-  fixtures :users, :roles_users, :tip_bundles, :tips
+  fixtures :roles, :users, :roles_users, :tip_bundles, :tips
 
   describe "when creating a new tip bundle" do
     before(:each) do
       @bundle = TipBundle.new
-      @bundle.fan = users(:developer)
+      @bundle.fan = users(:a_developer)
     end
 
     it "should save correctly when all the required values are set" do
@@ -24,13 +24,13 @@ describe TipBundle do
   end
 
   it "should only be one active tip bundle per user" do
-    TipBundle.create(:fan => users(:patron))
-    TipBundle.new(:fan => users(:patron)).save.should be_false
+    TipBundle.create(:fan => users(:a_fan))
+    TipBundle.new(:fan => users(:a_fan)).save.should be_false
   end
 
   it "should have a unique tip bundle for each user" do
-    TipBundle.create(:fan => users(:administrator))
-    TipBundle.new(:fan => users(:developer)).save.should be_true
+    TipBundle.create(:fan => users(:an_administrator))
+    TipBundle.new(:fan => users(:a_developer)).save.should be_true
   end
 
   it "should find all the associated tips for the bundle" do
@@ -50,22 +50,22 @@ describe TipBundle do
     end
 
     it "should determine the correct active tip bundle" do
-      @bundle.should == users(:patron).active_tip_bundle
+      @bundle.should == users(:a_fan).active_tip_bundle
     end
 
     describe "when rotating tip bundles" do
       it "should close the old bundle without error" do
-        lambda { users(:patron).rotate_tip_bundle! }.should_not raise_error
+        lambda { users(:a_fan).rotate_tip_bundle! }.should_not raise_error
       end
 
       it "should produce a new tip bundle different from the old one" do
-        users(:patron).rotate_tip_bundle!
-        users(:patron).active_tip_bundle.should_not == @bundle
+        users(:a_fan).rotate_tip_bundle!
+        users(:a_fan).active_tip_bundle.should_not == @bundle
       end
 
       it "should produce a new empty tip bundle" do
-        users(:patron).rotate_tip_bundle!
-        users(:patron).active_tip_bundle.tips.size.should == 0
+        users(:a_fan).rotate_tip_bundle!
+        users(:a_fan).active_tip_bundle.tips.size.should == 0
       end
     end
   end
@@ -73,7 +73,7 @@ describe TipBundle do
   describe "when calculating where the money is for the bundle" do
     before(:each) do
       @bundle = TipBundle.new
-      @bundle.fan = users(:developer)
+      @bundle.fan = users(:a_developer)
       @bundle.save
 
       locator1 = Locator.parse('http://example.com')

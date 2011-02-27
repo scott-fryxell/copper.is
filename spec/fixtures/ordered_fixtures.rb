@@ -1,5 +1,6 @@
 ENV["FIXTURE_ORDER"] =
   %w(
+      roles
       users
       roles_users
       configurations

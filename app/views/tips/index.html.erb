@@ -1,0 +1,42 @@
+<h1>My Tips</h1>
+<section>
+  <style>
+    @import url(/tips/design.css);
+  </style>
+  <header>
+    <%= form_for(@tip) do |f| %>
+      <fieldset>
+        <label for="uri">Paste a Tip</label>
+        <input type="text" name="tip[uri]" value="" id="uri" />
+      </fieldset>
+      <%= f.submit 'Tip' %>
+    <% end %>
+    <%= render :partial => 'shared/dashboard' %>
+  </header>
+  <table>
+    <thead>
+      <tr>
+        <th>Tip</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @current_user.tips.each do |tip| %>
+       <tr>
+         <td>
+           <a href='<%=h tip.locator.canonicalized %>' target='new'>
+            <%= CGI::unescape(tip.locator.page.description) %>
+           </a>
+           <a href='<%=h tip.locator.canonicalized %>' target='new' class="locator">
+            <%= tip.locator.canonicalized %>
+           </a>
+           <p>
+            <%= tip.note %>
+           </p>
+         </td>
+         <td><%= tip.created_at.strftime("%B %e, %Y") %></td>
+       </tr>
+     <% end %>
+    </tbody>
+  </table>
+</section>

@@ -1,17 +1,20 @@
-patron: # active patron
+a_fan:
   username: joe_fan
+  tip_preference_in_cents: 25
+  persistence_token: <%= Authlogic::Random.hex_token %>
+
+a_developer:
+  username: developer
   persistence_token: <%= Authlogic::Random.hex_token %>
   tip_preference_in_cents: 25
-admin_user:
-  username: admin
-  persistence_token: <%= Authlogic::Random.hex_token %>
-<% Role.find(:all).each do |role| %>
-<%= role.name.downcase %>:
-  username: <%= role.name.downcase %>
+
+an_administrator:
+  username: administrator
   persistence_token: <%= Authlogic::Random.hex_token %>
   tip_preference_in_cents: 25
-<% end %>
+
 patron_test: # active patron
   username: bundle
   persistence_token: <%= Authlogic::Random.hex_token %>
   tip_preference_in_cents: 25
+

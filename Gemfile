@@ -4,19 +4,15 @@ gem 'declarative_authorization'
 gem 'authlogic', '= 2.1.6'
 gem 'rpx_now', '= 0.6.23'
 gem 'authlogic_rpx', '= 1.2.0'
+# gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
 
 
-group :development do
-  gem "spork"
+group :development, :test do
+  gem 'rspec-rails'
   gem "sqlite3-ruby", :require => "sqlite3"
   gem 'wirble'
   # gem 'rack-bug'
-end
-
-group :test do
-  gem "spork"
-  gem "sqlite3-ruby", :require => "sqlite3"
-  gem "rspec", '~> 1.3.1'
-  gem 'rspec-rails', '~> 1.3.3'
   gem 'webrat'
+  gem 'watchr'
+  gem 'spork', '~> 0.9.0.rc'
 end

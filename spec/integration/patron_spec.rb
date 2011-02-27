@@ -1,29 +1,40 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-require "authlogic/test_case"
 
 describe "Patron" do
-  fixtures :users, :roles_users
 
-  # describe "account settings" do
-  #   before(:each) do
-  #     visit "/"
-  #   end
-  # 
-  #   it "should have a page to manage account settings" do
-  #     response_body.should contain("test_user")
-  #   end
-  # 
-  # end
-  
+  fixtures :roles, :users, :roles_users
+  setup :activate_authlogic
+
+  def a_patron
+    User.new(users(:a_fan))
+  end
+
+
+  describe "account settings" do
+    before(:each) do
+
+    end
+
+    it "should have a page to manage account settings" do
+       
+      with_user a_patron do
+        visit "/tips"
+        response_body.should contain("joe_fan")
+      end
+      
+      
+    end
+
+  end
+
   # describe "account section" do
   #   describe "when signed in as a fan" do
   #     before(:each) do
-  #       UserSession.create(users(:patron))
   #       visit "/"
   #     end
-       # it "should not display the call to action when the user is a guest" do
-       #   assert_have_no_selector 'body > section > header > figure'
-       # end
+  #      it "should not display the call to action when the user is a guest" do
+  #        assert_have_no_selector 'body > section > header > figure'
+  #      end
   #
   #     it "should have an account section" do
   #       assert_have_selector "body > section > header > aside", :id => 'account'
@@ -52,27 +63,27 @@ describe "Patron" do
   #     end
   #
   #   end
-
-
-    # describe "when signed in as an administrator" do
-    #   before(:each) do
-    #     click_link "Sign in or sign up"
-    #     fill_in "email", :with => "admin@test.com"
-    #     fill_in "password", :with => "test"
-    #     choose "Yes, I have a password:"
-    #     click_button "Sign in"
-    #   end
-    #
-    #   it "should link to a administrators home page for an administrator" do
-    #     click_link "Admin"
-    #     response_body.should contain("Admin home")
-    #   end
-    #
-    # end
-
+  #
+  #
+  #   describe "when signed in as an administrator" do
+  #     before(:each) do
+  #       click_link "Sign in or sign up"
+  #       fill_in "email", :with => "admin@test.com"
+  #       fill_in "password", :with => "test"
+  #       choose "Yes, I have a password:"
+  #       click_button "Sign in"
+  #     end
+  #
+  #     it "should link to a administrators home page for an administrator" do
+  #       click_link "Admin"
+  #       response_body.should contain("Admin home")
+  #     end
+  #
+  #   end
+  #
   # end
-
-
+  #
+  #
   # describe "from the UI as" do
   #   before(:each) do
   #     UserSession.create(users(:patron))

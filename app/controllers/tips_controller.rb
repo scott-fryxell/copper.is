@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-  filter_access_to :index, :show, :create, :edit, :update, :destroy, :new, :attribute_check => false
+  filter_access_to :index, :update, :new, :create, :attribute_check => false
 
   def index
     @tip = Tip.new
@@ -9,7 +9,6 @@ class TipsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @tips }
     end
-
   end
 
   def update
@@ -22,15 +21,6 @@ class TipsController < ApplicationController
 
     if request.xhr?
       render :action => 'notes_ajax', :layout => false
-    end
-  end
-
-  def show
-    @tip = Tip.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @tip }
     end
   end
 
@@ -56,16 +46,13 @@ class TipsController < ApplicationController
         if request.xhr?
           render :action => 'show_ajax', :layout => false
         else
-          flash[:notice] = t("dirtywhitecouch.tip_success")
-          redirect_to root_url
+          redirect_to tips_url, :notice => t("dirtywhitecouch.tip_success")
         end
       else
         if request.xhr?
-          flash[:error] = t("dirtywhitecouch.tip_failed")
-          render :action => 'error_ajax', :layout => false
+          render :action => 'error_ajax', :layout => false, :error => t("dirtywhitecouch.tip_failed")
         else
-          flash[:error] = t("dirtywhitecouch.tip_failed")
-          redirect_to root_url
+          redirect_to tips_url, :error => t("dirtywhitecouch.tip_failed")
         end
       end
   end

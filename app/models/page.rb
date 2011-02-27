@@ -1,9 +1,17 @@
 class Page < ActiveRecord::Base
+
   has_many :locators
   has_many :tips, :through => :locators
   has_and_belongs_to_many :royalty_bundles
-
   validates_presence_of :description
+
+  # scope :old_most_tips, :include => [:tips], 
+  #         :conditions => "tips.locator_id = locators.id", 
+  #         :group => "pages.id", 
+  #         :order => "count(tips.id) DESC"
+
+  # select pages that have the most tips
+  scope :most_tips, order
 
   def tips_earned
     tips.count
@@ -12,7 +20,7 @@ class Page < ActiveRecord::Base
   def revenue_earned # TODO straight SQL would probably be faster
     royalty_bundles.inject(0) { |sum, bundle| sum + bundle.tip_royalties.sum('amount_in_cents') }
   end
-
+  
   # We could (and used to) do this as a named scope, but PostgreSQL, rightly,
   # complains about loose use of grouping and aggregation, and trying to horn
   # in the correct subselect into a named scope got grotesque pretty quickly.

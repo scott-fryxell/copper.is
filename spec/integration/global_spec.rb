@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "The standard Weave page" do
-  fixtures :users, :roles_users
   before(:each) do
     visit "/"
   end
@@ -31,7 +30,6 @@ describe "The standard Weave page" do
   describe "courtesy navigation" do
     it "should provide a way to email the company" do
       assert_have_selector "#contact"
-      assert_have_selector "body > footer > nav > h2 > a"
     end
     it "should link to a page that describes the Terms & Conditions for the service"
     it "should link to a page that describes the privacy policy for the service"

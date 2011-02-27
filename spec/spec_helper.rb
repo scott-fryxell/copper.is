@@ -1,25 +1,36 @@
-# This file is copied to ~/spec when you run 'ruby script/generate rspec'
-# from the project root directory.
-ENV["RAILS_ENV"] = 'test'
-require File.expand_path(File.join(File.dirname(__FILE__),'..','config','environment'))
-require 'spec/autorun'
-require 'spec/rails'
-require 'webrat/integrations/rspec-rails'
-require 'lib/mail-test-helper'
+require 'spork'
 
-# include seed data before running tests (gets cleared out otherwise)
-require "#{Rails.root}/db/seeds.rb"
+Spork.prefork do
 
-Spec::Runner.configure do |config|
-  config.use_transactional_fixtures = true
-  config.use_instantiated_fixtures  = false
+  ENV["RAILS_ENV"] ||= 'test'
+  require File.expand_path("../../config/environment", __FILE__)
+  require 'rspec/rails'
+  require "authlogic/test_case"
+  require 'declarative_authorization/maintenance'
+  # require Rails.root.join("db/seeds.rb")
+  include Authlogic::TestCase
+  include Authorization::TestHelper
+  
+  # Requires supporting ruby files with custom matchers and macros, etc,
+  # in spec/support/ and its subdirectories.
+  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+
+  RSpec.configure do |config|
+    config.mock_with :rspec
+
+    # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+    config.fixture_path = "#{::Rails.root}/spec/fixtures"
+
+    # If you're not using ActiveRecord, or you'd prefer not to run each of your
+    # examples within a transaction, remove the following line or assign false
+    # instead of true.
+    config.use_transactional_fixtures = true
+  end
+
 end
 
-Webrat.configure do |config|
-  config.mode = :rails
+Spork.each_run do
+  # This code will be run each time you run your specs.
+
 end
 
-Fixtures.reset_cache
-fixtures_folder = File.join(RAILS_ROOT, 'spec', 'fixtures')
-fixtures = Dir[File.join(fixtures_folder, '*.yml')].map {|f| File.basename(f, '.yml') }
-Fixtures.create_fixtures(fixtures_folder, fixtures)

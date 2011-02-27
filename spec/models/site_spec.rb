@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Site do
-  fixtures :users, :roles_users, :pages, :sites, :locators, :tip_bundles, :tips
+  fixtures :roles, :users, :roles_users, :pages, :sites, :locators, :tip_bundles, :tips
 
   it "should have a fully-qualified domain name (FQDN)" do
     @site = Site.new

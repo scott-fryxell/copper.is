@@ -1,25 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe TipsController do
-  fixtures :users, :roles_users, :pages, :sites, :locators, :tip_bundles, :tips, :royalty_bundles, :tip_royalties, :royalty_bundles_sites
+  fixtures :roles, :users, :roles_users, :pages, :sites, :locators, :tip_bundles, :tips, :royalty_bundles, :tip_royalties
   setup :activate_authlogic
 
-  def user_session_with_funds
-    UserSession.create(users(:patron))
-  end
-
-  def user_session_with_no_funds
-    UserSession.create(users(:patron))
-  end
-
   describe "User with an active tip bundle" do
-    before(:each) do
-      @user = user_session_with_funds
-    end
-
     describe "the index action" do
       before(:each) do
-        get :index
+        without_access_control do
+          UserSession.create(users(:a_fan))
+          get :index
+        end
       end
 
       it "should return a list of active tips" do
@@ -29,7 +20,10 @@ describe TipsController do
 
     describe "the create action" do
       before(:each) do
-        post :create, :tip => {:uri => "http://thisisfun.net"}
+        without_access_control do
+          UserSession.create(users(:a_fan))
+          post :create, :tip => {:uri => "http://thisisfun.net"}
+        end
       end
 
       it "should redirect back to the tip page" do
@@ -43,5 +37,4 @@ describe TipsController do
 
     end
   end
-
 end

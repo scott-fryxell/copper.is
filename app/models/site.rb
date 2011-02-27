@@ -8,8 +8,7 @@ class Site < ActiveRecord::Base
   has_and_belongs_to_many :royalty_bundles
   has_many :tip_royalties, :through => :royalty_bundles # TODO understand why this doesn't work.
 
-  named_scope :limited, lambda { |*num| { :limit => num.flatten.first ||
-                                                    (defined?(per_page) ? per_page : 10) } }
+  # scope :limited, lambda { |*num| { :limit => num.flatten.first || (defined?(per_page) ? per_page : 10) } }
 
   # TODO finish implementing offset named_scope to assist in pagination
   # named_scope :offsetter, lambda { |*num|

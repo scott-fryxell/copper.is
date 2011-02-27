@@ -13,5 +13,5 @@ class UserSession < Authlogic::Session::Base
      self.attempted_record.send("#{klass.login_field}=", @rpx_data['profile']['preferredUsername'] ) if attempted_record.send(klass.login_field).blank?
      self.attempted_record.roles << Role.find_by_name('Patron')
    end
-
+   
 end

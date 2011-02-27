@@ -52,10 +52,10 @@ body > section > header > form > fieldset > label {
   margin-bottom:.5em;
   font-size: 1.5em;
 }
-body > section > header > form > fieldset > textarea {
+body > section > header > form > fieldset > input {
   background-color:white;
   width: 30em;
-  height: 8em;
+  height: 2em;
   border:.25em solid gray;
   margin-bottom:.5em;
 }

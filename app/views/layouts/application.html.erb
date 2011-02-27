@@ -37,7 +37,6 @@
        });
       </script>
     <![endif]-->
-
     <header>
       <a href="/">dwc</a>
       <% if current_user %>
@@ -47,8 +46,11 @@
         </nav>
       <% end %>
       <hgroup>
-        <h1><a href="/blog#hello_world">Blog</a></h1>
-        <h1><a href="mailto:scott@fasterlighterbetter.com">Contact</a></h1>
+        <h1><a id="blog" href="/blog">Blog</a></h1>
+        <h1><a id="contact" href="mailto:scott@fasterlighterbetter.com">Contact</a></h1>
+        <% if current_user %>
+          <h1 id=""><%= link_to "My Tips", tips_path %></h1>
+        <% end %>
       </hgroup>
       <ol id="flash">
         <%- flash.each do |msg| -%>

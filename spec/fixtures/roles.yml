@@ -1,0 +1,19 @@
+patron:
+  id: 1
+  name: Patron
+
+publisher:
+  id: 2
+  name: Publisher
+
+guest:
+  id: 3
+  name: Guest
+
+administrator:
+  id: 4
+  name: Administrator
+
+developer:
+  id: 5
+  name: Developer

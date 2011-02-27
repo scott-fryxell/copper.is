@@ -1,47 +1,4 @@
-<% if current_user %>
-  <h1>My Tips</h1>
-  <section>
-    <style>
-      @import url(/tips/design.css);
-    </style>
-    <header>
-      <% form_for(@tip) do |f| %>
-        <fieldset>
-          <label for="uri">Paste a Tip</label>
-          <textarea name="tip[uri]" value="" id="uri"></textarea>
-        </fieldset>
-        <%= f.submit 'Tip' %>
-      <% end %>
-      <%= render :partial => 'shared/dashboard' %>
-    </header>
-    <table>
-      <thead>
-        <tr>
-          <th>Tip</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-       <% @current_user.tips.each do |tip| %>
-         <tr>
-           <td>
-             <a href='<%=h tip.locator.canonicalized %>' target='new'>
-              <%=h CGI::unescape(tip.locator.page.description) %>
-             </a>
-             <a href='<%=h tip.locator.canonicalized %>' target='new' class="locator">
-              <%=h tip.locator.canonicalized %>
-             </a>
-             <p>
-              <%=h tip.note %>
-             </p>
-           </td>
-           <td><%=h tip.created_at.strftime("%B %e, %Y") %></td>
-         </tr>
-       <% end %>
-      </tbody>
-    </table>
-  </section>
-<% else%>
+
   <section>
     <style type="text/css" media="screen">
       @import url(/design.css);
@@ -53,7 +10,9 @@
       <figure>
         <img src="/graphics/person.png" alt="dirtywhitecouch.com logo"/>
       </figure>
-      <%= rpx_embed( :app_name => 'dirtywhitecouch', :return_url => user_sessions_url) %>
+      <% if !current_user %>
+        <%= rpx_embed( :app_name => 'dirtywhitecouch', :return_url => user_sessions_url) %>
+      <% end %>
     </header>
     <article>
       <p>
@@ -63,7 +22,7 @@
         realized it could be useful anywhere. with it you can tip any page 
         on the web.
       </p>
-
+      <% if !current_user %>
       <p>
         <a href="http://www.youtube.com/watch?v=AKwZSoIrAnY">Videos</a>,
         <a href="http://www.myloveforyou.typepad.com/">blogs</a>,
@@ -82,6 +41,6 @@
         You can use the service as much or as little as you'd like.
         We'll take care of finding and paying the artist.
       </p>
+      <% end%>
     </article>
   </section>
-<% end %>
