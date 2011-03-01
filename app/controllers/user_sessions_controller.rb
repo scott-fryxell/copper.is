@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
 
   def create
     @user_session = UserSession.new(params[:user_session])
-    if @user_session.save(:validate => false)
+    if @user_session.save
       if @user_session.new_registration?
         flash[:notice] = t('authlogic.registration_new')
         redirect_to edit_user_path( :current )
