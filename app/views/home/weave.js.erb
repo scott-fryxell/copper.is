@@ -26,12 +26,12 @@
     f.height='100%';
     f.style.zIndex='1000';
     window.addEventListener('message',function(event) {
-      if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
+      // if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
         if (event.data == 'notify_complete') {
           var weave = document.getElementById('weave');
           document.body.removeChild(weave);
         }
-      }
+      // }
     }, false);
   }
 })()

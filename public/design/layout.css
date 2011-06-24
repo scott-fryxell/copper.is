@@ -47,10 +47,15 @@ body > header > a {
  font-weight:normal;
  font-family:'Andale Mono';
 }
+
+body > header > a > img {
+  width:3em;
+}
 body > header > hgroup {
   font-size:2em;
   display:inline-block;
   margin-left:5em;
+  vertical-align:top;
 }
 body > header > hgroup > h1 {
   display:inline-block;

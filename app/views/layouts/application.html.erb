@@ -38,7 +38,7 @@
       </script>
     <![endif]-->
     <header>
-      <a href="/">dwc</a>
+      <a href="/"><img src="/graphics/main_logo.png" alt=""></a>
       <% if current_user %>
         <nav>
           <li><%= link_to current_user.username, edit_user_path(current_user) %></li>
@@ -47,7 +47,7 @@
       <% end %>
       <hgroup>
         <h1><a id="blog" href="/blog">Blog</a></h1>
-        <h1><a id="contact" href="mailto:scott@fasterlighterbetter.com">Contact</a></h1>
+        <h1><a id="contact" href="mailto:us@dirtywhitecouch.com">Contact</a></h1>
         <% if current_user %>
           <h1 id=""><%= link_to "My Tips", tips_path %></h1>
         <% end %>
