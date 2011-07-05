@@ -7,7 +7,7 @@ body > section > h1 {
   border-bottom: .15em solid gray;
   padding-top: 1em;
 }
-body > section > details {
+body > section > div {
   display: block;
   padding: 1em;
   margin-top: 2.75em;
@@ -17,26 +17,26 @@ body > section > details {
   -moz-border-radius: .5em;
   border-radius: .5em;
 }
-body > section > details  * {
+body > section > div  * {
   display: none;
 }
-body > section > details > summary {
+body > section > div > summary {
   display: block;
   margin: .5em 0 .5em 0;
   font-size: 2em;
   cursor: pointer;
 }
-body > section > details > summary > span {
+body > section > div > summary > span {
   display: inline-block;
   float: right;
 }
-body > section > details > form {
+body > section > div > form {
   margin-bottom: 2em;
 }
-body > section > details > p {
+body > section > div > p {
   margin: 1.75em 0;
 }
-body > section > details > form > input[type=submit] {
+body > section > div > form > input[type=submit] {
   background-color: white;
   font-size: 1em;
   margin-top: 1em;
@@ -44,72 +44,72 @@ body > section > details > form > input[type=submit] {
   -moz-border-radius: .5em;
   border-radius: .5em;
 }
-body > section > details > form label {
+body > section > div > form label {
 width: 11em;
 margin-bottom: .5em;
 }
-body > section > details > form > fieldset > label,
-body > section > details > form > fieldset > input {
+body > section > div > form > fieldset > label,
+body > section > div > form > fieldset > input {
   display: block;
   font-size: 1.25em;
   margin-right: 3em;
 }
-body > section > details > form > fieldset > input {
+body > section > div > form > fieldset > input {
   width: 15em;
   margin-bottom: 1em;
   background-color: white;
 }
 
-body > section > details.completed {
+body > section > div.completed {
   border-color: green;
 }
-body > section > details.completed > summary {
+body > section > div.completed > summary {
   color: green;
 }
-body > section > details.completed > summary:after {
+body > section > div.completed > summary:after {
   color: green;
   display: inline-block;
   float: right;
   content: "√";
 }
-body > section > details[open=open] {
+body > section > div[open=open] {
   -webkit-transition: all 1s ease-out;
   background-color: #DDDDDD;
   border-color: yellow;
 }
-body > section > details[open=open] * {
+body > section > div[open=open] * {
   color: gray;
   display: block;
 }
-body > section > details[open=open] summary:after {
+body > section > div[open=open] summary:after {
   content: "X";
   color: gray;
   display: inline-block;
   float: right;
 }
 
-body.new_user > section > details.required {
+body.new_user > section > div.required {
   background-color: red;
   border-color: red;
 }
-body.new_user > section > details.required * {
+body.new_user > section > div.required * {
   color: white;
 }
-body.new_user > section > details.required > summary:after {
+body.new_user > section > div.required > summary:after {
   color: white;
 }
 
-body > section > details#tip_rate > form > fieldset > label {
+body > section > div#tip_rate > form > fieldset > label {
   display: inline-block;
   width: 4em;
 }
-body > section > details#tip_rate > form > fieldset > select {
+body > section > div#tip_rate > form > fieldset > select {
   display: inline-block;
   margin-left: 1em;
   background-color: white;
   font-size: 1.25em;
 }
-body > section > details#bookmarklet > p > span {
+body > section > div#bookmarklet > p > span {
   font-family: "Zapf Dingbats";
   color: #f60;
   display: inline-block;
@@ -124,7 +124,7 @@ body > section > details#bookmarklet > p > span {
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease-in-out;
 }
-body > section > details#bookmarklet > p > a {
+body > section > div#bookmarklet > p > a {
   text-align: center;
   font-size: 1.25em;
   border: .10em solid #f60;
@@ -137,14 +137,7 @@ body > section > details#bookmarklet > p > a {
   padding: 1em;
   margin: 0;
 }
-body > section > details#bookmarklet > p > a:focus {
+body > section > div#bookmarklet > p > a:focus {
   outline: none;
-}
-body > section > details#badge > textarea {
-  background-color: white;
-  padding: 1.5em 0 0 1em;
-  width: 36.5em;
-  height: 18em;
-  font-size: .75em;
 }
 

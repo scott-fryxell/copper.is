@@ -7,7 +7,7 @@
   <p>
     Configure your account by clicking on each section.
   </p>
-  <details id="bookmarklet" open="closed" class="required">
+  <div id="bookmarklet"  class="required">
     <summary>
       Install the bookmarklet
     </summary>
@@ -18,16 +18,16 @@
       <span>&#x27A0;</span>
       <a id="dirtywhitecouch" href="<%= render :partial => 'home/wrapped_launcher.js' %>" tabindex="1" accesskey="p">Tip</a>
     </p>
-  </details>
-  <details id="authorize" open="closed" class="required">
+  </div>
+  <div id="authorize" class="required">
     <summary>Authorize Tips</summary>
     <p>
       This part is coming soon. Until then you can
       tip with the bookmarklet all's you want. Eventually
       we'll start taking your money.
     </p>
-  </details>
-  <details id="tip_rate" open="closed" class="">
+  </div>
+  <div id="tip_rate" >
     <summary>Select your tip rate</summary>
     <p>
       Select the amount you want each tip to be.
@@ -50,15 +50,6 @@
         </select>
       </fieldset>
     </form>
-  </details>
+  </div>
 
-  <details id="badge" open="closed" class="optional">
-    <summary>Use the badge</summary>
-    <p>
-      Copy the contents of this box into the content you've created
-    </p>
-    <textarea name="copy">
-      <img style="cursor:pointer; width:222px; height:222px" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bookmarklet/badge.png" onclick="<%= render :partial => 'home/launcher.js' %>"/>
-    </textarea>
-  </details>
 </section>
