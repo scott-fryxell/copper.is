@@ -11,6 +11,8 @@ DirtyWhiteCouch::Application.routes.draw do
   match 'signin', :to => 'user_sessions#new'
   match 'signout', :to => 'user_sessions#destroy'
 
+  get 'terms', :to => 'home#terms'
+  get 'privacy', :to => 'home#privacy'
 
   root :to => 'home#index'
 end

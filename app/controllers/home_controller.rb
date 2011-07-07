@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   respond_to :html
-  
+
   def index
     if current_user
       @tip = Tip.new
@@ -19,4 +19,13 @@ class HomeController < ApplicationController
   def agent
     render :action => 'agent', :layout => false
   end
+
+  def terms
+    render :action => 'terms'
+  end
+
+  def privacy
+    render :action => 'privacy'
+  end
+
 end
