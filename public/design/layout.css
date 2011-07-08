@@ -9,6 +9,7 @@ body {
   min-height:5em;
   margin: 1em auto 1em auto;
   -moz-border-radius: 1em;
+  border: .25em solid #333;
   border-radius: 1em;
   padding-bottom:1em;
 }
