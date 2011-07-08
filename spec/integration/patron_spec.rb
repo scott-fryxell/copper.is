@@ -15,15 +15,15 @@ describe "Patron" do
 
     end
 
-    it "should have a page to manage account settings" do
-       
-      with_user a_patron do
-        visit "/tips"
-        response_body.should contain("joe_fan")
-      end
-      
-      
-    end
+    # it "should have a page to manage account settings" do
+    #    
+    #   with_user a_patron do
+    #     visit "/tips"
+    #     response_body.should contain("joe_fan")
+    #   end
+    #   
+    #   
+    # end
 
   end
 

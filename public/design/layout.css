@@ -10,6 +10,7 @@ body {
   margin: 1em auto 1em auto;
   -moz-border-radius: 1em;
   border-radius: 1em;
+  padding-bottom:1em;
 }
 body a {
   text-decoration:none;
@@ -136,34 +137,53 @@ body > section > form input[type=submit] {
   -moz-border-radius: .25em;
   font-size: 1em;
 }
+
 body > footer {
-  margin:.25em 1.5em;
-  min-height: 7em;
+  display:block;
+  border-top: .10em solid #C6C8C7;
+  border-bottom: .10em solid #C6C8C7;
+  padding:.5em .5em .5em .5em;
+  vertical-align:middle;
+  margin:1em 1.5em;
+  min-height: 3em;
+
 }
 body > footer > nav {
   vertical-align:top;
   margin-top:.75em;
   margin-right:2.5em;
   display:inline-block;
-  min-height:4em;
-}
-body > footer > nav:nth-child(1) {
- margin-right:14.5em;
-}
-body > footer > nav:nth-child(2) {
- margin-right:11em;
-}
-body > footer > nav:nth-child(3) {
- margin-right:0;
- float:right;
-}
-body > footer > nav > h2 {
-  font-size:1.5em;
-  margin-bottom:.5em;
+  min-height:2em;
 }
 body > footer > nav > a {
-  display:block;
+  display:inline-block;
   margin-bottom: .25em;
   margin-left: 1em;
   font-size: 1em;
+  color:#919393;
+  text-shadow: 2px 2px 2px white;
+}
+
+body > article {
+  padding:1em;
+}
+
+body > article > h1 {
+  line-height: 1.25em;
+  font-size: 2em;
+  color: #666666;
+  margin: 1em 0;
+}
+
+body > article > p {
+  line-height:1.5em;
+}
+
+body > article > ul {
+  margin-top:1em;
+  margin-left:2em;
+}
+
+body > article > ul > li {
+  margin-top:.75em;
 }
