@@ -2,8 +2,8 @@ body > section {
   width:55.5em;
 }
 body > section > header {
-  position:relative;
-  border: .15em solid gray;
+
+  border: .15em solid #333;
   min-height: 2.5em;
   background:white;
   margin:0;

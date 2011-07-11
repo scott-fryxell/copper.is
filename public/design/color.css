@@ -10,5 +10,13 @@ html > body {
   background-color: #FBF6F1;
 }
 body > header > hgroup > h1 > a{
-  color:#E20310;
+  color:#E30613;
+}
+
+p {
+  color:#666666;
+}
+
+article > h1 {
+  color:#333333;
 }
