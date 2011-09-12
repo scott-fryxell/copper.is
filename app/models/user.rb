@@ -5,9 +5,6 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  #AuthLogic validate the uniqueness of the email field by convention
-  # validates_uniqueness_of :email
-
   attr_accessible :name
 
   def self.create_with_omniauth(auth)
@@ -15,6 +12,7 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["user_info"]["name"]
+      user.roles << Role.find_by_name('Patron')
     end
   end
 
