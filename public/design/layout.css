@@ -4,6 +4,7 @@ html {
 html * {
   -webkit-margin-collapse: collapse;
 }
+
 body {
   width:58.5em;
   min-height:5em;
@@ -12,24 +13,23 @@ body {
   border: .25em solid #333;
   border-radius: 1em;
   padding-bottom:1em;
+  -webkit-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
+  -moz-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
 }
 body a {
   text-decoration:none;
-  color: #808080;
+  color: gray;
   font-weight:normal;
-/*  -webkit-text-stroke-color:gray;
+  -webkit-text-stroke-color:gray;
   -webkit-text-stroke-width:.01em;
-*/
-
-
 }
 body a:hover {
   text-decoration: none;
-/*  -webkit-animation-name: pulse-font;
+  -webkit-animation-name: pulse-font;
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
-*/
 }
+
 body > section ,
 body > header ,
 body > nav ,
@@ -39,40 +39,47 @@ body > footer {
   margin-right:1.5em;
   margin-left:1.5em;
 }
+
 body > header {
   padding-top: 1em;
 }
-
 body > header > a {
  display:inline-block;
  font-size:2.5em;
  font-weight:normal;
  font-family:'Andale Mono';
 }
-
 body > header > a > img {
   width:3em;
 }
+
 body > header > hgroup {
   font-size:2em;
   display:inline-block;
-  margin-left:5em;
+  margin-left:3em;
   vertical-align:top;
 }
-body > header > hgroup > h1 {
+body > header > hgroup > nav {
   display:inline-block;
-  margin-left:1em;
+  vertical-align:top;
+}
+body > header > hgroup > nav > a{
+
+  display:inline-block;
+  margin-left:.5em;
 }
 body > header > nav {
-  float:right;
+  vertical-align:top;
   display:inline-block;
+  margin-left:5em;
 }
-body > header > nav > li {
+body > header > nav > a {
+  font-weight:bold;
+  color:black;
   margin-left: 1em;
   display:inline-block;
-}
-body > header > nav > li > a {
-  font-size: 1.25em;
+  font-size: 2em;
+  text-shadow: 1px 1px 1px white;
 }
 body > header > ol {
   margin:1em 0;
@@ -86,9 +93,7 @@ body > header > ol > li {
   border-radius:.25em;
   -moz-border-radius:.25em;
 }
-body > header > div > span {
-  padding-right:.5em;
-}
+
 body > section {
   display:inline-block;
   margin-bottom: .5em;
@@ -111,7 +116,7 @@ body > section > form {}
 body > section > form fieldset {
   margin-bottom:0;
 }
-body > section > form fieldset > legend {
+body > section > form > fieldset > legend {
   display:inline-block;
   margin-left:   .5em;
   font-size:     1.25em;
@@ -141,8 +146,6 @@ body > section > form input[type=submit] {
 
 body > footer {
   display:block;
-  border-top: .10em solid #C6C8C7;
-  border-bottom: .10em solid #C6C8C7;
   padding:.5em .5em .5em .5em;
   vertical-align:middle;
   margin:1em 1.5em;
@@ -159,32 +162,27 @@ body > footer > nav {
 body > footer > nav > a {
   display:inline-block;
   margin-bottom: .25em;
-  margin-left: 1em;
-  font-size: 1em;
-  color:#919393;
+  margin-right: 1em;
+  font-size: 1.5em;
   text-shadow: 2px 2px 2px white;
 }
 
 body > article {
   padding:1em;
 }
-
 body > article > h1 {
   line-height: 1.25em;
   font-size: 2em;
   color: #666666;
   margin: 1em 0;
 }
-
 body > article > p {
   line-height:1.5em;
 }
-
 body > article > ul {
   margin-top:1em;
   margin-left:2em;
 }
-
 body > article > ul > li {
   margin-top:.75em;
 }

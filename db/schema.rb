@@ -10,14 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110224024612) do
-
-  create_table "configurations", :force => true do |t|
-    t.string   "property"
-    t.string   "value"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20110911223753) do
 
   create_table "locators", :force => true do |t|
     t.string   "scheme"
@@ -72,17 +65,6 @@ ActiveRecord::Schema.define(:version => 20110224024612) do
     t.integer "site_id"
   end
 
-  create_table "rpx_identifiers", :force => true do |t|
-    t.string   "identifier",    :null => false
-    t.string   "provider_name"
-    t.integer  "user_id",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "rpx_identifiers", ["identifier"], :name => "index_rpx_identifiers_on_identifier", :unique => true
-  add_index "rpx_identifiers", ["user_id"], :name => "index_rpx_identifiers_on_user_id"
-
   create_table "sites", :force => true do |t|
     t.string   "fqdn",       :null => false
     t.datetime "created_at"
@@ -117,13 +99,14 @@ ActiveRecord::Schema.define(:version => 20110224024612) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username"
-    t.string   "persistence_token"
     t.integer  "login_count",             :default => 1,  :null => false
     t.integer  "tip_preference_in_cents", :default => 50, :null => false
     t.integer  "failed_login_count",      :default => 0,  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
   end
 
 end

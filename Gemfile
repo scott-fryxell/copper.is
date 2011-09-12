@@ -1,18 +1,18 @@
 source 'http://rubygems.org'
 gem 'rails', '3.0.4'
 gem 'declarative_authorization'
-gem 'authlogic', '= 2.1.6'
-gem 'rpx_now', '= 0.6.23'
-gem 'authlogic_rpx', '= 1.2.0'
-# gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
-
+gem 'jquery-rails'
+gem'omniauth', '>=0.2.6'
 
 group :development, :test do
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'capybara'
   gem "sqlite3-ruby", :require => "sqlite3"
-  gem 'wirble'
-  # gem 'rack-bug'
-  gem 'webrat'
-  gem 'watchr'
-  gem 'spork', '~> 0.9.0.rc'
+  gem 'guard-bundler'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'growl'
+  gem 'pry'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
 end

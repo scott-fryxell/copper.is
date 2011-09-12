@@ -34,13 +34,14 @@ module DirtyWhiteCouch
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    config.rpx_api_key = ENV['RARS_RPX_API_KEY']
-    config.rpx_app_name = ENV['RARS_RPX_APP_NAME']
     
     config.autoload_paths += %W(#{config.root}/extras)
 
-    raise "RPX/Janrain Engage API key must be defined ENV['RARS_RPX_API_KEY']" unless DirtyWhiteCouch::Application.config.rpx_api_key
-    raise "RPX/Janrain Engage Application Name must be defined ENV['RARS_RPX_APP_NAME']" unless DirtyWhiteCouch::Application.config.rpx_app_name
+    config.twitter_consumer_key = ENV['TWITTER_CONSUMER_KEY']
+    config.twitter_consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
+    # config.rpx_app_name = ENV['RARS_RPX_APP_NAME']
+    raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless DirtyWhiteCouch::Application.config.twitter_consumer_key
+    raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless DirtyWhiteCouch::Application.config.twitter_consumer_secret
 
   end
 end

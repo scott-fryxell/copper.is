@@ -8,6 +8,7 @@
       @import url("/design/index.css");
     </style>
     <script src="/behavior/jquery.js"></script>
+    <script src="/behavior/resource.js"></script>
     <%= yield(:head) %>
     <%= csrf_meta_tag %>
   </head>
@@ -39,19 +40,31 @@
     <![endif]-->
     <header>
       <a href="/"><img src="/graphics/main_logo.png" alt=""></a>
-      <% if current_user %>
-        <nav>
-          <li><%= link_to 'account', edit_user_path(current_user) %></li>
-          <li><%= link_to "sign out", signout_path %></li>
-        </nav>
-      <% end %>
-      <hgroup>
-        <h1><a id="blog" href="/blog">Blog</a></h1>
-        <h1><a id="contact" href="mailto:us@dirtywhitecouch.com">Contact</a></h1>
+      <nav>
+        <a id="blog" href="/blog">Blog</a>
+        <a id="contact" href="mailto:us@dirtywhitecouch.com">Contact</a>
         <% if current_user %>
-          <h1><%= link_to "Tips", tips_path %></h1>
+          <%= link_to "Tips", tips_path %>
         <% end %>
-      </hgroup>
+      </nav >
+      
+      <% if current_user %>
+        <hgroup>
+          <h1><% current_user.name %></h1>
+          <nav>
+            <%= link_to 'account', edit_user_path(current_user) %>
+            <%= link_to "sign out", signout_path %>
+          </nav>          
+        </hgroup>
+      <% else %>      
+        <hgroup>
+          <h1>Sign In</h1>
+          <nav>
+            <a href="/auth/twitter"><img src="/graphics/twitter_64.png" alt="Sign in with twitter"></a>
+          </nav>
+        </hgroup>
+      <% end %>
+      
       <ol id="flash">
         <%- flash.each do |msg| -%>
           <li class="<%= msg[0]%>"><%= msg[1] %></li>

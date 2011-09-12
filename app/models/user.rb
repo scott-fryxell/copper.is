@@ -1,11 +1,4 @@
 class User < ActiveRecord::Base
-  acts_as_authentic do |c|
-    # c.validations_scope = :company_id # for available Authlogic options see documentation in the various Config modules of Authlogic::ActsAsAuthentic
-    # enable Authlogic_RPX account merging (false by default, if this statement is not present)
-    # c.account_merge_enabled true
-    # set Authlogic_RPX account mapping mode
-    c.account_mapping_mode :internal
-  end
 
   has_many :tips, :through => :tip_bundles
   has_many :tip_bundles, :foreign_key => "fan_id"
@@ -15,7 +8,15 @@ class User < ActiveRecord::Base
   #AuthLogic validate the uniqueness of the email field by convention
   # validates_uniqueness_of :email
 
-  attr_accessible :username
+  attr_accessible :name
+
+  def self.create_with_omniauth(auth)
+    create! do |user|
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.name = auth["user_info"]["name"]
+    end
+  end
 
   def active_tips
     bundle = active_tip_bundle
@@ -64,6 +65,5 @@ class User < ActiveRecord::Base
   end
 
   private
-
 
 end
