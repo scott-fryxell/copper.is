@@ -3,13 +3,22 @@
     <style type="text/css" media="screen">
       @import url(/design.css);
     </style>
+    <script src="/behavior.js"></script>
     <header>
       <figure>
         <img src="/graphics/person.png" alt="dirtywhitecouch.com logo"/>
       </figure>
-      <% if !current_user %>
-        <%= rpx_embed( :app_name => 'dirtywhitecouch', :return_url => user_sessions_url) %>
-      <% end %>
+      <hgroup id="call_to_action">
+        <h2>Pay</h2>
+        <ul>
+          <li>people</li>
+          <li>artists</li>
+          <li>developers</li>
+          <li>bands</li>
+          <li>bloggers</li>
+        </ul>
+        <h2>for doing their job</h2>
+      </hgroup>
     </header>
     <article>
       <p>
@@ -29,14 +38,14 @@
       </p>
       <h2>Setting it up is simple</h2>
       <ul>
-        <li><%= rpx_popup(:link_text => "Sign in", :app_name => 'dirtywhitecouch', :return_url => user_sessions_url, :unobtrusive => false  ) %></li>
+        <li>Sign Into the app </li>
         <li>Drag the bookmark to your toolbar</li>
         <li>Authorize us to use your PayPal account</li>
         <li>Click the bookmark when visiting pages you enjoy</li>
       </ul>
       <p>
         You can use the service as much or as little as you'd like.
-        We'll take care of finding and paying the artist.
+        We'll take care of finding and paying the author
       </p>
       <% end%>
     </article>

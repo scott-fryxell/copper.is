@@ -26,7 +26,7 @@ body > section > header > figure {
   display:inline-block;
   vertical-align:top;
   margin-left:5em;
-  margin-right:15em;
+  margin-right:10em;
   padding-top:1em;
   opacity:1;
   height:auto;
@@ -36,38 +36,30 @@ body > section > header > figure > img{
   width:13em;
   height:13em;
 }
-body > section > header > a {
+body > section > header > hgroup {
   display:inline-block;
-  position:absolute;
-  bottom:.5em;
-  right:.5em;
-  font-size: 1.5em;
+  font-size:2em;
+  margin-top:3em;
 }
-body > section > header > span {
-  position:absolute;
-  top:.5em;
-  right:.5em;
-  font-size: 1.5em;
-  cursor: pointer;
+body > section > header > hgroup > h2, 
+body > section > header > hgroup > ul {
+  display:inline-block;
 }
-body > section > header.minimized {}
-body > section > header.minimized h1,
-body > section > header.minimized figure,
-body > section > header.minimized iframe,
-body > section > header.minimized figure img {
-  height:0;
-  width:0;
+body > section > header > hgroup > h2{
+  color:black;
+}
+body > section > header > hgroup > ul {
+    min-width:2.5em;
+}
+body > section > header > hgroup > ul > li {
+  color:red;
   display:none;
+
 }
-body > section > header.minimized > a {
-  left:.5em;
-  width:6em;
-}
-body > section > header > iframe {
+body > section > header > hgroup > ul > li:first-child{
   display:inline-block;
-  width:23em;
-  height:15em;
 }
+
 body > section > article > h2 {
   font-size: 1.75em;
   margin-bottom: 1em;
