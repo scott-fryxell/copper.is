@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.4'
 gem 'declarative_authorization'
 gem 'jquery-rails'
-gem'omniauth', '>=0.2.6'
+gem 'omniauth', '>=0.2.6'
 
 group :development, :test do
   gem 'factory_girl_rails'
@@ -12,7 +12,6 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'growl'
   gem 'pry'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
 end

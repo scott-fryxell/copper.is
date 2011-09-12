@@ -40,23 +40,16 @@
     <![endif]-->
     <header>
       <a href="/"><img src="/graphics/main_logo.png" alt=""></a>
-      <nav>
-        <a id="blog" href="/blog">Blog</a>
-        <a id="contact" href="mailto:us@dirtywhitecouch.com">Contact</a>
-        <% if current_user %>
-          <%= link_to "Tips", tips_path %>
-        <% end %>
-      </nav >
-      
       <% if current_user %>
         <hgroup>
-          <h1><% current_user.name %></h1>
+          <h1><%= current_user.name %></h1>
           <nav>
             <%= link_to 'account', edit_user_path(current_user) %>
             <%= link_to "sign out", signout_path %>
-          </nav>          
+            <%= link_to "Tips", tips_path %>
+          </nav>
         </hgroup>
-      <% else %>      
+      <% else %>
         <hgroup>
           <h1>Sign In</h1>
           <nav>
@@ -76,6 +69,8 @@
       <nav>
         <a href="/terms">Terms of Service</a>
         <a href="/privacy">Privacy Policy</a>
+        <a href="/blog">Blog</a>
+        <a href="/contact">Contact</a>
       </nav>
     </footer>
   </body>

@@ -54,32 +54,26 @@ body > header > a > img {
 }
 
 body > header > hgroup {
-  font-size:2em;
+  float:right;
+  font-size:1.25em;
   display:inline-block;
   margin-left:3em;
   vertical-align:top;
 }
+body > header > hgroup > h1 {
+  color:red;
+  font-weight:bold;
+  font-size:2em;
+  margin-bottom:.25em;
+}
 body > header > hgroup > nav {
   display:inline-block;
   vertical-align:top;
+  margin-left:2em;
 }
 body > header > hgroup > nav > a{
-
   display:inline-block;
   margin-left:.5em;
-}
-body > header > nav {
-  vertical-align:top;
-  display:inline-block;
-  margin-left:5em;
-}
-body > header > nav > a {
-  font-weight:bold;
-  color:black;
-  margin-left: 1em;
-  display:inline-block;
-  font-size: 2em;
-  text-shadow: 1px 1px 1px white;
 }
 body > header > ol {
   margin:1em 0;
@@ -146,9 +140,8 @@ body > section > form input[type=submit] {
 
 body > footer {
   display:block;
-  padding:.5em .5em .5em .5em;
   vertical-align:middle;
-  margin:1em 1.5em;
+  margin:0 1.5em;
   min-height: 3em;
 
 }
@@ -163,6 +156,7 @@ body > footer > nav > a {
   display:inline-block;
   margin-bottom: .25em;
   margin-right: 1em;
+  margin-left:2.5em;
   font-size: 1.5em;
   text-shadow: 2px 2px 2px white;
 }
