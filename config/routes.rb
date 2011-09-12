@@ -12,7 +12,6 @@ DirtyWhiteCouch::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
 
   match "/auth/:provider/callback" => "sessions#create"
-  match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
 
   root :to => 'home#index'

@@ -39,6 +39,9 @@ module DirtyWhiteCouch
 
     config.twitter_consumer_key = ENV['TWITTER_CONSUMER_KEY']
     config.twitter_consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
+    
+    config.facebook_app_id = ENV['FACEBOOK_APP_ID']
+    config.facebook_app_secret = ENV['FACEBOOK_APP_SECRET']
     # config.rpx_app_name = ENV['RARS_RPX_APP_NAME']
     raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless DirtyWhiteCouch::Application.config.twitter_consumer_key
     raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless DirtyWhiteCouch::Application.config.twitter_consumer_secret
