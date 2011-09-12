@@ -8,7 +8,7 @@ describe User do
   end
 
   it "should not find a sample user that's not in the fixtures" do
-    User.find_by_username('nonexistent').should be_nil
+    User.find_by_name('nonexistent').should be_nil
   end
 
   it "should be a patron" do
