@@ -1,6 +1,5 @@
 html * {
   color: #808080;
-  text-shadow: 2px 2px 2px white;
   background-color: transparent;
 }
 html {
@@ -9,18 +8,6 @@ html {
 
 html > body {
   background-color: #FBF6F1;
-  background-image: -webkit-gradient(
-      linear,
-      left top,
-      right bottom,
-      color-stop(0.37, rgb(255,255,255)),
-      color-stop(0.76, rgb(245,245,245))
-  );
-  background-image: -moz-linear-gradient(
-      left top,
-      rgb(255,255,255) 37%,
-      rgb(245,245,245) 76%
-  );
 }
 body > header > hgroup > h1 > a{
   color:#E30613;

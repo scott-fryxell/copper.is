@@ -10,8 +10,6 @@ body > section > header {
   width: 58.5em;
   margin-left: -1.65em;
   margin-bottom: 1em;
-  -webkit-transition-property: all;
-  -webkit-transition-duration:  1s;
 }
 body > section > header > h1 {
   text-align:center;
@@ -64,7 +62,7 @@ body > section > article > h2 {
   font-size: 1.75em;
   margin-bottom: 1em;
   font-weight:bold;
-  color:  green;
+  color: red;
 }
 body > section > article > p {
   font-size: 1.5em;
@@ -74,7 +72,8 @@ body > section > article > p {
   line-height: 1.15em;
 }
 body > section > article > p > a {
-  color: blue;
+  color: red;
+  text-shadow: 1px 2px 1px white;
 }
 body > section > article > ol {
   -webkit-padding-start: 0;
@@ -91,9 +90,11 @@ body > section > article > ul {
 
 }
 body > section > article > ul > li {
-  color:  green;
+  color:red;
+  text-shadow: 1px 2px 1px white;
+  line-height:1.5em;
 }
 body > section > article > ul > li > a {
-  color:green;
+  color:red;
   text-decoration:underline;
 }
