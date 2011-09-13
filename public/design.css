@@ -9,7 +9,7 @@ body > section > header {
   margin:0;
   width: 58.5em;
   margin-left: -1.65em;
-  margin-bottom: 1em;
+  margin-bottom: 2em;
 }
 body > section > header > h1 {
   text-align:center;
@@ -39,12 +39,12 @@ body > section > header > hgroup {
   font-size:2em;
   margin-top:3em;
 }
-body > section > header > hgroup > h2, 
+body > section > header > hgroup > h2,
 body > section > header > hgroup > ul {
   display:inline-block;
 }
-body > section > header > hgroup > h2{
-  color:black;
+body > section > header > hgroup > h2 {
+  color:#333;
 }
 body > section > header > hgroup > ul {
     min-width:2.5em;
@@ -58,22 +58,18 @@ body > section > header > hgroup > ul > li:first-child{
   display:inline-block;
 }
 
+body > section > article {
+  display:inline-block;
+}
 body > section > article > h2 {
-  font-size: 1.75em;
-  margin-bottom: 1em;
-  font-weight:bold;
-  color: red;
+  font-size: 2em;
+  margin-bottom: .5em;
 }
 body > section > article > p {
   font-size: 1.5em;
   width: 21em;
   margin-bottom: 1em;
-
-  line-height: 1.15em;
-}
-body > section > article > p > a {
-  color: red;
-  text-shadow: 1px 2px 1px white;
+  line-height: 1.25em;
 }
 body > section > article > ol {
   -webkit-padding-start: 0;
@@ -90,11 +86,25 @@ body > section > article > ul {
 
 }
 body > section > article > ul > li {
-  color:red;
-  text-shadow: 1px 2px 1px white;
-  line-height:1.5em;
+  line-height:1.25em;
 }
 body > section > article > ul > li > a {
-  color:red;
   text-decoration:underline;
+}
+
+body > section > figure {
+  display:inline-block;
+  vertical-align:top;
+  margin-top:1em;
+}
+body > section > figure > figcaption {
+  text-align:center;
+  display:none;
+}
+body > section > figure > img {
+  width:17em;
+  border-radius: 1em;
+  -webkit-box-shadow: 0 .75em 1.75em silver;
+  -moz-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
+
 }

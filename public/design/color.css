@@ -1,5 +1,6 @@
 html * {
-  color: #808080;
+  color: #666;
+  text-shadow: 1px 1px 1px white;
   background-color: transparent;
 }
 html {
@@ -9,14 +10,4 @@ html {
 html > body {
   background-color: #FBF6F1;
 }
-body > header > hgroup > h1 > a{
-  color:#E30613;
-}
 
-p {
-  color:#666666;
-}
-
-article > h1 {
-  color:#333333;
-}

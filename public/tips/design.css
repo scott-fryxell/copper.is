@@ -19,30 +19,45 @@ body > section > table  {
   margin:1em;
   width:55em;
 }
-body > section > table > tbody > tr > td:nth-child(even) {
-  width: 16em;
-  text-align:right;
-}
 body > section > table > thead > tr > th {
-  font-size: 1.5em;
+  font-size: 2em;
   padding-bottom:1em;
 }
-body > section > table > thead > tr > th:nth-child(even) {
+
+body > section > table > thead > tr > th:nth-child(2),
+body > section > table > thead > tr > th:nth-child(3) {
   text-align:center;
 }
-body > section > table > tbody > tr > td {
-  width:53em;
+body > section > table > tbody > tr > td:nth-child(2) ,
+body > section > table > tbody > tr > td:nth-child(3) {
+  text-align: center;
 }
+body > section > table > tbody > tr > td:nth-child(3) a {
+  font-weight:bold;
+  border: .10em solid gray;
+  border-radius: .75em .75em;
+  padding: 0 .35em .15em .35em;
+  -moz-border-radius: .75em .75em;
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+
+}
+body > section > table > tbody > tr > td:nth-child(3) a:hover {
+  -webkit-animation-name: pulse-white;
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+  color:white;
+  border: .10em solid #444;
+  background-color:red;
+}
+
+ body > section > table > tbody > tr > td:nth-child(3) {
+  font-size:1.5em;
+}
+
 body > section > table > tbody > tr > td > p {
   margin-bottom:1em;
   margin-left:.5em;
-}
-body > section > table > tbody > tr > td a {
-  display:block;
-  font-size: .75em;
-}
-body > section > table > tbody > tr > td a:first-child {
-  font-size: 1em;
 }
 body > section > table > tbody > tr > td a.locator {
   margin-left:.5em;

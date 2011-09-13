@@ -2,7 +2,6 @@ DirtyWhiteCouch::Application.routes.draw do
 
   resources :tips
   resources :users
-  resources :sessions
 
   get 'blog', :to => 'home#blog'
   get 'bookmarklet/agent', :to => 'home#agent'

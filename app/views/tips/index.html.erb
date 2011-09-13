@@ -18,6 +18,7 @@
       <tr>
         <th>Tip</th>
         <th>Date</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -27,14 +28,12 @@
            <a href='<%=h tip.locator.canonicalized %>' target='new'>
             <%= CGI::unescape(tip.locator.page.description) %>
            </a>
-           <a href='<%=h tip.locator.canonicalized %>' target='new' class="locator">
-            <%= tip.locator.canonicalized %>
-           </a>
            <p>
             <%= tip.note %>
            </p>
          </td>
          <td><%= tip.created_at.strftime("%B %e, %Y") %></td>
+         <td><a rel="interact" href='#delete_tip'>x</a></td>
        </tr>
      <% end %>
     </tbody>

@@ -18,14 +18,13 @@ body {
 }
 body a {
   text-decoration:none;
-  color: gray;
   font-weight:normal;
   -webkit-text-stroke-color:gray;
   -webkit-text-stroke-width:.01em;
 }
 body a:hover {
   text-decoration: none;
-  -webkit-animation-name: pulse-font;
+  -webkit-animation-name: pulse-red;
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
 }
@@ -177,5 +176,5 @@ body > footer > nav > a {
   margin-right: 1em;
   margin-left:2.5em;
   font-size: 1.5em;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 1px 1px 1px silver;
 }

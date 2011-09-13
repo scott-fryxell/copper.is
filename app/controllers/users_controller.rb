@@ -1,30 +1,9 @@
 class UsersController < ApplicationController
+
   filter_access_to :all
 
   def new
     @user = User.new
-  end
-
-  def create
-    @user = User.new(params[:user])
-
-    if @user.save
-      flash[:notice] = "Successfully registered user."
-      redirect_to account_path
-    else
-      render :action => 'new'
-    end
-  end
-
-  def show
-    @user = current_user
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @user.to_xml }
-      format.json  { render :json => @user.to_json }
-    end
-
   end
 
   def edit
@@ -52,4 +31,5 @@ class UsersController < ApplicationController
       end
     end
   end
+
 end
