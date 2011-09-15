@@ -11,6 +11,6 @@ an_administrator:
   tip_preference_in_cents: 25
 
 patron_test: # active patron
-  name: bundle
+  name: order
   tip_preference_in_cents: 25
 

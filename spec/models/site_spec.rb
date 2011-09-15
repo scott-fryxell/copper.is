@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Site do
-  fixtures :roles, :users, :roles_users, :pages, :sites, :locators, :tip_bundles, :tips
+  fixtures :roles, :users, :roles_users, :pages, :sites, :locators, :tip_orders, :tips
 
   it "should have a fully-qualified domain name (FQDN)" do
     @site = Site.new
@@ -21,22 +21,7 @@ describe Site do
 
   it "should respond when asked how many tips it has received" do
     @site = Site.find(sites(:site1))
-    @site.tips_earned.should_not be_nil
-  end
-
-  it "should return a list of the most tipped sites" do
-    @sites_with_tips = Site.most_tips
-    @sites_with_tips.should_not be_nil
-  end
-
-  it "should respond when asked how much revenue it has earned" do
-    @site = Site.find(sites(:site3))
-    @site.revenue_earned.should_not be_nil
-  end
-
-  it "should return a list of the sites with the most revenue" do
-    @sites_with_revenue = Site.most_revenue
-    @sites_with_revenue.should_not be_nil
+    @site.tips.should_not be_nil
   end
 
 end

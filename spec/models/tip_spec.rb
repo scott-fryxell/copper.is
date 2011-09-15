@@ -9,7 +9,7 @@ describe Tip do
                    :amount_in_cents => 25)
   end
 
-  it "should always be associated with a tip bundle" do
+  it "should always be associated with a tip order" do
     @tip.tip_order = nil
     @tip.save.should be_false
   end

@@ -43,14 +43,14 @@ describe User do
   end
 
   describe "active_tips method" do
-    it "should return a list of active tips for a user with an active tip bundle" do
+    it "should return a list of active tips for a user with an active tip order" do
       @user = users(:a_fan)
       @user.active_tips.should_not be_nil
       @user.active_tips.size.should be > 1
       @user.active_tips.should be_an_instance_of Array
     end
 
-    it "should not error out if the user does not have an active tip bundle" do
+    it "should not error out if the user does not have an active tip order" do
       @user = users(:a_fan)
       @user.active_tips.should_not be_nil
       @user.active_tips.size.should be == 8

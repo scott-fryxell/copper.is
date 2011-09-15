@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110911223753) do
+ActiveRecord::Schema.define(:version => 11) do
 
   create_table "locators", :force => true do |t|
     t.string   "scheme"
@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(:version => 20110911223753) do
     t.string   "opaque"
     t.string   "query"
     t.string   "fragment"
+    t.string   "url"
+    t.integer  "site_id"
+    t.integer  "tips_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "site_id"
     t.integer  "page_id"
-    t.integer  "tips_count", :default => 0
-    t.string   "url"
   end
 
   create_table "pages", :force => true do |t|
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(:version => 20110911223753) do
     t.datetime "updated_at"
   end
 
-  create_table "pages_royalty_bundles", :id => false, :force => true do |t|
+  create_table "pages_royalty_orders", :id => false, :force => true do |t|
     t.integer "page_id"
-    t.integer "royalty_bundle_id"
+    t.integer "royalty_order_id"
   end
 
   create_table "roles", :force => true do |t|
@@ -53,16 +53,11 @@ ActiveRecord::Schema.define(:version => 20110911223753) do
 
   add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id", :unique => true
 
-  create_table "royalty_bundles", :force => true do |t|
+  create_table "royalty_orders", :force => true do |t|
     t.integer  "cycle_started_year",    :null => false
     t.integer  "cycle_started_quarter", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "royalty_bundles_sites", :id => false, :force => true do |t|
-    t.integer "royalty_bundle_id"
-    t.integer "site_id"
   end
 
   create_table "sites", :force => true do |t|
@@ -73,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20110911223753) do
 
   add_index "sites", ["fqdn"], :name => "index_sites_on_fqdn", :unique => true
 
-  create_table "tip_bundles", :force => true do |t|
+  create_table "tip_orders", :force => true do |t|
     t.boolean  "is_active",         :default => true
     t.integer  "fan_id"
     t.integer  "billing_period_id", :default => 1
@@ -82,31 +77,31 @@ ActiveRecord::Schema.define(:version => 20110911223753) do
   end
 
   create_table "tip_royalties", :force => true do |t|
-    t.integer  "royalty_bundle_id", :null => false
-    t.integer  "tip_id",            :null => false
-    t.integer  "amount_in_cents",   :null => false
+    t.integer  "royalty_order_id", :null => false
+    t.integer  "tip_id",           :null => false
+    t.integer  "amount_in_cents",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tips", :force => true do |t|
-    t.integer  "tip_bundle_id",   :null => false
+    t.text     "url"
+    t.integer  "user_id"
+    t.integer  "amount_in_cents"
+    t.string   "note"
+    t.integer  "tip_order_id",    :null => false
     t.integer  "locator_id",      :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "note"
-    t.integer  "amount_in_cents"
   end
 
   create_table "users", :force => true do |t|
-    t.integer  "login_count",             :default => 1,  :null => false
-    t.integer  "tip_preference_in_cents", :default => 50, :null => false
-    t.integer  "failed_login_count",      :default => 0,  :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name"
     t.string   "provider"
     t.string   "uid"
-    t.string   "name"
+    t.integer  "tip_preference_in_cents", :default => 50, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
