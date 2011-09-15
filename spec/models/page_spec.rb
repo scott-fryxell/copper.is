@@ -26,21 +26,11 @@ describe Page do
   end
 
   it "should respond when asked how many tips it has received" do
-    @page.tips_earned.should_not be_nil
-  end
-
-  it "should return a list of the most tipped pages" do
-    @pages_with_tips = Page.most_tips
-    @pages_with_tips.should_not be_nil
+    @page.tips.count.should_not be_nil
   end
 
   it "should respond when asked how much revenue it has earned" do
     @page.revenue_earned.should_not be_nil
-  end
-
-  it "should return a list of the pages with the most revenue" do
-    @pages_with_revenue = Page.most_revenue
-    @pages_with_revenue.should_not be_nil
   end
 
   it "should return the primary locator for a page" do

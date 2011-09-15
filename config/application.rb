@@ -31,7 +31,7 @@ module DirtyWhiteCouch
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
-
+    config.active_record.timestamped_migrations = false
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     
@@ -39,7 +39,7 @@ module DirtyWhiteCouch
 
     config.twitter_consumer_key = ENV['TWITTER_CONSUMER_KEY']
     config.twitter_consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
-    
+    config.active_record.timestamped_migrations = false
     config.facebook_app_id = ENV['FACEBOOK_APP_ID']
     config.facebook_app_secret = ENV['FACEBOOK_APP_SECRET']
     # config.rpx_app_name = ENV['RARS_RPX_APP_NAME']

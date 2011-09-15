@@ -1,16 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe TipRoyalty do
-  fixtures :roles, :users, :roles_users, :tip_bundles, :tips
+  fixtures :roles, :users, :roles_users, :tip_orders, :tips
 
   before(:each) do
-    @bundle = RoyaltyBundle.new
-    @bundle.cycle_started_year    = 2011
-    @bundle.cycle_started_quarter = 1
+    @order = RoyaltyOrder.new
+    @order.cycle_started_year    = 2011
+    @order.cycle_started_quarter = 1
 
     @royalty = TipRoyalty.new
     @royalty.amount_in_cents = 25
-    @royalty.royalty_bundle = @bundle
+    @royalty.royalty_order = @order
     @royalty.tip = tips(:first)
   end
 
@@ -19,8 +19,8 @@ describe TipRoyalty do
     @royalty.save.should be_true
   end
 
-  it "should be assigned to a royalty bundle" do
-    @royalty.royalty_bundle = nil
+  it "should be assigned to a royalty order" do
+    @royalty.royalty_order = nil
     @royalty.should_not be_valid
   end
 

@@ -12,6 +12,14 @@ body > section > header {
   margin:0;
   position:relative;
 }
+form#new_tip > fieldset > label {
+  font-size:2em;
+  margin-bottom: 1em;
+}
+form#new_tip > fieldset > input {
+  margin-bottom: 1em;
+}
+
 body > section > form#search {
   padding:1em 1.5em !important;
 }
@@ -66,4 +74,5 @@ body > section > table > tbody > tr > td a.locator {
 #instructions {
   margin: .5em 0;
 }
+
 

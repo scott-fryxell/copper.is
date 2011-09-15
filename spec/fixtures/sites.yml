@@ -2,7 +2,5 @@ site1:
   fqdn: 'example.com'
 site2:
   fqdn: 'example2.com'
-  royalty_bundles: rb2
 site3:
   fqdn: 'popular.com'
-  royalty_bundles: rb1

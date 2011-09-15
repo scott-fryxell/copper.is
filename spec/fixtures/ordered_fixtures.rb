@@ -7,9 +7,8 @@ ENV["FIXTURE_ORDER"] =
       pages
       sites
       locators
-      tip_bundles
+      tip_orders
       tips
-      royalty_bundles
+      royalty_orders
       tip_royalties
-      royalty_bundles_sites
     ).join(' ')

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
-  has_many :tips, :through => :tip_bundles
-  has_many :tip_bundles, :foreign_key => "fan_id"
+  has_many :tips, :through => :tip_orders
+  has_many :tip_orders, :foreign_key => "fan_id"
 
   has_and_belongs_to_many :roles
 
@@ -17,9 +17,9 @@ class User < ActiveRecord::Base
   end
 
   def active_tips
-    bundle = active_tip_bundle
-    if bundle
-      tips = Tip.find_all_by_tip_bundle_id(bundle.id, :order => "created_at DESC")
+    order = active_tip_order
+    if order
+      tips = Tip.find_all_by_tip_order_id(order.id, :order => "created_at DESC")
     else
       []
     end
@@ -31,13 +31,14 @@ class User < ActiveRecord::Base
     end
   end
 
-  def rotate_tip_bundle!
-    TipBundle.update(active_tip_bundle.id, :is_active => false)
-    TipBundle.create(:fan => self) # TODO: we're changing the default behavior here
+  def rotate_tip_order!
+    
+    TipOrder.update(active_tip_order.id, :is_active => false)
+    TipOrder.create(:fan => self)
   end
 
-  def active_tip_bundle
-    tip_bundles.find(:first, :conditions => ["is_active = ?", true]) || TipBundle.new(:fan => self) # TODO: see below
+  def active_tip_order
+    tip_orders.find(:first, :conditions => ["is_active = ?", true]) || TipBundle.new(:fan => self)
   end
 
   def tip(url_string, description = 'new page')
@@ -48,7 +49,7 @@ class User < ActiveRecord::Base
       locator.page = Page.create(:description => description) unless locator.page
 
       tip = Tip.new(:locator         => locator,
-                    :tip_bundle      => active_tip_bundle,
+                    :tip_order      => active_tip_order,
                     :amount_in_cents => amount_in_cents
                     )
       if tip.valid?

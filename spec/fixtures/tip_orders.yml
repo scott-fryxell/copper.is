@@ -1,5 +1,5 @@
-active_bundle:
+active_order:
   fan: a_fan
-closed_bundle:
+closed_order:
   fan: a_fan
   is_active: false
