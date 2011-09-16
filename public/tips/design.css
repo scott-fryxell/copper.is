@@ -24,13 +24,17 @@ body > section > form#search {
   padding:1em 1.5em !important;
 }
 body > section > table  {
-  margin:1em;
+  margin:1.5em;
   width:55em;
+}
+
+body > section > table > thead {
 }
 body > section > table > thead > tr > th {
   font-size: 2em;
-  padding-bottom:1em;
+  height:1.5em;
 }
+
 
 body > section > table > thead > tr > th:nth-child(2),
 body > section > table > thead > tr > th:nth-child(3) {
@@ -39,6 +43,10 @@ body > section > table > thead > tr > th:nth-child(3) {
 body > section > table > tbody > tr > td:nth-child(2) ,
 body > section > table > tbody > tr > td:nth-child(3) {
   text-align: center;
+}
+body > section > table > tbody > tr > td:nth-child(3),
+body > section > table > thead > tr > th:nth-child(3) {
+  display:none;
 }
 body > section > table > tbody > tr > td:nth-child(3) a {
   font-weight:bold;
@@ -51,16 +59,20 @@ body > section > table > tbody > tr > td:nth-child(3) a {
 
 }
 body > section > table > tbody > tr > td:nth-child(3) a:hover {
-  -webkit-animation-name: pulse-white;
+  -webkit-animation-name: none;
   -webkit-transition-property: all;
   -webkit-transition-duration:  1s;
   color:white;
   border: .10em solid #444;
   background-color:red;
 }
-
- body > section > table > tbody > tr > td:nth-child(3) {
+body > section > table > tbody > tr > td:nth-child(3)   q{
   font-size:1.5em;
+}
+
+
+body > section > table > tbody > tr > td {
+  vertical-align:top;
 }
 
 body > section > table > tbody > tr > td > p {

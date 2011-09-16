@@ -14,6 +14,7 @@ body > section > div {
   border: .15em solid #808080;
   background-color: #DDDDDD;
   -webkit-transition: all 1s ease-in;
+  -moz-transition: all 1s ease-in;
   -moz-border-radius: .5em;
   border-radius: .5em;
 }
@@ -74,6 +75,7 @@ body > section > div.completed > summary:after {
 }
 body > section > div[open=open] {
   -webkit-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
   background-color: #DDDDDD;
   border-color: yellow;
 }
@@ -118,12 +120,28 @@ body > section > div#bookmarklet > p > span {
   vertical-align: middle;
   font-size: 2.5em;
   position: relative;
+
+  animation-name: point;
+  animation-duration: 2.5s;
+  animation-direction: normal;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+
+
   -webkit-animation-name: point;
   -webkit-animation-duration: 2.5s;
   -webkit-animation-direction: normal;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: ease-in-out;
+  
+  -moz-animation-name: point;
+  -moz-animation-duration: 2.5s;
+  -moz-animation-direction: normal;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: ease-in-out;
+  
 }
+
 body > section > div#bookmarklet > p > a {
   text-align: center;
   font-size: 1.25em;

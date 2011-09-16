@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def active_tip_order
-    tip_orders.find(:first, :conditions => ["is_active = ?", true]) || TipBundle.new(:fan => self)
+    tip_orders.find(:first, :conditions => ["is_active = ?", true]) || TipOrder.new(:fan => self)
   end
 
   def tip(url_string, description = 'new page')

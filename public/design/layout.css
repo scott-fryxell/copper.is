@@ -53,6 +53,7 @@ body > header > a > img {
 }
 
 body > header > hgroup {
+  margin-top:.25em;
   float:right;
   font-size:1.25em;
   display:inline-block;
@@ -67,12 +68,13 @@ body > header > hgroup > h1 {
   margin-bottom:.25em;
 }
 body > header > hgroup > nav {
+
   width:100%;
   display:inline-block;
   vertical-align:top;
   text-align:center;
 }
-body > header > hgroup > nav > a{
+body > header > hgroup > nav > a {
   display:inline-block;
   margin-left:.5em;
 }
