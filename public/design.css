@@ -31,13 +31,13 @@ body > section > header > figure {
 }
 body > section > header > figure > img{
   vertical-align:middle;
-  width:13em;
-  height:13em;
+  width:10em;
+  height:10em;
 }
 body > section > header > hgroup {
   display:inline-block;
   font-size:2em;
-  margin-top:3em;
+  margin-top:2.5em;
 }
 body > section > header > hgroup > h2,
 body > section > header > hgroup > ul {
@@ -95,7 +95,6 @@ body > section > article > ul > li > a {
 body > section > figure {
   display:inline-block;
   vertical-align:top;
-  margin-top:1em;
 }
 body > section > figure > figcaption {
   text-align:center;

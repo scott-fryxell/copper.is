@@ -79,7 +79,7 @@ body > header > hgroup > nav > a {
   margin-left:.5em;
 }
 body > header > ol {
-  margin:1em 0;
+  margin:1em 0 0 0;
   min-height:1.5em;
 }
 body > header > ol > li {
@@ -88,7 +88,9 @@ body > header > ol > li {
   padding:.25em;
   border:.10em solid #FFFFCC;
   border-radius:.25em;
+  margin-bottom:.5em;
   -moz-border-radius:.25em;
+  text-align:center;
 }
 
 body > section {
