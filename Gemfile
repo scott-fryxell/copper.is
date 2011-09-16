@@ -13,5 +13,5 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'pry'
-  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'rb-fsevent'
 end
