@@ -36,26 +36,11 @@ The license is the following conversation with Matt Murphy.
 </pre>
 
 Changes I would make to the codebase include the following:
-- I would remove the Janrain integration in favor of OmniAuth. there's a non
-  obvious reason why they have made their service lame. since plugging there shit
-  in the integration tests have been failing. and i'm too lazy to come up for a
-  solution for them. if i gotta write code to work with your service it better
-  be free.
-
-- I would like to see Locator renamed to url. While locator may be more
-  semantically correct it confuses the relational algebra something fierce.
-
-- I would  re-factor TipBundle, and RoyaltyBundle into an Order object.
-  which holds the list of tips (LineItem is an unnecessary abstraction here, as the
-  service  offers only a single product - the tip).
 
 - Site and Page seem superfluous to me as well. if they exist at all they
   should be a subclass of URL. but even that introduces ambiguity into the
   purpose of this service.
 
-The service is a complete concept in that it can tip a url for a fan. And
-while there is some infrastructure for paying a publisher. there is less
-developed here then a production ready application would need.
 
 The workflow for paying a publisher is imagined to be the following:
 
