@@ -23,42 +23,48 @@ form#new_tip > fieldset > input {
 body > section > form#search {
   padding:1em 1.5em !important;
 }
+
 body > section > table  {
   margin:1.5em;
   width:55em;
 }
-
 body > section > table > thead {
 }
 body > section > table > thead > tr > th {
   font-size: 2em;
   height:1.5em;
 }
-
-
 body > section > table > thead > tr > th:nth-child(2),
 body > section > table > thead > tr > th:nth-child(3) {
   text-align:center;
 }
-body > section > table > tbody > tr > td:nth-child(2) ,
+
+body > section > table {
+  height:00em;
+}
+body > section > table > tbody > tr > td > a {
+  color:#222;
+}
+body > section > table > tbody > tr > td:nth-child(2) {
+  text-align:center;
+}
 body > section > table > tbody > tr > td:nth-child(3) {
   text-align: center;
 }
-body > section > table > tbody > tr > td:nth-child(3),
-body > section > table > thead > tr > th:nth-child(3) {
-  display:none;
-}
-body > section > table > tbody > tr > td:nth-child(3) a {
+body > section > table > tbody > tr > td:nth-child(3) form {
+  cursor:pointer;
+  display:inline;
   font-weight:bold;
   border: .10em solid gray;
   border-radius: .75em .75em;
-  padding: 0 .35em .15em .35em;
+  padding:0;
   -moz-border-radius: .75em .75em;
   -webkit-transition-property: all;
   -webkit-transition-duration:  1s;
 
 }
-body > section > table > tbody > tr > td:nth-child(3) a:hover {
+body > section > table > tbody > tr > td:nth-child(3) form:hover {
+
   -webkit-animation-name: none;
   -webkit-transition-property: all;
   -webkit-transition-duration:  1s;
@@ -66,16 +72,20 @@ body > section > table > tbody > tr > td:nth-child(3) a:hover {
   border: .10em solid #444;
   background-color:red;
 }
-body > section > table > tbody > tr > td:nth-child(3)   q{
-  font-size:1.5em;
+body > section > table > tbody > tr > td:nth-child(3) form > input {
+  border:none;
+  font-size:1em;
+  vertical-align:center;
 }
-
-
-body > section > table > tbody > tr > td {
-  vertical-align:top;
+body > section > table > tbody > tr > td:nth-child(3) form > input:hover {
+  -webkit-animation-name: none;
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+  
+  color:white;
 }
-
 body > section > table > tbody > tr > td > p {
+  margin-top:.5em;
   margin-bottom:1em;
   margin-left:.5em;
 }
@@ -83,8 +93,7 @@ body > section > table > tbody > tr > td a.locator {
   margin-left:.5em;
   margin-bottom:1em;
 }
-#instructions {
-  margin: .5em 0;
-}
+
+
 
 

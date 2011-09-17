@@ -1,5 +1,5 @@
-$('form[target=resource]').live("submit", function (event){
-  //console.log('resource submit')
+
+$('form[target=interact]').live("submit", function (event){
   event.preventDefault();
   $(this).addClass("working");
 
@@ -7,10 +7,10 @@ $('form[target=resource]').live("submit", function (event){
   var item  = $(this).closest('*[item=true]');
 
   var resource = $(item).data('resource') || {};
-  // console.log(resource.remaining_steps);
+
 
   $(this).find("*[itemprop]").each(function (){
-    // console.debug($(this).attr('type'));
+    console.debug($(this).attr('type'));
     if('checkbox' == $(this).attr('type') && $(this).attr('checked')){
       resource[$(this).attr('name')] =  determine_value(this);
     }
@@ -30,7 +30,7 @@ $('form[target=resource]').live("submit", function (event){
   var form = this
   var action = $(this).attr("action");
   var method = $(this).attr("method");
-  // console.debug("posting to server", method + ":" + action, post_data);
+  console.debug("posting to server", method + ":" + action, post_data);
   // hide_details_for(action.subString( action.lastIndexOf("#") ) );
 
   jQuery.ajax({
@@ -38,7 +38,7 @@ $('form[target=resource]').live("submit", function (event){
     type: method,
     data: post_data,
     success: function(data, textStatus, jqXHR) {
-      // console.info(textStatus, data);
+      console.info(textStatus, data);
       $(item).data('resource', data);
 
       $(form).removeClass("working");
@@ -46,10 +46,10 @@ $('form[target=resource]').live("submit", function (event){
       if ($(form).attr("itemtype") != 'form') {
         update_page(data);
       }
-      // console.debug(method + ":" + action);
+      console.debug(method + ":" + action);
       $(document).trigger(method + ":" + action, [form, data]);
-      //console.log('resource submit returned')
-      //console.log(' verified is : ' + data.verified)
+      console.log('resource submit returned')
+      console.log(' verified is : ' + data.verified)
     },
     error: function(data, textStatus, jqXHR) {
       console.error("error", data, textStatus, jqXHR);
@@ -58,15 +58,15 @@ $('form[target=resource]').live("submit", function (event){
   });
 });
 $('body *[rel=interact]').live("click", function (event){
-  if(!$('body').hasClass("setup_store")){
-    // history.pushState(null, '', this.href);
-    // $(document).trigger("get:" + this.pathname, [this]);
-    // console.debug(this.pathname);
-    //why is this here?
-  }
+
   $(document).trigger("get:" + this.hash, [this]);
-  if(jQuery.browser.msie)
+  if(jQuery.browser.msie){
     event.preventDefault();
+  }
+  else {
+    history.pushState(null, '', this.href);
+  }
+  event.preventDefault();
 });
 function determine_value(property){
   if($(property).attr("itemvalue")){

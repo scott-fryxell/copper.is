@@ -2,6 +2,7 @@
   <style>
     @import url(/tips/design.css);
   </style>
+  <script src="/tips/behavior.js"></script>
   <header>
     <%= form_for(@tip) do |f| %>
       <fieldset>
@@ -24,7 +25,7 @@
      <% @current_user.tips.each do |tip| %>
        <tr>
          <td>
-           <a href='<%=h tip.locator.canonicalized %>' target='new'>
+           <a href='<%= tip.locator.canonicalized %>' target='new'>
             <%= CGI::unescape(tip.locator.page.description) %>
            </a>
            <p>
@@ -32,7 +33,11 @@
            </p>
          </td>
          <td><%= tip.created_at.strftime("%B %e, %Y") %></td>
-         <td><a rel="interact" href='#delete_tip'>x</a></td>
+         <td>
+           <form action='/tips/<%=tip.id%>/' method="delete" target="interact">
+             <input type="submit" name="submit" value="x">
+           </form>
+         </td>
        </tr>
      <% end %>
     </tbody>

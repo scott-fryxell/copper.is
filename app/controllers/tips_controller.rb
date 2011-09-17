@@ -56,4 +56,8 @@ class TipsController < ApplicationController
         end
       end
   end
+  def destroy
+    Tip.find(params[:id]).destroy()
+    render :nothing => true, :status => :ok     
+  end
 end
