@@ -1,92 +1,134 @@
-  body > section {
-  padding: 1em;
-  margin-top: 2.75em;
-  width: 42em;
-  min-height: 18em;
-  border: .15em solid #808080;
-  -moz-border-radius: .5em;
-  border-radius: .5em;
-  background-color: #DDDDDD;
+body {
+  color:#808080;
+  border:transparent;
+  background-color: transparent;
 }
-  body > section > h1{
-    font-size: 1.5em;
-    margin: 0 0 .6em 0;
-  }
-  body > section > span.close{
-    position:absolute;
-    top:0;
-    right:0;
-  }
-  body > section ol{
-    padding: 1em;
-    min-height: 15.5em;
-    border: .10em solid #808080;
-    background-color: white;
-  }
-    body > section ol > li{
-      margin: 0 0 1.5em 0;
-    }
-    body > section ol li h2 {
-      font-size:1.5em;
-      margin: .7em 0 1em 0;
-    }
-    body > section ol li p {
-      margin: 0 0 0 1em;
-    }
-    body > section ol > li:first-child p {
-      display:inline-block;
-      width:21em;
-    }
-    body > section ol > li div {
-      font-family:"Zapf Dingbats";
-      color:#f60;
-      display:inline-block;
-      margin: 0 0 0 0;
-      margin-left:.5em;
-      vertical-align:middle;
-      font-size:2.5em;
-      position:relative;
-      -webkit-animation-name: point;
-      -webkit-animation-duration: 2.5s;
-      -webkit-animation-direction: normal;
-      -webkit-animation-iteration-count: infinite;
-      -webkit-animation-timing-function: ease-in-out;
-    }
-    body > section ol > li > a {
-      text-align:center;
-      font-size: 1.25em;
-      border: .10em solid #f60;
-      -moz-border-radius: .3em;
-      border-radius: .3em;
-      color:#F60;
-      font-weight:normal;
-      background-color: #E7E7E7;
-      display:inline-block;
-      padding:1em;
-      margin: 0;
-    }
-    body > section ol > li > a:focus{
-      outline:none;
-    }
-    body section h1 {
-      margin:1em 0;
-      font-size:2em;
-    }
-    body section  ol li textarea {
-      font-size:1em;
-      padding:1.5em 0 0 1em;
-      margin-top:3em;
-      margin-left:1.5em;
-      display:block;
-      width:60em;
-      height:15em;
-      font-size: .5em;
-    }
-    body section  ol li figure {
-      margin-top:3em;
-    }
-    body section ol li figure img {
-      margin:0 auto;
-      margin-top:1em;
-      display:block;
-    }
+body * {
+    text-shadow: 2px 2px 2px white;
+}
+body > section {
+  outline: none;
+  display:none;
+}
+body > section > h1 {
+  font-size: 1.5em;
+
+}
+body > section.notify {
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -10em;
+  margin-left: -25em;
+  border: .25em solid black;
+  -moz-border-radius: 1em;
+  border-radius: 1em;
+  background:#FBF6F1;
+  opacity:.95; 
+}
+body > section.notify > img {
+  display:inline-block;
+  margin:1.5em 1em 1em 1em;
+  width:4em;
+  vertical-align: top;
+}
+
+body > section.notify > section {
+  display:inline-block;
+  vertical-align:top;
+  border-right:.25em solid black;
+
+  min-height:9.5em;
+}
+body > section.notify > section * {
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+}
+body > section.notify > section > header {}
+body > section.notify > section > header > h1 {
+  margin:1em 0 0 0 ;
+  font-size:1em;
+  color:gray;
+}
+body > section.notify > section > p[itemprop=description] {
+  font-size: 1.75em;
+  width:15em;
+  color:red;
+}
+
+body > section.alert {
+  background:#FFFFCC;
+  position:fixed;
+  top: 40%;
+  left: 40%;
+  width:20%;
+  border: .15em solid red;
+  -moz-border-radius: .3em;
+  border-radius: .3em;
+  background-color: #FFCEAD;
+  opacity:.95;
+  padding:1em;
+  margin-bottom: 1em;
+}
+body > section.alert header h1 {
+  color:red;
+  opacity:1;
+}
+body > section.alert > header > span {
+  float:right;
+  color:red;
+}
+body > section.alert > header > span:hover {
+  cursor:pointer;
+}
+body > section.alert > ol {
+  list-style: circle inside;
+}
+
+
+aside[itemtype="account"] {
+  display: inline-block;
+  padding:1em;
+  padding-left:0;
+}
+aside[itemtype="account"] > h1 {
+  margin-top:0;
+  margin-bottom:.5em;
+  font-size:1.5em;
+}
+aside[itemtype="account"] > dl {
+  width: 15em;
+  margin-left:1em;
+}
+aside[itemtype="account"] > dl > dt {
+  font-size: 1.25em;
+  font-weight:normal;
+  width:8em;
+  margin-bottom:.5em;
+  display:inline-block;
+}
+aside[itemtype="account"] > dl > dd {
+  text-align:right;
+  font-size:1.5em;
+  width:3em;
+  display:inline-block;
+  text-decoration:right;
+}
+aside[itemtype="account"] > dl > dd > a {
+  text-decoration: none;
+  color:gray;
+}
+aside[itemtype="account"] > dl > dd > a:hover {
+  text-decoration: underline;
+}
+aside[itemtype="account"] > button {
+  padding:.25em 1em;
+  border:.20em solid gray;
+  background-color:white;
+  -moz-border-radius:.5em;
+  border-radius:.5em;
+  padding: .25em 2em;
+  color:gray;
+  cursor:pointer;
+}
+

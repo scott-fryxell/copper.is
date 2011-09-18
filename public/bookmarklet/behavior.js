@@ -38,7 +38,7 @@ $(document).bind({
       TODO implement or remove.
     */
     $(document).trigger("alert_start", xhr);
-    console.debug("there was a tip error", xhr, event);
+    console.error("there was a tip error", xhr, event);
   },
   "login_submit": function (event, options){
     $.post("/authenticate", $("section.workflow form").serialize());
@@ -54,12 +54,8 @@ $(document).bind({
       return false;
     });
 
-    $("section.workflow > header > .click").click(function (){
-      $(document).trigger("end_workflow");
-      return false;
-    });
 
-    $(document).trigger("workflow_start");
+    $(document).trigger("notify");
     $("input[id=email]").delay(1200).focus();
   },
   "login_success": function (event){
@@ -68,6 +64,43 @@ $(document).bind({
   },
   "401": function (event, response, options){
     $(document).trigger("login_get");
+  },
+  "ajaxComplete": function (event, xhr, options) {
+    $(document).trigger(new String(xhr.status), xhr, options);
+  },
+  "200": function (event, xhr, options){
+    var trigger = $("<div />").append(xhr.responseText).find("meta[name=event_trigger]").attr("content");
+    if(trigger){
+      $(document).trigger(trigger, xhr, options);
+    }
+  },
+  "notify": function (event, xhr, options) {
+    $("section.notify").append(xhr.responseText);
+    $("body").addClass("open");
+
+    $("section.notify").fadeIn(800).delay(2000).fadeOut(800, function(){
+      window.parent.postMessage("notify_complete",  "*");
+      $("body").removeClass("open");
+    });
+  },
+  "open": function (event, url) {
+    window.open(url);
+  },
+  "alert_start": function (event, xhr) {
+    $("section.alert ol").append("<li>" +  Message[xhr.status] + "</li>");
+    $("section.alert").fadeIn(500);
+  },
+  "alert_end": function (event, xhr) {
+    $("section.alert ol").empty();
+    $("section.alert").fadeOut("slow");
+  },
+  "keyup": function(event) {
+    if (event.keyCode == 27 ){
+      if($("body.open").length == 1 )
+        $(document).trigger("notify");
+      else
+        $(document).trigger("notify");
+    }
   }
 });
 var FLB = {

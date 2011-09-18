@@ -2,8 +2,7 @@
   <style>
     @import url(/dashboard/design.css);
   </style>
-  <aside id="account" itemscope="true" itemtype="http://dirtywhitecouch.com/user#account">
-    <h1>Fund</h1>
+  <aside itemscope="true" itemtype="account">
     <dl>
       <dt>Tips</dt>
       <dd itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></dd>

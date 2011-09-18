@@ -14,6 +14,6 @@ en:
           taken: "There is already a dirtywhitecouch.com account for that email address."
   dirtywhitecouch:
     user_update_success: "Your account has been updated."
-    permission_denied: "PERMISSION DENIED"
+    permission_denied: "You need permission to do that. dirty bird."
     tip_success: "Tip successfully created."
     tip_failed: "That is not a valid URL."

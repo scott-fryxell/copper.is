@@ -1,9 +1,0 @@
-body > section > form#search {
-  padding:1em 0;
-  vertical-align: middle;
-  margin-bottom: 1em;
-}
-  body > section > form#search > input {
-    float: right;
-    width:7em ;
-  }

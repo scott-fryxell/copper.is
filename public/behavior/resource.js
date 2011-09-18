@@ -49,10 +49,9 @@ $('form[target=interact]').live("submit", function (event){
       console.debug(method + ":" + action);
       $(document).trigger(method + ":" + action, [form, data]);
       console.log('resource submit returned')
-      console.log(' verified is : ' + data.verified)
     },
     error: function(data, textStatus, jqXHR) {
-      console.error("error", data, textStatus, jqXHR);
+      console.error("error posting to " + action, data, textStatus, jqXHR);
     }
 
   });
