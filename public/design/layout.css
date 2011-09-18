@@ -5,20 +5,34 @@ html * {
   -webkit-margin-collapse: collapse;
 }
 #ie {
+  top:0;
+  left:0;
+  opacity: .90;
   position:fixed;
   width:100%;
   height:100%;
   z-index: 12;
   background-color:black;
-  color:gray;
+  color:silver;
 }
+
+#ie > h1 {
+  font-weight:bold;
+  text-align:center;
+  width:10em;
+  line-height:1em;
+  height:3em;
+  font-size:8em;
+  margin: 2em auto 1em auto;
+}
+
 body {
   width:58.5em;
   min-height:5em;
   margin: 1em auto 1em auto;
-  -moz-border-radius: 1em;
   border: .25em solid #333;
   border-radius: 1em;
+  -moz-border-radius: 1em;
   padding-bottom:1em;
   -webkit-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
   -moz-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
