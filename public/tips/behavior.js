@@ -1,7 +1,7 @@
 $(document).ready(function() {
-  
-  $(document).bind('delete:/tips/:id', function(){
-    console.debug('delete:');
+
+  $('td > form').bind('submit', function(){
+    $(this).parent().parent().addClass('destroyed');
   });
 
 });
