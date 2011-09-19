@@ -1,12 +1,7 @@
 <script>
   chrome.browserAction.onClicked.addListener(function(tab) {
-   console.log("clicked");
     chrome.tabs.getSelected(null, function(tab) {
-      console.log("found tab");
-      chrome.tabs.sendRequest(tab.id, {greeting: "hello"}, function(response) {
-        console.log("getting response");
-        console.log(response.farewell);
-      });
+      chrome.tabs.sendRequest(tab.id, {message: "tip_this_page"}, null);
     });
   });
 </script>
