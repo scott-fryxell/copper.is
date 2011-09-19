@@ -12,8 +12,8 @@ class HomeController < ApplicationController
     render :action => 'blog', :layout => true
   end
 
-  def weave
-    render :action => 'weave.js', :layout => false
+  def embed_iframe
+    render :action => 'embed_iframe.js', :layout => false
   end
 
   def agent

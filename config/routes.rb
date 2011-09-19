@@ -5,7 +5,7 @@ DirtyWhiteCouch::Application.routes.draw do
 
   get 'blog', :to => 'home#blog'
   get 'bookmarklet/agent', :to => 'home#agent'
-  get 'bookmarklet/launcher.js', :to => 'home#weave'
+  get 'bookmarklet/embed_iframe.js', :to => 'home#embed_iframe'
 
   get 'terms', :to => 'home#terms'
   get 'privacy', :to => 'home#privacy'

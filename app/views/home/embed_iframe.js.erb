@@ -1,7 +1,7 @@
 (function(){
   var f = document.getElementById('weave');
   if (f) {
-    console.debug("this shouldn't have happened. Iframes should be cleaned up.")
+    console.error("this shouldn't have happened. Iframes should be cleaned up.")
   }
   else {
     f=document.createElement('iframe');
