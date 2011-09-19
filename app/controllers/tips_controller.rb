@@ -1,6 +1,5 @@
 class TipsController < ApplicationController
-  filter_access_to :index, :update, :new, :create, :attribute_check => false
-
+  filter_access_to :index, :create, :edit, :update, :destroy, :new, :embed_iframe, :agent, :attribute_check => false
   def index
     @tip = Tip.new
     @tips = current_user.active_tips
@@ -10,7 +9,6 @@ class TipsController < ApplicationController
       format.xml  { render :xml => @tips }
     end
   end
-
   def update
     @tip = Tip.find(params[:id])
 
@@ -23,7 +21,6 @@ class TipsController < ApplicationController
       render :action => 'notes_ajax', :layout => false
     end
   end
-
   def new
     @tip = Tip.new
 
@@ -33,7 +30,6 @@ class TipsController < ApplicationController
       format.js
     end
   end
-
   def create
       if request.xhr?
         @tip = current_user.tip(params[:uri], params[:title] )
@@ -60,4 +56,13 @@ class TipsController < ApplicationController
     Tip.find(params[:id]).destroy()
     render :nothing => true, :status => :ok     
   end
+
+  def embed_iframe
+    render :action => 'embed_iframe.js', :layout => false
+  end
+
+  def agent
+    render :action => 'agent', :layout => false
+  end
+
 end

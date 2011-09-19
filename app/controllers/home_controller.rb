@@ -12,13 +12,6 @@ class HomeController < ApplicationController
     render :action => 'blog', :layout => true
   end
 
-  def embed_iframe
-    render :action => 'embed_iframe.js', :layout => false
-  end
-
-  def agent
-    render :action => 'agent', :layout => false
-  end
 
   def terms
     render :action => 'terms'

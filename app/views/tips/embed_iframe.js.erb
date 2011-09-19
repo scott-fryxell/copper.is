@@ -1,11 +1,11 @@
 (function(){
-  var f = document.getElementById('weave');
+  var f = document.getElementById('dirtywhitecouch');
   if (f) {
-    console.error("this shouldn't have happened. Iframes should be cleaned up.")
+    console.error("What? The dirtywhitecouch iframe should have been removed.")
   }
   else {
     f=document.createElement('iframe');
-    f.id='weave';
+    f.id='dirtywhitecouch';
     f.frameborder=0;
     f.scrolling=0;
     f.target='weave';
@@ -19,7 +19,7 @@
     f.style.left='0';
     f.style.background.color='transparent';
     f.scrolling='no';
-    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/bookmarklet/agent/#/' +
+    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/#/' +
       window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
     document.body.appendChild(f);
     f.width='100%';
@@ -28,8 +28,8 @@
     window.addEventListener('message',function(event) {
       // if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
         if (event.data == 'notify_complete') {
-          var weave = document.getElementById('weave');
-          document.body.removeChild(weave);
+          var dirtywhitecouch = document.getElementById('dirtywhitecouch');
+          document.body.removeChild(dirtywhitecouch);
         }
       // }
     }, false);
