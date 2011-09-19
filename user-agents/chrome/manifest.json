@@ -1,9 +1,25 @@
 {
-  "name": "thankU",
-  
-  "content_scripts": [{
-      "matches": ["http://www.google.com/*"],
-      "css": ["mystyles.css"],
-      "js": ["jquery.js", "myscript.js"]
-  }]
+  "name": "dirtyWhiteCouch",
+  "version": "1.0",
+  "description": "A tipping service",
+  "background_page": "global.html",
+  "homepage_url": "http://dirtywhitecouch.com/extensions/chrome",
+  "icons": { "16": "icon_16.png",
+             "48": "icon_48.png",
+            "128": "icon_128.png"
+  },
+  "browser_action": {
+    "default_icon": "toolbar.png",
+    "name": "Tip this page"
+  },
+  "permissions": [
+    "tabs", "http://*/"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/"],
+      "js" : ["tip_this_page.js"]
+    }
+  ]
+
 }
