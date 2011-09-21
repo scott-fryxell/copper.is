@@ -28,11 +28,11 @@
 				<key>Identifier</key>
 				<string>tip_this_page</string>
 				<key>Image</key>
-				<string>toolbar.png</string>
+				<string>iou.png</string>
 				<key>Label</key>
 				<string>IOU</string>
 				<key>Palette Label</key>
-				<string>IOU a Tip</string>
+				<string>Tip this page</string>
 			</dict>
 		</array>
 	</dict>

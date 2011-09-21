@@ -9,7 +9,7 @@
             "128": "icon_128.png"
   },
   "browser_action": {
-    "default_icon": "toolbar.png",
+    "default_icon": "iou.png",
     "name": "Tip this page"
   },
   "permissions": [
