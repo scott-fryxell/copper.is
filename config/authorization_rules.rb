@@ -17,6 +17,7 @@ authorization do
   end
 
   role :guest do
+    has_permission_on [:tips], :to => [:embed_iframe]
   end
 
 end
