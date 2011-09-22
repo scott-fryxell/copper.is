@@ -11,6 +11,9 @@ body > section > header {
   border-bottom: .15em solid gray;
   margin:0;
   position:relative;
+  background-color:white;
+  width:58.5em;
+  padding:1.25em 0;
 }
 
 form#new_tip {
@@ -24,10 +27,12 @@ form#new_tip > input {
   background-color:white;
   -moz-border-radius:.5em;
   border-radius:.5em;
+  color:red;
+  font-weight:bold;
 }
 form#new_tip > fieldset > label {
   display:block;
-  margin-bottom:.5em;
+  margin-bottom:1em;
   font-size: 2em;
 }
 form#new_tip > fieldset > input {
@@ -35,7 +40,7 @@ form#new_tip > fieldset > input {
   width: 30em;
   height: 2em;
   border:.25em solid gray;
-  margin-bottom:.5em;
+  margin-bottom:1em;
 }
 
 table#tips  {

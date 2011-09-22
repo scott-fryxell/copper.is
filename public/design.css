@@ -104,6 +104,5 @@ body > section > figure > img {
   width:17em;
   border-radius: 1em;
   -webkit-box-shadow: 0 .75em 1.75em silver;
-  -moz-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
-
+  -moz-box-shadow: .75em .75em 1.75em silver;
 }
