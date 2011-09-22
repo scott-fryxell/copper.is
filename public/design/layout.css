@@ -4,28 +4,6 @@ html {
 html * {
   -webkit-margin-collapse: collapse;
 }
-#ie {
-  top:0;
-  left:0;
-  opacity: .90;
-  position:fixed;
-  width:100%;
-  height:100%;
-  z-index: 12;
-  background-color:black;
-  color:silver;
-}
-
-#ie > h1 {
-  font-weight:bold;
-  text-align:center;
-  width:10em;
-  line-height:1em;
-  height:3em;
-  font-size:5em;
-  width:10em;
-  margin: 2em auto 1em auto;
-}
 
 body {
   width:58.5em;
@@ -206,4 +184,33 @@ body > footer > nav > a {
 
 .destroyed {
   opacity:.5;
+}
+#terms,
+#privacy {
+  margin:.5em;
+}
+#terms > ul{
+  margin:1em;
+}
+#ie {
+  top:0;
+  left:0;
+  opacity: .90;
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index: 12;
+  background-color:black;
+  color:silver;
+}
+
+#ie > h1 {
+  font-weight:bold;
+  text-align:center;
+  width:10em;
+  line-height:1em;
+  height:3em;
+  font-size:5em;
+  width:10em;
+  margin: 2em auto 1em auto;
 }
