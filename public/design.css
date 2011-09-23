@@ -60,14 +60,16 @@ body > section > header > hgroup > ul > li:first-child{
 
 body > section > article {
   display:inline-block;
+  width: 30em;
+  margin-right:4em;
 }
 body > section > article > h2 {
-  font-size: 2em;
+  font-size: 1.5em;
   margin-bottom: .5em;
 }
 body > section > article > p {
-  font-size: 1.5em;
-  width: 21em;
+  font-size: 1.25em;
+
   margin-bottom: 1em;
   line-height: 1.25em;
 }
@@ -79,7 +81,7 @@ body > section > article > ol {
 }
 body > section > article > ul {
   list-style: circle inside ;
-  font-size: 1.5em;
+  font-size: 1.25em;
   width: 25em;
   margin-bottom: 1em;
   line-height: 1.15em;
@@ -101,7 +103,7 @@ body > section > figure > figcaption {
   display:none;
 }
 body > section > figure > img {
-  width:17em;
+
   border-radius: 1em;
   -webkit-box-shadow: 0 .75em 1.75em silver;
   -moz-box-shadow: .75em .75em 1.75em silver;
