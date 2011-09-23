@@ -1,26 +1,37 @@
-<section>
+<section id="blog">
   <style type="text/css" media="screen">
-    body > section {
-      width: 30em;
+    #blog {
+      width: 56em;
     }
-    body > section > article > h1{
+
+    #blog > article {
+      display: inline-block;
+      width:30em;
+      margin-bottom: 1em;
+    }
+
+    #blog > article > h1 {
       font-size:2em;
       margin-bottom: 1em;
     }
-    p {
+    #blog > article p {
       font-size:1.25em;
       line-height:1.25em;
       margin-bottom:1em;
     }
+    #blog > figure {
+      width:20em;
+      vertical-align:top;
+      margin-top:4em;
+      display:inline-block;
+      margin-left: 4em;
+    }
+    #blog > figure img {
+      border-radius: 1em;
+      -webkit-box-shadow: 0 .75em 1.75em silver;
+      -moz-box-shadow: .75em .75em 1.75em silver;
+    }
 
-    ul {
-      margin-left: 2em;
-      font-size: 1.5em;
-    }
-    ul > li {
-      list-style: circle outside;
-      margin-bottom: .75em;
-    }
   </style>
   <article>
       <h1 id='hello_world'>Hello world</h1>
@@ -51,6 +62,9 @@
         December 19 2010.
       </footer>
   </article>
+  <figure>
+    <img src="/graphics/couch_300.png" >
 
+  </figure>
 
 </section>
