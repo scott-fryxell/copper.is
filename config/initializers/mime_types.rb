@@ -4,6 +4,6 @@
 # Mime::Type.register "text/richtext", :rtf
 # Mime::Type.register_alias "text/html", :iphone
 
-Mime::Type.register "application/octet-stream", :crx
+Mime::Type.register "application/x-chrome-extension", :crx
 Mime::Type.register "application/octet-stream", :safariextz
-Mime::Type.register "application/octet-stream", :xpi
+Mime::Type.register "application/x-xpinstall", :xpi

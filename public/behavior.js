@@ -14,9 +14,6 @@ $(document).ready(function() {
     }, 5000);
 
   });
-  setTimeout(function() {
-    $('#call_to_action').trigger('rotate');
-  }, 2000);
 
   $("body > section > article > ul > li > a").click(function(event){
 
@@ -31,5 +28,10 @@ $(document).ready(function() {
     }
 
   });
+
+  setTimeout(function() {
+    $('#call_to_action').trigger('rotate');
+  }, 6000);
+
 });
 
