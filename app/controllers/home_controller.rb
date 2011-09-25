@@ -21,4 +21,8 @@ class HomeController < ApplicationController
     render :action => 'privacy'
   end
 
+  def button
+    render :action => 'button'
+  end
+
 end

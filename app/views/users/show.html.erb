@@ -1,3 +1,5 @@
+<% title "Edit User" %>
+
 <section>
   <style>
     @import url("/users/design.css");
@@ -9,20 +11,14 @@
   </p>
   <div id="bookmarklet"  class="required">
     <summary>
-      Install the bookmarklet
+      Install your browser button
     </summary>
-    <p>
-      Drag bookmarklet to your browser toolbar.
-    </p>
-    <p>
-      <span>&#x27A0;</span>
-      <a id="dirtywhitecouch" href="<%= render :partial => 'tips/wrapped_launcher.js' %>" tabindex="1" accesskey="p">Tip</a>
-    </p>
+    <%= render :partial => 'shared/extensions' %>
   </div>
   <div id="tip_rate" >
-    <summary>Select your tip rate</summary>
+    <summary>Select your default tip rate</summary>
     <p>
-      Select the amount you want each tip to be.
+      You can always change this amount at the time you tip an author
     </p>
     <form action="" method="post" accept-charset="utf-8">
       <input name="_method" type="hidden" value="put">
@@ -43,5 +39,4 @@
       </fieldset>
     </form>
   </div>
-
 </section>

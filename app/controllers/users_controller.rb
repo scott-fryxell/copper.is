@@ -32,4 +32,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @user.to_xml }
+      format.json  { render :json => @user.to_json }
+    end
+  end
 end

@@ -15,20 +15,6 @@ $(document).ready(function() {
 
   });
 
-  $("body > section > article > ul > li > a").click(function(event){
-
-    if($.browser.safari){
-      this.href="/extensions/DirtyWhiteCouch.safariextz"
-    }
-    else if($.browser.mozilla){
-      this.href="/extensions/DirtyWhiteCouch.xpi"
-    }
-    else{
-      this.href="/extensions/DirtyWhiteCouch.crx"
-    }
-
-  });
-
   setTimeout(function() {
     $('#call_to_action').trigger('rotate');
   }, 6000);

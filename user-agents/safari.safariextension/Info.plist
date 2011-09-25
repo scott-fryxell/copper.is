@@ -60,6 +60,8 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>http://dirtywhitecouch.com/extensions/safari_manifest.plist</string>
 	<key>Website</key>
 	<string>http://www.dirtywhitecouch.com</string>
 </dict>

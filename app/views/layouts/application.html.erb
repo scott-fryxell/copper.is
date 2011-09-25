@@ -18,7 +18,7 @@
         <hgroup>
           <h1><%= current_user.name %></h1>
           <nav>
-            <%= link_to 'account', edit_user_path(current_user) %>
+            <a href="/users/current">account</a>
             <%= link_to "signout", signout_path %>
             <%= link_to "tips", tips_path %>
           </nav>

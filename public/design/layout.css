@@ -212,3 +212,53 @@ body > footer > nav > a {
   width:10em;
   margin: 2em auto 1em auto;
 }
+
+
+#extensions figure {
+  display:inline-block;
+  margin:1em;
+  margin-left:2em;
+}
+#extensions figure figcaption {
+  font-size:1.5em;
+  margin-bottom:1em;
+  text-align:center;
+}
+#extensions figure a {
+  padding:.5em;
+  display:block;
+  margin-bottom:1em;
+}
+#extensions > figure > a > img {
+  text-align:center;
+}
+
+
+#extensions h1 {
+  margin-bottom:1em;
+}
+
+#extensions p {
+  margin-bottom:1em;
+}
+
+#bookmarklet > a {
+  text-align: center;
+  line-height:2.25em;
+  height:2.25em;
+  font-size: 2em;
+  border: .10em solid #f60;
+  -moz-border-radius: .3em;
+  border-radius: .3em;
+  color: #F60;
+  font-weight: normal;
+  background-color: white;
+  display: inline-block;
+  padding: 1em;
+  padding-top:2em;
+  margin: 0;
+}
+#bookmarklet > figure > a:focus {
+  outline: none;
+}
+

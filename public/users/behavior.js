@@ -1,8 +1,4 @@
 $(document).ready(function () {
-  if (window.location.pathname == '/users/current/edit'){
-    $('body').addClass('new_user');
-  }
-
   $.get('/users/current.json', function(data) {
     var tip_rate = data.user.tip_preference_in_cents
     var option = $('#tip_rate > form > fieldset > select > option[value=' + tip_rate +']')
@@ -19,7 +15,7 @@ $(document).ready(function () {
       $(this).parent('div').attr('open', 'open')
   });
 
-  $('#bookmarklet > p > a ').bind('dragend', function (event) {
+  $('#bookmarklet > a ').bind('dragend', function (event) {
     $('#bookmarklet').removeClass('required');
     $('#bookmarklet').addClass('completed');
     $('#bookmarklet > summary').click();
