@@ -241,11 +241,15 @@ body > footer > nav > a {
 #extensions p {
   margin-bottom:1em;
 }
-
-#bookmarklet > a {
+#bookmarklet {
   text-align: center;
+}
+#bookmarklet a {
+  text-align: center;
+  
   line-height:2.25em;
   height:2.25em;
+  width:2.25em;
   font-size: 2em;
   border: .10em solid #f60;
   -moz-border-radius: .3em;
@@ -256,7 +260,7 @@ body > footer > nav > a {
   display: inline-block;
   padding: 1em;
   padding-top:2em;
-  margin: 0;
+  margin: 0 auto 0 auto;
 }
 #bookmarklet > figure > a:focus {
   outline: none;

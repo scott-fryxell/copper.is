@@ -1,13 +1,14 @@
 <section id="extensions">
   <p>
-    click the link to install your button. Installing these will make 
-    tipping content you enjoy super simple
+    Click your browser's logo below to install your button.
   </p>
-  <p>
-    Alternatively you can drag the bookmarklet (the one with the IOU) to your bookmarks bar to tip pages
-  </p>
-  <figure>
-    <a href="/extensions/DirtyWhiteCouch.xpi"><img src="/graphics/firefox.png"></a>
+
+  <figure id="firefox">
+    <a href="/extensions/DirtyWhiteCouch.xpi"
+      iconURL="/graphics/firefox.png"
+      hash="sha1:8787d9dfdf1f5b87ce14503a11bf8a7fd6cb4bf0">
+      <img src="/graphics/firefox.png"></a>
+
     <figcaption>Firefox</figcaption>
   </figure>
   <figure>
@@ -19,7 +20,26 @@
     <figcaption>Safari</figcaption>
   </figure>
   <figure id="bookmarklet">
-    <a id="dirtywhitecouch" href="<%= render :partial => 'tips/wrapped_launcher.js' %>" tabindex="1" accesskey="p">IOU</a>
-    <figcaption>bookmarklet</figure>
+    <figcaption>bookmarklet</figcaption>
+    <a href="<%= render :partial => 'tips/wrapped_launcher.js' %>">IOU</a>
+    <p>
+       Alternatively you can drag the bookmarklet
+       to your bookmarks toolbar
+    </p>
+
   </figure>
 </section>
+
+<script type="application/javascript">
+$("#firefox > a").click(function(){
+  var params = {
+    "Foo": { URL: this.href,
+             IconURL: this.getAttribute("iconURL"),
+             Hash: this.getAttribute("hash"),
+             toString: function () { return this.URL; }
+    }
+  };
+  InstallTrigger.install(params);
+  return false;
+});
+</script>
