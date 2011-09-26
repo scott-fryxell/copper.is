@@ -94,6 +94,9 @@ body > section > article > ul > li > a {
   text-decoration:underline;
 }
 
+body > section > article > ul > li > a > img{
+  padding-left: .5em;
+}
 body > section > figure {
   display:inline-block;
   vertical-align:top;
