@@ -10,28 +10,10 @@
     <%= yield(:head) %>
     <%= csrf_meta_tag %>
   </head>
-
   <body>
     <header>
       <a href="/"><img src="/graphics/main_logo.png" alt=""></a>
-      <% if current_user %>
-        <hgroup>
-          <h1><%= current_user.name %></h1>
-          <nav>
-            <a href="/users/current">account</a>
-            <%= link_to "signout", signout_path %>
-            <%= link_to "tips", tips_path %>
-          </nav>
-        </hgroup>
-      <% else %>
-        <hgroup>
-          <h1>Sign In</h1>
-          <nav>
-            <a href="/auth/twitter"><img src="/graphics/twitter_64.png" alt="Sign in with twitter"></a>
-            <!-- <a href="/auth/facebook"><img src="/graphics/facebook_64.png" alt="Sign in with facebook"></a> -->
-          </nav>
-        </hgroup>
-      <% end %>
+      <%= render :partial => 'shared/signin' %>
       <ol id="flash">
         <%- flash.each do |msg| -%>
           <li class="<%= msg[0]%>"><%= msg[1] %></li>

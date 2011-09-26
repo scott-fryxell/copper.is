@@ -1,7 +1,7 @@
 $(document).ready(function() {
-   $(document).trigger("tip_determine");
-   $(document).trigger("tip_token_get");
-   $(document).trigger("tip_submit");
+  $(document).trigger("tip_determine");
+  $(document).trigger("tip_token_get");
+  $(document).trigger("tip_submit");
 });
 $(document).bind({
   "tip_determine": function (event, xhr, options){
@@ -13,6 +13,10 @@ $(document).bind({
         title: location.split("&title=")[1],
       };
     }
+    if(!FLB.uri){
+      window.parent.postMessage("reset_frame",  "*");
+    }
+    console.debug("determine tip", FLB, location);
   },
   "tip_token_get": function (event, xhr, options){
     // get authenticity token

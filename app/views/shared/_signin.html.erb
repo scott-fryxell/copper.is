@@ -1,0 +1,18 @@
+<% if current_user %>
+  <hgroup>
+    <h1><%= current_user.name %></h1>
+    <nav>
+      <a href="/users/current">account</a>
+      <%= link_to "tips", tips_path %>
+      <%= link_to "signout", signout_path %>
+    </nav>
+  </hgroup>
+<% else %>
+  <hgroup>
+    <h1>Sign In</h1>
+    <nav>
+      <a href="/auth/twitter"><img src="/graphics/twitter_64.png" alt="Sign in with twitter"></a>
+      <!-- <a href="/auth/facebook"><img src="/graphics/facebook_64.png" alt="Sign in with facebook"></a> -->
+    </nav>
+  </hgroup>
+<% end %>

@@ -28,8 +28,13 @@
     window.addEventListener('message',function(event) {
       // if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
         if (event.data == 'notify_complete') {
-          var dirtywhitecouch = document.getElementById('dirtywhitecouch');
-          document.body.removeChild(dirtywhitecouch);
+          var frame = document.getElementById('dirtywhitecouch');
+          document.body.removeChild(frame);
+        }
+        else if (event.data == 'reset_frame'){
+          frame = document.getElementById('dirtywhitecouch');
+          frame.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/#/' +
+            window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
         }
       // }
     }, false);

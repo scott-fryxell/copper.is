@@ -1,12 +1,39 @@
-<meta name="event_trigger" content="login_display">
-<style type="text/css" media="screen">
-  iframe {
-    display:block;
-  }
-  h1 {
-    font-size:1.75em;
-    margin-left:.5em;
-    margin-bottom: .5em;
-  }
-</style>
-<h1 id="dirtywhitecouch.com_signin">Sign in to your dirtywhitecouch.com account</h1>
+<html lang="en_us">
+  <head>
+    <meta charset="utf-8">
+    <title>Sign In</title>
+  </head>
+  <body id="sign in" onload="">
+    <style type="text/css" media="screen">
+      html {
+        background-color: transparent;
+      }
+      body {
+        position:fixed;
+        background-color:#FBF6F1;
+        left:50%;
+        top:50%;
+        height:20em;
+        width:20em;
+        margin-top:-10em;
+        margin-left:-10em;
+      }
+      body > h1 {
+        text-align:center;
+      }
+      hgroup > h1 {
+        color:red;
+        text-align:center;
+        font-weight:bold;
+        font-size:2em;
+      }
+      hgroup > nav {
+        text-align:center;
+      }
+    </style>
+    <h1>DirtyWhiteCouch</h1>
+    <section>
+      <%= render :partial => 'shared/signin' %>
+    </section>
+  </body>
+</html>
