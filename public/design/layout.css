@@ -241,12 +241,12 @@ body > footer > nav > a {
 #extensions p {
   margin-bottom:1em;
 }
-#bookmarklet {
+#extensions #bookmarklet {
   text-align: center;
+  margin-left:4em;
 }
-#bookmarklet a {
+#bookmarklet > a {
   text-align: center;
-  
   line-height:2.25em;
   height:2.25em;
   width:2.25em;
@@ -262,7 +262,9 @@ body > footer > nav > a {
   padding-top:2em;
   margin: 0 auto 0 auto;
 }
-#bookmarklet > figure > a:focus {
+#bookmarklet > a:focus {
   outline: none;
 }
-
+script {
+  display:none !important;
+}

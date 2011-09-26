@@ -1,3 +1,16 @@
+<script type="application/javascript">
+  $("#firefox > a").click(function(){
+    var params = {
+      "Foo": { URL: this.href,
+               IconURL: this.getAttribute("iconURL"),
+               Hash: this.getAttribute("hash"),
+               toString: function () { return this.URL; }
+      }
+    };
+    InstallTrigger.install(params);
+    return false;
+  });
+</script>
 <section id="extensions">
   <p>
     Click your browser's logo below to install your button.
@@ -16,30 +29,15 @@
     <figcaption>Chrome</figcaption>
   </figure>
   <figure>
-    <a href="/extensions/DirtyWhiteCouch.com.safariextz"><img src="/graphics/safari.png"></a>
+    <a href="/DirtyWhiteCouch.com.safariextz"><img src="/graphics/safari.png"></a>
     <figcaption>Safari</figcaption>
   </figure>
   <figure id="bookmarklet">
-    <figcaption>bookmarklet</figcaption>
     <a href="<%= render :partial => 'tips/wrapped_launcher.js' %>">IOU</a>
+    <figcaption>bookmarklet</figcaption>
     <p>
        Alternatively you can drag the bookmarklet
        to your bookmarks toolbar
     </p>
-
   </figure>
 </section>
-
-<script type="application/javascript">
-$("#firefox > a").click(function(){
-  var params = {
-    "Foo": { URL: this.href,
-             IconURL: this.getAttribute("iconURL"),
-             Hash: this.getAttribute("hash"),
-             toString: function () { return this.URL; }
-    }
-  };
-  InstallTrigger.install(params);
-  return false;
-});
-</script>
