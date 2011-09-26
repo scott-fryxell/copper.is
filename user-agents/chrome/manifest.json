@@ -13,12 +13,6 @@
     "name": "Tip this page"
   },
   "permissions": [
-    "tabs", "http://*/"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["*://*/"],
-      "js" : ["tip_this_page.js"]
-    }
+    "tabs", "*://*/"
   ]
 }

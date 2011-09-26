@@ -1,7 +1,9 @@
-<script>
-  chrome.browserAction.onClicked.addListener(function(tab) {
-    chrome.tabs.getSelected(null, function(tab) {
-      chrome.tabs.sendRequest(tab.id, {message: "tip_this_page"}, null);
-    });
-  });
-</script>
+<html lang="en_us">
+  <head>
+    <script>
+      chrome.browserAction.onClicked.addListener(function(tab) {
+        chrome.tabs.executeScript(null, {code:" var s = document.createElement('script'); s.src = 'http://dirtywhitecouch.com/tips/embed_iframe.js'; document.body.appendChild(s);"});
+      });
+    </script>
+  </head>
+</html>
