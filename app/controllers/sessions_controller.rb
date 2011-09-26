@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
     # session[:user_id] = nil
     cookies[:user_id] = {:value => nil, :expires => 90.days.ago, :domain => '.dirtywhitecouch.com'}
     redirect_to root_url, :notice => "Signed out!"
-  end  
-  
+  end
+
 
   def new
    if request.xhr?
