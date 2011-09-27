@@ -38,9 +38,9 @@ $(document).bind({
     $(document).trigger("notify", xhr, options);
   },
   "tip_error": function (event, xhr, options){
-    /*
-      TODO implement or remove.
-    */
+    $("section.alert > header > span").click(function(){
+      $(document).trigger("alert_end", xhr);
+    });
     $(document).trigger("alert_start", xhr);
     console.error("there was a tip error", xhr, event);
   },

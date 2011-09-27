@@ -26,7 +26,7 @@ body > section.notify {
   background:#FBF6F1;
   opacity:.95; 
   -webkit-box-shadow: 0 0.25em 3em #333;
-  -moz-box-shadow: .75em .75em 2.75em #333;
+  -moz-box-shadow: 0 0.25em 3em #333;
 }
 body > section.notify > img {
   display:inline-block;
@@ -59,15 +59,16 @@ body > section.notify > section > p[itemprop=description] {
 }
 
 body > section.alert {
-  -webkit-box-shadow: 1em 1.75em 2.75em silver;
-  -moz-box-shadow: 1em .75em 1.75em silver;
+  -webkit-box-shadow: 0 0.25em 3em #333;
+  -moz-box-shadow: 0 0.25em 3em #333;
   background-color: #FBF6F1;
   position:fixed;
   top: 50%;
   left: 50%;
-  width: 30%;
-  margin-left:-15%;
-  margin-top:-15%;
+  width: 30em;
+  height: 14em;
+  margin-left:-15em;
+  margin-top:-14em;
   border: .25em solid red;
   -moz-border-radius: 1em;
   border-radius: 1em;
@@ -81,16 +82,27 @@ body > section.alert p {
   text-shadow:none;
 }
   
-body > section.alert header h1 {
+body > section.alert header h1 {;
   text-align:center;
   font-size:2em;
   color:red;
   opacity:1;
+  margin-top:.5em;
+  margin-bottom:1em;
+}
+body > section.alert > header > img {
+  width:4em;
+  position:absolute;
+  top:1.5em;
+  left:1.5em;
 }
 body > section.alert > header > span {
+  font-size:2em;
+  margin-top:-.5em;
   float:right;
   color:red;
 }
+
 body > section.alert > header > span:hover {
   cursor:pointer;
 }
