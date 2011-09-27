@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
     else
       cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
     end
-    
-    redirect_to agent_url, :notice => "Signed In!"
+
+    redirect_to tips_url, :notice => "Signed In!"
   end
 
   def destroy
