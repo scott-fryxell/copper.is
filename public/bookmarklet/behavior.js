@@ -82,7 +82,7 @@ $(document).bind({
     $("section.notify").append(xhr.responseText);
     $("body").addClass("open");
 
-    $("section.notify").fadeIn(800).delay(2000).fadeOut(800, function(){
+    $("section.notify").fadeIn(800).delay(3000).fadeOut(800, function(){
       window.parent.postMessage("notify_complete",  "*");
       $("body").removeClass("open");
     });

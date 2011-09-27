@@ -18,13 +18,13 @@
   <div id="tip_rate" >
     <summary>Select your default tip rate</summary>
     <p>
-      You can always change this amount at the time you tip an author
+      <!-- You can always change this amount at the time you tip an author -->
     </p>
     <form action="" method="post" accept-charset="utf-8">
       <input name="_method" type="hidden" value="put">
       <input name="authenticity_token" type="hidden" value="<%=form_authenticity_token%>">
       <fieldset>
-        <label for="user_tip_preference_in_cents">Tip Rate</label>
+        <label for="user_tip_preference_in_cents">Tip rate</label>
         <select name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
           <option value="5">$0.05</option>
           <option value="10">$0.10</option>

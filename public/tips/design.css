@@ -29,6 +29,7 @@ form#new_tip > input {
   border-radius:.5em;
   color:red;
   font-weight:bold;
+  cursor:pointer;
 }
 form#new_tip > fieldset > label {
   display:block;

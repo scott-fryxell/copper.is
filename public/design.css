@@ -88,14 +88,19 @@ body > section > article > ul {
 
 }
 body > section > article > ul > li {
-  line-height:1.25em;
+  line-height:1.5em;
 }
 body > section > article > ul > li > a {
   text-decoration:underline;
 }
 
-body > section > article > ul > li > a > img{
-  padding-left: .5em;
+body > section > article > ul > li > img {
+  vertical-align:bottom;
+  text-decoration:none;
+  margin-left: .5em;
+  border: 1px solid #666;
+  padding:.25em;
+  border-radius:.25em;
 }
 body > section > figure {
   display:inline-block;
