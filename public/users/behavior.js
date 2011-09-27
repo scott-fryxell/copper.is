@@ -1,3 +1,4 @@
+window.parent.postMessage("reset_frame",  "*");
 $(document).ready(function () {
   $.get('/users/current.json', function(data) {
     var tip_rate = data.user.tip_preference_in_cents
@@ -33,5 +34,5 @@ $(document).ready(function () {
     });
 
   });
-  window.parent.postMessage("reset_frame",  "*");
+
 });
