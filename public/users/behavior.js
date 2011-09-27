@@ -33,5 +33,5 @@ $(document).ready(function () {
     });
 
   });
-
+  window.parent.postMessage("reset_frame",  "*");
 });

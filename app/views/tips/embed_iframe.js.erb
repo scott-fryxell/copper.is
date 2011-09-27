@@ -24,7 +24,7 @@
     document.body.appendChild(f);
     f.width='100%';
     f.height='100%';
-    f.style.zIndex='1000';
+    f.style.zIndex='9999999999999999';
     window.addEventListener('message',function(event) {
       // if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
         if (event.data == 'notify_complete') {
