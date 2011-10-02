@@ -7,28 +7,28 @@
     <em:id>tip@dirtywhitecouch.com</em:id>
     <em:version>1.0</em:version>
     <em:type>2</em:type>
-   
-    <!-- Target Application this extension can install into, 
-         with minimum and maximum supported versions. --> 
+
+    <!-- Target Application this extension can install into,
+         with minimum and maximum supported versions. -->
     <em:targetApplication>
       <Description>
         <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
         <em:minVersion>1.5</em:minVersion>
-        <em:maxVersion>6.*.*</em:maxVersion>
+        <em:maxVersion>9.*.*</em:maxVersion>
       </Description>
     </em:targetApplication>
-   
+
     <!-- Front End MetaData -->
     <em:name>DirtyWhiteCouch</em:name>
     <em:description>A test extension</em:description>
     <em:creator>Scott Fryxell</em:creator>
     <em:homepageURL>http://www.dirtywhitecouch.com/extensions</em:homepageURL>
-    
+
     <em:file>
       <Description
         about="urn:mozilla:extension:custombutton"
         em:package="content/custombutton/" />
     </em:file>
-  </Description>      
+  </Description>
 </RDF>
 
