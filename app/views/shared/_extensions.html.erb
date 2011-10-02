@@ -1,16 +1,3 @@
-<script type="application/javascript">
-  $("#firefox > a").click(function(){
-    var params = {
-      "Foo": { URL: this.href,
-               IconURL: this.getAttribute("iconURL"),
-               Hash: this.getAttribute("hash"),
-               toString: function () { return this.URL; }
-      }
-    };
-    InstallTrigger.install(params);
-    return false;
-  });
-</script>
 <section id="extensions">
   <p>
     Click your browser's logo below to install your button.
@@ -19,7 +6,7 @@
   <figure id="firefox">
     <a href="/extensions/DirtyWhiteCouch.xpi"
       iconURL="/graphics/firefox.png"
-      hash="sha1:8787d9dfdf1f5b87ce14503a11bf8a7fd6cb4bf0">
+      hash="sha1:69a5d17b85cd874225faa7cadfc8acbd794a99ec">
       <img src="/graphics/firefox.png"></a>
 
     <figcaption>Firefox</figcaption>
@@ -42,3 +29,16 @@
     <figcaption>bookmarklet</figcaption>
   </figure>
 </section>
+<script type="application/javascript">
+  $("#firefox > a").click(function(){
+    var params = {
+      "Foo": { URL: this.href,
+               IconURL: this.getAttribute("iconURL"),
+               Hash: this.getAttribute("hash"),
+               toString: function () { return this.URL; }
+      }
+    };
+    InstallTrigger.install(params);
+    return false;
+  });
+</script>

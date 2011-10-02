@@ -210,8 +210,16 @@ body > footer > nav > a {
   height:3em;
   font-size:5em;
   width:10em;
+  margin: 1em auto 0 auto;
+}
+#ie > div {
+  text-align:center;
   margin: 2em auto 1em auto;
 }
+#ie > div a {
+  padding-right: 1em;
+}
+
 
 #extensions figure {
   display:inline-block;

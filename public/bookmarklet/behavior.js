@@ -4,7 +4,7 @@ $(document).ready(function() {
   $(document).trigger("tip_submit");
 });
 $(document).bind({
-  "tip_determine": function (event, xhr, options){
+  "tip_determine": function (event, xhr, options) {
     var location = new String(window.location);
     //assumes loaded in an iframe with  the url to be tipped appended
     if(location.split("#/")[1] && location.split("&title=")[1] ){
@@ -18,14 +18,14 @@ $(document).bind({
     }
     console.debug("determine tip", FLB, location);
   },
-  "tip_token_get": function (event, xhr, options){
+  "tip_token_get": function (event, xhr, options) {
     // get authenticity token
     $.ajax({
       url: "/tips/new.js",
       async:false
     });
   },
-  "tip_submit": function (event, xhr, options){
+  "tip_submit": function (event, xhr, options) {
     if(FLB.tip.authenticity_token != null){
       $.ajax({
         url:"/tips",
@@ -34,24 +34,24 @@ $(document).bind({
       });
     }
   },
-  "tip_success": function (event, xhr, options){
+  "tip_success": function (event, xhr, options) {
     $(document).trigger("notify", xhr, options);
   },
-  "tip_error": function (event, xhr, options){
+  "tip_error": function (event, xhr, options) {
     $("section.alert > header > span").click(function(){
       $(document).trigger("alert_end", xhr);
     });
     $(document).trigger("alert_start", xhr);
     console.error("there was a tip error", xhr, event);
   },
-  "login_submit": function (event, options){
+  "login_submit": function (event, options) {
     $.post("/authenticate", $("section.workflow form").serialize());
     $(document).trigger("workflow_end");
   },
-  "login_get": function (event){
+  "login_get": function (event) {
     $("section.workflow ").load('/signin');
   },
-  "login_display": function (event){
+  "login_display": function (event) {
     $("section.workflow > form").submit(function (event){
       event.preventDefault();
       $(document).trigger("login_submit");
@@ -62,11 +62,11 @@ $(document).bind({
     $(document).trigger("notify");
     $("input[id=email]").delay(1200).focus();
   },
-  "login_success": function (event){
+  "login_success": function (event) {
     $(document).trigger("tip_token_get");
     $(document).trigger("tip_submit");
   },
-  "401": function (event, response, options){
+  "401": function (event, response, options) {
     $(document).trigger("login_get");
   },
   "ajaxComplete": function (event, xhr, options) {
