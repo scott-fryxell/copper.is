@@ -2,8 +2,8 @@
   <hgroup>
     <h1><%= current_user.name %></h1>
     <nav>
-      <a href="/users/current">account</a>
       <%= link_to "tips", tips_path %>
+      <a href="/users/current">account</a>
       <%= link_to "signout", signout_path %>
     </nav>
   </hgroup>
