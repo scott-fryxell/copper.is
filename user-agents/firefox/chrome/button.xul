@@ -13,7 +13,6 @@
     <toolbarbutton id="custom-button-1"/>
   </toolbarpalette>
 
-
   <!-- button details -->
   <toolbarbutton id="custom-button-1"
     label="Dirty White Couch"
