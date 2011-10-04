@@ -1,0 +1,114 @@
+<style type="text/css" media="screen">
+  #badge * {
+/*    outline: 2px solid gray;*/
+  }
+  body > aside {
+    display:inline-block;
+  }
+  body > aside > img {
+    margin-top:3em;
+    border-radius:.5em;
+    -webkit-box-shadow: 0 .75em 1.75em silver;
+    -moz-box-shadow: 0 .75em 1.75em silver;
+  }
+  #badge {
+    display:inline-block;
+    width:32em;
+  }
+  #badge > header {
+    width:auto;
+    display:inline-block;
+
+  }
+  #badge > header > p {
+    margin-top: 1em;
+  }
+  #badge > header > h1 {
+    font-size:2em;
+    line-height:1em;
+  }
+  #badge > header > hgroup {
+    display:inline-block;
+    margin:2em auto 0 2em;
+  }
+  section#badge > header > hgroup > h2 {
+    margin:2em 0;
+  }
+  #badge > header > hgroup > select {
+    display:inline-block;
+    margin-right:1em;
+  }
+  #badge > figure {
+    display:block;
+    margin: 2em 0;
+  }
+  #badge > figure img {
+    display:block;
+    margin: 1em auto;
+  }
+
+  #badge > figure > figcaption {
+    text-align:center;
+    cursor:pointer;
+    display:block;
+    margin: 2em auto;
+  }
+  #badge > figure > textarea {
+    vertical-align:bottom;
+    display:block;
+    font-size:1em;
+    margin:0;
+    padding:0;
+    width:30em;
+    height:10em;
+    margin: 1em auto;
+  }
+</style>
+<section id="badge">
+  <header>
+    <h1>Authors, use the badge on your site</h1>
+    <p>
+      Help spread the word by including our badge on pages you've created.
+    </p>
+    <p>
+      First select the kind of badge you want. Then press  "copy to clipboard".
+      You can then paste the code into any pages you'd like to see tipped.
+    </p>
+    <hgroup>
+      <label for="type">Logo Type</label>
+      <select name="type" id="type" size="1">
+        <option value="iou">IOU</option>
+        <option value="name">dirtywhitecouch</option>
+      </select>
+
+      <label for="color">Color</label>
+      <select name="color" id="color" size="1">
+        <option value="red">red</option>
+        <option value="gray">grey</option>
+        <option value="black">black</option>
+      </select>
+
+      <label for="size">size</label>
+      <select name="size" id="size" size="1">
+        <option value="50">50px</option>
+        <option value="100">100px</option>
+        <option value="200" selected>200px</option>
+        <option value="300">300px</option>
+      </select>
+    </hgroup>
+  </header>
+
+  <figure>
+
+    <img style="cursor:pointer; width:200px; height:200px"
+        src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/graphics/logo/iou/red.png"
+        onclick="<%= render :partial => 'tips/launcher.js' %>"/>
+
+    <figcaption>Copy to clipboard</figcaption>
+
+  </figure>
+
+</section>
+<aside>
+  <img src="/graphics/couch/4.png" alt="a couch">
+</aside>
