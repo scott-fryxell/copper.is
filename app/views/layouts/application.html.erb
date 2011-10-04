@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <a href="/"><img src="/graphics/main_logo.png" alt=""></a>
+      <a href="/"><img src="/graphics/logo/name/red.png" alt=""></a>
       <%= render :partial => 'shared/signin' %>
       <ol id="flash">
         <%- flash.each do |msg| -%>
@@ -23,11 +23,12 @@
     <%= yield %>
     <footer>
       <nav>
-        <a href="/about">About</a>
-        <a href="/blog">Blog</a>
-        <a href="/contact">Contact</a>
-        <a href="/terms">Terms</a>
-        <a href="/privacy">Privacy</a>
+        <a href="/about">about</a>
+        <a href="/blog">blog</a>
+        <a href="/badge">badge</a>
+        <a href="/contact">contact</a>
+        <a href="/privacy">privacy</a>
+        <a href="/terms">terms</a>
       </nav>
     </footer>
     <!--[if IE]>

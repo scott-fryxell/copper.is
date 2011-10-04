@@ -8,6 +8,7 @@ DirtyWhiteCouch::Application.routes.draw do
   get 'blog', :to => 'home#blog'
   get 'terms', :to => 'home#terms'
   get 'privacy', :to => 'home#privacy'
+  get 'badge', :to => 'home#badge'
   get 'button', :to => 'home#button'
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout

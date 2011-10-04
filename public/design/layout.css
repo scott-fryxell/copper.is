@@ -162,7 +162,6 @@ body > footer {
   vertical-align:middle;
   margin:0 1.5em;
   min-height: 3em;
-
 }
 body > footer > nav {
   vertical-align:top;
@@ -175,7 +174,7 @@ body > footer > nav > a {
   display:inline-block;
   margin-bottom: .25em;
   margin-right: 1em;
-  margin-left:4em;
+  margin-left:3em;
   font-size: 1.25em;
   text-shadow: 1px 1px 1px silver;
 }
@@ -236,6 +235,13 @@ body > footer > nav > a {
   display:block;
   margin-bottom:1em;
 }
+
+#extensions figure a.wtf {
+  padding:0;
+  margin:0;
+  display:inline;
+  text-decoration: underline;
+}
 #extensions > figure > a > img {
   text-align:center;
 }
@@ -258,8 +264,8 @@ body > footer > nav > a {
   width:2.25em;
   font-size: 2em;
   border: .10em solid #f60;
-  -moz-border-radius: .3em;
   border-radius: .3em;
+  -moz-border-radius: .3em;
   color: #F60;
   font-weight: normal;
   background-color: white;

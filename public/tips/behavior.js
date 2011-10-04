@@ -4,4 +4,6 @@ $(document).ready(function() {
     $(this).parent().parent().addClass('destroyed');
   });
 
+  jQuery('time').timeago();
+
 });

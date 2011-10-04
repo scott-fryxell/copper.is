@@ -25,6 +25,10 @@ class HomeController < ApplicationController
     render :action => 'button'
   end
 
+  def badge
+    render :action => 'badge'
+  end
+
 
   def safari
     send_file  Rails.public_path +  '/extensions/DirtyWhiteCouch.com.safariextz', :type => 'application/octet-stream', :disposition => 'inline', :filename=>'DirtyWhiteCouch.com.safariextz'
