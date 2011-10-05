@@ -4,6 +4,9 @@ html {
 html * {
   -webkit-margin-collapse: collapse;
 }
+script {
+  display:none !important;
+}
 
 body {
   width:58.5em;
@@ -219,6 +222,37 @@ body > footer > nav > a {
   padding-right: 1em;
 }
 
+#about_us {
+  display:block;
+  width:55em;
+  padding: 0 .25em;
+  margin-bottom:3em;
+}
+#about_us > article {
+  display:inline-block;
+  width: 30em;
+}
+#about_us > article > h1 {
+  font-size:2em;
+  margin-bottom:1em;
+}
+#about_us > article > p {
+  font-size:1.25em;
+  margin-bottom:.75em;
+  line-height:1.25em;
+}
+#about_us > figure {
+  vertical-align:top;
+  margin-top:3.5em;
+  display:inline-block;
+  margin-left: 4em;
+}
+#about_us > figure img {
+  border-radius: 1em;
+  -webkit-box-shadow: .75em .75em 1.75em silver;
+  -moz-box-shadow: .75em .75em 1.75em silver;
+}
+
 
 #extensions figure {
   display:inline-block;
@@ -235,7 +269,6 @@ body > footer > nav > a {
   display:block;
   margin-bottom:1em;
 }
-
 #extensions figure a.wtf {
   padding:0;
   margin:0;
@@ -245,11 +278,9 @@ body > footer > nav > a {
 #extensions > figure > a > img {
   text-align:center;
 }
-
 #extensions h1 {
   margin-bottom:1em;
 }
-
 #extensions p {
   margin-bottom:1em;
 }
@@ -280,6 +311,55 @@ body > footer > nav > a {
 #bookmarklet > a:focus {
   outline: none;
 }
-script {
-  display:none !important;
+
+#badge {
+  display:inline-block;
+  width:32em;
+}
+#badge > header {
+  width:auto;
+  display:inline-block;
+
+}
+#badge > header > p {
+  margin-top: 1em;
+}
+#badge > header > h1 {
+  font-size:2em;
+  line-height:1em;
+}
+#badge > header > form {
+  display:inline-block;
+  margin:2em auto 0 2em;
+}
+#badge > header > form > h2 {
+  margin:2em 0;
+}
+#badge > header > form > select {
+  display:inline-block;
+  margin-right:1em;
+}
+#badge > figure {
+  display:block;
+  margin: 2em 0;
+}
+#badge > figure img {
+  display:block;
+  margin: 1em auto;
+}
+#badge > figure > figcaption {
+  text-align:center;
+  cursor:pointer;
+  display:block;
+  margin: 2em auto;
+}
+#badge > figure > textarea {
+  vertical-align:bottom;
+  display:block;
+  font-size:1em;
+  margin:0;
+  padding:0;
+  width:30em;
+  height:10em;
+  margin: 1em auto;
 }
