@@ -14,13 +14,13 @@ describe "Patron" do
     end
 
     it "should have a page to manage account settings" do
-       
+
       with_user a_patron do
         # visit "/tips"
         # page.should have_content 'joe_fan'
       end
-      
-      
+
+
     end
 
   end

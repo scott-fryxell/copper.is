@@ -19,17 +19,19 @@
   <header>
     <h1>Authors, use the badge on your site</h1>
     <p>
-      Help spread the word by including our badge on pages you've created.
+      Invite your Fans to tip you for your work and help spread the
+      word by including our badge on pages you've created.
     </p>
     <p>
-      First select the kind of badge you want. Then press  "copy to clipboard".
-      You can then paste the code into any pages you'd like to see tipped.
+      First select the kind of badge you want. Then copy the contents
+      of the text are into your clipboard. You can then paste the 
+      code into any pages you'd like to see tipped.
     </p>
     <form>
       <label for="type">Logo Type</label>
       <select name="type" id="type" size="1">
-        <option value="iou">IOU</option>
         <option value="name">dirtywhitecouch</option>
+        <option value="iou">IOU</option>
       </select>
 
       <label for="color">Color</label>
@@ -41,25 +43,24 @@
 
       <label for="size">size</label>
       <select name="size" id="size" size="1">
-        <option value="50">50px</option>
+        <option value="75">75px</option>
         <option value="100">100px</option>
+        <option value="150">150px</option>
         <option value="200" selected>200px</option>
+        <option value="250">250px</option>
         <option value="300">300px</option>
       </select>
     </form>
   </header>
 
-  <figure>
-
-    <figcaption>Copy to clipboard</figcaption>
-  </figure>
+  <figure></figure>
   <script id="badge_template" type="text/x-jquery-tmpl">
-    <img style="cursor:pointer; width:${size}px;"
-      src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/graphics/logo/${type}/${color}.png"
-      onclick="<%= render :partial => 'tips/launcher.js' %>"/>
+    <img src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/graphics/logo/${type}/${color}.png"
+         style="cursor:pointer; width:${size}px;"
+         onclick="<%= render :partial => 'tips/launcher.js' %>">
   </script>
-
-
+  
+  <textarea name="badte_text" id="badge_text" rows="8" cols="40"></textarea>
 </section>
 <aside>
   <img src="/graphics/couch/4.png" alt="a couch">

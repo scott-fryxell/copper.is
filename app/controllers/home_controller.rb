@@ -25,8 +25,8 @@ class HomeController < ApplicationController
     render :action => 'button'
   end
 
-  def badge
-    render :action => 'badge'
+  def authors
+    render :action => 'authors'
   end
 
 

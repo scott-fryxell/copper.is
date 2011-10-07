@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe "The standard Weave page" do
   before(:each) do
     visit "/"
+    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:twitter] 
   end
 
   it "should contain a global nav section" do

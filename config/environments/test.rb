@@ -6,7 +6,7 @@ DirtyWhiteCouch::Application.configure do
   # your test database is "scratch space" for the test suite and is wiped
   # and recreated between test runs.  Don't rely on the data there!
   config.cache_classes = false
-  
+
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
 
@@ -32,4 +32,13 @@ DirtyWhiteCouch::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.mock_auth[:twitter] = {
+    'provider' => 'twitter',
+    'uid' => '123545'
+  }
+
 end
