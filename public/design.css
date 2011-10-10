@@ -93,7 +93,7 @@ body > section > article > ul > li > a {
   text-decoration:underline;
 }
 
-body > section > article > ul > li > img {
+body > section > article > ul > li > a >img {
   width:1em;
   vertical-align:bottom;
   text-decoration:none;
