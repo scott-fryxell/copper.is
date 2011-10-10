@@ -5,10 +5,10 @@ describe "Guest" do
 
   it "should not be availaBle" do
     visit "/tips/new"
-    page.should have_content('PERMISSION DENIED')
+    page.should have_content('Sign In With')
     visit "/tips"
-    page.should have_content("PERMISSION DENIED")
-    
+    page.should have_content('Sign In With')
+
   end
 
   describe "call to action" do
