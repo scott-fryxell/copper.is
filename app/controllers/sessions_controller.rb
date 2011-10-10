@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 
   def failure
     # render :text => request.env["omniauth.auth"].to_yaml
-    redirect_to "/", :notice => "It's cool."
+    redirect_to "/", :notice => "Login canceled"
   end
 
 
