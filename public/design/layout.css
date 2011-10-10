@@ -1,14 +1,19 @@
 html {
   line-height:18px;
+  background-color: gray;
 }
 html * {
   -webkit-margin-collapse: collapse;
+  color: #666;
+  text-shadow: 1px 1px 1px white;
+  background-color: transparent;
 }
 script {
   display:none !important;
 }
 
 body {
+  background-color: #FBF6F1;
   width:58.5em;
   min-height:5em;
   margin: 1em auto 1em auto;
@@ -16,14 +21,14 @@ body {
   border-radius: 1em;
   -moz-border-radius: 1em;
   padding-bottom:1em;
-  -webkit-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
+  -webkit-box-shadow: 0 0 8em rgba(0,0,0,.5);
   -moz-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
 }
+
 body a {
   text-decoration:none;
   font-weight:normal;
   -webkit-text-stroke-color:gray;
-  -webkit-text-stroke-width:.01em;
 }
 body a:hover {
   text-decoration: none;
@@ -340,13 +345,14 @@ body > footer > nav > a {
   margin-right:1em;
 }
 #badge > figure {
+  background-color:white;
   border:.15em solid #666;
   border-radius:.5em;
   margin-top:1em;
   text-align:center;
   display:block;
-  min-height: 18em;
-  line-height: 18em;
+  min-height: 20em;
+  line-height: 20em;
 }
 #badge > figure img {
   display:inline;

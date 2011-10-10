@@ -11,7 +11,7 @@ DirtyWhiteCouch::Application.routes.draw do
   get 'authors', :to => 'home#authors'
   get 'button', :to => 'home#button'
   match "/auth/:provider/callback" => "sessions#create"
-  match '/auth/failure' => 'services#failure'
+  match '/auth/failure' => 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
 
