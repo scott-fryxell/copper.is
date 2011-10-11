@@ -48,7 +48,7 @@ class TipsController < ApplicationController
         if request.xhr?
           render :action => 'error_ajax', :layout => false, :error => t("dirtywhitecouch.tip_failed")
         else
-          redirect_to tips_url, :error => t("dirtywhitecouch.tip_failed")
+          redirect_to tips_url, :notice => t("dirtywhitecouch.tip_failed")
         end
       end
   end

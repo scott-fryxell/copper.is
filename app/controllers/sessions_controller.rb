@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
     else
       cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
     end
-    
-    redirect_to "/users/current", :notice => "Signed In!"
+
+    redirect_to "/users/current", :notice => "Signed In"
   end
 
   def destroy
@@ -22,15 +22,13 @@ class SessionsController < ApplicationController
       cookies[:user_id] = {:value => nil, :expires => 90.days.ago}
     end
 
-    redirect_to root_url, :notice => "Signed out!"
+    redirect_to root_url, :notice => "Signed out"
   end
-
 
   def failure
     # render :text => request.env["omniauth.auth"].to_yaml
-    redirect_to "/", :notice => "Login canceled"
+    redirect_to "/", :notice => "Sign in canceled"
   end
-
 
   def new
     render :action => 'new', :layout => false
