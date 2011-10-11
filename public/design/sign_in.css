@@ -1,3 +1,40 @@
+html {
+  background-color: transparent;
+}
+#sign_in hgroup {
+  margin-bottom:1em;
+}
+body#sign_in {
+  position:fixed;
+  background-color:#FBF6F1;
+  left:50%;
+  top:50%;
+  height:20em;
+  width:20em;
+  margin-top:-10em;
+  margin-left:-10em;
+}
+body#sign_in > section {
+  text-align:center;
+}
+body#sign_in > h1 {
+  text-align:center;
+}
+body#sign_in hgroup > h1 {
+  color:red;
+  text-align:center;
+  font-weight:bold;
+  font-size:2em;
+}
+#sign_in hgroup > nav {
+  text-align:center;
+}
+#home{
+  font-weight:bold;
+  text-decoration: none;
+  color:silver;
+  font-size:2em;
+}
 .working {
   -webkit-animation-name:             rotate;
   -webkit-animation-duration:         0.5s;
