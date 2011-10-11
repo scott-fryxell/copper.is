@@ -3,6 +3,11 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'declarative_authorization/maintenance'
+require 'rspec'
+require 'rack/test'
+require 'omniauth'
+require 'omniauth/test'
+
 # require Rails.root.join("db/seeds.rb")
 include Authorization::TestHelper
 
@@ -20,5 +25,8 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-  
+
+  config.include Rack::Test::Methods
+  config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
+
 end

@@ -3,25 +3,12 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe "Patron" do
   fixtures :roles, :users, :roles_users
 
-  def a_patron
-    User.new(users(:a_fan))
-  end
-
 
   describe "account settings" do
     before(:each) do
-
     end
 
-    it "should have a page to manage account settings" do
-
-      with_user a_patron do
-        # visit "/tips"
-        # page.should have_content 'joe_fan'
-      end
-
-
-    end
+    it "should have a page to manage account settings"
 
   end
 
