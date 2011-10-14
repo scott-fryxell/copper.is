@@ -44,7 +44,7 @@ form#new_tip > fieldset > input {
   margin-bottom:1em;
 }
 
-table#tips  {
+table#tips {
   margin:1.5em;
   width:55em;
   height:00em;
@@ -60,9 +60,6 @@ table#tips > thead > tr > th:nth-child(3) {
   text-align:center;
 }
 
-table#tips > tbody > tr > td > a {
-  color:#222;
-}
 table#tips > tbody > tr > td:nth-child(2) {
   text-align:center;
 }

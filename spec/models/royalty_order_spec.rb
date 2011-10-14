@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe RoyaltyOrder do
-  fixtures :roles, :users, :roles_users,:tip_orders, :tips
+  fixtures :roles, :users, :roles_users, :tip_orders, :tips
 
   before(:each) do
     @order = RoyaltyOrder.new

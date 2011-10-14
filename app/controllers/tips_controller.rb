@@ -56,13 +56,10 @@ class TipsController < ApplicationController
     Tip.find(params[:id]).destroy()
     render :nothing => true, :status => :ok     
   end
-
   def embed_iframe
     render :action => 'embed_iframe.js', :layout => false
   end
-
   def agent
     render :action => 'agent', :layout => false
   end
-
 end

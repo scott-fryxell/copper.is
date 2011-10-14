@@ -1,10 +1,4 @@
-html {
-  background-color: transparent;
-}
-#sign_in hgroup {
-  margin-bottom:1em;
-}
-body#sign_in {
+#sign_in {
   position:fixed;
   background-color:#FBF6F1;
   left:50%;
@@ -14,28 +8,31 @@ body#sign_in {
   margin-top:-10em;
   margin-left:-10em;
 }
-body#sign_in > section {
+#sign_in > h1 {
   text-align:center;
 }
-body#sign_in > h1 {
+#sign_in > section {
   text-align:center;
 }
-body#sign_in hgroup > h1 {
+#sign_in > section > hgroup {
+  margin-bottom:1em;
+}
+#sign_in > section > hgroup > h1 {
   color:red;
   text-align:center;
   font-weight:bold;
   font-size:2em;
 }
-#sign_in hgroup > nav {
+#sign_in > section > hgroup > nav {
   text-align:center;
 }
-#home{
+#sign_in > section > #home{
   font-weight:bold;
   text-decoration: none;
   color:silver;
   font-size:2em;
 }
-.working {
+#sign_in .working {
   -webkit-animation-name:             rotate;
   -webkit-animation-duration:         0.5s;
   -webkit-animation-iteration-count:  infinite;
@@ -46,7 +43,6 @@ body#sign_in hgroup > h1 {
   -moz-animation-iteration-count:  infinite;
   -moz-transition-timing-function: ease-out;
 }
-
 @-webkit-keyframes rotate {
   from {
     -webkit-transform: rotate(0deg);
@@ -55,7 +51,6 @@ body#sign_in hgroup > h1 {
     -webkit-transform: rotate(360deg);
   }
 }
-
 @-moz-keyframes rotate {
   from {
     -moz-transform: rotate(0deg);

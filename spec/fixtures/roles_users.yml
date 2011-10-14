@@ -1,3 +1,3 @@
 one_patron:
-  user_id: <%= Fixtures.identify(:a_fan) %>
-  role_id: <%= Fixtures.identify(:patron) %>
+  user_id: <%= ActiveRecord::Fixtures.identify(:a_fan) %>
+  role_id: <%= ActiveRecord::Fixtures.identify(:patron) %>

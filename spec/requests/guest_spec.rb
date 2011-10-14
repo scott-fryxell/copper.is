@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Guest" do
-  fixtures :users, :roles_users
 
   it "should not be availaBle" do
     visit "/tips/new"
