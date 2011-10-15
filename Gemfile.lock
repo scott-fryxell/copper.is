@@ -130,6 +130,7 @@ GEM
       oa-more (= 0.3.0)
       oa-oauth (= 0.3.0)
       oa-openid (= 0.3.0)
+    pg (0.11.0)
     polyglot (0.3.2)
     pry (0.9.6.2)
       coderay (~> 0.9.8)
@@ -231,6 +232,7 @@ DEPENDENCIES
   guard-rspec
   jquery-rails
   omniauth (>= 0.2.6)
+  pg
   pry
   rails (= 3.1.0)
   rb-fsevent

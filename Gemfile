@@ -4,6 +4,10 @@ gem 'declarative_authorization'
 gem 'jquery-rails'
 gem 'omniauth', '>=0.2.6'
 
+group :production do
+  gem "pg"
+end
+
 group :development, :test do
   gem 'simplecov', :require => false
   gem 'rspec-rails'
