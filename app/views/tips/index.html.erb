@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-     <% @current_user.tips.each do |tip| %>
+     <% @current_user.active_tips.each do |tip| %>
        <tr>
          <td>
            <a href='<%= tip.locator.canonicalized %>' target='new'>

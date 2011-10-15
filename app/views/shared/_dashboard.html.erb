@@ -12,6 +12,9 @@
       </dd>
       <dt>Balance</dt>
       <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_order.tips.sum(:amount_in_cents)) %></dd>
+      <dt></dt>
+      <dd><a href="/users/current/pay" id="pay">Pay</a></dd>
     </dl>
+
   </aside>
 <% end %>

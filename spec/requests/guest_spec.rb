@@ -16,17 +16,17 @@ describe "Guest" do
     end
 
     it "should contain a reference to a design stylesheet" do
-      page.has_selector? "body > section > style"
+      page.should have_selector "body > section > style"
       page.should have_content 'import url(/design.css)'
     end
 
     describe "header" do
       it "should be displayed to new users" do
-        page.has_selector? "body > section > header"
+        page.should have_selector "body > section > header"
       end
 
       it "should contain a graphic about the service" do
-        page.has_selector? "body > section > header > figure > img"
+        page.should have_selector "body > section > header > figure > img"
       end
     end
 

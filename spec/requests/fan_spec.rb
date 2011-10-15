@@ -52,6 +52,11 @@ describe "Fan" do
     it "should display the number of current tips" do
       page.should have_content "Tips"
     end
+    it "should have an order button" do
+      page.should have_selector "#pay"
+      page.should have_content "Pay"
+      click_link 'pay'
+    end
   end
 
 end
