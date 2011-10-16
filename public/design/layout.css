@@ -174,7 +174,6 @@ body > footer {
 body > footer > nav {
   vertical-align:top;
   margin-top:.75em;
-  margin-right:2.5em;
   display:inline-block;
   min-height:2em;
 }
@@ -182,7 +181,7 @@ body > footer > nav > a {
   display:inline-block;
   margin-bottom: .25em;
   margin-right: 1em;
-  margin-left:2.75em;
+  margin-left:3em;
   font-size: 1.25em;
   text-shadow: 1px 1px 1px silver;
 }

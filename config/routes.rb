@@ -14,11 +14,8 @@ DirtyWhiteCouch::Application.routes.draw do
   match '/auth/failure' => 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
-
   match "/DirtyWhiteCouch.com.safariextz", :to => "home#safari"
-
   resources :tips
   resources :users
-
   root :to => 'home#index'
 end
