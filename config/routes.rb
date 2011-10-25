@@ -3,6 +3,7 @@ DirtyWhiteCouch::Application.routes.draw do
   get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe'
 
+
   get 'about', :to => 'home#about'
   get 'contact', :to => 'home#contact'
   get 'blog', :to => 'home#blog'
@@ -17,5 +18,6 @@ DirtyWhiteCouch::Application.routes.draw do
   match "/DirtyWhiteCouch.com.safariextz", :to => "home#safari"
   resources :tips
   resources :users
+  resources :tip_orders
   root :to => 'home#index'
 end

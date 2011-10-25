@@ -36,7 +36,7 @@ aside[itemtype="account"] > dl > dd > a {
 aside[itemtype="account"] > dl > dd > a:hover {
   text-decoration: underline;
 }
-aside[itemtype="account"] #pay {
+aside[itemtype="account"] a[href='/tip_orders/new'] {
   display:inline-block;
   padding:.25em 1em;
   border:.20em solid gray;
@@ -50,6 +50,6 @@ aside[itemtype="account"] #pay {
   padding: 0 1.5em;
   
 }
-#pay:hover {
+aside[itemtype="account"] a[href='/tip_orders/new']:hover {
   text-decoration:none;
 }

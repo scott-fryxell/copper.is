@@ -3,6 +3,7 @@ gem 'rails', '3.1.0'
 gem 'declarative_authorization'
 gem 'jquery-rails'
 gem 'omniauth', '>=0.2.6'
+gem 'stripe'
 
 group :production do
   gem "pg"

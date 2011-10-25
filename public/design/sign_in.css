@@ -1,13 +1,3 @@
-#sign_in {
-  position:fixed;
-  background-color:#FBF6F1;
-  left:50%;
-  top:50%;
-  height:20em;
-  width:20em;
-  margin-top:-10em;
-  margin-left:-10em;
-}
 #sign_in > h1 {
   text-align:center;
 }
