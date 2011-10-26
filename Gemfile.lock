@@ -69,6 +69,9 @@ GEM
       multi_json (~> 1.0.3)
     guard-rspec (0.5.0)
       guard (>= 0.8.4)
+    guard-spork (0.3.1)
+      guard (>= 0.8.4)
+      spork (>= 0.8.4)
     hike (1.2.1)
     i18n (0.6.0)
     jquery-rails (1.0.16)
@@ -202,6 +205,7 @@ GEM
       simplecov-html (~> 0.5.3)
     simplecov-html (0.5.3)
     slop (2.1.0)
+    spork (0.9.0.rc9)
     sprockets (2.0.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -232,6 +236,7 @@ DEPENDENCIES
   guard-bundler
   guard-livereload
   guard-rspec
+  guard-spork
   jquery-rails
   omniauth (>= 0.2.6)
   pg
@@ -240,5 +245,6 @@ DEPENDENCIES
   rb-fsevent
   rspec-rails
   simplecov
+  spork (> 0.9.0.rc)
   sqlite3-ruby
   stripe

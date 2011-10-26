@@ -1,32 +1,9 @@
 a_fan:
   name: joe_fan
   tip_preference_in_cents: 25
-
 a_developer:
   name: developer
   tip_preference_in_cents: 25
-
 an_administrator:
   name: administrator
   tip_preference_in_cents: 25
-
-patron_test: # active patron
-  name: order
-  tip_preference_in_cents: 25
-
-
-twitter_fan:
-  id: 123456
-  name: twitter_fan
-  tip_preference_in_cents: 25
-
-facebook_fan:
-  id: 234567
-  name: facebook_fan
-  tip_preference_in_cents: 25
-
-google_fan:
-  id: 345678
-  name: google_fan
-  tip_preference_in_cents: 25
-

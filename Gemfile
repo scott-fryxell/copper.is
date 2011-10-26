@@ -17,6 +17,9 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload'
+  gem 'guard-spork'
   gem 'pry'
   gem 'rb-fsevent'
+  gem 'spork', '> 0.9.0.rc'
+
 end

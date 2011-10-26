@@ -3,3 +3,9 @@ active_order:
 closed_order:
   fan: a_fan
   is_active: false
+twitter_order:
+  fan: twitter_fan
+facebook_order:
+  fan: facebook_fan
+twitter_order:
+  fan: google_fan
