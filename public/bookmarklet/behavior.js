@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  window.parent.postMessage("resize_frame",  "*");
   $(document).trigger("tip_determine");
   $(document).trigger("tip_token_get");
   $(document).trigger("tip_submit");
@@ -81,8 +82,7 @@ $(document).bind({
   "notify": function (event, xhr, options) {
     $("section.notify").append(xhr.responseText);
     $("body").addClass("open");
-
-    $("section.notify").fadeIn(800).delay(3000).fadeOut(800, function(){
+    $("section.notify").fadeIn(800).delay(3500).fadeOut(800, function(){
       window.parent.postMessage("notify_complete",  "*");
       $("body").removeClass("open");
     });

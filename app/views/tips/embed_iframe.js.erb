@@ -22,8 +22,8 @@
     f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/#/' +
       window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
     document.body.appendChild(f);
-    f.width='100%';
-    f.height='100%';
+    f.width='0';
+    f.height='0';
     f.style.zIndex='9999999999999999';
     window.addEventListener('message',function(event) {
       // if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
@@ -35,6 +35,12 @@
           frame = document.getElementById('dirtywhitecouch');
           frame.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/#/' +
             window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
+        }
+        else if (event.data == 'resize_frame'){
+          console.debug('resizing frame');
+          frame = document.getElementById('dirtywhitecouch');
+          f.width='100%';
+          f.height='100%';
         }
       // }
     }, false);

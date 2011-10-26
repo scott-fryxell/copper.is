@@ -66,6 +66,10 @@ table#tips > tbody > tr > td:nth-child(2) {
 table#tips > tbody > tr > td:nth-child(3) {
   text-align: center;
 }
+table#tips > tbody > tr > td:nth-child(3) span {
+  display:inline-block;
+  margin-right: 1em;
+}
 table#tips > tbody > tr > td:nth-child(3) form {
   cursor:pointer;
   display:inline;
@@ -96,7 +100,7 @@ table#tips > tbody > tr > td:nth-child(3) form > input:hover {
   -webkit-animation-name: none;
   -webkit-transition-property: all;
   -webkit-transition-duration:  1s;
-  
+
   color:white;
 }
 table#tips > tbody > tr > td > p {

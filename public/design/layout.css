@@ -60,7 +60,6 @@ body > header > a {
 body > header > a > img {
   width:3em;
 }
-
 body > header > hgroup {
   float:right;
   display:inline-block;
@@ -194,9 +193,10 @@ body > footer > nav > a {
 #privacy {
   margin:.5em;
 }
-#terms > ul{
+#terms > ul {
   margin:1em;
 }
+
 #ie {
   top:0;
   left:0;
@@ -208,7 +208,6 @@ body > footer > nav > a {
   background-color:black;
   color:silver;
 }
-
 #ie > h1 {
   font-weight:bold;
   text-align:center;
@@ -374,9 +373,6 @@ body > footer > nav > a {
   margin: 1em auto;
 }
 
-
-
-
 #blog {
   width: 56em;
 }
@@ -414,7 +410,6 @@ body > footer > nav > a {
   line-height:1.25em;
   margin-bottom:.5em;
 }
-
 #blog > figure {
   width:20em;
   vertical-align:top;
@@ -427,4 +422,3 @@ body > footer > nav > a {
   -webkit-box-shadow: 0 .75em 1.75em silver;
   -moz-box-shadow: 0 .75em 1.75em silver;
 }
-
