@@ -1,5 +1,18 @@
 <section id="blog">
   <style type="text/css" media="screen">
+    article {
+      border-bottom: .15em solid gray;
+      padding: 1em 0;
+    }
+    article > header {
+      font-size: 2em;
+      margin-bottom:1em;
+    }
+    article > header time{
+      font-size: .5em;
+      margin-bottom:1em;
+    }
+
     #blog {
       width: 56em;
     }
@@ -32,38 +45,121 @@
       -moz-box-shadow: 0 .75em 1.75em silver;
     }
   </style>
-  <article>
-      <h1 id='hello_world'>Hello world</h1>
+  <article id="mechanics">
+    <style type="text/css" media="screen">
+      #mechanics > h2 {
+        font-weight:bold;
+        font-size:1.25em;
+        margin-bottom:1em;
+      }
+      #mechanics > ol {
+        margin-left: 1em;
+        margin-bottom:1em;
+      }
+      #mechanics > ol > li {
+        font-size:1.25em;
+        line-height:1.25em;
+        margin-bottom:.5em;
+      }
+    </style>
+    <header>
+      <h1>How DirtyWhiteCouch works</h1>
+      <time datetime="2011-10-26T10:57:50-07:00">October 26, 2011</time>
+    </header>
 
-      <p>
-        I have this neighbor Carmen. She's from San Francisco,
-        like really from San Francisco. Her grandmother was
-        in the 1906 earthquake. She lives one floor down from me.
-        In the 50's she would ride the bus with her brother and sister.
-        They're light skinned. The bus driver wouldn't let them sit
-        together. Carmen would have to ride in the back.
-      </p>
-      <p>
-        I like carmen. She's lived in the same apartment
-        below and to the right of me for damn near 30 years.
-        she raised a family there. By her self.
-      </p>
-      <p>
-        About once a week she knocks on my door. She needs help
-        with bringing in a chair, or moving some rocks from her
-        trunk to the back yard (It's always wet back there and
-        nothing grows, but she takes care of it anyway). Afterwards,
-        and sometimes right then, she gives me food. It's rad.
-        I get to feel like I helped, and she doesn't owe anybody anything.
-      </p>
-      <footer>
-        Scott Fryxell <br/>
-        December 19 2010.
-      </footer>
+    <h2>For the Fan</h2>
+    <ol>
+      <li>A Fan signs in with in with Twitter, Facebook or Google,</li>
+      <li>installs the Tip button to their browser</li>
+      <li>by default tips are ¢25</li>
+    </ol>
+
+    <p>From the account section a fan can set their tip amount, give us their
+    credit card information, and agree to our terms and conditions.<p>
+
+    <p>now the Fan is free to tip anyone, any amount, any time they want.<p>
+
+    <p> The fan will also be able to look through our list of Authors to find
+    worthy recipients:) Once the Fan makes $5 in tips, DWC sends them an email
+    to put their $$ where their mouth is and be billed for the tipping they
+    have done. The Fan clicks the link in the email and is directed to DWC
+    where they agree to our Terms and input their credit card information and
+    payment preferences. Now, every time a Fan does their tipping and hits
+    their threshold amount, DWC will charge their card. After each charge to
+    the Fan's credit card, an email notification will be sent indicating
+    another $5 (or another amount of your choosing) has been tipped.</p>
+
+     <p>At this point, DWC forwards the tip onto the recipient of the tip
+    (Author)...and it works like this:</p>
+
+    <p> When the Author has been tipped $5, DWC notifies them with an email. If
+    the Author wants their $$, they go to DWC, register and set up their
+    account. Now their DWC account will automatically make a deposit into
+    their checking account quarterly. Funds that are not collected by Author
+    will be returned to the Fan's account to re-tip after 1 year (minus our
+    fee). The cycle is now complete...Fan has tipped Author for their job well
+    done.</p>
+
+
+    <h2>How DWC gets paid:</h2>
+
+    <p>DWC takes a commission between 5-20% of all tips made by
+    Fans and is based on how much the Fan tips during a month. Billing of the
+    Fan's credit card will only occur if more than $5 has been tipped.</p>
+
+    <h2>The schedule for our fee is the following:</h2>
+    <ol>
+      <li>Less than $10 - 20%</li>
+      <li>Between $10.01 and $20 - 15%</li>
+      <li>Between $20.01 and $40 - 10%</li>
+      <li>More than $40.01 - 5%</li>
+    </ol>
+
+    <h2>Discussion of Badges:</h2>
+
+    <p>If you're an Author that wants to get paid for doing your job, you can
+    easily add a DWC Badge to your webpage. You might be able to do this
+    yourself or more likely, your developer can add this in about 5 minutes.
+    Just go to the Authors page and select the type and size of the Badge you
+    want. Then copy the html shown and add it to pages that you would like to
+    see tipped. At this point, the Author is good to go and all people who hit
+    that Badge will be tipping the Author directly.</p>
+
+  </article>
+  <article id='hello_world'>
+    <header>
+      <h1>Hello world</h1>
+      <time datetime="2010-12-19T10:56:12-07:00">December 19 2010.</time>
+    </header>
+
+    <p>
+      I have this neighbor Carmen. She's from San Francisco,
+      like really from San Francisco. Her grandmother was
+      in the 1906 earthquake. She lives one floor down from me.
+      In the 50's she would ride the bus with her brother and sister.
+      They're light skinned. The bus driver wouldn't let them sit
+      together. Carmen would have to ride in the back.
+    </p>
+    <p>
+      I like carmen. She's lived in the same apartment
+      below and to the right of me for damn near 30 years.
+      she raised a family there. By her self.
+    </p>
+    <p>
+      About once a week she knocks on my door. She needs help
+      with bringing in a chair, or moving some rocks from her
+      trunk to the back yard (It's always wet back there and
+      nothing grows, but she takes care of it anyway). Afterwards,
+      and sometimes right then, she gives me food. It's rad.
+      I get to feel like I helped, and she doesn't owe anybody anything.
+    </p>
+    <footer>
+      Scott Fryxell <br/>
+
+    </footer>
   </article>
   <figure>
     <img src="/graphics/couch/2.png" >
 
   </figure>
-
 </section>
