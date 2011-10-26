@@ -10,8 +10,10 @@ class User < ActiveRecord::Base
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
+      user.provider_info = auth["user_info"]
       user.uid = auth["uid"]
       user.name = auth["user_info"]["name"]
+      user.email = auth["user_info"]["email"]
       user.roles << Role.find_by_name('Patron')
     end
   end
