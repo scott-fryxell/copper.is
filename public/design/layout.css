@@ -24,7 +24,6 @@ body {
   -webkit-box-shadow: 0 0 8em rgba(0,0,0,.5);
   -moz-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
 }
-
 body a {
   text-decoration:none;
   font-weight:normal;
@@ -36,7 +35,9 @@ body a:hover {
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
 }
-
+body p > a {
+  color:red;
+}
 body > section ,
 body > header ,
 body > nav ,
@@ -372,3 +373,58 @@ body > footer > nav > a {
   height:10em;
   margin: 1em auto;
 }
+
+
+
+
+#blog {
+  width: 56em;
+}
+#blog > article {
+  border-bottom: .15em solid gray;
+  padding: 1em 0;
+  display: inline-block;
+  width:30em;
+  margin-bottom: 1em;
+}
+#blog > article > header {
+  font-size: 2em;
+  margin-bottom:1em;
+}
+#blog > article > header time{
+  font-size: .5em;
+  margin-bottom:1em;
+}
+#blog > article > h2 {
+  font-weight:bold;
+  font-size:1.25em;
+  margin-bottom:1em;
+}
+#blog > article > p {
+  font-size:1.25em;
+  line-height:1.25em;
+  margin-bottom:1em;
+}
+#blog > article > ol {
+  list-style-type:circle;
+  margin-bottom:1em;
+}
+#blog > article > ol > li {
+  font-size:1.25em;
+  line-height:1.25em;
+  margin-bottom:.5em;
+}
+
+#blog > figure {
+  width:20em;
+  vertical-align:top;
+  margin-top:4em;
+  display:inline-block;
+  margin-left: 3em;
+}
+#blog > figure img {
+  border-radius: 1em;
+  -webkit-box-shadow: 0 .75em 1.75em silver;
+  -moz-box-shadow: 0 .75em 1.75em silver;
+}
+
