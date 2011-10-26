@@ -13,7 +13,7 @@
     <thead>
       <tr>
         <th>Tip history</th>
-        <th>Date</th>
+        <th>When</th>
         <th>Manage</th>
       </tr>
     </thead>
@@ -32,6 +32,7 @@
            <time datetime="<%= tip.created_at.getutc.iso8601 %>"><%= tip.created_at.strftime("%B %e, %Y") %></time>
          </td>
          <td>
+           <span>$<%= cents_to_dollars(tip.amount_in_cents) %></span>
            <form action='/tips/<%=tip.id%>' method="delete" target="interact">
              <input type="submit" name="submit" value="x">
            </form>
