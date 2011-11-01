@@ -3,7 +3,8 @@
     <h1><%= current_user.name %></h1>
     <nav>
       <%= link_to "tips", tips_path %>
-      <a href="/users/current">account</a>
+      <a href="/users/<%=current_user.id%>" style="display:none">account</a>
+      <a href="/button">button</a>
       <%= link_to "signout", signout_path %>
     </nav>
   </hgroup>
