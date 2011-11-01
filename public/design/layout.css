@@ -256,7 +256,9 @@ body > footer > nav > a {
   -webkit-box-shadow: .75em .75em 1.75em silver;
   -moz-box-shadow: .75em .75em 1.75em silver;
 }
-
+#extensions {
+  width:37em;
+}
 #extensions figure {
   display:inline-block;
   margin:1em;
@@ -276,7 +278,6 @@ body > footer > nav > a {
   padding:0;
   margin:0;
   display:inline;
-  text-decoration: underline;
 }
 #extensions > figure > a > img {
   text-align:center;
@@ -309,12 +310,25 @@ body > footer > nav > a {
 #bookmarklet > p {
   vertical-align:top;
   display:inline-block;
-  width:7em;
+  width:13em;
 }
 #bookmarklet > a:focus {
   outline: none;
 }
-
+#warning p {
+  margin-bottom:6em;
+}
+#warning > img {
+  margin-bottom:1em;
+  width:17em;
+}
+#warning {
+  vertical-align:top;
+  display:inline-block;
+  width:17em;
+  text-align:center;
+  margin-top:2em;
+}
 #badge {
   display:inline-block;
   width:32em;

@@ -21,12 +21,28 @@
   <figure id="bookmarklet">
     <a href="<%= render :partial => 'tips/wrapped_launcher.js' %>">IOU</a>
     <p>
-       Alternatively you can drag the <a class="wtf" href="http://en.wikipedia.org/wiki/Bookmarklet"  target="new" title="what the hell is a bookmarklet">bookmarklet</a>
-       to your bookmarks toolbar
+      If you are unsure about installing the Tip button
+      above as an extension, you can also drag this
+      <a class="wtf" href="http://en.wikipedia.org/wiki/Bookmarklet"
+        target="new" title="what the hell is a bookmarklet">bookmarklet</a>
+      to your Bookmarks Bar and the same functionality applies.
     </p>
     <figcaption>bookmarklet</figcaption>
   </figure>
 </section>
+<aside id="warning">
+  <img src="/graphics/circle_iou.png" alt="">
+  <p>
+    When installing browser extensions (from DWC or anyone) -
+    you may see warnings about potentially unsafe software. Our code is
+    <a href="https://github.com/scott-fryxell/DirtyWhiteCouch"
+        title="come see for your self">open source</a>
+    and we promise to never mess with your computer share personal
+    information.
+  </p>
+  <img src="/graphics/circle_bookmarklet.png" alt="">
+</aside>
+
 <script type="application/javascript">
   $("#firefox > a").click(function(){
     var params = {
