@@ -41,4 +41,20 @@ class UsersController < ApplicationController
       format.json  { render :json => @user.to_json }
     end
   end
+  
+  def pay
+    
+    # collect and save the parameters
+    current_user.accept_terms = params[:terms]
+    current_user.email = params[:email]
+    current_user.automatic_rebill = params[:rebill]
+
+    current_user.save
+    
+    current_user.active_tip_order.charge(params[:stripe_token])
+    
+    # email customer their reciept
+    
+    redirect_to tips_url, :notice => "Thank you. We've emailed you a detailed reciept"
+  end
 end

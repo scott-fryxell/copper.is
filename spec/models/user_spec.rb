@@ -13,12 +13,12 @@ describe User do
 
   it "should be a patron" do
     # TODO: when we sort out our fixture situation we should re test this
-    # users(:patron).roles.collect { |role| role.name }.should include("Patron")
+    # users(:a_fan).roles.collect { |role| role.name }.should include("Patron")
   end
 
   it "should have a tip rate" do
     users(:a_fan).tip_preference_in_cents.should_not be_nil
-    #amount_in_cents.should == 25
+    users(:a_fan).tip_preference_in_cents.should == 25
   end
 
   it "should allow a tip rate to be assigned to it" do
@@ -43,7 +43,8 @@ describe User do
   end
 
   describe "active_tips method" do
-    it "should return a list of active tips for a user with an active tip order" do
+
+    it "should return a list of tips for a user with an current tip order" do
       @user = users(:a_fan)
       @user.active_tips.should_not be_nil
       @user.active_tips.size.should be > 1
@@ -56,6 +57,33 @@ describe User do
       @user.active_tips.size.should be == 8
       @user.active_tips.should be_an_instance_of Array
     end
+  end
+
+  describe "creating a stripe account" do
+
+    it "should be able to retrieve a token from stripe.com" do
+      number = 4242424242424242
+      exp_month = 11
+      exp_year = 2014
+      cvc = 666
+      description = "testing creating a customer"
+      @user = users(:a_fan)
+      @user.stripe_customer_id.should be_nil
+      @user.create_stripe_token(number, exp_month, exp_year, cvc, description).should_not be_nil
+      @user.stripe_customer_id.should_not be_nil
+      @user.delete_stripe_customer
+    end
+    
+    it "should not create a customer with an invalid card" do
+      number = 424242424242
+      exp_month = 11
+      exp_year = 201
+      cvc = 666
+      description = "testing creating a customer"
+      @user = users(:a_fan)
+      lambda{@user.create_stripe_token(number, exp_month, exp_year, cvc, description)}.should raise_error
+    end
+    
   end
 
 end

@@ -4,7 +4,6 @@ body > section {
 body > section > h1 {
   margin: .5em 0 1em 0;
   font-size: 2em;
-  border-bottom: .15em solid gray;
   padding-top: 1em;
 }
 body > section > div {
@@ -31,34 +30,8 @@ body > section > div > summary > span {
   display: inline-block;
   float: right;
 }
-body > section > div > form {
-  margin-bottom: 2em;
-}
 body > section > div > p {
   margin: 1.75em 0;
-}
-body > section > div > form > input[type=submit] {
-  background-color: white;
-  font-size: 1em;
-  margin-top: 1em;
-  border: .15em solid #808080;
-  -moz-border-radius: .5em;
-  border-radius: .5em;
-}
-body > section > div > form label {
-width: 11em;
-margin-bottom: .5em;
-}
-body > section > div > form > fieldset > label,
-body > section > div > form > fieldset > input {
-  display: block;
-  font-size: 1.25em;
-  margin-right: 3em;
-}
-body > section > div > form > fieldset > input {
-  width: 15em;
-  margin-bottom: 1em;
-  background-color: white;
 }
 
 body > section > div.completed {
@@ -90,25 +63,49 @@ body > section > div[open=open] summary:after {
   float: right;
 }
 
-body.new_user > section > div.required {
-  background-color: red;
-  border-color: red;
-}
-body.new_user > section > div.required * {
-  color: white;
-}
-body.new_user > section > div.required > summary:after {
-  color: white;
-}
-
-body > section > div#tip_rate > form > fieldset > label {
+#account > form > fieldset > label {
   display: inline-block;
   width: 5em;
 }
-body > section > div#tip_rate > form > fieldset > select {
+#account > form > fieldset > select {
   display: inline-block;
   margin-left: 1em;
   background-color: white;
   font-size: 1.25em;
 }
+#account > form > fieldset {
+  margin: 1em 0;
+  font-size:1em;
+}
+#account > form > fieldset > legend {
+  margin:0;
+  padding:0;
+}
+#account > form > fieldset > label {
+  width:8em;
+}
+#account > form > fieldset > input {
+  margin: 1em 0;
+}
+#account > form > fieldset > #cvc {
+  margin-left: 1em;
+  width:2em
+
+}
+#account > form > fieldset#credit_card {
+  margin-top:2em;
+  border:.15em solid gray;
+  padding:1em;
+}
+#account > form > fieldset > label[for=cvc] {
+  width:2em;
+  margin-left: 8em;
+  margin-right: 0em;
+}
+#account > form > fieldset > label[for=card_month] {
+  width:2em;  
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
 

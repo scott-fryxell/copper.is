@@ -6,3 +6,10 @@
   <p itemprop="description"><%= CGI::unescape(@tip.locator.page.description) %></p>
 </section>
 <%= render :partial => 'shared/dashboard' %>
+
+<%if current_user.time_to_pay?%>
+  <script type="text/javascript" charset="utf-8">
+    window.open('<%= user_url(current_user) %>')
+  </script>
+<%end%>
+  

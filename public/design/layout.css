@@ -35,7 +35,8 @@ body a:hover {
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
 }
-body p > a {
+body p > a,
+body form a {
   color:red;
 }
 body > section ,
@@ -315,6 +316,7 @@ body > footer > nav > a {
 #bookmarklet > a:focus {
   outline: none;
 }
+
 #warning p {
   margin-bottom:6em;
 }
@@ -329,6 +331,7 @@ body > footer > nav > a {
   text-align:center;
   margin-top:2em;
 }
+
 #badge {
   display:inline-block;
   width:32em;

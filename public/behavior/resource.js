@@ -1,3 +1,6 @@
+$(document).ready(function() {
+  $(document).trigger(window.location.hash);
+});
 
 $('form[target=interact]').live("submit", function (event){
   event.preventDefault();
@@ -25,7 +28,6 @@ $('form[target=interact]').live("submit", function (event){
   else{
     post_data = 'resource=' + JSON.stringify(resource);
   }
-
 
   var form = this
   var action = $(this).attr("action");
@@ -56,17 +58,14 @@ $('form[target=interact]').live("submit", function (event){
 
   });
 });
-$('body *[rel=interact]').live("click", function (event){
 
-  $(document).trigger("get:" + this.hash, [this]);
-  if(jQuery.browser.msie){
-    event.preventDefault();
-  }
-  else {
-    history.pushState(null, '', this.href);
-  }
+$('a[target=interact]','menu > a').live("click", function (event){
+  $(document).trigger(this.hash, [this]);
+  $(document).trigger(this.href, [this]); //TODO: unless we're already on this page
+  history.pushState(null, '', this.href);
   event.preventDefault();
 });
+
 function determine_value(property){
   if($(property).attr("itemvalue")){
     return $(property).attr("itemvalue")
@@ -96,17 +95,14 @@ function determine_value(property){
 function update_property(property, value){
 
   if($(property).attr("itemvalue")){
-    //this jamms up selecting a font
-    // $(property).attr("itemvalue", value)
+    $(property).attr("itemvalue", value)
   }
   else if( 'INPUT' ==  property.tagName ){
     $(property).attr('value', value);
   }
   else if( 'TEXTAREA' ==  property.tagName ){
-
     $(property).val($.trim(value));
   }
-
   else if( 'A' == property.tagName ){
     $(property).attr('href', value);
   }
@@ -117,7 +113,6 @@ function update_property(property, value){
     $(property).attr('src', value);
   }
   else {
-    // console.debug("else element:", property.tagName)
     return $(property).text(value);
   }
 }

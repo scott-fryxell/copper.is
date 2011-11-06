@@ -1,3 +1,5 @@
+
+
 class User < ActiveRecord::Base
 
   has_many :tips, :through => :tip_orders
@@ -10,7 +12,7 @@ class User < ActiveRecord::Base
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
-      user.provider_info = auth["user_info"]
+      user.provider_info = auth["extra"]["user_hash"]
       user.uid = auth["uid"]
       user.name = auth["user_info"]["name"]
       user.email = auth["user_info"]["email"]
@@ -34,7 +36,6 @@ class User < ActiveRecord::Base
   end
 
   def rotate_tip_order!
-    
     TipOrder.update(active_tip_order.id, :is_active => false)
     TipOrder.create(:fan => self)
   end
@@ -43,7 +44,7 @@ class User < ActiveRecord::Base
     tip_orders.find(:first, :conditions => ["is_active = ?", true]) || TipOrder.new(:fan => self)
   end
 
-  def tip(url_string, description = 'new page')
+  def tip(url_string, description = url_string)
     locator = Locator.find_or_init_by_url(url_string)
     amount_in_cents = self.tip_preference_in_cents
 
@@ -51,7 +52,7 @@ class User < ActiveRecord::Base
       locator.page = Page.create(:description => description) unless locator.page
 
       tip = Tip.new(:locator         => locator,
-                    :tip_order      => active_tip_order,
+                    :tip_order       => active_tip_order,
                     :amount_in_cents => amount_in_cents
                     )
       if tip.valid?
@@ -65,6 +66,34 @@ class User < ActiveRecord::Base
     end
   end
 
+  def create_stripe_customer (card_token)
+    if self.stripe_customer_id
+      customer = Stripe::Customer.retrieve(self.stripe_customer_id)
+    else
+      customer = Stripe::Customer.create(
+        :description => description,
+        :card => card_token
+      )
+      self.stripe_customer_id = customer.id
+    end
+    return customer;
+  end
+
+  def delete_stripe_customer
+    if self.stripe_customer_id
+      customer = Stripe::Customer.retrieve(self.stripe_customer_id)
+      customer.delete
+    end  
+  end
+
+  def active_tips_in_dollars
+    cents_to_dollars(self.active_tip_order.tips.sum(:amount_in_cents))    
+  end
+  
+  def time_to_pay?
+    self.active_tip_order.tips.sum(:amount_in_cents) >= 1000
+  end
+  
   private
 
 end

@@ -16,13 +16,37 @@ body > section > header {
   padding:1.25em 0;
 }
 
+body > section > header > h1 {
+  font-size:2em;
+  text-align: center;
+  color: red;
+  margin-bottom:.5em;
+}
 form#new_tip {
-  margin:1em 13.5em 1em 1.5em;
+  margin:1em 1em 1em 5.5em;
   display:inline-block;
   vertical-align:top;
 }
+form#new_tip > label {
+  display:inline-block;
+  vertical-align:top;
+  font-size: 2em;
+  line-height:1em;
+  margin-right:.5em;
+}
 form#new_tip > input {
-  padding:.25em 2em;
+  display:inline-block;
+  background-color:white;
+  vertical-align:top;
+  line-height:2em;
+  width: 20em;
+  height: 2em;
+  border:.25em solid gray;
+}
+form#new_tip > input[type=submit] {
+  margin-left:.5em;
+  height:2.5em;
+  width:5em;
   border:.25em solid gray;
   background-color:white;
   -moz-border-radius:.5em;
@@ -31,23 +55,12 @@ form#new_tip > input {
   font-weight:bold;
   cursor:pointer;
 }
-form#new_tip > fieldset > label {
-  display:block;
-  margin-bottom:1em;
-  font-size: 2em;
-}
-form#new_tip > fieldset > input {
-  background-color:white;
-  width: 30em;
-  height: 2em;
-  border:.25em solid gray;
-  margin-bottom:1em;
-}
+
 
 table#tips {
   margin:1.5em;
   width:55em;
-  height:00em;
+  height:0em;
 }
 table#tips > thead {
 }
@@ -55,6 +68,10 @@ table#tips > thead > tr > th {
   font-size: 2em;
   height:1.5em;
 }
+table#tips > thead > tr > th:first-child {
+  min-width:10em;
+}
+
 table#tips > thead > tr > th:nth-child(2),
 table#tips > thead > tr > th:nth-child(3) {
   text-align:center;
@@ -111,4 +128,36 @@ table#tips > tbody > tr > td > p {
 table#tips > tbody > tr > td a.locator {
   margin-left:.5em;
   margin-bottom:1em;
+}
+
+table#tips > tfoot {
+  border-top:.15em solid gray;  
+}
+table#tips > tfoot > tr {
+  height:2em;
+}
+table#tips > tfoot > tr > td {
+  padding:1em;
+  font-size:2em;
+  height:2em;
+}
+table#tips > tfoot > tr > td:first-child {
+  text-align:right
+}
+
+menu{
+ display:none;
+  margin-left:1em;
+}
+menu > a {
+  display:inline-block;
+  margin-right:.5em;
+  border-radius:.5em;
+  font-size:.5em;
+  border:.15em solid gray;
+  padding:.2em;
+  min-width:2em;
+  text-align:center;
+  color:#666;
+  opacity:.8;
 }

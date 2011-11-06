@@ -33,4 +33,10 @@ class HomeController < ApplicationController
   def safari
     send_file  Rails.public_path +  '/extensions/DirtyWhiteCouch.com.safariextz', :type => 'application/octet-stream', :disposition => 'inline', :filename=>'DirtyWhiteCouch.com.safariextz'
   end
+  
+  
+  def admin
+    render :action => 'admin'
+  end
+  
 end

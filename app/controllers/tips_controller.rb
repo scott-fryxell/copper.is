@@ -53,7 +53,11 @@ class TipsController < ApplicationController
       end
   end
   def destroy
-    Tip.find(params[:id]).destroy()
+    tip = Tip.find(params[:id])
+
+    if(tip.tip_order.fan == current_user)
+      tip.destroy
+    end
     render :nothing => true, :status => :ok     
   end
   def embed_iframe

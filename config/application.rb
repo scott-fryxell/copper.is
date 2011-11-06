@@ -13,7 +13,7 @@ module DirtyWhiteCouch
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
-    # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
+    # config.plugins = [ :exception_notification, :ssl_requirement, )) ]
 
     # Activate observers that should always be running.
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
@@ -34,17 +34,32 @@ module DirtyWhiteCouch
     config.active_record.timestamped_migrations = false
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    
+
     config.autoload_paths += %W(#{config.root}/extras)
+    config.active_record.timestamped_migrations = false
 
     config.twitter_consumer_key = ENV['TWITTER_CONSUMER_KEY']
     config.twitter_consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
-    config.active_record.timestamped_migrations = false
+
     config.facebook_app_id = ENV['FACEBOOK_APP_ID']
     config.facebook_app_secret = ENV['FACEBOOK_APP_SECRET']
-    # config.rpx_app_name = ENV['RARS_RPX_APP_NAME']
+
+    config.stripe_publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
+    config.stripe_secret_key = ENV['STRIPE_SECRET_KEY']
+
+    config.dwc_session_key = ENV['DWC_SECRET_KEY']
+
     raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless DirtyWhiteCouch::Application.config.twitter_consumer_key
     raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless DirtyWhiteCouch::Application.config.twitter_consumer_secret
+
+    raise "facebook app id must be defined ENV['FACEBOOK_APP_ID']" unless DirtyWhiteCouch::Application.config.facebook_app_id
+    raise "facebook secret key must be defined ENV['FACEBOOK_APP_SECRET']" unless DirtyWhiteCouch::Application.config.facebook_app_secret
+
+    raise "stripe publishable key must be defined ENV['STRIPE_PUBLISHABLE_KEY']" unless DirtyWhiteCouch::Application.config.stripe_publishable_key
+    raise "stripe secret key must be defined ENV['STRIPE_SECRET_KEY']" unless DirtyWhiteCouch::Application.config.stripe_secret_key
+
+    raise "session key must be defined ENV['DWC_SESSION_KEY']" unless DirtyWhiteCouch::Application.config.dwc_session_key
+
 
   end
 end

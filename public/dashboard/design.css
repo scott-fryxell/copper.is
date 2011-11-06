@@ -1,4 +1,5 @@
 aside[itemtype="account"] {
+  vertical-align:top;
   display: inline-block;
   padding:1em;
 }
@@ -8,26 +9,21 @@ aside[itemtype="account"] > h1 {
   font-size:1.5em;
 }
 aside[itemtype="account"] > dl {
-  width: 15em;
+  width: 20em;
   margin-left:1em;
 }
 aside[itemtype="account"] > dl > dt {
-  font-size: 1.25em;
+  font-size: 1.5em;
   font-weight:normal;
-  width:8em;
-  margin-bottom:.5em;
+  width:10em;
+  margin-bottom:1em;
   display:inline-block;
 }
 aside[itemtype="account"] > dl > dd {
-  text-align:right;
+  text-align:center;
   font-size:1.5em;
   width:3em;
   display:inline-block;
-}
-
-aside[itemtype="account"] > dl > dd:nth-child(8){
-  text-align:right;
-  float:right;
 }
 aside[itemtype="account"] > dl > dd > a {
   text-decoration: none;
@@ -36,20 +32,84 @@ aside[itemtype="account"] > dl > dd > a {
 aside[itemtype="account"] > dl > dd > a:hover {
   text-decoration: underline;
 }
-aside[itemtype="account"] a[href='/tip_orders/new'] {
-  display:inline-block;
-  padding:.25em 1em;
-  border:.20em solid gray;
-  background-color:white;
-  -moz-border-radius:.5em;
-  border-radius:.5em;
-  padding: .25em 2em;
+aside[itemtype="account"] > dl > dt.total {
+  font-weight:bold;
   color:red;
+}
+aside[itemtype="account"] > dl > dd[itemprop="total_charge"] {
+  font-size:1.5em;
+  font-weight:bold;
+  color:red;
+}
+
+#credit_card {
+  width:17.5em;
+  margin-top:.75em;
+  margin-left:14em;
+  display:inline-block;
+}
+#credit_card > legend {
+  font-size:1.5em;
+  margin-bottom:1em;
+}
+#credit_card > fieldset {
+  margin-bottom:1em;
+}
+#credit_card > fieldset.pay * {
+  margin-bottom:.5em;
+}
+#credit_card > fieldset > input[type=submit] {
+  float:right;
+  color:red;
+  border:.15em solid #666;
+  border-radius:.5em;
+  padding:.25em 1em;
+  font-size:1.15em;
+  margin-top:.5em;
+  margin-right:.75em;
   cursor:pointer;
-  font-size:.5em;
-  padding: 0 1.5em;
-  
 }
-aside[itemtype="account"] a[href='/tip_orders/new']:hover {
-  text-decoration:none;
+#credit_card > fieldset > input {}
+#credit_card > fieldset > label {
+  font-size:1.15em;
+  display:block;
+  width:6em;
 }
+#credit_card > fieldset > input {
+  font-size:1.15em;
+  border:.15em solid #666;
+  border-radius:.5em;
+  padding:.25em;
+}
+#credit_card > fieldset > select {
+  border:.1em solid #666;
+  padding:.25em;
+  font-size:1.15em;
+}
+#credit_card > fieldset > select#month {
+  width:9.15em;
+  margin-right:.75em;
+}
+#credit_card > fieldset > input#email {
+  width:14em;
+}
+#credit_card > fieldset > input#cvc {
+  width:2.15em;
+  margin-left:.5em;
+}
+#credit_card > fieldset > label[for=site_terms],
+#credit_card > fieldset > label[for=rebill]{
+  display:inline-block;
+  width:8.75em;
+} 
+
+input[disabled] {opacity:.5}
+
+.invalid {
+  border:.20em solid red !important;
+}
+input[type=checkbox].invalid{
+  outline:.20em solid red !important;
+}
+
+*:focus{}

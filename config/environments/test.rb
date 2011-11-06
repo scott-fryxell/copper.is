@@ -13,21 +13,36 @@ DirtyWhiteCouch::Application.configure do
     'provider' => 'twitter',
     'uid' => '123545',
     'user_info' => {
-      'name' => 'twitter_fan'
+      'name' => 'twitter_fan',
+      'email' => 'user@twitter.com',
+    },
+    'extra' => {
+      'user_hash' => 'twitter magic'
     }
+
   }
   OmniAuth.config.mock_auth[:facebook] = {
     'provider' => 'facebook',
     'uid' => '234567',
     'user_info' => {
-      'name' => 'facebook_fan'
+      'name' => 'facebook_fan',
+      'email' => 'user@facebook.com',
+    },
+    'extra' => {
+      'user_hash' => 'facebook magic'
     }
+
   }
   OmniAuth.config.mock_auth[:google] = {
     'provider' => 'google',
     'uid' => '234567',
     'user_info' => {
-      'name' => 'google_fan'
+      'name' => 'google_fan',
+      'email' => 'user@google.com',
+      },
+    'extra' => {
+      'user_hash' => 'google magic'
+
     }
   }
 end

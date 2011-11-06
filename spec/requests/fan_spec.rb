@@ -20,6 +20,11 @@ describe "Fan" do
     it "should display the current value of each tip" do
       page.should have_content "$0.25"
     end
+    it "Should have a section for adding an email" do
+      page.should have_content "Email"
+    end
+    it "Should have a section for adding an credit card number"
+
   end
 
   describe "tips page" do
@@ -33,28 +38,21 @@ describe "Fan" do
     end
     it "should be able to tip a page" do
       fill_in "uri", :with => "http://www.google.com"
-      click_button "IOU"
+      click_button "Tip"
       page.should have_selector "body > section > table > tbody > tr > td", :content => "http://www.google.com/"
     end
     it "should thank users when a tip is successfully given" do
       fill_in "uri", :with => "http://www.google.com"
-      click_button "IOU"
+      click_button "Tip"
       page.should have_content "Tip successfully created."
     end
     it "should not allow a URL without a host to be tipped" do
       fill_in "uri", :with => "foobar"
-      click_button "IOU"
+      click_button "Tip"
       page.should have_content "Tip is not a valid URL."
-    end
-    it "should link to a tip page for a fan" do
-      page.should have_content "Paste a Tip"
     end
     it "should display the number of current tips" do
       page.should have_content "Tips"
-    end
-    it "should have an order button" do
-      page.should have_content "Pay"
-      click_link 'Pay'
     end
   end
 

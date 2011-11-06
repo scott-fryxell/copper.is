@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 19) do
 
   create_table "locators", :force => true do |t|
     t.string   "scheme"
@@ -69,11 +70,11 @@ ActiveRecord::Schema.define(:version => 11) do
   add_index "sites", ["fqdn"], :name => "index_sites_on_fqdn", :unique => true
 
   create_table "tip_orders", :force => true do |t|
-    t.boolean  "is_active",         :default => true
+    t.boolean  "is_active",    :default => true
     t.integer  "fan_id"
-    t.integer  "billing_period_id", :default => 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "charge_token"
   end
 
   create_table "tip_royalties", :force => true do |t|
@@ -85,8 +86,6 @@ ActiveRecord::Schema.define(:version => 11) do
   end
 
   create_table "tips", :force => true do |t|
-    t.text     "url"
-    t.integer  "user_id"
     t.integer  "amount_in_cents"
     t.string   "note"
     t.integer  "tip_order_id",    :null => false
@@ -99,9 +98,14 @@ ActiveRecord::Schema.define(:version => 11) do
     t.string   "name"
     t.string   "provider"
     t.string   "uid"
-    t.integer  "tip_preference_in_cents", :default => 50, :null => false
+    t.integer  "tip_preference_in_cents", :default => 50,    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.text     "provider_info"
+    t.string   "stripe_customer_id"
+    t.boolean  "accept_terms",            :default => false
+    t.boolean  "automatic_rebill",        :default => false
   end
 
 end

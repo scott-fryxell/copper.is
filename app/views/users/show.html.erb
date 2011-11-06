@@ -1,42 +1,49 @@
 <% title "Edit User" %>
-
-<section>
+<section id="account">
   <style>
     @import url("/users/design.css");
   </style>
   <script src="/users/behavior.js"></script>
-  <h1>Setting things up</h1>
-  <p>
-    Configure your account by clicking on each section.
-  </p>
-  <div class="required">
-    <summary>
-      Install your browser's Tip button
-    </summary>
-    <%= render :partial => 'shared/extensions' %>
-  </div>
-  <div id="tip_rate" >
-    <summary>Select your default tip rate</summary>
-    <p>
-      <!-- You can always change this amount at the time you tip an author -->
-    </p>
-    <form action="" method="post" accept-charset="utf-8">
-      <input name="_method" type="hidden" value="put">
-      <input name="authenticity_token" type="hidden" value="<%=form_authenticity_token%>">
-      <fieldset>
-        <label for="user_tip_preference_in_cents">Tip rate</label>
-        <select name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
-          <option value="5">$0.05</option>
-          <option value="10">$0.10</option>
-          <option value="25">$0.25</option>
-          <option value="50">$0.50</option>
-          <option value="75">$0.75</option>
-          <option value="100">$1.00</option>
-          <option value="200">$2.00</option>
-          <option value="300">$3.00</option>
-          <option value="500">$5.00</option>
-        </select>
-      </fieldset>
-    </form>
-  </div>
+
+  <h1>Account</h1>
+    
+  <%= form_for @user do |f| %>
+    <input type="hidden" name="user[stripe_customer_id]" value="<%=current_user.stripe_customer_id%>">
+
+    <fieldset>
+      <label for="user_email">Email</label>
+      <input type="email" name="user[email]" value="<%=current_user.email%>">
+    </fieldset>
+
+    <fieldset>
+      <label for="user_tip_preference_in_cents">Tip rate</label>
+      <select name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
+        <option value="5">$0.05</option>
+        <option value="10">$0.10</option>
+        <option value="25">$0.25</option>
+        <option value="50">$0.50</option>
+        <option value="75">$0.75</option>
+        <option value="100">$1.00</option>
+        <option value="200">$2.00</option>
+        <option value="300">$3.00</option>
+        <option value="500">$5.00</option>
+      </select>
+    </fieldset>
+
+    <fieldset id="credit_card">
+      <legend>Credit Card</legend> 
+      <label for="name">Name on Card</label>
+      <input type="text" size="20" autocomplete="off" id="name" value="scott fryxell"/>
+      <label for="number">Card Number</label>
+      <input type="text" size="20" autocomplete="off" id="number" value="4242424242424242"/>
+      <label for="cvc">CVC</label>
+      <input type="text" size="4" autocomplete="off" id="cvc" value="666"/>
+      <%= label_tag :card_month, "Exp" %>
+      <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "month"}%>
+      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "year"}%>
+    </fieldset>
+
+    <%= f.submit "Save" %>
+  <% end %>
+
 </section>

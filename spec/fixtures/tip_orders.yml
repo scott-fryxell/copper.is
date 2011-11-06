@@ -7,5 +7,5 @@ twitter_order:
   fan: twitter_fan
 facebook_order:
   fan: facebook_fan
-twitter_order:
+google_order:
   fan: google_fan

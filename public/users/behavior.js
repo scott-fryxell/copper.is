@@ -4,7 +4,6 @@ $(document).ready(function () {
     var tip_rate = data.user.tip_preference_in_cents
     var option = $('#tip_rate > form > fieldset > select > option[value=' + tip_rate +']')
     option.attr('selected', true)
-
     $('#tip_rate > form').attr('action', '/users/' + data.user.id)
   });
 

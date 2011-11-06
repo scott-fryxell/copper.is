@@ -46,3 +46,35 @@ c4:
   tip_order: closed_order
   locator: awesome_locator
   amount_in_cents: 25
+twitter_tip_01:
+  tip_order: twitter_order
+  locator: awesome_locator
+  amount_in_cents: 100
+twitter_tip_02:
+  tip_order: twitter_order
+  locator: awesome_locator
+  amount_in_cents: 100
+twitter_tip_03:
+  tip_order: twitter_order
+  locator: awesome_locator
+  amount_in_cents: 100
+twitter_tip_04:
+  tip_order: twitter_order
+  locator: awesome_locator
+  amount_in_cents: 100
+twitter_tip_05:
+  tip_order: twitter_order
+  locator: awesome_locator
+  amount_in_cents: 100
+twitter_tip_06:
+  tip_order: twitter_order
+  locator: awesome_locator
+  amount_in_cents: 100
+twitter_tip_07:
+  tip_order: twitter_order
+  locator: awesome_locator
+  amount_in_cents: 100
+twitter_tip_08:
+  tip_order: twitter_order
+  locator: awesome_locator
+  amount_in_cents: 100

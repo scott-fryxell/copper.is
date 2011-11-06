@@ -102,5 +102,34 @@ describe TipOrder do
 
       total.should == 75
     end
+
+  end
+  describe "paying for an order of tips" do
+    before(:each) do
+      number = 4242424242424242
+      exp_month = 11
+      exp_year = 2014
+      cvc = 666
+      description = "Charging a fan"
+
+      @user = users(:twitter_fan)
+      @user.create_stripe_token(number, exp_month, exp_year, cvc, description)
+      @user.save
+    end
+
+    after(:each) do
+      @user.delete_stripe_customer
+    end
+
+    it "should charge the fan for his tips" do
+      @order = @user.active_tip_order
+      @user.rotate_tip_order!
+      users(:twitter_fan).active_tip_order.should_not == @order
+      @order.tips.size.should == 8
+      @order.tips.sum(:amount_in_cents).should == 800
+      @order.charge.should_not be_nil
+      @order.charge_token.should_not be_nil
+    end
+
   end
 end

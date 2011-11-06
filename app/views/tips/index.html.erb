@@ -1,18 +1,27 @@
 <section>
   <header>
-    <%= form_for(@tip) do |f| %>
-      <fieldset>
-        <label for="uri">Paste a Tip</label>
+    <% if current_user.time_to_pay? %>
+      <h1>It's time to pay for your tips</h1>
+      <%= render :partial => 'shared/credit_card' %>
+    <%else%>    
+      <%= render :partial => 'shared/dashboard' %>
+      <%= form_for(@tip) do |f| %>
+        <label for="uri">URL</label>
         <input type="text" name="tip[uri]" value="" id="uri" />
-      </fieldset>
-      <%= f.submit 'IOU' %>
-    <% end %>
-    <%= render :partial => 'shared/dashboard' %>
+        <%= f.submit 'Tip' %>
+      <% end %>
+    <%end%>
   </header>
   <table id="tips">
     <thead>
       <tr>
-        <th>Tip history</th>
+        <th>
+          <span>Tips</span> 
+          <menu>
+            <a href="#current_tips">Current</a>
+            <a href="#all_tips">All</a>
+          </menu>
+        </th>
         <th>When</th>
         <th>Manage</th>
       </tr>

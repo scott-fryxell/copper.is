@@ -3,7 +3,7 @@
     <h1><%= current_user.name %></h1>
     <nav>
       <%= link_to "tips", tips_path %>
-      <a href="/users/<%=current_user.id%>" style="display:none">account</a>
+      <a href="<%=user_url(current_user)%>" style="display:none">account</a>
       <a href="/button">button</a>
       <%= link_to "signout", signout_path %>
     </nav>
@@ -12,9 +12,9 @@
   <hgroup id="sign_in">
     <h1>Sign In With</h1>
     <nav>
-      <a id="twitter_sign_in" href="/auth/twitter"><img src="/graphics/twitter_64.png" alt="Sign in with twitter"></a>
-      <a id="facebook_sign_in" href="/auth/facebook"><img src="/graphics/facebook_64.png" alt="Sign in with facebook"></a>
-      <a id="google_sign_in" href="/auth/google"><img src="/graphics/google_64.png" alt="Sign in with google"></a>
+      <a id="twitter_sign_in" href="/auth/twitter"><img src="/graphics/twitter_64.png" alt="Twitter"></a>
+      <a id="facebook_sign_in" href="/auth/facebook"><img src="/graphics/facebook_64.png" alt="facebook"></a>
+      <a id="google_sign_in" href="/auth/google"><img src="/graphics/google_64.png" alt="google"></a>
     </nav>
   </hgroup>
 <% end %>

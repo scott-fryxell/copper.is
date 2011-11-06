@@ -1,9 +1,15 @@
 a_fan:
   name: joe_fan
   tip_preference_in_cents: 25
+  email: joe@test.com
 a_developer:
   name: developer
   tip_preference_in_cents: 25
 an_administrator:
   name: administrator
   tip_preference_in_cents: 25
+twitter_fan:
+  name: twitter
+  tip_preference_in_cents: 25
+  created_at: <%= 30.days.ago%>
+  
