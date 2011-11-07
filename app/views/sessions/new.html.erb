@@ -5,11 +5,10 @@
     <script src="/behavior/jquery.js"></script>
     <style type="text/css" media="screen">
       html {
-        background-color: transparent;
+        background-color:#FBF6F1;
       }
       #sign_in {
         position:fixed;
-        background-color:#FBF6F1;
         left:50%;
         top:50%;
         height:20em;
@@ -18,6 +17,9 @@
         margin-left:-10em;
       }
     </style>
+    <script type="text/javascript" charset="utf-8">
+      window.parent.postMessage("resize_frame",  "*");
+    </script>
   </head>
   <body id="sign_in">
     <h1>DirtyWhiteCouch</h1>
