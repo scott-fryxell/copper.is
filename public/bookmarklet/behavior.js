@@ -85,7 +85,7 @@ $(document).bind({
     $("section.notify").fadeIn(800).delay(3500).fadeOut(800, function(){
       console.debug("time to pay?",FLB.time_to_pay )
       if(FLB.time_to_pay){
-        window.open('/users/current');
+        window.open('/tips');
       }
       window.parent.postMessage("notify_complete",  "*");
       $("body").removeClass("open");

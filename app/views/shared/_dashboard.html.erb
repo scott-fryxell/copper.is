@@ -7,22 +7,7 @@
       <dt>Tips</dt>
       <dd itemprop="tips"><%= link_to current_user.active_tips.count, tips_path %></dd>
       <dt>Rate</dt>
-      <dd itemprop="rate">
-        <form id="tip_rate" method="post" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
-          <input name="authenticity_token" type="hidden">
-          <select name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
-            <option value="5">$0.05</option>
-            <option value="10">$0.10</option>
-            <option value="25">$0.25</option>
-            <option value="50">$0.50</option>
-            <option value="75">$0.75</option>
-            <option value="100">$1.00</option>
-            <option value="200">$2.00</option>
-            <option value="300">$3.00</option>
-            <option value="500">$5.00</option>
-          </select>
-        </form>
-      </dd>
+      <dd itemprop="rate">$<%= cents_to_dollars(current_user.tip_preference_in_cents)%></dd>
       <dt>Balance</dt>
       <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_order.tips.sum(:amount_in_cents)) %></dd>
     </dl>

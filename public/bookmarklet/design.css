@@ -51,8 +51,7 @@
   display:inline-block;
   vertical-align:top;
   border-right:.25em solid black;
-
-  min-height:9.5em;
+  min-height:12em;
 }
 #popup > section.notify > section * {
   -webkit-transition-property: all;
