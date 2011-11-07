@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
     end
 
-    redirect_to "/users/current", :notice => "Signed In"
+    redirect_to "/tips", :notice => "Signed In"
   end
   def destroy
     # session[:user_id] = nil
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
   end
   def failure
     # render :text => request.env["omniauth.auth"].to_yaml
-    redirect_to "/", :notice => "Sign in canceled"
+    redirect_to "/", :notice => "Sign in failed"
   end
   def new
     render :action => 'new', :layout => false
