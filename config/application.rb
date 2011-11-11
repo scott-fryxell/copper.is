@@ -49,6 +49,8 @@ module DirtyWhiteCouch
 
     config.dwc_session_key = ENV['DWC_SECRET_KEY']
 
+    config.email_password = ENV['EMAIL_PASSWORD']
+
     raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless DirtyWhiteCouch::Application.config.twitter_consumer_key
     raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless DirtyWhiteCouch::Application.config.twitter_consumer_secret
 
@@ -59,6 +61,8 @@ module DirtyWhiteCouch
     raise "stripe secret key must be defined ENV['STRIPE_SECRET_KEY']" unless DirtyWhiteCouch::Application.config.stripe_secret_key
 
     raise "session key must be defined ENV['DWC_SESSION_KEY']" unless DirtyWhiteCouch::Application.config.dwc_session_key
+
+    raise "email password be defined ENV['EMAIL_PASSWORD']" unless DirtyWhiteCouch::Application.config.email_password
 
 
   end

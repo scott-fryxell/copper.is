@@ -1,7 +1,4 @@
-
-
 class User < ActiveRecord::Base
-
   has_many :tips, :through => :tip_orders
   has_many :tip_orders, :foreign_key => "fan_id"
 
@@ -89,11 +86,8 @@ class User < ActiveRecord::Base
   def active_tips_in_dollars
     cents_to_dollars(self.active_tip_order.tips.sum(:amount_in_cents))    
   end
-  
-  def time_to_pay?
-    self.active_tip_order.tips.sum(:amount_in_cents) >= 1000
-  end
-  
+
+
   private
 
 end

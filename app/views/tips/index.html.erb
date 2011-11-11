@@ -1,59 +1,44 @@
 <section>
   <header>
-    <% if current_user.time_to_pay? %>
+    <% if current_user.active_tip_order.time_to_pay? %>
       <h1>It's time to pay for your tips</h1>
       <%= render :partial => 'shared/credit_card' %>
-    <%else%>    
+    <%else%>
       <%= render :partial => 'shared/dashboard' %>
-      <%= form_for(@tip) do |f| %>
-        <label for="uri">URL</label>
-        <input type="text" name="tip[uri]" value="" id="uri" />
-        <%= f.submit 'Tip' %>
-      <% end %>
+      <hgroup>
+        <%= form_for(@tip) do |f| %>
+          <label for="uri">URL</label>
+          <input type="text" name="tip[uri]" value="" id="uri" autofocus />
+          <%= f.submit 'Tip' %>
+        <% end %>
+      </hgroup>
     <%end%>
   </header>
+
   <table id="tips">
     <thead>
       <tr>
         <th>
-          <span>Tips</span> 
-          <menu>
-            <a href="#current_tips">Current</a>
-            <a href="#all_tips">All</a>
-          </menu>
+          <span>Tips</span>
+          <%if current_user.tip_orders.count > 1 %>
+          <nav id="tip_views">
+            <a href="/tips?all=true#all_tips" id="all_tips">All</a>
+            <a href="/tips#active_tips" id="active_tips">Active</a>
+          </nav>
+          <%end%>
         </th>
         <th>When</th>
         <th>Manage</th>
       </tr>
     </thead>
     <tbody>
-     <% @current_user.active_tips.each do |tip| %>
-       <tr>
-         <td>
-           <a href='<%= tip.locator.canonicalized %>' target='new'>
-            <%= CGI::unescape(tip.locator.page.description) %>
-           </a>
-           <p>
-            <%= tip.note %>
-           </p>
-         </td>
-         <td>
-           <time datetime="<%= tip.created_at.getutc.iso8601 %>"><%= tip.created_at.strftime("%B %e, %Y") %></time>
-         </td>
-         <td>
-           <span>$<%= cents_to_dollars(tip.amount_in_cents) %></span>
-           <form action='/tips/<%=tip.id%>' method="delete" target="interact">
-             <input type="submit" name="submit" value="x">
-           </form>
-         </td>
-       </tr>
-     <% end %>
+      <%= render :partial => 'shared/tips', :object => @tips %>
     </tbody>
   </table>
+  <style>
+    @import url(/tips/design.css);
+  </style>
+  <script src="/behavior/jquery.timeago.js"></script>
+  <script src="/tips/behavior.js"></script>
 </section>
-<style>
-  @import url(/tips/design.css);
-</style>
-<script src="/behavior/jquery.timeago.js"></script>
-<script src="/tips/behavior.js"></script>
 

@@ -1,0 +1,43 @@
+aside[itemtype="order"] {
+  vertical-align:top;
+  display: inline-block;
+  padding:1em;
+}
+aside[itemtype="order"] > h1 {
+  margin-top:0;
+  margin-bottom:.5em;
+  font-size:1.5em;
+}
+aside[itemtype="order"] > dl {
+  width: 20em;
+  margin-left:1em;
+}
+aside[itemtype="order"] > dl > dt {
+  font-size: 1.5em;
+  font-weight:normal;
+  width:10em;
+  margin-bottom:1em;
+  display:inline-block;
+}
+aside[itemtype="order"] > dl > dd {
+  text-align:center;
+  font-size:1.5em;
+  width:3em;
+  display:inline-block;
+}
+aside[itemtype="order"] > dl > dd > a {
+  text-decoration: none;
+  color:gray;
+}
+aside[itemtype="order"] > dl > dd > a:hover {
+  text-decoration: underline;
+}
+aside[itemtype="order"] > dl > dt.total {
+  font-weight:bold;
+  color:red;
+}
+aside[itemtype="order"] > dl > dd[itemprop="total_charge"] {
+  font-size:1.5em;
+  font-weight:bold;
+  color:red;
+}

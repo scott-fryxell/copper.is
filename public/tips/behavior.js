@@ -1,12 +1,15 @@
 window.parent.postMessage("reset_frame",  "*");
 
 $(document).ready(function() {
+  if(window.location.hash == ""){
+    $(document).trigger('#active_tips');
+  }
   
   $("input[name='authenticity_token']").val($('meta[name=csrf-token]').attr('content'));
   $.get('/users/current.json', function(data) {
     var tip_rate = data.user.tip_preference_in_cents
     var option = $('form#tip_rate > select > option[value=' + tip_rate +']')
-    option.attr('selected', true)
+    option.attr('selected', true);
   });
 
   $('form#tip_rate > select').change(function (event) {
@@ -29,11 +32,10 @@ $(document).ready(function() {
 
 });
 
-
-$(document).bind("#current_tips", function(event){
-  // 
+$(document).bind("#all_tips", function(event){
+  $('#active_tips').css('opacity', '.5');
 });
 
 $(document).bind("#active_tips", function(event){
-  // display all the active tips
+  $('#all_tips').css('opacity', '.5');
 });

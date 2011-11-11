@@ -1,0 +1,20 @@
+<style>
+  @import url(/design/dashboard.css);
+</style>
+<aside itemscope="true" itemtype="order">
+  <dl>
+    <dt>Tips</dt>
+    <dd itemprop="tips"><%=order_info.tips.count%></dd>
+
+    <dt>Subtotal</dt>
+    <dd itemprop="subtotal">$<%= cents_to_dollars(order_info.subtotal) %></dd>
+
+    <dt>Fees</dt>
+    <dd itemprop="fees">$<%= cents_to_dollars(order_info.fees) %></dd>
+
+    <dt class="total">Total</dt>
+    <dd itemprop="total_charge">
+      $<%= cents_to_dollars(order_info.total) %>
+    </dd>
+  </dl>
+</aside>

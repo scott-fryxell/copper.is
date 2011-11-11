@@ -2,11 +2,17 @@ class TipsController < ApplicationController
   filter_access_to :index, :create, :edit, :update, :destroy, :new, :embed_iframe, :agent, :attribute_check => false
   def index
     @tip = Tip.new
-    @tips = current_user.active_tips
+
+    if params[:all]
+      @tips = current_user.tips
+    else
+      @tips = current_user.active_tips
+    end
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @tips }
+      format.json { render :json => @tips }
     end
   end
   def update
@@ -55,10 +61,10 @@ class TipsController < ApplicationController
   def destroy
     tip = Tip.find(params[:id])
 
-    if(tip.tip_order.fan == current_user)
+    if(tip.tip_order.fan == current_user && tip.tip_order.is_active)
       tip.destroy
     end
-    render :nothing => true, :status => :ok     
+    render :nothing => true, :status => :ok
   end
   def embed_iframe
     render :action => 'embed_iframe.js', :layout => false

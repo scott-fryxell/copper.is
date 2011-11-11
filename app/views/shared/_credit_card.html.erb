@@ -5,45 +5,28 @@
 </script>
 <!-- 4242424242424242 -->
 <style>
-  @import url(/dashboard/design.css);
+  @import url(/design/credit_card.css);
 </style>
-<aside itemscope="true" itemtype="account">
-  <dl>
-    <dt>Tips</dt>
-    <dd itemprop="tips"><%=current_user.active_tips.count%></dd>
-
-    <dt>Subtotal</dt>
-    <dd itemprop="subtotal">$<%= cents_to_dollars(current_user.active_tip_order.tips.sum(:amount_in_cents)) %></dd>
-
-    <dt>Fees</dt>
-    <dd itemprop="fees">$<%= cents_to_dollars(current_user.active_tip_order.tips.sum(:amount_in_cents)/10) %></dd>
-
-    <dt class="total">Total</dt>
-    <dd itemprop="total_charge">
-      $<%= cents_to_dollars(current_user.active_tip_order.tips.sum(:amount_in_cents)/10 + current_user.active_tip_order.tips.sum(:amount_in_cents)) %>
-    </dd>
-  </dl>
-</aside>
+<%= render :partial => 'shared/order_info', :object => current_user.active_tip_order %>
 
 <form method="post" action="/users/pay" id="credit_card">
   <fieldset>
-    <input type="email" name="email" required id="email" placeholder="Email" autofocus/>
+    <input type="email" name="email" required id="email" placeholder="Email"  autofocus value="<%=current_user.email%>"/>
     <input type="hidden" id="total_in_cents" value="<%=current_user.active_tip_order.tips.sum(:amount_in_cents)/10 + current_user.active_tip_order.tips.sum(:amount_in_cents)%>" />
-
   </fieldset>
   <fieldset>
-    <input type="text" size="20" autocomplete="off" id="number" placeholder="Card Number" required />
-    <input type="text" size="3" autocomplete="off" id="cvc" placeholder="CVC"  required />
+    <input type="text" autocomplete="off" id="number" placeholder="Card Number" required />
+    <input type="text" autocomplete="off" id="cvc" placeholder="CVC"  required />
   </fieldset>
   <fieldset>
     <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "month"}%>
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "year"}%>
   </fieldset>
   <fieldset class="pay">
-  	<input type="checkbox"  name="terms" id="site_terms" value="true" />
+  	<input type="checkbox"  name="terms" id="site_terms" value="true" <%= "checked" if current_user.accept_terms? %> />
     <label for="site_terms">I accept the <a href="/terms" target="window">terms</a></label>
     <input type="submit" value="Pay" />
-    <input type="checkbox" name="rebill" id="rebill" value="true"/>
+    <input type="checkbox" name="rebill" id="rebill" value="true" <%= "checked" if current_user.automatic_rebill? %> />
     <label for="rebill">Bill me automatically</label>
   </fieldset>
 </form>

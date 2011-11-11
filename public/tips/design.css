@@ -22,6 +22,12 @@ body > section > header > h1 {
   color: red;
   margin-bottom:.5em;
 }
+
+body > section > header > hgroup {
+  display:inline-block;
+  vertical-align:top;
+}
+
 form#new_tip {
   margin:1em 1em 1em 5.5em;
   display:inline-block;
@@ -56,6 +62,24 @@ form#new_tip > input[type=submit] {
   cursor:pointer;
 }
 
+nav#tip_views {
+  display:inline-block;
+  vertical-align:top;
+  margin-left:.5em;
+}
+
+nav#tip_views > a {
+  font-size:.5em;
+  margin: 0 .5em;
+  padding:.15em .5em;
+  border: .15em solid gray;
+  border-radius:.5em;
+  color:red;
+}
+
+nav#tip_views > a:hover {
+  opacity:1 !important;
+}
 
 table#tips {
   margin:1.5em;
@@ -131,7 +155,7 @@ table#tips > tbody > tr > td a.locator {
 }
 
 table#tips > tfoot {
-  border-top:.15em solid gray;  
+  border-top:.15em solid gray;
 }
 table#tips > tfoot > tr {
   height:2em;

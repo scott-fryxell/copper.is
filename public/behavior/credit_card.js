@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
   $("#credit_card").submit(function(event) {
-    $("header > h1").text("working...");
+    $("header > h1").text("Processing your order...");
     event.preventDefault();
     $('#credit_card input[type=submit]').attr("disabled", "disabled"); // disable the submit button to prevent repeated clicks
 
@@ -55,7 +55,7 @@ $(document).ready(function() {
       $('#credit_card input[type=submit]').removeAttr("disabled");
       return false;
     } else {
-      $("header > h1").text("Working...");
+      $("header > h1").text("Processing your order...");
     }
 
     Stripe.createToken({

@@ -28,12 +28,18 @@ body a {
   text-decoration:none;
   font-weight:normal;
   -webkit-text-stroke-color:gray;
+  -moz-text-stroke-color:gray;
 }
 body a:hover {
   text-decoration: none;
   -webkit-animation-name: pulse-red;
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
+
+  -moz-animation-name: pulse-red;
+  -moz-animation-duration: 3s;
+  -moz-animation-iteration-count: infinite;
+
 }
 body p > a,
 body form a {
@@ -257,6 +263,7 @@ body > footer > nav > a {
   -webkit-box-shadow: .75em .75em 1.75em silver;
   -moz-box-shadow: .75em .75em 1.75em silver;
 }
+
 #extensions {
   width:37em;
 }
@@ -388,6 +395,7 @@ body > footer > nav > a {
   width:30em;
   height:10em;
   margin: 1em auto;
+  border:.15em solid gray;
 }
 
 #blog {

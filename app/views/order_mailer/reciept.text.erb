@@ -1,0 +1,23 @@
+Thanks for your payment!
+
+Your tips are now being sent along to your selected Authors. 
+
+If for some reason the Author does not accept their tip in the next 2 years
+your money will be credited back to your account.
+
+-The DWC team
+
+    
+Order Details:
+
+Order number: <%= @order.id%>
+
+Tips: <%=@order.tips.count%>
+
+Subtotal: $<%= cents_to_dollars(@order.tips.sum(:amount_in_cents)) %>
+
+Fees: $<%= cents_to_dollars(@order.tips.sum(:amount_in_cents)/10) %>
+
+Total: $<%= cents_to_dollars(@order.tips.sum(:amount_in_cents)/10 + @order.tips.sum(:amount_in_cents)) %>
+
+    

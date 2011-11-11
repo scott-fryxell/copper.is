@@ -1,6 +1,7 @@
 class InvalidTipURL < Exception ; end
 
 class Tip < ActiveRecord::Base
+  default_scope :order => 'created_at DESC'
   belongs_to :tip_order
   belongs_to :locator, :counter_cache => true
   has_one :site, :through => :locator
