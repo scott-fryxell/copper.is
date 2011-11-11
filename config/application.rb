@@ -60,7 +60,7 @@ module DirtyWhiteCouch
     raise "stripe publishable key must be defined ENV['STRIPE_PUBLISHABLE_KEY']" unless DirtyWhiteCouch::Application.config.stripe_publishable_key
     raise "stripe secret key must be defined ENV['STRIPE_SECRET_KEY']" unless DirtyWhiteCouch::Application.config.stripe_secret_key
 
-    raise "session key must be defined ENV['DWC_SESSION_KEY']" unless DirtyWhiteCouch::Application.config.dwc_session_key
+    raise "session key must be defined ENV['DWC_SECRET_KEY']" unless DirtyWhiteCouch::Application.config.dwc_session_key
 
     raise "email password be defined ENV['EMAIL_PASSWORD']" unless DirtyWhiteCouch::Application.config.email_password
 

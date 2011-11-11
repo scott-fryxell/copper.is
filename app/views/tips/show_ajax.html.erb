@@ -7,7 +7,7 @@
 </section>
 <%= render :partial => 'shared/dashboard' %>
 
-<%if current_user.time_to_pay?%>
+<%if current_user.active_tip_order.time_to_pay?%>
   <script type="text/javascript" charset="utf-8">
     FLB.time_to_pay = <%= current_user.time_to_pay? %>
   </script>
