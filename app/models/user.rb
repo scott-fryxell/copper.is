@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
       customer = Stripe::Customer.retrieve(self.stripe_customer_id)
     else
       customer = Stripe::Customer.create(
-        :description => description,
+        :description => self.email,
         :card => card_token
       )
       self.stripe_customer_id = customer.id

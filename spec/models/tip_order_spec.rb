@@ -113,7 +113,7 @@ describe TipOrder do
       description = "Charging a fan"
 
       @user = users(:twitter_fan)
-      @user.create_stripe_token(number, exp_month, exp_year, cvc, description)
+      @user.create_stripe_customer('666666666')
       @user.save
     end
 

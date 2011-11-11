@@ -23,7 +23,8 @@ describe "Fan" do
     it "Should have a section for adding an email" do
       page.should have_content "Email"
     end
-    it "Should have a section for adding an credit card number"
+
+    it "Should have a section for managing credit cards"
 
   end
 
@@ -34,7 +35,7 @@ describe "Fan" do
       click_link 'tips'
     end
     it "should include a visually offset area into which page URLs can be pasted" do
-      page.should have_selector "body > section > header > form"
+      page.should have_selector "#new_tip"
     end
     it "should be able to tip a page" do
       fill_in "uri", :with => "http://www.google.com"

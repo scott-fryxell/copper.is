@@ -12,7 +12,7 @@
 
     <fieldset>
       <label for="user_email">Email</label>
-      <input type="email" name="user[email]" value="<%=current_user.email%>">
+      <input type="email" id="user_email" name="user[email]" value="<%=current_user.email%>">
     </fieldset>
 
     <fieldset>
@@ -30,18 +30,6 @@
       </select>
     </fieldset>
 
-    <fieldset id="credit_card">
-      <legend>Credit Card</legend> 
-      <label for="name">Name on Card</label>
-      <input type="text" size="20" autocomplete="off" id="name" value="scott fryxell"/>
-      <label for="number">Card Number</label>
-      <input type="text" size="20" autocomplete="off" id="number" value="4242424242424242"/>
-      <label for="cvc">CVC</label>
-      <input type="text" size="4" autocomplete="off" id="cvc" value="666"/>
-      <%= label_tag :card_month, "Exp" %>
-      <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "month"}%>
-      <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "year"}%>
-    </fieldset>
 
     <%= f.submit "Save" %>
   <% end %>
