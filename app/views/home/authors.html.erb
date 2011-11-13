@@ -58,7 +58,7 @@
 
   <figure></figure>
   <script id="badge_template" type="text/x-jquery-tmpl">
-    <img src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/graphics/logo/${type}/${color}.png"
+    <img class="dwc" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/graphics/logo/${type}/${color}.png"
          style="cursor:pointer; width:${size}px;"
          onclick="<%= render :partial => 'tips/launcher.js' %>">
   </script>

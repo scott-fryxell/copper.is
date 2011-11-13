@@ -16,13 +16,28 @@
         margin-top:-10em;
         margin-left:-10em;
       }
+      span{
+        position:fixed;
+        top:1em;
+        right:1em;
+        font-size:2em;
+        color:red;
+        cursor:pointer;
+      }
     </style>
     <script type="text/javascript" charset="utf-8">
       window.parent.postMessage("resize_frame",  "*");
+      $(document).ready(function(event){
+        $("span").click(function(){
+          window.parent.postMessage("notify_complete",  "*");
+        });
+
+      });
     </script>
   </head>
   <body id="sign_in">
     <h1>DirtyWhiteCouch</h1>
+    <span>x</span>
     <section>
       <%= render :partial => 'shared/signin' %>
       <a id="home" href="http://dirtywhitecouch.com" target="new" title="What's this all about?">?</a>

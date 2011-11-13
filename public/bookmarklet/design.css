@@ -6,15 +6,15 @@
 #popup * {
     text-shadow: 2px 2px 2px white;
 }
-#popup > section {
+section {
   outline: none;
   display: none;
 }
-#popup > section > h1 {
+section > h1 {
   font-size: 1.5em;
 
 }
-#popup > section.notify {
+section.notify {
   position:fixed;
   top: 50%;
   left: 50%;
@@ -28,18 +28,18 @@
   -webkit-box-shadow: 0 0.25em 3em #333;
   -moz-box-shadow: 0 0.25em 3em #333;
 }
-#popup > section.notify > header {
+section.notify > header {
   padding:0;
   margin:0;
 }
-#popup > section.notify > img {
+section.notify > img {
   display:inline-block;
   margin:1.5em 1em 1em 1em;
   width:4em;
   vertical-align: top;
 }
 
-#popup > section.notify > span {
+section.notify > span {
   position:absolute;
   top:1em;
   right:1em;
@@ -47,30 +47,30 @@
   cursor:pointer;
 }
 
-#popup > section.notify > section {
+section.notify > section {
   display:inline-block;
   vertical-align:top;
   border-right:.25em solid black;
   min-height:12em;
 }
-#popup > section.notify > section * {
+section.notify > section * {
   -webkit-transition-property: all;
   -webkit-transition-duration:  1s;
 }
-#popup > section.notify > section > header {}
+section.notify > section > header {}
 
-#popup > section.notify > section > header > h1 {
+section.notify > section > header > h1 {
   margin:1em 0 0 0 ;
   font-size:1em;
   color:gray;
 }
-#popup > section.notify > section > p[itemprop=description] {
+section.notify > section > p[itemprop=description] {
   font-size: 1.75em;
   width:15em;
   color:red;
 }
 
-#popup > section.alert {
+section.alert {
   -webkit-box-shadow: 0 0.25em 3em #333;
   -moz-box-shadow: 0 0.25em 3em #333;
   background-color: #FBF6F1;
@@ -88,13 +88,13 @@
   padding:1.5em;
   margin-bottom: 1em;
 }
-#popup > section.alert p {
+section.alert p {
   text-align:center;
   margin:1em 0;
   text-shadow:none;
 }
   
-#popup > section.alert header h1 {
+section.alert header h1 {
   text-align:center;
   font-size:2em;
   color:red;
@@ -102,23 +102,23 @@
   margin-top:.5em;
   margin-bottom:1em;
 }
-#popup > section.alert > header > img {
+section.alert > header > img {
   width:4em;
   position:absolute;
   top:1.5em;
   left:1.5em;
 }
-#popup > section.alert > header > span {
+section.alert > header > span {
   font-size:2em;
   margin-top:-.5em;
   float:right;
   color:red;
 }
 
-body > section.alert > header > span:hover {
+section.alert > header > span:hover {
   cursor:pointer;
 }
-body > section.alert > ol {
+section.alert > ol {
   display:none;
   list-style: circle inside;
 }

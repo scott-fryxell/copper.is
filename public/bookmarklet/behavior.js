@@ -101,6 +101,7 @@ $(document).bind({
   "alert_end": function (event, xhr) {
     $("section.alert ol").empty();
     $("section.alert").fadeOut("slow");
+    window.parent.postMessage("notify_complete",  "*");
   },
   "keyup": function(event) {
     if (event.keyCode == 27 ){
