@@ -19,7 +19,7 @@
     <input type="text" autocomplete="off" id="cvc" placeholder="CVC"  required />
   </fieldset>
   <fieldset>
-    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "month"}%>
+    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "month"} %>
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "year"}%>
   </fieldset>
   <fieldset class="pay">
