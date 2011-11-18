@@ -22,6 +22,7 @@
             <option value="500">$5.00</option>
           </select>
         </form>
+        <span>$<%= cents_to_dollars(current_user.tip_preference_in_cents) %></span>
       </dd>
       <dt>Balance</dt>
       <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_order.subtotal) %></dd>

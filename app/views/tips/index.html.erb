@@ -5,6 +5,11 @@
       <%= render :partial => 'shared/credit_card' %>
     <%else%>
       <%= render :partial => 'shared/dashboard' %>
+      <style type="text/css" media="screen">
+        dd > span {
+          display:none;
+        }
+      </style>
       <hgroup>
         <%= form_for(@tip) do |f| %>
           <label for="uri">URL</label>
