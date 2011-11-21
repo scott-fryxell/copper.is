@@ -67,7 +67,6 @@ nav#tip_views {
   vertical-align:top;
   margin-left:.5em;
 }
-
 nav#tip_views > a {
   font-size:.5em;
   margin: 0 .5em;
@@ -76,7 +75,6 @@ nav#tip_views > a {
   border-radius:.5em;
   color:red;
 }
-
 nav#tip_views > a:hover {
   opacity:1 !important;
 }

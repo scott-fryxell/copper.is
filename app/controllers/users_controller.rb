@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   filter_access_to :all
 
   def new
@@ -10,7 +9,6 @@ class UsersController < ApplicationController
     @user = current_user
     @user.valid?
   end
-
   def update
     @user = current_user
     @user.tip_preference_in_cents = params[:user][:tip_preference_in_cents]
@@ -31,19 +29,14 @@ class UsersController < ApplicationController
       end
     end
   end
-
   def show
     @user = current_user
-
     respond_to do |format|
-      format.html # index.html.erb
       format.xml  { render :xml => @user.to_xml }
       format.json  { render :json => @user.to_json }
     end
   end
-
   def pay
-
     # collect and save the parameters
     current_user.accept_terms = params[:terms]
     current_user.email = params[:email]
@@ -57,17 +50,17 @@ class UsersController < ApplicationController
 
       current_user.stripe_customer_id = customer.id
     end
-    
+
     current_user.save
-    
+
     order = current_user.active_tip_order
 
     if(current_user.accept_terms? && current_user.stripe_customer_id)
       current_user.active_tip_order.charge
       OrderMailer.reciept(order).deliver
-      redirect_to tips_url, :notice => "Thank you. We've emailed you a detailed reciept"
+      redirect_to user_tips_url(current_user), :notice => "Thank you. We've emailed you a detailed reciept"
     else
-      redirect_to tips_url, :notice => "There was a problem processing your order. please try again later."
+      redirect_to user_tips_url(current_user), :notice => "There was a problem processing your order. please try again later."
     end
 
   # catch any errors and handle them.
@@ -75,5 +68,4 @@ class UsersController < ApplicationController
     logger.error e.message
     redirect_to tips_url, :notice => "There was a problem with your credit card"
   end
-
 end

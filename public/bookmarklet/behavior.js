@@ -22,14 +22,14 @@ $(document).bind({
   "tip_token_get": function (event, xhr, options) {
     // get authenticity token
     $.ajax({
-      url: "/tips/new.js",
+      url: "/users/current/tips/new.js",
       async:false
     });
   },
   "tip_submit": function (event, xhr, options) {
     if(FLB.tip.authenticity_token != null){
       $.ajax({
-        url:"/tips",
+        url:"/users/current/tips",
         data: FLB.tip,
         type: "POST"
       });

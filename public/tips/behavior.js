@@ -18,7 +18,7 @@ $(document).ready(function() {
     $('form#tip_rate > summary').click();
 
     $.ajax({
-      type: 'POST',
+      type: $('form#tip_rate').attr("method"),
       url: $('form#tip_rate').attr('action'),
       data: $('form#tip_rate').serialize(),
     });

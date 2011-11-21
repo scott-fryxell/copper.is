@@ -3,14 +3,13 @@ class SessionsController < ApplicationController
     auth = request.env["omniauth.auth"]
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
 
-    # session[:user_id] = user.id
     if Rails.env.production?
       cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now, :domain => '.dirtywhitecouch.com'}
     else
       cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
     end
 
-    redirect_to "/tips", :notice => "Signed In"
+    redirect_to user_tips_path(current_user.id), :notice => "Signed In"
   end
   def destroy
     # session[:user_id] = nil

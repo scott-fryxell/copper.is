@@ -11,7 +11,7 @@
         }
       </style>
       <hgroup>
-        <%= form_for(@tip) do |f| %>
+        <%= form_for user_tips_path, :html => {:id => 'new_tip'} do |f| %>
           <label for="uri">URL</label>
           <input type="text" name="tip[uri]" value="" id="uri" autofocus />
           <%= f.submit 'Tip' %>

@@ -9,7 +9,7 @@
 </style>
 <%= render :partial => 'shared/order_info', :object => current_user.active_tip_order %>
 
-<form method="post" action="/users/pay" id="credit_card">
+<form method="post" action="<%=pay_user_path(current_user)%>" id="credit_card">
   <fieldset>
     <input type="email" name="email" required id="email" placeholder="Email"  autofocus value="<%=current_user.email%>"/>
     <input type="hidden" id="total_in_cents" value="<%=current_user.active_tip_order.tips.sum(:amount_in_cents)/10 + current_user.active_tip_order.tips.sum(:amount_in_cents)%>" />
