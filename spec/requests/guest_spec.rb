@@ -3,9 +3,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe "Guest" do
 
   it "should not be availaBle" do
-    visit "/tips/new"
+    visit "/users/current"
     page.should have_content('Sign In With')
-    visit "/tips"
+    visit "/users/current/tips"
     page.should have_content('Sign In With')
 
   end

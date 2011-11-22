@@ -20,11 +20,6 @@ describe "Fan" do
     it "should display the current value of each tip" do
       page.should have_content "$0.25"
     end
-    it "Should have a section for adding an email" do
-      page.should have_content "Email"
-    end
-
-    it "Should have a section for managing credit cards"
 
   end
 
