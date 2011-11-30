@@ -4,9 +4,9 @@ var badge = {
   size: "200",
 }
 function render(){
-  $("#badge > figure > img").remove();
-  $.tmpl( "badge", badge ).appendTo( "#badge > figure" );
-  $("#badge_text").val( $("#badge > figure" ).html());
+  $("#authors > figure > img").remove();
+  $.tmpl( "badge", badge ).appendTo( "#authors > figure" );
+  $("#badge_text").val( $("#authors > figure" ).html());
   $("#badge_text").select();
 }
 $(document).ready(function (){

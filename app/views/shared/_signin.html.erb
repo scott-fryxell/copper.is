@@ -2,6 +2,7 @@
   <hgroup>
     <h1><%= link_to current_user.name, user_url(current_user) %></h1>
     <nav>
+      <a href="/authors">authors</a>
       <a href="/button">button</a>
       <%= link_to "signout", signout_path %>
     </nav>

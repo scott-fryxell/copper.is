@@ -1,5 +1,6 @@
 <% content_for :head do %>
   <title>DirtyWhiteCouch: Information for Authors</title>
+  <%= javascript_include_tag "home/authors" %>
 <% end %>
 
 <section id="authors">
@@ -28,7 +29,7 @@
         <option value="black">black</option>
       </select>
 
-      <label for="size">size</label>
+      <label for="size">Size</label>
       <select name="size" id="size" size="1">
         <option value="25">25px</option>
         <option value="40">40px</option>
@@ -44,15 +45,11 @@
   </header>
 
   <figure></figure>
+  <textarea name="badte_text" id="badge_text" rows="8" cols="40"></textarea>
   <script id="badge_template" type="text/x-jquery-tmpl">
     <img class="dwc" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/logo/${type}/${color}.png"
          style="cursor:pointer; width:${size}px;" title="Pay this author for their work"
          onclick="<%= render :partial => 'tips/wrapped_launcher.js' %>">
   </script>
   
-  <textarea name="badte_text" id="badge_text" rows="8" cols="40"></textarea>
-  
-  <aside>
-    <img src="/assets/couch/4.png" alt="a couch">
-  </aside>
 </section>

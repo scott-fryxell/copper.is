@@ -1,27 +1,31 @@
-#authors {
-  display:inline-block;
-  width:32em;
-}
+
 #authors > header {
-  width:auto;
-  display:inline-block;
 
 }
 #authors > header > p {
-  margin-top: 1em;
+  padding:0 2em 1em 2em;
+
 }
 #authors > header > h1 {
+  min-height:0;
   font-size:2em;
   line-height:1em;
+  width:100%;
+  text-align:center;
+  margin:.5em 0 .5em 0 ;
+  padding:0;
 }
 #authors > header > form {
-  display:inline-block;
-  margin:2em auto 0 2em;
+  width:27em;
+  font-size:1.5em;
+  display:block;
+  margin:.5em auto .5em auto;
 }
 #authors > header > form > h2 {
-  margin:2em 0;
+  margin:1em 0;
 }
 #authors > header > form > select {
+  font-size:.75em;
   display:inline-block;
   margin-right:1em;
 }
@@ -29,11 +33,12 @@
   background-color:white;
   border:.15em solid #666;
   border-radius:.5em;
-  margin-top:1em;
   text-align:center;
-  display:block;
+  display:inline-block;
   min-height: 20em;
+  min-width:20em;
   line-height: 20em;
+  margin-right: 2em;
 }
 #authors > figure img {
   display:inline;
@@ -47,14 +52,16 @@
 }
 #authors > textarea {
   vertical-align:bottom;
-  display:block;
+  display:inline-block;
   font-size:1em;
   margin:0;
-  padding:0;
-  width:30em;
-  height:10em;
-  margin: 1em auto;
+  padding:.5em;
+  min-width:31.5em;
+  min-height:19em;
+  border-radius:.5em;
   border:.15em solid gray;
+  line-height:1.5em;
+  vertical-align:middle;
 }
 
 #authors > aside {
