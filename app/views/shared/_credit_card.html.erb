@@ -1,12 +1,8 @@
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-<script type="text/javascript" src="/behavior/credit_card.js"></script>
 <script type="text/javascript" charset="utf-8">
   Stripe.setPublishableKey('<%=DirtyWhiteCouch::Application.config.stripe_publishable_key%>');
 </script>
 <!-- 4242424242424242 -->
-<style>
-  @import url(/design/credit_card.css);
-</style>
 <%= render :partial => 'shared/order_info', :object => current_user.active_tip_order %>
 
 <form method="post" action="<%=pay_user_path(current_user)%>" id="credit_card">

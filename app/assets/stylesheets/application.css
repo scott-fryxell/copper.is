@@ -1,0 +1,262 @@
+/* 
+*= require reset
+*= require_self
+*= require animation
+*= require_directory ./home
+*= require_directory ./shared
+*/
+html {
+  background-color: gray;
+  font-family: Corbel, 'Lucida Grande', Verdana, Arial;
+  font-size: 16px;
+  line-height:18px; 
+}
+body * {
+  -webkit-margin-collapse: collapse;
+  color: #666;
+  text-shadow: 1px 1px 1px white;
+  background-color: transparent;
+}
+script {
+  display:none !important;
+}
+dt {
+  font-weight:bold;
+}
+body {
+  background-color: #FBF6F1;
+  width:58.5em;
+  min-height:5em;
+  margin: 1em auto 1em auto;
+  border: .25em solid #333;
+  border-radius: 1em;
+  -moz-border-radius: 1em;
+  padding-bottom:1em;
+  -webkit-box-shadow: 0 0 8em rgba(0,0,0,.5);
+  -moz-box-shadow: .75em .75em 1.75em rgba(172,32,128,0.10);
+}
+a {
+  text-decoration:none;
+  font-weight:normal;
+  -webkit-text-stroke-color:gray;
+  -moz-text-stroke-color:gray;
+}
+a:hover {
+  text-decoration: none;
+  -webkit-animation-name: pulse-red;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-iteration-count: infinite;
+
+  -moz-animation-name: pulse-red;
+  -moz-animation-duration: 3s;
+  -moz-animation-iteration-count: infinite;
+
+}
+p > a,
+form a {
+  color:red;
+}
+body > section ,
+body > header ,
+body > nav ,
+body > footer {
+  vertical-align:top;
+  position:relative;
+  margin-right:1.5em;
+  margin-left:1.5em;
+}
+
+body > header {
+  padding-top: 1em;
+}
+body > header > a {
+ display:inline-block;
+ font-size:2.5em;
+ font-weight:normal;
+ font-family:'Andale Mono';
+}
+body > header > a > img {
+  width:3em;
+}
+body > header > hgroup {
+  float:right;
+  display:inline-block;
+  vertical-align:top;
+}
+body > header > hgroup > h1 {
+  text-align:center;
+  text-align:center;
+  font-weight:bold;
+  font-size:1.5em;
+  margin-bottom:.25em;
+}
+body > header > hgroup > h1 > a {
+  color:red;
+}
+body > header > hgroup > nav {
+  width:100%;
+  display:inline-block;
+  vertical-align:top;
+  text-align:center;
+}
+body > header > hgroup > nav > a {
+  text-align:center;
+  display:inline-block;
+  padding: 0 .25em;
+}
+body > header > ol {
+  margin:1em 0 0 0;
+  min-height:1.5em;
+}
+body > header > ol > li {
+  font-size:1.10em;
+  background:#FFFFCC;
+  padding:.25em;
+  border:.10em solid #FFFFCC;
+  border-radius:.25em;
+  margin-bottom:.5em;
+  -moz-border-radius:.25em;
+  text-align:center;
+}
+
+body > section > header {
+  border: .15em solid #333;
+  min-height: 2.5em;
+  background:white;
+  margin:0;
+  width: 58.5em;
+  margin-left: -1.65em;
+  margin-bottom: 2em;
+}
+body > section > header > h1 {
+  text-align:center;
+  width: 7em;
+  line-height:1.5em;
+  font-size:2.25em;
+  display:inline-block;
+  min-height:3em;
+  padding:1em;
+}
+body > section > header > hgroup {
+  display:inline-block;
+  margin-top:2.5em;
+}
+
+body > section {
+  display:inline-block;
+  margin-bottom: .5em;
+  width:55.5em;
+  min-height:44em;
+}
+body > section > h1 {
+  margin-top: .5em;
+  font-size: 2.25em;
+  margin-bottom: .60em;
+}
+body > section > p {
+  font-size: 1.15em;
+}
+body > section > form {}
+body > section > form fieldset {
+  margin-bottom:0;
+}
+body > section > form > fieldset > legend {
+  display:inline-block;
+  margin-left:   .5em;
+  font-size:     1.25em;
+}
+body > section > form label {
+  display: inline-block;
+  font-size: 1.5em;
+}
+body > section > form input {
+  display:inline-block;
+  width: 16.5em;
+  font-size:1.5em;
+  border: 0.10em solid gray;
+  border-radius:.21em;
+  -moz-border-radius:.21em;
+}
+body > section > form input[type=submit] {
+  width: 10em;
+  margin: 2.5em 0 0 1em;
+  padding: .25em 0 .25em 0;
+  border-width: .13em;
+  border-radius: .25em;
+  -webkit-border-radius: .25em;
+  -moz-border-radius: .25em;
+  font-size: 1em;
+}
+
+body > article {
+  padding:1em;
+}
+body > article > h1 {
+  line-height: 1.25em;
+  font-size: 2em;
+  color: #666666;
+  margin: 1em 0;
+}
+body > article > p {
+  line-height:1.5em;
+}
+body > article > ul {
+  margin-top:1em;
+  margin-left:2em;
+}
+body > article > ul > li {
+  margin-top:.75em;
+}
+
+body > footer {
+  display:block;
+  vertical-align:middle;
+  margin:0 1.5em;
+  min-height: 3em;
+}
+body > footer > nav {
+  vertical-align:top;
+  margin-top:.75em;
+  display:inline-block;
+  min-height:2em;
+}
+body > footer > nav > a {
+  display:inline-block;
+  margin-bottom: .25em;
+  margin-right: 1em;
+  margin-left:2.75em;
+  font-size: 1.25em;
+  text-shadow: 1px 1px 1px silver;
+}
+
+#terms,
+#privacy {
+  margin:.5em;
+}
+#terms > ul {
+  margin:1em;
+}
+
+#bookmarklet > p {
+  vertical-align:top;
+  display:inline-block;
+  width:13em;
+}
+#bookmarklet > a:focus {
+  outline: none;
+}
+
+#warning p {
+  margin-bottom:6em;
+}
+#warning > img {
+  margin-bottom:1em;
+  width:17em;
+}
+#warning {
+  vertical-align:top;
+  display:inline-block;
+  width:17em;
+  text-align:center;
+  margin-top:2em;
+}

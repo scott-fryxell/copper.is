@@ -9,7 +9,7 @@
      </p>
    </td>
    <td>
-     <time datetime="<%= tip.created_at.getutc.iso8601 %>"><%= tip.created_at.strftime("%B %e, %Y") %></time>
+     <time datetime="<%= tip.created_at.getutc.iso8601 %>"/>
    </td>
    <td>
      <span>$<%= cents_to_dollars(tip.amount_in_cents) %></span>

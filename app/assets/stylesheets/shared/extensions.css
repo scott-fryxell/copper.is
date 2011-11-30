@@ -1,0 +1,67 @@
+#extensions {
+  margin-bottom:3em;
+}
+#extensions > figure {
+  display:inline-block;
+  margin:1em 0;
+  margin-right:2.75em;
+}
+#extensions > figure figcaption {
+  font-size:1.5em;
+  margin-bottom:1em;
+  text-align:center;
+}
+#extensions > figure a {
+  padding:.5em;
+  display:block;
+  margin-bottom:1em;
+}
+#extensions > figure a.wtf {
+  padding:0;
+  margin:0;
+  display:inline;
+}
+#extensions > figure > a > img {
+  text-align:center;
+}
+#extensions h1 {
+  margin-bottom:1em;
+}
+#extensions p {
+  margin-bottom:1em;
+}
+#bookmarklet > figure > a {
+  text-align: center;
+  line-height:2.25em;
+  height:2.25em;
+  width:2.25em;
+  font-size: 2em;
+  border: .10em solid #f60;
+  border-radius: .3em;
+  -moz-border-radius: .3em;
+  color: #F60;
+  font-weight: normal;
+  background-color: white;
+  display: inline-block;
+  margin: 0 1em 1em 1em
+}
+#extensions > aside,
+#bookmarklet > aside {
+  display: inline-block;
+  width:18em;
+}
+#extensions > aside  > img,
+#bookmarklet > aside  > img {
+  margin-bottom:2em;
+  width:19em;
+}
+
+#bookmarklet > figure {
+  vertical-align:top;
+  text-align: center;
+  width:36em;
+  display:inline-block;
+}
+#bookmarklet > figure > figcaption {
+  font-size:2em;
+}

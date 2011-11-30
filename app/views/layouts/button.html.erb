@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>dirtywhitecouch.com</title>
+    <meta charset="utf-8">
+    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag "button" %>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "button" %>
+    <%= yield(:head) %>
+  </head>
+  <body id="popup">
+    <%= yield %>
+  </body>
+</html>

@@ -1,10 +1,8 @@
-<% title "browser extensions" %>
-<style type="text/css" media="screen">
-  body > h1 {
-    margin-left:.75em;
-    margin-bottom:1em;
-    font-size:2em;
-  }
-</style>
-<h1>Install the Tip button</h1>
-<%= render :partial => 'shared/extensions' %>
+<% content_for :head do %>
+  <title>DirtyWhiteCouch: Install the Button</title>
+<% end %>
+
+<section id="button">
+  <h1>Install the Tip button</h1>
+  <%= render :partial => 'shared/extensions' %>  
+</section>

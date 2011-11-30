@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+
 describe "The standard Weave page" do
   before(:each) do
     visit "/"

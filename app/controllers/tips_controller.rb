@@ -48,13 +48,13 @@ class TipsController < ApplicationController
         if request.xhr?
           render :action => 'show_ajax', :layout => false
         else
-          redirect_to user_tips_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
+          redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
         end
       else
         if request.xhr?
-          render :action => 'error_ajax', :layout => false, :error => t("dirtywhitecouch.tip_failed")
+          render '<meta name="event_trigger" content="tip_error"/>'
         else
-          redirect_to user_tips_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
+          redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
         end
       end
   end

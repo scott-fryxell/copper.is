@@ -1,9 +1,7 @@
 <% if current_user %>
   <hgroup>
-    <h1><%= current_user.name %></h1>
+    <h1><%= link_to current_user.name, user_url(current_user) %></h1>
     <nav>
-      <%= link_to "tips", user_tips_path(current_user.id) %>
-      <a href="<%=user_url(current_user)%>" style="display:none">account</a>
       <a href="/button">button</a>
       <%= link_to "signout", signout_path %>
     </nav>
@@ -23,6 +21,3 @@
     $(this).addClass("working");
   });
 </script>
-<style type="text/css" media="screen">
-  @import url("/design/sign_in.css");
-</style>

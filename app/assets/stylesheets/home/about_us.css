@@ -1,0 +1,30 @@
+#about_us {
+  display:block;
+  width:55em;
+  padding: 0 .25em;
+  margin-bottom:3em;
+}
+#about_us > article {
+  display:inline-block;
+  width: 30em;
+}
+#about_us > article > h1 {
+  font-size:2em;
+  margin-bottom:1em;
+}
+#about_us > article > p {
+  font-size:1.25em;
+  margin-bottom:.75em;
+  line-height:1.25em;
+}
+#about_us > figure {
+  vertical-align:top;
+  margin-top:3.5em;
+  display:inline-block;
+  margin-left: 1.5em;
+}
+#about_us > figure img {
+  border-radius: 1em;
+  -webkit-box-shadow: .75em .75em 1.75em silver;
+  -moz-box-shadow: .75em .75em 1.75em silver;
+}

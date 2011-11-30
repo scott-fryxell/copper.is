@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs
+title="A Sample Gadget">
+   // More Module Preferences go here
+</ModulePrefs>
+
+ <Content type="html">
+ <![CDATA[
+
+    HTML content goes here
+
+ ]]>
+
+ </Content>
+</Module>

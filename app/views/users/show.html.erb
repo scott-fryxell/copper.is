@@ -1,21 +1,49 @@
-<% title "Edit User" %>
-<section id="account">
-  <style>
-    @import url("/users/design.css");
-  </style>
-  <script src="/users/behavior.js"></script>
+<%-content_for :head do-%>
+  <title>DirtyWhiteCouch: Information for <%=current_user.name%></title>
+  <%= stylesheet_link_tag "user" %>
+  <%= javascript_include_tag "user" %>
+<%-end-%>
 
-  <h1>Account</h1>
+<section id="user">
+  <header>
+    <% if current_user.active_tip_order.time_to_pay? %>
+      <h1>It's time to pay for your tips</h1>
+      <%= render :partial => 'shared/credit_card' %>
+    <%else%>
+      <%= render :partial => 'shared/dashboard' %>
+      <hgroup>
+        <form method="post" accept-charset="utf-8" id="new_tip">
     
-  <%= form_for @user do |f| %>
-    <input type="hidden" name="user[stripe_customer_id]" value="<%=current_user.stripe_customer_id%>">
+          <input name="utf8" type="hidden" value="✓">
+          <input name="authenticity_token" type="hidden">
+          
+          <label for="uri">URL</label>
+          <input type="text" name="tip[uri]" value="" id="uri" autofocus />
+          <input type="submit" value="TIP">
+        </form>
 
-    <fieldset>
-      <label for="user_email">Email</label>
-      <input type="email" id="user_email" name="user[email]" value="<%=current_user.email%>">
-    </fieldset>
+      </hgroup>
+    <%end%>
+  </header>
 
-    <%= f.submit "Save" %>
-  <% end %>
-
+  <table id="tips">
+    <thead>
+      <tr>
+        <th>
+          <span>Tips</span>
+          <%if current_user.tip_orders.count > 1 %>
+          <nav id="tip_views">
+            <a href="/tips?all=true#all_tips" id="all_tips">All</a>
+            <a href="/tips#active_tips" id="active_tips">Active</a>
+          </nav>
+          <%end%>
+        </th>
+        <th>When</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => 'shared/tips', :object => @tips %>
+    </tbody>
+  </table>
 </section>

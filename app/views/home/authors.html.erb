@@ -1,21 +1,8 @@
-<style type="text/css" media="screen">
-  #badge * {
-/*    outline: 2px solid gray;*/
-  }
-  body > aside {
-    display:inline-block;
-  }
-  body > aside > img {
-    margin-top:3em;
-    border-radius:.5em;
-    -webkit-box-shadow: 0 .75em 1.75em silver;
-    -moz-box-shadow: 0 .75em 1.75em silver;
-  }
-</style>
-<script src="/behavior/jquery.tmpl.js"></script>
-<script src="/behavior/badge.js"></script>
+<% content_for :head do %>
+  <title>DirtyWhiteCouch: Information for Authors</title>
+<% end %>
 
-<section id="badge">
+<section id="authors">
   <header>
     <h1>Authors, use the badge on your site</h1>
     <p>
@@ -58,13 +45,14 @@
 
   <figure></figure>
   <script id="badge_template" type="text/x-jquery-tmpl">
-    <img class="dwc" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/graphics/logo/${type}/${color}.png"
+    <img class="dwc" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/logo/${type}/${color}.png"
          style="cursor:pointer; width:${size}px;" title="Pay this author for their work"
-         onclick="<%= render :partial => 'tips/launcher.js' %>">
+         onclick="<%= render :partial => 'tips/wrapped_launcher.js' %>">
   </script>
   
   <textarea name="badte_text" id="badge_text" rows="8" cols="40"></textarea>
+  
+  <aside>
+    <img src="/assets/couch/4.png" alt="a couch">
+  </aside>
 </section>
-<aside>
-  <img src="/graphics/couch/4.png" alt="a couch">
-</aside>

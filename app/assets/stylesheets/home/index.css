@@ -1,0 +1,95 @@
+#home {
+  width:55.5em;
+}
+#home > header > figure {
+  display:inline-block;
+  vertical-align:top;
+  margin-left:5em;
+  margin-right:8em;
+  padding-top:1em;
+  opacity:1;
+  height:auto;
+}
+#home > header > figure > img{
+  vertical-align:middle;
+  width:10em;
+  height:10em;
+}
+#home > header > hgroup {
+  font-size:2em;
+}
+#home > header > hgroup > h2,
+#home > header > hgroup > ul {
+  display:inline-block;
+}
+#home > header > hgroup > h2 {
+  color:#333;
+}
+#home > header > hgroup > ul {
+    min-width:2.5em;
+}
+#home > header > hgroup > ul > li {
+  color:red;
+  display:none;
+
+}
+#home > header > hgroup > ul > li:first-child{
+  display:inline-block;
+}
+#home > article {
+  display:inline-block;
+  width: 30em;
+  margin-right:4em;
+}
+#home > article > h2 {
+  font-size: 1.5em;
+  margin-bottom: .5em;
+}
+#home > article > p {
+  font-size: 1.25em;
+
+  margin-bottom: 1em;
+  line-height: 1.25em;
+}
+#home > article > ol {
+  -webkit-padding-start: 0;
+  margin-top:2em;
+  vertical-align:top;
+  width:55.5em;
+}
+#home > article > ul {
+  list-style: circle inside ;
+  font-size: 1.25em;
+  width: 25em;
+  margin-bottom: 1em;
+  line-height: 1.15em;
+
+}
+#home > article > ul > li {
+  line-height:1.5em;
+}
+#home > article > ul > li > a {
+  text-decoration:underline;
+}
+#home > article > ul > li > a > img {
+  width:1em;
+  vertical-align:bottom;
+  text-decoration:none;
+  margin-left: .5em;
+  border: 1px solid #666;
+  padding:.25em;
+  border-radius:.25em;
+}
+#home > figure {
+  display:inline-block;
+  vertical-align:top;
+}
+#home > figure > figcaption {
+  text-align:center;
+  display:none;
+}
+#home > figure > img {
+  border-radius: 1em;
+  -webkit-box-shadow: 0 .75em 1.75em silver;
+  -moz-box-shadow: 0 .75em 1.75em silver;
+}

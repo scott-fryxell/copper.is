@@ -1,6 +1,12 @@
 require File.expand_path('../boot', __FILE__)
 require 'rails/all'
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require *Rails.groups(:assets => %w(development test))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
 
 module DirtyWhiteCouch
   class Application < Rails::Application
@@ -37,6 +43,16 @@ module DirtyWhiteCouch
 
     config.autoload_paths += %W(#{config.root}/extras)
     config.active_record.timestamped_migrations = false
+
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+
+    # Version of your assets, change this if you want to expire all your assets
+    config.assets.version = '1.0'
+
+    # Change the path that assets are served from
+    config.assets.prefix = "/assets"
 
     config.twitter_consumer_key = ENV['TWITTER_CONSUMER_KEY']
     config.twitter_consumer_secret = ENV['TWITTER_CONSUMER_SECRET']

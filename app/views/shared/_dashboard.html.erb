@@ -1,11 +1,12 @@
 <% if current_user %>
-  <style>
-    @import url(/design/dashboard.css);
-  </style>
+  <%-content_for :head do-%>
+    <%= javascript_include_tag "shared/dashboard" %>
+  <%-end-%>
+
   <aside itemscope="true" itemtype="order">
     <dl>
       <dt>Tips</dt>
-      <dd itemprop="tips"><%= link_to current_user.active_tips.count, user_tips_path %></dd>
+      <dd itemprop="tips"><%= current_user.active_tips.count %></dd>
       <dt>Rate</dt>
       <dd itemprop="rate">
        <form id="tip_rate" method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
@@ -24,7 +25,6 @@
             <option value="2000">$20.00</option>
           </select>
         </form>
-        <span>$<%= cents_to_dollars(current_user.tip_preference_in_cents) %></span>
       </dd>
       <dt>Balance</dt>
       <dd itemprop="balance">$<%= cents_to_dollars(current_user.active_tip_order.subtotal) %></dd>

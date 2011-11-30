@@ -2,7 +2,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 gem 'declarative_authorization'
 gem 'jquery-rails'
-gem 'omniauth', '>=0.2.6'
+gem 'omniauth', '0.3.2'
+# gem 'oa-openid'
 gem 'stripe'
 
 group :production do
@@ -22,4 +23,12 @@ group :development, :test do
   gem 'rb-fsevent'
   gem 'spork', '> 0.9.0.rc'
 
+end
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   "~> 3.1.0"
+  gem 'coffee-rails', "~> 3.1.0"
+  gem 'uglifier'
 end

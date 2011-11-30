@@ -1,54 +1,53 @@
-  <section>
-    <style type="text/css" media="screen">
-      @import url(/design.css);
-    </style>
-    <script src="/behavior.js"></script>
-    <header>
-      <figure>
-        <img src="/graphics/person.png" alt="dirtywhitecouch.com logo"/>
-      </figure>
-      <hgroup id="call_to_action">
-        <h2>Pay</h2>
-        <ul>
-          <li>people</li>
-          <li>artists</li>
-          <li>developers</li>
-          <li>bands</li>
-          <li>people</li>
-          <li>veterans</li>
-          <li>bloggers</li>
-          <li>directors</li>
-          <li>anyone</li>
-        </ul>
-        <h2>for their work</h2>
-      </hgroup>
-    </header>
-    <article>
-      <p>
-        DirtyWhiteCouch is a service that makes it easy to support the work
-        you enjoy. With it you can tip any page on the web.
-      </p>
-      <p>
-        We enable caring online. All tips are anonymous.
-        There is no advertising. It's about being quiet.
-      </p>
-      <h2>Getting started is simple</h2>
-      <ul>
-        <li>Sign In</li>
-        <li>
-          Install the Tip button
-          <a href="/button">
-            <img src="/graphics/logo/iou/black.png">
-          </a>
-        </li>
-        <li>Click it when you want to tip someone</li>
-      </ul>
-      <p>
-        Use the service as much or as little as you like.
-      </p>
-    </article>
+<%-content_for :head do-%>
+  <title>DirtyWhiteCouch: home page</title>
+<%-end-%>
+<section id="home">
+  <header>
     <figure>
-      <figcaption>the couch</figcaption>
-      <img src="/graphics/couch/1.png">
+      <%= image_tag "person.png" %>
     </figure>
-  </section>
+    <hgroup id="call_to_action">
+      <h2>Pay</h2>
+      <ul>
+        <li>people</li>
+        <li>artists</li>
+        <li>developers</li>
+        <li>bands</li>
+        <li>people</li>
+        <li>veterans</li>
+        <li>bloggers</li>
+        <li>directors</li>
+        <li>anyone</li>
+      </ul>
+      <h2>for their work</h2>
+    </hgroup>
+  </header>
+  <article>
+    <p>
+      DirtyWhiteCouch is a service that makes it easy to support the work
+      you enjoy. With it you can tip any page on the web.
+    </p>
+    <p>
+      We enable caring online. All tips are anonymous.
+      There is no advertising. It's about being quiet.
+    </p>
+    <h2>Getting started is simple</h2>
+    <ul>
+      <li>Sign In</li>
+      <li>
+        Install the Tip button
+        <a href="/button">
+          <%= image_tag "logo/iou/black.png" %>
+        </a>
+      </li>
+      <li>Click it when you want to tip someone</li>
+    </ul>
+    <p>
+      Use the service as much or as little as you like.
+    </p>
+  </article>
+  <figure>
+    <figcaption>the couch</figcaption>
+    <%= image_tag "couch/1.png" %>
+  </figure>
+</section>

@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<html lang="en_US" xmlns="http://www.w3.org/1999/xhtml" >
+<html>
   <head>
-    <title>dirtywhitecouch.com</title>
-    <style>
-      @import url("/design/index.css");
-    </style>
-    <%= yield(:head) %>
+    <meta charset="utf-8">
     <%= csrf_meta_tag %>
-    <script src="/behavior/jquery.js"></script>
-    <script src="/behavior/resource.js"></script>
-    <script src="/behavior/analytics.js"></script>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= yield(:head) %>
   </head>
   <body>
     <header>
-      <a href="/"><img src="/graphics/logo/name/red.png" alt=""></a>
+      <a href="/"><%= image_tag "logo/name/red.png" %></a>
       <%= render :partial => 'shared/signin' %>
-      <ol id="flash">
-        <%- flash.each do |msg| -%>
-          <li class="<%= msg[0]%>"><%= msg[1] %></li>
-        <%- end -%>
-      </ol>
+      <%= render :partial => 'shared/flash',:object => flash %>
     </header>
     <%= yield %>
     <footer>
@@ -32,21 +24,6 @@
         <a href="/terms">terms</a>
       </nav>
     </footer>
-    <!--[if IE]>
-    <div id="ie">
-      <h1>We support open source browsers</h1>
-      <div>
-        <a href="http://www.google.com/chrome">
-          <img src="/graphics/chrome.png">
-        </a>
-        <a href="http://www.apple.com/safari/download/">
-          <img src="/graphics/safari.png">
-        </a>
-        <a href="http://www.mozilla.org/en-US/firefox/new/">
-          <img src="/graphics/firefox.png">
-        </a>
-      </div>
-    </div>
-    <![endif]-->
+    <%= render :partial => 'shared/ie' %>
   </body>
 </html>

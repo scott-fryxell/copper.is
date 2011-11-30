@@ -1,0 +1,104 @@
+#tip_views {
+  display:inline-block;
+  vertical-align:top;
+  margin-left:.5em;
+}
+#tip_views > a {
+  font-size:.5em;
+  margin: 0 .5em;
+  padding:.15em .5em;
+  border: .15em solid gray;
+  border-radius:.5em;
+  color:red;
+}
+#tip_views > a:hover {
+  opacity:1 !important;
+}
+
+#tips {
+  margin:1.5em;
+  width:55em;
+  height:0em;
+}
+#tips > thead {
+}
+#tips > thead > tr > th {
+  font-size: 2em;
+  height:1.5em;
+}
+#tips > thead > tr > th:first-child {
+  min-width:10em;
+}
+#tips > thead > tr > th:nth-child(2),
+#tips > thead > tr > th:nth-child(3) {
+  text-align:center;
+}
+
+#tips > tbody > tr > td:nth-child(2) {
+  text-align:center;
+}
+#tips > tbody > tr > td:nth-child(3) {
+  text-align: center;
+}
+#tips > tbody > tr > td:nth-child(3) span {
+  display:inline-block;
+  margin-right: 1em;
+}
+#tips > tbody > tr > td:nth-child(3) form {
+  cursor:pointer;
+  display:inline;
+  font-weight:bold;
+  border: .10em solid gray;
+  border-radius: .75em .75em;
+  padding:0;
+  -moz-border-radius: .75em .75em;
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+}
+#tips > tbody > tr > td:nth-child(3) form:hover {
+  -webkit-animation-name: none;
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+  color:white;
+  border: .10em solid #444;
+  background-color:red;
+}
+#tips > tbody > tr > td:nth-child(3) form > input {
+  border:none;
+  font-size:1em;
+  vertical-align:center;
+}
+#tips > tbody > tr > td:nth-child(3) form > input:hover {
+  -webkit-animation-name: none;
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+  color:white;
+}
+#tips > tbody > tr > td > p {
+  margin-top:.5em;
+  margin-bottom:1em;
+  margin-left:.5em;
+}
+#tips > tbody > tr > td a.locator {
+  margin-left:.5em;
+  margin-bottom:1em;
+}
+
+#tips > tfoot {
+  border-top:.15em solid gray;
+}
+#tips > tfoot > tr {
+  height:2em;
+}
+#tips > tfoot > tr > td {
+  padding:1em;
+  font-size:2em;
+  height:2em;
+}
+#tips > tfoot > tr > td:first-child {
+  text-align:right
+}
+
+.destroyed {
+  opacity:.5;
+}

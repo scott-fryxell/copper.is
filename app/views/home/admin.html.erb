@@ -1,15 +1,10 @@
 <section>
-  
   <dl>
     <dt>tip totals:</dt>
     <dd>$<%= cents_to_dollars(Tip.sum :amount_in_cents) %></dd>
     <dt>tip count:</dt>
     <dd><%= Tip.count %></dd>
-    
     <dt>user count</dt>
     <dd><%= User.count %></dd>
-    
   </dl>
-  
-
 </section>

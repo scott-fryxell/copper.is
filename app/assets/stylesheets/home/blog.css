@@ -1,0 +1,49 @@
+#blog {
+  width: 56em;
+}
+#blog > article {
+  border-bottom: .15em solid gray;
+  padding: 1em 0;
+  display: inline-block;
+  width:34em;
+  margin-bottom: 1em;
+  margin-right: 1em;
+}
+#blog > article > header {
+  font-size: 2em;
+  margin-bottom:1em;
+}
+#blog > article > header time{
+  font-size: .5em;
+  margin-bottom:1em;
+}
+#blog > article > h2 {
+  font-weight:bold;
+  font-size:1.25em;
+  margin-bottom:1em;
+}
+#blog > article > p {
+  font-size:1.25em;
+  line-height:1.25em;
+  margin-bottom:1em;
+}
+#blog > article > ol {
+  list-style-type:circle;
+  margin-bottom:1em;
+}
+#blog > article > ol > li {
+  font-size:1.25em;
+  line-height:1.25em;
+  margin-bottom:.5em;
+}
+#blog > figure {
+  vertical-align:top;
+  margin-top:4em;
+  display:inline-block;
+}
+#blog > figure img {
+  width:20em;
+  border-radius: 1em;
+  -webkit-box-shadow: 0 .75em 1.75em silver;
+  -moz-box-shadow: 0 .75em 1.75em silver;
+}

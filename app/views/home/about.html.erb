@@ -1,3 +1,7 @@
+<%-content_for :head do-%>
+  <title>DirtyWhiteCouch: About Us</title>
+  <%= javascript_include_tag "home/about_us" %>
+<%-end-%>
 <section id="about_us">
   <article>
     <h1>About Us</h1>
@@ -24,6 +28,6 @@
     </p>
   </article>
   <figure>
-    <img src="/graphics/couch/3.png">
+    <%= image_tag "couch/3.png" %>
   </figure>
 </section>

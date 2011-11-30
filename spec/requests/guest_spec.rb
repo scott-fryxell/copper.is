@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+
 describe "Guest" do
 
   it "should not be availaBle" do
