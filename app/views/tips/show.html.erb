@@ -6,11 +6,6 @@
   </header>
   <p itemprop="description"><%= CGI::unescape(@tip.locator.page.description) %></p>
   <%= render :partial => 'shared/dashboard' %>
-  <%if current_user.active_tip_order.time_to_pay?%>
-    <script type="text/javascript" charset="utf-8">
-      FLB.time_to_pay = <%= current_user.active_tip_order.time_to_pay? %>
-    </script>
-  <%end%>
   <%= render :partial => 'shared/flash' %>
 </section>
 

@@ -30,6 +30,19 @@
 #extensions p {
   margin-bottom:1em;
 }
+
+#extensions > aside,
+#bookmarklet > aside {
+  display: inline-block;
+  width:18em;
+}
+
+#extensions > aside  > img,
+#bookmarklet > aside  > img {
+  margin-bottom:2em;
+  width:19em;
+}
+
 #bookmarklet > figure > a {
   text-align: center;
   line-height:2.25em;
@@ -45,17 +58,14 @@
   display: inline-block;
   margin: 0 1em 1em 1em
 }
-#extensions > aside,
-#bookmarklet > aside {
-  display: inline-block;
-  width:18em;
+#bookmarklet > p {
+  vertical-align:top;
+  display:inline-block;
+  width:13em;
 }
-#extensions > aside  > img,
-#bookmarklet > aside  > img {
-  margin-bottom:2em;
-  width:19em;
+#bookmarklet > a:focus {
+  outline: none;
 }
-
 #bookmarklet > figure {
   vertical-align:top;
   text-align: center;

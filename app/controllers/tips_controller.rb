@@ -44,18 +44,9 @@ class TipsController < ApplicationController
       end
 
       if @tip && @tip.valid?
-
-        if request.xhr?
-          render :action => 'show_ajax', :layout => false
-        else
-          redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
-        end
+        redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
       else
-        if request.xhr?
-          render '<meta name="event_trigger" content="tip_error"/>'
-        else
-          redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
-        end
+        redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
       end
   end
   def destroy
@@ -70,6 +61,14 @@ class TipsController < ApplicationController
     render :action => 'embed_iframe.js', :layout => false
   end
   def agent
-    render :action => 'agent', :layout => false
+    @tip = current_user.tip(params[:uri], params[:title] )
+
+    
+    if @tip && @tip.valid?
+      render :action => 'show', :layout => 'agent'      
+    else
+      render :action => 'error', :layout => 'agent'
+    end
+    
   end
 end

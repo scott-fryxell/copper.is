@@ -1,12 +1,12 @@
 #about_us {
   display:block;
-  width:55em;
+
   padding: 0 .25em;
   margin-bottom:3em;
 }
 #about_us > article {
   display:inline-block;
-  width: 30em;
+  width: 34.5em;
 }
 #about_us > article > h1 {
   font-size:2em;
