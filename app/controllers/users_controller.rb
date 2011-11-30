@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   filter_access_to :all
-
   def update
     @user = current_user
     @user.tip_preference_in_cents = params[:user][:tip_preference_in_cents]
@@ -12,15 +11,18 @@ class UsersController < ApplicationController
     end
   end
   def show
-    @user = current_user
-    @tip = Tip.new
+    if current_user
+      @user = current_user
+      @tip = Tip.new
 
-    if params[:all]
-      @tips = current_user.tips
+      if params[:all]
+        @tips = current_user.tips
+      else
+        @tips = current_user.active_tips
+      end
     else
-      @tips = current_user.active_tips
+      @user = User.new
     end
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @user.to_xml }

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
     end
 
-    redirect_to user_tips_path(current_user.id), :notice => "Signed In"
+    redirect_to user_path(current_user.id), :notice => "Signed In"
   end
   def destroy
     # session[:user_id] = nil
