@@ -6,3 +6,4 @@
 //= require analytics
 //= require common
 //= require tip
+//= require shared/dashboard
