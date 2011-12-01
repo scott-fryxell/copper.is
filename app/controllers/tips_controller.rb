@@ -1,19 +1,26 @@
 class TipsController < ApplicationController
-  filter_access_to :index, :create, :edit, :update, :destroy, :new, :embed_iframe, :agent, :attribute_check => false
-  def index
-    @tip = Tip.new
+  filter_access_to :create, :update, :destroy, :embed_iframe, :agent, :attribute_check => false
+  def create
+      if request.xhr?
+        @tip = current_user.tip(params[:uri], params[:title] )
 
-    if params[:all]
-      @tips = current_user.tips
-    else
-      @tips = current_user.active_tips
-    end
+        if @tip && @tip.valid?
+          render :action => 'show', :layout => false
+        else
+          render :action => 'error', :layout => false
+        end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @tips }
-      format.json { render :json => @tips }
-    end
+      else
+        @tip = current_user.tip(params[:tip][:uri])
+
+        if @tip && @tip.valid?
+          redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
+        else
+          redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
+        end
+
+      end
+
   end
   def update
     @tip = Tip.find(params[:id])
@@ -27,28 +34,6 @@ class TipsController < ApplicationController
       render :action => 'notes_ajax', :layout => false
     end
   end
-  def new
-    @tip = Tip.new
-
-    @user = current_user
-
-    respond_to do |format|
-      format.js
-    end
-  end
-  def create
-      if request.xhr?
-        @tip = current_user.tip(params[:uri], params[:title] )
-      else
-        @tip = current_user.tip(params[:tip][:uri])
-      end
-
-      if @tip && @tip.valid?
-        redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
-      else
-        redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
-      end
-  end
   def destroy
     tip = Tip.find(params[:id])
 
@@ -61,14 +46,6 @@ class TipsController < ApplicationController
     render :action => 'embed_iframe.js', :layout => false
   end
   def agent
-    @tip = current_user.tip(params[:uri], params[:title] )
-
-    
-    if @tip && @tip.valid?
-      render :action => 'show', :layout => 'agent'      
-    else
-      render :action => 'error', :layout => 'agent'
-    end
-    
+    render :action => 'button', :layout => 'button'
   end
 end

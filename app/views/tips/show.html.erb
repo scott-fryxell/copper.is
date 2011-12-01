@@ -1,11 +1,10 @@
-<meta name="event_trigger" content="tip_success"/>
+<meta name="event_trigger" content="notify"/>
 <section class="notify" itemscope="true" itemtype="tip">
-  <img src="/graphics/logo/name/red.png">
+  <%= image_tag "logo/name/red.png" %>
   <header>
     <h1>You've tipped</h1>
+    <p itemprop="description"><%= CGI::unescape(@tip.locator.page.description) %></p>
   </header>
-  <p itemprop="description"><%= CGI::unescape(@tip.locator.page.description) %></p>
   <%= render :partial => 'shared/dashboard' %>
-  <%= render :partial => 'shared/flash' %>
 </section>
 

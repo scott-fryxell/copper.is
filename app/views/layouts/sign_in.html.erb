@@ -5,37 +5,6 @@
     <%= csrf_meta_tag %>
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
-    <style type="text/css" media="screen">
-      html {
-        background-color:#FBF6F1;
-      }
-      #sign_in {
-        position:fixed;
-        left:50%;
-        top:50%;
-        height:20em;
-        width:20em;
-        margin-top:-10em;
-        margin-left:-10em;
-      }
-      #sign_in > span{
-        position:fixed;
-        top:1em;
-        right:1em;
-        font-size:2em;
-        color:red;
-        cursor:pointer;
-      }
-    </style>
-    <script type="text/javascript" charset="utf-8">
-      window.parent.postMessage("resize_frame",  "*");
-      $(document).ready(function(event){
-        $("span").click(function(){
-          window.parent.postMessage("notify_complete",  "*");
-        });
-
-      });
-    </script>
     <%= yield(:head) %>
   </head>
   <body>

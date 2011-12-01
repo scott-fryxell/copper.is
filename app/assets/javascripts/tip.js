@@ -1,7 +1,6 @@
 $(document).ready(function() {
   window.parent.postMessage("resize_frame",  "*");
   $(document).trigger("tip_determine");
-  $(document).trigger("tip_token_get");
   $(document).trigger("tip_submit");
 });
 $(document).bind({
@@ -13,18 +12,12 @@ $(document).bind({
         uri: location.split("#/")[1].split("&title=")[0],
         title: location.split("&title=")[1],
       };
+      FLB.tip.authenticity_token = $('meta[name=csrf-token]').attr('content')
     }
     if(!FLB.uri){
       window.parent.postMessage("reset_frame",  "*");
     }
     console.debug("determine tip", FLB, location);
-  },
-  "tip_token_get": function (event, xhr, options) {
-    // get authenticity token
-    $.ajax({
-      url: "/users/current/tips/new.js",
-      async:false
-    });
   },
   "tip_submit": function (event, xhr, options) {
     if(FLB.tip.authenticity_token != null){
@@ -34,16 +27,6 @@ $(document).bind({
         type: "POST"
       });
     }
-  },
-  "tip_success": function (event, xhr, options) {
-    $(document).trigger("notify", xhr, options);
-  },
-  "tip_error": function (event, xhr, options) {
-    $("section.alert > header > span").click(function(){
-      $(document).trigger("alert_end", xhr);
-    });
-    $(document).trigger("alert_start", xhr);
-    console.error("there was a tip error", xhr, event);
   },
   "login_submit": function (event, options) {
     $.post("/authenticate", $("section.workflow form").serialize());
@@ -67,11 +50,11 @@ $(document).bind({
     $(document).trigger("tip_token_get");
     $(document).trigger("tip_submit");
   },
-  "401": function (event, response, options) {
-    $(document).trigger("login_get");
-  },
   "ajaxComplete": function (event, xhr, options) {
     $(document).trigger(new String(xhr.status), xhr, options);
+  },
+  "401": function (event, response, options) {
+    $(document).trigger("login_get");
   },
   "200": function (event, xhr, options){
     var trigger = $("<div />").append(xhr.responseText).find("meta[name=event_trigger]").attr("content");
@@ -80,28 +63,15 @@ $(document).bind({
     }
   },
   "notify": function (event, xhr, options) {
-    $("section.notify").append(xhr.responseText);
+    $("body").append(xhr.responseText);
     $("body").addClass("open");
-    $("section.notify").fadeIn(800).delay(3500).fadeOut(800, function(){
-      console.debug("time to pay?",FLB.time_to_pay )
-      if(FLB.time_to_pay){
-        window.open('/tips');
-      }
+    $("body > section").fadeIn(800).delay(3500).fadeOut(800, function(){
       window.parent.postMessage("notify_complete",  "*");
       $("body").removeClass("open");
     });
   },
   "open": function (event, url) {
     window.open(url);
-  },
-  "alert_start": function (event, xhr) {
-    $("section.alert ol").append("<li>" +  Message[xhr.status] + "</li>");
-    $("section.alert").fadeIn(500);
-  },
-  "alert_end": function (event, xhr) {
-    $("section.alert ol").empty();
-    $("section.alert").fadeOut("slow");
-    window.parent.postMessage("notify_complete",  "*");
   },
   "keyup": function(event) {
     if (event.keyCode == 27 ){
@@ -112,3 +82,6 @@ $(document).bind({
     }
   }
 });
+var FLB = {
+  tip: {}
+}
