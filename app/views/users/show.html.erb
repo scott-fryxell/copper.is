@@ -1,5 +1,5 @@
 <%-content_for :head do-%>
-  <title>DirtyWhiteCouch: Information for <%=current_user.name%></title>
+  <title><%=current_user.name%> - DirtyWhiteCouch</title>
   <%= stylesheet_link_tag "users/show" %>
   <%= javascript_include_tag "users/show" %>
 <%-end-%>
@@ -13,15 +13,12 @@
       <%= render :partial => 'shared/dashboard' %>
       <hgroup>
         <form method="post" accept-charset="utf-8" id="new_tip">
-    
           <input name="utf8" type="hidden" value="✓">
           <input name="authenticity_token" type="hidden">
-          
           <label for="uri">URL</label>
           <input type="text" name="tip[uri]" value="" id="uri" autofocus />
           <input type="submit" value="TIP">
         </form>
-
       </hgroup>
     <%end%>
   </header>
