@@ -54,6 +54,8 @@ module DirtyWhiteCouch
     # Change the path that assets are served from
     config.assets.prefix = "/assets"
 
+    config.assets.initialize_on_precompile= false
+
     config.twitter_consumer_key = ENV['TWITTER_CONSUMER_KEY']
     config.twitter_consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
 
