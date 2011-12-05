@@ -5,8 +5,8 @@ gem 'jquery-rails'
 gem 'omniauth', '0.3.2'
 # gem 'oa-openid'
 gem 'stripe'
+gem 'dalli'
 
-gem "dalli"
 group :production do
   gem "pg"
 end
