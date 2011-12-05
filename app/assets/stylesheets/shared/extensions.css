@@ -1,9 +1,11 @@
 #extensions {
+  vertical-align:top;
   margin-bottom:3em;
 }
 #extensions > figure {
+  vertical-align:top;
   display:inline-block;
-  margin:1em 0;
+  margin:0;
   margin-right:2.75em;
 }
 #extensions > figure figcaption {
