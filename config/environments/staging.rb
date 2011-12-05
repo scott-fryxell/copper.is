@@ -1,5 +1,6 @@
 DirtyWhiteCouch::Application.configure do
   config.cache_classes = true
+  config.cache_store = :dalli_store
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
   config.action_dispatch.x_sendfile_header = "X-Accel-Redirect"

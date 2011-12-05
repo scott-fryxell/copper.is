@@ -4,4 +4,4 @@
 //= require jquery.tmpl
 //= require resource
 //= require analytics
-//= require common
+//= require shared/common
