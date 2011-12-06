@@ -41,8 +41,6 @@ $(document).bind({
       $(document).trigger("login_submit");
       return false;
     });
-
-
     $(document).trigger("notify");
     $("input[id=email]").delay(1200).focus();
   },
