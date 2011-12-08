@@ -26,6 +26,6 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "Sign in failed"
   end
   def new
-    render :action => 'new', :layout => false
+    render :action => 'new', :layout => 'sign_in'
   end
 end

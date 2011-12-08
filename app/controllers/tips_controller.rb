@@ -1,26 +1,24 @@
 class TipsController < ApplicationController
   filter_access_to :create, :update, :destroy, :embed_iframe, :agent, :attribute_check => false
   def create
-      if request.xhr?
-        @tip = current_user.tip(params[:uri], params[:title] )
+    if request.xhr?
+      @tip = current_user.tip(params[:uri], params[:title] )
 
-        if @tip && @tip.valid?
-          render :action => 'show', :layout => false
-        else
-          render :action => 'error', :layout => false
-        end
-
+      if @tip && @tip.valid?
+        render :action => 'show', :layout => false
       else
-        @tip = current_user.tip(params[:tip][:uri])
-
-        if @tip && @tip.valid?
-          redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
-        else
-          redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
-        end
-
+        render :action => 'error', :layout => false
       end
 
+    else
+      @tip = current_user.tip(params[:tip][:uri])
+
+      if @tip && @tip.valid?
+        redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
+      else
+        redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
+      end
+    end
   end
   def update
     @tip = Tip.find(params[:id])
@@ -45,7 +43,14 @@ class TipsController < ApplicationController
   def embed_iframe
     render :action => 'embed_iframe.js', :layout => false
   end
+  
   def agent
-    render :action => 'button', :layout => 'button'
+    @tip = current_user.tip(params[:uri], params[:title] )
+
+    if @tip && @tip.valid?
+      render :action => 'show', :layout => 'button'
+    else
+      render :action => 'error', :layout => 'button'
+    end
   end
 end

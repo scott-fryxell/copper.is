@@ -2,7 +2,7 @@
 (function(){
   var f = document.getElementById('dirtywhitecouch');
   if (f) {
-    console.error("What? The dirtywhitecouch iframe should have been removed.")
+    console.error("The dirtywhitecouch iframe should have been removed.")
   }
   else {
     f=document.createElement('iframe');
@@ -20,7 +20,7 @@
     f.style.left='0';
     f.style.background.color='transparent';
     f.scrolling='no';
-    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/#/' +
+    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/?uri=' +
       window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
     document.body.appendChild(f);
     f.width='0';

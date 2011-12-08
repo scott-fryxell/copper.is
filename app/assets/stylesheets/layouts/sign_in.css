@@ -10,7 +10,7 @@ html {
   margin-top:-10em;
   margin-left:-10em;
 }
-#sign_in > span{
+#sign_in > span {
   position:fixed;
   top:1em;
   right:1em;
@@ -18,3 +18,31 @@ html {
   color:red;
   cursor:pointer;
 }
+#sign_in > h1 {
+  text-align:center;
+}
+#sign_in {
+  text-align:center;
+}
+#sign_in > hgroup {
+  margin-bottom:1em;
+}
+#sign_in > hgroup > h1 {
+  color:red;
+  text-align:center;
+  font-weight:bold;
+  font-size:2em;
+}
+#sign_in > hgroup > nav {
+  text-align:center;
+}
+#sign_in > #home {
+  font-weight:bold;
+  text-decoration: none;
+  color:silver;
+  font-size:2em;
+}
+#sign_in > span {
+  display:none !important;
+}
+

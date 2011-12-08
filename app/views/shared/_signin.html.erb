@@ -1,24 +1,17 @@
-<% if current_user %>
-  <hgroup>
+<hgroup>
+  <% if current_user %>
     <h1><%= link_to current_user.name, user_url(current_user) %></h1>
     <nav>
       <a href="/authors">authors</a>
       <a href="/button">button</a>
       <%= link_to "signout", signout_path %>
     </nav>
-  </hgroup>
-<% else %>
-  <hgroup >
+  <% else %>
     <h1>Sign In With</h1>
     <nav>
       <a id="twitter_sign_in" href="/auth/twitter"><%= image_tag "providers/twitter.png" %></a>
       <a id="facebook_sign_in" href="/auth/facebook"><%= image_tag "providers/facebook.png" %></a>
       <a id="google_sign_in" href="/auth/google"><%= image_tag "providers/google.png" %></a>
     </nav>
-  </hgroup>
-<% end %>
-<script type="text/javascript" charset="utf-8">
-  $("nav > a > img").click(function(event){
-    $(this).addClass("working");
-  });
-</script>
+  <% end %>
+</hgroup>

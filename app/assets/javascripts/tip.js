@@ -1,7 +1,6 @@
 $(document).ready(function() {
   window.parent.postMessage("resize_frame",  "*");
-  $(document).trigger("tip_determine");
-  $(document).trigger("tip_submit");
+  $(document).trigger($("meta[name=event_trigger]").attr("content"));
 });
 $(document).bind({
   "tip_determine": function (event, xhr, options) {
@@ -45,10 +44,11 @@ $(document).bind({
     $("input[id=email]").delay(1200).focus();
   },
   "login_success": function (event) {
-    $(document).trigger("tip_token_get");
+    $(document).trigger("tip_determine");
     $(document).trigger("tip_submit");
   },
   "ajaxComplete": function (event, xhr, options) {
+    $("body").append(xhr.responseText);
     $(document).trigger(new String(xhr.status), xhr, options);
   },
   "401": function (event, response, options) {
@@ -61,7 +61,6 @@ $(document).bind({
     }
   },
   "notify": function (event, xhr, options) {
-    $("body").append(xhr.responseText);
     $("body").addClass("open");
     $("body > section").fadeIn(800).delay(3500).fadeOut(800, function(){
       window.parent.postMessage("notify_complete",  "*");

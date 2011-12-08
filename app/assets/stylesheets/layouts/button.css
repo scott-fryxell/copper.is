@@ -3,7 +3,6 @@
 *= require_self
 *= require_directory ../shared
 */
-
 #popup {
   color:#808080;
   border:transparent;
@@ -63,7 +62,6 @@ section.notify > header {
   width:22em;
   border-right:.25em solid black;
 }
-
 section.notify > header > h1 {
   margin:1em 0 0 0;
   font-size:1em;

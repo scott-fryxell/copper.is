@@ -1,10 +1,11 @@
 <html lang="en_us">
   <head>
-    <meta charset="utf-8">
     <title>Sign In</title>
+    <meta charset="utf-8">
+    <meta name="event_trigger" content="notify"/>
     <%= csrf_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "layouts/sign_in" %>
+    <%= javascript_include_tag "layouts/sign_in" %>
     <%= yield(:head) %>
   </head>
   <body>

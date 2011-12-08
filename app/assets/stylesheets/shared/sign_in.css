@@ -1,22 +1,22 @@
 #sign_in > h1 {
   text-align:center;
 }
-#sign_in > section {
+#sign_in {
   text-align:center;
 }
-#sign_in > section > hgroup {
+#sign_in > hgroup {
   margin-bottom:1em;
 }
-#sign_in > section > hgroup > h1 {
+#sign_in > hgroup > h1 {
   color:red;
   text-align:center;
   font-weight:bold;
   font-size:2em;
 }
-#sign_in > section > hgroup > nav {
+#sign_in > hgroup > nav {
   text-align:center;
 }
-#sign_in > section > #home {
+#sign_in > #home {
   font-weight:bold;
   text-decoration: none;
   color:silver;
