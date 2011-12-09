@@ -34,7 +34,9 @@
         }
         else if (event.data == 'reset_frame'){
           frame = document.getElementById('dirtywhitecouch');
-          frame.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/#/' +
+          f.width='0';
+          f.height='0';
+          frame.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/?uri=' +
             window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
         }
         else if (event.data == 'resize_frame'){

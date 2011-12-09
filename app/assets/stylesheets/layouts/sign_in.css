@@ -1,3 +1,9 @@
+/*
+*= require reset
+*= require_self
+*= require ../shared/animation
+*/
+
 html {
   background-color:#FBF6F1;
 }
@@ -42,7 +48,3 @@ html {
   color:silver;
   font-size:2em;
 }
-#sign_in > span {
-  display:none !important;
-}
-

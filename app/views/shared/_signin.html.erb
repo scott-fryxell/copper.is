@@ -13,5 +13,10 @@
       <a id="facebook_sign_in" href="/auth/facebook"><%= image_tag "providers/facebook.png" %></a>
       <a id="google_sign_in" href="/auth/google"><%= image_tag "providers/google.png" %></a>
     </nav>
+    <script type="text/javascript" charset="utf-8">
+      $("nav > a > img").click(function(event){
+        $(this).addClass("working");
+      });
+    </script>
   <% end %>
 </hgroup>

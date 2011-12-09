@@ -9,7 +9,4 @@ $(document).ready(function(event){
   $("span").click(function(){
     window.parent.postMessage("notify_complete",  "*");
   });
-  $("nav > a > img").click(function(event){
-    $(this).addClass("working");
-  });
 });

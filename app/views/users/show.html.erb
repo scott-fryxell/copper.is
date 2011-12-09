@@ -3,7 +3,6 @@
   <%= stylesheet_link_tag "users/show" %>
   <%= javascript_include_tag "users/show" %>
 <%-end-%>
-
 <section id="user">
   <header>
     <% if current_user.active_tip_order.time_to_pay? %>
@@ -22,7 +21,6 @@
       </hgroup>
     <%end%>
   </header>
-
   <table id="tips">
     <thead>
       <tr>
