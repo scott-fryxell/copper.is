@@ -1,7 +1,7 @@
 DirtyWhiteCouch::Application.configure do
   config.cache_classes = true
   # config.cache_store = :dalli_store
-  config.cache_store = :dalli_store, { :namespace => "DirtyWhiteCouch", :expires_in => 1.day, :compression => true }
+  config.cache_store = :dalli_store
 
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
