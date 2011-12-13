@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <%= csrf_meta_tag %>
-    <%= stylesheet_link_tag "layouts/application" %>
-    <%= javascript_include_tag "layouts/application" %>
+    <%= stylesheet_link_tag "layouts/application",:cache => true %>
+    <%= javascript_include_tag "layouts/application",:cache => true %>
     <%= yield(:head) %>
   </head>
   <body>
     <header>
-      <a href="/"><%= image_tag "logo/name/red.png" %></a>
+      <a href="/"><%= image_tag "logo/name/red.png", :cache => true %></a>
       <%= render :partial => 'shared/signin' %>
       <%= render :partial => 'shared/flash',:object => flash %>
     </header>
