@@ -1,6 +1,5 @@
 DirtyWhiteCouch::Application.configure do
   config.cache_classes = true
-
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
   config.action_dispatch.x_sendfile_header = "X-Accel-Redirect"
@@ -12,6 +11,7 @@ DirtyWhiteCouch::Application.configure do
   config.assets.compile = true
   config.assets.debug = false
   config.assets.digest = true
+  config.cache_store = :dalli_store
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
