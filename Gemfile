@@ -3,8 +3,8 @@ gem 'rails', '3.1.0'
 gem 'declarative_authorization'
 gem 'jquery-rails'
 gem 'omniauth', '0.3.2'
-# gem 'oa-openid'
 gem 'stripe'
+gem 'rack-cache'
 gem 'dalli'
 
 group :production do
