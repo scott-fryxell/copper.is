@@ -1,7 +1,6 @@
 DirtyWhiteCouch::Application.configure do
   config.cache_classes = true
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = true
   config.action_dispatch.x_sendfile_header = "X-Accel-Redirect"
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
@@ -11,7 +10,11 @@ DirtyWhiteCouch::Application.configure do
   config.assets.compile = true
   config.assets.debug = false
   config.assets.digest = true
+
+  config.action_controller.perform_caching = true
   config.cache_store = :dalli_store
+
+  config.static_cache_control = 'assets, max-age=10000'
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
