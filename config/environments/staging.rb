@@ -1,6 +1,5 @@
 DirtyWhiteCouch::Application.configure do
   config.cache_classes = true
-  # config.cache_store = :dalli_store
   config.cache_store = :dalli_store
 
   config.consider_all_requests_local       = false
@@ -9,7 +8,6 @@ DirtyWhiteCouch::Application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
   config.serve_static_assets = true
-  config.static_cache_control = "public, max-age=86400"
   config.assets.compress = true
   config.assets.js_compressor  = :uglifier
   config.assets.compile = true
