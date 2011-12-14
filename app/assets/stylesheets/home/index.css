@@ -83,6 +83,7 @@
 #home > figure {
   display:inline-block;
   vertical-align:top;
+  width:19em;
 }
 #home > figure > figcaption {
   text-align:center;
@@ -92,4 +93,8 @@
   border-radius: 1em;
   -webkit-box-shadow: 0 .75em 1.75em silver;
   -moz-box-shadow: 0 .75em 1.75em silver;
+}
+
+.twtr-hd, .twtr-ft {
+  display:none;
 }
