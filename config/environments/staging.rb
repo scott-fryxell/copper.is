@@ -13,8 +13,7 @@ DirtyWhiteCouch::Application.configure do
 
   config.action_controller.perform_caching = true
   config.cache_store = :dalli_store
-
-  config.static_cache_control = 'assets, max-age=86400'
+  config.static_cache_control = 'public/assets, max-age=86400'
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
