@@ -4,8 +4,8 @@ gem 'declarative_authorization'
 gem 'jquery-rails'
 gem 'omniauth', '0.3.2'
 gem 'stripe'
-gem 'rack-cache'
-gem 'dalli'
+# gem 'rack-cache'
+# gem 'dalli'
 
 group :production do
   gem "pg"
