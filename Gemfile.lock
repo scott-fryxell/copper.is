@@ -262,7 +262,6 @@ DEPENDENCIES
   omniauth (= 0.3.2)
   pg
   pry
-  rack-cache
   rails (= 3.1.0)
   rb-fsevent
   rspec-rails
