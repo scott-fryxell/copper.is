@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'omniauth', '0.3.2'
 gem 'stripe'
 gem 'dalli'
+gem 'thin'
 
 group :production do
   gem "pg"
