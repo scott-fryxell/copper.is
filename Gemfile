@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.1.3'
+gem 'rails', '3.1.1'
 gem 'declarative_authorization'
 gem 'jquery-rails'
 gem 'omniauth', '0.3.2'
