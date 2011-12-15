@@ -15,7 +15,7 @@ DirtyWhiteCouch::Application.configure do
   config.assets.digest = true
 
   config.action_controller.perform_caching = true
-  config.cache_store = :dalli_store
+  # config.cache_store = :dalli_store
 
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=315360000"
