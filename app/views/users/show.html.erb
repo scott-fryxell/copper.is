@@ -5,21 +5,16 @@
 <%-end-%>
 <section id="user">
   <header>
-    <% if current_user.active_tip_order.time_to_pay? %>
-      <h1>It's time to pay for your tips</h1>
-      <%= render :partial => 'shared/credit_card' %>
-    <%else%>
-      <%= render :partial => 'shared/dashboard' %>
-      <hgroup>
-        <form method="post" accept-charset="utf-8" id="new_tip">
-          <input name="utf8" type="hidden" value="✓">
-          <input name="authenticity_token" type="hidden">
-          <label for="uri">URL</label>
-          <input type="text" name="tip[uri]" value="" id="uri" autofocus />
-          <input type="submit" value="TIP">
-        </form>
-      </hgroup>
-    <%end%>
+    <%= render :partial => 'shared/dashboard' %>
+    <hgroup>
+      <form method="post" accept-charset="utf-8" id="new_tip">
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token" type="hidden">
+        <label for="uri">URL</label>
+        <input type="text" name="tip[uri]" value="" id="uri" autofocus />
+        <input type="submit" value="TIP">
+      </form>
+    </hgroup>
   </header>
   <table id="tips">
     <thead>
