@@ -5,7 +5,7 @@
 <section id="home">
   <header>
     <figure>
-      <%= image_tag "person.png" %>
+      <%= image_tag "person.svg" %>
     </figure>
     <hgroup id="call_to_action">
       <h2>Pay</h2>
@@ -46,10 +46,11 @@
     <p>
       Use the service as much or as little as you like.
     </p>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <%= javascript_include_tag "home/twitter" %>
   </article>
   <figure>
     <figcaption>the couch</figcaption>
-    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-    <%= javascript_include_tag "home/twitter" %>
+    <%= image_tag "couch/1.png" %>
   </figure>
 </section>
