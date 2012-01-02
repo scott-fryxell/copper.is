@@ -1,40 +1,46 @@
-/* 
+/*
 *= require reset
 *= require_self
 *= require_directory ../shared
 */
-#popup {
+body {
   color:#808080;
   border:transparent;
   background-color: transparent;
 }
-#popup * {
-    text-shadow: 2px 2px 2px white;
+body * {
+  text-shadow: 2px 2px 2px white;
 }
 
 section {
   outline: none;
-  display: none;
 }
-section > h1 {
-  font-size: 1.5em;
-
-}
-section.notify {
+body > section {
+  display:none;
   position:fixed;
   top: 50%;
   left: 50%;
-  margin-top: -10em;
-  margin-left: -26em;
+  margin-top: -15em;
+  margin-left: -21.5em;
+  opacity:.95;
+}
+section > h1 {
+  font-size: 1.5em;
+}
+section.notify {
   border: .25em solid black;
   -moz-border-radius: 1em;
   border-radius: 1em;
   background:#FBF6F1;
-  opacity:.95; 
   -webkit-box-shadow: 0 0.25em 3em #333;
   -moz-box-shadow: 0 0.25em 3em #333;
 }
+section.notify * {
+  -webkit-transition-property: all;
+  -webkit-transition-duration:  1s;
+}
 section.notify > header {
+  vertical-align:top;
   padding:0;
   margin:0;
 }
@@ -50,12 +56,6 @@ section.notify > span {
   right:1em;
   font-size:2em;
   cursor:pointer;
-}
-section.notify > section {
-}
-section.notify * {
-  -webkit-transition-property: all;
-  -webkit-transition-duration:  1s;
 }
 section.notify > header {
   display:inline-block;
@@ -74,6 +74,29 @@ section.notify > header > p {
   display:inline-block;
   vertical-align:top;
   min-height:5.75em;
+}
+
+section.notify > aside {
+  position:relative;
+  display:inline-block;
+}
+section.notify > aside > h1 {
+  font-size: 4em;
+  margin: .5em;
+  color:#333;
+}
+section.notify > aside > button {
+  display:block;
+  position:absolute;
+  bottom:-2em;
+  left: 5em;
+  font-size: 1em;
+  text-align:center;
+  color:gray;
+}
+section.notify > aside > button:hover {
+  color:red;
+  cursor:pointer;
 }
 
 section.alert {
@@ -125,4 +148,23 @@ section.alert > header > span:hover {
 section.alert > ol {
   display:none;
   list-style: circle inside;
+}
+
+footer {
+  height:14em;
+  display:none;
+  border-radius: 0 0 .5em .5em;
+  padding:1em 2em 2em 2em;
+  margin: -.15em 1em;
+  border: .15em solid black;
+  -moz-border-radius: 1em;
+  background:#FBF6F1;
+  opacity:.95;
+  -webkit-box-shadow: 0 0.25em 3em #333;
+  -moz-box-shadow: 0 0.25em 3em #333;
+}
+
+
+#credit_card {
+  display:none;
 }

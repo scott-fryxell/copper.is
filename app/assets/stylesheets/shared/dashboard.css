@@ -1,28 +1,25 @@
 aside[itemtype="order"] {
   vertical-align:top;
   display: inline-block;
-  padding:1em;
+  padding:.25em 0;
+    font-size:1.15em;
 }
 aside[itemtype="order"] > h1 {
   margin-top:0;
   margin-bottom:.5em;
-  font-size:1.5em;
 }
 aside[itemtype="order"] > dl {
-  width: 20em;
-  margin-left:1em;
+  width: 15em;
 }
 aside[itemtype="order"] > dl > dt {
-  font-size: 1.5em;
   font-weight:normal;
   width:10em;
   margin-bottom:1em;
   display:inline-block;
 }
 aside[itemtype="order"] > dl > dd {
-  text-align:center;
-  font-size:1.5em;
-  width:3em;
+  text-align:right;
+  width:4em;
   display:inline-block;
 }
 aside[itemtype="order"] > dl > dd > a {
@@ -37,7 +34,6 @@ aside[itemtype="order"] > dl > dt.total {
   color:red;
 }
 aside[itemtype="order"] > dl > dd[itemprop="total_charge"] {
-  font-size:1.5em;
   font-weight:bold;
   color:red;
 }

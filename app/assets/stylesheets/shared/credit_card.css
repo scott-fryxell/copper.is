@@ -1,8 +1,8 @@
-#credit_card {
-  width:17.5em;
-  margin-top:.75em;
-  margin-left:14em;
-  display:inline-block;
+#credit_card > h1 {
+  color:red;
+  text-align:center;
+  font-size:1.5em;
+  margin-bottom:1em;
 }
 #credit_card .invalid {
   border:.20em solid red !important;
@@ -11,61 +11,70 @@
   opacity:.5
 }
 #credit_card input[type=checkbox].invalid {
-  outline:.20em solid red !important;
+  outline:.10em solid red !important;
 }
-#credit_card > legend {
-  font-size:1.5em;
-  margin-bottom:1em;
+#credit_card input, #credit_card select {
+  font-size:1em;
 }
-#credit_card > fieldset {
-  margin-bottom:1em;
+
+#credit_card > form {
+  font-size:1em;
+  float:right;
+  display:inline-block;
 }
-#credit_card > fieldset.pay * {
-  margin-bottom:.5em;
+#credit_card > form > fieldset {
+  margin-bottom:.75em;
 }
-#credit_card > fieldset > input {
-  font-size:1.15em;
+#credit_card > form > fieldset > input {
   border:.15em solid #666;
   border-radius:.5em;
   padding:.25em;
 }
-#credit_card > fieldset > input[type=submit] {
+#credit_card > form > input[type=submit] {
   float:right;
   color:red;
-  border:.15em solid #666;
+  border:.10em solid #666;
   border-radius:.5em;
-  padding:.25em 1em;
-  font-size:1.15em;
-  margin-top:.5em;
-  margin-right:.75em;
+  padding:.25em .75em;
   cursor:pointer;
+  vertical-align:top;
+  color:red;
+  font-weight:bold;
+  font-size:1.25em;
+  text-shadow:none;
+  background-color:white;
 }
-#credit_card > fieldset > input#email {
+#credit_card > form > fieldset > input#email {
   width:14em;
 }
-#credit_card > fieldset > input#cvc {
+#credit_card > form > fieldset > input#cvc {
   width:2.15em;
   margin-left:.5em;
 }
-#credit_card > fieldset > input#number {
+#credit_card > form > fieldset > input#number {
   width:10.5em;
 }
-#credit_card > fieldset > select {
+#credit_card > form > fieldset > select {
   border:.1em solid #666;
   padding:.25em;
-  font-size:1.15em;
 }
-#credit_card > fieldset > select#month {
-  width:9.15em;
-  margin-right:.75em;
+#credit_card > form > fieldset > select#month {
+  width:9.25em;
+  margin-right:.5em;
 }
-#credit_card > fieldset > label {
-  font-size:1.15em;
+#credit_card > form > fieldset > label {
   display:block;
   width:6em;
 }
-#credit_card > fieldset > label[for=site_terms],
-#credit_card > fieldset > label[for=rebill]{
+#credit_card > form > fieldset.pay {
+  width:11.5em;
+  font-size:.75em;
   display:inline-block;
-  width:8.75em;
-} 
+}
+
+#credit_card > form > fieldset > label[for=site_terms],
+#credit_card > form > fieldset > label[for=rebill]{
+  display:inline-block;
+  margin-bottom:.5em;
+  width:9.5em;
+}

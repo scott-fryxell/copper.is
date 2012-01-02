@@ -1,13 +1,12 @@
-<section id="credit_card" style="display:none">
-  <h1>It's time to pay for your tips</h1>
+<section id='credit_card'>
+  <h1>Let's take care of some business</h1>
   <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   <script type="text/javascript" charset="utf-8">
     Stripe.setPublishableKey('<%=DirtyWhiteCouch::Application.config.stripe_publishable_key%>');
   </script>
   <!-- 4242424242424242 -->
   <%= render :partial => 'shared/order_info', :object => current_user.active_tip_order %>
-
-  <form method="post" action="<%=pay_user_path(current_user)%>" id="credit_card">
+  <form method="post" action="<%=pay_user_path(current_user)%>" >
     <fieldset>
       <input type="email" name="email" required id="email" placeholder="Email" value="<%=current_user.email%>"/>
       <input type="hidden" id="total_in_cents" value="<%=current_user.active_tip_order.tips.sum(:amount_in_cents)/10 + current_user.active_tip_order.tips.sum(:amount_in_cents)%>" />
@@ -48,9 +47,9 @@
     <fieldset class="pay">
     	<input type="checkbox"  name="terms" id="site_terms" value="true" <%= "checked" if current_user.accept_terms? %> />
       <label for="site_terms">I accept the <a href="/terms" target="window">terms</a></label>
-      <input type="submit" value="Pay" />
       <input type="checkbox" name="rebill" id="rebill" value="true" <%= "checked" if current_user.automatic_rebill? %> />
       <label for="rebill">Bill me automatically</label>
     </fieldset>
+    <input type="submit" value="Pay" />
   </form>
 </section>

@@ -1,4 +1,4 @@
-<% tips.each do |tip| %>
+<%-tips.each do |tip|-%>
  <tr>
    <td>
      <a href='<%= tip.locator.canonicalized %>' target='new'>
@@ -13,11 +13,11 @@
    </td>
    <td>
      <span>$<%= cents_to_dollars(tip.amount_in_cents) %></span>
-     <%if tip.tip_order.is_active?%>
+     <%-if tip.tip_order.is_active?-%>
      <form action='<%=user_tip_path(current_user, tip)%>' method="delete" target="interact">
        <input type="submit" name="submit" value="x">
      </form>
-     <%end%>
+     <%-end-%>
    </td>
  </tr>
-<% end %>
+<%-end-%>

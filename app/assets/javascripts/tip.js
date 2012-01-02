@@ -27,26 +27,6 @@ $(document).bind({
       });
     }
   },
-  "login_submit": function (event, options) {
-    $.post("/authenticate", $("section.workflow form").serialize());
-    $(document).trigger("workflow_end");
-  },
-  "login_get": function (event) {
-    $("section.workflow ").load('/signin');
-  },
-  "login_display": function (event) {
-    $("section.workflow > form").submit(function (event){
-      event.preventDefault();
-      $(document).trigger("login_submit");
-      return false;
-    });
-    $(document).trigger("notify");
-    $("input[id=email]").delay(1200).focus();
-  },
-  "login_success": function (event) {
-    $(document).trigger("tip_determine");
-    $(document).trigger("tip_submit");
-  },
   "ajaxComplete": function (event, xhr, options) {
     $("body").append(xhr.responseText);
     $(document).trigger(new String(xhr.status), xhr, options);
@@ -61,21 +41,14 @@ $(document).bind({
     }
   },
   "notify": function (event, xhr, options) {
-    $("body").addClass("open");
-    $("body > section").fadeIn(800).delay(3500).fadeOut(800, function(){
-      window.parent.postMessage("notify_complete",  "*");
-      $("body").removeClass("open");
-    });
-  },
-  "open": function (event, url) {
-    window.open(url);
-  },
-  "keyup": function(event) {
-    if (event.keyCode == 27 ){
-      if($("body.open").length == 1 )
-        $(document).trigger("notify");
-      else
-        $(document).trigger("notify");
+    if($('footer')[0]){
+      $("body > section").fadeIn(800, function (){
+        $('footer').slideDown(800, function (){
+          $('#credit_card').show(500);
+        });
+      });
+    } else {
+      $("body > section").fadeIn(800).delay(3500).fadeOut(800);
     }
   }
 });
