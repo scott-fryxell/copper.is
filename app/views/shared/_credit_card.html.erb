@@ -6,7 +6,7 @@
   </script>
   <!-- 4242424242424242 -->
   <%= render :partial => 'shared/order_info', :object => current_user.active_tip_order %>
-  <form method="post" action="<%=pay_user_path(current_user)%>" >
+  <form method="post" action="<%=pay_user_path(current_user)%>">
     <fieldset>
       <input type="email" name="email" required id="email" placeholder="Email" value="<%=current_user.email%>"/>
       <input type="hidden" id="total_in_cents" value="<%=current_user.active_tip_order.tips.sum(:amount_in_cents)/10 + current_user.active_tip_order.tips.sum(:amount_in_cents)%>" />
@@ -31,7 +31,6 @@
         <option value="12">December</option>
       </select>
       <select id="year">
-        <option value="2011">2011</option>
         <option value="2012">2012</option>
         <option value="2013">2013</option>
         <option value="2014">2014</option>

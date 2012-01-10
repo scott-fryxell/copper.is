@@ -168,3 +168,10 @@ footer {
 #credit_card {
   display:none;
 }
+
+footer > section > button {
+  font-size:2em;
+  margin-top:1.5em;
+  margin-left:4em;
+  
+}

@@ -31,9 +31,6 @@ $(document).bind({
     $("body").append(xhr.responseText);
     $(document).trigger(new String(xhr.status), xhr, options);
   },
-  "401": function (event, response, options) {
-    $(document).trigger("login_get");
-  },
   "200": function (event, xhr, options){
     var trigger = $("<div />").append(xhr.responseText).find("meta[name=event_trigger]").attr("content");
     if(trigger){
@@ -48,9 +45,30 @@ $(document).bind({
         });
       });
     } else {
-      $("body > section").fadeIn(800).delay(3500).fadeOut(800);
+      $("body > section").fadeIn(800).delay(3500).fadeOut(800, function (event){
+        window.parent.postMessage("notify_complete",  "*");
+      });
     }
-  }
+  },
+  "credit_card_approved": function (event, xhr, options){
+    $("#credit_card > h1").text("Success!");
+    $("#credit_card > form").slideUp(800, function (){
+      $("#credit_card").append("<button>Close</button>");
+    });
+  },
+  "credit_card_problem": function (event, xhr, options){
+    console.debug("credit card problem");
+    // TODO Plug some shit in for this
+  },
+});
+
+$('footer > section > button').live('click', function (event){
+  $('footer').slideUp(800, function (){
+    $("body > section").fadeOut(800, function (){
+      window.parent.postMessage("notify_complete",  "*");
+    });
+
+  });
 });
 var FLB = {
   tip: {}

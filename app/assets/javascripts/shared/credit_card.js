@@ -73,7 +73,13 @@ $(document).ready(function() {
           // insert the token into the form so it gets submitted to the server
           form$.append("<input type='hidden' name='stripe_token' value='" + token + "'/>");
           // and submit
-          form$.get(0).submit();
+          // form$.get(0).submit();
+          jQuery.ajax({
+             url: $(form$).attr("action"),
+             type: $(form$).attr("method"),
+             data: $(form$).serialize()
+           });
+
         }
       }
     );

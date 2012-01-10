@@ -51,9 +51,18 @@ class UsersController < ApplicationController
     if(current_user.accept_terms? && current_user.stripe_customer_id)
       current_user.active_tip_order.charge
       OrderMailer.reciept(order).deliver
-      redirect_to user_tips_url(current_user), :notice => "Thank you. We've emailed you a detailed reciept"
+      
+      if request.xhr?
+        render :text => '<meta name="event_trigger" content="credit_card_approved"/>'
+      else
+        redirect_to user_tips_url(current_user), :notice => "Thank you. We've emailed you a detailed reciept"
+      end
     else
-      redirect_to user_tips_url(current_user), :notice => "There was a problem processing your order. please try again later."
+      if request.xhr?
+        render :text => '<meta name="event_trigger" content="credit_card_problem"/>'
+      else
+        redirect_to user_tips_url(current_user), :notice => "There was a problem processing your order. please try again later."
+      end
     end
 
   # catch any errors and handle them.
