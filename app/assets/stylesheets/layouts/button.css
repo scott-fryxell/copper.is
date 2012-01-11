@@ -150,25 +150,23 @@ section.alert > ol {
   list-style: circle inside;
 }
 
+#credit_card {
+  display:none;
+}
+
 footer {
   height:14em;
   display:none;
   border-radius: 0 0 .5em .5em;
+  moz-border-radius: 0 0 .5em .5em;
   padding:1em 2em 2em 2em;
   margin: -.15em 1em;
   border: .15em solid black;
-  -moz-border-radius: 1em;
   background:#FBF6F1;
   opacity:.95;
   -webkit-box-shadow: 0 0.25em 3em #333;
   -moz-box-shadow: 0 0.25em 3em #333;
 }
-
-
-#credit_card {
-  display:none;
-}
-
 footer > section > button {
   font-size:2em;
   margin-top:1.5em;
