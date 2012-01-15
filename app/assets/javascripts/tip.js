@@ -50,16 +50,27 @@ $(document).bind({
       });
     }
   },
-  "credit_card_approved": function (event, xhr, options){
-    $("#credit_card > h1").text("Success!");
+  "card_approved": function (event, xhr, options){
+    $("#credit_card > h1").text("Success! We've emailed you a reciept");
     $("#credit_card > form").slideUp(800, function (){
       $("#credit_card").append("<button>Close</button>");
     });
   },
-  "credit_card_problem": function (event, xhr, options){
+  "card_declined": function (event, xhr, options){
+    $("#credit_card > h1").text("Your credit card was declined");
+    // allow them to resubmit with a new card
+    $('#credit_card > form > input[type=submit]').removeAttr("disabled");
+  },
+  "terms_declined": function (event, xhr, options){
     console.debug("credit card problem");
     // TODO Plug some shit in for this
   },
+  "processing_error": function (event, xhr, options){
+    $("#credit_card > h1").text("There was a processing error. Your credit card was not charged");
+    // allow them to resubmit with a new card
+    $('#credit_card > form > input[type=submit]').removeAttr("disabled");
+
+  }
 });
 
 $('footer > section > button').live('click', function (event){
