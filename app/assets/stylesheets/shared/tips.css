@@ -1,11 +1,11 @@
 #tip_views {
-  display:inline-block;
-  vertical-align:top;
-  margin-left:.5em;
+  margin:.5em;
 }
 #tip_views > a {
+  vertical-align:middle;
+  line-height:2em;
   font-size:.5em;
-  margin: 0 .5em;
+  margin: 0;
   padding:.15em .5em;
   border: .15em solid gray;
   border-radius:.5em;

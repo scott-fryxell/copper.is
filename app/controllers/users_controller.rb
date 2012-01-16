@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       @user = current_user
       @tip = Tip.new
 
-      if params[:all]
+      if params[:all] == 'true'
         @tips = current_user.tips
       else
         @tips = current_user.active_tips

@@ -4,7 +4,9 @@
   <script type="text/javascript" charset="utf-8">
     Stripe.setPublishableKey('<%=DirtyWhiteCouch::Application.config.stripe_publishable_key%>');
   </script>
-  <!-- 4242424242424242 -->
+  <!-- 4242424242424242 test approved-->
+  <!-- 4000000000000002 test declined-->
+
   <%= render :partial => 'shared/order_info', :object => current_user.active_tip_order %>
   <form method="post" action="<%=pay_user_path(current_user)%>">
     <fieldset>
