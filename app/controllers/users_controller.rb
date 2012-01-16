@@ -35,12 +35,15 @@ class UsersController < ApplicationController
     current_user.email = params[:email]
     current_user.automatic_rebill = params[:rebill]
 
-    if (!current_user.stripe_customer_id)
+    if current_user.stripe_customer_id
+      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+      customer.card = params[:stripe_token]
+      customer.save
+    else
       customer = Stripe::Customer.create(
         :card => params[:stripe_token],
         :description => "user.id=" + current_user.id.to_s
       )
-
       current_user.stripe_customer_id = customer.id
     end
 
@@ -55,7 +58,7 @@ class UsersController < ApplicationController
       if request.xhr?
         render :text => '<meta name="event_trigger" content="card_approved"/>'
       else
-        redirect_to user_tips_url(current_user), :notice => "Thank you. We've emailed you a detailed reciept"
+        redirect_to user_tips_url(current_user), :notice => "Thank you. We've emailed you a reciept"
       end
     else
       if request.xhr?
