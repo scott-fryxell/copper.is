@@ -214,7 +214,7 @@ body > footer > nav {
   min-height:2em;
 }
 body > footer > nav > a {
-  display:inline-block;
+  display:none;
   margin-bottom: .25em;
   width:19%;
   text-align:center;
@@ -222,4 +222,29 @@ body > footer > nav > a {
   line-height:2em;
   font-size: 1.25em;
   text-shadow: 1px 1px 1px silver;
+}
+
+
+#quiet {
+  top:0;
+  left:0;
+  position:fixed;
+  background-color: #000000;
+  opacity:.95;
+  width:100%;
+  height:100%;
+  margin:0;
+
+}
+
+#quiet h1, #quiet p  {
+  text-shadow: 1px 1px 1px gray;
+  font-size:5em;
+  width:58.5em;
+  margin: 1em 40%;
+}
+
+#quiet p {
+  font-size:2em;
+  margin: 1em 36%;
 }

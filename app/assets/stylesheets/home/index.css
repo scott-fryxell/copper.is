@@ -99,9 +99,11 @@
   display:none;
 }
 
+
 .twtr-widget .twtr-tweet-wrap {
 padding: .5em 0 !important;
 overflow: hidden;
 zoom: 1;
+  display:none; 
 }
 
