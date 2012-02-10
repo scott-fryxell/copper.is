@@ -214,7 +214,6 @@ body > footer > nav {
   min-height:2em;
 }
 body > footer > nav > a {
-  display:none;
   margin-bottom: .25em;
   width:19%;
   text-align:center;
@@ -223,7 +222,6 @@ body > footer > nav > a {
   font-size: 1.25em;
   text-shadow: 1px 1px 1px silver;
 }
-
 
 #quiet {
   top:0;
@@ -234,7 +232,11 @@ body > footer > nav > a {
   width:100%;
   height:100%;
   margin:0;
+  display:none;
+}
 
+body > footer > nav > a {
+  display:none;
 }
 
 #quiet h1, #quiet p  {
@@ -243,7 +245,6 @@ body > footer > nav > a {
   width:58.5em;
   margin: 1em 40%;
 }
-
 #quiet p {
   font-size:2em;
   margin: 1em 36%;
