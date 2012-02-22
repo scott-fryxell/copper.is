@@ -93,13 +93,18 @@ $("section.notify > aside > form > button").live('click', function (event){
     $("body > section").fadeOut(800, function (){
       // filter the amount, make sure that it's a number
       // post the form via ajax.
-      console.debug( $("section.notify > aside > h1").text());
-      var amount_in_cents = $("section.notify > aside > h1").text();
+      console.debug( "tip is: " + $("section.notify > aside > form > input").val());
+
+      // convert from dollars into cents
+      var amount_in_cents = $("section.notify > aside > form > input").val();
+      amount_in_cents = Math.round(100 * parseFloat(amount_in_cents.replace(/[$,]/g, '')));
+
       $.ajax({
-        url:$("section.notify > aside > h1").attr("data-tip-url"),
+        url:$("section.notify > aside > form").attr("action"),
         data:  "tip[amount_in_cents]=" + amount_in_cents,
-        type: "PU",
+        type: "PUT",
         success: function(data) {
+          console.debug(data);
           window.parent.postMessage("notify_complete",  "*");
         }
       });
