@@ -6,19 +6,11 @@ describe "Guest" do
   it "should not be availaBle" do
     visit "/users/current"
     page.should have_content('Sign In With')
-    visit "/users/current/tips"
-    page.should have_content('Sign In With')
-
   end
 
   describe "call to action" do
     before(:each) do
       visit "/"
-    end
-
-    it "should contain a reference to a design stylesheet" do
-      page.should have_selector "body > section > style"
-      page.should have_content 'import url(/design.css)'
     end
 
     describe "header" do

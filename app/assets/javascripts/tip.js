@@ -69,17 +69,43 @@ $(document).bind({
     $("#credit_card > h1").text("There was a processing error. Your credit card was not charged");
     // allow them to resubmit with a new card
     $('#credit_card > form > input[type=submit]').removeAttr("disabled");
-
   }
 });
 
-$('footer > section > button').live('click', function (event){
+$("footer > section > button").live('click', function (event){
   $('footer').slideUp(800, function (){
     $("body > section").fadeOut(800, function (){
       window.parent.postMessage("notify_complete",  "*");
     });
-
   });
+});
+$("section.notify > aside > form > button").live('click', function (event){
+  if ($(this).text() == "Change") {
+    $("section.notify > aside > form > input").removeAttr('readonly')
+    $("section.notify > aside > form > input").focus();
+
+    $(this).text("save");
+    $("body > section").stop(true);
+    $("section.notify > aside > form").focus();
+  }
+  else {
+    $(this).hide();
+    $("body > section").fadeOut(800, function (){
+      // filter the amount, make sure that it's a number
+      // post the form via ajax.
+      console.debug( $("section.notify > aside > h1").text());
+      var amount_in_cents = $("section.notify > aside > h1").text();
+      $.ajax({
+        url:$("section.notify > aside > h1").attr("data-tip-url"),
+        data:  "tip[amount_in_cents]=" + amount_in_cents,
+        type: "PU",
+        success: function(data) {
+          window.parent.postMessage("notify_complete",  "*");
+        }
+      });
+
+    });
+  }
 });
 var FLB = {
   tip: {}

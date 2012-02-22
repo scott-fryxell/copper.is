@@ -23,13 +23,13 @@ class TipsController < ApplicationController
   def update
     @tip = Tip.find(params[:id])
 
-    if params[:tip][:note] && params[:tip][:note] != ""
-      @tip.note = params[:tip][:note]
+    if params[:tip][:amount_in_cents] && params[:tip][:amount_in_cents] != ""
+      @tip.amount_in_cents = params[:tip][:amount_in_cents]
       @tip.save
     end
 
     if request.xhr?
-      render :action => 'notes_ajax', :layout => false
+      render :text => '<meta name="event_trigger" content="tip_updated"/>'
     end
   end
   def destroy
@@ -43,7 +43,6 @@ class TipsController < ApplicationController
   def embed_iframe
     render :action => 'embed_iframe.js', :layout => false
   end
-  
   def agent
     @tip = current_user.tip(params[:uri], params[:title] )
 

@@ -11,10 +11,6 @@ body {
 body * {
   text-shadow: 2px 2px 2px white;
 }
-
-section {
-  outline: none;
-}
 body > section {
   display:none;
   position:fixed;
@@ -23,6 +19,10 @@ body > section {
   margin-top: -15em;
   margin-left: -21.5em;
   opacity:.95;
+}
+
+section {
+  outline: none;
 }
 section > h1 {
   font-size: 1.5em;
@@ -73,31 +73,58 @@ section.notify > header > p {
   color:red;
   display:inline-block;
   vertical-align:top;
-  min-height:5.75em;
+  min-height:4.5em;
 }
 
 section.notify > aside {
   position:relative;
   display:inline-block;
+  min-width:15em;
+  min-height:10em;
 }
 section.notify > aside > h1 {
   font-size: 4em;
   margin: .5em;
   color:#333;
 }
-section.notify > aside > button {
+section.notify > aside > h1:before{
+  content:"$";
+}
+section.notify > aside > form > button {
   display:block;
   position:absolute;
-  bottom:-2em;
-  left: 5em;
+  bottom:1em;
+  left: 3.5em;
   font-size: 1em;
   text-align:center;
   color:gray;
 }
-section.notify > aside > button:hover {
+section.notify > aside > form > button:hover {
   color:red;
   cursor:pointer;
 }
+
+section.notify > aside > form  {
+  border:none;
+  font-size:1em;
+  display:block;
+  margin-top:2em;
+  margin-left:1em;
+
+}
+section.notify > aside > form > label {
+  font-size:2em;
+  color:#333;
+}
+
+section.notify > aside > form > input {
+  border:none;
+  font-size:2em;
+  width:3em;
+  background-color:#FBF6F1;
+  
+}
+
 
 section.alert {
   -webkit-box-shadow: 0 0.25em 3em #333;
