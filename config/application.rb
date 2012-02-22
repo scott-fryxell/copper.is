@@ -30,6 +30,9 @@ module DirtyWhiteCouch
     config.twitter_consumer_key = ENV['TWITTER_CONSUMER_KEY']
     config.twitter_consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
 
+    config.google_consumer_key = ENV['GOOGLE_CONSUMER_KEY']
+    config.google_consumer_secret = ENV['GOOGLE_CONSUMER_SECRET']
+
     config.facebook_app_id = ENV['FACEBOOK_APP_ID']
     config.facebook_app_secret = ENV['FACEBOOK_APP_SECRET']
 
@@ -42,6 +45,9 @@ module DirtyWhiteCouch
 
     raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless DirtyWhiteCouch::Application.config.twitter_consumer_key
     raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless DirtyWhiteCouch::Application.config.twitter_consumer_secret
+
+    raise "Google consumer key must be defined ENV['GOOGLE_CONSUMER_KEY']" unless DirtyWhiteCouch::Application.config.google_consumer_key
+    raise "Google Consumer secret Name must be defined ENV['GOOGLE_CONSUMER_SECRET']" unless DirtyWhiteCouch::Application.config.google_consumer_secret
 
     raise "facebook app id must be defined ENV['FACEBOOK_APP_ID']" unless DirtyWhiteCouch::Application.config.facebook_app_id
     raise "facebook secret key must be defined ENV['FACEBOOK_APP_SECRET']" unless DirtyWhiteCouch::Application.config.facebook_app_secret
