@@ -232,11 +232,11 @@ body > footer > nav > a {
   width:100%;
   height:100%;
   margin:0;
-/*  display:none;*/
+  display:none;
 }
 
 body > footer > nav > a {
-  display:none;
+/*  display:none;*/
 }
 
 #quiet h1, #quiet p  {
