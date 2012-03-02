@@ -6,7 +6,7 @@
    <array>
      <dict>
        <key>CFBundleIdentifier</key>
-       <string>com.dirtywhitecouch.safari.DirtyWhiteCouch</string>
+       <string>is.copper.safari.Copper</string>
        <key>Developer Identifier</key>
        <string>FHE652UPZG</string>
        <key>CFBundleVersion</key>
@@ -14,7 +14,7 @@
        <key>CFBundleShortVersionString</key>
        <string>1.0</string>
        <key>URL</key>
-       <string>http://dirtywhitecouch.com/extensions/DirtyWhiteCouch.com.safariextz</string>
+       <string>http://copper.is/extensions/copper.com.safariextz</string>
      </dict>
    </array>
 </dict>

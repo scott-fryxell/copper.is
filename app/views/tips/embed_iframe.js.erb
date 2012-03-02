@@ -1,12 +1,12 @@
 <% cache do %>
 (function(){
-  var f = document.getElementById('dirtywhitecouch');
+  var f = document.getElementById('copper');
   if (f) {
-    console.error("The dirtywhitecouch iframe should have been removed.")
+    console.error("The copper iframe should have been removed.")
   }
   else {
     f=document.createElement('iframe');
-    f.id='dirtywhitecouch';
+    f.id='copper';
     f.frameborder=0;
     f.scrolling=0;
     f.target='weave';
@@ -29,18 +29,18 @@
     window.addEventListener('message',function(event) {
       // if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
         if (event.data == 'notify_complete') {
-          var frame = document.getElementById('dirtywhitecouch');
+          var frame = document.getElementById('copper');
           document.body.removeChild(frame);
         }
         else if (event.data == 'reset_frame'){
-          frame = document.getElementById('dirtywhitecouch');
+          frame = document.getElementById('copper');
           f.width='0';
           f.height='0';
           frame.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/?uri=' +
             window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
         }
         else if (event.data == 'resize_frame'){
-          frame = document.getElementById('dirtywhitecouch');
+          frame = document.getElementById('copper');
           f.width='100%';
           f.height='100%';
         }

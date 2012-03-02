@@ -14,9 +14,9 @@ class TipsController < ApplicationController
       @tip = current_user.tip(params[:tip][:uri])
 
       if @tip && @tip.valid?
-        redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_success")
+        redirect_to user_url(current_user.id), :notice => t("copper.tip_success")
       else
-        redirect_to user_url(current_user.id), :notice => t("dirtywhitecouch.tip_failed")
+        redirect_to user_url(current_user.id), :notice => t("copper.tip_failed")
       end
     end
   end

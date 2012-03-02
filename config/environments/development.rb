@@ -1,4 +1,4 @@
-DirtyWhiteCouch::Application.configure do
+Copper::Application.configure do
   config.cache_classes = false
   config.whiny_nils = true
   config.consider_all_requests_local       = true
@@ -19,9 +19,9 @@ DirtyWhiteCouch::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'dirtywhitecouch.com',
-    :user_name            => 'scott@dirtywhitecouch.com',
-    :password             => DirtyWhiteCouch::Application.config.email_password,
+    :domain               => 'copper.is',
+    :user_name            => 'orders@copper.is',
+    :password             => Copper::Application.config.email_password,
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 end

@@ -31,7 +31,7 @@ class HomeController < ApplicationController
 
 
   def safari
-    send_file  Rails.public_path +  '/extensions/DirtyWhiteCouch.com.safariextz', :type => 'application/octet-stream', :disposition => 'inline', :filename=>'DirtyWhiteCouch.com.safariextz'
+    send_file  Rails.public_path +  '/extensions/copper.is.safariextz', :type => 'application/octet-stream', :disposition => 'inline', :filename=>'copper.com.safariextz'
   end
   
   

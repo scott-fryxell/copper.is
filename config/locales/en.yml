@@ -9,8 +9,8 @@ en:
   activerecord:
     errors:
       full_messages:
-          taken: "There is already a dirtywhitecouch.com account for that email address."
-  dirtywhitecouch:
+          taken: "There is already a copper.is account for that email address."
+  copper:
     user_update_success: "Your account has been updated."
     permission_denied: "You dont have access to that page."
     tip_success: "Tip successfully created."

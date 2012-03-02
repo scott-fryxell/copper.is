@@ -4,4 +4,4 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-DirtyWhiteCouch::Application.load_tasks
+Copper::Application.load_tasks

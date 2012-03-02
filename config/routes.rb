@@ -1,4 +1,4 @@
-DirtyWhiteCouch::Application.routes.draw do
+Copper::Application.routes.draw do
 
   resources :users do
     post 'pay', :on => :member
@@ -15,7 +15,7 @@ DirtyWhiteCouch::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
   get 'authors', :to => 'home#authors'
   get 'button', :to => 'home#button'
-  get "/DirtyWhiteCouch.com.safariextz", :to => "home#safari"
+  get "/copper.is.safariextz", :to => "home#safari"
 
   match "/auth/:provider/callback" => "sessions#create"
   match '/auth/failure' => 'sessions#failure'

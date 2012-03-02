@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def permission_denied
 
-    flash[:error] = t("dirtywhitecouch.permission_denied")
+    flash[:error] = t("copper.permission_denied")
     respond_to do |format|
       format.html { redirect_to signin_url }
       format.xml  { head :unauthorized }

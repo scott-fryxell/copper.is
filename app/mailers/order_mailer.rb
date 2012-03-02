@@ -1,5 +1,5 @@
 class OrderMailer < ActionMailer::Base
-  default :from => "orders@dirtywhitecouch.com"
+  default :from => "orders@copper.is"
   helper :Layout
 
   def reciept(order)

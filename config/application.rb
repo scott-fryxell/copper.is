@@ -8,7 +8,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module DirtyWhiteCouch
+module Copper
   class Application < Rails::Application
 
     config.encoding = "utf-8"
@@ -39,25 +39,25 @@ module DirtyWhiteCouch
     config.stripe_publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
     config.stripe_secret_key = ENV['STRIPE_SECRET_KEY']
 
-    config.dwc_session_key = ENV['DWC_SECRET_KEY']
+    config.copper_session_key = ENV['COPPER_SECRET_KEY']
 
     config.email_password = ENV['EMAIL_PASSWORD']
 
-    raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless DirtyWhiteCouch::Application.config.twitter_consumer_key
-    raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless DirtyWhiteCouch::Application.config.twitter_consumer_secret
+    raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless Copper::Application.config.twitter_consumer_key
+    raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless Copper::Application.config.twitter_consumer_secret
 
-    raise "Google consumer key must be defined ENV['GOOGLE_CONSUMER_KEY']" unless DirtyWhiteCouch::Application.config.google_consumer_key
-    raise "Google Consumer secret Name must be defined ENV['GOOGLE_CONSUMER_SECRET']" unless DirtyWhiteCouch::Application.config.google_consumer_secret
+    raise "Google consumer key must be defined ENV['GOOGLE_CONSUMER_KEY']" unless Copper::Application.config.google_consumer_key
+    raise "Google Consumer secret Name must be defined ENV['GOOGLE_CONSUMER_SECRET']" unless Copper::Application.config.google_consumer_secret
 
-    raise "facebook app id must be defined ENV['FACEBOOK_APP_ID']" unless DirtyWhiteCouch::Application.config.facebook_app_id
-    raise "facebook secret key must be defined ENV['FACEBOOK_APP_SECRET']" unless DirtyWhiteCouch::Application.config.facebook_app_secret
+    raise "facebook app id must be defined ENV['FACEBOOK_APP_ID']" unless Copper::Application.config.facebook_app_id
+    raise "facebook secret key must be defined ENV['FACEBOOK_APP_SECRET']" unless Copper::Application.config.facebook_app_secret
 
-    raise "stripe publishable key must be defined ENV['STRIPE_PUBLISHABLE_KEY']" unless DirtyWhiteCouch::Application.config.stripe_publishable_key
-    raise "stripe secret key must be defined ENV['STRIPE_SECRET_KEY']" unless DirtyWhiteCouch::Application.config.stripe_secret_key
+    raise "stripe publishable key must be defined ENV['STRIPE_PUBLISHABLE_KEY']" unless Copper::Application.config.stripe_publishable_key
+    raise "stripe secret key must be defined ENV['STRIPE_SECRET_KEY']" unless Copper::Application.config.stripe_secret_key
 
-    raise "session key must be defined ENV['DWC_SECRET_KEY']" unless DirtyWhiteCouch::Application.config.dwc_session_key
+    raise "session key must be defined ENV['COPPER_SECRET_KEY']" unless Copper::Application.config.copper_session_key
 
-    raise "email password be defined ENV['EMAIL_PASSWORD']" unless DirtyWhiteCouch::Application.config.email_password
+    raise "email password be defined ENV['EMAIL_PASSWORD']" unless Copper::Application.config.email_password
 
   end
 end

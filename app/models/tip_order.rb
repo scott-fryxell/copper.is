@@ -10,7 +10,7 @@ class TipOrder < ActiveRecord::Base
   validates_uniqueness_of :fan_id, :scope => :is_active, :if => :is_active
 
   def time_to_pay?
-    if ( self.tiped_enough_to_pay? && self.old_enough_to_pay? && !self.fan.automatic_rebill )
+    if ( self.tiped_enough_to_pay? && !self.fan.automatic_rebill )
       return true
     else
       return false
