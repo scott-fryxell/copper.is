@@ -69,7 +69,7 @@ describe User do
       description = "testing creating a customer"
       @user = users(:a_fan)
       @user.stripe_customer_id.should be_nil
-      @user.create_stripe_customer("66666666").should_not be_nil
+      @user.create_stripe_customer("tok_JGLg2UG0FEB5Hr").should_not be_nil
       @user.stripe_customer_id.should_not be_nil
       @user.delete_stripe_customer
     end

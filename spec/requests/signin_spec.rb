@@ -27,21 +27,38 @@ describe "signing in" do
     visit "/"
     click_link 'twitter_sign_in'
     page.should have_content 'twitter_fan'
-    page.should have_content 'Signed In'
+    page.should have_content 'Welcome aboard!'
   end
 
   it "should login with facebook" do
     visit "/"
     click_link 'facebook_sign_in'
     page.should have_content 'facebook_fan'
-    page.should have_content 'Signed In'
+    page.should have_content 'Welcome aboard!'
   end
 
   it "should login with google" do
     visit "/"
     click_link 'google_sign_in'
     page.should have_content 'google_fan'
-    page.should have_content 'Signed In'
+    page.should have_content 'Welcome aboard!'
   end
+
+  it "should be able to link multiple accounts" do
+    visit "/"
+    click_link 'google_sign_in'
+    page.should have_content 'google_fan'
+    page.should have_content 'Welcome aboard!'
+    
+    
+    visit "/users/current"
+    click_link 'google_sign_in'
+    page.should have_content 'google_fan'
+    page.should have_content 'Successfully linked that account'
+    
+    
+  end
+  
+
 
 end

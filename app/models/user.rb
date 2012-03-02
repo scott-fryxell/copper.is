@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :tips, :through => :tip_orders
   has_many :tip_orders, :foreign_key => "fan_id"
+  has_many :identities
 
   has_and_belongs_to_many :roles
 
@@ -8,10 +9,8 @@ class User < ActiveRecord::Base
 
   def self.create_with_omniauth(auth)
     create! do |user|
-      user.provider = auth["provider"]
-      user.uid = auth["uid"]
-      user.name = auth["user_info"]["name"]
-      user.email = auth["user_info"]["email"]
+      user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
       user.roles << Role.find_by_name('Patron')
     end
   end
