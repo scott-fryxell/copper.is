@@ -62,11 +62,10 @@
   text-decoration:underline;
 }
 #home > article > ul > li > a > img {
-  width:1em;
   vertical-align:bottom;
   text-decoration:none;
-
-  padding:.25em;
+  margin-left:0.25em;
+  padding:0.05em;
 }
 #home > figure {
   display:inline-block;
