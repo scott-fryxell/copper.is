@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string    :name
       t.string    :provider
       t.string    :uid
-      t.integer   :tip_preference_in_cents,  :null => false, :default => 25
+      t.integer   :tip_preference_in_cents,  :null => false, :default => 50
       t.timestamps
     end
   end

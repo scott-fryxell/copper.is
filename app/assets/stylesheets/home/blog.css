@@ -42,8 +42,7 @@
   display:inline-block;
 }
 #blog > figure img {
-  width:20em;
+  width:15em;
+  margin-left:3em;
   border-radius: 1em;
-  -webkit-box-shadow: 0 .75em 1.75em silver;
-  -moz-box-shadow: 0 .75em 1.75em silver;
 }

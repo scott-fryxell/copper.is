@@ -43,18 +43,18 @@ a {
 }
 a:hover {
   text-decoration: none;
-  -webkit-animation-name: pulse-red;
+  -webkit-animation-name: pulse-copper;
   -webkit-animation-duration: 3s;
   -webkit-animation-iteration-count: infinite;
 
-  -moz-animation-name: pulse-red;
+  -moz-animation-name: pulse-copper;
   -moz-animation-duration: 3s;
   -moz-animation-iteration-count: infinite;
 
 }
 p > a,
 form a {
-  color:red;
+  color:#BD902C;
 }
 body > section ,
 body > header ,
@@ -76,7 +76,8 @@ body > header > a {
  font-family:'Andale Mono';
 }
 body > header > a > img {
-  width:3em;
+  width:5em;
+  margin-top:.5em;
 }
 body > header > hgroup {
   float:right;
@@ -91,7 +92,7 @@ body > header > hgroup > h1 {
   margin-bottom:.25em;
 }
 body > header > hgroup > h1 > a {
-  color:red;
+  color:#BD902C;
   font-weight:bold;
 }
 body > header > hgroup > nav {

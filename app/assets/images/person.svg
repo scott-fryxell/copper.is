@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" viewBox="1 1 48 48" width="43pt" height="4pc">
   <g stroke="none" stroke-opacity="1" stroke-dasharray="none" fill="none" fill-opacity="1">
-    <ellipse cx="26.5" cy="11" rx="8" ry="8" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
+    <ellipse cx="26.5" cy="11" rx="8" ry="8" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="1">
       <animate attributeType="xml" attributeName="cx" from="20.5" to="26.50" dur="2s" />
       <animate attributeType="xml" attributeName="cy" from="13" to="11" dur="2s" />
       <animate attributeType="xml" attributeName="fill" from="#FBF6F1" to="white" dur="2s"/>

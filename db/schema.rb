@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 22) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.integer  "tip_preference_in_cents", :default => 25,    :null => false
+    t.integer  "tip_preference_in_cents", :default => 50,    :null => false
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.string   "email"

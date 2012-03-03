@@ -1,21 +1,11 @@
 #home {
   width:55.5em;
 }
-#home > header > figure {
-  display:inline-block;
-  vertical-align:top;
-  margin-left:5em;
-  margin-right:8em;
-  padding-top:1em;
-  opacity:1;
-  height:auto;
-}
-#home > header > figure > img{
-  vertical-align:middle;
-  width:10em;
-  height:10em;
+#home > header {
+  min-height:9em;
 }
 #home > header > hgroup {
+  margin:2em 0 0 9em;
   font-size:2em;
 }
 #home > header > hgroup > h2,
@@ -29,7 +19,7 @@
     min-width:2.5em;
 }
 #home > header > hgroup > ul > li {
-  color:red;
+  color:#BD902C;
   display:none;
 
 }
@@ -75,24 +65,21 @@
   width:1em;
   vertical-align:bottom;
   text-decoration:none;
-  margin-left: .5em;
-  border: 1px solid #666;
+
   padding:.25em;
-  border-radius:.25em;
 }
 #home > figure {
   display:inline-block;
   vertical-align:top;
-  width:19em;
+  margin-left:1em;
+  width:18em;
 }
 #home > figure > figcaption {
   text-align:center;
   display:none;
 }
 #home > figure > img {
-  border-radius: 1em;
-  -webkit-box-shadow: 0 .75em 1.75em silver;
-  -moz-box-shadow: 0 .75em 1.75em silver;
+  width:13em;
 }
 
 .twtr-hd, .twtr-ft {

@@ -27,15 +27,15 @@
   }
 }
 
-@-webkit-keyframes  pulse-red {
+@-webkit-keyframes  pulse-copper {
   from {
     -webkit-text-stroke-color:gray;
     -webkit-text-stroke-width:.15em;
-    -webkit-text-fill-color:#808080;
+    -webkit-text-fill-color:#BD902C;
     -webkit-text-fill-color:gray;
   }
   50% {
-    -webkit-text-stroke-color:red;
+    -webkit-text-stroke-color:#BD902C;
     -webkit-text-stroke-width:1em;
     -webkit-text-fill-color:transparent;
   }
@@ -46,11 +46,11 @@
     -webkit-text-fill-color:red;
   }
 }
-@-moz-keyframes  pulse-red {
+@-moz-keyframes  pulse-copper {
   from {
     -moz-text-stroke-color:gray;
     -moz-text-stroke-width:.15em;
-    -moz-text-fill-color:#808080;
+    -moz-text-fill-color:#BD902C;
     -moz-text-fill-color:gray;
   }
   50% {
@@ -61,7 +61,7 @@
   to {
     -moz-text-stroke-color:gray;
     -moz-text-stroke-width:.15em;
-    -moz-text-fill-color:#808080;
+    -moz-text-fill-color:#BD902C;
     -moz-text-fill-color:red;
   }
 }
