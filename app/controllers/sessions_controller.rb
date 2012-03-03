@@ -27,10 +27,10 @@ class SessionsController < ApplicationController
         redirect_to user_path(current_user.id), notice: "Successfully linked that account"
       end
     else
-      if @identity.user.present?
+      if @identity.user
         # The identity we found had a user associated with it so let's
         # just log them in here
-        self.current_user = @identity.user
+        current_user = @identity.user
 
         set_cookie(@identity.user)
 
@@ -41,6 +41,9 @@ class SessionsController < ApplicationController
 
         set_cookie(user)
         current_user = user
+
+        @identity.user = current_user
+        @identity.save()
 
         redirect_to user_path(user.id), notice: "Welcome aboard!"
 

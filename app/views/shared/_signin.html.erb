@@ -1,7 +1,8 @@
 <hgroup>
   <% if current_user %>
-    <h1><%= link_to current_user.name, user_url(current_user) %></h1>
+    <h1><%= link_to current_user.name, user_url(current_user)%></h1>
     <nav>
+      <%= link_to "tips", user_tips_url(current_user) %>
       <a href="/authors">authors</a>
       <a href="/button">button</a>
       <%= link_to "signout", signout_path %>

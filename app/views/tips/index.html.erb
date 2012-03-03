@@ -1,0 +1,61 @@
+<%-content_for :head do-%>
+  <title><%=current_user.name%> - Copper</title>
+  <%= stylesheet_link_tag "tips/index" %>
+  <%= javascript_include_tag "tips/index" %>
+<%-end-%>
+<section id="tip_index">
+  <header>
+    <%= render :partial => 'shared/dashboard' %>
+    <hgroup>
+      <form method="post" accept-charset="utf-8" id="new_tip">
+        <input name="utf8" type="hidden" value="✓">
+        <input name="authenticity_token" type="hidden">
+        <label for="uri">URL</label>
+        <input type="text" name="tip[uri]" value="" id="uri" autofocus />
+        <input type="submit" value="TIP">
+      </form>
+    </hgroup>
+  </header>
+  <table id="tips">
+    <thead>
+      <tr>
+        <th>
+          <span>Tips</span>
+          <%if current_user.tip_orders.count > 1 %>
+          <nav id="tip_views">
+            <a href="?all=true#all_tips" id="all_tips">All</a>
+            <a href="?all=false#active_tips" id="active_tips">Current</a>
+          </nav>
+          <%end%>
+        </th>
+        <th>When</th>
+        <th>Manage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%-@tips.each do |tip|-%>
+       <tr>
+         <td>
+           <a href='<%= tip.locator.canonicalized %>' target='new'>
+            <%= CGI::unescape(tip.locator.page.description) %>
+           </a>
+           <p>
+            <%= tip.note %>
+           </p>
+         </td>
+         <td>
+           <time datetime="<%= tip.created_at.getutc.iso8601 %>"/>
+         </td>
+         <td>
+           <span>$<%= cents_to_dollars(tip.amount_in_cents) %></span>
+           <%-if tip.tip_order.is_active?-%>
+           <form action='<%=user_tip_path(current_user, tip)%>' method="delete" target="interact">
+             <input type="submit" name="submit" value="x">
+           </form>
+           <%-end-%>
+         </td>
+       </tr>
+      <%-end-%>
+    </tbody>
+  </table>
+</section>

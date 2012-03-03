@@ -1,52 +1,10 @@
-#user > header > aside {
-  margin-left:1em;
-  font-size: 1.5em;
-  margin-top:1em;
-}
-form#new_tip {
-  margin:1em 1em 1em 5.5em;
-  display:inline-block;
-  vertical-align:top;
-}
-form#new_tip > label {
-  display:inline-block;
-  vertical-align:top;
-  font-size: 2em;
-  line-height:1em;
-  margin-right:.5em;
-}
-form#new_tip > input {
-  display:inline-block;
-  background-color:white;
-  vertical-align:top;
+#user > h1{
   line-height:2em;
-  width: 20em;
-  height: 2em;
-  border:.25em solid gray;
 }
-form#new_tip > input[type=submit] {
-  margin-left:.5em;
-  height:2.5em;
-  width:5em;
-  border:.25em solid gray;
-  background-color:white;
-  -moz-border-radius:.5em;
-  border-radius:.5em;
-  color:red;
-  font-weight:bold;
-  cursor:pointer;
+#user > h1 > form {
+  display: inline-block;
+  margin-left:1em;
 }
-menu {
-  display:none;
-}
-menu > a {
-  display:inline-block;
-  border-radius:.5em;
-  font-size:.5em;
-  border:.15em solid gray;
-  padding:.2em;
-  min-width:2em;
-  text-align:center;
-  color:#666;
-  opacity:.8;
+#user > h1 > form select {
+  vertical-align:middle;
 }

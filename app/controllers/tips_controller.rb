@@ -1,5 +1,22 @@
 class TipsController < ApplicationController
   filter_access_to :create, :update, :destroy, :embed_iframe, :agent, :attribute_check => false
+  def index
+    @user = current_user
+    @tip = Tip.new
+
+    if params[:all] == 'true'
+      @tips = current_user.tips
+    else
+      @tips = current_user.active_tips
+    end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @user.to_xml }
+      format.json  { render :json => @user.to_json }
+    end
+    
+  end
+
   def create
     if request.xhr?
       @tip = current_user.tip(params[:uri], params[:title] )
