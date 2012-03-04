@@ -1,6 +1,6 @@
 var badge = {
   type: "name",
-  color: "red",
+  color: "copper",
   size: "200",
 }
 function render(){
