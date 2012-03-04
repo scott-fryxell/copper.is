@@ -40,9 +40,15 @@
   vertical-align:top;
   color:red;
   font-weight:bold;
-  font-size:1.25em;
+  font-size:1em;
   text-shadow:none;
   background-color:white;
+  
+  border:.15em solid gray;
+  background-color:white;
+  -moz-border-radius:.5em;
+  border-radius:.5em;
+  
 }
 #credit_card > form > fieldset > input#email {
   width:14em;
