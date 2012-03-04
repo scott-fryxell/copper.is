@@ -36,10 +36,10 @@
   margin-bottom: .5em;
 }
 #home > article > p {
-  font-size: 1.25em;
+  font-size: 1.5em;
 
   margin-bottom: 1em;
-  line-height: 1.25em;
+  line-height: 1.35em;
 }
 #home > article > ol {
   -webkit-padding-start: 0;
@@ -49,7 +49,7 @@
 }
 #home > article > ul {
   list-style: circle inside ;
-  font-size: 1.25em;
+  font-size: 1.5em;
   width: 25em;
   margin-bottom: 1em;
   line-height: 1.15em;
@@ -65,7 +65,7 @@
   vertical-align:bottom;
   text-decoration:none;
   margin-left:0.25em;
-  padding:0.05em;
+  padding:0.25em;
 }
 #home > figure {
   display:inline-block;
