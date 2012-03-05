@@ -223,6 +223,7 @@ body > footer > nav > a {
   line-height:2em;
   font-size: 1.25em;
   text-shadow: 1px 1px 1px silver;
+  display:none;
 }
 
 #quiet {
@@ -234,7 +235,7 @@ body > footer > nav > a {
   width:100%;
   height:100%;
   margin:0;
-  display:none;
+/*  display:none;*/
 }
 #quiet h1, #quiet p  {
   text-shadow: 1px 1px 1px gray;
