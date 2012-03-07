@@ -69,27 +69,9 @@ $(document).bind({
     $("#credit_card > h1").text("There was a processing error. Your credit card was not charged");
     // allow them to resubmit with a new card
     $('#credit_card > form > input[type=submit]').removeAttr("disabled");
-  }
-});
-
-$("footer > section > button").live('click', function (event){
-  $('footer').slideUp(800, function (){
-    $("body > section").fadeOut(800, function (){
-      window.parent.postMessage("notify_complete",  "*");
-    });
-  });
-});
-$("section.notify > aside > form > button").live('click', function (event){
-  if ($(this).text() == "Change") {
-    $("section.notify > aside > form > input").removeAttr('readonly')
-    $("section.notify > aside > form > input").focus();
-
-    $(this).text("save");
-    $("body > section").stop(true);
-    $("section.notify > aside > form").focus();
-  }
-  else {
-    $(this).hide();
+  },
+  "patch_tip": function (event) {
+    $("section.notify > aside > form > button").hide();
     $("body > section").fadeOut(800, function (){
       // filter the amount, make sure that it's a number
       // post the form via ajax.
@@ -110,6 +92,34 @@ $("section.notify > aside > form > button").live('click', function (event){
       });
 
     });
+
+  }
+});
+
+$("footer > section > button").live('click', function (event){
+  $('footer').slideUp(800, function (){
+    $("body > section").fadeOut(800, function (){
+      window.parent.postMessage("notify_complete",  "*");
+    });
+  });
+});
+
+$("section.notify > aside > form").live('submit', function (event){
+  event.preventDefault();
+  $(document).trigger("patch_tip");
+});
+
+$("section.notify > aside > form > button").live('click', function (event){
+  if ($(this).text() == "Change") {
+    $("section.notify > aside > form > input").removeAttr('readonly')
+    $("section.notify > aside > form > input").focus();
+
+    $(this).text("save");
+    $("body > section").stop(true);
+    $("section.notify > aside > form").focus();
+  }
+  else {
+    $(document).trigger("patch_tip");
   }
 });
 var FLB = {
