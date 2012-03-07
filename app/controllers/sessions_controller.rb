@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
         @identity.user = current_user
         @identity.save()
 
-        redirect_to user_path(user.id), notice: "Welcome aboard!"
+        redirect_to button_path, notice: "Welcome aboard!"
 
       end
     end
