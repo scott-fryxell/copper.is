@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
     if(current_user.accept_terms)
       current_user.active_tip_order.charge
-      OrderMailer.reciept(order).deliver
+      # OrderMailer.reciept(order).deliver
 
       if request.xhr?
         render :text => '<meta name="event_trigger" content="card_approved"/>'
