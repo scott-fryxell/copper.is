@@ -51,22 +51,9 @@ class SessionsController < ApplicationController
     end
   end
 
-  def create_old
-    auth = request.env["omniauth.auth"]
-    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
-
-    if Rails.env.production?
-      cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now, :domain => '.copper.is'}
-    else
-      cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
-    end
-
-    redirect_to user_path(current_user.id), :notice => "Signed In"
-  end
-
   def destroy
     if Rails.env.production?
-      cookies[:user_id] = {:value => nil, :expires => 90.days.ago, :domain => '.dirtywhitecouch.com'}
+      cookies[:user_id] = {:value => nil, :expires => 90.days.ago, :domain => '.copper.is'}
     else
       cookies[:user_id] = {:value => nil, :expires => 90.days.ago}
     end
@@ -85,7 +72,7 @@ class SessionsController < ApplicationController
 
   def set_cookie(user)
     if Rails.env.production?
-      cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now, :domain => '.dirtywhitecouch.com'}
+      cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now, :domain => '.copper.is'}
     else
       cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
     end

@@ -23,18 +23,9 @@ Copper::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => 'dirtywhitecouch.com',
-    :user_name            => 'scott@dirtywhitecouch.com',
+    :domain               => 'copper.is',
+    :user_name            => 'orders@copper.is',
     :password             => Copper::Application.config.email_password,
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
-
-  # config.action_mailer.smtp_settings = {
-  #   :address              => "smtp.gmail.com",
-  #   :port                 => 587,
-  #   :domain               => 'copper.is',
-  #   :user_name            => 'orders@copper.is',
-  #   :password             => Copper::Application.config.email_password,
-  #   :authentication       => 'plain',
-  #   :enable_starttls_auto => true  }
 end
