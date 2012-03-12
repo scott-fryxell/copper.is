@@ -42,7 +42,7 @@
   <figure></figure>
   <textarea name="badte_text" id="badge_text" rows="8" cols="40"></textarea>
   <script id="badge_template" type="text/x-jquery-tmpl">
-    <img class="dwc" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/logo/${type}/${color}.png"
+    <img class="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/logo/${type}/${color}.png"
          style="cursor:pointer; width:${size}px;" title="Pay this author for their work"
          onclick="<%= render :partial => 'tips/wrapped_launcher.js' %>">
   </script>

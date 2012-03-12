@@ -4,6 +4,6 @@ class OrderMailer < ActionMailer::Base
 
   def reciept(order)
     @order = order
-    mail(:to => order.fan.email, :subject => "DWC has processed your tips " + order.fan.name)
+    mail(:to => order.fan.email, :subject => "Copper has processed your tips " + order.fan.name)
   end
 end
