@@ -15,7 +15,6 @@ Copper::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
   get 'authors', :to => 'home#authors'
   get 'button', :to => 'home#button'
-  get "/copper.is.safariextz", :to => "home#safari"
   get "/buckingthesystem", :to => "home#index"
 
   match "/auth/:provider/callback" => "sessions#create"

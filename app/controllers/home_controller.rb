@@ -1,17 +1,14 @@
 class HomeController < ApplicationController
   respond_to :html
+  caches_page :index, :blog, :terms, :privacy, :button,:authors
 
   def index
-    if current_user
-      @tip = Tip.new
-      respond_with(@tip)
-    end
+    render :action => 'index'
   end
 
   def blog
-    render :action => 'blog', :layout => true
+    render :action => 'blog'
   end
-
 
   def terms
     render :action => 'terms'
@@ -29,14 +26,4 @@ class HomeController < ApplicationController
     render :action => 'authors'
   end
 
-
-  def safari
-    send_file  Rails.public_path +  '/extensions/copper.is.safariextz', :type => 'application/octet-stream', :disposition => 'inline', :filename=>'copper.com.safariextz'
-  end
-  
-  
-  def admin
-    render :action => 'admin'
-  end
-  
 end
