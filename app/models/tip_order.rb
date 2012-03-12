@@ -1,7 +1,7 @@
 class TipOrderMissing < Exception ; end
 
 class TipOrder < ActiveRecord::Base
-  has_many :tips
+  has_many :tips, :dependent => :destroy
 
   belongs_to :fan, :class_name => "User", :foreign_key => "fan_id"
 
