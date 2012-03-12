@@ -18,14 +18,13 @@ Copper::Application.configure do
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=315360000"
 
-  config.action_mailer.delivery_method = :smtp
-
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :domain               => 'copper.is',
-    :user_name            => 'orders@copper.is',
-    :password             => Copper::Application.config.email_password,
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com'
+  }
+  ActionMailer::Base.delivery_method = :smtp
 end
