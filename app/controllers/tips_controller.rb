@@ -1,5 +1,5 @@
 class TipsController < ApplicationController
-  filter_access_to :create, :update, :destroy, :embed_iframe, :agent, :attribute_check => false
+  filter_access_to :index, :create, :update, :destroy, :embed_iframe, :agent, :attribute_check => false
   def index
     @user = current_user
     @tip = Tip.new
