@@ -225,25 +225,3 @@ body > footer > nav > a {
   text-shadow: 1px 1px 1px silver;
 /*  display:none;*/
 }
-
-#quiet {
-  top:0;
-  left:0;
-  position:fixed;
-  background-color: #000000;
-  opacity:.95;
-  width:100%;
-  height:100%;
-  margin:0;
-  display:none;
-}
-#quiet h1, #quiet p  {
-  text-shadow: 1px 1px 1px gray;
-  font-size:5em;
-  width:58.5em;
-  margin: 1em 40%;
-}
-#quiet p {
-  font-size:2em;
-  margin: 1em 36%;
-}
