@@ -14,6 +14,7 @@ gem 'thin'
 
 
 group :production do
+  gem 'newrelic_rpm'
   gem "pg"
 end
 
