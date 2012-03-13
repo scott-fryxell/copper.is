@@ -29,7 +29,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.7)
-    arel (3.0.0)
+    arel (3.0.2)
     builder (3.0.0)
     capybara (1.1.2)
       mime-types (>= 1.16)
@@ -49,7 +49,7 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     daemons (1.1.8)
-    dalli (1.1.4)
+    dalli (1.1.5)
     declarative_authorization (0.5.5)
     diff-lcs (1.1.3)
     em-websocket (0.3.6)
@@ -64,19 +64,19 @@ GEM
       multipart-post (~> 1.1)
       rack (~> 1.1)
     ffi (1.0.11)
-    foreman (0.39.0)
+    foreman (0.40.0)
       term-ansicolor (~> 1.0.7)
       thor (>= 0.13.6)
-    guard (1.0.0)
+    guard (1.0.1)
       ffi (>= 0.5.0)
       thor (~> 0.14.6)
     guard-bundler (0.1.3)
       bundler (>= 1.0.0)
       guard (>= 0.2.2)
-    guard-livereload (0.2.1)
+    guard-livereload (0.4.2)
       em-websocket (>= 0.2.0)
-      guard (>= 0.4.0)
-      json (>= 1.5.1)
+      guard (>= 0.10.0)
+      multi_json (~> 1.0)
     guard-rspec (0.6.0)
       guard (>= 0.10.0)
     guard-spork (0.5.2)
@@ -85,27 +85,26 @@ GEM
     hashie (1.2.0)
     hike (1.2.1)
     i18n (0.6.0)
-    journey (1.0.1)
-    jquery-rails (2.0.0)
-      railties (>= 3.2.0.beta, < 5.0)
+    journey (1.0.3)
+    jquery-rails (2.0.1)
+      railties (>= 3.2.0, < 5.0)
       thor (~> 0.14)
     json (1.6.5)
-    json_pure (1.6.5)
-    mail (2.4.1)
+    mail (2.4.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    method_source (0.7.0)
+    method_source (0.7.1)
     mime-types (1.17.2)
     multi_json (1.1.0)
     multipart-post (1.1.5)
-    newrelic_rpm (3.3.0)
-    nokogiri (1.5.0)
+    newrelic_rpm (3.3.2)
+    nokogiri (1.5.2)
     oauth (0.4.5)
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
-    omniauth (1.0.2)
+    omniauth (1.0.3)
       hashie (~> 1.2)
       rack
     omniauth-facebook (1.2.0)
@@ -114,7 +113,7 @@ GEM
       multi_json
       omniauth (~> 1.0.0)
       omniauth-oauth
-    omniauth-oauth (1.0.0)
+    omniauth-oauth (1.0.1)
       oauth
       omniauth (~> 1.0)
     omniauth-oauth2 (1.0.0)
@@ -124,14 +123,14 @@ GEM
       omniauth-oauth (~> 1.0)
     omniauth-twitter (0.0.8)
       omniauth-oauth (~> 1.0)
-    pg (0.13.1)
+    pg (0.13.2)
     polyglot (0.3.3)
-    pry (0.9.8.2)
+    pry (0.9.8.4)
       coderay (~> 1.0.5)
-      method_source (~> 0.7)
+      method_source (~> 0.7.1)
       slop (>= 2.4.4, < 3)
     rack (1.4.1)
-    rack-cache (1.1)
+    rack-cache (1.2)
       rack (>= 0.4)
     rack-ssl (1.3.2)
       rack
@@ -177,14 +176,15 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.13.0)
-      childprocess (>= 0.2.1)
-      ffi (~> 1.0.9)
-      json_pure
+    selenium-webdriver (2.20.0)
+      childprocess (>= 0.2.5)
+      ffi (~> 1.0)
+      multi_json (~> 1.0)
       rubyzip
-    simplecov (0.4.2)
-      simplecov-html (~> 0.4.4)
-    simplecov-html (0.4.5)
+    simplecov (0.6.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     slop (2.4.4)
     spork (1.0.0rc2)
     sprockets (2.1.2)
@@ -194,7 +194,7 @@ GEM
     sqlite3 (1.3.5)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
-    stripe (1.6.0)
+    stripe (1.6.2)
       rest-client (~> 1.4)
     term-ansicolor (1.0.7)
     thin (1.3.1)
@@ -206,7 +206,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.31)
+    tzinfo (0.3.32)
     uglifier (1.2.3)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
@@ -218,7 +218,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
-  coffee-rails (~> 3.2.1)
+  coffee-rails
   dalli
   declarative_authorization
   foreman
@@ -238,10 +238,10 @@ DEPENDENCIES
   rails (= 3.2.0)
   rb-fsevent
   rspec-rails
-  sass-rails (~> 3.2.3)
+  sass-rails
   simplecov
   spork (> 0.9.0.rc)
   sqlite3-ruby
   stripe
   thin
-  uglifier (>= 1.0.3)
+  uglifier
