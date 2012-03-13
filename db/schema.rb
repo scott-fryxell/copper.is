@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 22) do
+ActiveRecord::Schema.define(:version => 23) do
 
   create_table "identities", :force => true do |t|
     t.string   "provider"
@@ -95,7 +95,6 @@ ActiveRecord::Schema.define(:version => 22) do
 
   create_table "tips", :force => true do |t|
     t.integer  "amount_in_cents"
-    t.string   "note"
     t.integer  "tip_order_id",    :null => false
     t.integer  "locator_id",      :null => false
     t.datetime "created_at",      :null => false
