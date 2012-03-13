@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 23) do
+ActiveRecord::Schema.define(:version => 24) do
 
   create_table "identities", :force => true do |t|
     t.string   "provider"
@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(:version => 23) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
 
   create_table "locators", :force => true do |t|
     t.string   "scheme"
@@ -38,6 +40,8 @@ ActiveRecord::Schema.define(:version => 23) do
     t.integer  "page_id"
   end
 
+  add_index "locators", ["site_id", "page_id"], :name => "index_locators_on_site_id_and_page_id"
+
   create_table "pages", :force => true do |t|
     t.string   "description", :null => false
     t.datetime "created_at",  :null => false
@@ -48,6 +52,8 @@ ActiveRecord::Schema.define(:version => 23) do
     t.integer "page_id"
     t.integer "royalty_order_id"
   end
+
+  add_index "pages_royalty_orders", ["page_id", "royalty_order_id"], :name => "index_pages_royalty_orders_on_page_id_and_royalty_order_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -85,6 +91,8 @@ ActiveRecord::Schema.define(:version => 23) do
     t.string   "charge_token"
   end
 
+  add_index "tip_orders", ["fan_id"], :name => "index_tip_orders_on_fan_id"
+
   create_table "tip_royalties", :force => true do |t|
     t.integer  "royalty_order_id", :null => false
     t.integer  "tip_id",           :null => false
@@ -93,6 +101,8 @@ ActiveRecord::Schema.define(:version => 23) do
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "tip_royalties", ["royalty_order_id", "tip_id"], :name => "index_tip_royalties_on_royalty_order_id_and_tip_id"
+
   create_table "tips", :force => true do |t|
     t.integer  "amount_in_cents"
     t.integer  "tip_order_id",    :null => false
@@ -100,6 +110,8 @@ ActiveRecord::Schema.define(:version => 23) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "tips", ["tip_order_id", "locator_id"], :name => "index_tips_on_tip_order_id_and_locator_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
