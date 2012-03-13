@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   respond_to :html
-  caches_page :index, :blog, :terms, :privacy, :button,:authors
+
+  caches_action :index, :blog, :terms, :privacy, :button, :authors
 
   def index
     render :action => 'index'

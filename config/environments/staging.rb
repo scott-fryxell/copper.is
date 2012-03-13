@@ -7,7 +7,7 @@ Copper::Application.configure do
 
   config.assets.compress = true
   config.assets.js_compressor  = :uglifier
-  # config.assets.css_compressor = :scss
+  config.assets.css_compressor = :scss
   config.assets.compile = true
   config.assets.debug = false
   config.assets.digest = true
