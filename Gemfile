@@ -21,7 +21,9 @@ end
 group :development, :test do
   gem 'simplecov', :require => false
   gem 'rspec-rails'
-  gem 'capybara'
+  # gem 'capybara'
+  gem "capybara-webkit"
+  gem 'database_cleaner', '~> 0.6.7'
   gem "sqlite3-ruby", :require => "sqlite3"
   gem 'guard-bundler'
   gem 'guard-rspec'

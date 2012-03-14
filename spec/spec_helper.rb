@@ -10,14 +10,15 @@ Spork.prefork do
   SimpleCov.start 'rails'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
-  require 'capybara/rspec'
-  require 'declarative_authorization/maintenance'
   require 'rspec'
+  require 'capybara/rspec'
+
+  require 'declarative_authorization/maintenance'
   require 'rack/test'
   require 'omniauth'
   require 'omniauth/test'
+  Capybara.default_driver = :webkit
 
-  # require Rails.root.join("db/seeds.rb")
   include Authorization::TestHelper
 
   # Requires supporting ruby files with custom matchers and macros, etc,
@@ -33,10 +34,10 @@ Spork.prefork do
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
     # instead of true.
-    config.use_transactional_fixtures = true
+    config.use_transactional_fixtures = false
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
-    config.run_all_when_everything_filtered = true
+    config.run_all_when_everything_filtered = false
 
     config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
@@ -45,6 +46,21 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  # This code will be run each time you run your specs.
 
+  RSpec.configure do |config|
+    # require Rails.root.join("db/seeds.rb")
+    # This code will be run each time you run your specs.
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
+
+    end
+
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+  end
 end

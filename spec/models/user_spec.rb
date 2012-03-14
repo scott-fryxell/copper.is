@@ -62,18 +62,24 @@ describe User do
   describe "creating a stripe account" do
 
     it "should be able to retrieve a token from stripe.com" do
-      number = 4242424242424242
-      exp_month = 11
-      exp_year = 2014
-      cvc = 666
-      description = "testing creating a customer"
+
+      stripe = Stripe::Token.create(
+          :card => {
+          :number => "4242424242424242",
+          :exp_month => 3,
+          :exp_year => 2013,
+          :cvc => 314
+        },
+          :currency => "usd"
+      )
+
       @user = users(:a_fan)
       @user.stripe_customer_id.should be_nil
-      @user.create_stripe_customer("tok_JGLg2UG0FEB5Hr").should_not be_nil
+      @user.create_stripe_customer(stripe.id).should_not be_nil
       @user.stripe_customer_id.should_not be_nil
       @user.delete_stripe_customer
     end
-    
+
     it "should not create a customer with an invalid card" do
       number = 424242424242
       exp_month = 11
@@ -83,7 +89,7 @@ describe User do
       @user = users(:a_fan)
       lambda{@user.create_stripe_token(number, exp_month, exp_year, cvc, description)}.should raise_error
     end
-    
+
   end
 
 end

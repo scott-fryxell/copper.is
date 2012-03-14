@@ -5,11 +5,6 @@ describe "signing in" do
   it "should have access to a signin link" do
     visit "/"
     page.should have_content 'Sign In With'
-
-  end
-
-  it "should be able to login via twitter" do
-    visit "/"
     page.has_selector? "body > header > hgroup > nav > a[href='/auth/twitter']"
   end
 
@@ -23,7 +18,7 @@ describe "signing in" do
     page.has_selector? "body > header > hgroup > nav > a[href='/auth/google']"
   end
 
-  it "should login with twitter" do
+  it "should login with twitter", :focus => true do
     visit "/"
     click_link 'twitter_sign_in'
     page.should have_content 'twitter_fan'
@@ -43,22 +38,5 @@ describe "signing in" do
     page.should have_content 'google_fan'
     page.should have_content 'Welcome aboard!'
   end
-
-  it "should be able to link multiple accounts" do
-    visit "/"
-    click_link 'google_sign_in'
-    page.should have_content 'google_fan'
-    page.should have_content 'Welcome aboard!'
-    
-    
-    visit "/users/current"
-    click_link 'google_sign_in'
-    page.should have_content 'google_fan'
-    page.should have_content 'Successfully linked that account'
-    
-    
-  end
-  
-
 
 end

@@ -106,14 +106,19 @@ describe TipOrder do
   end
   describe "paying for an order of tips" do
     before(:each) do
-      number = 4242424242424242
-      exp_month = 11
-      exp_year = 2014
-      cvc = 666
-      description = "Charging a fan"
+
+      stripe = Stripe::Token.create(
+          :card => {
+          :number => "4242424242424242",
+          :exp_month => 3,
+          :exp_year => 2013,
+          :cvc => 314
+        },
+          :currency => "usd"
+      )
 
       @user = users(:twitter_fan)
-      @user.create_stripe_customer('666666666')
+      @user.create_stripe_customer(stripe.id)
       @user.save
     end
 
