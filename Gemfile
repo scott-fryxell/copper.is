@@ -16,13 +16,11 @@ gem 'thin'
 group :production do
   gem 'newrelic_rpm'
   gem "pg"
-  gem 'rack-google_analytics', :require => "rack/google_analytics"
 end
 
 group :development, :test do
   gem 'simplecov', :require => false
   gem 'rspec-rails'
-  # gem 'capybara'
   gem "capybara-webkit"
   gem 'database_cleaner', '~> 0.6.7'
   gem "sqlite3-ruby", :require => "sqlite3"
