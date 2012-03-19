@@ -41,7 +41,7 @@ module Copper
 
     config.copper_session_key = ENV['COPPER_SECRET_KEY']
 
-    config.email_password = ENV['EMAIL_PASSWORD']
+    # config.email_password = ENV['EMAIL_PASSWORD']
 
     raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless Copper::Application.config.twitter_consumer_key
     raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless Copper::Application.config.twitter_consumer_secret
@@ -57,7 +57,7 @@ module Copper
 
     raise "session key must be defined ENV['COPPER_SECRET_KEY']" unless Copper::Application.config.copper_session_key
 
-    raise "email password be defined ENV['EMAIL_PASSWORD']" unless Copper::Application.config.email_password
+    # raise "email password be defined ENV['EMAIL_PASSWORD']" unless Copper::Application.config.email_password
 
   end
 end
