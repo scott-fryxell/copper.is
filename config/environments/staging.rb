@@ -12,7 +12,7 @@ Copper::Application.configure do
   config.assets.debug = false
   config.assets.digest = true
 
-  config.action_controller.perform_caching = true
+  config.action_controller.perform_caching = false
   config.cache_store = :dalli_store
 
   config.serve_static_assets = true
