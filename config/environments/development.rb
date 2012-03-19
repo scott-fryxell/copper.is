@@ -20,8 +20,8 @@ Copper::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'copper.is',
-    :user_name            => 'orders@copper.is',
-    :password             => Copper::Application.config.email_password,
+    :user_name            => 'scott@copper.is',
+    :password             => ENV['EMAIL_PASSWORD'],
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 end

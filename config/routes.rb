@@ -9,13 +9,13 @@ Copper::Application.routes.draw do
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe
 
   get 'about', :to => 'home#about'
+  get 'how', :to => 'home#how'
   get 'contact', :to => 'home#contact'
-  get 'blog', :to => 'home#blog'
   get 'terms', :to => 'home#terms'
   get 'privacy', :to => 'home#privacy'
   get 'authors', :to => 'home#authors'
   get 'button', :to => 'home#button'
-  get "/buckingthesystem", :to => "home#index"
+  get "buckingthesystem", :to => "home#index"
 
   match "/auth/:provider/callback" => "sessions#create"
   match '/auth/failure' => 'sessions#failure'
