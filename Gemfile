@@ -11,10 +11,9 @@ gem 'stripe'
 gem 'dalli'
 gem "foreman"
 gem 'thin'
-
+gem 'newrelic_rpm'
 
 group :production do
-  gem 'newrelic_rpm'
   gem "pg"
 end
 
@@ -31,6 +30,7 @@ group :development, :test do
   gem 'pry'
   gem 'rb-fsevent'
   gem 'spork', '> 0.9.0.rc'
+  gem 'ruby_parser'
 end
 
 # Gems used only for assets and not required
