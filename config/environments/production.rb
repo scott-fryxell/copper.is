@@ -27,6 +27,4 @@ Copper::Application.configure do
     :domain         => 'heroku.com'
   }
   ActionMailer::Base.delivery_method = :smtp
-
-  config.middleware.use("Rack::GoogleAnalytics", :web_property_id => " UA-30118836-1")
 end
