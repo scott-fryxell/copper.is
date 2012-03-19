@@ -4,9 +4,6 @@
      <a href='<%= tip.locator.canonicalized %>' target='new'>
       <%= CGI::unescape(tip.locator.page.description) %>
      </a>
-     <p>
-      <%= tip.note %>
-     </p>
    </td>
    <td>
      <time datetime="<%= tip.created_at.getutc.iso8601 %>"/>
