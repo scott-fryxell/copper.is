@@ -3,19 +3,33 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Guest" do
 
-  describe "call to action" do
+  describe "every page" do
     before(:each) do
       visit "/"
     end
 
-    describe "header" do
-      it "should be displayed to new users" do
-        page.should have_selector "body > section > header"
-      end
+    it "should contain a global nav section" do
+      page.has_selector? "body > header"
+    end
+
+    it "should contain a courtesy nav section" do
+      page.has_selector? "body > footer"
+    end
+
+    it "should contain a content area" do
+      page.has_selector? "body > section"
+    end
+
+    it "should contain a logo" do
+      page.has_selector? "body > header > a"
     end
   end
 
-  describe "navigation" do
+  describe "global navigation" do
+    before(:each) do
+      visit "/"
+    end
+
     it "should visit authors" do
       visit '/authors'
       page.should have_content 'Authors, use the badge on your site'
