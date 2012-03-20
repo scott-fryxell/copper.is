@@ -1,10 +1,45 @@
 #user > h1{
   line-height:2em;
 }
+#user > p {
+  margin: 1em 0;
+}
 #user > h1 > form {
   display: inline-block;
   margin-left:1em;
 }
 #user > h1 > form select {
   vertical-align:middle;
+}
+
+#user > ul > li {
+  margin: .75em 0;
+
+}
+#user > ul > li > a {
+  vertical-align:center;
+  display:inline-block;
+  margin:0 1em 1em 1em ;
+}
+#user > ul > li > a {
+  width:7em;
+  vertical-align:middle;
+  text-align:center;
+
+}
+#user > ul > li > section {
+  display:inline-block;
+  height:3em;
+}
+#user > ul > li > section p {
+  margin-top: 1em;
+}
+
+#user > ul > li > section > h2 {
+  line-height:1.75em;
+  vertical-align:top;
+  font-size:1.5em;
+}
+#user * {
+/*  outline: .1em solid #ffffff;*/
 }

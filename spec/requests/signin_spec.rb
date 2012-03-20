@@ -21,21 +21,21 @@ describe "signing in" do
   it "should login with twitter", :focus => true do
     visit "/"
     click_link 'twitter_sign_in'
-    page.should have_content 'twitter_fan'
+    page.should have_content 'twitter user'
     page.should have_content 'Welcome aboard!'
   end
 
   it "should login with facebook" do
     visit "/"
     click_link 'facebook_sign_in'
-    page.should have_content 'facebook_fan'
+    page.should have_content 'facebook user'
     page.should have_content 'Welcome aboard!'
   end
 
   it "should login with google" do
     visit "/"
     click_link 'google_sign_in'
-    page.should have_content 'google_fan'
+    page.should have_content 'google user'
     page.should have_content 'Welcome aboard!'
   end
 

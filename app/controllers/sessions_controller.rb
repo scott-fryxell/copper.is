@@ -60,10 +60,12 @@ class SessionsController < ApplicationController
 
     redirect_to root_url, :notice => "Signed out"
   end
+
   def failure
     # render :text => request.env["omniauth.auth"].to_yaml
-    redirect_to root_url, :notice => "Sign in failed"
+    redirect_to root_url, :notice => params[:message]
   end
+
   def new
     render :action => 'new', :layout => 'sign_in'
   end

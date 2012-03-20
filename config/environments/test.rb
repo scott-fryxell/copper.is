@@ -8,12 +8,18 @@ Copper::Application.configure do
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
   OmniAuth.config.test_mode = true
+
   OmniAuth.config.mock_auth[:twitter] = {
     'provider' => 'twitter',
     'uid' => '123545',
     'info' => {
-      'name' => 'twitter_fan',
+      'name' => 'twitter user',
       'email' => 'user@twitter.com',
+      'image' => 'http://image.com/me.png',
+      'location' => 'earth',
+      'phone' => '415.666.1234',
+      'urls' => 'http://dot.com',
+      'token' => '666_777_666'
     },
     'extra' => {
       'user_hash' => 'twitter magic'
@@ -24,20 +30,30 @@ Copper::Application.configure do
     'provider' => 'facebook',
     'uid' => '234567',
     'info' => {
-      'name' => 'facebook_fan',
+      'name' => 'facebook user',
       'email' => 'user@facebook.com',
+      'image' => 'http://image.com/me.png',
+      'location' => 'earth',
+      'phone' => '415.666.1234',
+      'urls' => 'http://dot.com',
+      'token' => '666_777_666'
     },
     'extra' => {
       'user_hash' => 'facebook magic'
     }
 
   }
-  OmniAuth.config.mock_auth[:google] = {
-    'provider' => 'google',
+  OmniAuth.config.mock_auth[:google_oauth2] = {
+    'provider' => 'google_oauth2',
     'uid' => '234567',
     'info' => {
-      'name' => 'google_fan',
+      'name' => 'google user',
       'email' => 'user@google.com',
+      'image' => 'http://image.com/me.png',
+      'location' => 'earth',
+      'phone' => '415.666.1234',
+      'urls' => 'http://dot.com',
+      'token' => '666_777_666'
       },
     'extra' => {
       'user_hash' => 'google magic'

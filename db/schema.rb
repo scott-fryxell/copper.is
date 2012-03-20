@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 24) do
+ActiveRecord::Schema.define(:version => 25) do
 
   create_table "identities", :force => true do |t|
     t.string   "provider"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(:version => 24) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.string   "email"
+    t.string   "image"
+    t.string   "location"
+    t.string   "phone"
+    t.string   "urls"
+    t.string   "token"
   end
 
   add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
