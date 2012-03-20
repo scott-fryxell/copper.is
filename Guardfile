@@ -24,13 +24,6 @@ guard 'livereload' do
 
   # my shit
   watch(%r{(public/).+\.(css|js|html)})
-  watch(%r{(public/users/).+\.(css|js|html)})
-  watch(%r{(public/tips/).+\.(css|js|html)})
-  watch(%r{(public/design/).+\.(css|js|html)})
-  watch(%r{(public/behavior/).+\.(css|js|html)})
-  watch(%r{(public/bookmarklet/).+\.(css|js|html)})
-  watch(%r{(public/dashboard/).+\.(css|js|html)})
-
 end
 
 guard 'rspec', :version => 2, :cli => '--color --format doc --drb', :all_on_start => false, :all_after_pass => false do
