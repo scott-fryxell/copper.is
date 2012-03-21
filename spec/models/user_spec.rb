@@ -13,7 +13,7 @@ describe User do
 
   it "should be a patron" do
     # TODO: when we sort out our fixture situation we should re test this
-    # users(:a_fan).roles.collect { |role| role.name }.should include("Patron")
+    users(:a_fan).roles.collect { |role| role.name }.should include("Patron")
   end
 
   it "should have a tip rate" do
@@ -34,7 +34,7 @@ describe User do
       fan.tip('foobar').should be_nil
     end
 
-    it "should handle project-free-tv.com urls", :focus=>true do
+    it "should handle project-free-tv.com urls" do
       fan = users(:a_fan)
       tip = fan.tip('http://www.free-tv-video-online.me/player/divxden.php?id=fpjbj7rqnv8y', 'Project%20Free%20TV%20-%20Watch%20%9160%20Minutes%20(US)%20Season%2044%20Episode%2025%92%20%20on%20Divxden%20for%20free')
     end

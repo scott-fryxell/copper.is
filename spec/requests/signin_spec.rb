@@ -18,7 +18,7 @@ describe "signing in" do
     page.has_selector? "body > header > hgroup > nav > a[href='/auth/google']"
   end
 
-  it "should login with twitter", :focus => true do
+  it "should login with twitter" do
     visit "/"
     click_link 'twitter_sign_in'
     page.should have_content 'twitter user'
