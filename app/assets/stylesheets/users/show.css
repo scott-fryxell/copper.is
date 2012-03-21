@@ -14,7 +14,6 @@
 
 #user > ul > li {
   margin: .75em 0;
-
 }
 #user > ul > li > a {
   vertical-align:center;
@@ -25,7 +24,6 @@
   width:7em;
   vertical-align:middle;
   text-align:center;
-
 }
 #user > ul > li > section {
   display:inline-block;
@@ -34,7 +32,6 @@
 #user > ul > li > section p {
   margin-top: 1em;
 }
-
 #user > ul > li > section > h2 {
   line-height:1.75em;
   vertical-align:top;

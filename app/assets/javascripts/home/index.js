@@ -1,5 +1,5 @@
-$(document).ready(function()  { 
-  $('#call_to_action').bind('rotate',  function(event){ 
+$(document).ready(function (){
+  $('#call_to_action').bind('rotate',  function(event){
     var  li   =  $(this).find('ul   >  li:visible');
     $(li).hide(500);
 
