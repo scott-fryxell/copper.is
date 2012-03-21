@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Locator do
-  describe "when creating from scratch" do
+  describe "creating" do
     before(:each) do
       @url = Locator.new
       @url.scheme = 'http'
@@ -38,7 +38,7 @@ describe Locator do
     end
   end
 
-  describe "when parsing a URL string into a new object" do
+  describe "parsing a URL" do
     describe "when parsing http://example.com" do
       before(:each) do
         @locator = Locator.parse('http://example.com')
@@ -66,7 +66,7 @@ describe Locator do
       end
     end
 
-    describe "when parsing http://example.com/test" do
+    describe "parsing http://example.com/test" do
       before(:each) do
         @locator = Locator.parse('http://example.com/test')
         @locator.page = Page.create(:description => 'example page')
@@ -97,7 +97,7 @@ describe Locator do
       end
     end
 
-    describe "when parsing ftp://thomas.loc.gov:244/00index" do
+    describe "parsing ftp://thomas.loc.gov:244/00index" do
       before(:each) do
         @locator = Locator.parse('ftp://thomas.loc.gov:244/00index')
         @locator.page = Page.create(:description => 'Library of Congress Thomas FTP site index')
@@ -128,7 +128,7 @@ describe Locator do
       end
     end
 
-    describe "when parsing https://scott:awsumpasswud@dirtywhitecouch.com/test?notreally=yeah#justkiddin" do
+    describe "parsing https://scott:awsumpasswud@dirtywhitecouch.com/test?notreally=yeah#justkiddin" do
       before(:each) do
         @locator = Locator.parse('https://scott:awsumpasswud@dirtywhitecouch.com/test?notreally=yeah#justkiddin')
         @locator.page = Page.create(:description => 'Sekrit internal Weave interface')
@@ -168,7 +168,7 @@ describe Locator do
     end
   end
 
-  describe "when working with minimal correct URL" do
+  describe "working with minimal correct URL" do
     before(:each) do
       @url = Locator.new
       @url.scheme = 'http'
