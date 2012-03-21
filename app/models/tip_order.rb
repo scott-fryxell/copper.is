@@ -2,11 +2,8 @@ class TipOrderMissing < Exception ; end
 
 class TipOrder < ActiveRecord::Base
   has_many :tips, :dependent => :destroy
-
   belongs_to :fan, :class_name => "User", :foreign_key => "fan_id"
-
   validates_presence_of :fan
-
   validates_uniqueness_of :fan_id, :scope => :is_active, :if => :is_active
 
   def time_to_pay?
@@ -16,7 +13,6 @@ class TipOrder < ActiveRecord::Base
       return false
     end
   end
-
   def charge
 
     charge = Stripe::Charge.create(
@@ -35,23 +31,15 @@ class TipOrder < ActiveRecord::Base
 
     return charge
   end
-
   def tiped_enough_to_pay?
     self.tips.sum(:amount_in_cents) >= 1000
   end
-
-  def old_enough_to_pay?
-    7.days.ago >= self.created_at
-  end
-
   def subtotal
     self.tips.sum(:amount_in_cents)
   end
-
   def fees
     self.tips.sum(:amount_in_cents)/10
   end
-
   def total
     self.subtotal + self.fees
   end

@@ -39,4 +39,19 @@ describe "signing in" do
     page.should have_content 'Welcome aboard!'
   end
 
+  it "should be able to log in multiple times" do
+    visit "/"
+    click_link 'google_sign_in'
+    click_link 'signout'
+    click_link 'google_sign_in'
+    page.should have_content 'Signed in!'
+  end
+
+  it  "should be able to sign out" do
+    visit "/"
+    click_link 'google_sign_in'
+    click_link 'signout'
+    page.should have_content 'Signed out'
+  end
+
 end

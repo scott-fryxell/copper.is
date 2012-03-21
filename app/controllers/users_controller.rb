@@ -11,17 +11,13 @@ class UsersController < ApplicationController
     end
   end
   def show
-    if current_user
-      @user = current_user
-      @tip = Tip.new
+    @user = current_user
+    @tip = Tip.new
 
-      if params[:all] == 'true'
-        @tips = current_user.tips
-      else
-        @tips = current_user.active_tips
-      end
+    if params[:all] == 'true'
+      @tips = current_user.tips
     else
-      @user = User.new
+      @tips = current_user.active_tips
     end
     respond_to do |format|
       format.html # index.html.erb

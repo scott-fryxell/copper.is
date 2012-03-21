@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
     else
       if @identity.user
         # The identity we found had a user associated with it so let's
-        # just log them in here
+        # just log them in
         current_user = @identity.user
 
         set_cookie(@identity.user)
