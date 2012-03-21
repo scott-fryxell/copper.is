@@ -14,9 +14,7 @@ class TipsController < ApplicationController
       format.xml  { render :xml => @user.to_xml }
       format.json  { render :json => @user.to_json }
     end
-    
   end
-
   def create
     if request.xhr?
       @tip = current_user.tip(params[:uri], params[:title] )
@@ -61,12 +59,21 @@ class TipsController < ApplicationController
     render :action => 'embed_iframe.js', :layout => false
   end
   def agent
-    @tip = current_user.tip(params[:uri], params[:title] )
+    uri = URI.unescape(params[:uri])
+    title = URI.unescape(params[:title])
+
+    @tip = current_user.tip(uri, title )
 
     if @tip && @tip.valid?
       render :action => 'show', :layout => 'button'
     else
       render :action => 'error', :layout => 'button'
     end
+
+  rescue StandardError::ArgumentError => e
+    logger.error e.message
+    render :action => 'error', :layout => 'button'
   end
+
+
 end
