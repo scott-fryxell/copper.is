@@ -31,6 +31,7 @@ group :development, :test do
   gem 'rb-fsevent'
   gem 'spork', '> 0.9.0.rc'
   gem 'ruby_parser'
+  gem 'launchy'
 end
 
 # Gems used only for assets and not required

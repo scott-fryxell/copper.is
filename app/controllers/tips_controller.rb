@@ -16,23 +16,12 @@ class TipsController < ApplicationController
     end
   end
   def create
-    if request.xhr?
-      @tip = current_user.tip(params[:uri], params[:title] )
+    @tip = current_user.tip(params[:tip][:uri])
 
-      if @tip && @tip.valid?
-        render :action => 'show', :layout => false
-      else
-        render :action => 'error', :layout => false
-      end
-
+    if @tip && @tip.valid?
+      redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_success")
     else
-      @tip = current_user.tip(params[:tip][:uri])
-
-      if @tip && @tip.valid?
-        redirect_to user_url(current_user.id), :notice => t("copper.tip_success")
-      else
-        redirect_to user_url(current_user.id), :notice => t("copper.tip_failed")
-      end
+      redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_failed")
     end
   end
   def update

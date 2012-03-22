@@ -61,7 +61,7 @@ $(document).ready(function() {
         email: $('#email').val()
       },
       $('#total_in_cents').val(), function (status, response) {
-        console.debug(status, response);
+        // console.debug(status, response);
         if (response.error) {
           //show the errors on the form
           $("#credit_card > h1 ").text(response.error.message);

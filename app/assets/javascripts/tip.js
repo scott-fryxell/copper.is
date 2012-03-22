@@ -16,7 +16,7 @@ $(document).bind({
     if(!FLB.uri){
       window.parent.postMessage("reset_frame",  "*");
     }
-    console.debug("determine tip", FLB, location);
+    // console.debug("determine tip", FLB, location);
   },
   "tip_submit": function (event, xhr, options) {
     if(FLB.tip.authenticity_token != null){
@@ -75,7 +75,7 @@ $(document).bind({
     $("body > section").fadeOut(800, function (){
       // filter the amount, make sure that it's a number
       // post the form via ajax.
-      console.debug( "tip is: " + $("section.notify > aside > form > input").val());
+      // console.debug( "tip is: " + $("section.notify > aside > form > input").val());
 
       // convert from dollars into cents
       var amount_in_cents = $("section.notify > aside > form > input").val();
@@ -86,7 +86,7 @@ $(document).bind({
         data:  "tip[amount_in_cents]=" + amount_in_cents,
         type: "PUT",
         success: function(data) {
-          console.debug(data);
+          // console.debug(data);
           window.parent.postMessage("notify_complete",  "*");
         }
       });

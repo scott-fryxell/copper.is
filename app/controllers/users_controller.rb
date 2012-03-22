@@ -44,39 +44,20 @@ class UsersController < ApplicationController
     end
 
     current_user.save
-
     order = current_user.active_tip_order
 
     if(current_user.accept_terms)
       current_user.active_tip_order.charge
       OrderMailer.reciept(order).deliver
-
-      if request.xhr?
-        render :text => '<meta name="event_trigger" content="card_approved"/>'
-      else
-        redirect_to user_tips_url(current_user), :notice => "Thank you. We've emailed you a reciept"
-      end
+      render :text => '<meta name="event_trigger" content="card_approved"/>'
     else
-      if request.xhr?
-        render :text => '<meta name="event_trigger" content="terms_declined"/>'
-      else
-        redirect_to user_tips_url(current_user), :notice => "we can not charge your card unless you accept the terms"
-      end
+      render :text => '<meta name="event_trigger" content="terms_declined"/>'
     end
   rescue Stripe::CardError => e
     logger.error e.message
-
-    if request.xhr?
-      render :text => '<meta name="event_trigger" content="card_declined"/>'
-    else
-      redirect_to user_tips_url(current_user), :notice => "Your card was declined."
-    end
+    render :text => '<meta name="event_trigger" content="card_declined"/>'
   rescue Stripe::InvalidRequestError => e
     logger.error e.message
-    if request.xhr?
-      render :text => '<meta name="event_trigger" content="processing_error"/>'
-    else
-      redirect_to user_tips_url(current_user), :notice => "There was a processing error. Your credit card was not charged"
-    end
+    render :text => '<meta name="event_trigger" content="processing_error"/>'
   end
 end

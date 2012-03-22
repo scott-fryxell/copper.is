@@ -18,6 +18,9 @@ Spork.prefork do
   require 'omniauth'
   require 'omniauth/test'
   Capybara.default_driver = :webkit
+  # Capybara.server_port = 9000
+  Capybara.server_port = 8080
+  Capybara.app_host = "http://127.0.0.1:8080"
 
   include Authorization::TestHelper
 
@@ -36,7 +39,7 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = false
     config.treat_symbols_as_metadata_keys_with_true_values = true
-    config.filter_run :focus => true
+    # config.filter_run :focus => true
     config.run_all_when_everything_filtered = false
 
     config.include Rack::Test::Methods
