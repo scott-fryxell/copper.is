@@ -8,22 +8,8 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb')
-  watch('test/test_helper.rb')
   watch(%r{^spec/fixtures/(.+)\.rb$})
-
-end
-
-guard 'livereload' do
-  # default rails 3.1
-  watch(%r{app/.+\.(erb|haml)})
-  watch(%r{app/helpers/.+\.rb})
-  watch(%r{(public/|app/assets).+\.(css|js|html)})
-  watch(%r{(app/assets/.+\.css)\.scss}) { |m| m[1] }
-  watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
-  watch(%r{config/locales/.+\.yml})
-
-  # my shit
-  watch(%r{(public/).+\.(css|js|html)})
+  watch(%r{^spec/fixtures/(.+)\.yml$})
 end
 
 guard 'rspec', :version => 2, :cli => '--color --format doc --drb', :all_on_start => false, :all_after_pass => false do
@@ -45,4 +31,12 @@ guard 'rspec', :version => 2, :cli => '--color --format doc --drb', :all_on_star
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
 end
 
-
+guard 'livereload' do
+  # default rails 3.1
+  watch(%r{app/.+\.(erb|haml)})
+  watch(%r{app/helpers/.+\.rb})
+  watch(%r{(public/|app/assets).+\.(css|js|html)})
+  watch(%r{(app/assets/.+\.css)\.scss}) { |m| m[1] }
+  watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
+  watch(%r{config/locales/.+\.yml})
+end
