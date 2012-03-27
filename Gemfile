@@ -12,6 +12,8 @@ gem 'dalli'
 gem "foreman"
 gem 'thin'
 gem 'newrelic_rpm'
+gem 'redis'
+gem 'resque'
 
 group :production do
   gem "pg"
