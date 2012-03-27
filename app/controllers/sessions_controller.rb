@@ -10,6 +10,15 @@ class SessionsController < ApplicationController
       @identity = Identity.create_with_omniauth(auth)
     end
 
+    @identity.name = auth['info']['name']
+    @identity.email = auth['info']['email']
+    @identity.location = auth['info']['location']
+    @identity.image = auth['info']['image']
+    @identity.urls = auth['info']['urls']
+    @identity.token = auth['credentials']['token']
+    @identity.secret = auth['credentials']['secret']
+    @identity.save
+
     if current_user
       if @identity.user == current_user
         # User is signed in so they are trying to link an identity with their
@@ -17,14 +26,14 @@ class SessionsController < ApplicationController
         # is the current user. So the identity is already associated with
         # this user. So let's display an error message.
 
-        redirect_to user_path(current_user.id), notice: "Already linked that account!"
+        redirect_to user_identities_path(current_user.id), notice: "Already linked that account!"
 
       else
         # The identity is not associated with the current_user so lets
         # associate the identity
         @identity.user = current_user
         @identity.save()
-        redirect_to user_path(current_user.id), notice: "Successfully linked that account"
+        redirect_to user_identities_path(current_user.id), notice: "Successfully linked that account"
       end
     else
       if @identity.user

@@ -1,0 +1,8 @@
+<section class="twitter">
+  <%-if twitter.image? -%>
+    <%= image_tag twitter.image %>
+  <%-else-%>
+    <%= image_tag "providers/twitter.png" %>
+  <%-end-%>
+  <h2>twitter: <%=twitter.name%></h2>
+</section>

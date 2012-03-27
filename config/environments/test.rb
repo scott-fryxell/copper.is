@@ -3,7 +3,7 @@ Copper::Application.configure do
   config.whiny_nils = true
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = true
   config.action_controller.allow_forgery_protection = false
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
@@ -21,13 +21,15 @@ Copper::Application.configure do
       'image' => 'http://image.com/me.png',
       'location' => 'earth',
       'phone' => '415.666.1234',
-      'urls' => 'http://dot.com',
-      'token' => '666_777_666'
+      'urls' => 'http://dot.com'
+    },
+    'credentials' => {
+      'token' => '666_777_666',
+      'secret' => 'its_a_secret'
     },
     'extra' => {
       'user_hash' => 'twitter magic'
     }
-
   }
   OmniAuth.config.mock_auth[:facebook] = {
     'provider' => 'facebook',
@@ -38,13 +40,15 @@ Copper::Application.configure do
       'image' => 'http://image.com/me.png',
       'location' => 'earth',
       'phone' => '415.666.1234',
-      'urls' => 'http://dot.com',
-      'token' => '666_777_666'
+      'urls' => 'http://dot.com'
+    },
+    'credentials' => {
+      'token' => '666_777_666',
+      'secret' => 'its_a_secret'
     },
     'extra' => {
       'user_hash' => 'facebook magic'
     }
-
   }
   OmniAuth.config.mock_auth[:google_oauth2] = {
     'provider' => 'google_oauth2',
@@ -55,12 +59,34 @@ Copper::Application.configure do
       'image' => 'http://image.com/me.png',
       'location' => 'earth',
       'phone' => '415.666.1234',
-      'urls' => 'http://dot.com',
-      'token' => '666_777_666'
-      },
+      'urls' => 'http://dot.com'
+    },
+    'credentials' => {
+      'token' => '666_777_666',
+      'secret' => 'its_a_secret'
+    },
     'extra' => {
       'user_hash' => 'google magic'
+    }
+  }
 
+  OmniAuth.config.mock_auth[:tumblr] = {
+    'provider' => 'tumblr',
+    'uid' => '234567',
+    'info' => {
+      'name' => 'tumblr user',
+      'email' => 'user@tumblr.com',
+      'image' => 'http://image.com/me.png',
+      'location' => 'earth',
+      'phone' => '415.666.1234',
+      'urls' => 'http://dot.com'
+    },
+    'credentials' => {
+      'token' => '666_777_666',
+      'secret' => 'its_a_secret'
+    },
+    'extra' => {
+      'user_hash' => 'tumblr magic'
     }
   }
 

@@ -54,10 +54,11 @@ class UsersController < ApplicationController
       render :text => '<meta name="event_trigger" content="terms_declined"/>'
     end
   rescue Stripe::CardError => e
-    logger.error e.message
     render :text => '<meta name="event_trigger" content="card_declined"/>'
   rescue Stripe::InvalidRequestError => e
-    logger.error e.message
     render :text => '<meta name="event_trigger" content="processing_error"/>'
+  end
+  def identities
+    render 'users/identities/index'
   end
 end

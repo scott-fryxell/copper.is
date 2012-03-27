@@ -40,3 +40,31 @@
 #user * {
 /*  outline: .1em solid #ffffff;*/
 }
+#user > section {
+  margin-bottom: 1.5em;
+}
+#user > section > h2 {
+  font-size:1.5em;
+  display:inline-block;
+  width:6em;
+}
+#user > section > form,
+#user > section > div,
+#user > section > div span,
+#user > section > div a  {
+  display: inline-block;
+}
+
+section#identity > div span {
+  font-size: 1.5em;
+  width: 4em;
+}
+
+section#identity > div > a {
+  text-decoration: underline;
+}
+
+#user > section > p {
+  margin-top:.5em;
+  margin-left:.5em;
+}

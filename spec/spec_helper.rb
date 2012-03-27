@@ -18,17 +18,15 @@ Spork.prefork do
   require 'omniauth'
   require 'omniauth/test'
   Capybara.default_driver = :webkit
-  # Capybara.server_port = 9000
   Capybara.server_port = 8080
   Capybara.app_host = "http://127.0.0.1:8080"
 
   include Authorization::TestHelper
-
-  # Requires supporting ruby files with custom matchers and macros, etc,
-  # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
+    config.include Rack::Test::Methods
+    config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -39,11 +37,9 @@ Spork.prefork do
     # instead of true.
     config.use_transactional_fixtures = false
     config.treat_symbols_as_metadata_keys_with_true_values = true
-    # config.filter_run :focus => true
-    config.run_all_when_everything_filtered = false
+    config.filter_run :focus => true
+    config.run_all_when_everything_filtered = true
 
-    config.include Rack::Test::Methods
-    config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
 
   end
 end
@@ -55,7 +51,6 @@ Spork.each_run do
     # This code will be run each time you run your specs.
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
-
     end
 
     config.before(:each) do

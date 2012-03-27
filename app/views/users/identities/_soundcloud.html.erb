@@ -1,0 +1,8 @@
+<section class="soundcloud">
+  <%-if tumblr.image? -%>
+    <%= image_tag tumblr.image %>
+  <%-else-%>
+    <%= image_tag "providers/tumblr.png" %>
+  <%-end-%>
+  <h2>tumblr: <%=tumblr.name%></h2>
+</section>

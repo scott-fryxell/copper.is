@@ -4,33 +4,25 @@
   <%= javascript_include_tag "users/show" %>
 <%-end-%>
 <section id="user">
-  <h1>Tip Rate <%= render :partial => 'shared/tip_rate' %></h1>
+  <h1>Account settings</h1>
 
-  <h1>Link Accounts</h1>
-  <p>
-    Link up all of the accounts you have content on. this will make paying you for your work as easy as pie.
-  </p>
-  <ul>
-    <li>
-      <a id="twitter_sign_in" href="/auth/twitter"><%= image_tag "providers/twitter.png" %></a>
-      <section>
-        <h2>twitter</h2>
-      </section>
-    </li>
-    <li>
-      <a id="facebook_sign_in" href="/auth/facebook"><%= image_tag "providers/facebook.png" %></a>
-      <section>
-        <h2>facebook</h2>
-      </section>
-    </li>
-    <li>
-      <a id="google_sign_in" href="/auth/google_oauth2"><%= image_tag "providers/google.png" %> <%= image_tag "providers/youtube.png" %></a>
-      <section>
-        <h2>google + youtube</h2>
-        <p>
-          Link your google and youtube account
-        </p>
-      </section>
-    </li>
-  </ul>
+  <section id="rate">
+    <h2>Tip Rate</h2>
+    <%= render :partial => 'shared/tip_rate' %>
+    <p>
+      Set the default amount for your bucks
+    </p>
+  </section>
+
+  <section id="identity">
+    <h2>Identities</h2>
+    <div>
+      <span><%= current_user.identities.count%></span>
+      <a href="/users/current/identities">edit</a>
+    </div>
+    <p>
+      Link the sites you have content on.
+    </p>
+  </section>
+
 </section>

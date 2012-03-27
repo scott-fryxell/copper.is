@@ -47,6 +47,7 @@ describe "bucking a URL" do
     it "should be notified that it's time to pay" do
       page.should have_content "Let's take care of some business"
     end
+    
     it "should be able to pay for tips" do
       sleep 2
       fill_in('email', :with => 'google_user@email.com')
@@ -60,6 +61,25 @@ describe "bucking a URL" do
       sleep 5
       page.should have_content "Success! We've emailed you a reciept"
     end
+
+
+    it "should be able to view all their tips" do
+      sleep 2
+      fill_in('email', :with => 'google_user@email.com')
+      fill_in('number', :with => '4242424242424242')
+      fill_in('cvc', :with => '666')
+      select('April', :from => 'month')
+      select('2015', :from => 'year')
+      check('terms')
+      click_on('Pay')
+      page.should have_content "Processing your order..."
+      sleep 5
+      page.should have_content "Success! We've emailed you a reciept"
+      
+      click_on('All')
+    end
+
+
 
     it "should decline a credit card without funds" do
       sleep 2

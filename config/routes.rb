@@ -1,9 +1,12 @@
+require 'resque/server'
 Copper::Application.routes.draw do
 
   resources :users do
     post 'pay', :on => :member
     resources :tips
+    get 'identities', :to => 'users#identities', :as => :identities
   end
+  mount Resque::Server.new, :at => "/resque"
 
   get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe

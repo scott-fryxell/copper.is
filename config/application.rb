@@ -41,6 +41,9 @@ module Copper
 
     config.copper_session_key = ENV['COPPER_SECRET_KEY']
 
+    config.tumblr_key = ENV['TUMBLR_KEY']
+    config.tumblr_secret = ENV['TUMBLR_SECRET']
+
     raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless Copper::Application.config.twitter_consumer_key
     raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless Copper::Application.config.twitter_consumer_secret
 
@@ -49,6 +52,9 @@ module Copper
 
     raise "facebook app id must be defined ENV['FACEBOOK_APP_ID']" unless Copper::Application.config.facebook_app_id
     raise "facebook secret key must be defined ENV['FACEBOOK_APP_SECRET']" unless Copper::Application.config.facebook_app_secret
+
+    raise "tumblr key must be defined ENV['TUMBLR_KEY']" unless Copper::Application.config.tumblr_key
+    raise "tumblr secret key must be defined ENV['TUMBLR_SECRET']" unless Copper::Application.config.tumblr_secret
 
     raise "stripe publishable key must be defined ENV['STRIPE_PUBLISHABLE_KEY']" unless Copper::Application.config.stripe_publishable_key
     raise "stripe secret key must be defined ENV['STRIPE_SECRET_KEY']" unless Copper::Application.config.stripe_secret_key

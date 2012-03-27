@@ -13,7 +13,7 @@ authorization do
   role :patron do
     has_permission_on [:sessions], :to => [:destroy]
 
-    has_permission_on [:users], :to => [:new, :create, :edit, :update, :show, :pay] do
+    has_permission_on [:users], :to => [:new, :create, :edit, :update, :show, :pay, :identities] do
       has_permission_on [:tips], :to => [:index, :create, :edit, :update, :destroy, :new, :embed_iframe, :agent]
     end
   end

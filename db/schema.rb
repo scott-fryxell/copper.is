@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 25) do
+ActiveRecord::Schema.define(:version => 26) do
 
   create_table "identities", :force => true do |t|
     t.string   "provider"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 25) do
     t.string   "phone"
     t.string   "urls"
     t.string   "token"
+    t.string   "secret"
   end
 
   add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
