@@ -6,4 +6,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2, Copper::Application.config.google_key, Copper::Application.config.google_secret, {:scope => 'http://gdata.youtube.com,userinfo.email,userinfo.profile,plus.me', :access_type => 'online', :approval_prompt => ''}
   provider :tumblr, Copper::Application.config.tumblr_key, Copper::Application.config.tumblr_secret  
   provider :github, Copper::Application.config.github_key, Copper::Application.config.github_secret
+  provider :vimeo, Copper::Application.config.vimeo_key, Copper::Application.config.vimeo_secret
 end

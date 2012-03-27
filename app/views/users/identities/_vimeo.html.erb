@@ -1,0 +1,19 @@
+<section class="vimeo">
+  <%-if vimeo.image? -%>
+    <%= image_tag vimeo.image %>
+  <%-else-%>
+    <%= image_tag "providers/vimeo.svg" %>
+  <%-end-%>
+  <dl>
+    <dt>name</dt>
+    <dd><%=vimeo.name%></dd>
+    <dt>email</dt>
+    <dd><%=vimeo.email%></dd>
+    <dt>location</dt>
+    <dd><%=vimeo.location%></dd>
+    <dt>image</dt>
+    <dd><%=vimeo.image%></dd>
+    <dt>URLs</dt>
+    <dd><%=vimeo.urls%></dd>    
+  </dl>
+</section>

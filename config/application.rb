@@ -47,6 +47,9 @@ module Copper
     config.github_key = ENV['GITHUB_KEY']
     config.github_secret = ENV['GITHUB_SECRET']
 
+    config.vimeo_key = ENV['VIMEO_KEY']
+    config.vimeo_secret = ENV['VIMEO_SECRET']
+
     raise "Twitter consumer key must be defined ENV['TWITTER_KEY']" unless Copper::Application.config.twitter_key
     raise "Twitter Consumer secret Name must be defined ENV['TWITTER_SECRET']" unless Copper::Application.config.twitter_secret
 
@@ -61,6 +64,9 @@ module Copper
 
     raise "github key must be defined ENV['GITHUB_KEY']" unless Copper::Application.config.github_key
     raise "github secret key must be defined ENV['GITHUB_SECRET']" unless Copper::Application.config.github_secret
+
+    raise "vimeo key must be defined ENV['VIMEO_KEY']" unless Copper::Application.config.vimeo_key
+    raise "vimeo secret key must be defined ENV['VIMEO_SECRET']" unless Copper::Application.config.vimeo_secret
 
     raise "stripe publishable key must be defined ENV['STRIPE_KEY']" unless Copper::Application.config.stripe_key
     raise "stripe secret key must be defined ENV['STRIPE_SECRET']" unless Copper::Application.config.stripe_secret

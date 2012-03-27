@@ -110,6 +110,25 @@ Copper::Application.configure do
     }
   }
 
+  OmniAuth.config.mock_auth[:vimeo] = {
+    'provider' => 'vimeo',
+    'uid' => '3456789',
+    'info' => {
+      'name' => 'vimeo user',
+      'email' => 'user@vimeo.com',
+      'image' => 'http://image.com/me.png',
+      'location' => 'earth',
+      'phone' => '415.666.1234',
+      'urls' => 'http://dot.com'
+    },
+    'credentials' => {
+      'token' => '666_777_666',
+      'secret' => 'its_a_secret'
+    },
+    'extra' => {
+      'user_hash' => 'vimeo magic'
+    }
+  }
 
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict
