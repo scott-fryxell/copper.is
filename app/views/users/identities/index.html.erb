@@ -11,12 +11,12 @@
     <a id="google_sign_in" href="/auth/google_oauth2"><%= image_tag "providers/google.png" %></a>
     <a id="youtube_sign_in" href="/auth/google_oauth2"><%= image_tag "providers/youtube.png" %></a>
     <a id="tumblr_sign_in" href="/auth/tumblr"><%= image_tag "providers/tumblr.png" %></a>
+    <a id="github_sign_in" href="/auth/github"><%= image_tag "providers/github.png" %></a>
   </nav>
-  
-  
+
   <h1>Linked accounts</h1>
   <%-current_user.identities.each do |identity|-%>
       <%= render :partial => 'users/identities/' + identity.provider, :object => identity %>
   <%-end-%>
-  
+
 </section>

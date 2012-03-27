@@ -27,37 +27,43 @@ module Copper
 
     config.assets.initialize_on_precompile= false
 
-    config.twitter_consumer_key = ENV['TWITTER_CONSUMER_KEY']
-    config.twitter_consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
-
-    config.google_consumer_key = ENV['GOOGLE_CONSUMER_KEY']
-    config.google_consumer_secret = ENV['GOOGLE_CONSUMER_SECRET']
-
-    config.facebook_app_id = ENV['FACEBOOK_APP_ID']
-    config.facebook_app_secret = ENV['FACEBOOK_APP_SECRET']
-
-    config.stripe_publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
-    config.stripe_secret_key = ENV['STRIPE_SECRET_KEY']
-
     config.copper_session_key = ENV['COPPER_SECRET_KEY']
+
+    config.stripe_key = ENV['STRIPE_KEY']
+    config.stripe_secret = ENV['STRIPE_SECRET']
+
+    config.twitter_key = ENV['TWITTER_KEY']
+    config.twitter_secret = ENV['TWITTER_SECRET']
+
+    config.google_key = ENV['GOOGLE_KEY']
+    config.google_secret = ENV['GOOGLE_SECRET']
+
+    config.facebook_key = ENV['FACEBOOK_KEY']
+    config.facebook_secret = ENV['FACEBOOK_SECRET']
 
     config.tumblr_key = ENV['TUMBLR_KEY']
     config.tumblr_secret = ENV['TUMBLR_SECRET']
 
-    raise "Twitter consumer key must be defined ENV['TWITTER_CONSUMER_KEY']" unless Copper::Application.config.twitter_consumer_key
-    raise "Twitter Consumer secret Name must be defined ENV['TWITTER_CONSUMER_SECRET']" unless Copper::Application.config.twitter_consumer_secret
+    config.github_key = ENV['GITHUB_KEY']
+    config.github_secret = ENV['GITHUB_SECRET']
 
-    raise "Google consumer key must be defined ENV['GOOGLE_CONSUMER_KEY']" unless Copper::Application.config.google_consumer_key
-    raise "Google Consumer secret Name must be defined ENV['GOOGLE_CONSUMER_SECRET']" unless Copper::Application.config.google_consumer_secret
+    raise "Twitter consumer key must be defined ENV['TWITTER_KEY']" unless Copper::Application.config.twitter_key
+    raise "Twitter Consumer secret Name must be defined ENV['TWITTER_SECRET']" unless Copper::Application.config.twitter_secret
 
-    raise "facebook app id must be defined ENV['FACEBOOK_APP_ID']" unless Copper::Application.config.facebook_app_id
-    raise "facebook secret key must be defined ENV['FACEBOOK_APP_SECRET']" unless Copper::Application.config.facebook_app_secret
+    raise "Google consumer key must be defined ENV['GOOGLE_KEY']" unless Copper::Application.config.google_key
+    raise "Google Consumer secret Name must be defined ENV['GOOGLE_SECRET']" unless Copper::Application.config.google_secret
+
+    raise "facebook app id must be defined ENV['FACEBOOK_KEY']" unless Copper::Application.config.facebook_key
+    raise "facebook secret key must be defined ENV['FACEBOOK_SECRET']" unless Copper::Application.config.facebook_secret
 
     raise "tumblr key must be defined ENV['TUMBLR_KEY']" unless Copper::Application.config.tumblr_key
     raise "tumblr secret key must be defined ENV['TUMBLR_SECRET']" unless Copper::Application.config.tumblr_secret
 
-    raise "stripe publishable key must be defined ENV['STRIPE_PUBLISHABLE_KEY']" unless Copper::Application.config.stripe_publishable_key
-    raise "stripe secret key must be defined ENV['STRIPE_SECRET_KEY']" unless Copper::Application.config.stripe_secret_key
+    raise "github key must be defined ENV['GITHUB_KEY']" unless Copper::Application.config.github_key
+    raise "github secret key must be defined ENV['GITHUB_SECRET']" unless Copper::Application.config.github_secret
+
+    raise "stripe publishable key must be defined ENV['STRIPE_KEY']" unless Copper::Application.config.stripe_key
+    raise "stripe secret key must be defined ENV['STRIPE_SECRET']" unless Copper::Application.config.stripe_secret
 
     raise "session key must be defined ENV['COPPER_SECRET_KEY']" unless Copper::Application.config.copper_session_key
 

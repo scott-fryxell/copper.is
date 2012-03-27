@@ -1,1 +1,1 @@
-Stripe.api_key = Copper::Application.config.stripe_secret_key
+Stripe.api_key = Copper::Application.config.stripe_secret

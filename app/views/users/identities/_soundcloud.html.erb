@@ -1,8 +1,19 @@
 <section class="soundcloud">
-  <%-if tumblr.image? -%>
-    <%= image_tag tumblr.image %>
+  <%-if soundcloud.image? -%>
+    <%= image_tag soundcloud.image %>
   <%-else-%>
-    <%= image_tag "providers/tumblr.png" %>
+    <%= image_tag "providers/soundcloud.png" %>
   <%-end-%>
-  <h2>tumblr: <%=tumblr.name%></h2>
+  <dl>
+    <dt>name</dt>
+    <dd><%=soundcloud.name%></dd>
+    <dt>email</dt>
+    <dd><%=soundcloud.email%></dd>
+    <dt>location</dt>
+    <dd><%=soundcloud.location%></dd>
+    <dt>image</dt>
+    <dd><%=soundcloud.image%></dd>
+    <dt>URLs</dt>
+    <dd><%=soundcloud.urls%></dd>    
+  </dl>
 </section>

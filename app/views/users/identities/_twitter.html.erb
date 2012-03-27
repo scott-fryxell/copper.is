@@ -4,5 +4,16 @@
   <%-else-%>
     <%= image_tag "providers/twitter.png" %>
   <%-end-%>
-  <h2>twitter: <%=twitter.name%></h2>
+  <dl>
+    <dt>name</dt>
+    <dd><%=twitter.name%></dd>
+    <dt>email</dt>
+    <dd><%=twitter.email%></dd>
+    <dt>location</dt>
+    <dd><%=twitter.location%></dd>
+    <dt>image</dt>
+    <dd><%=twitter.image%></dd>
+    <dt>URLs</dt>
+    <dd><%=twitter.urls%></dd>    
+  </dl>
 </section>

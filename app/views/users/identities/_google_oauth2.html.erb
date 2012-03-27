@@ -1,5 +1,19 @@
-<section class="google_oauth2">
-  <%= image_tag "providers/google.png" %>
-  <%= image_tag "providers/youtube.png" %>
-  <h2>google: <%=google_oauth2.name%></h2>
+<section class="google">
+  <%-if google_oauth2.image? -%>
+    <%= image_tag google_oauth2.image %>
+  <%-else-%>
+    <%= image_tag "providers/google.png" %>
+  <%-end-%>
+  <dl>
+    <dt>name</dt>
+    <dd><%=google_oauth2.name%></dd>
+    <dt>email</dt>
+    <dd><%=google_oauth2.email%></dd>
+    <dt>location</dt>
+    <dd><%=google_oauth2.location%></dd>
+    <dt>image</dt>
+    <dd><%=google_oauth2.image%></dd>
+    <dt>URLs</dt>
+    <dd><%=google_oauth2.urls%></dd>    
+  </dl>
 </section>

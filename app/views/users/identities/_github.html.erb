@@ -1,0 +1,20 @@
+<section class="github">
+  <%-if github.image? -%>
+    <%= image_tag github.image %>
+  <%-else-%>
+    <%= image_tag "providers/github.png" %>
+  <%-end-%>
+  <dl>
+    <dt>name</dt>
+    <dd><%=github.name%></dd>
+    <dt>email</dt>
+    <dd><%=github.email%></dd>
+    <dt>location</dt>
+    <dd><%=github.location%></dd>
+    <dt>image</dt>
+    <dd><%=github.image%></dd>
+    <dt>URLs</dt>
+    <dd><%=github.urls%></dd>    
+  </dl>
+</section>
+github
