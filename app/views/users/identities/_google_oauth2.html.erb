@@ -1,19 +1,15 @@
 <section class="google">
   <%-if google_oauth2.image? -%>
-    <%= image_tag google_oauth2.image %>
-  <%-else-%>
-    <%= image_tag "providers/google.png" %>
+    <h2>Google</h2>
   <%-end-%>
-  <dl>
-    <dt>name</dt>
-    <dd><%=google_oauth2.name%></dd>
-    <dt>email</dt>
-    <dd><%=google_oauth2.email%></dd>
-    <dt>location</dt>
-    <dd><%=google_oauth2.location%></dd>
-    <dt>image</dt>
-    <dd><%=google_oauth2.image%></dd>
-    <dt>URLs</dt>
-    <dd><%=google_oauth2.urls%></dd>    
-  </dl>
+  <figure>
+    <%-if google_oauth2.image? -%>
+      <%= image_tag google_oauth2.image %>
+    <%-else-%>
+      <%= image_tag "providers/google.png", :class => "provider" %>
+      <%= image_tag "providers/youtube.png", :class => "provider" %>
+    <%-end-%>
+  </figure>
+  <p><%=google_oauth2.name%></p>
+  <button type="button">remove</button>
 </section>

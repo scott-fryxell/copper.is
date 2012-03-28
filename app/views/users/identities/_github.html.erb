@@ -1,20 +1,14 @@
 <section class="github">
   <%-if github.image? -%>
-    <%= image_tag github.image %>
-  <%-else-%>
-    <%= image_tag "providers/github.svg" %>
+    <h2><%= image_tag "providers/github.png", :class => "provider" %></h2>
   <%-end-%>
-  <dl>
-    <dt>name</dt>
-    <dd><%=github.name%></dd>
-    <dt>email</dt>
-    <dd><%=github.email%></dd>
-    <dt>location</dt>
-    <dd><%=github.location%></dd>
-    <dt>image</dt>
-    <dd><%=github.image%></dd>
-    <dt>URLs</dt>
-    <dd><%=github.urls%></dd>    
-  </dl>
+  <figure>
+    <%-if github.image? -%>
+      <%= image_tag github.image %>
+    <%-else-%>
+      <%= image_tag "providers/github.png", :class => "provider" %>
+    <%-end-%>
+  </figure>
+  <p><%=github.name%></p>
+  <button type="button">remove</button>
 </section>
-github

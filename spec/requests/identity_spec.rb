@@ -71,10 +71,16 @@ describe "Identity" do
         page.should have_selector "section.github"
       end
 
-      it "should be able to link their vimeo account", :focus do
+      it "should be able to link their vimeo account" do
         click_link "vimeo_sign_in"
         page.should have_content 'Successfully linked that account'
         page.should have_selector "section.vimeo"
+      end
+
+      it "should be able to link their soundcloud account" do
+        click_link "soundcloud_sign_in"
+        page.should have_content 'Successfully linked that account'
+        page.should have_selector "section.soundcloud"
       end
 
       

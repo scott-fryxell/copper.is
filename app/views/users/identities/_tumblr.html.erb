@@ -1,19 +1,14 @@
 <section class="tumblr">
   <%-if tumblr.image? -%>
-    <%= image_tag tumblr.image %>
-  <%-else-%>
-    <%= image_tag "providers/tumblr.png" %>
+    <h2><%= image_tag "providers/tumblr.png", :class => "provider" %></h2>
   <%-end-%>
-  <dl>
-    <dt>name</dt>
-    <dd><%=tumblr.name%></dd>
-    <dt>email</dt>
-    <dd><%=tumblr.email%></dd>
-    <dt>location</dt>
-    <dd><%=tumblr.location%></dd>
-    <dt>image</dt>
-    <dd><%=tumblr.image%></dd>
-    <dt>URLs</dt>
-    <dd><%=tumblr.urls%></dd>    
-  </dl>
+  <figure>
+    <%-if tumblr.image? -%>
+      <%= image_tag tumblr.image %>
+    <%-else-%>
+      <%= image_tag "providers/tumblr.png", :class => "provider" %>
+    <%-end-%>
+  </figure>
+  <p><%=tumblr.name%></p>
+  <button type="button">remove</button>
 </section>

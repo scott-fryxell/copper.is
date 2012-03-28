@@ -1,19 +1,18 @@
 <section class="twitter">
   <%-if twitter.image? -%>
-    <%= image_tag twitter.image %>
-  <%-else-%>
-    <%= image_tag "providers/twitter.png" %>
+    <h2><%= image_tag "providers/twitter.png", :class => "provider" %></h2>
   <%-end-%>
-  <dl>
-    <dt>name</dt>
-    <dd><%=twitter.name%></dd>
-    <dt>email</dt>
-    <dd><%=twitter.email%></dd>
-    <dt>location</dt>
-    <dd><%=twitter.location%></dd>
-    <dt>image</dt>
-    <dd><%=twitter.image%></dd>
-    <dt>URLs</dt>
-    <dd><%=twitter.urls%></dd>    
-  </dl>
+  <figure>
+    <%-if twitter.image? -%>
+      <%= image_tag twitter.image %>
+    <%-else-%>
+      <%= image_tag "providers/twitter.png", :class => "provider" %>
+    <%-end-%>    
+  </figure>
+  <p><%=twitter.name%></p>
+  <label for="twitter">
+    <input type="checkbox" id="twitter" name="[user][post_to_twitter]" value="true">
+    Publish tips on twitter
+  </label>
+  <button type="button">remove</button>
 </section>

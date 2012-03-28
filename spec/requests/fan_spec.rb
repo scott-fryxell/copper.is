@@ -11,6 +11,10 @@ describe "Fan account" do
     page.should have_content 'Tips'
   end
 
+  it "should be able to load the tip iframe javascript" do
+    visit "/tips/embed_iframe.js"
+  end
+  
   it "should be able to change tip rate" do
     click_link 'google user'
     find_field('user[tip_preference_in_cents]').value.should == '50'

@@ -50,13 +50,16 @@ module Copper
     config.vimeo_key = ENV['VIMEO_KEY']
     config.vimeo_secret = ENV['VIMEO_SECRET']
 
-    raise "Twitter consumer key must be defined ENV['TWITTER_KEY']" unless Copper::Application.config.twitter_key
-    raise "Twitter Consumer secret Name must be defined ENV['TWITTER_SECRET']" unless Copper::Application.config.twitter_secret
+    config.soundcloud_key = ENV['SOUNDCLOUD_KEY']
+    config.soundcloud_secret = ENV['SOUNDCLOUD_SECRET']
 
-    raise "Google consumer key must be defined ENV['GOOGLE_KEY']" unless Copper::Application.config.google_key
-    raise "Google Consumer secret Name must be defined ENV['GOOGLE_SECRET']" unless Copper::Application.config.google_secret
+    raise "Twitter key must be defined ENV['TWITTER_KEY']" unless Copper::Application.config.twitter_key
+    raise "Twitter secret must be defined ENV['TWITTER_SECRET']" unless Copper::Application.config.twitter_secret
 
-    raise "facebook app id must be defined ENV['FACEBOOK_KEY']" unless Copper::Application.config.facebook_key
+    raise "Google key must be defined ENV['GOOGLE_KEY']" unless Copper::Application.config.google_key
+    raise "Google secret key must be defined ENV['GOOGLE_SECRET']" unless Copper::Application.config.google_secret
+
+    raise "facebook key must be defined ENV['FACEBOOK_KEY']" unless Copper::Application.config.facebook_key
     raise "facebook secret key must be defined ENV['FACEBOOK_SECRET']" unless Copper::Application.config.facebook_secret
 
     raise "tumblr key must be defined ENV['TUMBLR_KEY']" unless Copper::Application.config.tumblr_key
@@ -67,6 +70,9 @@ module Copper
 
     raise "vimeo key must be defined ENV['VIMEO_KEY']" unless Copper::Application.config.vimeo_key
     raise "vimeo secret key must be defined ENV['VIMEO_SECRET']" unless Copper::Application.config.vimeo_secret
+
+    raise "soundcloud key must be defined ENV['SOUNDCLOUD_KEY']" unless Copper::Application.config.soundcloud_key
+    raise "soundcloud secret key must be defined ENV['SOUNDCLOUD_SECRET']" unless Copper::Application.config.soundcloud_secret
 
     raise "stripe publishable key must be defined ENV['STRIPE_KEY']" unless Copper::Application.config.stripe_key
     raise "stripe secret key must be defined ENV['STRIPE_SECRET']" unless Copper::Application.config.stripe_secret

@@ -1,19 +1,18 @@
 <section class="facebook">
   <%-if facebook.image? -%>
-    <%= image_tag facebook.image %>
-  <%-else-%>
-    <%= image_tag "providers/facebook.png" %>
+    <h2><%= image_tag "providers/facebook-2.jpg", :class => "provider" %></h2>
   <%-end-%>
-  <dl>
-    <dt>name</dt>
-    <dd><%=facebook.name%></dd>
-    <dt>email</dt>
-    <dd><%=facebook.email%></dd>
-    <dt>location</dt>
-    <dd><%=facebook.location%></dd>
-    <dt>image</dt>
-    <dd><%=facebook.image%></dd>
-    <dt>URLs</dt>
-    <dd><%=facebook.urls%></dd>    
-  </dl>
+  <figure>
+    <%-if facebook.image? -%>
+      <%= image_tag facebook.image %>
+    <%-else-%>
+      <%= image_tag "providers/facebook-2.jpg", :class => "provider" %>
+    <%-end-%>
+  </figure>
+  <p><%=facebook.name%></p>
+  <label for="facebook">
+    <input type="checkbox" id="facebook" name="[user][post_to_facebook]" value="true">
+    Publish tips on facebook 
+  </label>
+  <button type="button">remove</button>
 </section>

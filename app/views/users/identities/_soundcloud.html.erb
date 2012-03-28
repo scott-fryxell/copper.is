@@ -1,19 +1,14 @@
 <section class="soundcloud">
   <%-if soundcloud.image? -%>
-    <%= image_tag soundcloud.image %>
-  <%-else-%>
-    <%= image_tag "providers/soundcloud.png" %>
+    <h2><%= image_tag "providers/soundcloud.png", :class => "provider" %></h2>
   <%-end-%>
-  <dl>
-    <dt>name</dt>
-    <dd><%=soundcloud.name%></dd>
-    <dt>email</dt>
-    <dd><%=soundcloud.email%></dd>
-    <dt>location</dt>
-    <dd><%=soundcloud.location%></dd>
-    <dt>image</dt>
-    <dd><%=soundcloud.image%></dd>
-    <dt>URLs</dt>
-    <dd><%=soundcloud.urls%></dd>    
-  </dl>
+  <figure>
+    <%-if soundcloud.image? -%>
+      <%= image_tag soundcloud.image %>
+    <%-else-%>
+      <%= image_tag "providers/soundcloud.png", :class => "provider" %>
+    <%-end-%>
+  </figure>
+  <p><%=soundcloud.name%></p>
+  <button type="button">remove</button>
 </section>
