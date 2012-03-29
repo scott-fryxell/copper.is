@@ -30,11 +30,6 @@ describe "Guest" do
       visit "/"
     end
 
-    it "should visit authors" do
-      visit '/authors'
-      page.should have_content 'Authors, use the badge on your site'
-    end
-
     it "should visit button" do
       visit '/button'
       page.should have_content 'Install the Tip button'

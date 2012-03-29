@@ -7,6 +7,7 @@ describe "Fan account" do
   end
 
   it "should have some tips to look at" do
+    click_link 'fan'
     click_link 'tips'
     page.should have_content 'Tips'
   end
@@ -16,10 +17,12 @@ describe "Fan account" do
   end
   
   it "should be able to change tip rate" do
-    click_link 'google user'
+    click_link 'fan'
+    click_link 'tips'
     find_field('user[tip_preference_in_cents]').value.should == '50'
     page.select '$1.00', :from => 'user[tip_preference_in_cents]'
-    click_link 'google user'
+    click_link 'fan'
+    click_link 'tips'
     find_field('user[tip_preference_in_cents]').value.should == '100'
   end
 

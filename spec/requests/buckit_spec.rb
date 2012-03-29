@@ -77,6 +77,8 @@ describe "bucking a URL" do
       sleep 5
       page.should have_content "Success! We've emailed you a reciept"
       
+      visit('/users/current')
+      click_on('tips')
       click_on('All')
     end
 

@@ -2,8 +2,8 @@
   <% if current_user %>
     <h1><%=current_user.name%></h1>
     <nav>
-      <%= link_to "fans", user_url(current_user)%>
-      <a href="/authors">authors</a>
+      <%= link_to "fan", user_url(current_user)%>
+      <%= link_to "author", user_author_url(current_user)%>
       <%= link_to "signout", signout_path %>
     </nav>
   <% else %>

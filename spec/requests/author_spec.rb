@@ -24,26 +24,35 @@ describe "Identity" do
       page.should have_content 'Successfully linked that account'
     end
 
-    it "should be able to see how many accounts are linked" do
-      click_link 'twitter user'
+    it "should visit authors" do
+      click_link 'author'
+      page.should have_content 'Author settings'
+      page.should have_content 'Badge'
+      page.should have_content 'Identities'
+      within("section#badge > form") do
+        page.should have_content 'Color'
+        page.should have_content 'Size'
+      end
+    end
 
-      within("section#identity > div > span") do
+    it "should be able to see how many accounts are linked" do
+      click_link 'author'
+      within("section#identity > header > h2 > span") do
         page.should have_content '1'
       end
 
     end
 
     it "should have a link to the identities page" do
-      click_link 'twitter user'
-
-      within("section#identity > div > a") do
+      click_link 'author'
+      within("section#identity > a") do
         page.should have_content 'edit'
       end
     end
 
     describe "linking accounts" do
       before(:each) do
-        click_link 'twitter user'
+        click_link 'author'
         within("section#identity") do
           click_link 'edit'
         end
@@ -64,7 +73,7 @@ describe "Identity" do
         page.should have_content 'Successfully linked that account'
         page.should have_selector "section.tumblr"
       end
-      
+
       it "should be able to link their github account" do
         click_link "github_sign_in"
         page.should have_content 'Successfully linked that account'
@@ -83,7 +92,7 @@ describe "Identity" do
         page.should have_selector "section.soundcloud"
       end
 
-      
+
     end
 
   end

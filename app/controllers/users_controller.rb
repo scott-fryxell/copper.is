@@ -61,4 +61,8 @@ class UsersController < ApplicationController
   def identities
     render 'users/identities/index'
   end
+  def author
+    render 'users/author'
+  end
 end
+

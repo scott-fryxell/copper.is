@@ -2,11 +2,11 @@ require 'resque/server'
 Copper::Application.routes.draw do
 
   resources :users do
-    post 'pay', :on => :member
     resources :tips
+    post 'pay', :on => :member
     get 'identities', :to => 'users#identities', :as => :identities
+    get 'author', :to => 'users#author', :as => :author
   end
-  mount Resque::Server.new, :at => "/resque"
 
   get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe
@@ -16,7 +16,7 @@ Copper::Application.routes.draw do
   get 'contact', :to => 'home#contact'
   get 'terms', :to => 'home#terms'
   get 'privacy', :to => 'home#privacy'
-  get 'authors', :to => 'home#authors'
+
   get 'button', :to => 'home#button'
   get "buckingthesystem", :to => "home#index"
 
@@ -24,6 +24,8 @@ Copper::Application.routes.draw do
   match '/auth/failure' => 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
+
+  mount Resque::Server.new, :at => "/resque"
 
   root :to => 'home#index'
 end
