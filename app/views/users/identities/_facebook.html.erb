@@ -1,12 +1,12 @@
 <section class="facebook">
   <%-if facebook.image? -%>
-    <h2><%= image_tag "providers/facebook-2.jpg", :class => "provider" %></h2>
+    <h2><%= image_tag "providers/facebook.jpg", :class => "provider" %></h2>
   <%-end-%>
   <figure>
     <%-if facebook.image? -%>
       <%= image_tag facebook.image %>
     <%-else-%>
-      <%= image_tag "providers/facebook-2.jpg", :class => "provider" %>
+      <%= image_tag "providers/facebook.jpg", :class => "provider" %>
     <%-end-%>
   </figure>
   <p><%=facebook.name%></p>

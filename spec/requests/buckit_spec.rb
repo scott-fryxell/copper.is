@@ -18,6 +18,7 @@ describe "bucking a URL" do
   end
 
   it "should be able to buck from the fans bucks page" do
+    click_link 'fan'
     click_link 'tips'
     fill_in('tip[uri]', :with => 'http://www.bigtest.com')
     click_on('TIP')
