@@ -35,6 +35,7 @@ describe "bucking a URL" do
     visit "/users/current/tips"
 
   end
+
   describe "paying for some bucks" do
     before(:each) do
       visit "/tips/agent/?uri=http://test.com&title=a_title"
@@ -48,7 +49,7 @@ describe "bucking a URL" do
     it "should be notified that it's time to pay" do
       page.should have_content "Let's take care of some business"
     end
-    
+
     it "should be able to pay for tips" do
       sleep 2
       fill_in('email', :with => 'google_user@email.com')
@@ -63,7 +64,6 @@ describe "bucking a URL" do
       page.should have_content "Success! We've emailed you a reciept"
     end
 
-
     it "should be able to view all their tips" do
       sleep 2
       fill_in('email', :with => 'google_user@email.com')
@@ -76,13 +76,11 @@ describe "bucking a URL" do
       page.should have_content "Processing your order..."
       sleep 5
       page.should have_content "Success! We've emailed you a reciept"
-      
+
       visit('/users/current')
       click_on('tips')
       click_on('All')
     end
-
-
 
     it "should decline a credit card without funds" do
       sleep 2
@@ -97,7 +95,6 @@ describe "bucking a URL" do
       sleep 5
       page.should have_content "Your card was declined."
     end
-
 
     it "should charge a user twice." do
 
