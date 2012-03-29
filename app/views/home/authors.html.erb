@@ -1,21 +1,26 @@
-
 <% content_for :head do %>
   <title>Information for Authors - copper.is</title>
   <%= javascript_include_tag "home/authors" %>
 <% end %>
 
 <section id="authors">
-  <header>
-    <h1>Authors, use the badge on your site</h1>
-    <p>
-      Invite your Fans to tip you for your work and help spread the
-      word by including our badge on pages you've created.
-    </p>
-    <p>
-      First select the kind of badge you want. Then copy the contents
-      of the text are into your clipboard. You can then paste the 
-      code into any pages you'd like to see tipped.
-    </p>
+  <h1>Author settings</h1>
+
+  <section id="identity">
+    <header>
+      <h2>Identities <span><%= current_user.identities.count%></span></h2>
+      <p>Link the sites you have content on.</p>
+    </header>
+    <a href="/users/current/identities">edit</a>
+  </section>
+  <section id="badge">
+    <header>
+      <h2>Badge</h2>
+      <p>
+        Invite Fans to tip you for your work and help spread the
+        word by including our badge on pages you've created.
+      </p>
+    </header>
     <form>
       <input type="hidden" name="type" value="name" id="type"/>
 
@@ -33,19 +38,27 @@
         <option value="75">75px</option>
         <option value="100">100px</option>
         <option value="150">150px</option>
-        <option value="200" selected>200px</option>
+        <option value="200"  selected>200px</option>
         <option value="250">250px</option>
         <option value="300">300px</option>
       </select>
+
     </form>
-  </header>
-
-  <figure></figure>
-  <textarea name="badte_text" id="badge_text" rows="8" cols="40"></textarea>
-  <script id="badge_template" type="text/x-jquery-tmpl">
-    <img class="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/logo/${type}/${color}.png"
-         style="cursor:pointer; width:${size}px;" title="Pay this author for their work"
-         onclick="<%= render :partial=>'tips/wrapped_launcher', :formats=>[:js] %>">
-  </script>
-
+    <aside>
+      <textarea name="badge_text" id="badge_text"></textarea>
+      <figure></figure>
+      <script id="badge_template" type="text/x-jquery-tmpl">
+        <img class="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/logo/${type}/${color}.png"
+             style="cursor:pointer; width:${size}px;" title="Pay this author for their work"
+             onclick="<%= render :partial=>'tips/wrapped_launcher', :formats=>[:js] %>">
+      </script>
+    </aside>
+    <p>
+      First select the kind of badge you want. Then copy the contents
+      of the text are into your clipboard. You can then paste the
+      code into any pages you'd like to see tipped.
+    </p>
+  </section>
+  <section id="link"></section>
 </section>
+

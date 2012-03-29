@@ -37,34 +37,37 @@
   vertical-align:top;
   font-size:1.5em;
 }
-#user * {
-/*  outline: .1em solid #ffffff;*/
-}
+
 #user > section {
-  margin-bottom: 1.5em;
+  margin-bottom: 2em;
 }
-#user > section > h2 {
-  font-size:1.5em;
+#user > section > header {
   display:inline-block;
-  width:6em;
+  width:35em;
 }
-#user > section > form,
-#user > section > div,
-#user > section > div span,
-#user > section > div a  {
-  display: inline-block;
+#user > section > header > h2 {
+  font-size:1.5em;
+  margin-bottom:.5em;
 }
-
-section#identity > div span {
-  font-size: 1.5em;
-  width: 4em;
-}
-
-section#identity > div > a {
+#user > section > a {
   text-decoration: underline;
-}
-
-#user > section > p {
+  vertical-align:top;
   margin-top:.5em;
   margin-left:.5em;
+}
+
+section#rate > form {
+  display:inline-block;
+  vertical-align:top;
+}
+
+section#sharing {
+  display:none;
+}
+section#sharing > fieldset {
+  display:inline-block;
+}
+section#sharing > fieldset > label {
+  display:block;
+  vertical-align:bottom;
 }

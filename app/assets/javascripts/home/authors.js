@@ -2,6 +2,7 @@ $(document).ready(function (){
 
   $("#badge_template" ).template( "badge" );
   render()
+
   $("#type").change(function (event){
     badge.type = $("#type option:selected").val();
     render();
@@ -27,8 +28,8 @@ var badge = {
   size: "200",
 }
 function render(){
-  $("#authors > figure > img").remove();
-  $.tmpl( "badge", badge ).appendTo( "#authors > figure" );
-  $("#badge_text").val( $("#authors > figure" ).html());
+  $("#badge > aside figure > img").remove();
+  $.tmpl( "badge", badge ).appendTo( "#badge > aside > figure" );
+  $("#badge_text").val( $("#badge > aside > figure" ).html());
   $("#badge_text").select();
 }

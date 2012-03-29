@@ -7,22 +7,44 @@
   <h1>Account settings</h1>
 
   <section id="rate">
-    <h2>Tip Rate</h2>
+    <header>
+      <h2>Buck Rate</h2>
+      <p>Set the default amount for your bucks</p>
+    </header>
     <%= render :partial => 'shared/tip_rate' %>
-    <p>
-      Set the default amount for your bucks
-    </p>
   </section>
 
-  <section id="identity">
-    <h2>Identities</h2>
-    <div>
-      <span><%= current_user.identities.count%></span>
-      <a href="/users/current/identities">edit</a>
-    </div>
-    <p>
-      Link the sites you have content on.
-    </p>
+  <section id="sharing">
+    <header>
+      <h2>Share your bucks</h2>
+      <p>you can share share your tips with your social network</p>
+    </header>
+    <fieldset>
+      <label for="twitter">
+        <input type="checkbox" id="twitter" name="[user][post_to_twitter]" value="true">
+        Tweet bucks
+      </label>
+      <label for="facebook">
+        <input type="checkbox" id="facebook" name="[user][post_to_facebook]" value="true">
+        Publish bucks on facebook
+      </label>
+    </fieldset>
+  </section>
+
+  <section id="bucks">
+    <header>
+      <h2>View your bucks</h2>
+      <p>view all the pages you've bucked</p>
+    </header>
+    <%= link_to "tips", user_tips_url(current_user) %>
+  </section>
+
+  <section id="button">
+    <header>
+      <h2>Install the browser button</h2>
+      <p>install the service on your toolbar.</p>
+    </header>
+    <a href="/button">button</a>
   </section>
 
 </section>
