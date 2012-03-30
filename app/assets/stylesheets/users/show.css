@@ -1,6 +1,3 @@
-#user > h1{
-  line-height:2em;
-}
 #user > p {
   margin: 1em 0;
 }
@@ -48,6 +45,9 @@
 #user > section > header > h2 {
   font-size:1.5em;
   margin-bottom:.5em;
+}
+#user > section > header p {
+  margin-left:1em;
 }
 #user > section > a {
   text-decoration: underline;
