@@ -1,14 +1,13 @@
 #authors > section {
   margin-bottom:2em;
 }
-
 #authors > section > header {
   display: inline-block;
-  width:35em;
+  width:32em;
 }
-#authors > section > header p{
+#authors > section > header p {
   margin-left:1em;
-  width:30
+  width:25em
 }
 #authors > section > header > h2 {
   font-size:1.5em;
@@ -73,4 +72,11 @@ section#identity > header > span {
 section#identity > a {
   vertical-align:top;
   text-decoration: underline;
+}
+
+section#link > textarea {
+  width :29em;
+  font-size:.75em;
+  padding:.5em;
+  line-height:1em;
 }
