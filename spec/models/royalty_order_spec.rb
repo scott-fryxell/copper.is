@@ -16,24 +16,24 @@ describe RoyaltyOrder do
 
   describe "when assigning tips to orders" do
     before(:each) do
-      @royalty1 = TipRoyalty.new
+      @royalty1 = Royalty.new
       @royalty1.royalty_order  = @order
       @royalty1.tip             = tips(:first)
       @royalty1.amount_in_cents = tips(:first).amount_in_cents
-      @order.tip_royalties << @royalty1
+      @order.royalties << @royalty1
 
-      @royalty2 = TipRoyalty.new
+      @royalty2 = Royalty.new
       @royalty2.royalty_order  = @order
       @royalty2.tip             = tips(:second)
       @royalty2.amount_in_cents = tips(:second).amount_in_cents
-      @order.tip_royalties << @royalty2
+      @order.royalties << @royalty2
       @order.save
     end
 
     it "should have one or more tips assigned to it" do
       @order.should be_valid
-      @order.tip_royalties.size.should == 2
-      @order.tip_royalties.should include(@royalty1, @royalty2)
+      @order.royalties.size.should == 2
+      @order.royalties.should include(@royalty1, @royalty2)
     end
 
     it "should be able to tally the total value of the associated tips" do

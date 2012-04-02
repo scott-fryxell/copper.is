@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 26) do
+ActiveRecord::Schema.define(:version => 27) do
 
   create_table "identities", :force => true do |t|
     t.string   "provider"
@@ -76,6 +76,16 @@ ActiveRecord::Schema.define(:version => 26) do
 
   add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id", :unique => true
 
+  create_table "royalties", :force => true do |t|
+    t.integer  "royalty_order_id", :null => false
+    t.integer  "tip_id",           :null => false
+    t.integer  "amount_in_cents",  :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "royalties", ["royalty_order_id", "tip_id"], :name => "index_royalties_on_royalty_order_id_and_tip_id"
+
   create_table "royalty_orders", :force => true do |t|
     t.integer  "cycle_started_year",    :null => false
     t.integer  "cycle_started_quarter", :null => false
@@ -100,16 +110,6 @@ ActiveRecord::Schema.define(:version => 26) do
   end
 
   add_index "tip_orders", ["fan_id"], :name => "index_tip_orders_on_fan_id"
-
-  create_table "tip_royalties", :force => true do |t|
-    t.integer  "royalty_order_id", :null => false
-    t.integer  "tip_id",           :null => false
-    t.integer  "amount_in_cents",  :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  add_index "tip_royalties", ["royalty_order_id", "tip_id"], :name => "index_tip_royalties_on_royalty_order_id_and_tip_id"
 
   create_table "tips", :force => true do |t|
     t.integer  "amount_in_cents"

@@ -1,4 +1,4 @@
-class TipRoyalty < ActiveRecord::Base
+class Royalty < ActiveRecord::Base
   belongs_to :royalty_order
   belongs_to :tip
 

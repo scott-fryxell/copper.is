@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe TipRoyalty do
+describe Royalty do
   fixtures :roles, :users, :roles_users, :tip_orders, :tips
 
   before(:each) do
@@ -8,7 +8,7 @@ describe TipRoyalty do
     @order.cycle_started_year    = 2011
     @order.cycle_started_quarter = 1
 
-    @royalty = TipRoyalty.new
+    @royalty = Royalty.new
     @royalty.amount_in_cents = 25
     @royalty.royalty_order = @order
     @royalty.tip = tips(:first)

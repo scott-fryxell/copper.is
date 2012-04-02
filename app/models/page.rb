@@ -13,7 +13,7 @@ class Page < ActiveRecord::Base
   # select pages that have the most tips
   
   def revenue_earned
-    royalty_orders.inject(0) { |sum, order| sum + order.tip_royalties.sum('amount_in_cents') }
+    royalty_orders.inject(0) { |sum, order| sum + order.royalties.sum('amount_in_cents') }
   end
 
   def primary_locator

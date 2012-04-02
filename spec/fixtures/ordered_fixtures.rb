@@ -10,5 +10,5 @@ ENV["FIXTURE_ORDER"] =
       tip_orders
       tips
       royalty_orders
-      tip_royalties
+      royalties
     ).join(' ')
