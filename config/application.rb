@@ -14,6 +14,9 @@ module Copper
     config.encoding = "utf-8"
     config.active_record.timestamped_migrations = false
 
+    config.action_view.embed_authenticity_token_in_remote_forms = false
+    config.active_record.whitelist_attributes= true
+
     config.filter_parameters += [:password]
 
     config.autoload_paths += %W(#{config.root}/extras)

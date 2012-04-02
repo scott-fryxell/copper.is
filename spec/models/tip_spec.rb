@@ -4,9 +4,10 @@ describe Tip do
   fixtures :roles, :users, :roles_users, :pages, :sites, :locators, :tip_orders
 
   before(:each) do
-    @tip = Tip.new(:tip_order => tip_orders(:active_order),
-                   :locator    => locators(:minimal),
-                   :amount_in_cents => 25)
+    @tip = Tip.new(:amount_in_cents => 25)
+    @tip.tip_order = tip_orders(:active_order)
+    @tip.locator = locators(:minimal)
+    @tip.save!
   end
 
   it "should always be associated with a tip order" do

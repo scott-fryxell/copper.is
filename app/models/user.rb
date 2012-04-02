@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  attr_accessible :name
+  attr_accessible :name, :email
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -46,10 +46,9 @@ class User < ActiveRecord::Base
     if locator && amount_in_cents
       locator.page = Page.create(:description => description) unless locator.page
 
-      tip = Tip.new(:locator         => locator,
-                    :tip_order       => active_tip_order,
-                    :amount_in_cents => amount_in_cents
-                    )
+      tip = Tip.new(:amount_in_cents => amount_in_cents)
+      tip.locator = locator
+      tip.tip_order = active_tip_order
       if tip.valid?
         tip.save
         tip
@@ -78,11 +77,11 @@ class User < ActiveRecord::Base
     if self.stripe_customer_id
       customer = Stripe::Customer.retrieve(self.stripe_customer_id)
       customer.delete
-    end  
+    end
   end
 
   def active_tips_in_dollars
-    cents_to_dollars(self.active_tip_order.tips.sum(:amount_in_cents))    
+    cents_to_dollars(self.active_tip_order.tips.sum(:amount_in_cents))
   end
 
 

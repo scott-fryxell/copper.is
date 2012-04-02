@@ -78,15 +78,21 @@ describe TipOrder do
 
       locator1 = Locator.parse('http://example.com')
       locator1.page = Page.new(:description => 'example page')
-      @order.tips << Tip.new(:locator => locator1, :amount_in_cents => 25)
+      tip1 = Tip.new(:amount_in_cents => 25)
+      tip1.locator = locator1
+      @order.tips << tip1
 
       locator2 = Locator.parse('http://beefdeed.com/chunder')
       locator2.page = Page.new(:description => 'CHUNDER POW')
-      @order.tips << Tip.new(:locator => locator2, :amount_in_cents => 25)
+      tip2 = Tip.new(:amount_in_cents => 25)
+      tip2.locator = locator2
+      @order.tips << tip2
 
       locator3 = Locator.parse('http://beefdeed.com/horde')
       locator3.page = Page.new(:description => 'ALL HAIL THE HORDE')
-      @order.tips << Tip.new(:locator => locator3, :amount_in_cents => 25)
+      tip3 = Tip.new(:amount_in_cents => 25)
+      tip3.locator = locator3
+      @order.tips << tip3
 
       @order.save
     end

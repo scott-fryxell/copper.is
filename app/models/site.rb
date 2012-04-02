@@ -6,5 +6,5 @@ class Site < ActiveRecord::Base
   has_many :locators
   has_many :tips, :through => :locators
 
-
+  attr_accessible :fqdn
 end
