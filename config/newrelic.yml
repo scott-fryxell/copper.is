@@ -15,7 +15,7 @@ development:
   capture_params: true
   log_level: debug
 ---
-<%= ENV["RACK_ENV"] %>:
+<%= ENV["RACK_ENV"] || 'development' %>:
   error_collector:
     capture_source: true
     enabled: true
