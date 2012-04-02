@@ -90,6 +90,11 @@ GEM
       guard (>= 0.10.0)
       spork (>= 0.8.4)
     hashie (1.2.0)
+    heroku (2.23.0)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.1)
+      rest-client (~> 1.6.1)
+      rubyzip
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.3)
@@ -107,6 +112,7 @@ GEM
     mime-types (1.18)
     multi_json (1.2.0)
     multipart-post (1.1.5)
+    netrc (0.7.1)
     newrelic_rpm (3.3.3)
     nokogiri (1.5.2)
     oauth (0.4.5)
@@ -181,6 +187,9 @@ GEM
       redis-namespace (~> 1.0.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque-heroku-scaling-canary (0.1.6)
+      heroku (~> 2.18)
+      resque (~> 1.9)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rspec (2.9.0)
@@ -263,6 +272,7 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   guard-spork
+  heroku
   jquery-rails
   launchy
   newrelic_rpm
@@ -280,6 +290,7 @@ DEPENDENCIES
   rb-fsevent
   redis
   resque
+  resque-heroku-scaling-canary
   rspec-rails
   ruby_parser
   sass-rails

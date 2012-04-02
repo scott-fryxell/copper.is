@@ -17,6 +17,7 @@ gem 'thin'
 gem 'newrelic_rpm'
 gem 'redis'
 gem 'resque'
+gem 'resque-heroku-scaling-canary'
 
 group :production do
   gem "pg"
@@ -37,6 +38,7 @@ group :development, :test do
   gem 'spork', '> 0.9.0.rc'
   gem 'ruby_parser'
   gem 'launchy'
+  gem 'heroku'
 end
 
 # Gems used only for assets and not required

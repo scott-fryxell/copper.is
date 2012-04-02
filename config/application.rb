@@ -55,6 +55,8 @@ module Copper
 
     config.soundcloud_key = ENV['SOUNDCLOUD_KEY']
     config.soundcloud_secret = ENV['SOUNDCLOUD_SECRET']
+    
+    config.tip_order_min_workers = ENV['TIP_ORDER_MIN_WORKERS']
 
     raise "Twitter key must be defined ENV['TWITTER_KEY']" unless Copper::Application.config.twitter_key
     raise "Twitter secret must be defined ENV['TWITTER_SECRET']" unless Copper::Application.config.twitter_secret
@@ -82,5 +84,6 @@ module Copper
 
     raise "session key must be defined ENV['COPPER_SECRET_KEY']" unless Copper::Application.config.copper_session_key
 
+    raise "minimum number of workers for tip_order queue must be defined ENV['TIP_ORDER_MIN_WORKERS']"  unless Copper::Application.config.tip_order_min_workers
   end
 end
