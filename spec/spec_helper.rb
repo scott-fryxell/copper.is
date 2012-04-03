@@ -5,6 +5,14 @@ Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
+  def keypress_on(elem, key, charCode = 0)
+    keyCode = case key
+              when :enter then 13
+              else key.to_i
+              end
+    elem.base.invoke('keypress', false, false, false, false, keyCode, charCode);
+  end
+  
   ENV["RAILS_ENV"] ||= 'test'
   require 'simplecov'
   SimpleCov.start 'rails'

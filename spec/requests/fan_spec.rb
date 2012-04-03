@@ -26,27 +26,51 @@ describe "Fan account" do
     find_field('user[tip_preference_in_cents]').value.should == '100'
   end
 
-  it "should be able to change email" do
-    click_link 'fan'
-    find_field('user[email]').value.should == 'user@google.com'
-    fill_in('user[email]', :with => 'change@google.com')
-    within("section#email") do
-      click_on 'Save'
+  describe "should be able to change email" do
+    before do
+      click_link 'fan'
+      find_field('user[email]').value.should == 'user@google.com'
+      fill_in('user[email]', :with => 'change@google.com')
     end
-    click_link 'fan'
-    find_field('user[email]').value.should == 'change@google.com'
-  end
+    
+    after do
+      click_link 'fan'
+      find_field('user[email]').value.should == 'change@google.com'
+    end
 
-  it "should be able to change name" do
-    click_link 'fan'
-    find_field('user[name]').value.should == 'google user'
-    fill_in('user[name]', :with => 'joe fan')
-    within("section#name") do
-      click_on 'Save'
+    it "and submit by clicking on 'Save'" do
+      within("section#email") do
+        click_on 'Save'
+      end
     end
-    click_link 'fan'
-    find_field('user[name]').value.should == 'joe fan'
+    
+    it "and submit using the return key" do
+      keypress_on find_field('user[email]'), :enter
+    end
   end
+  
+  describe "should be able to change name" do
+    before do
+      click_link 'fan'
+      find_field('user[name]').value.should == 'google user'
+      fill_in('user[name]', :with => 'joe fan')
+    end
+    
+    after do
+      click_link 'fan'
+      find_field('user[name]').value.should == 'joe fan'
+    end
+    
+    it "and submit by clicking on 'Save'" do
+      within("section#name") do
+        click_on 'Save'
+      end
+    end
+    
+    it "and submit using the return key" do
+      keypress_on find_field('user[name]'), :enter
+    end
+ end
   
   it "should only be able to change name to a valid email address" do
     click_link 'fan'
