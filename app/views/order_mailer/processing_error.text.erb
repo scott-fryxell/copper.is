@@ -1,0 +1,15 @@
+Thanks for your payment!
+
+There was a processing error with your tip.
+
+-The Copper team
+
+Tips: <%=@order.tips.count%>
+
+Subtotal: $<%= cents_to_dollars(@order.tips.sum(:amount_in_cents)) %>
+
+Fees: $<%= cents_to_dollars(@order.tips.sum(:amount_in_cents)/10) %>
+
+Total: $<%= cents_to_dollars(@order.tips.sum(:amount_in_cents)/10 + @order.tips.sum(:amount_in_cents)) %>
+
+    

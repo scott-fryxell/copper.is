@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style type="text/css" media="screen">
+      body {
+        background-color:#FBF6F1;
+        color:#666;
+      }
+      body > a {
+        margin-top:1em;
+        display:block;
+        text-align:center;
+        width:100%;
+      }
+      menu {display:none;}
+      form {display:none;}
+      table{width:100%;}
+      td {width:33%;}
+    </style>
+  </head>
+  <body>
+    <a href="http://copper.is">
+      <img src="http://copper.is/assets/logo/copper/copper.png" width="100px">
+    </a>
+    <h1>Thanks for your payment</h1>
+    <p>
+      There was a processing error with your tip.
+    </p>
+    <h3>-The Copper team</h3>
+    
+    <h3>Tips</h3>
+    <table>
+      <tbody>
+        <%= render :partial => 'shared/tips', :object => @order.tips %>
+      </tbody>
+    </table>
+  </body>
+</html>
