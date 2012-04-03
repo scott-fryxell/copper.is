@@ -32,6 +32,8 @@ Spork.prefork do
   include Authorization::TestHelper
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+  Resque.inline = true # let's make queuing synchronous while testing
+  
   RSpec.configure do |config|
     config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy

@@ -1,1 +1,3 @@
 web: bundle exec rails server thin -p $PORT
+redis: redis-server ./config/redis.conf
+high: bundle exec rake resque:work QUEUE=high
