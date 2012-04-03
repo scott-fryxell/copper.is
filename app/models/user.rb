@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  attr_accessible :name, :email
+  attr_accessible :name, :email, :tip_preference_in_cents
 
   def self.create_with_omniauth(auth)
     create! do |user|

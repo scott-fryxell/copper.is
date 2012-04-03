@@ -14,6 +14,31 @@
     <%= render :partial => 'shared/tip_rate' %>
   </section>
 
+  <section id="name">
+    <header>
+      <h2>User Name</h2>
+      <p>what do you want us to call you</p>
+    </header>
+    <form id="fan_name" method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
+      <input name="authenticity_token" type="hidden">
+      <input type="input" id="user_name" name="user[name]" value="<%=current_user.name%>">
+      <button type="button">Save</button>
+    </form>
+  </section>
+
+
+  <section id="email">
+    <header>
+      <h2>Email</h2>
+      <p>where we're gonna send notifications</p>
+    </header>
+    <form id="fan_email" method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
+      <input name="authenticity_token" type="hidden">
+      <input type="input" id="user_email" name="user[email]" value="<%=current_user.email%>">
+      <button type="button">Save</button>
+      <p></p>
+  </section>
+
   <section id="sharing">
     <header>
       <h2>Share your bucks</h2>
@@ -30,6 +55,7 @@
       </label>
     </fieldset>
   </section>
+
 
   <section id="bucks">
     <header>

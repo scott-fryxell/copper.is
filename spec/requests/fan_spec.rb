@@ -15,7 +15,7 @@ describe "Fan account" do
   it "should be able to load the tip iframe javascript" do
     visit "/tips/embed_iframe.js"
   end
-  
+
   it "should be able to change tip rate" do
     click_link 'fan'
     click_link 'tips'
@@ -24,6 +24,42 @@ describe "Fan account" do
     click_link 'fan'
     click_link 'tips'
     find_field('user[tip_preference_in_cents]').value.should == '100'
+  end
+
+  it "should be able to change email" do
+    click_link 'fan'
+    find_field('user[email]').value.should == 'user@google.com'
+    fill_in('user[email]', :with => 'change@google.com')
+    within("section#email") do
+      click_on 'Save'
+    end
+    click_link 'fan'
+    find_field('user[email]').value.should == 'change@google.com'
+  end
+
+  it "should be able to change name" do
+    click_link 'fan'
+    find_field('user[name]').value.should == 'google user'
+    fill_in('user[name]', :with => 'joe fan')
+    within("section#name") do
+      click_on 'Save'
+    end
+    click_link 'fan'
+    find_field('user[name]').value.should == 'joe fan'
+  end
+  
+  it "should only be able to change name to a valid email address" do
+    click_link 'fan'
+    find_field('user[email]').value.should == 'user@google.com'
+    fill_in('user[email]', :with => 'bademailaddress')
+    within("section#email") do
+      click_on 'Save'
+      page.should have_content 'invalid email'
+      fill_in('user[email]', :with => 'change2@google.com')
+      click_on 'Save'
+    end
+    click_link 'fan'
+    find_field('user[email]').value.should == 'change2@google.com'
   end
 
 end

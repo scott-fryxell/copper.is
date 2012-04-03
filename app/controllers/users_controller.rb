@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   filter_access_to :all
   def update
     @user = current_user
-    @user.tip_preference_in_cents = params[:user][:tip_preference_in_cents]
+    @user.update_attributes(params[:user])
 
     @user.save
     respond_to do |format|

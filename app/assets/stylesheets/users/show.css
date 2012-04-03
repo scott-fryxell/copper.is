@@ -49,6 +49,25 @@
 #user > section > header p {
   margin-left:1em;
 }
+#user > section > form {
+  display:inline-block;
+}
+#user > section > form > input {
+  text-align:center;
+  line-height:1.5em;
+  width:15em;
+  border:.2em solid gray;
+  border-radius:.5em;
+}
+#user > section > form > input.invalid{
+  border-color:red;
+}
+#user > section > form > button {
+  border:.2em solid gray;
+  border-radius:.5em;
+  color:red;
+  cursor:pointer;
+}
 #user > section > a {
   text-decoration: underline;
   vertical-align:top;
@@ -56,6 +75,10 @@
   margin-left:.5em;
 }
 
+#user > section > form > p {
+  color:red;
+  text-align:center;
+}
 section#rate > form {
   display:inline-block;
   vertical-align:top;
