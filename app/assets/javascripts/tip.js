@@ -50,8 +50,8 @@ $(document).bind({
       });
     }
   },
-  "card_approved": function (event, xhr, options){
-    $("#credit_card > h1").text("Success! We've emailed you a reciept");
+  "terms_accepted": function (event, xhr, options){
+    $("#credit_card > h1").text("We'll email you a reciept");
     $("#credit_card > form").slideUp(800, function (){
       $("#credit_card").append("<button>Close</button>");
     });

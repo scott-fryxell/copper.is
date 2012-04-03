@@ -47,16 +47,11 @@ class UsersController < ApplicationController
     order = current_user.active_tip_order
 
     if(current_user.accept_terms)
-      current_user.active_tip_order.charge
-      OrderMailer.reciept(order).deliver
-      render :text => '<meta name="event_trigger" content="card_approved"/>'
+      Resque.enqueue TipOrderChargeJob, order.id
+      render :text => '<meta name="event_trigger" content="terms_accepted"/>'
     else
       render :text => '<meta name="event_trigger" content="terms_declined"/>'
     end
-  rescue Stripe::CardError => e
-    render :text => '<meta name="event_trigger" content="card_declined"/>'
-  rescue Stripe::InvalidRequestError => e
-    render :text => '<meta name="event_trigger" content="processing_error"/>'
   end
   def identities
     render 'users/identities/index'
