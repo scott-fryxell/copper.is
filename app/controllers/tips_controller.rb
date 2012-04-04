@@ -59,7 +59,7 @@ class TipsController < ApplicationController
       render :action => 'error', :layout => 'button'
     end
 
-  rescue StandardError::ArgumentError => e
+  rescue ArgumentError => e
     logger.error e.message
     render :action => 'error', :layout => 'button'
   end
