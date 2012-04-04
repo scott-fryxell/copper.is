@@ -91,11 +91,27 @@ describe "An Author" do
     end
 
 
-    it "should be able to remove an linked identity" do
-
-    end
-
+    it "should be able to remove an linked identity"
     it "should not be able to delete and a identity when there is only one"
+  end
+
+  describe "on author's royalties page" do
+    before do
+      visit '/auth/twitter'
+      click_link 'author'
+      click_link 'edit'
+      visit '/auth/soundcloud'
+      visit "/tips/agent/?uri=http://soundcloud.com/underscore_ugly/apparatus-grey"
+      visit '/'
+      click_link 'author'
+      click_link 'royalties'
+    end
+    
+    it "should have some royalties to look at" do
+      page.should have_content 'Royalties'
+    end
+  
+    it "should have a royalty displayed when one exists"
   end
 
 end
