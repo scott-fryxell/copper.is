@@ -61,7 +61,7 @@ describe "bucking a URL" do
       click_on('Pay')
       # page.should have_content "Processing your order..."
       # sleep 5
-      # page.should have_content "We'll email you a reciept"
+      page.should have_content "We'll email you a reciept"
     end
 
     it "should be able to view all their tips" do
@@ -75,7 +75,7 @@ describe "bucking a URL" do
       click_on('Pay')
       # page.should have_content "Processing your order..."
       # sleep 5
-      # page.should have_content "We'll email you a reciept"
+      page.should have_content "We'll email you a reciept"
 
       visit('/users/current')
       click_on('tips')
