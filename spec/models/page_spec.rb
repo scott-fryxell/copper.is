@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Page do
+  fixtures :users
   before(:each) do
     @page = Page.new
     @page.description = 'http://example.com/path1'
@@ -37,5 +38,10 @@ describe Page do
     @page.save.should be_true
     @page.locators << Locator.parse('http://example.com/path1')
     @page.primary_locator.should_not be_nil
+  end
+  
+  it "should allow having one author" do
+    @page.author = users(:a_developer)
+    @page.save.should be_true
   end
 end
