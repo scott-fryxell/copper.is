@@ -16,6 +16,9 @@ $(document).ready(function (){
   $("#badge_text").click(function (){
     $(this).select();
   });
+  $("#link > textarea").click(function (){
+    $(this).select();
+  });
 });
 var badge = {
   type: "name",
