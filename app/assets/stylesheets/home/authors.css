@@ -69,7 +69,7 @@ section#identity > header > span {
   font-size: 1.5em;
   width: 4em;
 }
-section#identity > a {
+section > a {
   vertical-align:top;
   text-decoration: underline;
 }
