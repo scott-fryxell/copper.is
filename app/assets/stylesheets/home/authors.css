@@ -79,4 +79,7 @@ section#link > textarea {
   font-size:.75em;
   padding:.5em;
   line-height:1em;
+  border-radius:.5em;
+  border:.2em solid gray;
+  
 }
