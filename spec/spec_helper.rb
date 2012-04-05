@@ -47,9 +47,30 @@ Spork.prefork do
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
-
-
   end
+  
+  # takes named options queue:foobar, verbose:true, fork:true
+  def run_resque_job(job_class, job_args, opts={})
+    queue = opts[:queue] || "test_queue"
+
+    Resque::Job.create(queue, job_class, *job_args)
+    worker = Resque::Worker.new(queue)
+    worker.very_verbose = true if opts[:verbose]
+
+    if opts[:fork]
+      # do a single job then shutdown
+      def worker.done_working
+        super
+        shutdown
+      end
+      worker.work(0.01)
+    else
+      job = worker.reserve
+      worker.perform(job)
+    end
+  end
+  
+  Resque.inline = true
 end
 
 Spork.each_run do
