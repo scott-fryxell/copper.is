@@ -1,6 +1,8 @@
 class TipOrderMissing < Exception ; end
 
 class TipOrder < ActiveRecord::Base
+  extend Resque::Plugins::ScalingCanary
+  
   has_many :tips, :dependent => :destroy
   belongs_to :fan, :class_name => "User", :foreign_key => "fan_id"
   validates_presence_of :fan
@@ -15,6 +17,7 @@ class TipOrder < ActiveRecord::Base
     end
   end
   def charge
+
     charge = Stripe::Charge.create(
       :amount => self.tips.sum('amount_in_cents') + self.tips.sum('amount_in_cents')/10,
       :currency => "usd",
@@ -42,5 +45,11 @@ class TipOrder < ActiveRecord::Base
   end
   def total
     self.subtotal + self.fees
+  end
+  def self.minimum_workers_needed
+    Copper::Application.copper.tip_order_min_workers || 2
+  end
+  def self.perform
+    raise 'TBD'
   end
 end
