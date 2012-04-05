@@ -3,7 +3,7 @@
   <%= stylesheet_link_tag "users/identities" %>
 <%-end-%>
 <section id="identities">
-  <h1>link accounts</h1>
+  <h1>Link accounts</h1>
   <nav>
     <a id="twitter_sign_in" href="/auth/twitter"><%= image_tag "providers/twitter.png" %></a>
     <a id="facebook_sign_in" href="/auth/facebook"><%= image_tag "providers/facebook.jpg" %></a>
@@ -15,6 +15,6 @@
   </nav>
   <h1>Linked accounts</h1>
   <%-current_user.identities.each do |identity|-%>
-      <%= render :partial => 'users/identities/' + identity.provider, :object => identity %>
+    <%= render :partial => 'identities/providers/' + identity.provider, :object => identity %>
   <%-end-%>
 </section>

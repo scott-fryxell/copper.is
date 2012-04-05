@@ -58,9 +58,6 @@ class UsersController < ApplicationController
   rescue Stripe::InvalidRequestError => e
     render :text => '<meta name="event_trigger" content="processing_error"/>'
   end
-  def identities
-    render 'users/identities/index'
-  end
   def author
     render 'users/author'
   end
