@@ -44,9 +44,8 @@ describe "Fan account" do
       end
     end
     
-    it "and submit using the return key" do
-      keypress_on find_field('user[email]'), :enter
-    end
+    it "and submit using the return key" 
+    
   end
   
   describe "should be able to change name" do
@@ -67,9 +66,7 @@ describe "Fan account" do
       end
     end
     
-    it "and submit using the return key" do
-      keypress_on find_field('user[name]'), :enter
-    end
+    it "and submit using the return key" 
  end
   
   it "should only be able to change name to a valid email address" do

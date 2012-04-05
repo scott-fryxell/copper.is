@@ -22,7 +22,7 @@
     <form id="fan_name" method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
       <input name="authenticity_token" type="hidden">
       <input type="input" id="user_name" name="user[name]" value="<%=current_user.name%>">
-      <button type="button">Save</button>
+      <input type="submit" value="Save"/>
     </form>
   </section>
 
@@ -35,7 +35,7 @@
     <form id="fan_email" method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
       <input name="authenticity_token" type="hidden">
       <input type="input" id="user_email" name="user[email]" value="<%=current_user.email%>">
-      <button type="button">Save</button>
+      <input type="submit" value="Save"/>
       <p></p>
   </section>
 

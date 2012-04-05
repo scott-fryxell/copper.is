@@ -1,9 +1,9 @@
 //= require shared/current_user
 //= require shared/tip_rate
 
-
 $(document).on("get:current_user", function () {
-  $('form#fan_email > button').click(function (event) {
+  $('form#fan_email ').submit(function (event) {
+    event.preventDefault()
     var email = $('#user_email').val();
     var at_pos=email.indexOf("@");
     var dot_pos=email.lastIndexOf(".");
@@ -26,9 +26,9 @@ $(document).on("get:current_user", function () {
   });
 });
 
-
 $(document).on("get:current_user", function () {
-  $('form#fan_name > button').click(function (event) {
+  $('form#fan_name').submit(function (event) {
+    event.preventDefault()
     $.ajax({
       type: $('form#fan_name').attr("method"),
       url: $('form#fan_name').attr('action'),

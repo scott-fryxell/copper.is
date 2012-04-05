@@ -62,11 +62,14 @@
 #user > section > form > input.invalid{
   border-color:red;
 }
-#user > section > form > button {
+#user > section > form > input[type=submit] {
   border:.2em solid gray;
   border-radius:.5em;
   color:red;
   cursor:pointer;
+  width:5em;
+  padding:.15em;
+  margin-left:.5em;
 }
 #user > section > a {
   text-decoration: underline;
