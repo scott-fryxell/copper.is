@@ -3,11 +3,9 @@
 *= require_self
 *= require ../shared/animation
 */
-
 html {
   background-color:#FBF6F1;
 }
-
 #flash {
   margin:2em auto 2em auto;
   width:17em;
