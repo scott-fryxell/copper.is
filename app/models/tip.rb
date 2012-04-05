@@ -14,8 +14,8 @@ class Tip < ActiveRecord::Base
 
   attr_accessible :amount_in_cents
 
-  # minimum value per tip, in cents
-  Tip::MINIMUM_TIP_VALUE = 1
+  MINIMUM_TIP_VALUE = 1
+  validates_numericality_of :amount_in_cents, greater_than_or_equal_to:MINIMUM_TIP_VALUE
 
   before_save do |tip|
     order = tip.tip_order
