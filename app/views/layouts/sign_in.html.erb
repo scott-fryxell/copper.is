@@ -10,6 +10,7 @@
     <%= yield(:head) %>
   </head>
   <body>
+    <%= render :partial => 'shared/flash',:object => flash %>
     <%= yield %>
   </body>
 </html>
