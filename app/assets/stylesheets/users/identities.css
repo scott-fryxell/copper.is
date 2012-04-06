@@ -57,7 +57,7 @@
   margin: .5em auto;
   width:12em;
 }
-#identities > section  > button {
+#identities > section  > form > input {
   position:absolute;
   bottom:1.5em;
   left:37%;

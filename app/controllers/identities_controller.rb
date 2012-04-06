@@ -4,9 +4,9 @@ class IdentitiesController < ApplicationController
   def index
   end
   
-  def delete 
+  def destroy 
     identity = Identity.find(params[:id])
     identity.destroy
-    render :nothing => true, :status => :ok
+    redirect_to user_identities_path(current_user), notice: "Removed that Identity."
   end
 end

@@ -10,5 +10,10 @@
     <%-end-%>
   </figure>
   <p><%=vimeo.name%></p>
-  <button type="button">remove</button>
+  <%- if current_user.identities.count > 1 -%>
+  <form action='<%=user_identity_path(current_user, vimeo)%>' method="post">
+    <input name="_method" type="hidden" value="delete"/>
+    <input type="submit" name="submit" value="remove">
+  </form>
+  <%-end-%>
 </section>
