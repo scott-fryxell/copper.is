@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 27) do
+ActiveRecord::Schema.define(:version => 28) do
 
   create_table "identities", :force => true do |t|
     t.string   "provider"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 27) do
     t.string   "description", :null => false
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "author_id"
   end
 
   create_table "pages_royalty_orders", :id => false, :force => true do |t|

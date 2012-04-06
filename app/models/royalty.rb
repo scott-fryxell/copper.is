@@ -1,6 +1,8 @@
 class Royalty < ActiveRecord::Base
   belongs_to :royalty_order
   belongs_to :tip
+  has_one :user, :as => :author, :through => :royalty_order
+  has_one :identity, :through => :royalty_order
 
   validates_presence_of :royalty_order
   validates_presence_of :tip
