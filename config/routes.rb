@@ -19,7 +19,7 @@ Copper::Application.routes.draw do
   get 'contact', :to => 'home#contact'
   get 'terms', :to => 'home#terms'
   get 'privacy', :to => 'home#privacy'
-
+  get 'faq', :to => 'home#faq'
   get 'button', :to => 'home#button'
   get "buckingthesystem", :to => "home#index"
 
