@@ -11,14 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 29) do
+ActiveRecord::Schema.define(:version => 8) do
 
   create_table "identities", :force => true do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "provider",   :null => false
+    t.string   "uid",        :null => false
     t.string   "name"
     t.string   "email"
     t.string   "image"
@@ -27,42 +24,18 @@ ActiveRecord::Schema.define(:version => 29) do
     t.string   "urls"
     t.string   "token"
     t.string   "secret"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
-
-  create_table "locators", :force => true do |t|
-    t.string   "scheme"
-    t.string   "userinfo"
-    t.integer  "port"
-    t.string   "registry"
-    t.string   "path"
-    t.string   "opaque"
-    t.string   "query"
-    t.string   "fragment"
-    t.string   "url"
-    t.integer  "site_id"
-    t.integer  "tips_count", :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "page_id"
-  end
-
-  add_index "locators", ["site_id", "page_id"], :name => "index_locators_on_site_id_and_page_id"
 
   create_table "pages", :force => true do |t|
-    t.string   "description", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "author_id"
+    t.string   "title"
+    t.string   "url",        :null => false
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
-
-  create_table "pages_royalty_orders", :id => false, :force => true do |t|
-    t.integer "page_id"
-    t.integer "royalty_order_id"
-  end
-
-  add_index "pages_royalty_orders", ["page_id", "royalty_order_id"], :name => "index_pages_royalty_orders_on_page_id_and_royalty_order_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -77,53 +50,38 @@ ActiveRecord::Schema.define(:version => 29) do
 
   add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id", :unique => true
 
-  create_table "royalties", :force => true do |t|
-    t.integer  "royalty_order_id", :null => false
-    t.integer  "tip_id",           :null => false
-    t.integer  "amount_in_cents",  :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
-  add_index "royalties", ["royalty_order_id", "tip_id"], :name => "index_royalties_on_royalty_order_id_and_tip_id"
-
-  create_table "royalty_orders", :force => true do |t|
+  create_table "royalty_checks", :force => true do |t|
+    t.integer  "user_id",    :null => false
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-
-  add_index "sites", ["fqdn"], :name => "index_sites_on_fqdn", :unique => true
-
   create_table "tip_orders", :force => true do |t|
-    t.boolean  "is_active",    :default => true
-    t.integer  "fan_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.integer  "user_id",                         :null => false
+    t.boolean  "paid",         :default => false
     t.string   "charge_token"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
-  add_index "tip_orders", ["fan_id"], :name => "index_tip_orders_on_fan_id"
-
   create_table "tips", :force => true do |t|
-    t.integer  "amount_in_cents"
     t.integer  "tip_order_id",    :null => false
-    t.integer  "locator_id",      :null => false
+    t.integer  "page_id",         :null => false
+    t.integer  "amount_in_cents", :null => false
+    t.string   "state"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
-  add_index "tips", ["tip_order_id", "locator_id"], :name => "index_tips_on_tip_order_id_and_locator_id"
-
   create_table "users", :force => true do |t|
     t.string   "name"
     t.integer  "tip_preference_in_cents", :default => 50,    :null => false
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
     t.string   "email"
     t.string   "stripe_customer_id"
     t.boolean  "accept_terms",            :default => false
     t.boolean  "automatic_rebill",        :default => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
 end

@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'declarative_authorization'
 gem 'jquery-rails'
+
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
@@ -10,6 +11,7 @@ gem 'omniauth-github'
 gem 'omniauth-vimeo'
 gem 'omniauth-soundcloud', '~> 1.0.0'
 gem 'omniauth-google-oauth2'
+
 gem 'stripe'
 gem 'dalli'
 gem "foreman"
@@ -17,7 +19,8 @@ gem 'thin'
 gem 'newrelic_rpm'
 gem 'redis'
 gem 'resque'
-gem 'resque-heroku-scaling-canary'
+# gem 'resque-heroku-scaling-canary'
+gem 'addressable'
 
 group :production do
   gem "pg"
@@ -39,6 +42,7 @@ group :development, :test do
   gem 'ruby_parser'
   gem 'launchy'
   gem 'heroku'
+  gem 'factory_girl'
 end
 
 # Gems used only for assets and not required

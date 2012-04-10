@@ -1,6 +1,0 @@
-site1:
-  fqdn: 'example.com'
-site2:
-  fqdn: 'example2.com'
-site3:
-  fqdn: 'popular.com'

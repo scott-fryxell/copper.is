@@ -1,8 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Tip do
-  fixtures :roles, :users, :roles_users, :pages, :sites, :locators, :tip_orders
-
   describe 'some tests' do
     before(:each) do
       @tip = Tip.new(:amount_in_cents => 25)

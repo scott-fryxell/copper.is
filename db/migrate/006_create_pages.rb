@@ -1,9 +1,9 @@
 class CreatePages < ActiveRecord::Migration
   def self.up
     create_table :pages do |t|
-      t.string  :title,    :null => false
+      t.string  :title
       t.string  :url,      :null => false
-      t.references :user,  :null => false
+      t.references :user
       t.timestamps
     end
   end
