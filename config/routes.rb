@@ -3,7 +3,9 @@ Copper::Application.routes.draw do
 
   resources :users do
     resources :tips
-    resources :royalties
+    resources :royalty_orders do
+      resources :royalties
+    end
     resources :identities
     post 'pay', :on => :member
     get 'author', :to => 'users#author', :as => :author

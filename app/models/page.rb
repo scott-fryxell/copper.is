@@ -24,4 +24,7 @@ class Page < ActiveRecord::Base
   def primary_locator
     locators.first
   end
+  
+  def total_pending_royalties_in_cents
+  end
 end

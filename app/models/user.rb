@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :pages, :as => :author
   has_many :pages, :as => :fan, :through => :tips
   
+  has_many :royalty_orders, :through => :pages
+  
   has_and_belongs_to_many :roles
 
   attr_accessible :name, :email, :tip_preference_in_cents

@@ -40,7 +40,12 @@ describe "An Author" do
     end
 
   end
-
+  
+  it "should have a link to royalty orders" do
+    click_link 'author'
+    page.should have_content 'royalties'
+  end
+  
   it "should have a link to the identities page" do
     click_link 'author'
     within("section#identity > a") do

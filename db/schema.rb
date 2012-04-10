@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 28) do
+ActiveRecord::Schema.define(:version => 29) do
 
   create_table "identities", :force => true do |t|
     t.string   "provider"
@@ -88,10 +88,8 @@ ActiveRecord::Schema.define(:version => 28) do
   add_index "royalties", ["royalty_order_id", "tip_id"], :name => "index_royalties_on_royalty_order_id_and_tip_id"
 
   create_table "royalty_orders", :force => true do |t|
-    t.integer  "cycle_started_year",    :null => false
-    t.integer  "cycle_started_quarter", :null => false
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "sites", :force => true do |t|
