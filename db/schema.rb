@@ -92,11 +92,6 @@ ActiveRecord::Schema.define(:version => 29) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "sites", :force => true do |t|
-    t.string   "fqdn",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   add_index "sites", ["fqdn"], :name => "index_sites_on_fqdn", :unique => true
 
