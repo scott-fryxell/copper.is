@@ -42,7 +42,7 @@ group :development, :test do
   gem 'ruby_parser'
   gem 'launchy'
   gem 'heroku'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
 end
 
 # Gems used only for assets and not required

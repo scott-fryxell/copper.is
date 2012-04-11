@@ -4,19 +4,23 @@ FactoryGirl.define do
   end
   
   sequence 'url_with_path' do |n|
-    "test.com/#{n}/"
+    "http://test.com/#{n}/"
   end
   
   factory :identity do
     provider 'facebook'
-    uid { Factory.generate(:uid) } 
+    uid { FactoryGirl.generate(:uid) } 
+  end
+  
+  factory :role do 
+    name "Patron"
   end
   
   # factory :unaccepted_user, :class => 'User' do
   # end
   
   factory :user do
-    role 'Patron'
+    # association :role
     name 'Joe'
     accept_terms true
   end
@@ -26,7 +30,7 @@ FactoryGirl.define do
   end
   
   factory :page do
-    url { Factory.generate(:url_with_path) }
+    url { FactoryGirl.generate(:url_with_path) }
   end
   
   factory :tip do

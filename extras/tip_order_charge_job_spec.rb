@@ -1,8 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe TipOrderChargeJob do
-  fixtures :roles, :users, :roles_users, :tip_orders, :tips
-  
   before do
   #   Resque.inline = true
   #   @worker = Resque::Worker.new(:high)
