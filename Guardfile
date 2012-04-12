@@ -8,8 +8,6 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb')
-  watch(%r{^spec/fixtures/(.+)\.rb$})
-  watch(%r{^spec/fixtures/(.+)\.yml$})
 end
 
 guard 'rspec', :version => 2, :cli => '--color --format doc --drb', :all_on_start => false, :all_after_pass => false do

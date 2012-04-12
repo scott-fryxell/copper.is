@@ -1,10 +1,15 @@
 class TipOrderMissing < Exception ; end
 
 class TipOrder < ActiveRecord::Base
-  # extend Resque::Plugins::ScalingCanary
-
   has_many :tips, :dependent => :destroy
   belongs_to :user
+  
+  validates :user, presence:true
+  validates_associated :user
+  
+  scope :current, where('state = ?', 'current')
+  scope :paid, where('state = ?', 'paid')
+  scope :declined, where('state = ?', 'declined')
 
   def time_to_pay?
     if ( self.tiped_enough_to_pay? && !self.fan.automatic_rebill )

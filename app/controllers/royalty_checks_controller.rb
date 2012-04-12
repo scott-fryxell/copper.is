@@ -1,4 +1,4 @@
-class RoyaltyOrdersController < ApplicationController
+class RoyaltyChecksController < ApplicationController
   filter_access_to :all
   
   def index

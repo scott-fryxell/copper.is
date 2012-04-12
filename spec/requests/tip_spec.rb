@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "bucking a URL" do
+describe "Tiping a URL" do
   before(:each) do
     visit "/"
     click_link 'google_sign_in'

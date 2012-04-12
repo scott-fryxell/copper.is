@@ -23,19 +23,30 @@ FactoryGirl.define do
     # association :role
     name 'Joe'
     accept_terms true
+    tip_preference_in_cents 50
   end
   
   factory :tip_order do
     association :user
+    state 'current'
   end
   
-  factory :page do
+  factory :authored_page, :class => 'Page' do
+    url { FactoryGirl.generate(:url_with_path) }
+    association :identity
+  end
+
+  factory :unauthored_page, :class => 'Page' do
     url { FactoryGirl.generate(:url_with_path) }
   end
   
   factory :tip do
     association :tip_order
-    association :page
+    association :page, factory: :unauthored_page
     amount_in_cents 100
+  end
+  
+  factory :royalty_check do
+    association :user
   end
 end

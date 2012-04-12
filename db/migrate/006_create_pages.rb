@@ -3,7 +3,7 @@ class CreatePages < ActiveRecord::Migration
     create_table :pages do |t|
       t.string  :title
       t.string  :url,      :null => false
-      t.references :user
+      t.references :identity
       t.timestamps
     end
   end

@@ -6,6 +6,21 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
 
   attr_accessible :name, :email, :tip_preference_in_cents
+  
+  validates :tip_preference_in_cents,
+    :numericality => { greater_than_or_equal_to:Tip::MINIMUM_TIP_VALUE },
+    :presence => true
+  validates :name, length:{in:3..128}
+    
+  # this doesn't match gmail '+' tags
+  EMAIL_RE = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/
+  validates :email, format:{with:EMAIL_RE}, :allow_nil => true
+  
+  validate :validate_one_current_tip_order
+
+  def validate_one_current_tip_order
+    errors.add(:tip_orders, "there can be only one") unless self.tip_orders.current.count == 1
+  end
 
   def self.create_with_omniauth(auth)
     create! do |user|

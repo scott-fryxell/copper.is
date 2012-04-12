@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(:version => 8) do
 
   create_table "pages", :force => true do |t|
     t.string   "title"
-    t.string   "url",        :null => false
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "url",         :null => false
+    t.integer  "identity_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "roles", :force => true do |t|
@@ -52,16 +52,17 @@ ActiveRecord::Schema.define(:version => 8) do
 
   create_table "royalty_checks", :force => true do |t|
     t.integer  "user_id",    :null => false
+    t.string   "state"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "tip_orders", :force => true do |t|
-    t.integer  "user_id",                         :null => false
-    t.boolean  "paid",         :default => false
+    t.integer  "user_id",      :null => false
+    t.string   "state"
     t.string   "charge_token"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "tips", :force => true do |t|

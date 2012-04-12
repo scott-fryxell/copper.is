@@ -74,6 +74,7 @@ Spork.prefork do
 end
 
 Spork.each_run do
+  FactoryGirl.reload
 
   RSpec.configure do |config|
     # require Rails.root.join("db/seeds.rb")

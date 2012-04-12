@@ -5,6 +5,9 @@ class Identity < ActiveRecord::Base
 
   attr_accessible :provider, :uid
 
+  validates :provider, presence:true
+  validates :uid, presence:true
+
   def self.find_with_omniauth(auth)
     find_by_provider_and_uid(auth['provider'], auth['uid'].to_s)
   end
@@ -12,5 +15,4 @@ class Identity < ActiveRecord::Base
   def self.create_with_omniauth(auth)
     Identity.create(uid: auth['uid'].to_s, provider: auth['provider'])
   end
-
 end

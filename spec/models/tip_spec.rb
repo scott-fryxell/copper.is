@@ -5,20 +5,20 @@ describe Tip do
     before(:each) do
       @tip = Tip.new(:amount_in_cents => 25)
       @tip.tip_order = FactoryGirl.create(:tip_order)
+      @tip.page = FactoryGirl.create(:authored_page)
       @tip.save
     end
 
-    it "should always be associated with a tip order", :focus do
+    it "should always be associated with a tip order" do
       @tip.tip_order = nil
       @tip.save.should be_false
     end
 
-    it "should always be associated with a URL" do
-      @tip.locator = nil
-      @tip.save.should be_false
+    it "should save" do
+      @tip.save.should be_true
     end
 
-    it "should save correctly with defaults set" do
+    it "should save correctly with defaults set"  do
       @tip.save.should be_true
       @tip.tip_order.should_not be_nil
     end
@@ -35,5 +35,25 @@ describe Tip do
     @tip = Tip.new(:amount_in_cents => -1)
     @tip.tip_order = FactoryGirl.create(:tip_order)
     @tip.save.should be_false
+  end
+  
+  context 'scopes' do
+    before do
+      @promised = Array.new(3) { FactoryGirl.create(:tip, state:'promised' ) }
+      @charged = Array.new(4) { FactoryGirl.create(:tip, state:'charged' ) }
+      @received = Array.new(5) { FactoryGirl.create(:tip, state:'received' ) }
+    end
+    
+    it 'has a .promised scope' do
+      Tip.promised.count.should == @promised.size
+    end
+    
+    it 'has a .charged scope' do
+      Tip.charged.count.should == @charged.size
+    end
+    
+    it 'has a .received scope' do
+      Tip.received.count.should == @received.size
+    end
   end
 end
