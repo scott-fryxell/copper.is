@@ -33,11 +33,10 @@ describe "Tiping a URL" do
     click_on('x')
     sleep 2
     visit "/users/current/tips"
-
   end
 
   describe "paying for some bucks" do
-    before(:each) do
+    before do
       visit "/tips/agent/?uri=http://test.com&title=a_title"
       click_on('Change')
       fill_in('tip_amount', :with => '10.5')

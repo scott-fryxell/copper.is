@@ -85,7 +85,7 @@ module Copper
 
     raise "session key must be defined ENV['COPPER_SECRET_KEY']" unless Copper::Application.config.copper_session_key
 
-    raise "minimum number of workers for the high priority queue must be defined ENV['RESQUE_HIGH_MIN_WORKERS']"  unless Copper::Application.config.resque_high_min_workers
-    raise "resque overview mount needs a HTTP basic auth password in ENV['RESQUE_OVERVIEW_PASSWORD']" unless Copper::Application.config.resque_overview_password
+    # raise "minimum number of workers for the high priority queue must be defined ENV['RESQUE_HIGH_MIN_WORKERS']"  unless Copper::Application.config.resque_high_min_workers
+    # raise "resque overview mount needs a HTTP basic auth password in ENV['RESQUE_OVERVIEW_PASSWORD']" unless Copper::Application.config.resque_overview_password
   end
 end

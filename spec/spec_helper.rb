@@ -1,18 +1,48 @@
 require 'rubygems'
 require 'spork'
 
+def keypress_on(elem, key, charCode = 0)
+  keyCode = case key
+            when :enter then 13
+            else key.to_i
+            end
+  elem.base.invoke('keypress', false, false, false, false, keyCode, charCode);
+end
+
+# takes named options queue:foobar, verbose:true, fork:true
+def run_resque_job(job_class, job_args, opts={})
+  queue = opts[:queue] || "test_queue"
+
+  Resque::Job.create(queue, job_class, *job_args)
+  worker = Resque::Worker.new(queue)
+  worker.very_verbose = true if opts[:verbose]
+
+  if opts[:fork]
+    # do a single job then shutdown
+    def worker.done_working
+      super
+      shutdown
+    end
+    worker.work(0.01)
+  else
+    job = worker.reserve
+    worker.perform(job)
+  end
+end
+
+def authenticate_as_admin
+end
+
+def authenticate_as_patron
+end
+
+def unauthenticate
+end
+
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
-  def keypress_on(elem, key, charCode = 0)
-    keyCode = case key
-              when :enter then 13
-              else key.to_i
-              end
-    elem.base.invoke('keypress', false, false, false, false, keyCode, charCode);
-  end
-  
   ENV["RAILS_ENV"] ||= 'test'
   require 'simplecov'
   SimpleCov.start 'rails'
@@ -48,31 +78,9 @@ Spork.prefork do
     config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
   end
-  
-  # takes named options queue:foobar, verbose:true, fork:true
-  def run_resque_job(job_class, job_args, opts={})
-    queue = opts[:queue] || "test_queue"
-
-    Resque::Job.create(queue, job_class, *job_args)
-    worker = Resque::Worker.new(queue)
-    worker.very_verbose = true if opts[:verbose]
-
-    if opts[:fork]
-      # do a single job then shutdown
-      def worker.done_working
-        super
-        shutdown
-      end
-      worker.work(0.01)
-    else
-      job = worker.reserve
-      worker.perform(job)
-    end
-  end
-  
   Resque.inline = true
 end
-
+  
 Spork.each_run do
   FactoryGirl.reload
 

@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
     @user.save
     respond_to do |format|
-      format.xml  { render :xml => @user.to_xml }
       format.json  { render :json => @user.to_json }
     end
   end
@@ -17,11 +16,10 @@ class UsersController < ApplicationController
     if params[:all] == 'true'
       @tips = current_user.tips
     else
-      @tips = current_user.active_tips
+      @tips = current_user.current_tips
     end
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @user.to_xml }
       format.json  { render :json => @user.to_json }
     end
   end
@@ -44,19 +42,24 @@ class UsersController < ApplicationController
     end
 
     current_user.save
-    order = current_user.active_tip_order
+    order = current_user.current_tip_order
 
-    if(current_user.accept_terms)
-      current_user.active_tip_order.charge
-      OrderMailer.reciept(order).deliver
-      render :text => '<meta name="event_trigger" content="card_approved"/>'
+    if current_user.accept_terms
+      order.prepare
+      order.process
+      
+      if order.paid?
+        OrderMailer.reciept(order).deliver
+        render :text => '<meta name="event_trigger" content="card_approved"/>'
+      elsif order.decline?
+        render :text => '<meta name="event_trigger" content="card_declined"/>'
+      else
+       render :text => '<meta name="event_trigger" content="processing_error"/>' 
+      end
+
     else
       render :text => '<meta name="event_trigger" content="terms_declined"/>'
     end
-  rescue Stripe::CardError => e
-    render :text => '<meta name="event_trigger" content="card_declined"/>'
-  rescue Stripe::InvalidRequestError => e
-    render :text => '<meta name="event_trigger" content="processing_error"/>'
   end
   def author
     render 'users/author'

@@ -4,19 +4,19 @@
     <%= image_tag "logo/copper/cent_word.png" %>
     <header>
       <h1>You've tipped</h1>
-      <p itemprop="description"><%= CGI::unescape(@tip.locator.page.description) %></p>
+      <p itemprop="description"><%= CGI::unescape(@tip.page.title) %></p>
     </header>
     <aside>
       <form action="<%=user_tip_path(current_user, @tip)%>" method="put" accept-charset="utf-8">
         <label for="tip_amount">$</label>
         <input type="text" id="tip_amount" pattern="[0-9](.)" readonly required name="tip[amount_in_cents]" value="<%= cents_to_dollars(@tip.amount_in_cents) %>">
-        <%-if !current_user.active_tip_order.time_to_pay?-%>
+        <%-if !current_user.current_tip_order.time_to_pay?-%>
           <button type="button">Change</button>
         <%-end-%>
       </form>
     </aside>
   </section>
-  <%-if current_user.active_tip_order.time_to_pay?-%>
+  <%-if current_user.current_tip_order.time_to_pay?-%>
   <footer>
     <%= render :partial => 'shared/credit_card' %>
   </footer>

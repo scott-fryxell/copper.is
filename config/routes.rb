@@ -1,6 +1,6 @@
 require 'resque/server'
-Copper::Application.routes.draw do
 
+Copper::Application.routes.draw do
   resources :users do
     resources :tips
     resources :royalty_orders do
@@ -11,6 +11,21 @@ Copper::Application.routes.draw do
     get 'author', :to => 'users#author', :as => :author
   end
 
+  
+  
+  # resources :tips
+  # resources :tip_orders do
+  #   resources :tips
+  # end
+  # resources :royalty_checks do
+  #   resources :tips
+  # end
+  # resources :pages
+  # resources :identities
+  # resources :users
+
+  
+  
   get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe
 

@@ -7,7 +7,7 @@ class TipsController < ApplicationController
     if params[:all] == 'true'
       @tips = current_user.tips
     else
-      @tips = current_user.active_tips
+      @tips = current_user.current_tips
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class TipsController < ApplicationController
     end
   end
   def create
-    @tip = current_user.tip(params[:tip][:uri])
+    @tip = current_user.tip(url:params[:tip][:uri])
 
     if @tip && @tip.valid?
       redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_success")
@@ -39,7 +39,7 @@ class TipsController < ApplicationController
   def destroy
     tip = Tip.find(params[:id])
 
-    if(tip.tip_order.fan == current_user && tip.tip_order.is_active)
+    if(tip.tip_order.user == current_user && tip.tip_order.is_active)
       tip.destroy
     end
     render :nothing => true, :status => :ok
@@ -51,7 +51,7 @@ class TipsController < ApplicationController
     uri = URI.unescape(params[:uri])
     title = URI.unescape(params[:title])
 
-    @tip = current_user.tip(uri, title )
+    @tip = current_user.tip(url:uri, title:title )
 
     if @tip && @tip.valid?
       render :action => 'show', :layout => 'button'
@@ -63,6 +63,4 @@ class TipsController < ApplicationController
     logger.error e.message
     render :action => 'error', :layout => 'button'
   end
-
-
 end

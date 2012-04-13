@@ -16,6 +16,10 @@ class TipOrder < ActiveRecord::Base
       transition :current => :ready, :if => lambda {|tip_order| tip_order.user.charge_info? }
     end
     
+    after_transition :current => :ready do |tip_order,transition|
+      tip_order.user.tip_orders.current.create
+    end
+    
     event :process do
       transition all - :paid => :paid, :if => lambda {|tip_order| tip_order.send(:charge) }
     end
@@ -26,7 +30,7 @@ class TipOrder < ActiveRecord::Base
   end
   
   def time_to_pay?
-    if ( self.tiped_enough_to_pay? && !self.fan.automatic_rebill )
+    if ( self.tiped_enough_to_pay? && !self.user.automatic_rebill )
       return true
     else
       return false
