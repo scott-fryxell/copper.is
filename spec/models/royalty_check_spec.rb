@@ -10,6 +10,23 @@ describe RoyaltyCheck do
     @order.save.should be_true
   end
 
+
+  describe "state machine" do
+    it "should transition from :earned to :paid on a deliver: event" do
+      @royalty_check = FactoryGirl.create(:royalty_check)
+      @royalty_check.state_name.should == :earned
+      @royalty_check.deliver
+      @royalty_check.state_name.should == :paid
+    end
+    it "should transition to :paid to :cashed with a reconcile! event" do
+      @royalty_check = FactoryGirl.create(:royalty_check_paid)
+      @royalty_check.state_name.should == :paid
+      @royalty_check.reconcile
+      @royalty_check.state_name.should == :cashed
+    end
+  end
+
+
   context 'scopes' do
     before do
       @earned_checks = Array.new(3) { FactoryGirl.create(:royalty_check, state:'earned') }

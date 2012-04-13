@@ -11,6 +11,20 @@ class TipOrder < ActiveRecord::Base
   scope :paid, where('state = ?', 'paid')
   scope :declined, where('state = ?', 'declined')
 
+  state_machine :state, :initial => :current do
+    event :prepare do
+      transition :current => :ready, :if => lambda {|tip_order| tip_order.user.charge_info? }
+    end
+    
+    event :process do
+      transition all - :paid => :paid, :if => lambda {|tip_order| tip_order.send(:charge) }
+    end
+    
+    event :decline do
+      transition :ready => :declined
+    end
+  end
+  
   def time_to_pay?
     if ( self.tiped_enough_to_pay? && !self.fan.automatic_rebill )
       return true
@@ -18,33 +32,37 @@ class TipOrder < ActiveRecord::Base
       return false
     end
   end
-  def charge
-    charge = Stripe::Charge.create(
-      :amount => self.tips.sum('amount_in_cents') + self.tips.sum('amount_in_cents')/10,
-      :currency => "usd",
-      :customer => self.fan.stripe_customer_id,
-      :description => self.fan.email
-    )
-
-    self.charge_token = charge.id
-    self.save
-
-    # on success rotate order so that no
-    # more tips are added to the order
-    self.fan.rotate_tip_order!
-
-    return charge
-  end
+  
   def tiped_enough_to_pay?
     self.tips.sum(:amount_in_cents) >= 1000
   end
+  
   def subtotal
     self.tips.sum(:amount_in_cents)
   end
+  
   def fees
     self.tips.sum(:amount_in_cents)/10
   end
+  
   def total
     self.subtotal + self.fees
+  end
+
+  protected 
+  
+  def charge
+    stripe_charge = Stripe::Charge.create(
+      :amount => self.tips.sum('amount_in_cents') + self.tips.sum('amount_in_cents')/10,
+      :currency => "usd",
+      :customer => self.user.stripe_customer_id,
+      :description => self.user.email
+    )
+    self.charge_token = stripe_charge.id
+    self.save
+    stripe_charge
+  rescue Stripe::CardError => e
+    self.decline
+    nil
   end
 end

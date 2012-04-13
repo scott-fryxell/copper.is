@@ -21,6 +21,7 @@ gem 'redis'
 gem 'resque'
 # gem 'resque-heroku-scaling-canary'
 gem 'addressable'
+gem 'state_machine'
 
 group :production do
   gem "pg"

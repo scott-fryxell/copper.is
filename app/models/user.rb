@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :tip_orders
   has_many :tips, :through => :tip_orders
   has_many :royalty_checks
-  has_and_belongs_to_many :roles
+  has_many :roles
 
   attr_accessible :name, :email, :tip_preference_in_cents
   
@@ -15,11 +15,17 @@ class User < ActiveRecord::Base
   # this doesn't match gmail '+' tags
   EMAIL_RE = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/
   validates :email, format:{with:EMAIL_RE}, :allow_nil => true
-  
-  validate :validate_one_current_tip_order
 
-  def validate_one_current_tip_order
-    errors.add(:tip_orders, "there can be only one") unless self.tip_orders.current.count == 1
+  # validate :validate_one_current_tip_order
+
+  # def validate_one_current_tip_order
+  #  errors.add(:tip_orders, "there can be only one") unless self.tip_orders.current.size == 1
+  # end
+  
+  after_create :create_current_tip_order
+  
+  def create_current_tip_order
+    tip_orders.create
   end
 
   def self.create_with_omniauth(auth)
@@ -30,49 +36,26 @@ class User < ActiveRecord::Base
     end
   end
 
-  def active_tips
-    order = active_tip_order
-    if order
-      tips = Tip.find_all_by_tip_order_id(order.id, :order => "created_at DESC")
-    else
-      []
-    end
-  end
-
   def role_symbols
     roles.map do |role|
       role.name.underscore.to_sym
     end
   end
 
-  def rotate_tip_order!
-    TipOrder.update(active_tip_order.id, :is_active => false)
-    TipOrder.create(:fan => self)
+  def tip(args = {})
+    url    = args[:url]
+    title  = args[:title]  || url
+    amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
+    
+    tip = Tip.new(:amount_in_cents => amount_in_cents)
+    tip.page = Page.normalized_find_or_create(url,title)
+    tip.tip_order = self.tip_orders.current.first
+    tip.save
+    tip
   end
 
-  def active_tip_order
-    tip_orders.find(:first, :conditions => ["is_active = ?", true]) || TipOrder.new(:fan => self)
-  end
-
-  def tip(url_string, description = url_string)
-    locator = Locator.find_or_init_by_url(url_string)
-    amount_in_cents = self.tip_preference_in_cents
-
-    if locator && amount_in_cents
-      locator.page = Page.create(:description => description) unless locator.page
-
-      tip = Tip.new(:amount_in_cents => amount_in_cents)
-      tip.locator = locator
-      tip.tip_order = active_tip_order
-      if tip.valid?
-        tip.save
-        tip
-      else
-        nil
-      end
-    else
-      nil
-    end
+  def charge_info?
+    !!self.stripe_customer_id
   end
 
   def create_stripe_customer (card_token)
@@ -95,11 +78,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  def active_tips_in_dollars
-    cents_to_dollars(self.active_tip_order.tips.sum(:amount_in_cents))
+  def current_tip_order
+    tip_orders.current.first
   end
-
-
-  private
-
+  
+  def current_tips
+    current_tip_order.tips
+  end
+  
+  # def active_tips_in_dollars
+  #   cents_to_dollars(self.active_tip_order.tips.sum(:amount_in_cents))
+  # end
 end

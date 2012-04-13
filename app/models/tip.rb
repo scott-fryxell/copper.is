@@ -18,8 +18,24 @@ class Tip < ActiveRecord::Base
   validates :amount_in_cents,
     :numericality => { in:(MINIMUM_TIP_VALUE..MAXIMUM_TIP_VALUE) },
     :presence => true
+   
+  validates_associated :page
 
   validates :page, presence:true
   validates :tip_order, presence:true
   validates :amount_in_cents, presence:true
+  
+  state_machine :state, :initial => :promised do
+    event :pay do
+      transition :promised => :charged
+    end
+    
+    event :send_check do
+      transition :charged => :received
+    end
+    
+    event :cash do
+      transition :received => :cashed
+    end
+  end
 end

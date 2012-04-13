@@ -23,35 +23,58 @@ describe Tip do
       @tip.tip_order.should_not be_nil
     end
   end
-  
+
   it 'should not allow a tip of 0 cents' do
     @tip = Tip.new(:amount_in_cents => 0)
     @tip.tip_order = FactoryGirl.create(:tip_order)
     @tip.save
     @tip.valid?.should be_false
   end
-  
+
   it 'should not allow a tip of -1 cents' do
     @tip = Tip.new(:amount_in_cents => -1)
     @tip.tip_order = FactoryGirl.create(:tip_order)
     @tip.save.should be_false
   end
-  
+
+  describe "state machine" do
+    it "should transition from :promised to :charged on a pay: event" do
+      tip = FactoryGirl.create(:tip)
+      tip.state_name.should == :promised
+      tip.pay
+      tip.state_name.should == :charged
+    end
+    it "should transition to :chaged to :recieved on a send_check! event" do
+      tip = FactoryGirl.create(:tip_charged)
+      tip.state_name.should == :charged
+      tip.send_check
+      tip.state_name.should == :received
+    end
+      
+    it "should transition to :recieved to :cashed with a cash! event" do
+      tip = FactoryGirl.create(:tip_received)
+      tip.state_name.should == :received
+      tip.cash
+      tip.state_name.should == :cashed
+    end
+      
+  end
+
   context 'scopes' do
     before do
       @promised = Array.new(3) { FactoryGirl.create(:tip, state:'promised' ) }
       @charged = Array.new(4) { FactoryGirl.create(:tip, state:'charged' ) }
       @received = Array.new(5) { FactoryGirl.create(:tip, state:'received' ) }
     end
-    
+
     it 'has a .promised scope' do
       Tip.promised.count.should == @promised.size
     end
-    
+
     it 'has a .charged scope' do
       Tip.charged.count.should == @charged.size
     end
-    
+
     it 'has a .received scope' do
       Tip.received.count.should == @received.size
     end
