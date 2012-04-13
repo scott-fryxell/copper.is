@@ -21,7 +21,6 @@ FactoryGirl.define do
 
   factory :user do
     name 'Joe'
-    roles [FactoryGirl.create(:role)]
     accept_terms true
     tip_preference_in_cents 50
     identities [FactoryGirl.create(:identity)]

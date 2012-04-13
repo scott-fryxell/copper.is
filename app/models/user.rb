@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   has_many :tip_orders
   has_many :tips, :through => :tip_orders
   has_many :royalty_checks
-  has_many :roles
+  has_and_belongs_to_many :roles
 
   attr_accessible :name, :email, :tip_preference_in_cents
   
