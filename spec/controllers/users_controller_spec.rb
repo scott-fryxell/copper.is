@@ -6,17 +6,23 @@ describe UsersController do
       unauthenticate
     end
     describe 'index' do
-      it '/users renders a list of featured users'
+      describe '/users' do
+        it 'renders a list of featured users'
+      end
     end
     describe 'new' do
-      it '302'
+      describe '302'
     end
     describe 'create'do
-      it '302'
+      describe '302'
     end
     describe 'show' do
-      it '/users/:id renders the profile page of the given user'
-      it '/users/:id 302 for a user who does not want to be known'
+      describe '/users/:id' do
+        it 'renders the profile page of the given user'
+      end
+      describe '/users/:id' do
+        it '302 for a user who does not want to be known'
+      end
     end
     describe 'edit' do
       it '302'
@@ -34,28 +40,48 @@ describe UsersController do
       authenticate_as_patron
     end
     describe 'index' do
-      it 'renders a list of featured users'
+      describe '/users' do
+        it 'renders a list of featured users'
+      end
     end
     describe 'new' do
-      it '403'
+      describe '/users/new' do 
+        it '403'
+      end
     end
     describe 'create' do
-      it '403'
+      describe 'POST /users' do
+        it '403'
+      end
     end
     describe 'show' do
-      it '/users/:id renders a profile page a given user'
+      describe '/users/:id' do
+        it 'renders a profile page a given user'
+      end
     end
     describe 'edit' do
-      it '/users/current/edit renders a account page'
-      it '/users/:id/edit 403'
+      describe '/users/current/edit' do
+        it 'renders a account page'
+      end
+      describe '/users/:id/edit' do
+        it '403'
+      end
     end
     describe 'update' do
-      it 'POST /users/current updates email'
-      it 'POST /users/current updates default tip amount'
+      describe 'POST /users/current' do 
+        it 'updates email'
+      end
+      describe 'POST /users/current' do
+        it 'updates default tip amount'
+      end
     end
     describe 'destroy' do
-      it 'DELETE /users/current deactivates the account of the current user only'
-      it 'DELETE /users/:id 403'
+      describe 'DELETE /users/current' do
+        it 'deactivates the account of the current user only'
+      end
+      describe 'DELETE /users/:id' do 
+        it '403'
+      end
     end
   end
   
