@@ -8,4 +8,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :github, Copper::Application.config.github_key, Copper::Application.config.github_secret
   provider :vimeo, Copper::Application.config.vimeo_key, Copper::Application.config.vimeo_secret
   provider :soundcloud, Copper::Application.config.soundcloud_key, Copper::Application.config.soundcloud_secret
+  provider :flickr, Copper::Application.config.flickr_key, Copper::Application.config.flickr_secret
 end

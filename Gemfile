@@ -5,6 +5,7 @@ gem 'jquery-rails'
 
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-flickr'
 gem 'omniauth-facebook'
 gem 'omniauth-tumblr'
 gem 'omniauth-github'
@@ -33,11 +34,6 @@ group :development, :test do
   gem 'pry'
   gem 'ruby_parser'
   gem 'heroku'
-
-end
-
-group :test do
-  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem "capybara-webkit"
   gem 'database_cleaner', '~> 0.6.7'
@@ -48,6 +44,10 @@ group :test do
   gem 'rb-fsevent'
   gem 'spork', '> 0.9.0.rc'
   gem 'launchy'
+end
+
+group :test do
+  gem 'factory_girl_rails'
 end
 
 # Gems used only for assets and not required

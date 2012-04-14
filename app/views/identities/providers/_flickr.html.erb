@@ -1,0 +1,19 @@
+<section class="flickr">
+  <%-if flickr.image? -%>
+    <h2><%= image_tag "providers/flickr.png", :class => "provider" %></h2>
+  <%-end-%>
+  <figure>
+    <%-if flickr.image? -%>
+      <%= image_tag flickr.image %>
+    <%-else-%>
+      <%= image_tag "providers/flickr.png", :class => "provider" %>
+    <%-end-%>
+  </figure>
+  <p><%=flickr.name%></p>
+  <%- if current_user.identities.count > 1 -%>
+  <form action='<%=user_identity_path(current_user, flickr)%>' method="post">
+    <input name="_method" type="hidden" value="delete"/>
+    <input type="submit" name="submit" value="remove">
+  </form>
+  <%-end-%>
+</section>

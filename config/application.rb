@@ -56,6 +56,10 @@ module Copper
     config.soundcloud_key = ENV['SOUNDCLOUD_KEY']
     config.soundcloud_secret = ENV['SOUNDCLOUD_SECRET']
     
+    config.flickr_key = ENV['FLICKR_KEY']
+    config.flickr_secret = ENV['FLICKR_SECRET']
+    
+    
     config.resque_high_min_workers = ENV['RESQUE_HIGH_MIN_WORKERS']
     config.resque_overview_password = ENV['RESQUE_OVERVIEW_PASSWORD']
 
@@ -79,6 +83,10 @@ module Copper
 
     raise "soundcloud key must be defined ENV['SOUNDCLOUD_KEY']" unless Copper::Application.config.soundcloud_key
     raise "soundcloud secret key must be defined ENV['SOUNDCLOUD_SECRET']" unless Copper::Application.config.soundcloud_secret
+
+    raise "flickr key must be defined ENV['FLICKR_KEY']" unless Copper::Application.config.flickr_key
+    raise "flickr secret key must be defined ENV['FLICKR_SECRET']" unless Copper::Application.config.flickr_secret
+
 
     raise "stripe publishable key must be defined ENV['STRIPE_KEY']" unless Copper::Application.config.stripe_key
     raise "stripe secret key must be defined ENV['STRIPE_SECRET']" unless Copper::Application.config.stripe_secret

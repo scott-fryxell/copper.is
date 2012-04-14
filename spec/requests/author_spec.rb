@@ -95,6 +95,11 @@ describe "An Author" do
       page.should have_selector "section.soundcloud"
     end
 
+    it "should be able to link their flickr account", :focus do
+      click_link "flickr_sign_in"
+      page.should have_content 'Successfully linked that account'
+      page.should have_selector "section.flickr"
+    end
 
     it "should be able to remove an linked identity"
     it "should not be able to delete and a identity when there is only one"

@@ -34,7 +34,7 @@ describe Page do
       @page.save.should be_true
     end
     
-    it "should save original url with page", :focus do
+    it "should save original url with page" do
       @page.url.should == 'example.com'
       @page.original_url.should == 'www.example.com'
     end

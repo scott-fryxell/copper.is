@@ -1,6 +1,6 @@
 authorization do
 
-  role :administrator do
+  role :admin do
   end
 
   role :patron do
