@@ -48,8 +48,8 @@
     <fieldset class="pay">
     	<input type="checkbox"  name="terms" id="site_terms" value="true" <%= "checked" if current_user.accept_terms? %> />
       <label for="site_terms">I accept the <a href="/terms" target="window">terms</a></label>
-      <input type="checkbox" name="rebill" id="rebill" value="true" <%= "checked" if current_user.automatic_rebill? %> />
-      <label for="rebill">Bill me automatically</label>
+      <!-- <input type="checkbox" name="rebill" id="rebill" value="true" <%= "checked" if current_user.automatic_rebill? %> />
+      <label for="rebill">Bill me automatically</label> -->
     </fieldset>
     <input type="submit" value="Pay" />
   </form>

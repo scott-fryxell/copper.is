@@ -34,6 +34,12 @@ describe Page do
       @page.save.should be_true
     end
     
+    it "should save original url with page", :focus do
+      @page.url.should == 'example.com'
+      @page.original_url.should == 'www.example.com'
+    end
+    
+    
     it "provides a normalized find by url method" do
       Page.respond_to?(:normalized_find).should be_true
     end

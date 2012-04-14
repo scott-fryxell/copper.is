@@ -32,6 +32,7 @@ class Page < ActiveRecord::Base
   end
   
   def normalize
+    self.original_url = self.url
     self.url = Page.normalize(self.url)
     # self.url = Addressable::URI.parse(self.url).normalize.to_s
   end

@@ -29,21 +29,25 @@ end
 
 group :development, :test do
   gem 'simplecov', :require => false
+  gem "sqlite3-ruby", :require => "sqlite3"
+  gem 'pry'
+  gem 'ruby_parser'
+  gem 'heroku'
+
+end
+
+group :test do
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem "capybara-webkit"
   gem 'database_cleaner', '~> 0.6.7'
-  gem "sqlite3-ruby", :require => "sqlite3"
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-spork'
-  gem 'pry'
   gem 'rb-fsevent'
   gem 'spork', '> 0.9.0.rc'
-  gem 'ruby_parser'
   gem 'launchy'
-  gem 'heroku'
-  gem 'factory_girl_rails'
 end
 
 # Gems used only for assets and not required
