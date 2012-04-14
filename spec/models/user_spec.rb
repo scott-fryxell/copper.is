@@ -5,9 +5,9 @@ describe User do
     @user = FactoryGirl.create(:user)
   end
 
-  it "should be a patron" do
-    @user.roles.first.name.should ==  'Patron'
-  end
+  it "should be a patron" #do
+  #  @user.roles.first.name.should ==  'Patron'
+  #end
 
   it 'should have at least one identity' #do
   #   @user.valid?.should be_true
