@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 8) do
     t.string   "title"
     t.string   "url",          :null => false
     t.string   "original_url", :null => false
+    t.string   "author_state"
     t.integer  "identity_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

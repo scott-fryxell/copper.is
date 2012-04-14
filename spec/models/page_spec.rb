@@ -69,7 +69,7 @@ describe Page do
     end
   end
   
-  context 'scopes' do
+  describe 'scopes' do
     before do
       @unauthored = Array.new(3) { FactoryGirl.create(:unauthored_page) }
       @authored = Array.new(2) { FactoryGirl.create(:authored_page) }
@@ -81,6 +81,121 @@ describe Page do
     
     it 'has an .unauthored scope' do
       Page.unauthored.count.should == @unauthored.size
+    end
+  end
+  
+  describe 'author state machine' do
+    describe "happy path" do
+      describe "tranistions from :orphaned to :providerable on catorgorize! when matched" do
+        before do
+          @page = FactoryGirl.build(:unauthored_page, author_state:'orphaned')
+        end
+        after do
+          @page.save
+          @page.orphaned?.should be_true
+          @page.match_url_to_provider!
+          @page.providerable?.should be_true
+        end
+        it "matches facebook.com" do
+          @page.url = "http://www.facebook.com/mgarriss"
+        end
+        it "matches flickr.com" do
+          @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
+        end
+        it "matches twitter.com" do
+          @page.url = "https://twitter.com/#!/ChloesThinking"
+        end
+        it "matches youtube.com" do
+          @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
+        end
+        it "matches vimeo.com" do
+          @page.url = "http://vimeo.com/31453929"
+        end
+        it "matches soundcloud.com" do
+          @page.url = "http://soundcloud.com/snoopdogg/sets/samples-106/"
+        end
+        it "matches github.com" do
+          @page.url = "https://github.com/mgarriss/Echo-Chamber"
+         end
+        it "matches google.com" do
+          @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
+        end
+        it "matches tumblr.com" do
+          @page.url = "http://staff.tumblr.com/"
+        end
+      end
+      describe "tranistions from :providerable to :adopted on found!" do
+        before do
+          @page = FactoryGirl.build(:unauthored_page, author_state:'providerable')
+        end
+        after do
+          @page.save
+          @page.providerable?.should be_true
+          @page.discover_provider_user!
+          @page.adopted?.should be_true
+        end
+        it "finds user on facebook.com" do
+          @page.url = "http://www.facebook.com/mgarriss"
+        end
+        it "finds user on flickr.com" do
+          @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
+        end
+        it "finds user on twitter.com" do
+          @page.url = "https://twitter.com/#!/ChloesThinking"
+        end
+        it "finds user on youtube.com" do
+          @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
+        end
+        it "finds user on vimeo.com" do
+          @page.url = "http://vimeo.com/31453929"
+        end
+        it "finds user on soundcloud.com" do
+          @page.url = "http://soundcloud.com/snoopdogg/sets/samples-106/"
+        end
+        it "finds user on github.com" do
+          @page.url = "https://github.com/mgarriss/Echo-Chamber"
+         end
+        it "finds user on google.com" do
+          @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
+        end
+        it "finds user on tumblr.com" do
+          @page.url = "http://staff.tumblr.com/"
+        end
+      end
+    end
+    describe "slightly less happy path" do
+      it "tranistions from :orphaned to :spiderable on catorgorize! when not matched"  do
+        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'orphaned')
+        page.orphaned?.should be_true
+        page.match_url_to_provider!
+        page.spiderable?.should be_true
+      end
+      it "transitions from :spiderable to :providerable on linked!" do
+        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'spiderable')
+        page.spiderable?.should be_true
+        page.find_provider_from_author_link!
+        page.providerable?.should be_true
+      end
+    end
+    describe "unhappy path" do
+      it "transitions from :spiderable to :manual on a missing!" do
+        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'spiderable')
+        page.spiderable?.should be_true
+        page.find_provider_from_author_link!
+        page.manual?.should be_true
+      end
+      it "transitions from :manual to :fostered on a lost!" do
+        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'manual')
+        page.manual?.should be_true
+        page.lost!
+        page.fostered?.should be_true
+      end
+      it "transitions from :manual to :adopted on a found!" do
+        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'manual')
+        page.manual?.should be_true
+        page.found!
+        page.adopted?.should be_true
+      end
     end
   end
 end
