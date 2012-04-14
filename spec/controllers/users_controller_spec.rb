@@ -9,6 +9,9 @@ describe UsersController do
       describe '/users' do
         it 'renders a list of featured users'
       end
+      describe '/users?q=mike' do
+        it 'does a search for a user with \'mike\' in their name'
+      end
     end
     describe 'new' do
       describe '302'
@@ -42,6 +45,9 @@ describe UsersController do
     describe 'index' do
       describe '/users' do
         it 'renders a list of featured users'
+      end
+      describe '/users?q=mike' do
+        it 'does a search for a user with \'mike\' in their name'
       end
     end
     describe 'new' do
