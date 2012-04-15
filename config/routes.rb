@@ -10,8 +10,6 @@ Copper::Application.routes.draw do
     post 'pay', :on => :member
     get 'author', :to => 'users#author', :as => :author
   end
-
-  
   
   # resources :tips
   # resources :tip_orders do
@@ -23,8 +21,6 @@ Copper::Application.routes.draw do
   # resources :pages
   # resources :identities
   # resources :users
-
-  
   
   get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe
@@ -36,7 +32,6 @@ Copper::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
   get 'faq', :to => 'home#faq'
   get 'button', :to => 'home#button'
-  get "buckingthesystem", :to => "home#index"
 
   match "/auth/:provider/callback" => "sessions#create"
   match '/auth/failure' => 'sessions#failure'

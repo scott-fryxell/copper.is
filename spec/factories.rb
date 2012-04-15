@@ -50,26 +50,26 @@ FactoryGirl.define do
     association :identity
   end
 
-  factory :unauthored_page, :class => 'Page' do
+  factory :page do
     url { FactoryGirl.generate(:url_with_path) }
   end
 
   factory :tip do
     association :tip_order
-    association :page, factory: :unauthored_page
+    association :page
     amount_in_cents 100
   end
 
   factory :tip_charged, :class => "Tip" do
     association :tip_order
-    association :page, factory: :unauthored_page
+    association :page
     amount_in_cents 100
     state "charged"
   end
 
   factory :tip_received, :class => "Tip" do
     association :tip_order
-    association :page, factory: :unauthored_page
+    association :page
     amount_in_cents 100
     state "received"
   end

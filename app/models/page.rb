@@ -12,9 +12,10 @@ class Page < ActiveRecord::Base
   
   before_save :normalize
   
-  scope :authored, where("identity_id IS NOT NULL")
-  scope :unauthored, where("identity_id IS NULL")
-  
+  [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
+    scope state, where("author_state = ?", state)
+  end
+
   state_machine :author_state, initial: :orphaned do
     event :catorgorize do
       transition :orphaned => :providerable

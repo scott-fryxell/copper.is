@@ -71,16 +71,15 @@ describe Page do
   
   describe 'scopes' do
     before do
-      @unauthored = Array.new(3) { FactoryGirl.create(:unauthored_page) }
-      @authored = Array.new(2) { FactoryGirl.create(:authored_page) }
+      [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
+        FactoryGirl.create :page, author_state:state
+      end
     end
     
-    it 'has an .authored scope' do
-      Page.authored.count.should == @authored.size
-    end
-    
-    it 'has an .unauthored scope' do
-      Page.unauthored.count.should == @unauthored.size
+    [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
+      it "has an .#{state} scope" do
+        Page.send(state).count.should == 1
+      end
     end
   end
   
@@ -88,7 +87,7 @@ describe Page do
     describe "happy path" do
       describe "tranistions from :orphaned to :providerable on catorgorize! when matched" do
         before do
-          @page = FactoryGirl.build(:unauthored_page, author_state:'orphaned')
+          @page = FactoryGirl.build(:page, author_state:'orphaned')
         end
         after do
           @page.save
@@ -124,9 +123,10 @@ describe Page do
           @page.url = "http://staff.tumblr.com/"
         end
       end
+      
       describe "tranistions from :providerable to :adopted on found!" do
         before do
-          @page = FactoryGirl.build(:unauthored_page, author_state:'providerable')
+          @page = FactoryGirl.build(:page, author_state:'providerable')
         end
         after do
           @page.save
@@ -163,15 +163,16 @@ describe Page do
         end
       end
     end
+    
     describe "slightly less happy path" do
       it "tranistions from :orphaned to :spiderable on catorgorize! when not matched"  do
-        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'orphaned')
+        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'orphaned')
         page.orphaned?.should be_true
         page.match_url_to_provider!
         page.spiderable?.should be_true
       end
       it "transitions from :spiderable to :providerable on linked!" do
-        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'spiderable')
+        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'spiderable')
         page.spiderable?.should be_true
         page.find_provider_from_author_link!
         page.providerable?.should be_true
@@ -179,19 +180,19 @@ describe Page do
     end
     describe "unhappy path" do
       it "transitions from :spiderable to :manual on a missing!" do
-        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'spiderable')
+        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'spiderable')
         page.spiderable?.should be_true
         page.find_provider_from_author_link!
         page.manual?.should be_true
       end
       it "transitions from :manual to :fostered on a lost!" do
-        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'manual')
+        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'manual')
         page.manual?.should be_true
         page.lost!
         page.fostered?.should be_true
       end
       it "transitions from :manual to :adopted on a found!" do
-        page = FactoryGirl.create(:unauthored_page, url:'http://dude.com',author_state:'manual')
+        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'manual')
         page.manual?.should be_true
         page.found!
         page.adopted?.should be_true
