@@ -94,7 +94,7 @@ class Page < ActiveRecord::Base
     when /vimeo\.com$/ then false
     when /flickr\.com$/ then false
     when /github\.com$/ then false
-    when /youtube\.com$/ then false
+    when /youtube\.com$/ then true
     when /soundcloud\.com$/ then false
     else
       nil
@@ -163,7 +163,19 @@ class Page < ActiveRecord::Base
   end
 
   def discover_youtube_uid
-    raise 'TBD'
+    if self.url =~ /\/user\//
+      [
+       'youtube',
+        URI.parse(self.url).path.split('/').last
+       ]
+    else
+      @client ||= YouTubeIt::Client.new(:dev_key => Copper::Application.config.google_code_dev_key)
+      video_id = URI.parse(self.url).query.split('&').find{|e| e =~ /^v/}.split('=').last
+      [
+       'youtube',
+        @client.video_by(video_id).author.name
+       ]
+    end
   end
 
   def discover_soundcloud_uid

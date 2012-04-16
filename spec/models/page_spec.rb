@@ -291,4 +291,27 @@ describe Page do
       page.identity.provider.should == 'twitter'
     end
   end
+
+  describe 'discovering youtube uid' do
+    after do
+      @page.match_url_to_provider!
+      @page.providerable?.should be_true
+      @page.discover_provider_user!
+      @page.adopted?.should be_true
+      page2 = Page.find(@page.id)
+      page2.id.should == @page.id
+
+      page2.identity.uid.should == 'sfryxell'
+      page2.identity.provider.should == 'youtube'
+    end
+    
+    it 'finds a uid from a youtube video' do
+      @page = FactoryGirl.create(:page,url:'http://www.youtube.com/watch?v=r4rd1i3Ar9k')
+    end
+
+    it 'finds a uid from a youtube profile page' do
+      @page = FactoryGirl.create(:page,url:'http://www.youtube.com/user/sfryxell')
+    end
+  end
+
 end
