@@ -20,70 +20,70 @@ describe Page do
       @page.url = '666'
       @page.save.should be_false
     end
-    
+
     it "should allow tips to be added" do
-      tip = FactoryGirl.create(:tip) 
+      tip = FactoryGirl.create(:tip)
       @page.tips << tip
       @page.save.should be_true
     end
   end
-  
+
   context 'normalization' do
     before do
       @page = Page.new url:"http://www.example.com"
       @page.save.should be_true
     end
-    
+
     it "should save original url with page" do
       @page.url.should == 'http://www.example.com'
       @page.normalized_url.should == 'example.com'
 
     end
-    
-    
+
+
     it "provides a normalized find by url method" do
       Page.respond_to?(:normalized_find).should be_true
     end
-    
+
     it "provides a normalized find or create by url method" do
       Page.respond_to?(:normalized_find_or_create).should be_true
     end
-    
+
     it "assumes http when there is a tip without scheme" # do
-     #      Page.normalized_find('example.com').id.should == @page.id 
+     #      Page.normalized_find('example.com').id.should == @page.id
      #    end
-    
+
     it "assumes http when there is a tip with https scheme" do
-      Page.normalized_find('https://example.com').id.should == @page.id 
+      Page.normalized_find('https://example.com').id.should == @page.id
     end
-    
+
     it "assumes http when there is a tip with http scheme" do
-      Page.normalized_find('http://example.com').id.should == @page.id 
+      Page.normalized_find('http://example.com').id.should == @page.id
     end
-    
+
     it "assumes no host name when there is a tip with a 'www' hostname" do
-      Page.normalized_find('http://www.example.com').id.should == @page.id 
+      Page.normalized_find('http://www.example.com').id.should == @page.id
     end
-    
+
     it "assumes http and no host when there is a tip with no http scheme and a 'www' host" do
-      Page.normalized_find('http://www.example.com').id.should == @page.id 
+      Page.normalized_find('http://www.example.com').id.should == @page.id
     end
   end
-  
+
   describe 'scopes' do
     before do
       [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
         FactoryGirl.create :page, author_state:state
       end
     end
-    
+
     [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
       it "has an .#{state} scope" do
         Page.send(state).count.should == 1
       end
     end
   end
-  
+
   describe 'author state machine' do
     describe "happy path" do
       describe "tranistions from :orphaned to :providerable on catorgorize! when matched" do
@@ -124,7 +124,7 @@ describe Page do
         #   @page.url = "http://staff.tumblr.com/"
         # end
       end
-      
+
       describe "tranistions from :providerable to :adopted on found!" do
         before do
           @page = FactoryGirl.build(:page, url:'http://dude.com',author_state:'providerable')
@@ -164,7 +164,7 @@ describe Page do
         #end
       end
     end
-    
+
     describe "slightly less happy path" do
       it "tranistions from :orphaned to :spiderable on catorgorize! when not matched"  do
         page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'orphaned')
@@ -201,14 +201,14 @@ describe Page do
       end
     end
   end
-  
+
   describe 'discovering facebook uid' do
     it 'finds the uid from a photo url' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=193861260731689&set=a.148253785292437.29102.148219955295820&type=1')
       page.match_url_to_provider!
       page.providerable?.should be_true
       page.discover_provider_user!
-      
+
       page = Page.find(page.id)
       page.identity.uid.should == '148219955295820'
       page.identity.provider.should == 'facebook'
@@ -230,7 +230,7 @@ describe Page do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/events/221709371259138/')
       page.match_url_to_provider!
       page.providerable?.should be_true
-      
+
       page.discover_provider_user!
       page = Page.find(page.id)
       page.identity.uid.should == '601117415'
@@ -241,7 +241,7 @@ describe Page do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/scott.fryxell')
       page.match_url_to_provider!
       page.providerable?.should be_true
-      
+
       page.discover_provider_user!
       page = Page.find(page.id)
       page.identity.uid.should == '580281278'
@@ -261,8 +261,14 @@ describe Page do
       page.adopted?.should be_true
     end
   end
-  
+
   describe 'discovering twitter uid' do
+    before do
+      obj = Object.new
+      def obj.id() 14062332 end
+      Twitter.stub(:user){obj}
+    end
+
     it 'finds a uid from a twitter status url' do
       page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp/status/191682126138191873')
       page.match_url_to_provider!
@@ -271,7 +277,7 @@ describe Page do
       page.adopted?.should be_true
       page2 = Page.find(page.id)
       page2.id.should == page.id
-      
+
       page2.identity.uid.should == '14062332'
       page2.identity.provider.should == 'twitter'
     end
