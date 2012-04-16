@@ -26,6 +26,7 @@ gem 'addressable'
 gem 'state_machine'
 gem 'nokogiri'
 gem 'twitter'
+gem 'youtube_it'
 
 group :production do
   gem "pg"
