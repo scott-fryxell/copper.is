@@ -2,15 +2,13 @@
 //= require shared/tip_rate
 
 $(document).on("get:current_user", function () {
-  $('form#fan_email ').submit(function (event) {
+  $('form#fan_email').submit(function (event) {
     event.preventDefault()
     var email = $('#user_email').val();
     var at_pos=email.indexOf("@");
     var dot_pos=email.lastIndexOf(".");
 
-
     if (at_pos < 1 || dot_pos < at_pos+2 || dot_pos+2>=email.length) {
-      console.error("invalid email");
       $('form#fan_email p').append("invalid email");
       $('#user_email').addClass("invalid");
     }else {
