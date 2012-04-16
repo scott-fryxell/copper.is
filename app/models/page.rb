@@ -21,7 +21,8 @@ class Page < ActiveRecord::Base
       transition :orphaned => :providerable
     end
     event :found do
-      transition [:manual,:providerable] => :adopted, :if => lambda{|page| page.identity_id.nil?}
+      transition :manual => :adopted, :if => lambda{|page| page.identity_id}
+      transition :providerable => :adopted, :if => lambda{|page| page.identity_id}
       transition :spiderable => :providerable
     end
     event :discover do
@@ -48,7 +49,7 @@ class Page < ActiveRecord::Base
     title ||= url
     normalized_find(url) or create(url:url,title:title)
   end
-
+  
   def match_url_to_provider!
     if url_matches_provider?
       self.catorgorize
@@ -71,10 +72,14 @@ class Page < ActiveRecord::Base
                     else
                       self.lost()
                     end
-    if ident = Identity.where('uid = ?', uid).first
-      self.identity = ident
-    else
-      self.identity = Identity.create(provider:provider,uid:uid)
+    if provider and uid
+      if ident = Identity.where('uid = ?', uid).first
+        self.identity = ident
+      else
+        self.identity = Identity.create(provider:provider,uid:uid)
+      end
+      save! # THINK: is this nessecary?
+      self.found!
     end
   end
 
@@ -87,7 +92,7 @@ class Page < ActiveRecord::Base
     case URI.parse(self.original_url).host
     when /facebook.com$/ then true
     when /tumblr.com$/ then false
-    when /twitter.com$/ then false
+    when /twitter.com$/ then true
     when /google.com$/ then false
     when /vimeo.com$/ then false
     when /flickr.com$/ then false
@@ -95,7 +100,7 @@ class Page < ActiveRecord::Base
     when /youtube.com$/ then false
     when /soundcloud.com$/ then false
     else
-      false
+      nil
     end
   end
 
@@ -119,6 +124,7 @@ class Page < ActiveRecord::Base
         doc.to_s.split('Report').first.split('rid=').last.split('&amp').first
        ]
     else
+      logger.info "reaching out to: #{self.original_url}"
       doc = Nokogiri::HTML(open(self.original_url))
       [
        'facebook',

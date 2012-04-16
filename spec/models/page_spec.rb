@@ -83,11 +83,11 @@ describe Page do
     end
   end
   
-  describe 'author state machine' do
+  describe 'author state machine', :focus do
     describe "happy path" do
       describe "tranistions from :orphaned to :providerable on catorgorize! when matched" do
         before do
-          @page = FactoryGirl.build(:page, author_state:'orphaned')
+          @page = FactoryGirl.build(:page,author_state:'orphaned')
         end
         after do
           @page.save
@@ -98,35 +98,35 @@ describe Page do
         it "matches facebook.com" do
           @page.url = "http://www.facebook.com/mgarriss"
         end
-        it "matches flickr.com" do
-          @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
-        end
+        # it "matches flickr.com" # do
+        # @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
+        #end
         it "matches twitter.com" do
           @page.url = "https://twitter.com/#!/ChloesThinking"
         end
-        it "matches youtube.com" do
-          @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
-        end
-        it "matches vimeo.com" do
-          @page.url = "http://vimeo.com/31453929"
-        end
-        it "matches soundcloud.com" do
-          @page.url = "http://soundcloud.com/snoopdogg/sets/samples-106/"
-        end
-        it "matches github.com" do
-          @page.url = "https://github.com/mgarriss/Echo-Chamber"
-         end
-        it "matches google.com" do
-          @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
-        end
-        it "matches tumblr.com" do
-          @page.url = "http://staff.tumblr.com/"
-        end
+        #it "matches youtube.com" #do
+        #  @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
+        #end
+        #it "matches vimeo.com" #do
+        #  @page.url = "http://vimeo.com/31453929"
+        #end
+        #it "matches soundcloud.com" #do
+        #  @page.url = "http://soundcloud.com/snoopdogg/sets/samples-106/"
+        #end
+        #it "matches github.com" #do
+        #  @page.url = "https://github.com/mgarriss/Echo-Chamber"
+        # end
+        #it "matches google.com" # do
+        #   @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
+        # end
+        #it "matches tumblr.com" #do
+        #   @page.url = "http://staff.tumblr.com/"
+        # end
       end
       
       describe "tranistions from :providerable to :adopted on found!" do
         before do
-          @page = FactoryGirl.build(:page, author_state:'providerable')
+          @page = FactoryGirl.build(:page, url:'http://dude.com',author_state:'providerable')
         end
         after do
           @page.save
@@ -135,32 +135,32 @@ describe Page do
           @page.adopted?.should be_true
         end
         it "finds user on facebook.com" do
-          @page.url = "http://www.facebook.com/mgarriss"
+          @page.url = "http://www.facebook.com/scott.fryxell"
         end
-        it "finds user on flickr.com" do
-          @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
-        end
+        it "finds user on flickr.com" #do
+        #  @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
+        #end
         it "finds user on twitter.com" do
           @page.url = "https://twitter.com/#!/ChloesThinking"
         end
-        it "finds user on youtube.com" do
-          @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
-        end
-        it "finds user on vimeo.com" do
-          @page.url = "http://vimeo.com/31453929"
-        end
-        it "finds user on soundcloud.com" do
-          @page.url = "http://soundcloud.com/snoopdogg/sets/samples-106/"
-        end
-        it "finds user on github.com" do
-          @page.url = "https://github.com/mgarriss/Echo-Chamber"
-         end
-        it "finds user on google.com" do
-          @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
-        end
-        it "finds user on tumblr.com" do
-          @page.url = "http://staff.tumblr.com/"
-        end
+        it "finds user on youtube.com" #do
+        #  @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
+        #end
+        it "finds user on vimeo.com" #do
+        #  @page.url = "http://vimeo.com/31453929"
+        #end
+        it "finds user on soundcloud.com" #do
+        #  @page.url = "http://soundcloud.com/snoopdogg/sets/samples-106/"
+        #end
+        it "finds user on github.com" #do
+        #  @page.url = "https://github.com/mgarriss/Echo-Chamber"
+        #end
+        it "finds user on google.com" #do
+        #  @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
+        #end
+        it "finds user on tumblr.com" #do
+        #  @page.url = "http://staff.tumblr.com/"
+        #end
       end
     end
     
@@ -194,6 +194,7 @@ describe Page do
       it "transitions from :manual to :adopted on a found!" do
         page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'manual')
         page.manual?.should be_true
+        page.identity = Identity.create(uid:'dude',provider:'facebook')
         page.found!
         page.adopted?.should be_true
       end
@@ -204,25 +205,52 @@ describe Page do
     it 'finds the uid from a photo url' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=193861260731689&set=a.148253785292437.29102.148219955295820&type=1')
       page.discover_provider_user!
+      page = Page.find(page.id)
       page.identity.uid.should == '148219955295820'
+      page.identity.provider.should == 'facebook'
+      page.adopted?.should be_true
     end
     it 'finds the uid from a photo url' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=3336195612943&set=t.580281278&type=3&theater')
       page.discover_provider_user!
+      page = Page.find(page.id)
       page.identity.uid.should == '580281278'
+      page.identity.provider.should == 'facebook'
+      page.adopted?.should be_true
     end
     it 'finds the uid from a event url' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/events/221709371259138/')
       page.discover_provider_user!
+      page = Page.find(page.id)
       page.identity.uid.should == '601117415'
+      page.identity.provider.should == 'facebook'
+      page.adopted?.should be_true
     end
     it 'finds the uid from a profile page' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/scott.fryxell')
       page.discover_provider_user!
+      page = Page.find(page.id)
       page.identity.uid.should == '580281278'
+      page.identity.provider.should == 'facebook'
+      page.adopted?.should be_true
+    end
+    it "finds a uid that already exists in our system" do
+      identity_id = FactoryGirl.create(:identity, provider:'facebook',uid:'3434343434').id
+      page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=3336195612943&set=t.3434343434&type=3&theater')
+      page.discover_provider_user!
+      page = Page.find(page.id)
+      page.identity.id.should == identity_id
+      page.identity.provider.should == 'facebook'
+      page.adopted?.should be_true
     end
   end
   
   describe 'discovering twitter uid' do
+    it 'finds a uid from a twitter status url' do
+      page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp/status/191682126138191873')
+      page.discover_provider_user!
+      page.identity.uid.should == 'bleikamp'
+      page.identity.provider.should == 'twitter'
+    end
   end
 end
