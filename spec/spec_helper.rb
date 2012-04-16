@@ -42,6 +42,7 @@ Spork.prefork do
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
+    config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec

@@ -6,10 +6,7 @@ describe ProviderablePagesJob do
   end
   
   describe 'no providerable pages in DB' do
-    it 'perform should be called once on ProviderablePagesJob' do
-      ProviderablePagesJob.should_receive(:perform).once
-      run_resque_job ProviderablePagesJob
-    end
+    it 'perform should be called once on ProviderablePagesJob'
   end
   
   describe 'one providerable page in DB' do
@@ -17,10 +14,7 @@ describe ProviderablePagesJob do
       FactoryGirl.create :page, author_state:'providerable'
     end
     
-    it 'perform should be called once on ProviderablePagesJob' do
-      ProviderablePagesJob.should_receive(:perform).once
-      run_resque_job ProviderablePagesJob
-    end
+    it 'perform should be called once on ProviderablePagesJob'
   end
   
   describe 'two providerable pages in DB' do
@@ -28,9 +22,6 @@ describe ProviderablePagesJob do
       2.times { FactoryGirl.create :page, author_state:'providerable' }
     end
     
-    it 'perform should be called once on ProviderablePagesJob' do
-      ProviderablePagesJob.should_receive(:perform).once
-      run_resque_job ProviderablePagesJob
-    end
+    it 'perform should be called once on ProviderablePagesJob'
   end
 end

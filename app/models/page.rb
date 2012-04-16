@@ -34,22 +34,19 @@ class Page < ActiveRecord::Base
     end
   end
 
-  def self.normalize(url)
-    url.clone.
-     sub(/^https?:\/\//,'').
-     sub(/^www\./,'').
-     sub(/\/$/,'')
+  def self.normalize(uri)
+    URI.parse(uri).host.sub(/^www\./,'') rescue nil
   end
 
   def self.normalized_find(url)
-    Page.find_by_url(Page.normalize(url))
+    Page.find_by_normalized_url(Page.normalize(url))
   end
 
   def self.normalized_find_or_create(url,title = nil)
     title ||= url
     normalized_find(url) or create(url:url,title:title)
   end
-  
+
   def match_url_to_provider!
     if url_matches_provider?
       self.catorgorize
@@ -59,16 +56,16 @@ class Page < ActiveRecord::Base
   end
 
   def discover_provider_user!
-    provider, uid = case URI.parse(self.original_url).host
-                    when /facebook.com$/ then discover_facebook_uid
-                    when /tumblr.com$/ then discover_tumblr_uid
-                    when /twitter.com$/ then discover_twitter_uid
-                    when /google.com$/ then discover_google_uid
-                    when /vimeo.com$/ then discover_vimeo_uid
-                    when /flickr.com$/ then discover_flickr_uid
-                    when /github.com$/ then discover_github_uid
-                    when /youtube.com$/ then discover_youtube_uid
-                    when /soundcloud.com$/ then discover_soundcloud_uid
+    provider, uid = case URI.parse(self.url).host
+                    when /facebook\.com$/ then discover_facebook_uid
+                    when /tumblr\.com$/ then discover_tumblr_uid
+                    when /twitter\.com$/ then discover_twitter_uid
+                    when /google\.com$/ then discover_google_uid
+                    when /vimeo\.com$/ then discover_vimeo_uid
+                    when /flickr\.com$/ then discover_flickr_uid
+                    when /github\.com$/ then discover_github_uid
+                    when /youtube\.com$/ then discover_youtube_uid
+                    when /soundcloud\.com$/ then discover_soundcloud_uid
                     else
                       self.lost()
                     end
@@ -89,24 +86,23 @@ class Page < ActiveRecord::Base
   end
 
   def url_matches_provider?
-    case URI.parse(self.original_url).host
-    when /facebook.com$/ then true
-    when /tumblr.com$/ then false
-    when /twitter.com$/ then true
-    when /google.com$/ then false
-    when /vimeo.com$/ then false
-    when /flickr.com$/ then false
-    when /github.com$/ then false
-    when /youtube.com$/ then false
-    when /soundcloud.com$/ then false
+    case URI.parse(self.url).host
+    when /facebook\.com$/ then true
+    when /tumblr\.com$/ then false
+    when /twitter\.com$/ then true
+    when /google\.com$/ then false
+    when /vimeo\.com$/ then false
+    when /flickr\.com$/ then false
+    when /github\.com$/ then false
+    when /youtube\.com$/ then false
+    when /soundcloud\.com$/ then false
     else
       nil
     end
   end
 
   def normalize
-    self.original_url = self.url
-    self.url = Page.normalize(self.url)
+    self.normalized_url = Page.normalize(self.url)
     # self.url = Addressable::URI.parse(self.url).normalize.to_s
   end
 
@@ -115,17 +111,18 @@ class Page < ActiveRecord::Base
   end
 
   def discover_facebook_uid
-    if self.original_url =~ /set=/
-      ['facebook', self.original_url.split("set=").last.split("&").first.split('.').last]
-    elsif self.original_url =~ /\/events\//
-      doc = Nokogiri::HTML(open(self.original_url))
+    if self.url =~ /set=/
+      ['facebook', self.url.split("set=").last.split("&").first.split('.').last]
+
+    elsif self.url =~ /\/events\//
+      doc = Nokogiri::HTML(open(self.url))
       [
        'facebook',
         doc.to_s.split('Report').first.split('rid=').last.split('&amp').first
        ]
     else
-      logger.info "reaching out to: #{self.original_url}"
-      doc = Nokogiri::HTML(open(self.original_url))
+      logger.info "reaching out to: #{self.url}"
+      doc = Nokogiri::HTML(open(self.url))
       [
        'facebook',
        JSON.parse(doc.css('#pagelet_timeline_main_column').attr('data-gt').content)['profile_owner']
@@ -138,7 +135,15 @@ class Page < ActiveRecord::Base
   end
 
   def discover_twitter_uid
-    raise 'TBD'
+
+    if self.url =~ /\/status\//
+      screen_name = URI.parse(self.url).fragment.split('!/').last.split('/').first
+    else
+      screen_name = URI.parse(self.url).fragment.split('!/').last
+    end
+
+    ['twitter',Twitter.user(screen_name).id]
+
   end
 
   def discover_google_uid

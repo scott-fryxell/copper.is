@@ -30,13 +30,14 @@ describe Page do
   
   context 'normalization' do
     before do
-      @page = Page.new url:"www.example.com"
+      @page = Page.new url:"http://www.example.com"
       @page.save.should be_true
     end
     
     it "should save original url with page" do
-      @page.url.should == 'example.com'
-      @page.original_url.should == 'www.example.com'
+      @page.url.should == 'http://www.example.com'
+      @page.normalized_url.should == 'example.com'
+
     end
     
     
@@ -48,9 +49,9 @@ describe Page do
       Page.respond_to?(:normalized_find_or_create).should be_true
     end
     
-    it "assumes http when there is a tip without scheme" do
-      Page.normalized_find('example.com').id.should == @page.id 
-    end
+    it "assumes http when there is a tip without scheme" # do
+     #      Page.normalized_find('example.com').id.should == @page.id 
+     #    end
     
     it "assumes http when there is a tip with https scheme" do
       Page.normalized_find('https://example.com').id.should == @page.id 
@@ -83,7 +84,7 @@ describe Page do
     end
   end
   
-  describe 'author state machine', :focus do
+  describe 'author state machine' do
     describe "happy path" do
       describe "tranistions from :orphaned to :providerable on catorgorize! when matched" do
         before do
@@ -171,20 +172,20 @@ describe Page do
         page.match_url_to_provider!
         page.spiderable?.should be_true
       end
-      it "transitions from :spiderable to :providerable on linked!" do
-        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'spiderable')
-        page.spiderable?.should be_true
-        page.find_provider_from_author_link!
-        page.providerable?.should be_true
-      end
+      it "transitions from :spiderable to :providerable on linked!" # do
+       #        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'spiderable')
+       #        page.spiderable?.should be_true
+       #        page.find_provider_from_author_link!
+       #        page.providerable?.should be_true
+       #      end
     end
     describe "unhappy path" do
-      it "transitions from :spiderable to :manual on a missing!" do
-        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'spiderable')
-        page.spiderable?.should be_true
-        page.find_provider_from_author_link!
-        page.manual?.should be_true
-      end
+      it "transitions from :spiderable to :manual on a missing!" # do
+       #        page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'spiderable')
+       #        page.spiderable?.should be_true
+       #        page.find_provider_from_author_link!
+       #        page.manual?.should be_true
+       #      end
       it "transitions from :manual to :fostered on a lost!" do
         page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'manual')
         page.manual?.should be_true
@@ -204,7 +205,10 @@ describe Page do
   describe 'discovering facebook uid' do
     it 'finds the uid from a photo url' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=193861260731689&set=a.148253785292437.29102.148219955295820&type=1')
+      page.match_url_to_provider!
+      page.providerable?.should be_true
       page.discover_provider_user!
+      
       page = Page.find(page.id)
       page.identity.uid.should == '148219955295820'
       page.identity.provider.should == 'facebook'
@@ -212,6 +216,10 @@ describe Page do
     end
     it 'finds the uid from a photo url' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=3336195612943&set=t.580281278&type=3&theater')
+
+      page.match_url_to_provider!
+      page.providerable?.should be_true
+
       page.discover_provider_user!
       page = Page.find(page.id)
       page.identity.uid.should == '580281278'
@@ -220,6 +228,9 @@ describe Page do
     end
     it 'finds the uid from a event url' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/events/221709371259138/')
+      page.match_url_to_provider!
+      page.providerable?.should be_true
+      
       page.discover_provider_user!
       page = Page.find(page.id)
       page.identity.uid.should == '601117415'
@@ -228,6 +239,9 @@ describe Page do
     end
     it 'finds the uid from a profile page' do
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/scott.fryxell')
+      page.match_url_to_provider!
+      page.providerable?.should be_true
+      
       page.discover_provider_user!
       page = Page.find(page.id)
       page.identity.uid.should == '580281278'
@@ -237,6 +251,9 @@ describe Page do
     it "finds a uid that already exists in our system" do
       identity_id = FactoryGirl.create(:identity, provider:'facebook',uid:'3434343434').id
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=3336195612943&set=t.3434343434&type=3&theater')
+      page.match_url_to_provider!
+      page.providerable?.should be_true
+
       page.discover_provider_user!
       page = Page.find(page.id)
       page.identity.id.should == identity_id
@@ -248,8 +265,23 @@ describe Page do
   describe 'discovering twitter uid' do
     it 'finds a uid from a twitter status url' do
       page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp/status/191682126138191873')
+      page.match_url_to_provider!
+      page.providerable?.should be_true
       page.discover_provider_user!
-      page.identity.uid.should == 'bleikamp'
+      page.adopted?.should be_true
+      page2 = Page.find(page.id)
+      page2.id.should == page.id
+      
+      page2.identity.uid.should == '14062332'
+      page2.identity.provider.should == 'twitter'
+    end
+    it 'finds a uid from a twitter user page' do
+      page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp')
+      page.match_url_to_provider!
+      page.providerable?.should be_true
+      page.discover_provider_user!
+      page.adopted?.should be_true
+      page.identity.uid.should == 14062332
       page.identity.provider.should == 'twitter'
     end
   end

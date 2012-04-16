@@ -13,11 +13,6 @@ describe OrphanedPagesJob do
       OrphanedPagesJob.should_receive(:perform).once
       Resque.enqueue OrphanedPagesJob
     end
-    
-    it 'perform should be called 0 times on OrphanedPageCatagorizeJob' do
-      OrphanedPageCatagorizeJob.should_not_receive(:perform)
-      Resque.enqueue OrphanedPagesJob
-    end
   end
   
   describe 'one orphaned page in DB' do
@@ -30,10 +25,6 @@ describe OrphanedPagesJob do
       Resque.enqueue OrphanedPagesJob
     end
     
-    it 'perform should be called 1 time on OrphanedPageCatagorizeJob' do
-      OrphanedPageCatagorizeJob.should_receive(:perform).once
-      Resque.enqueue OrphanedPagesJob
-    end
   end
   
   describe 'two orphaned pages in DB' do
@@ -43,11 +34,6 @@ describe OrphanedPagesJob do
     
     it 'perform should be called once on OrphanedPagesJob' do
       OrphanedPagesJob.should_receive(:perform).once
-      Resque.enqueue OrphanedPagesJob
-    end
-    
-    it 'perform should be called 2 times on OrphanedPageCatagorizeJob' do
-      OrphanedPageCatagorizeJob.should_receive(:perform).twice
       Resque.enqueue OrphanedPagesJob
     end
   end

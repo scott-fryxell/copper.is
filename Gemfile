@@ -25,6 +25,7 @@ gem 'resque-scheduler', :require => 'resque_scheduler'
 gem 'addressable'
 gem 'state_machine'
 gem 'nokogiri'
+gem 'twitter'
 
 group :production do
   gem "pg"

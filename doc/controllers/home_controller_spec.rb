@@ -42,7 +42,7 @@ describe HomeController do
     end
     describe "/buckingthesystem" do
       it '200' do
-        get :buckingthesystem
+        get :index
       end
     end
   end

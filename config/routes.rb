@@ -32,6 +32,7 @@ Copper::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
   get 'faq', :to => 'home#faq'
   get 'button', :to => 'home#button'
+  get 'buckingthesystem', :to => 'home#index'
 
   match "/auth/:provider/callback" => "sessions#create"
   match '/auth/failure' => 'sessions#failure'

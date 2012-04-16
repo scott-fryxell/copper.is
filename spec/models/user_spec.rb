@@ -38,7 +38,7 @@ describe User do
 
     it "should allow the title to be passed along with the tip URL" do
       fan = FactoryGirl.create(:user)
-      tip = fan.tip( url:  'example.com/somepath/random-other-stuff',
+      tip = fan.tip( url:  'http://example.com/somepath/random-other-stuff',
                      title:'a unique page description' )
       tip.page.title.should == 'a unique page description'
     end
@@ -57,7 +57,7 @@ describe User do
       @user = FactoryGirl.create(:user)
       @user.current_tips.should_not be_nil
       8.times do
-        @user.tip(url:'example.com')
+        @user.tip(url:'http://example.com')
       end
       @user.current_tips.size.should be == 8
       @user.current_tips.should be_an_instance_of Array
