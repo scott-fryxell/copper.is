@@ -199,4 +199,30 @@ describe Page do
       end
     end
   end
+  
+  describe 'discovering facebook uid' do
+    it 'finds the uid from a photo url' do
+      page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=193861260731689&set=a.148253785292437.29102.148219955295820&type=1')
+      page.discover_provider_user!
+      page.identity.uid.should == '148219955295820'
+    end
+    it 'finds the uid from a photo url' do
+      page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=3336195612943&set=t.580281278&type=3&theater')
+      page.discover_provider_user!
+      page.identity.uid.should == '580281278'
+    end
+    it 'finds the uid from a event url' do
+      page = FactoryGirl.create(:page,url:'http://www.facebook.com/events/221709371259138/')
+      page.discover_provider_user!
+      page.identity.uid.should == '601117415'
+    end
+    it 'finds the uid from a profile page' do
+      page = FactoryGirl.create(:page,url:'http://www.facebook.com/scott.fryxell')
+      page.discover_provider_user!
+      page.identity.uid.should == '580281278'
+    end
+  end
+  
+  describe 'discovering twitter uid' do
+  end
 end

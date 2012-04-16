@@ -2,6 +2,7 @@ class SpiderablePagesJob
   @queue = :high
   
   def self.perform
+    puts "Spiderable pages job started"
     find_all_and_place_on_queue
   end
   

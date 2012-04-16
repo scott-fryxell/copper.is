@@ -4,7 +4,7 @@
     <%= image_tag "logo/copper/cent_word.png" %>
     <header>
       <h1>You've tipped</h1>
-      <p itemprop="description"><%= CGI::unescape(@tip.page.title) %></p>
+      <p itemprop="description"><%= CGI::unescape(@tip.page.title) rescue @tip.page.title %></p>
     </header>
     <aside>
       <form action="<%=user_tip_path(current_user, @tip)%>" method="put" accept-charset="utf-8">

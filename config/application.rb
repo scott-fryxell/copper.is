@@ -1,6 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
+require 'addressable/template'
+require 'open-uri'
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require *Rails.groups(:assets => %w(development test))
@@ -58,6 +61,8 @@ module Copper
     
     config.flickr_key = ENV['FLICKR_KEY']
     config.flickr_secret = ENV['FLICKR_SECRET']
+    
+    config.resque_overview_password = ENV['RESQUE_OVERVIEW_PASSWORD']
 
     raise "Twitter key must be defined ENV['TWITTER_KEY']" unless Copper::Application.config.twitter_key
     raise "Twitter secret must be defined ENV['TWITTER_SECRET']" unless Copper::Application.config.twitter_secret
@@ -88,5 +93,7 @@ module Copper
     raise "stripe secret key must be defined ENV['STRIPE_SECRET']" unless Copper::Application.config.stripe_secret
 
     raise "session key must be defined ENV['COPPER_SECRET_KEY']" unless Copper::Application.config.copper_session_key
+    
+    raise "resque overview password must be defined ENV['RESQUE_OVERVIEW_PASSWORD']" unless Copper::Application.config.resque_overview_password
   end
 end

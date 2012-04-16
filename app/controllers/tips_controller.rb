@@ -39,7 +39,7 @@ class TipsController < ApplicationController
   def destroy
     tip = Tip.find(params[:id])
 
-    if(tip.tip_order.user == current_user && tip.tip_order.is_active)
+    if(tip.tip_order.user == current_user && tip.tip_order.current?)
       tip.destroy
     end
     render :nothing => true, :status => :ok
@@ -48,8 +48,8 @@ class TipsController < ApplicationController
     render :action => 'embed_iframe.js', :layout => false
   end
   def agent
-    uri = URI.unescape(params[:uri])
-    title = URI.unescape(params[:title])
+    uri = URI.unescape(params[:uri]) rescue params[:uri]
+    title = URI.unescape(params[:title]) rescue params[:title]
 
     @tip = current_user.tip(url:uri, title:title )
 

@@ -20,9 +20,11 @@ gem 'thin'
 gem 'newrelic_rpm'
 gem 'redis'
 gem 'resque'
+gem 'resque-scheduler', :require => 'resque_scheduler'
 # gem 'resque-heroku-scaling-canary'
 gem 'addressable'
 gem 'state_machine'
+gem 'nokogiri'
 
 group :production do
   gem "pg"
