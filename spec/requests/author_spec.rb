@@ -107,27 +107,27 @@ describe "An Author" do
 
   describe "on author's royalties page" do
     before do
-      visit '/auth/twitter'
-      click_link 'author'
-      click_link 'edit'
-      visit '/auth/soundcloud'
-      visit "/tips/agent/?uri=http://soundcloud.com/underscore_ugly/apparatus-grey"
-      visit '/'
-      click_link 'author'
-      click_link 'royalties'
+      visit "/"
+      click_link 'google_sign_in'
+      visit "/tips/agent/?uri=http://twitter.com/#!/brokenbydawn"
+      click_on('Change')
+      fill_in('tip_amount', :with => '10.50')
+      click_on('save')
+      visit "/tips/agent/?uri=http://twitter.com/#!/brokenbydawn"
+      sleep 2
+      fill_in('email', :with => 'google_user@email.com')
+      fill_in('number', :with => '4242424242424242')
+      fill_in('cvc', :with => '666')
+      select('April', :from => 'month')
+      select('2015', :from => 'year')
+      check('terms')
+      click_on('Pay')
     end
-    
-    it "should have some royalties to look at" # do
-    #   page.should have_content 'Royalties'
-    # end
-  
-    it "should have a royalty displayed when one exists"
+    it 'displays a royal check on the authors royalty page'
   end
   
   describe "author royalties" do
     before(:each) do
-      visit "/"
-      click_link 'google_sign_in'
       click_link 'author'
       click_link 'royalties'
     end

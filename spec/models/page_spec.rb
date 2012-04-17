@@ -40,7 +40,6 @@ describe Page do
 
     end
 
-
     it "provides a normalized find by url method" do
       Page.respond_to?(:normalized_find).should be_true
     end
@@ -195,7 +194,7 @@ describe Page do
       it "transitions from :manual to :adopted on a found!" do
         page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'manual')
         page.manual?.should be_true
-        page.identity = Identity.create(uid:'dude',provider:'facebook')
+        page.identity = Identity.factory(uid:'dude',provider:'facebook')
         page.found!
         page.adopted?.should be_true
       end
@@ -249,7 +248,7 @@ describe Page do
       page.adopted?.should be_true
     end
     it "finds a uid that already exists in our system" do
-      identity_id = FactoryGirl.create(:identity, provider:'facebook',uid:'3434343434').id
+      identity_id = FactoryGirl.create(:identities_facebook,uid:'3434343434').id
       page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=3336195612943&set=t.3434343434&type=3&theater')
       page.match_url_to_provider!
       page.providerable?.should be_true

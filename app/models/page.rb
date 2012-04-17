@@ -73,7 +73,7 @@ class Page < ActiveRecord::Base
       if ident = Identity.where('uid = ?', uid).first
         self.identity = ident
       else
-        self.identity = Identity.create(provider:provider,uid:uid)
+        self.identity = Identity.factory(provider:provider,uid:uid)
       end
       save! # THINK: is this nessecary?
       self.found!

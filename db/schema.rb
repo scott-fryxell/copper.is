@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 8) do
   create_table "identities", :force => true do |t|
     t.string   "provider",   :null => false
     t.string   "uid",        :null => false
+    t.string   "username"
     t.string   "name"
     t.string   "email"
     t.string   "image"
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(:version => 8) do
     t.string   "urls"
     t.string   "token"
     t.string   "secret"
+    t.string   "type",       :null => false
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

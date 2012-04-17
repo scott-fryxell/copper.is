@@ -41,6 +41,10 @@ module Copper
     config.twitter_key = ENV['TWITTER_KEY']
     config.twitter_secret = ENV['TWITTER_SECRET']
 
+    config.twitter_oauth_key = ENV['TWITTER_OAUTH_KEY']
+    config.twitter_oauth_secret = ENV['TWITTER_OAUTH_SECRET']
+
+
     config.google_key = ENV['GOOGLE_KEY']
     config.google_secret = ENV['GOOGLE_SECRET']
 
@@ -68,6 +72,9 @@ module Copper
 
     raise "Twitter key must be defined ENV['TWITTER_KEY']" unless Copper::Application.config.twitter_key
     raise "Twitter secret must be defined ENV['TWITTER_SECRET']" unless Copper::Application.config.twitter_secret
+
+    raise "Twitter oauth key must be defined ENV['TWITTER_OAUTH_KEY']" unless Copper::Application.config.twitter_oauth_key
+    raise "Twitter oauth secret must be defined ENV['TWITTER_OAUTH_SECRET']" unless Copper::Application.config.twitter_oauth_secret
 
     raise "Google key must be defined ENV['GOOGLE_KEY']" unless Copper::Application.config.google_key
     raise "Google secret key must be defined ENV['GOOGLE_SECRET']" unless Copper::Application.config.google_secret

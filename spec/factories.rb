@@ -7,8 +7,49 @@ FactoryGirl.define do
     "http://test.com/#{n}/"
   end
 
-  factory :identity do
+  factory :identities_facebook, class: 'Identities::Facebook' do
     provider 'facebook'
+    uid { FactoryGirl.generate(:uid) }
+  end
+  
+  factory :identities_twitter, class: 'Identities::Twitter' do
+    provider 'twitter'
+    uid { FactoryGirl.generate(:uid) }
+  end
+
+  factory :identities_google, class: 'Identities::Google' do
+    provider 'google'
+    uid { FactoryGirl.generate(:uid) }
+  end
+
+  factory :identities_vimeo, class: 'Identities::Vimeo' do
+    provider 'vimeo'
+    uid { FactoryGirl.generate(:uid) }
+  end
+
+  factory :identities_flickr, class: 'Identities::Flickr' do
+    provider 'flickr'
+    uid { FactoryGirl.generate(:uid) }
+  end
+
+  factory :identities_tumblr, class: 'Identities::Tumblr' do
+    provider 'tumblr'
+    uid { FactoryGirl.generate(:uid) }
+  end
+
+  factory :identities_github, class: 'Identities::Github' do
+    provider 'github'
+    uid { FactoryGirl.generate(:uid) }
+  end
+
+  factory :identities_soundcloud, class: 'Identities::Soundcloud' do
+    provider 'soundclould'
+    uid { FactoryGirl.generate(:uid) }
+  end
+
+  factory :identities_youtube, class: 'Identities::Youtube' do
+    provider 'youtube'
+    type 'Youtube'
     uid { FactoryGirl.generate(:uid) }
   end
 
@@ -23,7 +64,7 @@ FactoryGirl.define do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
-    identities [FactoryGirl.create(:identity)]
+    identities [FactoryGirl.create(:identities_facebook)]
   end
 
   factory :tip_order do
@@ -47,7 +88,7 @@ FactoryGirl.define do
 
   factory :authored_page, :class => 'Page' do
     url { FactoryGirl.generate(:url_with_path) }
-    association :identity
+    association :identity, factory: :identities_twitter
   end
 
   factory :page do

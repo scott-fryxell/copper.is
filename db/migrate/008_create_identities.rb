@@ -3,6 +3,7 @@ class CreateIdentities < ActiveRecord::Migration
     create_table :identities do |t|
       t.string :provider, :null => false
       t.string :uid, :null => false
+      t.string :username
       t.string :name
       t.string :email
       t.string :image
@@ -11,6 +12,7 @@ class CreateIdentities < ActiveRecord::Migration
       t.string :urls
       t.string :token
       t.string :secret
+      t.string :type, :null => false
       t.references :user
       t.timestamps
     end

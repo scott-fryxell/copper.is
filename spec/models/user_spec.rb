@@ -66,7 +66,6 @@ describe User do
   end
 
   describe "creating a stripe account" do
-
     it "should be able to retrieve a token from stripe.com" do
 
       stripe = Stripe::Token.create(
@@ -85,7 +84,6 @@ describe User do
       @user.stripe_customer_id.should_not be_nil
       @user.delete_stripe_customer
     end
-
     it "should not create a customer with an invalid card" do
       number = 424242424242
       exp_month = 11
