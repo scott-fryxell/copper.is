@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 8) do
 
   create_table "identities", :force => true do |t|
     t.string   "provider",   :null => false
-    t.string   "uid",        :null => false
+    t.string   "uid"
     t.string   "username"
     t.string   "name"
     t.string   "email"

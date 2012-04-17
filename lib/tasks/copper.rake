@@ -11,3 +11,9 @@ namespace :copper do
     end
   end
 end
+
+namespace :db do
+  task :bounce => %w{drop:all create:all migrate seed} do
+    `cp ./db/development.sqlite3 ./db/test.sqlite3`
+  end
+end

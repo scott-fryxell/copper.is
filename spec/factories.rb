@@ -43,13 +43,12 @@ FactoryGirl.define do
   end
 
   factory :identities_soundcloud, class: 'Identities::Soundcloud' do
-    provider 'soundclould'
+    provider 'soundcloud'
     uid { FactoryGirl.generate(:uid) }
   end
 
   factory :identities_youtube, class: 'Identities::Youtube' do
     provider 'youtube'
-    type 'Youtube'
     uid { FactoryGirl.generate(:uid) }
   end
 

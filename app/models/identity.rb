@@ -6,7 +6,14 @@ class Identity < ActiveRecord::Base
   attr_accessible :provider, :uid
 
   validates :provider, presence:true
-  validates :uid, presence:true
+  validate :presence_of_username_or_uid
+  
+  def presence_of_username_or_uid
+    unless self.username or self.uid
+      errors.add(:uid, "uid must exist")
+      errors.add(:username, "username must exist")
+    end
+  end
   
   before_save do
     self.type = Identity.subclass_from_provider(self.provider).to_s unless self.type

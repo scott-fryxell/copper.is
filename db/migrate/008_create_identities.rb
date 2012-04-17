@@ -2,7 +2,7 @@ class CreateIdentities < ActiveRecord::Migration
   def change
     create_table :identities do |t|
       t.string :provider, :null => false
-      t.string :uid, :null => false
+      t.string :uid
       t.string :username
       t.string :name
       t.string :email
