@@ -17,9 +17,9 @@ describe Identity do
     end
     
     it 'has a method to inform a non-user of an earned royalty check' do
-      @identity.respond_to?(:inform_non_user_of_earned_royal_check)
+      @identity.respond_to?(:inform_non_user_of_promised_tips)
     end
-    
+
     it 'has a factory creation method based on passsed in provider' do
       Identity.factory provider:factory.to_s.sub(/identities_/,''), uid:FactoryGirl.generate(:uid)
     end

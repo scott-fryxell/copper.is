@@ -86,7 +86,4 @@ class User < ActiveRecord::Base
     current_tip_order.tips
   end
   
-  # def active_tips_in_dollars
-  #   cents_to_dollars(self.current_tip_order.tips.sum(:amount_in_cents))
-  # end
 end

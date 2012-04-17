@@ -3,7 +3,7 @@ class Identity < ActiveRecord::Base
   has_many :pages
   has_many :royalty_checks, :through => :pages
 
-  attr_accessible :provider, :uid
+  attr_accessible :provider, :uid, :username
 
   validates :provider, presence:true
   validate :presence_of_username_or_uid
@@ -36,6 +36,6 @@ class Identity < ActiveRecord::Base
     Identity.subclass_from_provider(opts[:provider]).create(opts)
   end
   
-  def inform_non_user_of_earned_royal_check
+  def inform_non_user_of_promised_tips 
   end
 end

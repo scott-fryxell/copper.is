@@ -2,7 +2,9 @@ FactoryGirl.define do
   sequence 'uid' do |n|
     n
   end
-
+  sequence 'username' do |n|
+    "foobar#{n}"
+  end
   sequence 'url_with_path' do |n|
     "http://test.com/#{n}/"
   end
@@ -14,6 +16,7 @@ FactoryGirl.define do
   
   factory :identities_twitter, class: 'Identities::Twitter' do
     provider 'twitter'
+    username { FactoryGirl.generate(:username) }
     uid { FactoryGirl.generate(:uid) }
   end
 

@@ -56,24 +56,24 @@ class Page < ActiveRecord::Base
   end
 
   def discover_provider_user!
-    provider, uid = case URI.parse(self.url).host
-                    when /facebook\.com$/ then discover_facebook_uid
-                    when /tumblr\.com$/ then discover_tumblr_uid
-                    when /twitter\.com$/ then discover_twitter_uid
-                    when /google\.com$/ then discover_google_uid
-                    when /vimeo\.com$/ then discover_vimeo_uid
-                    when /flickr\.com$/ then discover_flickr_uid
-                    when /github\.com$/ then discover_github_uid
-                    when /youtube\.com$/ then discover_youtube_uid
-                    when /soundcloud\.com$/ then discover_soundcloud_uid
-                    else
-                      self.lost()
-                    end
-    if provider and uid
-      if ident = Identity.where('uid = ?', uid).first
+    provider, uid, username = case URI.parse(self.url).host
+                              when /facebook\.com$/ then discover_facebook_uid
+                              when /tumblr\.com$/ then discover_tumblr_uid
+                              when /twitter\.com$/ then discover_twitter_uid
+                              when /google\.com$/ then discover_google_uid
+                              when /vimeo\.com$/ then discover_vimeo_uid
+                              when /flickr\.com$/ then discover_flickr_uid
+                              when /github\.com$/ then discover_github_uid
+                              when /youtube\.com$/ then discover_youtube_uid
+                              when /soundcloud\.com$/ then discover_soundcloud_uid
+                              else
+                                self.lost()
+                              end
+    if provider and ( uid or username )
+      if ident = Identity.where('uid = ? OR username = ?', uid, username).first
         self.identity = ident
       else
-        self.identity = Identity.factory(provider:provider,uid:uid)
+        self.identity = Identity.factory(provider:provider,uid:uid,username:username)
       end
       save! # THINK: is this nessecary?
       self.found!
@@ -112,20 +112,25 @@ class Page < ActiveRecord::Base
 
   def discover_facebook_uid
     if self.url =~ /set=/
-      ['facebook', self.url.split("set=").last.split("&").first.split('.').last]
+      ['facebook', 
+        self.url.split("set=").last.split("&").first.split('.').last,
+        nil
+      ]
 
     elsif self.url =~ /\/events\//
       doc = Nokogiri::HTML(open(self.url))
       [
        'facebook',
-        doc.to_s.split('Report').first.split('rid=').last.split('&amp').first
+        doc.to_s.split('Report').first.split('rid=').last.split('&amp').first,
+        nil
        ]
     else
       logger.info "reaching out to: #{self.url}"
       doc = Nokogiri::HTML(open(self.url))
       [
        'facebook',
-       JSON.parse(doc.css('#pagelet_timeline_main_column').attr('data-gt').content)['profile_owner']
+       JSON.parse(doc.css('#pagelet_timeline_main_column').attr('data-gt').content)['profile_owner'],
+       nil
       ]
     end
   end
@@ -142,7 +147,7 @@ class Page < ActiveRecord::Base
       screen_name = URI.parse(self.url).fragment.split('!/').last
     end
 
-    ['twitter',Twitter.user(screen_name).id]
+    ['twitter',Twitter.user(screen_name).id, screen_name]
 
   end
 
