@@ -62,7 +62,7 @@ module Copper
     config.flickr_key = ENV['FLICKR_KEY']
     config.flickr_secret = ENV['FLICKR_SECRET']
 
-    config.google_code_dev_key = ENV['COOGLE_CODE_DEVELOPER_KEY']
+    config.google_code_dev_key = ENV['GOOGLE_CODE_DEVELOPER_KEY']
 
     config.resque_overview_password = ENV['RESQUE_OVERVIEW_PASSWORD']
 
@@ -93,7 +93,7 @@ module Copper
     raise "stripe publishable key must be defined ENV['STRIPE_KEY']" unless Copper::Application.config.stripe_key
     raise "stripe secret key must be defined ENV['STRIPE_SECRET']" unless Copper::Application.config.stripe_secret
 
-    raise "google code dev key must be defined ENV['COOGLE_CODE_DEVELOPER_KEY']" unless Copper::Application.config.google_code_dev_key
+    raise "google code dev key must be defined ENV['GOOGLE_CODE_DEVELOPER_KEY']" unless Copper::Application.config.google_code_dev_key
 
     raise "session key must be defined ENV['COPPER_SECRET_KEY']" unless Copper::Application.config.copper_session_key
 

@@ -96,4 +96,15 @@ describe User do
       lambda{@user.create_stripe_token(number, exp_month, exp_year, cvc, description)}.should raise_error
     end
   end
+  
+  it 'has a method to find all :earned royalty_checks' do
+    proc { @user.royalty_checks.earned }.should_not raise_error
+  end
+  
+  it 'returns all :earned royalty_checks' do
+    royalty_check_id = FactoryGirl.create(:royalty_check,state:'earned',user:@user).id
+    royalty_checks = @user.royalty_checks.earned
+    royalty_checks.size.should == 1
+    royalty_checks.first.id.should == royalty_check_id
+  end
 end
