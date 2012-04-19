@@ -101,8 +101,22 @@ describe "An Author" do
       page.should have_selector "section.flickr"
     end
 
-    it "should be able to remove an linked identity"
-    it "should not be able to delete and a identity when there is only one"
+    it "should be able to remove an linked identity" do
+      click_link 'facebook_sign_in'
+      page.should have_content 'Successfully linked that account'
+      
+      within("section.facebook") do
+        click_on 'remove'
+      end
+      page.should have_content 'Removed that Identity'
+      
+      page.should_not have_selector "section.facebook"
+      page.should_not have_content 'remove'
+    end
+
+    it "should not be able to delete and a identity when there is only one" do
+      page.should_not have_content 'remove'
+    end
   end
 
   describe "on author's royalties page" do
@@ -132,7 +146,7 @@ describe "An Author" do
       click_link 'royalties'
     end
     
-    it "have a list of all royalty orders" # do
+    it "have a list of all royalty checks" # do
     #  page.should have_content 'Royalties'
     #end
   end
