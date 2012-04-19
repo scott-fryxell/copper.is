@@ -1,22 +1,22 @@
 require 'rubygems'
 require 'spork'
 
-def keypress_on(elem, key, charCode = 0)
-  keyCode = case key
-            when :enter then 13
-            else key.to_i
-            end
-  elem.base.invoke('keypress', false, false, false, false, keyCode, charCode);
-end
-
-def authenticate_as_admin
-end
-
-def authenticate_as_patron
-end
-
-def unauthenticate
-end
+# def keypress_on(elem, key, charCode = 0)
+#   keyCode = case key
+#             when :enter then 13
+#             else key.to_i
+#             end
+#   elem.base.invoke('keypress', false, false, false, false, keyCode, charCode);
+# end
+# 
+# def authenticate_as_admin
+# end
+# 
+# def authenticate_as_patron
+# end
+# 
+# def unauthenticate
+# end
 
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
@@ -39,7 +39,6 @@ Spork.prefork do
   Capybara.app_host = "http://127.0.0.1:8080"
 
   include Authorization::TestHelper
-  Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
     config.fail_fast = true
@@ -62,7 +61,7 @@ Spork.each_run do
   FactoryGirl.reload
 
   RSpec.configure do |config|
-    # require Rails.root.join("db/seeds.rb")
+    require Rails.root.join("db/seeds.rb")
     # This code will be run each time you run your specs.
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
