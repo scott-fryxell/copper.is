@@ -207,7 +207,6 @@ describe Page do
       page.match_url_to_provider!
       page.providerable?.should be_true
       page.discover_provider_user!
-
       page = Page.find(page.id)
       page.identity.uid.should == '148219955295820'
       page.identity.provider.should == 'facebook'
@@ -248,8 +247,8 @@ describe Page do
       page.adopted?.should be_true
     end
     it "finds a uid that already exists in our system" do
-      identity_id = FactoryGirl.create(:identities_facebook,uid:'3434343434').id
-      page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=3336195612943&set=t.3434343434&type=3&theater')
+      identity_id = FactoryGirl.create(:identities_facebook,uid:'580281278').id
+      page = FactoryGirl.create(:page,url:'http://www.facebook.com/photo.php?fbid=303196899750980&set=t.580281278&type=3&theater')
       page.match_url_to_provider!
       page.providerable?.should be_true
 

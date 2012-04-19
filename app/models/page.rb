@@ -48,46 +48,16 @@ class Page < ActiveRecord::Base
   end
 
   def match_url_to_provider!
-    if url_matches_provider?
-      self.catorgorize
+    if Identity.provider_from_url(self.url)
+      self.catorgorize!
     else
-      self.discover
+      self.discover!
     end
   end
 
-  # trys to attach an identity and transition from :providerable to :adopted
   def discover_provider_user!
-    provider, uid, username =
-    case URI.parse(self.url).host
-    when /facebook\.com$/
-      ['facebook'] + Identities::Facebook.discover_uid_and_username_from_url(self.url)
-    when /tumblr\.com$/
-      ['tumblr'] + Identities::Tumblr.discover_uid_and_username_from_url(self.url)
-    when /twitter\.com$/
-      ['twitter'] + Identities::Twitter.discover_uid_and_username_from_url(self.url)
-    when /google\.com$/
-      ['google'] + Identities::Google.discover_uid_and_username_from_url(self.url)
-    when /vimeo\.com$/
-      ['vimeo'] + Identities::Vimeo.discover_uid_and_username_from_url(self.url)
-    when /flickr\.com$/
-      ['flickr'] + Identities::FLickr.discover_uid_and_username_from_url(self.url)
-    when /github\.com$/
-      ['github'] + Identities::Github.discover_uid_and_username_from_url(self.url)
-    when /youtube\.com$/
-      ['youtube'] + Identities::Youtube.discover_uid_and_username_from_url(self.url)
-    when /soundcloud\.com$/
-      ['soundcloud'] + Identities::Soundcloud.discover_uid_and_username_from_url(self.url)
-    else
-      self.lost()
-    end
-    
-    if provider and ( uid or username )
-      if ident = Identity.where('uid = ? OR username = ?', uid, username).first
-        self.identity = ident
-      else
-        self.identity = Identity.factory(provider:provider,uid:uid,username:username)
-      end
-      save! # THINK: is this nessecary?
+    if self.identity = Identity.find_or_create_from_url(self.url)
+      save!
       self.found!
     else
       self.lost!
@@ -97,22 +67,6 @@ class Page < ActiveRecord::Base
   def find_provider_from_author_link!
     raise 'TBD'
     save!
-  end
-
-  def url_matches_provider?
-    case URI.parse(self.url).host
-    when /facebook\.com$/ then true
-    when /tumblr\.com$/ then false
-    when /twitter\.com$/ then true
-    when /google\.com$/ then false
-    when /vimeo\.com$/ then false
-    when /flickr\.com$/ then false
-    when /github\.com$/ then false
-    when /youtube\.com$/ then true
-    when /soundcloud\.com$/ then false
-    else
-      nil
-    end
   end
 
   def normalize

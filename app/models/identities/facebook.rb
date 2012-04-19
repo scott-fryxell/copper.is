@@ -1,16 +1,15 @@
 class Identities::Facebook < Identity
   # validates :username, presence: true
 
-  def self.discover_uid_and_username_from_url url
+  def self.discover_uid_and_username_from_url(url)
     if url =~ /set=/
-      [url.split("set=").last.split("&").first.split('.').last, nil]
+      { :uid => url.split("set=").last.split("&").first.split('.').last }
     elsif url =~ /\/events\//
       doc = Nokogiri::HTML(open(url))
-      [doc.to_s.split('Report').first.split('rid=').last.split('&amp').first,nil]
+      { :uid => doc.to_s.split('Report').first.split('rid=').last.split('&amp').first }
     else
-      logger.info "reaching out to: #{url}"
-      doc = Nokogiri::HTML(open(url))
-      [ JSON.parse(doc.css('#pagelet_timeline_main_column').attr('data-gt').content)['profile_owner'],nil]
+      facebook_user = JSON.parse(Kernel.open(url.sub(/https?:\/\/www/, 'http://graph')).read)
+      { :uid => facebook_user["id"], :username => facebook_user[:username]}
     end
   end
   

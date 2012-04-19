@@ -36,6 +36,31 @@ class Identity < ActiveRecord::Base
     Identity.subclass_from_provider(opts[:provider]).create(opts)
   end
   
+  def self.provider_from_url(url)
+    case URI.parse(url).host
+    when /facebook\.com$/ then 'facebook'
+    when /tumblr\.com$/ then 'tumblr'
+    when /twitter\.com$/ then 'twitter'
+    when /google\.com$/ then 'google'
+    when /vimeo\.com$/ then 'vimeo'
+    when /flickr\.com$/ then 'flickr'
+    when /github\.com$/ then 'github'
+    when /youtube\.com$/ then 'youtube'
+    when /soundcloud\.com$/ then 'soundcloud'
+    else
+      nil
+    end
+  end
+  
+  def self.find_or_create_from_url url
+    provider = provider_from_url(url)
+    i = subclass_from_provider(provider).discover_uid_and_username_from_url url
+    Identity.where('provider = ? and (uid = ? OR username = ?)',
+                   provider, i[:uid], i[:username]).first or
+      factory(provider:provider,username:i[:username],uid:i[:uid])
+  end
+  
+  
   def inform_non_user_of_promised_tips 
     raise "not implemented in subclass" unless block_given?
     unless self.user_id

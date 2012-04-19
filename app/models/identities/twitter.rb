@@ -7,18 +7,10 @@ class Identities::Twitter < Identity
     else
       screen_name = URI.parse(url).fragment.split('!/').last
     end
-    p [screen_name, ::Twitter.user(screen_name).id]
-    [::Twitter.user(screen_name).id.to_s, screen_name]
-  end
-
-  def self.find_or_create_from_url url
-    screen_name, uid = Identities::Twitter.discover_uid_and_username_from_url url
-    Identities::Twitter.where('uid = ? OR username = ?', screen_name, uid).first or
-      create(username:screen_name,uid:uid)
+    { :uid => ::Twitter.user(screen_name).id.to_s, :username => screen_name }
   end
 
   def populate_uid_from_username!
-    puts self.username
     super do
       self.uid = ::Twitter.user(self.username).id.to_s
     end
