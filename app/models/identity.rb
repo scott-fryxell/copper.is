@@ -37,5 +37,31 @@ class Identity < ActiveRecord::Base
   end
   
   def inform_non_user_of_promised_tips 
+    raise "not implemented in subclass" unless block_given?
+    unless self.user_id
+      yield
+    end
+  end
+  
+  def populate_uid_and_username!
+    unless self.uid and self.username
+      unless self.uid
+        populate_uid_from_username!
+      else
+        populate_username_from_uid!
+      end
+    end
+  end
+  
+  def populate_username_from_uid!
+    raise "not implemented in subclass" unless block_given?
+    yield
+    save!
+  end
+  
+  def populate_uid_from_username!
+    raise "not implemented in subclass" unless block_given?
+    yield
+    save!
   end
 end

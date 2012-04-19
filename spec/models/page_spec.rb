@@ -262,17 +262,13 @@ describe Page do
   end
 
   describe 'discovering twitter uid' do
-    before do
-      obj = Object.new
-      def obj.id() 14062332 end
-      Twitter.stub(:user){obj}
-    end
 
     it 'finds a uid from a twitter status url' do
       page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp/status/191682126138191873')
       page.match_url_to_provider!
       page.providerable?.should be_true
       page.discover_provider_user!
+      page.identity.provider.should == 'twitter'
       page.adopted?.should be_true
       page2 = Page.find(page.id)
       page2.id.should == page.id
@@ -286,7 +282,7 @@ describe Page do
       page.providerable?.should be_true
       page.discover_provider_user!
       page.adopted?.should be_true
-      page.identity.uid.should == 14062332
+      page.identity.uid.should == '14062332'
       page.identity.provider.should == 'twitter'
     end
   end
@@ -304,13 +300,13 @@ describe Page do
       page2.identity.provider.should == 'youtube'
     end
     
-    it 'finds a uid from a youtube video' do
-      @page = FactoryGirl.create(:page,url:'http://www.youtube.com/watch?v=r4rd1i3Ar9k')
-    end
+    it 'finds a uid from a youtube video' # do
+     #      @page = FactoryGirl.create(:page,url:'http://www.youtube.com/watch?v=r4rd1i3Ar9k')
+     #    end
 
-    it 'finds a uid from a youtube profile page' do
-      @page = FactoryGirl.create(:page,url:'http://www.youtube.com/user/sfryxell')
-    end
+    it 'finds a uid from a youtube profile page' # do
+     #      @page = FactoryGirl.create(:page,url:'http://www.youtube.com/user/sfryxell')
+     #    end
   end
 
 end

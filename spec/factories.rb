@@ -16,8 +16,8 @@ FactoryGirl.define do
   
   factory :identities_twitter, class: 'Identities::Twitter' do
     provider 'twitter'
-    username { FactoryGirl.generate(:username) }
-    uid { FactoryGirl.generate(:uid) }
+    username '_ugly'
+    uid '26368397'
   end
 
   factory :identities_google, class: 'Identities::Google' do

@@ -12,6 +12,7 @@ if defined?(Bundler)
 end
 
 module Copper
+   
   class Application < Rails::Application
 
     config.encoding = "utf-8"
@@ -106,4 +107,5 @@ module Copper
 
     raise "resque overview password must be defined ENV['RESQUE_OVERVIEW_PASSWORD']" unless Copper::Application.config.resque_overview_password
   end
+  
 end

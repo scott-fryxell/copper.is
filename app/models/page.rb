@@ -55,20 +55,32 @@ class Page < ActiveRecord::Base
     end
   end
 
+  # trys to attach an identity and transition from :providerable to :adopted
   def discover_provider_user!
-    provider, uid, username = case URI.parse(self.url).host
-                              when /facebook\.com$/ then discover_facebook_uid
-                              when /tumblr\.com$/ then discover_tumblr_uid
-                              when /twitter\.com$/ then discover_twitter_uid
-                              when /google\.com$/ then discover_google_uid
-                              when /vimeo\.com$/ then discover_vimeo_uid
-                              when /flickr\.com$/ then discover_flickr_uid
-                              when /github\.com$/ then discover_github_uid
-                              when /youtube\.com$/ then discover_youtube_uid
-                              when /soundcloud\.com$/ then discover_soundcloud_uid
-                              else
-                                self.lost()
-                              end
+    provider, uid, username =
+    case URI.parse(self.url).host
+    when /facebook\.com$/
+      ['facebook'] + Identities::Facebook.discover_uid_and_username_from_url(self.url)
+    when /tumblr\.com$/
+      ['tumblr'] + Identities::Tumblr.discover_uid_and_username_from_url(self.url)
+    when /twitter\.com$/
+      ['twitter'] + Identities::Twitter.discover_uid_and_username_from_url(self.url)
+    when /google\.com$/
+      ['google'] + Identities::Google.discover_uid_and_username_from_url(self.url)
+    when /vimeo\.com$/
+      ['vimeo'] + Identities::Vimeo.discover_uid_and_username_from_url(self.url)
+    when /flickr\.com$/
+      ['flickr'] + Identities::FLickr.discover_uid_and_username_from_url(self.url)
+    when /github\.com$/
+      ['github'] + Identities::Github.discover_uid_and_username_from_url(self.url)
+    when /youtube\.com$/
+      ['youtube'] + Identities::Youtube.discover_uid_and_username_from_url(self.url)
+    when /soundcloud\.com$/
+      ['soundcloud'] + Identities::Soundcloud.discover_uid_and_username_from_url(self.url)
+    else
+      self.lost()
+    end
+    
     if provider and ( uid or username )
       if ident = Identity.where('uid = ? OR username = ?', uid, username).first
         self.identity = ident
@@ -77,6 +89,8 @@ class Page < ActiveRecord::Base
       end
       save! # THINK: is this nessecary?
       self.found!
+    else
+      self.lost!
     end
   end
 
@@ -110,80 +124,4 @@ class Page < ActiveRecord::Base
     errors.add(:url, "must point to a real site") unless self.url =~ /\./
   end
 
-  def discover_facebook_uid
-    if self.url =~ /set=/
-      ['facebook', 
-        self.url.split("set=").last.split("&").first.split('.').last,
-        nil
-      ]
-
-    elsif self.url =~ /\/events\//
-      doc = Nokogiri::HTML(open(self.url))
-      [
-       'facebook',
-        doc.to_s.split('Report').first.split('rid=').last.split('&amp').first,
-        nil
-       ]
-    else
-      logger.info "reaching out to: #{self.url}"
-      doc = Nokogiri::HTML(open(self.url))
-      [
-       'facebook',
-       JSON.parse(doc.css('#pagelet_timeline_main_column').attr('data-gt').content)['profile_owner'],
-       nil
-      ]
-    end
-  end
-
-  def discover_tumblr_uid
-    raise 'TBD'
-  end
-
-  def discover_twitter_uid
-
-    if self.url =~ /\/status\//
-      screen_name = URI.parse(self.url).fragment.split('!/').last.split('/').first
-    else
-      screen_name = URI.parse(self.url).fragment.split('!/').last
-    end
-
-    ['twitter',Twitter.user(screen_name).id, screen_name]
-
-  end
-
-  def discover_google_uid
-    raise 'TBD'
-  end
-
-  def discover_vimeo_uid
-    raise 'TBD'
-  end
-
-  def discover_flickr_uid
-    raise 'TBD'
-  end
-
-  def discover_github_uid
-    raise 'TBD'
-  end
-
-  def discover_youtube_uid
-    if self.url =~ /\/user\//
-      [
-       'youtube',
-        URI.parse(self.url).path.split('/').last
-       ]
-    else
-      @client ||= YouTubeIt::Client.new(:dev_key => Copper::Application.config.google_code_dev_key)
-      video_id = URI.parse(self.url).query.split('&').find{|e| e =~ /^v/}.split('=').last
-      [
-       'youtube',
-        @client.video_by(video_id).author.name
-       ]
-    end
-  end
-
-  def discover_soundcloud_uid
-    raise 'TBD'
-  end
 end
