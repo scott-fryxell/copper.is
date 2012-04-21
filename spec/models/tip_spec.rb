@@ -40,31 +40,31 @@ describe Tip do
   describe "state machine" do
     it "should transition from :promised to :charged on a pay: event" do
       tip = FactoryGirl.create(:tip)
-      tip.state_name.should == :promised
+      tip.promised?.should be_true
       tip.pay
-      tip.state_name.should == :charged
+      tip.charged?.should be_true
     end
     it "should transition to :chaged to :recieved on a send_check! event" do
       tip = FactoryGirl.create(:tip_charged)
-      tip.state_name.should == :charged
+      tip.charged?.should be_true
       tip.send_check
-      tip.state_name.should == :received
+      tip.received?.should be_true
     end
       
     it "should transition to :recieved to :cashed with a cash! event" do
       tip = FactoryGirl.create(:tip_received)
-      tip.state_name.should == :received
+      tip.received?.should be_true
       tip.cash
-      tip.state_name.should == :cashed
+      tip.cashed?.should be_true
     end
       
   end
 
   context 'scopes' do
     before do
-      @promised = Array.new(3) { FactoryGirl.create(:tip, state:'promised' ) }
-      @charged = Array.new(4) { FactoryGirl.create(:tip, state:'charged' ) }
-      @received = Array.new(5) { FactoryGirl.create(:tip, state:'received' ) }
+      @promised = Array.new(3) { FactoryGirl.create(:tip, paid_state:'promised' ) }
+      @charged = Array.new(4) { FactoryGirl.create(:tip, paid_state:'charged' ) }
+      @received = Array.new(5) { FactoryGirl.create(:tip, paid_state:'received' ) }
     end
 
     it 'has a .promised scope' do

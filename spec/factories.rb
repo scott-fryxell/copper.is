@@ -71,6 +71,7 @@ FactoryGirl.define do
 
   factory :tip_order do
     association :user
+    state 'current'
   end
 
   factory :tip_order_ready, :class => 'TipOrder' do
@@ -107,14 +108,14 @@ FactoryGirl.define do
     association :tip_order
     association :page
     amount_in_cents 100
-    state "charged"
+    paid_state "charged"
   end
 
   factory :tip_received, :class => "Tip" do
     association :tip_order
     association :page
     amount_in_cents 100
-    state "received"
+    paid_state "received"
   end
 
   factory :royalty_check do
@@ -123,11 +124,11 @@ FactoryGirl.define do
   
   factory :royalty_check_paid, :class => 'RoyaltyCheck' do
     association :user
-    state 'paid'
+    check_state 'paid'
   end
   
   factory :royalty_check_cashed, :class => 'RoyaltyCheck' do
     association :user
-    state 'cashed'
+    check_state 'cashed'
   end
 end

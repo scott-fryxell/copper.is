@@ -9,9 +9,9 @@ class Tip < ActiveRecord::Base
   default_scope :order => 'created_at DESC'
 
   attr_accessible :amount_in_cents
-  scope :promised, where("state = ?", 'promised')
-  scope :charged, where("state = ?", 'charged')
-  scope :received, where("state = ?", 'received')
+  scope :promised, where("paid_state = ?", 'promised')
+  scope :charged, where("paid_state = ?", 'charged')
+  scope :received, where("paid_state = ?", 'received')
 
   MINIMUM_TIP_VALUE = 1
   MAXIMUM_TIP_VALUE = 2000
@@ -25,7 +25,7 @@ class Tip < ActiveRecord::Base
   validates :tip_order, presence:true
   validates :amount_in_cents, presence:true
   
-  state_machine :state, :initial => :promised do
+  state_machine :paid_state, :initial => :promised do
     event :pay do
       transition :promised => :charged
     end

@@ -25,6 +25,7 @@ describe TipOrder do
   describe "when calculating where the money is for the order" do
     before do
       @user = FactoryGirl.create(:user)
+      FactoryGirl.create(:tip_order,user:@user)
       @user.tip(:url => 'http://example.com', :title => 'example page', :amount_in_cents => 25)
       @user.tip(:url => 'http://beefdeed.com/chunder', :title => 'CHUNDER POW', :amount_in_cents => 25)
       @user.tip(:url => 'http://beefdeed.com/horde', :title => 'ALL HAIL THE HORDE', :amount_in_cents => 25)
@@ -67,19 +68,14 @@ describe TipOrder do
 
     it "should charge the fan for his tips"  do
       @order = @user.current_tip_order
-
       @user.tip(:url => 'http://example.com', :title => 'example page', :amount_in_cents => 500)
       @user.tip(:url => 'http://beefdeed.com/chunder', :title => 'CHUNDER POW', :amount_in_cents => 500)
       @user.tip(:url => 'http://beefdeed.com/horde', :title => 'ALL HAIL THE HORDE', :amount_in_cents => 500)
-
-      @order.prepare
-      @order.state.should == "ready"
-
-      @order.process
-
+      @order.prepare!
+      @order.ready?.should be_true
+      @order.process!
       @user.current_tip_order.should_not == @order
       @order.state.should == "paid"
-
       @order.tips.size.should == 3
       @order.tips.sum(:amount_in_cents).should == 1500
     end
