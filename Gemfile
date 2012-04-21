@@ -34,7 +34,7 @@ end
 
 group :development, :test do
   gem 'simplecov', :require => false
-  gem "sqlite3-ruby", :require => "sqlite3"
+  gem "sqlite3", :require => "sqlite3"
   gem 'pry'
   gem 'ruby_parser'
   gem 'heroku'
