@@ -23,7 +23,7 @@ class Page < ActiveRecord::Base
     event :found do
       transition :manual => :adopted, :if => lambda{|page| page.identity_id}
       transition :providerable => :adopted, :if => lambda{|page| page.identity_id}
-      transition :spiderable => :providerable
+      transition :spiderable => :adopted
     end
     event :discover do
       transition :orphaned => :spiderable
@@ -31,6 +31,7 @@ class Page < ActiveRecord::Base
     event :lost do
       transition :manual => :fostered
       transition :providerable => :spiderable
+      transition :spiderable => :manual
     end
   end
 
@@ -55,7 +56,7 @@ class Page < ActiveRecord::Base
     end
   end
 
-  def discover_provider_user!
+  def discover_identity!
     if self.identity = Identity.find_or_create_from_url(self.url)
       save!
       self.found!
@@ -64,9 +65,18 @@ class Page < ActiveRecord::Base
     end
   end
 
-  def find_provider_from_author_link!
-    raise 'TBD'
-    save!
+  def find_identity_from_author_link!
+    author_link = Nokogiri::HTML(open(self.url)).css('link[rel=author]').attr('href').value rescue nil
+    if author_link
+      if self.identity = Identity.find_or_create_from_url(author_link)
+        self.found!
+        save!
+      else
+        self.lost!
+      end
+    else
+      self.lost!
+    end
   end
 
   def normalize

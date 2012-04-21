@@ -23,9 +23,9 @@ class Identities::Facebook < Identity
     end
   end
 
-  def send_email(tweet)
-    raise 'tweet to long' if tweet.length + self.username.length + 2 > 140
-    Twitter.update('@' + self.username + ' ' + tweet )
+  def send_email(message)
+    # raise 'tweet to long' if tweet.length + self.username.length + 2 > 140
+    # Twitter.update('@' + self.username + ' ' + tweet )
   end
 
   def populate_uid_from_username!

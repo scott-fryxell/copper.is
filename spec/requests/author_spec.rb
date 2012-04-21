@@ -40,12 +40,12 @@ describe "An Author" do
     end
 
   end
-  
+
   it "should have a link to royalty orders" do
     click_link 'author'
     page.should have_content 'royalties'
   end
-  
+
   it "should have a link to the identities page" do
     click_link 'author'
     within("section#identity > a") do
@@ -104,12 +104,12 @@ describe "An Author" do
     it "should be able to remove an linked identity" do
       click_link 'facebook_sign_in'
       page.should have_content 'Successfully linked that account'
-      
+
       within("section.facebook") do
         click_on 'remove'
       end
       page.should have_content 'Removed that Identity'
-      
+
       page.should_not have_selector "section.facebook"
       page.should_not have_content 'remove'
     end
@@ -139,13 +139,13 @@ describe "An Author" do
     end
     it 'displays a royal check on the authors royalty page'
   end
-  
+
   describe "author royalties" do
     before(:each) do
       click_link 'author'
       click_link 'royalties'
     end
-    
+
     it "have a list of all royalty checks" # do
     #  page.should have_content 'Royalties'
     #end

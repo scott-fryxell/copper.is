@@ -50,7 +50,6 @@ class TipsController < ApplicationController
   def agent
     uri = URI.unescape(params[:uri]) rescue params[:uri]
     title = URI.unescape(params[:title]) rescue params[:title]
-
     @tip = current_user.tip(url:uri, title:title )
 
     if @tip && @tip.valid?

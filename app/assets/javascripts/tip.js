@@ -16,7 +16,7 @@ $(document).bind({
     if(!FLB.uri){
       window.parent.postMessage("reset_frame",  "*");
     }
-    // console.debug("determine tip", FLB, location);
+    console.debug("determine tip", FLB, location);
   },
   "tip_submit": function (event, xhr, options) {
     if(FLB.tip.authenticity_token != null){
@@ -63,7 +63,6 @@ $(document).bind({
   },
   "terms_declined": function (event, xhr, options){
     console.debug("credit card problem");
-    // TODO Plug some shit in for this
   },
   "processing_error": function (event, xhr, options){
     $("#credit_card > h1").text("There was a processing error. Your credit card was not charged");

@@ -7,14 +7,14 @@ class Identity < ActiveRecord::Base
 
   validates :provider, presence:true
   validate :presence_of_username_or_uid
-  
+
   def presence_of_username_or_uid
     unless self.username or self.uid
       errors.add(:uid, "uid must exist")
       errors.add(:username, "username must exist")
     end
   end
-  
+
   before_save do
     self.type = Identity.subclass_from_provider(self.provider).to_s unless self.type
   end
@@ -26,16 +26,16 @@ class Identity < ActiveRecord::Base
   def self.create_with_omniauth(auth)
     Identity.create(uid: auth['uid'].to_s, provider: auth['provider'])
   end
-  
+
   def self.subclass_from_provider(provider)
     provider = 'google' if provider == 'google_oauth2'
-    ("Identities::" + provider.to_s.capitalize).constantize 
+    ("Identities::" + provider.to_s.capitalize).constantize
   end
-  
+
   def self.factory(opts = {})
     Identity.subclass_from_provider(opts[:provider]).create(opts)
   end
-  
+
   def self.provider_from_url(url)
     case URI.parse(url).host
     when /facebook\.com$/ then 'facebook'
@@ -51,7 +51,7 @@ class Identity < ActiveRecord::Base
       nil
     end
   end
-  
+
   def self.find_or_create_from_url url
     provider = provider_from_url(url)
     i = subclass_from_provider(provider).discover_uid_and_username_from_url url
@@ -59,15 +59,14 @@ class Identity < ActiveRecord::Base
                    provider, i[:uid], i[:username]).first or
       factory(provider:provider,username:i[:username],uid:i[:uid])
   end
-  
-  
-  def inform_non_user_of_promised_tips 
+
+  def inform_non_user_of_promised_tips
     raise "not implemented in subclass" unless block_given?
     unless self.user_id
       yield
     end
   end
-  
+
   def populate_uid_and_username!
     unless self.uid and self.username
       unless self.uid
@@ -77,13 +76,13 @@ class Identity < ActiveRecord::Base
       end
     end
   end
-  
+
   def populate_username_from_uid!
     raise "not implemented in subclass" unless block_given?
     yield
     save!
   end
-  
+
   def populate_uid_from_username!
     raise "not implemented in subclass" unless block_given?
     yield

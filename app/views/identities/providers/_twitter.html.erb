@@ -7,7 +7,7 @@
       <%= image_tag twitter.image %>
     <%-else-%>
       <%= image_tag "providers/twitter.png", :class => "provider" %>
-    <%-end-%>    
+    <%-end-%>
   </figure>
   <p><%=twitter.name%></p>
   <%- if current_user.identities.count > 1 -%>

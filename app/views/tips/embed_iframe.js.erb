@@ -1,4 +1,4 @@
-<% cache do %>
+
 (function(){
   var f = document.getElementById('copper');
   if (f) {
@@ -21,7 +21,7 @@
     f.style.background.color='transparent';
     f.scrolling='no';
     f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/?uri=' +
-      window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
+      encodeURIComponent(window.location) + '&title=' + encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML);
     document.body.appendChild(f);
     f.width='0';
     f.height='0';
@@ -37,7 +37,7 @@
           f.width='0';
           f.height='0';
           frame.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/?uri=' +
-            window.location + '&title=' + document.getElementsByTagName('title')[0].innerHTML;
+            encodeURIComponent(window.location) + '&title=' + encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML);
         }
         else if (event.data == 'resize_frame'){
           frame = document.getElementById('copper');
@@ -48,4 +48,4 @@
     }, false);
   }
 })()
-<% end %>
+
