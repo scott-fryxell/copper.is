@@ -18,6 +18,14 @@ require 'spork'
 # def unauthenticate
 # end
 
+def  slow_test
+  unless ENV['FAST_TEST']
+    yield
+  else
+    puts 'WARN: skipping slow tests'
+  end
+end
+
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
