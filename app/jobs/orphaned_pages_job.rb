@@ -2,7 +2,7 @@ class OrphanedPagesJob
   @queue = :high
   
   def self.perform
-    puts "Orphaned pages job started"
+    puts "Orphaned pages job started. Found #{Page.orphaned.count} :orphaned pages"
     find_all_and_place_on_queue
   end
   
