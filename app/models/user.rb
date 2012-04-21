@@ -48,7 +48,9 @@ class User < ActiveRecord::Base
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
     
     tip = Tip.new(:amount_in_cents => amount_in_cents)
-    tip.page = Page.normalized_find_or_create(url,title)
+    unless tip.page = Page.where('url = ?', url).first
+      tip.page = Page.create(url:url,title:title)
+    end
     tip.tip_order = self.tip_orders.current.first
     tip.save
     tip

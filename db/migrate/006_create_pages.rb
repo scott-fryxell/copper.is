@@ -3,7 +3,6 @@ class CreatePages < ActiveRecord::Migration
     create_table :pages do |t|
       t.string  :title
       t.string  :url,          :null => false
-      t.string  :normalized_url, :null => false
       t.string  :author_state
       t.references :identity
       t.timestamps

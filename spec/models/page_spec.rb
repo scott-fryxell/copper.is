@@ -28,45 +28,45 @@ describe Page do
     end
   end
 
-  context 'normalization' do
-    before do
-      @page = Page.new url:"http://www.example.com"
-      @page.save.should be_true
-    end
+  # context 'normalization' do
+  #   before do
+  #     @page = Page.new url:"http://www.example.com"
+  #     @page.save.should be_true
+  #   end
 
-    it "should save original url with page" do
-      @page.url.should == 'http://www.example.com'
-      @page.normalized_url.should == 'example.com'
-    end
+  #   it "should save original url with page" do
+  #     @page.url.should == 'http://www.example.com'
+  #     @page.normalized_url.should == 'example.com'
+  #   end
 
-    it "provides a normalized find by url method" do
-      Page.respond_to?(:normalized_find).should be_true
-    end
+  #   it "provides a normalized find by url method" do
+  #     Page.respond_to?(:normalized_find).should be_true
+  #   end
 
-    it "provides a normalized find or create by url method" do
-      Page.respond_to?(:normalized_find_or_create).should be_true
-    end
+  #   it "provides a normalized find or create by url method" do
+  #     Page.respond_to?(:normalized_find_or_create).should be_true
+  #   end
 
-    it "assumes http when there is a tip without scheme" # do
-     #      Page.normalized_find('example.com').id.should == @page.id
-     #    end
+  #   it "assumes http when there is a tip without scheme" # do
+  #    #      Page.normalized_find('example.com').id.should == @page.id
+  #    #    end
 
-    it "assumes http when there is a tip with https scheme" do
-      Page.normalized_find('https://example.com').id.should == @page.id
-    end
+  #   it "assumes http when there is a tip with https scheme" do
+  #     Page.normalized_find('https://example.com').id.should == @page.id
+  #   end
 
-    it "assumes http when there is a tip with http scheme" do
-      Page.normalized_find('http://example.com').id.should == @page.id
-    end
+  #   it "assumes http when there is a tip with http scheme" do
+  #     Page.normalized_find('http://example.com').id.should == @page.id
+  #   end
 
-    it "assumes no host name when there is a tip with a 'www' hostname" do
-      Page.normalized_find('http://www.example.com').id.should == @page.id
-    end
+  #   it "assumes no host name when there is a tip with a 'www' hostname" do
+  #     Page.normalized_find('http://www.example.com').id.should == @page.id
+  #   end
 
-    it "assumes http and no host when there is a tip with no http scheme and a 'www' host" do
-      Page.normalized_find('http://www.example.com').id.should == @page.id
-    end
-  end
+  #   it "assumes http and no host when there is a tip with no http scheme and a 'www' host" do
+  #     Page.normalized_find('http://www.example.com').id.should == @page.id
+  #   end
+  # end
 
   describe 'scopes' do
     before do

@@ -51,13 +51,17 @@ class Identity < ActiveRecord::Base
       nil
     end
   end
-
-  def self.find_or_create_from_url url
+  def self.find_or_create_from_url(url)
     provider = provider_from_url(url)
     i = subclass_from_provider(provider).discover_uid_and_username_from_url url
-    Identity.where('provider = ? and (uid = ? OR username = ?)',
-                   provider, i[:uid], i[:username]).first or
-      factory(provider:provider,username:i[:username],uid:i[:uid])
+    p "i: #{i}"
+    ident = Identity.where('provider = ? and (uid = ? OR username = ?)',
+                           provider,i[:uid],i[:username]).first
+    puts "ident: #{ident}"
+    unless ident
+      ident = factory(provider:provider,username:i[:username],uid:i[:uid])
+    end
+    ident
   end
 
   def inform_non_user_of_promised_tips
