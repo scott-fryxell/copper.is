@@ -306,5 +306,28 @@ describe Page do
      #      @page = FactoryGirl.create(:page,url:'http://www.youtube.com/user/sfryxell')
      #    end
   end
-
+  
+  context do
+    before do
+      @page = FactoryGirl.build(:page,author_state:'adopted')
+      @identity = FactoryGirl.create(:identities_twitter,user:nil)
+      @tip = FactoryGirl.build(:tip,paid_state:'charged')
+      @page.identity = @identity
+      @page.save!
+      @tip.page = @page
+      @tip.save!
+      @royalty_check = FactoryGirl.create(:royalty_check,check_state:'earned')
+      @royalty_check.tips << @tip
+      @royalty_check.save!
+    end
+    
+    it 'has many royalty_checks' do
+      proc { @page.royalty_checks }.should_not raise_error
+    end
+    
+    it 'has the right royalty check in it\'s list' do
+      @page.royalty_checks.earned.count.should == 1
+      @page.royalty_checks.earned.first.id.should == @royalty_check.id
+    end
+  end
 end

@@ -39,5 +39,52 @@ describe Identity do
         proc{ @identity.populate_username_from_uid! }.should_not raise_error
       end
     end
+
+    describe 'with a page and some tips' do
+      before do
+        @identity = FactoryGirl.create factory
+        @identity_id = @identity.id
+        @fan = FactoryGirl.create(:user)
+        @page = FactoryGirl.create(:page,url:"http://example.com/dudeham",author_state:'adopted')
+        @page.identity = @identity
+        @page.save!
+        @tip_order = FactoryGirl.create(:tip_order,user:@fan)
+        @tip_order.tips << FactoryGirl.create(:tip,page:@page,amount_in_cents:50,paid_state:'charged')
+        @tip_order.save!
+      end
+      
+      it 'can find all :charged tips for an identity' do
+        @identity.tips.charged.count.should == 1
+      end
+      
+      describe '#try_to_create_royalty_check!' do
+        it 'responds' do
+          @identity.respond_to?(:try_to_create_royalty_check!).should be_true
+        end
+        
+        it 'returns a RoyaltyCheck object' do
+          @identity.try_to_create_royalty_check!.class.should == RoyaltyCheck
+        end
+        
+        describe 'the returned royalty check' do
+          before do
+            @royalty_check = @identity.try_to_create_royalty_check!
+            @identity = Identity.find(@identity_id)
+          end
+          
+          it 'has 4 tips' do
+            @royalty_check.tips.count.should == 1
+          end
+          
+          it 'is in the :earned state' do
+            @royalty_check.earned?.should be_true
+          end
+          
+          it 'is saved to @identity' do
+            # @identity.royalty_checks.earned.first.id.should == @royalty_check.id
+          end
+        end
+      end
+    end
   end
 end
