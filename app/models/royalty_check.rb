@@ -2,13 +2,13 @@ class RoyaltyCheck < ActiveRecord::Base
   belongs_to :user
   has_many :tips
 
-  validates :user, presence:true
+  # validates :user, presence:true
   
-  scope :earned, where("state = ?", 'earned')
-  scope :paid, where("state = ?", 'paid')  
-  scope :cashed, where("state = ?", 'cashed')
+  scope :earned, where("check_state = ?", 'earned')
+  scope :paid, where("check_state = ?", 'paid')  
+  scope :cashed, where("check_state = ?", 'cashed')
   
-  state_machine :state, :initial => :earned do
+  state_machine :check_state, :initial => :earned do
     event :deliver do
       transition :earned => :paid
     end

@@ -1,7 +1,8 @@
 class Identity < ActiveRecord::Base
   belongs_to :user
   has_many :pages
-  has_many :royalty_checks, :through => :pages
+  has_many :tips, :through => :pages
+  # has_many :royalty_checks, :through => :pages
 
   attr_accessible :provider, :uid, :username
 
@@ -54,10 +55,8 @@ class Identity < ActiveRecord::Base
   def self.find_or_create_from_url(url)
     provider = provider_from_url(url)
     i = subclass_from_provider(provider).discover_uid_and_username_from_url url
-    p "i: #{i}"
     ident = Identity.where('provider = ? and (uid = ? OR username = ?)',
                            provider,i[:uid],i[:username]).first
-    puts "ident: #{ident}"
     unless ident
       ident = factory(provider:provider,username:i[:username],uid:i[:uid])
     end
@@ -91,5 +90,16 @@ class Identity < ActiveRecord::Base
     raise "not implemented in subclass" unless block_given?
     yield
     save!
+  end
+  
+  def try_to_create_royalty_check!
+    if self.tips.charged.count > 0
+      royalty_check = RoyaltyCheck.new
+      royalty_check.tips = self.tips.charged.all
+      royalty_check.save!
+      royalty_check
+    else
+      nil
+    end
   end
 end

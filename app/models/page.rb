@@ -1,6 +1,7 @@
 class Page < ActiveRecord::Base
   belongs_to :identity
   has_many :tips
+  has_many :royalty_checks, :through => :tips
 
   validates :url,
     # :format => {:with => URI::regexp, :message => 'not a valid URL'},
