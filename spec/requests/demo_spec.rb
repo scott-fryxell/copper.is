@@ -6,7 +6,8 @@ describe 'twitter demo' do
     click_link 'facebook_sign_in'      
     click_link 'fan'
     page.select '$20.00', :from => 'user[tip_preference_in_cents]'      
-    visit "/tips/agent/?uri=http://twitter.com/#!/brokenbydawn"    
+    visit "/tips/agent/?uri=https%3A%2F%2Ftwitter.com%2F%23!%2Fbrokenbydawn&title=brokenbydawn%20(brokenbydawn)%20on%20Twitter"
+    page.should have_content "brokenbydawn"
     sleep 2
     fill_in('email', :with => 'google_user@email.com')
     fill_in('number', :with => '4242424242424242')
