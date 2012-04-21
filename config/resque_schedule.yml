@@ -1,19 +1,19 @@
 OrphanedPagesJob:
-  every: 1m
+  every: 10s
   queue: high
   args: 
   class: OrphanedPagesJob
   description: "This job queues all orphaned page for url matching to provider"
 
 ProviderablePagesJob:
-  every: 1m
+  every: 10s
   queue: high
   args: 
   class: ProviderablePagesJob
   description: "This job queues all providerable pages for author lookup"
 
 SpiderablePagesJob:
-  every: 1m
+  every: 10s
   queue: high
   args: 
   class: SpiderablePagesJob
