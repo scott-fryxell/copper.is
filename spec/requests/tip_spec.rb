@@ -35,7 +35,7 @@ describe "Tiping a URL" do
     visit "/users/current/tips"
   end
 
-  describe "paying for some bucks" do
+  describe "paying for some tips" do
     before do
       visit "/tips/agent/?uri=http://test.com&title=a_title"
       click_on('Change')
