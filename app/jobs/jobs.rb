@@ -1,3 +1,5 @@
+# single
+
 class DiscoverIdentityJob
   @queue = :high
   def self.perform page_id
@@ -32,6 +34,8 @@ class TryToCreateRoyaltyCheckJob
     Identity.find(identity_id).try_to_create_royalty_check!
   end
 end
+
+# collection based job
 
 class EarnedRoyaltyChecksJob
   @queue = :high
