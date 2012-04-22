@@ -79,9 +79,9 @@ describe Identity do
           it 'is in the :earned state' do
             @royalty_check.earned?.should be_true
           end
-          
+
           it 'is saved to @identity' do
-            # @identity.royalty_checks.earned.first.id.should == @royalty_check.id
+            @identity.royalty_checks.earned.first.id.should == @royalty_check.id
           end
         end
       end

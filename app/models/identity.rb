@@ -2,12 +2,14 @@ class Identity < ActiveRecord::Base
   belongs_to :user
   has_many :pages
   has_many :tips, :through => :pages
-  # has_many :royalty_checks, :through => :pages
+  has_many :royalty_checks, :through => :pages
 
   attr_accessible :provider, :uid, :username
 
   validates :provider, presence:true
   validate :presence_of_username_or_uid
+  
+  scope :non_users, where('user_id is NULL')
 
   def presence_of_username_or_uid
     unless self.username or self.uid
@@ -63,6 +65,19 @@ class Identity < ActiveRecord::Base
     ident
   end
 
+  def inform_author_of_earned_royalty_check
+    if user_id
+      inform_user_of_royalty_check
+    else
+      inform_non_user_of_promised_tips
+    end
+  end
+  
+  def inform_user_of_royalty_check
+    puts 'WARN: this should be a different message'
+    inform_non_user_of_promised_tips
+  end
+  
   def inform_non_user_of_promised_tips
     raise "not implemented in subclass" unless block_given?
     unless self.user_id

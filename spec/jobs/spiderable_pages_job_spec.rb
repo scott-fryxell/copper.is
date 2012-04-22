@@ -5,10 +5,6 @@ describe SpiderablePagesJob do
     Resque.inline = true
   end
   
-  it 'has a method :find_all_and_place_on_queue' do
-    SpiderablePagesJob.respond_to?(:find_all_and_place_on_queue).should be_true
-  end
-
   describe 'no orphaned pages in DB' do
     it 'perform should be called once on SpiderablePagesJob' do
       SpiderablePagesJob.should_receive(:perform).once
