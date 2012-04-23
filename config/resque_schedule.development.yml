@@ -19,17 +19,17 @@ SpiderablePagesJob:
   class: SpiderablePagesJob
   description: "This job queues all spiderable pages to discover page author link"
 
-EarnedRoyaltyChecksJob:
+StrangerIdentitiesJob:
   every: 10s
   queues: high
   args:
-  class: EarnedRoyaltyChecksJob
-  description: "This job queues all earned royalty_checks so authors can be informed"
+  class: StrangerIdentitiesJob
+  description: "This job queues stranger identities to see if they should be wanted."
 
-StrangersJob:
+WantedIdentitiesJob:
   every: 10s
   queues: high
   args:
-  class: StrangersJob
-  description: "This job queues strangers for the wanted list."
+  class: WantedIdentitiesJob
+  description: "This job queues wanted identities for messaging."
   
