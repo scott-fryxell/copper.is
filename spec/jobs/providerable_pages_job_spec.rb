@@ -1,10 +1,6 @@
 require 'spec_helper'
 
 describe ProviderablePagesJob do
-  it 'has a method :find_all_and_place_on_queue' do
-    ProviderablePagesJob.respond_to?(:find_all_and_place_on_queue).should be_true
-  end
-  
   describe 'no providerable pages in DB' do
     it 'perform should be called once on ProviderablePagesJob'
   end

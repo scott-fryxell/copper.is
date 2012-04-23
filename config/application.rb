@@ -24,6 +24,7 @@ module Copper
     config.filter_parameters += [:password]
 
     config.autoload_paths += %W(#{config.root}/extras)
+
     config.active_record.timestamped_migrations = false
 
     config.assets.enabled = true

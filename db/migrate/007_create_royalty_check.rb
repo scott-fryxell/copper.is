@@ -1,8 +1,8 @@
 class CreateRoyaltyCheck < ActiveRecord::Migration
   def self.up
     create_table :royalty_checks do |t|
-      t.references :user,    :null => false
-      t.string  :state
+      t.references :user
+      t.string  :check_state
       t.timestamps
     end
   end

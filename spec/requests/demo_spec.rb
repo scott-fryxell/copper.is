@@ -19,10 +19,10 @@ describe 'twitter demo' do
     sleep 5
   end
   
-  it "should tweet brokenbydawn that they have a royalty check waiting", :focus do
-    visit 'https://twitter.com/#!/copper_dev'
-    page.should have_content "@brokenbydawn"
-  end
+  it "should tweet brokenbydawn that they have a royalty check waiting" #do
+  #  visit 'https://twitter.com/#!/copper_dev'
+  #  page.should have_content "@brokenbydawn"
+  #end
   
   it "should take brokenbydawn to a service description with info about the royalty check"
   

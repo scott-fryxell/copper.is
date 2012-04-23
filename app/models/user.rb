@@ -22,10 +22,13 @@ class User < ActiveRecord::Base
   #  errors.add(:tip_orders, "there can be only one") unless self.tip_orders.current.size == 1
   # end
   
-  after_create :create_current_tip_order
+  after_create :create_current_tip_order!
   
-  def create_current_tip_order
-    tip_orders.create
+  def create_current_tip_order!
+    tip_order = self.tip_orders.build
+    tip_order.state = 'current'
+    tip_order.save!
+    save!
   end
 
   def self.create_with_omniauth(auth)
@@ -48,7 +51,9 @@ class User < ActiveRecord::Base
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
     
     tip = Tip.new(:amount_in_cents => amount_in_cents)
-    tip.page = Page.normalized_find_or_create(url,title)
+    unless tip.page = Page.where('url = ?', url).first
+      tip.page = Page.create(url:url,title:title)
+    end
     tip.tip_order = self.tip_orders.current.first
     tip.save
     tip

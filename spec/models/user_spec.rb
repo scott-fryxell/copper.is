@@ -28,6 +28,8 @@ describe User do
   describe "tiping" do
     it "should complain if the tip url is not valid" do
       fan = FactoryGirl.create(:user)
+      fan.tip_orders << FactoryGirl.create(:tip_order,state:'current')
+      fan.save!
       fan.tip(url:'foobar').valid?.should be_false
     end
 
@@ -48,6 +50,7 @@ describe User do
   describe "current tips" do
     it "should return a list of tips for a user with an current tip order" do
       @user = FactoryGirl.create(:user)
+      @user.tip_orders.current.count.should == 1
       @user.current_tips.should_not be_nil
       @user.current_tips.size.should == 0
       @user.current_tips.should be_an_instance_of Array
@@ -100,7 +103,7 @@ describe User do
   end
   
   it 'returns all :earned royalty_checks' do
-    royalty_check_id = FactoryGirl.create(:royalty_check,state:'earned',user:@user).id
+    royalty_check_id = FactoryGirl.create(:royalty_check,check_state:'earned',user:@user).id
     royalty_checks = @user.royalty_checks.earned
     royalty_checks.size.should == 1
     royalty_checks.first.id.should == royalty_check_id

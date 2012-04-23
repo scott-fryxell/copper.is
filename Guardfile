@@ -18,6 +18,10 @@ guard 'rspec', :version => 2, :cli => '--color --format doc --drb', :all_on_star
   # Rails example
   # watch(%r{^spec/.+_spec\.rb$})                       { "spec" }
   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
+  watch(%r{^app/identit(.+)\.rb$}) do
+    puts "RESTART guard because STI doesn't play well with others"
+    exit 0
+  end
   watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { "spec/requests" }
   watch(%r{^spec/support/(.+)\.rb$})                  { "spec" }

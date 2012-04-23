@@ -14,24 +14,24 @@ describe RoyaltyCheck do
   describe "state machine" do
     it "should transition from :earned to :paid on a deliver: event" do
       @royalty_check = FactoryGirl.create(:royalty_check)
-      @royalty_check.state_name.should == :earned
+      @royalty_check.earned?.should be_true
       @royalty_check.deliver
-      @royalty_check.state_name.should == :paid
+      @royalty_check.paid?.should be_true
     end
     it "should transition to :paid to :cashed with a reconcile! event" do
       @royalty_check = FactoryGirl.create(:royalty_check_paid)
-      @royalty_check.state_name.should == :paid
+      @royalty_check.paid?.should be_true
       @royalty_check.reconcile
-      @royalty_check.state_name.should == :cashed
+      @royalty_check.cashed?.should be_true
     end
   end
 
 
   context 'scopes' do
     before do
-      @earned_checks = Array.new(3) { FactoryGirl.create(:royalty_check, state:'earned') }
-      @paid_checks = Array.new(2) { FactoryGirl.create(:royalty_check, state:'paid') }
-      @cashed_checks = Array.new(2) { FactoryGirl.create(:royalty_check, state:'cashed') }
+      @earned_checks = Array.new(1) { FactoryGirl.create(:royalty_check, check_state:'earned') }
+      @paid_checks = Array.new(1) { FactoryGirl.create(:royalty_check, check_state:'paid') }
+      @cashed_checks = Array.new(1) { FactoryGirl.create(:royalty_check, check_state:'cashed') }
     end
 
     it 'has a .earned scope' do
@@ -46,4 +46,5 @@ describe RoyaltyCheck do
       RoyaltyCheck.cashed.count.should == @cashed_checks.size
     end
   end
+  
 end

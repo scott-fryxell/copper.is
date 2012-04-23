@@ -1,13 +1,26 @@
 class Identity < ActiveRecord::Base
   belongs_to :user
   has_many :pages
+  has_many :tips, :through => :pages
   has_many :royalty_checks, :through => :pages
 
   attr_accessible :provider, :uid, :username
 
   validates :provider, presence:true
   validate :presence_of_username_or_uid
+  
+  scope :strangers, where('user_id is NULL')
 
+  state_machine :identity_state, initial: :stranger do
+    event :publicize do
+      transition :stranger => :wanted
+    end
+    event :join do
+      transition :stranger => :known, :if => proc{|ident| ident.user_id}
+      transition :wanted => :known, :if => proc{|ident| ident.user_id}
+    end
+  end
+  
   def presence_of_username_or_uid
     unless self.username or self.uid
       errors.add(:uid, "uid must exist")
@@ -51,22 +64,23 @@ class Identity < ActiveRecord::Base
       nil
     end
   end
-
-  def self.find_or_create_from_url url
+  def self.find_or_create_from_url(url)
     provider = provider_from_url(url)
     i = subclass_from_provider(provider).discover_uid_and_username_from_url url
-    Identity.where('provider = ? and (uid = ? OR username = ?)',
-                   provider, i[:uid], i[:username]).first or
-      factory(provider:provider,username:i[:username],uid:i[:uid])
-  end
-
-  def inform_non_user_of_promised_tips
-    raise "not implemented in subclass" unless block_given?
-    unless self.user_id
-      yield
+    ident = Identity.where('provider = ? and (uid = ? OR username = ?)',
+                           provider,i[:uid],i[:username]).first
+    unless ident
+      ident = factory(provider:provider,username:i[:username],uid:i[:uid])
     end
+    ident
   end
-
+  
+  def message_stranger
+    raise "not a stranger" if self.user_id
+    raise "must be implemented in child class" unless block_given?
+    yield
+  end
+  
   def populate_uid_and_username!
     unless self.uid and self.username
       unless self.uid
@@ -87,5 +101,34 @@ class Identity < ActiveRecord::Base
     raise "not implemented in subclass" unless block_given?
     yield
     save!
+  end
+  
+  # def try_to_create_royalty_check!
+  #   if self.tips.charged.count > 0
+  #     royalty_check = RoyaltyCheck.new
+  #     royalty_check.tips = self.tips.charged.all
+  #     royalty_check.tips.each do |tip|
+  #       tip.king_me!
+  #     end
+  #     royalty_check.save!
+  #     royalty_check
+  #   else
+  #     nil
+  #   end
+  # end
+  
+  def try_to_add_to_wanted_list
+    raise 'TBD'
+    # if self.tips.charged.count > 0
+    #   royalty_check = RoyaltyCheck.new
+    #   royalty_check.tips = self.tips.charged.all
+    #   royalty_check.tips.each do |tip|
+    #     tip.king_me!
+    #   end
+    #   royalty_check.save!
+    #   royalty_check
+    # else
+    #   nil
+    # end
   end
 end

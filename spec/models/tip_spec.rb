@@ -40,31 +40,24 @@ describe Tip do
   describe "state machine" do
     it "should transition from :promised to :charged on a pay: event" do
       tip = FactoryGirl.create(:tip)
-      tip.state_name.should == :promised
-      tip.pay
-      tip.state_name.should == :charged
+      tip.promised?.should be_true
+      tip.pay!
+      tip.charged?.should be_true
     end
-    it "should transition to :chaged to :recieved on a send_check! event" do
+    
+    it "should transition to :changed to :kinged on a claim! event" do
       tip = FactoryGirl.create(:tip_charged)
-      tip.state_name.should == :charged
-      tip.send_check
-      tip.state_name.should == :received
+      tip.charged?.should be_true
+      tip.claim!
+      tip.kinged?.should be_true
     end
-      
-    it "should transition to :recieved to :cashed with a cash! event" do
-      tip = FactoryGirl.create(:tip_received)
-      tip.state_name.should == :received
-      tip.cash
-      tip.state_name.should == :cashed
-    end
-      
   end
 
   context 'scopes' do
     before do
-      @promised = Array.new(3) { FactoryGirl.create(:tip, state:'promised' ) }
-      @charged = Array.new(4) { FactoryGirl.create(:tip, state:'charged' ) }
-      @received = Array.new(5) { FactoryGirl.create(:tip, state:'received' ) }
+      @promised = Array.new(3) { FactoryGirl.create(:tip, paid_state:'promised' ) }
+      @charged = Array.new(4) { FactoryGirl.create(:tip, paid_state:'charged' ) }
+      @kinged = Array.new(5) { FactoryGirl.create(:tip, paid_state:'kinged' ) }
     end
 
     it 'has a .promised scope' do
@@ -75,8 +68,8 @@ describe Tip do
       Tip.charged.count.should == @charged.size
     end
 
-    it 'has a .received scope' do
-      Tip.received.count.should == @received.size
+    it 'has a .kinged scope' do
+      Tip.kinged.count.should == @kinged.size
     end
   end
 end

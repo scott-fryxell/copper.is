@@ -119,25 +119,27 @@ describe "An Author" do
     end
   end
 
-  describe "on author's royalties page" do
-    before do
-      visit "/"
-      click_link 'google_sign_in'
-      visit "/tips/agent/?uri=http://twitter.com/#!/brokenbydawn"
-      click_on('Change')
-      fill_in('tip_amount', :with => '10.50')
-      click_on('save')
-      visit "/tips/agent/?uri=http://twitter.com/#!/brokenbydawn"
-      sleep 2
-      fill_in('email', :with => 'google_user@email.com')
-      fill_in('number', :with => '4242424242424242')
-      fill_in('cvc', :with => '666')
-      select('April', :from => 'month')
-      select('2015', :from => 'year')
-      check('terms')
-      click_on('Pay')
+  slow_test do
+    describe "on author's royalties page" do
+      before do
+        visit "/"
+        click_link 'google_sign_in'
+        visit "/tips/agent/?uri=http://twitter.com/#!/brokenbydawn"
+        click_on('Change')
+        fill_in('tip_amount', :with => '10.50')
+        click_on('save')
+        visit "/tips/agent/?uri=http://twitter.com/#!/brokenbydawn"
+        sleep 2
+        fill_in('email', :with => 'google_user@email.com')
+        fill_in('number', :with => '4242424242424242')
+        fill_in('cvc', :with => '666')
+        select('April', :from => 'month')
+        select('2015', :from => 'year')
+        check('terms')
+        click_on('Pay')
+      end
+      it 'displays a royal check on the authors royalty page'
     end
-    it 'displays a royal check on the authors royalty page'
   end
 
   describe "author royalties" do

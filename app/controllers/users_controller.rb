@@ -45,8 +45,8 @@ class UsersController < ApplicationController
     order = current_user.current_tip_order
 
     if current_user.accept_terms
-      order.prepare
-      order.process
+      order.prepare!
+      order.process!
       
       if order.paid?
         OrderMailer.reciept(order).deliver

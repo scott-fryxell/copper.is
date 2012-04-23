@@ -63,7 +63,10 @@ class TipOrder < ActiveRecord::Base
       :description => self.user.email
     )
     self.charge_token = stripe_charge.id
-    self.save
+    self.save!
+    self.tips.find_each do |tip|
+      tip.pay!
+    end
     stripe_charge
   rescue Stripe::CardError => e
     self.decline

@@ -13,6 +13,7 @@ class CreateIdentities < ActiveRecord::Migration
       t.string :token
       t.string :secret
       t.string :type, :null => false
+      t.string :identity_state
       t.references :user
       t.timestamps
     end

@@ -7,13 +7,13 @@ describe Identities::Twitter do
 
   it "should send a non copper user a tweet that they have royalties" do
     Twitter.stub(:update).with("@#{@identity.username} Somebody loves you. You have money waiting for you go to copper.is/p/7657658675 to see")
-    @identity.inform_non_user_of_promised_tips
+    @identity.message_stranger
   end
 
   it "should not send a copper user a tweet trying to get them to use the service" do
     @identity.user = FactoryGirl.create(:user)
     Twitter.should_not_receive(:update)
-    @identity.inform_non_user_of_promised_tips
+    proc { @identity.message_stranger }.should raise_error
   end
 
   describe '#populate_uid_and_username!' do
