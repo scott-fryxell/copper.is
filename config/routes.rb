@@ -9,6 +9,7 @@ Copper::Application.routes.draw do
     resources :identities
     post 'pay', :on => :member
     get 'author', :to => 'users#author', :as => :author
+    get 'badge', :to => 'users#badge', :as => :badge
   end
   
   # resources :tips

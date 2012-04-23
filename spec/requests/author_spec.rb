@@ -53,6 +53,19 @@ describe "An Author" do
     end
   end
 
+  it "should have a link to the badge page" do
+    click_link 'author'
+    within("section#badge > a") do
+      page.should have_content 'badge'
+    end
+  end
+
+  it "should have a badge page" do
+    click_link 'author'
+    click_link 'badge'
+    page.should have_content 'Use the Badge on your page'
+  end
+
   describe "linking accounts" do
     before(:each) do
       click_link 'author'

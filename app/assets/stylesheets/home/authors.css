@@ -14,55 +14,6 @@
   margin-bottom:.5em;
 }
 
-section#badge > form {
-  display:inline-block;
-  vertical-align:top;
-}
-section#badge > form > h2 {
-  margin:1em 0;
-}
-section#badge > form > select {
-  font-size:.75em;
-  display:inline-block;
-  margin-right:1em;
-}
-section#badge > aside {
-  margin-left:1em;
-  margin-top:2em;
-  margin-bottom:2em;
-}
-section#badge > aside > textarea {
-  display:inline-block;
-  font-size:1em;
-  padding:.75em;
-  width:22em;
-  height:22em;
-  border-radius:.5em;
-  border:.15em solid gray;
-  line-height:2em;
-  vertical-align:middle;
-}
-section#badge > aside > figure {
-  font-size:1;
-  height:23em;
-  width:23em;
-  border:.15em solid gray;
-  border-radius:.5em;
-  display:inline-block;
-  vertical-align:middle;
-  text-align:center;
-  line-height:22em;
-  margin-left:7em;
-}
-section#badge > aside > figure > img {
-  display:inline;
-  vertical-align:middle;
-  text-align: center;
-}
-section#badge > p {
-  margin:1em;
-}
-
 section#identity > header > span {
   margin-left:2em;
   display:inline-block;
@@ -73,7 +24,6 @@ section > a {
   vertical-align:top;
   text-decoration: underline;
 }
-
 section#link > textarea {
   width :29em;
   font-size:.75em;
