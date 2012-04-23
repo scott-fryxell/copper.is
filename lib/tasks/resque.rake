@@ -20,7 +20,7 @@ namespace :resque do
 
     # The schedule doesn't need to be stored in a YAML, it just needs to
     # be a hash.  YAML is usually the easiest.
-    filename = "./config/resque_scheduler.#{Rails.env}.yml"
+    filename = "./config/resque_schedule.#{Rails.env}.yml"
     if File.exists?(filename)
       Resque.schedule = YAML.load_file(filename)
     else
