@@ -21,6 +21,11 @@ class Identity < ActiveRecord::Base
     end
   end
   
+  @queue = :high
+  def self.perform(page_id, message, args=[])
+    find(page_id).send(message, *args)
+  end
+
   def presence_of_username_or_uid
     unless self.username or self.uid
       errors.add(:uid, "uid must exist")
@@ -64,6 +69,7 @@ class Identity < ActiveRecord::Base
       nil
     end
   end
+  
   def self.find_or_create_from_url(url)
     provider = provider_from_url(url)
     i = subclass_from_provider(provider).discover_uid_and_username_from_url url
@@ -75,8 +81,8 @@ class Identity < ActiveRecord::Base
     ident
   end
   
-  def message_stranger
-    raise "not a stranger" if self.user_id
+  def message_wanted!
+    raise "this identity has a user" if self.user_id
     raise "must be implemented in child class" unless block_given?
     yield
   end

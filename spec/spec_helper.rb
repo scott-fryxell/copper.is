@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'resque_spec/scheduler'
 
 # def keypress_on(elem, key, charCode = 0)
 #   keyCode = case key
@@ -105,6 +106,7 @@ Spork.each_run do
 
     config.before(:each) do
       DatabaseCleaner.start
+      ResqueSpec.reset!
     end
 
     config.after(:each) do

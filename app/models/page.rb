@@ -35,6 +35,11 @@ class Page < ActiveRecord::Base
       transition :spiderable => :manual
     end
   end
+  
+  @queue = :high
+  def self.perform(page_id, message, args=[])
+    find(page_id).send(message, *args)
+  end
 
   # def self.normalize(uri)
   #   URI.parse(uri).host.sub(/^www\./,'') rescue nil

@@ -1,0 +1,35 @@
+OrphanedPagesJob:
+  every: 10s
+  queue: high
+  args: 
+  class: OrphanedPagesJob
+  description: "This job queues all orphaned page for url matching to provider"
+
+ProviderablePagesJob:
+  every: 10s
+  queue: high
+  args: 
+  class: ProviderablePagesJob
+  description: "This job queues all providerable pages for author lookup"
+
+SpiderablePagesJob:
+  every: 10s
+  queue: high
+  args:
+  class: SpiderablePagesJob
+  description: "This job queues all spiderable pages to discover page author link"
+
+EarnedRoyaltyChecksJob:
+  every: 10s
+  queues: high
+  args:
+  class: EarnedRoyaltyChecksJob
+  description: "This job queues all earned royalty_checks so authors can be informed"
+
+StrangersJob:
+  every: 10s
+  queues: high
+  args:
+  class: StrangersJob
+  description: "This job queues strangers for the wanted list."
+  
