@@ -9,8 +9,18 @@ class Identity < ActiveRecord::Base
   validates :provider, presence:true
   validate :presence_of_username_or_uid
   
-  scope :non_users, where('user_id is NULL')
+  scope :strangers, where('user_id is NULL')
 
+  state_machine :identity_state, initial: :stranger do
+    event :publicize do
+      transition :stranger => :wanted
+    end
+    event :join do
+      transition :stranger => :known, :if => proc{|ident| ident.user_id}
+      transition :wanted => :known, :if => proc{|ident| ident.user_id}
+    end
+  end
+  
   def presence_of_username_or_uid
     unless self.username or self.uid
       errors.add(:uid, "uid must exist")
@@ -64,27 +74,13 @@ class Identity < ActiveRecord::Base
     end
     ident
   end
-
-  def inform_author_of_earned_royalty_check
-    if user_id
-      inform_user_of_royalty_check
-    else
-      inform_non_user_of_promised_tips
-    end
+  
+  def message_stranger
+    raise "not a stranger" if self.user_id
+    raise "must be implemented in child class" unless block_given?
+    yield
   end
   
-  def inform_user_of_royalty_check
-    puts 'WARN: this should be a different message'
-    inform_non_user_of_promised_tips
-  end
-  
-  def inform_non_user_of_promised_tips
-    raise "not implemented in subclass" unless block_given?
-    unless self.user_id
-      yield
-    end
-  end
-
   def populate_uid_and_username!
     unless self.uid and self.username
       unless self.uid
@@ -107,14 +103,32 @@ class Identity < ActiveRecord::Base
     save!
   end
   
-  def try_to_create_royalty_check!
-    if self.tips.charged.count > 0
-      royalty_check = RoyaltyCheck.new
-      royalty_check.tips = self.tips.charged.all
-      royalty_check.save!
-      royalty_check
-    else
-      nil
-    end
+  # def try_to_create_royalty_check!
+  #   if self.tips.charged.count > 0
+  #     royalty_check = RoyaltyCheck.new
+  #     royalty_check.tips = self.tips.charged.all
+  #     royalty_check.tips.each do |tip|
+  #       tip.king_me!
+  #     end
+  #     royalty_check.save!
+  #     royalty_check
+  #   else
+  #     nil
+  #   end
+  # end
+  
+  def try_to_add_to_wanted_list
+    raise 'TBD'
+    # if self.tips.charged.count > 0
+    #   royalty_check = RoyaltyCheck.new
+    #   royalty_check.tips = self.tips.charged.all
+    #   royalty_check.tips.each do |tip|
+    #     tip.king_me!
+    #   end
+    #   royalty_check.save!
+    #   royalty_check
+    # else
+    #   nil
+    # end
   end
 end

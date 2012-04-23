@@ -26,10 +26,10 @@ EarnedRoyaltyChecksJob:
   class: EarnedRoyaltyChecksJob
   description: "This job queues all earned royalty_checks so authors can be informed"
 
-NonUserRoyaltyChecksJob:
+StrangersJob:
   every: 10s
   queues: high
   args:
-  class: NonUserRoyaltyChecksJob
-  description: "This job queues non-user identities that should be checked for royalty_checks"
+  class: StrangersJob
+  description: "This job queues strangers for the wanted list."
   

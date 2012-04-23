@@ -22,13 +22,7 @@ class Identities::Twitter < Identity
     end
   end
 
-  def inform_non_user_of_promised_tips
-    super do
-      send_tweet("Somebody loves you. You have money waiting for you go to copper.is/p/7657658675 to see")
-    end
-  end
-
-  def inform_user_of_promised_tips
+  def message_stranger
     super do
       send_tweet("Somebody loves you. You have money waiting for you go to copper.is/p/7657658675 to see")
     end

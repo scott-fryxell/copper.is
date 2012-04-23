@@ -28,14 +28,16 @@ class MatchUrlToProviderJob
   end
 end
 
-class TryToCreateRoyaltyCheckJob
+class TryToAddToWantedListJob
   @queue = :high
   def self.perform(identity_id)
-    Identity.find(identity_id).try_to_create_royalty_check!
+    Identity.find(identity_id).try_to_add_to_wanted_list
   end
 end
 
-# collection based job
+
+
+# ======  RoyaltyCheck observers =======
 
 class EarnedRoyaltyChecksJob
   @queue = :high
@@ -46,23 +48,17 @@ class EarnedRoyaltyChecksJob
   end
 end
 
-class SpiderablePagesJob
+class StrangersJob
   @queue = :high
   def self.perform
-    Page.spiderable.select(:id).find_each do |page|
-      Resque.enqueue FindProviderFromAuthorLinkJob, page.id
+    Identity.strangers.select(:id).find_each do |non_user|
+      Resque.enqueue TryToAddToWantedListJob, non_user.id
     end
   end
 end
 
-class NonUserRoyaltyChecksJob
-  @queue = :high
-  def self.perform
-    Identity.non_users.select(:id).find_each do |non_user|
-      Resque.enqueue TryToCreateRoyaltyCheckJob, non_user.id
-    end
-  end
-end
+
+# ======  Page observers =======
 
 class OrphanedPagesJob
   @queue = :high
@@ -82,3 +78,11 @@ class ProviderablePagesJob
   end
 end
 
+class SpiderablePagesJob
+  @queue = :high
+  def self.perform
+    Page.spiderable.select(:id).find_each do |page|
+      Resque.enqueue FindProviderFromAuthorLinkJob, page.id
+    end
+  end
+end
