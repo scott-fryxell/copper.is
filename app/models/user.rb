@@ -24,6 +24,11 @@ class User < ActiveRecord::Base
   
   after_create :create_current_tip_order!
   
+  @queue = :high
+  def self.perform(page_id, message, args=[])
+    find(page_id).send(message, *args)
+  end
+
   def create_current_tip_order!
     tip_order = self.tip_orders.build
     tip_order.state = 'current'
@@ -90,5 +95,19 @@ class User < ActiveRecord::Base
   def current_tips
     current_tip_order.tips
   end
+
+  def try_to_create_royalty_check!
+    if self.tips.charged.sum(:amount_in_cents) > 1000
+      if check = self.royalty_checks.create
+        self.tips.charged.each do |tip|
+          check.tips << tip
+        end
+        check.save!
+      end
+    end
+  end
   
+  def message_about_royalty_check(royalty_check_id)
+    RoyaltyCheckMailer.check(RoyaltyCheck.find(royalty_check_id)).deliver
+  end
 end

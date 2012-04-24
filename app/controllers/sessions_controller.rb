@@ -37,6 +37,7 @@ class SessionsController < ApplicationController
       end
     else
       if @identity.user
+        @identity.join!
         # The identity we found had a user associated with it so let's
         # just log them in
         current_user = @identity.user
