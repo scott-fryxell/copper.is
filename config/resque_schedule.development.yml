@@ -32,4 +32,17 @@ WantedIdentitiesJob:
   args:
   class: WantedIdentitiesJob
   description: "This job queues wanted identities for messaging."
-  
+
+UsersJob:
+  every: 10s
+  queues: high
+  args:
+  class: UsersJob
+  description: ""
+
+EarnedRoyaltyChecksJob:
+  every: 10s
+  queues: high
+  args:
+  class: EarnedRoyaltyChecksJob
+  description: ""

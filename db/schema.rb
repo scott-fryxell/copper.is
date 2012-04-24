@@ -57,8 +57,9 @@ ActiveRecord::Schema.define(:version => 8) do
   create_table "royalty_checks", :force => true do |t|
     t.integer  "user_id"
     t.string   "check_state"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "count",       :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
   create_table "tip_orders", :force => true do |t|
