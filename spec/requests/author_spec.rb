@@ -24,13 +24,9 @@ describe "An Author" do
 
   it "should visit authors" do
     click_link 'author'
-    page.should have_content 'Author settings'
-    page.should have_content 'Badge'
+    page.should have_content 'Author Settings'
+    page.should have_content 'Mailing Address'
     page.should have_content 'Identities'
-    within("section#badge > form") do
-      page.should have_content 'Color'
-      page.should have_content 'Size'
-    end
   end
 
   it "should be able to see how many accounts are linked" do
@@ -64,6 +60,11 @@ describe "An Author" do
     click_link 'author'
     click_link 'badge'
     page.should have_content 'Use the Badge on your page'
+    within("section#badge > form") do
+      page.should have_content 'Color'
+      page.should have_content 'Size'
+    end
+    
   end
 
   describe "linking accounts" do
@@ -164,5 +165,16 @@ describe "An Author" do
     it "have a list of all royalty checks" # do
     #  page.should have_content 'Royalties'
     #end
+  end
+  
+  describe "author address" do
+    before(:each) do
+      click_link 'author'
+    end
+    
+    it "should have an address link" do
+      page.should have_content 'Mailing Address'
+    end
+    
   end
 end

@@ -2,6 +2,7 @@ require 'resque/server'
 
 Copper::Application.routes.draw do
   resources :users do
+    resources :addresses
     resources :tips
     resources :royalty_orders do
       resources :royalties

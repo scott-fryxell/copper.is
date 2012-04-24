@@ -13,16 +13,16 @@
   font-size:1.5em;
   margin-bottom:.5em;
 }
+#authors > section > a {
+  vertical-align:top;
+  text-decoration: underline;
+}
 
 section#identity > header > span {
   margin-left:2em;
   display:inline-block;
   font-size: 1.5em;
   width: 4em;
-}
-section > a {
-  vertical-align:top;
-  text-decoration: underline;
 }
 section#link > textarea {
   width :29em;
@@ -31,5 +31,17 @@ section#link > textarea {
   line-height:1em;
   border-radius:.5em;
   border:.2em solid gray;
-  
+}
+section#address > header {
+  vertical-align:top;
+}
+section#address > form {
+  display:inline-block;
+  width:10em;
+}
+section#address > form > fieldset > label {
+  display:block;
+}
+section#address > form > fieldset > input {
+  display:block;
 }
