@@ -4,7 +4,7 @@ Copper::Application.routes.draw do
   resources :users do
     resources :addresses
     resources :tips
-    resources :royalty_orders do
+    resources :royalty_checks do
       resources :royalties
     end
     resources :identities
