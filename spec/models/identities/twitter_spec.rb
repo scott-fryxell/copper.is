@@ -6,7 +6,7 @@ describe Identities::Twitter do
   end
 
   it "should send a non copper user a tweet that they have royalties" do
-    Twitter.stub(:update).with("@#{@identity.username} Somebody loves you. You have money waiting for you go to copper.is/p/7657658675 to see")
+    Twitter.stub(:update).with("@#{@identity.username} Somebody loves you. You have money waiting for you go to copper.is/i/#{@identity.id} to see")
     @identity.message_wanted!
   end
 

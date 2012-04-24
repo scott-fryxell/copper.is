@@ -19,6 +19,17 @@ require 'resque_spec/scheduler'
 # def unauthenticate
 # end
 
+def with_resque_scheduler
+  with_resque do
+    OrphanedPagesJob.perform
+    ProviderablePagesJob.perform
+    SpiderablePagesJob.perform
+    StrangerIdentitiesJob.perform
+    WantedIdentitiesJob.perform
+    yield
+  end
+end
+
 def  slow_test
   unless ENV['FAST_TEST']
     yield

@@ -43,9 +43,7 @@ class SpiderablePagesJob
   @queue = :high
   def self.perform
     Page.spiderable.select(:id).find_each do |page|
-      puts page.inspect
       Resque.enqueue Page, page.id, :find_identity_from_author_link!
-      puts "DONE!"
     end
   end
 end
