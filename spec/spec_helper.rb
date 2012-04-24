@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'resque_spec/scheduler'
 
 # def keypress_on(elem, key, charCode = 0)
 #   keyCode = case key
@@ -17,6 +18,17 @@ require 'spork'
 # 
 # def unauthenticate
 # end
+
+def with_resque_scheduler
+  with_resque do
+    OrphanedPagesJob.perform
+    ProviderablePagesJob.perform
+    SpiderablePagesJob.perform
+    StrangerIdentitiesJob.perform
+    WantedIdentitiesJob.perform
+    yield
+  end
+end
 
 def  slow_test
   unless ENV['FAST_TEST']
@@ -105,6 +117,7 @@ Spork.each_run do
 
     config.before(:each) do
       DatabaseCleaner.start
+      ResqueSpec.reset!
     end
 
     config.after(:each) do

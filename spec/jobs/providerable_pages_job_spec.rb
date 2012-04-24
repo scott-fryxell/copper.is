@@ -1,23 +1,9 @@
 require 'spec_helper'
 
 describe ProviderablePagesJob do
-  describe 'no providerable pages in DB' do
-    it 'perform should be called once on ProviderablePagesJob'
-  end
-  
-  describe 'one providerable page in DB' do
-    before do
-      FactoryGirl.create :page, author_state:'providerable'
-    end
-    
-    it 'perform should be called once on ProviderablePagesJob'
-  end
-  
-  describe 'two providerable pages in DB' do
-    before do
-      2.times { FactoryGirl.create :page, author_state:'providerable' }
-    end
-    
-    it 'perform should be called once on ProviderablePagesJob'
+  it 'queues a Page@find_identity_from_author_link! job' do
+    page_id = FactoryGirl.create(:page, author_state:'providerable').id
+    ProviderablePagesJob.perform
+    Page.should have_queued(page_id, :discover_identity!)
   end
 end

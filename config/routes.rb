@@ -13,6 +13,8 @@ Copper::Application.routes.draw do
     get 'badge', :to => 'users#badge', :as => :badge
   end
   
+  get "/i/:id", :to => "identities#show"
+  
   # resources :tips
   # resources :tip_orders do
   #   resources :tips

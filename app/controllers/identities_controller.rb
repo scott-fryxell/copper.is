@@ -4,6 +4,10 @@ class IdentitiesController < ApplicationController
   def index
   end
   
+  def show
+    @identity = Identity.find(params[:id])
+  end
+  
   def destroy 
     identity = Identity.find(params[:id])
     identity.destroy
