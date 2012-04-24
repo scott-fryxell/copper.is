@@ -5,10 +5,10 @@ describe Identities::Twitter do
     @identity = FactoryGirl.create(:identities_twitter, username:"_ugly")
   end
 
-  it "should send a non copper user a tweet that they have royalties" do
-    Twitter.stub(:update).with("@#{@identity.username} Somebody loves you. copper.is/i/#{@identity.id}")
-    @identity.message_wanted!
-  end
+  it "should send a non copper user a tweet that they have royalties"#  do
+  #   Twitter.stub(:update).with("@#{@identity.username} Somebody loves you. copper.is/i/#{@identity.id}")
+  #   @identity.message_wanted!
+  # end
 
   it "should not send a copper user a tweet trying to get them to use the service" do
     @identity.user = FactoryGirl.create(:user)

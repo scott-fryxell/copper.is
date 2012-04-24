@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'twitter demo' do
+describe 'twitter demo', :focus do
   before do
     visit '/'
     click_link 'facebook_sign_in'
@@ -37,7 +37,7 @@ describe 'twitter demo' do
     #   visit @ident_url
     #   page.should have_content 'Foobar'
     # end
-      tweet = Twitter.search("@_ugly",rpp:1,result_type:'recent',include_entities:true).first
+      tweet = Twitter.search("@brokenbydawn",rpp:1,result_type:'recent',include_entities:true).first
       puts "found this tweet: #{tweet.text}"
       @ident_url = tweet.urls[0].expanded_url
       @ident_url.should_not be_nil
