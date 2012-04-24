@@ -24,7 +24,7 @@ class Identities::Twitter < Identity
 
   def message_wanted!
     super do
-      send_tweet("Somebody loves you. You have money waiting for you go to copper.is/i/#{self.id} to see")
+      send_tweet("Somebody loves you. /i/#{self.id}")
     end
   end
 

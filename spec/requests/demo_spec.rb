@@ -37,6 +37,13 @@ describe 'twitter demo' do
     #   visit @ident_url
     #   page.should have_content 'Foobar'
     # end
+      tweet = Twitter.search("@_ugly",rpp:1,result_type:'recent',include_entities:true).first
+      puts "found this tweet: #{tweet.text}"
+      @ident_url = tweet.urls[0].expanded_url
+      @ident_url.should_not be_nil
+      puts "found this url in tweet, following it: #{@ident_url}"
+      visit @ident_url
+      page.should have_content 'Foobar'
     
     it "brokenbydawn logs in" # do
     #   Twitter.search("@brokenbydawn",rpp:1,result_type:"recent").first do |tweet|

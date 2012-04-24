@@ -11,7 +11,7 @@ Copper::Application.routes.draw do
     get 'author', :to => 'users#author', :as => :author
   end
   
-  match "/i/:id", :to => "identities#show"
+  get "/i/:id", :to => "identities#show"
   
   # resources :tips
   # resources :tip_orders do
