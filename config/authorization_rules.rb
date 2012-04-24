@@ -1,9 +1,11 @@
  authorization do
 
   role :admin do
+    includes :patron
   end
 
   role :patron do
+    includes :guest
     has_permission_on [:sessions], :to => [:destroy]
 
     has_permission_on [:users], :to => [:new, :create, :edit, :update, :show, :pay, :identities, :author, :badge] do
