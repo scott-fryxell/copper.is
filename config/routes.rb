@@ -12,9 +12,7 @@ Copper::Application.routes.draw do
     get 'author', :to => 'users#author', :as => :author
     get 'badge', :to => 'users#badge', :as => :badge
   end
-  
-  get "/i/:id", :to => "identities#show"
-  
+
   # resources :tips
   # resources :tip_orders do
   #   resources :tips
@@ -25,7 +23,7 @@ Copper::Application.routes.draw do
   # resources :pages
   # resources :identities
   # resources :users
-  
+
   get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe
 
@@ -37,6 +35,9 @@ Copper::Application.routes.draw do
   get 'faq', :to => 'home#faq'
   get 'button', :to => 'home#button'
   get 'buckingthesystem', :to => 'home#index'
+
+  get "i/:id", :to => "identities#show"
+  get "wanted", :to => "identities#wanted", :as => :wanted
 
   match "/auth/:provider/callback" => "sessions#create"
   match '/auth/failure' => 'sessions#failure'

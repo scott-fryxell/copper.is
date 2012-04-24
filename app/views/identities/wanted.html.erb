@@ -1,0 +1,32 @@
+<%-content_for :head do-%>
+  <title><%=current_user.name%> - Copper</title>
+  <%= stylesheet_link_tag "users/identities" %>
+<%-end-%>
+<section id="wanted">
+  <h1>Most wanted list</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>username</th>
+        <th>Tips</th>
+        <th>Amount owed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%-@wanted.each do |identity|-%>
+       <tr>
+         <td>
+           <%=identity.username%>
+         </td>
+         <td>
+            <%=identity.tips.count%>
+         </td>
+          <td>
+            <%=cents_to_dollars(identity.tips.sum(:amound_in_cents))%>
+         </td>
+       </tr>
+      <%-end-%>
+    </tbody>
+
+</section>

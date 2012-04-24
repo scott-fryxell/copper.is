@@ -16,7 +16,7 @@
   role :guest do
     has_permission_on [:home], :to => [:all]
     has_permission_on [:tips], :to => [:embed_iframe]
-    has_permission_on [:identities], :to => [:show]
+    has_permission_on [:identities], :to => [:show, :wanted]
   end
 
 end
