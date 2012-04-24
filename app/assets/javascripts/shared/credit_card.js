@@ -1,5 +1,8 @@
 // this identifies your website in the createToken call below
 $(document).ready(function() {
+
+  $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
+
   $("#credit_card > form").submit(function(event) {
     $("#credit_card > h1").text("Processing your order...");
     event.preventDefault();
