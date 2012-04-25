@@ -28,7 +28,7 @@ class Identities::Youtube < Identity
   #         URI.parse(self.url).path.split('/').last
   #        ]
   #     else
-  #       @client ||= YouTubeIt::Client.new(:dev_key => Copper::Application.config.google_code_dev_key)
+  #       @client ||= YouTubeIt::Client.new(:dev_key => Copper::Application.config.google_code_developer_key)
   #       video_id = URI.parse(self.url).query.split('&').find{|e| e =~ /^v/}.split('=').last
   #       [
   #        'youtube',
