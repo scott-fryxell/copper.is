@@ -89,11 +89,11 @@ GEM
       multi_json (~> 1.0)
     guard-rspec (0.7.0)
       guard (>= 0.10.0)
-    guard-spork (0.7.0)
+    guard-spork (0.7.1)
       guard (>= 0.10.0)
       spork (>= 0.8.4)
     hashie (1.2.0)
-    heroku (2.24.1)
+    heroku (2.25.0)
       launchy (>= 0.3.2)
       netrc (~> 0.7.1)
       rest-client (~> 1.6.1)
@@ -294,7 +294,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  addressable
   capybara-webkit
   coffee-rails
   dalli
