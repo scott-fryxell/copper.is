@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :tips, :through => :tip_orders
   has_many :royalty_checks
   has_and_belongs_to_many :roles
+  
+  # has_many :royalties, :through => :identities, :class => 'Tip'
 
   attr_accessible :name, :email, :tip_preference_in_cents
   
@@ -97,10 +99,16 @@ class User < ActiveRecord::Base
   end
 
   def try_to_create_royalty_check!
-    if self.tips.charged.sum(:amount_in_cents) > 1000
+    the_tips = []
+    self.identities.each do |ident|
+      the_tips += ident.tips.charged.all
+    end
+    unless the_tips.empty?
       if check = self.royalty_checks.create
-        self.tips.charged.each do |tip|
+        the_tips.each do |tip|
           check.tips << tip
+          tip.claim!
+          tip.save!
         end
         check.save!
       end
