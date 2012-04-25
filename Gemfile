@@ -48,7 +48,8 @@ group :development, :test do
   gem 'rb-fsevent'
   gem 'spork', '> 0.9.0.rc'
   gem 'launchy'
-  gem 'ruby-graphviz'
+  gem 'ruby-graphviz', '~> 0.9.17'
+  gem 'rails-erd'
 end
 
 group :test do
