@@ -24,7 +24,7 @@ class Identities::Twitter < Identity
 
   def message_wanted!
     super do
-      send_tweet("Someone loves you.  http://127.0.0.1:5000/i/#{self.id}")
+      send_tweet("Someone loves you.  http://127.0.0.1:5000/i/#{self.id} #{Time.now.to_i.to_s[6..-1]}")
     end
   end
 
