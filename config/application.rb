@@ -12,7 +12,7 @@ if defined?(Bundler)
 end
 
 module Copper
-   
+
   class Application < Rails::Application
 
     config.encoding = "utf-8"
@@ -45,12 +45,6 @@ module Copper
 
     config.twitter_oauth_key = ENV['TWITTER_OAUTH_KEY']
     config.twitter_oauth_secret = ENV['TWITTER_OAUTH_SECRET']
-
-    p config.twitter_key
-    p config.twitter_secret
-
-    p config.twitter_oauth_key
-    p config.twitter_oauth_secret
 
     config.google_key = ENV['GOOGLE_KEY']
     config.google_secret = ENV['GOOGLE_SECRET']

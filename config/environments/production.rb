@@ -1,4 +1,5 @@
 Copper::Application.configure do
+  config.force_ssl = true
   config.cache_classes = true
   config.consider_all_requests_local       = true
   config.action_dispatch.x_sendfile_header = "X-Accel-Redirect"
