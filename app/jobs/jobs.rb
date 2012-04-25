@@ -13,7 +13,7 @@ class EarnedRoyaltyChecksJob
   @queue = :high
   def self.perform
     RoyaltyCheck.earned.select(:id).find_each do |check|
-      Resque.enqueue RoyaltyCheck, check.id, :message_author!
+      # Resque.enqueue RoyaltyCheck, check.id, :message_author!
     end
   end
 end
