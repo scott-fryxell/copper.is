@@ -3,15 +3,10 @@ class Page < ActiveRecord::Base
   has_many :tips
   has_many :royalty_checks, :through => :tips
 
-  validates :url,
-    # :format => {:with => URI::regexp, :message => 'not a valid URL'},
-    :presence => true
-
   attr_accessible :title, :url
 
   validate :url_points_to_real_site
-
-  # before_save :normalize
+  validates :url, :presence => true
 
   [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
     scope state, where("author_state = ?", state)
@@ -40,19 +35,6 @@ class Page < ActiveRecord::Base
   def self.perform(page_id, message, args=[])
     find(page_id).send(message, *args)
   end
-
-  # def self.normalize(uri)
-  #   URI.parse(uri).host.sub(/^www\./,'') rescue nil
-  # end
-
-#  def self.normalized_find(url)
-#    Page.find_by_normalized_url(Page.normalize(url))
-#  end
-
-#  def self.normalized_find_or_create(url,title = nil)
-#    title ||= url
-#    normalized_find(url) or create(url:url,title:title)
-#  end
 
   def match_url_to_provider!
     if Identity.provider_from_url(self.url)
