@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+
 gem 'rails', '3.2.3'
 gem 'declarative_authorization'
 gem 'jquery-rails'
@@ -47,6 +48,7 @@ group :development, :test do
   gem 'rb-fsevent'
   gem 'spork', '> 0.9.0.rc'
   gem 'launchy'
+  gem 'ruby-graphviz'
 end
 
 group :test do
