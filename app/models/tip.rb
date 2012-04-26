@@ -35,7 +35,7 @@ class Tip < ActiveRecord::Base
       transition :charged => :kinged
     end
     
-    state :charged do
+    state :charged, :kinged do
       validate :validate_presence_of_paid_tip_order
     end
   end

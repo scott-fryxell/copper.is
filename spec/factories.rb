@@ -111,11 +111,11 @@ FactoryGirl.define do
     paid_state "charged"
   end
 
-  factory :tip_received, :class => "Tip" do
-    association :tip_order
+  factory :tip_kinged, :class => "Tip" do
+    association :tip_order, factory: :tip_order_paid
     association :page
     amount_in_cents 100
-    paid_state "received"
+    paid_state "kinged"
   end
 
   factory :royalty_check do
