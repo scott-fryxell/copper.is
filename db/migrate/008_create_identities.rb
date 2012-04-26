@@ -14,7 +14,7 @@ class CreateIdentities < ActiveRecord::Migration
       t.string :secret
       t.string :type, :null => false
       t.string :identity_state
-      t.integer :count, :default => 0
+      t.datetime :message
       t.references :user
       t.timestamps
     end

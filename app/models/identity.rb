@@ -86,9 +86,9 @@ class Identity < ActiveRecord::Base
   def message_wanted!
     raise "this identity has a user" if self.user_id
     raise "must be implemented in child class" unless block_given?
-    if self.count == 0
+    if self.message.nil?
       yield
-      self.count = 1
+      self.message = Time.now
       save!
     end
   end
