@@ -27,7 +27,7 @@ class Page < ActiveRecord::Base
       transition :orphaned   => :spiderable,
                  :spiderable => :manual,
                  :manual     => :fostered,
-                 :fostered   => :fostered
+                 :fostered   => :orphaned
     end
     
     after_transition any => :orphaned do |page,transition|
