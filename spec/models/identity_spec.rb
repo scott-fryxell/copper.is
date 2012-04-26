@@ -27,16 +27,18 @@ describe Identity do
         Identity.factory provider:provider, uid:FactoryGirl.generate(:uid)
       end
 
-      it 'has a method that populates uid or username depending on what\'s missing' do
-        proc{ @identity.populate_uid_and_username! }.should_not raise_error
-      end
+      slow_test do
+        it 'has a method that populates uid or username depending on what\'s missing' do
+          proc{ @identity.populate_uid_and_username! }.should_not raise_error
+        end
 
-      it 'has a method that populates uid given a username' do
-        proc{ @identity.populate_uid_from_username! }.should_not raise_error
-      end
+        it 'has a method that populates uid given a username' do
+          proc{ @identity.populate_uid_from_username! }.should_not raise_error
+        end
 
-      it 'has a method that populates username given a uid' do
-        proc{ @identity.populate_username_from_uid! }.should_not raise_error
+        it 'has a method that populates username given a uid' do
+          proc{ @identity.populate_username_from_uid! }.should_not raise_error
+        end
       end
 
       describe 'with a page and some tips' do

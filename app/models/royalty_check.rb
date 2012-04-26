@@ -27,15 +27,10 @@ class RoyaltyCheck < ActiveRecord::Base
   # end
   
   def message_author!
-    puts "======================================================"
-    puts "RoyaltyCheck.count == #{self.count}"
     if self.count == 0
-      puts "======================================================"
-      puts "RoyaltyCheck.count == #{self.count}"
       self.user.message_about_royalty_check(self.id)
       self.count = self.count + 1
       save!
-      puts "RoyaltyCheck.count (After) == #{self.count}"
     end
   end
 end

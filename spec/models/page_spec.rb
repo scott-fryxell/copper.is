@@ -27,47 +27,7 @@ describe Page do
       @page.save.should be_true
     end
   end
-
-  # context 'normalization' do
-  #   before do
-  #     @page = Page.new url:"http://www.example.com"
-  #     @page.save.should be_true
-  #   end
-
-  #   it "should save original url with page" do
-  #     @page.url.should == 'http://www.example.com'
-  #     @page.normalized_url.should == 'example.com'
-  #   end
-
-  #   it "provides a normalized find by url method" do
-  #     Page.respond_to?(:normalized_find).should be_true
-  #   end
-
-  #   it "provides a normalized find or create by url method" do
-  #     Page.respond_to?(:normalized_find_or_create).should be_true
-  #   end
-
-  #   it "assumes http when there is a tip without scheme" # do
-  #    #      Page.normalized_find('example.com').id.should == @page.id
-  #    #    end
-
-  #   it "assumes http when there is a tip with https scheme" do
-  #     Page.normalized_find('https://example.com').id.should == @page.id
-  #   end
-
-  #   it "assumes http when there is a tip with http scheme" do
-  #     Page.normalized_find('http://example.com').id.should == @page.id
-  #   end
-
-  #   it "assumes no host name when there is a tip with a 'www' hostname" do
-  #     Page.normalized_find('http://www.example.com').id.should == @page.id
-  #   end
-
-  #   it "assumes http and no host when there is a tip with no http scheme and a 'www' host" do
-  #     Page.normalized_find('http://www.example.com').id.should == @page.id
-  #   end
-  # end
-
+  
   describe 'scopes' do
     before do
       [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
@@ -127,21 +87,28 @@ describe Page do
         before do
           @page = FactoryGirl.build(:page, url:'http://dude.com',author_state:'providerable')
         end
+        
         after do
           @page.save
           @page.providerable?.should be_true
           @page.discover_identity!
           @page.adopted?.should be_true
         end
+        
         it "finds user on facebook.com" do
           @page.url = "http://www.facebook.com/scott.fryxell"
         end
+        
         it "finds user on flickr.com" #do
         #  @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
         #end
-        it "finds user on twitter.com" do
-          @page.url = "https://twitter.com/#!/ChloesThinking"
+        
+        slow_test do
+          it "finds user on twitter.com" do
+            @page.url = "https://twitter.com/#!/ChloesThinking"
+          end
         end
+        
         it "finds user on youtube.com" #do
         #  @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
         #end
@@ -170,12 +137,15 @@ describe Page do
         page.match_url_to_provider!
         page.spiderable?.should be_true
       end
-      it "transitions from :spiderable to :adopted when there is a link tag" do
-        page = FactoryGirl.create(:page, url:'http://prettypennyrecords.com/woodsboro/pocket_comb', author_state:'spiderable')
-        page.spiderable?.should be_true
-        page.find_identity_from_author_link!
-        page.identity.username.should == "brokenbydawn"
-        page.adopted?.should be_true
+      
+      slow_test do
+        it "transitions from :spiderable to :adopted when there is a link tag" do
+          page = FactoryGirl.create(:page, url:'http://prettypennyrecords.com/woodsboro/pocket_comb', author_state:'spiderable')
+          page.spiderable?.should be_true
+          page.find_identity_from_author_link!
+          page.identity.username.should == "brokenbydawn"
+          page.adopted?.should be_true
+        end
       end
     end
     describe "unhappy path" do
@@ -185,17 +155,17 @@ describe Page do
        #        page.find_provider_from_author_link!
        #        page.manual?.should be_true
        #      end
-      it "transitions from :manual to :fostered on a lost!" do
+      it "transitions from :manual to :fostered on a lose!" do
         page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'manual')
         page.manual?.should be_true
-        page.lost!
+        page.lose!
         page.fostered?.should be_true
       end
-      it "transitions from :manual to :adopted on a found!" do
+      it "transitions from :manual to :adopted on a adopt!" do
         page = FactoryGirl.create(:page, url:'http://dude.com',author_state:'manual')
         page.manual?.should be_true
         page.identity = Identity.factory(uid:'dude',provider:'facebook')
-        page.found!
+        page.adopt!
         page.adopted?.should be_true
       end
     end
@@ -260,28 +230,30 @@ describe Page do
     end
   end
 
-  describe 'discovering twitter uid' do
-    it 'finds a uid from a twitter status url' do
-      page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp/status/191682126138191873')
-      page.match_url_to_provider!
-      page.providerable?.should be_true
-      page.discover_identity!
-      page.identity.provider.should == 'twitter'
-      page.adopted?.should be_true
-      page2 = Page.find(page.id)
-      page2.id.should == page.id
+  slow_test do
+    describe 'discovering twitter uid' do
+      it 'finds a uid from a twitter status url' do
+        page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp/status/191682126138191873')
+        page.match_url_to_provider!
+        page.providerable?.should be_true
+        page.discover_identity!
+        page.identity.provider.should == 'twitter'
+        page.adopted?.should be_true
+        page2 = Page.find(page.id)
+        page2.id.should == page.id
 
-      page2.identity.uid.should == '14062332'
-      page2.identity.provider.should == 'twitter'
-    end
-    it 'finds a uid from a twitter user page' do
-      page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp')
-      page.match_url_to_provider!
-      page.providerable?.should be_true
-      page.discover_identity!
-      page.adopted?.should be_true
-      page.identity.uid.should == '14062332'
-      page.identity.provider.should == 'twitter'
+        page2.identity.uid.should == '14062332'
+        page2.identity.provider.should == 'twitter'
+      end
+      it 'finds a uid from a twitter user page' do
+        page = FactoryGirl.create(:page,url:'https://twitter.com/#!/bleikamp')
+        page.match_url_to_provider!
+        page.providerable?.should be_true
+        page.discover_identity!
+        page.adopted?.should be_true
+        page.identity.uid.should == '14062332'
+        page.identity.provider.should == 'twitter'
+      end
     end
   end
 

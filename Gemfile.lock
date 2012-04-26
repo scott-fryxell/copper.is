@@ -178,6 +178,10 @@ GEM
       activesupport (= 3.2.3)
       bundler (~> 1.0)
       railties (= 3.2.3)
+    rails-erd (0.4.5)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      ruby-graphviz (~> 0.9.18)
     railties (3.2.3)
       actionpack (= 3.2.3)
       activesupport (= 3.2.3)
@@ -219,6 +223,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.9.0)
+    ruby-graphviz (0.9.21)
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
     rubyzip (0.9.7)
@@ -322,12 +327,14 @@ DEPENDENCIES
   pg
   pry
   rails (= 3.2.3)
+  rails-erd
   rb-fsevent
   redis
   resque
   resque-scheduler
   resque_spec
   rspec-rails
+  ruby-graphviz (~> 0.9.17)
   ruby_parser
   sass-rails
   simplecov

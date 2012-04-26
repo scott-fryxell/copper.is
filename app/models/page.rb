@@ -1,97 +1,83 @@
 class Page < ActiveRecord::Base
+  include Enqueueable
+  
   belongs_to :identity
   has_many :tips
   has_many :royalty_checks, :through => :tips
 
-  validates :url,
-    # :format => {:with => URI::regexp, :message => 'not a valid URL'},
-    :presence => true
-
   attr_accessible :title, :url
 
+  validates :url, :presence => true
+  
   validate :url_points_to_real_site
-
-  # before_save :normalize
-
+  def url_points_to_real_site
+    errors.add(:url, "must point to a real site") unless self.url =~ /\./
+  end
+  
   [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
     scope state, where("author_state = ?", state)
   end
 
   state_machine :author_state, initial: :orphaned do
     event :catorgorize do
-      transition :orphaned => :providerable
+      transition any => :providerable
     end
-    event :found do
-      transition :manual => :adopted, :if => lambda{|page| page.identity_id}
-      transition :providerable => :adopted, :if => lambda{|page| page.identity_id}
-      transition :spiderable => :adopted
+    
+    event :adopt do
+      transition any => :adopted
     end
-    event :discover do
-      transition :orphaned => :spiderable
+    
+    event :lose do
+      transition :manual       => :fostered,
+                 :providerable => :spiderable,
+                 :spiderable   => :manual,
+                 :orphaned     => :spiderable,
+                 :adopted      => :orphaned,
+                 :fostered     => :fostered
     end
-    event :lost do
-      transition :manual => :fostered
-      transition :providerable => :spiderable
-      transition :spiderable => :manual
+    
+    after_transition any => :orphaned do |page,transition|
+      Resque.enqueue Page, page.id, :match_url_to_provider!
+    end
+    
+    after_transition any => :providerable do |page,transition|
+      Resque.enqueue Page, page.id, :discover_identity!
+    end
+    
+    after_transition any => :spiderable do |page,transition|
+      Resque.enqueue Page, page.id, :find_identity_from_author_link!
     end
   end
-  
-  @queue = :high
-  def self.perform(page_id, message, args=[])
-    find(page_id).send(message, *args)
-  end
-
-  # def self.normalize(uri)
-  #   URI.parse(uri).host.sub(/^www\./,'') rescue nil
-  # end
-
-#  def self.normalized_find(url)
-#    Page.find_by_normalized_url(Page.normalize(url))
-#  end
-
-#  def self.normalized_find_or_create(url,title = nil)
-#    title ||= url
-#    normalized_find(url) or create(url:url,title:title)
-#  end
 
   def match_url_to_provider!
     if Identity.provider_from_url(self.url)
       self.catorgorize!
     else
-      self.discover!
+      self.lose!
     end
   end
 
   def discover_identity!
     if self.identity = Identity.find_or_create_from_url(self.url)
       save!
-      self.found!
+      self.adopt!
     else
-      self.lost!
+      self.lose!
     end
   end
 
   def find_identity_from_author_link!
-    author_link = Nokogiri::HTML(open(self.url)).css('link[rel=author]').attr('href').value rescue nil
-    if author_link
-      if self.identity = Identity.find_or_create_from_url(author_link)
-        self.found!
-        save!
+    if author_tag = Nokogiri::HTML(open(self.url)).css('link[rel=author]')
+      if author_link = author_tag.attr('href').value
+        if self.identity = Identity.find_or_create_from_url(author_link)
+          self.adopt!
+          save!
+        else
+          self.lose!
+        end
       else
-        self.lost!
+        self.lose!
       end
-    else
-      self.lost!
     end
   end
-
-#  def normalize
-#    self.normalized_url = Page.normalize(self.url)
-#    # self.url = Addressable::URI.parse(self.url).normalize.to_s
-#  end
-
-  def url_points_to_real_site
-    errors.add(:url, "must point to a real site") unless self.url =~ /\./
-  end
-
 end

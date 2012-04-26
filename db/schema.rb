@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 8) do
     t.string   "secret"
     t.string   "type",           :null => false
     t.string   "identity_state"
+    t.datetime "message"
     t.integer  "user_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false

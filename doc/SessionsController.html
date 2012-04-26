@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class SessionsController - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/sessions_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-destroy">#destroy</a>
+    
+    <li><a href="#method-i-failure">#failure</a>
+    
+    <li><a href="#method-i-new">#new</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Identities.html">Identities</a>
+  
+    <li><a href="./Identities/Facebook.html">Identities::Facebook</a>
+  
+    <li><a href="./Identities/Flickr.html">Identities::Flickr</a>
+  
+    <li><a href="./Identities/Github.html">Identities::Github</a>
+  
+    <li><a href="./Identities/Google.html">Identities::Google</a>
+  
+    <li><a href="./Identities/Soundcloud.html">Identities::Soundcloud</a>
+  
+    <li><a href="./Identities/Tumblr.html">Identities::Tumblr</a>
+  
+    <li><a href="./Identities/Twitter.html">Identities::Twitter</a>
+  
+    <li><a href="./Identities/Vimeo.html">Identities::Vimeo</a>
+  
+    <li><a href="./Identities/Youtube.html">Identities::Youtube</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./IdentitiesController.html">IdentitiesController</a>
+  
+    <li><a href="./Identity.html">Identity</a>
+  
+    <li><a href="./InvalidTipURL.html">InvalidTipURL</a>
+  
+    <li><a href="./LayoutHelper.html">LayoutHelper</a>
+  
+    <li><a href="./OrderMailer.html">OrderMailer</a>
+  
+    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+  
+    <li><a href="./Page.html">Page</a>
+  
+    <li><a href="./PagesController.html">PagesController</a>
+  
+    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
+  
+    <li><a href="./Role.html">Role</a>
+  
+    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
+  
+    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
+  
+    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
+  
+    <li><a href="./SessionsController.html">SessionsController</a>
+  
+    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
+  
+    <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
+  
+    <li><a href="./Tip.html">Tip</a>
+  
+    <li><a href="./TipOrder.html">TipOrder</a>
+  
+    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
+  
+    <li><a href="./TipOrdersController.html">TipOrdersController</a>
+  
+    <li><a href="./TipsController.html">TipsController</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersJob.html">UsersJob</a>
+  
+    <li><a href="./WantedIdentitiesJob.html">WantedIdentitiesJob</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class SessionsController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">auth</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-string">'omniauth.auth'</span>]
+  <span class="ruby-comment"># Find an identity here</span>
+  <span class="ruby-ivar">@identity</span> = <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">find_with_omniauth</span>(<span class="ruby-identifier">auth</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-comment"># If no identity was found, create a brand new one here</span>
+    <span class="ruby-ivar">@identity</span> = <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">create_with_omniauth</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-string">'info'</span>][<span class="ruby-string">'name'</span>]
+  <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">email</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-string">'info'</span>][<span class="ruby-string">'email'</span>]
+  <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">location</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-string">'info'</span>][<span class="ruby-string">'location'</span>]
+  <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">image</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-string">'info'</span>][<span class="ruby-string">'image'</span>]
+  <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">urls</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-string">'info'</span>][<span class="ruby-string">'urls'</span>]
+  <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">token</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-string">'credentials'</span>][<span class="ruby-string">'token'</span>]
+  <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">secret</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-string">'credentials'</span>][<span class="ruby-string">'secret'</span>]
+  <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">save</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span>
+      <span class="ruby-comment"># User is signed in so they are trying to link an identity with their</span>
+      <span class="ruby-comment"># account. But we found the identity and the user associated with it</span>
+      <span class="ruby-comment"># is the current user. So the identity is already associated with</span>
+      <span class="ruby-comment"># this user. So let's display an error message.</span>
+
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_identities_path</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Already linked that account!&quot;</span>
+
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-comment"># The identity is not associated with the current_user so lets</span>
+      <span class="ruby-comment"># associate the identity</span>
+      <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
+      <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">save</span>()
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_identities_path</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Successfully linked that account&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">user</span>
+      <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">join!</span>
+      <span class="ruby-comment"># The identity we found had a user associated with it so let's</span>
+      <span class="ruby-comment"># just log them in</span>
+      <span class="ruby-identifier">current_user</span> = <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">user</span>
+
+      <span class="ruby-identifier">set_cookie</span>(<span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">user</span>)
+
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_tips_path</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Signed in!&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-comment"># No user associated with the identity so we need to create a new one</span>
+      <span class="ruby-identifier">user</span> =  <span class="ruby-constant">User</span>.<span class="ruby-identifier">create_with_omniauth</span>(<span class="ruby-identifier">auth</span>)
+
+      <span class="ruby-identifier">set_cookie</span>(<span class="ruby-identifier">user</span>)
+      <span class="ruby-identifier">current_user</span> = <span class="ruby-identifier">user</span>
+
+      <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">user</span> = <span class="ruby-identifier">current_user</span>
+      <span class="ruby-ivar">@identity</span>.<span class="ruby-identifier">save</span>()
+
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">button_path</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;Welcome aboard!&quot;</span>
+
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">production?</span>
+    <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:user_id</span>] = {<span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">:expires</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">90</span>.<span class="ruby-identifier">days</span>.<span class="ruby-identifier">ago</span>, <span class="ruby-value">:domain</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'.copper.is'</span>}
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:user_id</span>] = {<span class="ruby-value">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">nil</span>, <span class="ruby-value">:expires</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">90</span>.<span class="ruby-identifier">days</span>.<span class="ruby-identifier">ago</span>}
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;Signed out&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- destroy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- destroy-method -->
+
+    
+      <div id="method-i-failure" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">failure</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="failure-source">
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">failure</span>
+  <span class="ruby-comment"># render :text =&gt; request.env[&quot;omniauth.auth&quot;].to_yaml</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_url</span>, <span class="ruby-value">:notice</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-value">:message</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- failure-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- failure-method -->
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/sessions_controller.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">render</span> <span class="ruby-value">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'new'</span>, <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'sign_in'</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

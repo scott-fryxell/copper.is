@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Copper::Application.config.secret_token = Copper::Application.config.copper_session_key
+Copper::Application.config.secret_token = Copper::Application.config.copper_secret_key

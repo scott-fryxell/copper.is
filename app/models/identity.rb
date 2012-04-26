@@ -86,7 +86,11 @@ class Identity < ActiveRecord::Base
   def message_wanted!
     raise "this identity has a user" if self.user_id
     raise "must be implemented in child class" unless block_given?
-    yield
+    if self.message.nil?
+      yield
+      self.message = Time.now
+      save!
+    end
   end
   
   def populate_uid_and_username!
