@@ -14,7 +14,7 @@ class Page < ActiveRecord::Base
     errors.add(:url, "must point to a real site") unless self.url =~ /\./
   end
   
-  [:orphaned, :providerable, :spiderable, :manual, :fostered, :adopted].each do |state|
+  [:orphaned, :spiderable, :manual, :fostered, :adopted].each do |state|
     scope state, where("author_state = ?", state)
   end
 
@@ -39,11 +39,11 @@ class Page < ActiveRecord::Base
     end
     
     after_transition any => :manual do |page,transition|
-      logger.warn "Page set to :manual, id: #{page.id}"
+      Rails.logger.warn "Page set to :manual, id: #{page.id}"
     end
     
-    after_transition any => :manual do |page,transition|
-      logger.warn "Page set to :fostered, id: #{page.id}"
+    after_transition any => :fostered do |page,transition|
+      Rails.logger.warn "Page set to :fostered, id: #{page.id}"
     end
   end
 
