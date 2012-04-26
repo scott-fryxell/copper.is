@@ -38,11 +38,21 @@ class Tip < ActiveRecord::Base
     state :charged, :kinged do
       validate :validate_presence_of_paid_tip_order
     end
+    
+    state :kinged do
+      validate :validate_presence_of_royalty_check
+    end
   end
   
   def validate_presence_of_paid_tip_order
     unless self.tip_order.paid?
       errors.add(:tip_order_id, "tip order must be :paid for :charged tips")
+    end
+  end
+  
+  def validate_presence_of_royalty_check
+    unless self.royalty_check_id
+      errors.add(:royalty_check_id, "royalty_check_id must not be null for :kinged tips")
     end
   end
 end

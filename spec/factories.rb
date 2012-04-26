@@ -116,6 +116,7 @@ FactoryGirl.define do
     association :page
     amount_in_cents 100
     paid_state "kinged"
+    association :royalty_check                  
   end
 
   factory :royalty_check do

@@ -58,6 +58,7 @@ describe Tip do
     it "should transition to :changed to :kinged on a claim! event" do
       tip = FactoryGirl.create(:tip_charged)
       tip.charged?.should be_true
+      tip.royalty_check = FactoryGirl.create(:royalty_check)
       tip.claim!
       tip.kinged?.should be_true
     end
