@@ -19,65 +19,50 @@ class Page < ActiveRecord::Base
   end
 
   state_machine :author_state, initial: :orphaned do
-    event :catorgorize do
-      transition any => :providerable
-    end
-    
     event :adopt do
       transition any => :adopted
     end
     
-    event :lose do
-      transition :manual       => :fostered,
-                 :providerable => :spiderable,
-                 :spiderable   => :manual,
-                 :orphaned     => :spiderable,
-                 :adopted      => :orphaned,
-                 :fostered     => :fostered
+    event :reject do
+      transition :orphaned   => :spiderable,
+                 :spiderable => :manual,
+                 :manual     => :fostered,
+                 :fostered   => :fostered
     end
     
     after_transition any => :orphaned do |page,transition|
-      Resque.enqueue Page, page.id, :match_url_to_provider!
-    end
-    
-    after_transition any => :providerable do |page,transition|
       Resque.enqueue Page, page.id, :discover_identity!
     end
     
     after_transition any => :spiderable do |page,transition|
       Resque.enqueue Page, page.id, :find_identity_from_author_link!
     end
-  end
-
-  def match_url_to_provider!
-    if Identity.provider_from_url(self.url)
-      self.catorgorize!
-    else
-      self.lose!
+    
+    after_transition any => :manual do |page,transition|
+      logger.warn "Page set to :manual, id: #{page.id}"
+    end
+    
+    after_transition any => :manual do |page,transition|
+      logger.warn "Page set to :fostered, id: #{page.id}"
     end
   end
 
   def discover_identity!
-    if self.identity = Identity.find_or_create_from_url(self.url)
-      save!
-      self.adopt!
+    if Identity.provider_from_url(self.url) and
+        self.identity = Identity.find_or_create_from_url(self.url)
+      adopt!
     else
-      self.lose!
+      reject!
     end
   end
 
   def find_identity_from_author_link!
-    if author_tag = Nokogiri::HTML(open(self.url)).css('link[rel=author]')
-      if author_link = author_tag.attr('href').value
-        if self.identity = Identity.find_or_create_from_url(author_link)
-          self.adopt!
-          save!
-        else
-          self.lose!
-        end
-      else
-        self.lose!
-      end
+    if author_tag    = Nokogiri::HTML(open(self.url)).css('link[rel=author]') and
+       author_link   = author_tag.attr('href').value                          and
+       self.identity = Identity.find_or_create_from_url(author_link)
+      adopt!
+    else
+      reject!
     end
   end
 end

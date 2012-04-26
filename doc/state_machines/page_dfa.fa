@@ -13,10 +13,10 @@
         </void> 
         <void property="position"> 
          <void property="x"> 
-          <double>161.0</double> 
+          <double>113.77777777777777</double> 
          </void> 
          <void property="y"> 
-          <double>284.0</double> 
+          <double>341.3333333333333</double> 
          </void> 
         </void> 
         <void property="start"> 
@@ -36,10 +36,10 @@
         </void> 
         <void property="position"> 
          <void property="x"> 
-          <double>347.0</double> 
+          <double>568.8888888888889</double> 
          </void> 
          <void property="y"> 
-          <double>307.20000000000005</double> 
+          <double>341.3333333333333</double> 
          </void> 
         </void> 
         <void id="FAState1" property="state"> 
@@ -55,37 +55,17 @@
       <void method="add"> 
        <object id="GElementFAState2" class="edu.usfca.vas.graphics.fa.GElementFAState"> 
         <void property="label"> 
-         <string>providerable</string> 
-        </void> 
-        <void property="position"> 
-         <void property="x"> 
-          <double>279.8</double> 
-         </void> 
-         <void property="y"> 
-          <double>482.80000000000007</double> 
-         </void> 
-        </void> 
-        <void id="FAState2" property="state"> 
-         <void property="name"> 
-          <string>providerable</string> 
-         </void> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object id="GElementFAState3" class="edu.usfca.vas.graphics.fa.GElementFAState"> 
-        <void property="label"> 
          <string>spiderable</string> 
         </void> 
         <void property="position"> 
          <void property="x"> 
-          <double>114.80000000000001</double> 
+          <double>227.55555555555554</double> 
          </void> 
          <void property="y"> 
-          <double>103.0</double> 
+          <double>426.6666666666667</double> 
          </void> 
         </void> 
-        <void id="FAState3" property="state"> 
+        <void id="FAState2" property="state"> 
          <void property="name"> 
           <string>spiderable</string> 
          </void> 
@@ -93,19 +73,19 @@
        </object> 
       </void> 
       <void method="add"> 
-       <object id="GElementFAState4" class="edu.usfca.vas.graphics.fa.GElementFAState"> 
+       <object id="GElementFAState3" class="edu.usfca.vas.graphics.fa.GElementFAState"> 
         <void property="label"> 
          <string>manual</string> 
         </void> 
         <void property="position"> 
          <void property="x"> 
-          <double>389.6</double> 
+          <double>341.3333333333333</double> 
          </void> 
          <void property="y"> 
-          <double>85.0</double> 
+          <double>512.0</double> 
          </void> 
         </void> 
-        <void id="FAState4" property="state"> 
+        <void id="FAState3" property="state"> 
          <void property="name"> 
           <string>manual</string> 
          </void> 
@@ -113,19 +93,19 @@
        </object> 
       </void> 
       <void method="add"> 
-       <object id="GElementFAState5" class="edu.usfca.vas.graphics.fa.GElementFAState"> 
+       <object id="GElementFAState4" class="edu.usfca.vas.graphics.fa.GElementFAState"> 
         <void property="label"> 
          <string>fostered</string> 
         </void> 
         <void property="position"> 
          <void property="x"> 
-          <double>425.0</double> 
+          <double>455.1111111111111</double> 
          </void> 
          <void property="y"> 
-          <double>201.0</double> 
+          <double>597.3333333333335</double> 
          </void> 
         </void> 
-        <void id="FAState5" property="state"> 
+        <void id="FAState4" property="state"> 
          <void property="name"> 
           <string>fostered</string> 
          </void> 
@@ -143,20 +123,20 @@
            <void property="anchor"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>336.8286234621537</double> 
+              <double>557.3998710241921</double> 
              </void> 
              <void property="y"> 
-              <double>324.42042680438993</double> 
+              <double>357.7041142708658</double> 
              </void> 
             </object> 
            </void> 
            <void property="direction"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>-48.49329609838384</double> 
+              <double>-85.9377777777778</double> 
              </void> 
              <void property="y"> 
-              <double>82.10051538831783</double> 
+              <double>122.45333333333338</double> 
              </void> 
             </object> 
            </void> 
@@ -164,20 +144,20 @@
           <void property="direction"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>-49.0</double> 
+             <double>-124.88888888888891</double> 
             </void> 
             <void property="y"> 
-             <double>72.79999999999995</double> 
+             <double>122.66666666666669</double> 
             </void> 
            </object> 
           </void> 
           <void property="end"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>347.0</double> 
+             <double>568.8888888888889</double> 
             </void> 
             <void property="y"> 
-             <double>307.20000000000005</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -188,16 +168,16 @@
            <double>20.0</double> 
           </void> 
           <void property="flateness"> 
-           <double>15.946610721809753</double> 
+           <double>-46.40000000000002</double> 
           </void> 
           <void property="label"> 
            <void property="position"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>284.15056285027174</double> 
+              <double>484.75303952983586</double> 
              </void> 
              <void property="y"> 
-              <double>383.8065935281222</double> 
+              <double>466.18923789163296</double> 
              </void> 
             </object> 
            </void> 
@@ -208,10 +188,10 @@
           <void property="start"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>279.8</double> 
+             <double>341.3333333333333</double> 
             </void> 
             <void property="y"> 
-             <double>482.80000000000007</double> 
+             <double>512.0</double> 
             </void> 
            </object> 
           </void> 
@@ -226,8 +206,16 @@
         <void property="pattern"> 
          <string>a</string> 
         </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>7.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>182.5</double> 
+         </void> 
+        </void> 
         <void property="source"> 
-         <object idref="GElementFAState2"/> 
+         <object idref="GElementFAState3"/> 
         </void> 
         <void property="sourceAnchorKey"> 
          <string>CENTER</string> 
@@ -251,20 +239,20 @@
            <void property="anchor"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>339.1319470509403</double> 
+              <double>566.320346004459</double> 
              </void> 
              <void property="y"> 
-              <double>288.8126743980863</double> 
+              <double>361.16771226111535</double> 
              </void> 
             </object> 
            </void> 
            <void property="direction"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>-53.69262643233873</double> 
+              <double>-18.769892860729556</double> 
              </void> 
              <void property="y"> 
-              <double>-125.47752423950331</double> 
+              <double>144.94177601251533</double> 
              </void> 
             </object> 
            </void> 
@@ -272,20 +260,20 @@
           <void property="direction"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>-25.0</double> 
+             <double>20.85714285714289</double> 
             </void> 
             <void property="y"> 
-             <double>-134.60000000000002</double> 
+             <double>53.85714285714289</double> 
             </void> 
            </object> 
           </void> 
           <void property="end"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>347.0</double> 
+             <double>568.8888888888889</double> 
             </void> 
             <void property="y"> 
-             <double>307.20000000000005</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -296,16 +284,16 @@
            <double>20.0</double> 
           </void> 
           <void property="flateness"> 
-           <double>-76.35841291225096</double> 
+           <double>-41.71428571428578</double> 
           </void> 
           <void property="label"> 
            <void property="position"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>300.17208788575795</double> 
+              <double>554.5520760768078</double> 
              </void> 
              <void property="y"> 
-              <double>183.03857310501033</double> 
+              <double>488.245367145248</double> 
              </void> 
             </object> 
            </void> 
@@ -316,10 +304,10 @@
           <void property="start"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>389.6</double> 
+             <double>455.1111111111111</double> 
             </void> 
             <void property="y"> 
-             <double>85.0</double> 
+             <double>597.3333333333335</double> 
             </void> 
            </object> 
           </void> 
@@ -333,6 +321,14 @@
         </void> 
         <void property="pattern"> 
          <string>a</string> 
+        </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>7.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>73.5</double> 
+         </void> 
         </void> 
         <void property="source"> 
          <object idref="GElementFAState4"/> 
@@ -359,20 +355,20 @@
            <void property="anchor"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>365.48549941010253</double> 
+              <double>588.8680771118508</double> 
              </void> 
              <void property="y"> 
-              <double>299.56545276004545</double> 
+              <double>340.42117218997</double> 
              </void> 
             </object> 
            </void> 
            <void property="direction"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>71.23881938046327</double> 
+              <double>79.91675289184752</double> 
              </void> 
              <void property="y"> 
-              <double>-29.42177107649593</double> 
+              <double>-3.648644573453339</double> 
              </void> 
             </object> 
            </void> 
@@ -380,128 +376,20 @@
           <void property="direction"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>-11.0</double> 
+             <double>17.85714285714289</double> 
             </void> 
             <void property="y"> 
-             <double>-1.0</double> 
+             <double>-16.428571428571416</double> 
             </void> 
            </object> 
           </void> 
           <void property="end"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>347.0</double> 
+             <double>568.8888888888889</double> 
             </void> 
             <void property="y"> 
-             <double>307.20000000000005</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>40.0</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>426.6043521310438</double> 
-             </void> 
-             <void property="y"> 
-              <double>283.92240551997565</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>a</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>425.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>201.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>a</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState5"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState1"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>353.1297589674085</double> 
-             </void> 
-             <void property="y"> 
-              <double>326.23749077482313</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>24.519035869634024</double> 
-             </void> 
-             <void property="y"> 
-              <double>76.14996309929245</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>49.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>30.799999999999955</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>347.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>307.20000000000005</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -515,10 +403,10 @@
            <void property="position"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>410.49774119082537</double> 
+              <double>624.0837147710262</double> 
              </void> 
              <void property="y"> 
-              <double>347.112865891376</double> 
+              <double>290.55409352176713</double> 
              </void> 
             </object> 
            </void> 
@@ -532,10 +420,10 @@
           <void property="start"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>347.0</double> 
+             <double>568.8888888888889</double> 
             </void> 
             <void property="y"> 
-             <double>307.20000000000005</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -550,6 +438,14 @@
         <void property="pattern"> 
          <string>a</string> 
         </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>95.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>9.5</double> 
+         </void> 
+        </void> 
         <void property="source"> 
          <object idref="GElementFAState1"/> 
         </void> 
@@ -575,20 +471,20 @@
            <void property="anchor"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>265.51564854909924</double> 
+              <double>551.0046989235395</double> 
              </void> 
              <void property="y"> 
-              <double>468.801524953512</double> 
+              <double>350.2863076594049</double> 
              </void> 
             </object> 
            </void> 
            <void property="direction"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>-85.50897051052675</double> 
+              <double>-161.16339869281046</double> 
              </void> 
              <void property="y"> 
-              <double>-83.79765746151622</double> 
+              <double>80.67973856209147</double> 
              </void> 
             </object> 
            </void> 
@@ -596,20 +492,20 @@
           <void property="direction"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>-65.80000000000001</double> 
+             <double>-157.8888888888889</double> 
             </void> 
             <void property="y"> 
-             <double>-83.80000000000007</double> 
+             <double>59.666666666666686</double> 
             </void> 
            </object> 
           </void> 
           <void property="end"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>279.8</double> 
+             <double>568.8888888888889</double> 
             </void> 
             <void property="y"> 
-             <double>482.80000000000007</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -620,124 +516,16 @@
            <double>20.0</double> 
           </void> 
           <void property="flateness"> 
-           <double>-30.415644556835165</double> 
+           <double>-39.18297764475865</double> 
           </void> 
           <void property="label"> 
            <void property="position"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>185.81586826270237</double> 
+              <double>408.8791397298144</double> 
              </void> 
              <void property="y"> 
-              <double>404.06697610860647</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>c</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>161.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>284.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>c</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState0"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState2"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>335.7682370862051</double> 
-             </void> 
-             <void property="y"> 
-              <double>290.65166165899734</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>-89.68480048078982</double> 
-             </void> 
-             <void property="y"> 
-              <double>-132.1372640957914</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>2.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>-2.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>347.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>307.20000000000005</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>40.0</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>260.6233326335154</double> 
-             </void> 
-             <void property="y"> 
-              <double>171.3009900220261</double> 
+              <double>426.6276700303689</double> 
              </void> 
             </object> 
            </void> 
@@ -748,10 +536,10 @@
           <void property="start"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>114.80000000000001</double> 
+             <double>227.55555555555554</double> 
             </void> 
             <void property="y"> 
-             <double>103.0</double> 
+             <double>426.6666666666667</double> 
             </void> 
            </object> 
           </void> 
@@ -766,8 +554,16 @@
         <void property="pattern"> 
          <string>a</string> 
         </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>7.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>73.5</double> 
+         </void> 
+        </void> 
         <void property="source"> 
-         <object idref="GElementFAState3"/> 
+         <object idref="GElementFAState2"/> 
         </void> 
         <void property="sourceAnchorKey"> 
          <string>CENTER</string> 
@@ -791,20 +587,20 @@
            <void property="anchor"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>332.775295207645</double> 
+              <double>548.8889046536906</double> 
              </void> 
              <void property="y"> 
-              <double>293.140918466331</double> 
+              <double>341.30822174598444</double> 
              </void> 
             </object> 
            </void> 
            <void property="direction"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>-84.08141758720575</double> 
+              <double>-227.55555555555554</double> 
              </void> 
              <void property="y"> 
-              <double>-83.10242796464343</double> 
+              <double>-0.28571428571422075</double> 
              </void> 
             </object> 
            </void> 
@@ -812,20 +608,20 @@
           <void property="direction"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>-145.0</double> 
+             <double>-206.1428571428571</double> 
             </void> 
             <void property="y"> 
-             <double>-21.600000000000023</double> 
+             <double>-0.14285714285711038</double> 
             </void> 
            </object> 
           </void> 
           <void property="end"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>347.0</double> 
+             <double>568.8888888888889</double> 
             </void> 
             <void property="y"> 
-             <double>307.20000000000005</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -836,16 +632,16 @@
            <double>20.0</double> 
           </void> 
           <void property="flateness"> 
-           <double>72.05649392728473</double> 
+           <double>0.28571428571422075</double> 
           </void> 
           <void property="label"> 
            <void property="position"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>262.44355856371436</double> 
+              <double>341.33333333333337</double> 
              </void> 
              <void property="y"> 
-              <double>227.9059528943587</double> 
+              <double>321.16536460312733</double> 
              </void> 
             </object> 
            </void> 
@@ -856,10 +652,10 @@
           <void property="start"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>161.0</double> 
+             <double>113.77777777777777</double> 
             </void> 
             <void property="y"> 
-             <double>284.0</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -874,6 +670,14 @@
         <void property="pattern"> 
          <string>a</string> 
         </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>7.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>73.5</double> 
+         </void> 
+        </void> 
         <void property="source"> 
          <object idref="GElementFAState0"/> 
         </void> 
@@ -899,20 +703,20 @@
            <void property="anchor"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>116.15581888410958</double> 
+              <double>129.9257653244618</double> 
              </void> 
              <void property="y"> 
-              <double>122.95399095803874</double> 
+              <double>329.533227478209</double> 
              </void> 
             </object> 
            </void> 
            <void property="direction"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>6.438199433779346</double> 
+              <double>227.5555555555556</double> 
              </void> 
              <void property="y"> 
-              <double>94.75290158099114</double> 
+              <double>-166.28571428571422</double> 
              </void> 
             </object> 
            </void> 
@@ -920,20 +724,20 @@
           <void property="direction"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>-52.60000000000002</double> 
+             <double>236.71428571428572</double> 
             </void> 
             <void property="y"> 
-             <double>59.0</double> 
+             <double>-83.14285714285711</double> 
             </void> 
            </object> 
           </void> 
           <void property="end"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>114.80000000000001</double> 
+             <double>113.77777777777777</double> 
             </void> 
             <void property="y"> 
-             <double>103.0</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -944,30 +748,30 @@
            <double>20.0</double> 
           </void> 
           <void property="flateness"> 
-           <double>17.19601029210287</double> 
+           <double>-166.28571428571422</double> 
           </void> 
           <void property="label"> 
            <void property="position"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>106.68161332795097</double> 
+              <double>341.33333333333337</double> 
              </void> 
              <void property="y"> 
-              <double>201.4684500787219</double> 
+              <double>226.39037033535192</double> 
              </void> 
             </object> 
            </void> 
            <void property="title"> 
-            <string>l</string> 
+            <string>r</string> 
            </void> 
           </void> 
           <void property="start"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>161.0</double> 
+             <double>568.8888888888889</double> 
             </void> 
             <void property="y"> 
-             <double>284.0</double> 
+             <double>341.3333333333333</double> 
             </void> 
            </object> 
           </void> 
@@ -980,7 +784,247 @@
          </object> 
         </void> 
         <void property="pattern"> 
-         <string>l</string> 
+         <string>r</string> 
+        </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>7.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>73.5</double> 
+         </void> 
+        </void> 
+        <void property="source"> 
+         <object idref="GElementFAState1"/> 
+        </void> 
+        <void property="sourceAnchorKey"> 
+         <string>CENTER</string> 
+        </void> 
+        <void property="target"> 
+         <object idref="GElementFAState0"/> 
+        </void> 
+        <void property="targetAnchorKey"> 
+         <string>CENTER</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
+        <void property="labelVisible"> 
+         <boolean>true</boolean> 
+        </void> 
+        <void property="link"> 
+         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
+          <void property="arrow"> 
+           <void property="anchor"> 
+            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+             <void property="x"> 
+              <double>321.87448649085627</double> 
+             </void> 
+             <void property="y"> 
+              <double>507.37903910847314</double> 
+             </void> 
+            </object> 
+           </void> 
+           <void property="direction"> 
+            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+             <void property="x"> 
+              <double>-75.4507265643145</double> 
+             </void> 
+             <void property="y"> 
+              <double>-17.917549766099228</double> 
+             </void> 
+            </object> 
+           </void> 
+          </void> 
+          <void property="direction"> 
+           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+            <void property="x"> 
+             <double>-48.10000000000002</double> 
+            </void> 
+            <void property="y"> 
+             <double>12.5</double> 
+            </void> 
+           </object> 
+          </void> 
+          <void property="end"> 
+           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+            <void property="x"> 
+             <double>341.3333333333333</double> 
+            </void> 
+            <void property="y"> 
+             <double>512.0</double> 
+            </void> 
+           </object> 
+          </void> 
+          <void property="endDirection"> 
+           <object idref="Vector2D0"/> 
+          </void> 
+          <void property="endTangentOffset"> 
+           <double>20.0</double> 
+          </void> 
+          <void property="flateness"> 
+           <double>-30.93639612570931</double> 
+          </void> 
+          <void property="label"> 
+           <void property="position"> 
+            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+             <void property="x"> 
+              <double>258.37640197137284</double> 
+             </void> 
+             <void property="y"> 
+              <double>504.09072329742884</double> 
+             </void> 
+            </object> 
+           </void> 
+           <void property="title"> 
+            <string>r</string> 
+           </void> 
+          </void> 
+          <void property="start"> 
+           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+            <void property="x"> 
+             <double>227.55555555555554</double> 
+            </void> 
+            <void property="y"> 
+             <double>426.6666666666667</double> 
+            </void> 
+           </object> 
+          </void> 
+          <void property="startDirection"> 
+           <object idref="Vector2D0"/> 
+          </void> 
+          <void property="startTangentOffset"> 
+           <double>20.0</double> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="pattern"> 
+         <string>r</string> 
+        </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>7.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>182.5</double> 
+         </void> 
+        </void> 
+        <void property="source"> 
+         <object idref="GElementFAState2"/> 
+        </void> 
+        <void property="sourceAnchorKey"> 
+         <string>CENTER</string> 
+        </void> 
+        <void property="target"> 
+         <object idref="GElementFAState3"/> 
+        </void> 
+        <void property="targetAnchorKey"> 
+         <string>CENTER</string> 
+        </void> 
+       </object> 
+      </void> 
+      <void method="add"> 
+       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
+        <void property="labelVisible"> 
+         <boolean>true</boolean> 
+        </void> 
+        <void property="link"> 
+         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
+          <void property="arrow"> 
+           <void property="anchor"> 
+            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+             <void property="x"> 
+              <double>208.0278183047352</double> 
+             </void> 
+             <void property="y"> 
+              <double>422.3460789910231</double> 
+             </void> 
+            </object> 
+           </void> 
+           <void property="direction"> 
+            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+             <void property="x"> 
+              <double>-76.23793463683205</double> 
+             </void> 
+             <void property="y"> 
+              <double>-16.867939002742503</double> 
+             </void> 
+            </object> 
+           </void> 
+          </void> 
+          <void property="direction"> 
+           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+            <void property="x"> 
+             <double>-67.80000000000001</double> 
+            </void> 
+            <void property="y"> 
+             <double>13.5</double> 
+            </void> 
+           </object> 
+          </void> 
+          <void property="end"> 
+           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+            <void property="x"> 
+             <double>227.55555555555554</double> 
+            </void> 
+            <void property="y"> 
+             <double>426.6666666666667</double> 
+            </void> 
+           </object> 
+          </void> 
+          <void property="endDirection"> 
+           <object idref="Vector2D0"/> 
+          </void> 
+          <void property="endTangentOffset"> 
+           <double>20.0</double> 
+          </void> 
+          <void property="flateness"> 
+           <double>-32.248409579905235</double> 
+          </void> 
+          <void property="label"> 
+           <void property="position"> 
+            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+             <void property="x"> 
+              <double>144.0360404667087</double> 
+             </void> 
+             <void property="y"> 
+              <double>419.50750159994396</double> 
+             </void> 
+            </object> 
+           </void> 
+           <void property="title"> 
+            <string>r</string> 
+           </void> 
+          </void> 
+          <void property="start"> 
+           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
+            <void property="x"> 
+             <double>113.77777777777777</double> 
+            </void> 
+            <void property="y"> 
+             <double>341.3333333333333</double> 
+            </void> 
+           </object> 
+          </void> 
+          <void property="startDirection"> 
+           <object idref="Vector2D0"/> 
+          </void> 
+          <void property="startTangentOffset"> 
+           <double>20.0</double> 
+          </void> 
+         </object> 
+        </void> 
+        <void property="pattern"> 
+         <string>r</string> 
+        </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>7.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>73.5</double> 
+         </void> 
         </void> 
         <void property="source"> 
          <object idref="GElementFAState0"/> 
@@ -989,7 +1033,7 @@
          <string>CENTER</string> 
         </void> 
         <void property="target"> 
-         <object idref="GElementFAState3"/> 
+         <object idref="GElementFAState2"/> 
         </void> 
         <void property="targetAnchorKey"> 
          <string>CENTER</string> 
@@ -1007,20 +1051,20 @@
            <void property="anchor"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>370.07037333272405</double> 
+              <double>435.125656393707</double> 
              </void> 
              <void property="y"> 
-              <double>80.68796077976747</double> 
+              <double>596.570706466123</double> 
              </void> 
             </object> 
            </void> 
            <void property="direction"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>-140.01448456940665</double> 
+              <double>-86.41572936262128</double> 
              </void> 
              <void property="y"> 
-              <double>-30.914464426274527</double> 
+              <double>-3.297546035023629</double> 
              </void> 
             </object> 
            </void> 
@@ -1028,20 +1072,20 @@
           <void property="direction"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>9.0</double> 
+             <double>-76.14285714285711</double> 
             </void> 
             <void property="y"> 
-             <double>-8.0</double> 
+             <double>-28.857142857142833</double> 
             </void> 
            </object> 
           </void> 
           <void property="end"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>389.6</double> 
+             <double>455.1111111111111</double> 
             </void> 
             <void property="y"> 
-             <double>85.0</double> 
+             <double>597.3333333333335</double> 
             </void> 
            </object> 
           </void> 
@@ -1052,30 +1096,30 @@
            <double>20.0</double> 
           </void> 
           <void property="flateness"> 
-           <double>40.0</double> 
+           <double>-49.211400789553906</double> 
           </void> 
           <void property="label"> 
            <void property="position"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>249.22083953491807</double> 
+              <double>364.63009918335155</double> 
              </void> 
              <void property="y"> 
-              <double>48.51815023308242</double> 
+              <double>599.4561640518275</double> 
              </void> 
             </object> 
            </void> 
            <void property="title"> 
-            <string>l</string> 
+            <string>r</string> 
            </void> 
           </void> 
           <void property="start"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>114.80000000000001</double> 
+             <double>341.3333333333333</double> 
             </void> 
             <void property="y"> 
-             <double>103.0</double> 
+             <double>512.0</double> 
             </void> 
            </object> 
           </void> 
@@ -1088,7 +1132,15 @@
          </object> 
         </void> 
         <void property="pattern"> 
-         <string>l</string> 
+         <string>r</string> 
+        </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>7.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>182.5</double> 
+         </void> 
         </void> 
         <void property="source"> 
          <object idref="GElementFAState3"/> 
@@ -1115,20 +1167,20 @@
            <void property="anchor"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>416.3410682140926</double> 
+              <double>458.03732755050515</double> 
              </void> 
              <void property="y"> 
-              <double>182.97160849307397</double> 
+              <double>577.5485599621315</double> 
              </void> 
             </object> 
            </void> 
            <void property="direction"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>-26.558631238708188</double> 
+              <double>11.704865757576272</double> 
              </void> 
              <void property="y"> 
-              <double>-55.296590121980415</double> 
+              <double>-79.13909348480757</double> 
              </void> 
             </object> 
            </void> 
@@ -1136,452 +1188,20 @@
           <void property="direction"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>-11.0</double> 
+             <double>-21.111111111111086</double> 
             </void> 
             <void property="y"> 
-             <double>-39.0</double> 
+             <double>-34.333333333333485</double> 
             </void> 
            </object> 
           </void> 
           <void property="end"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>425.0</double> 
+             <double>455.1111111111111</double> 
             </void> 
             <void property="y"> 
-             <double>201.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>-9.26195294697565</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>380.8534192751089</double> 
-             </void> 
-             <void property="y"> 
-              <double>151.0707668763892</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>l</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>389.6</double> 
-            </void> 
-            <void property="y"> 
-             <double>85.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>l</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState4"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState5"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>261.4710288873649</double> 
-             </void> 
-             <void property="y"> 
-              <double>474.79694945960057</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>-259.1530287557882</double> 
-             </void> 
-             <void property="y"> 
-              <double>-113.15500330514732</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>-165.8</double> 
-            </void> 
-            <void property="y"> 
-             <double>-142.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>279.8</double> 
-            </void> 
-            <void property="y"> 
-             <double>482.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>-192.60344515684628</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>78.13574186449624</double> 
-             </void> 
-             <void property="y"> 
-              <double>344.6696224127386</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>c</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>114.80000000000001</double> 
-            </void> 
-            <void property="y"> 
-             <double>103.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>c</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState3"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState2"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>299.42960144894215</double> 
-             </void> 
-             <void property="y"> 
-              <double>478.9687147123075</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>454.2757370964253</double> 
-             </void> 
-             <void property="y"> 
-              <double>-88.66506804125822</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>250.2</double> 
-            </void> 
-            <void property="y"> 
-             <double>-119.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>279.8</double> 
-            </void> 
-            <void property="y"> 
-             <double>482.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>414.30993182068596</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>570.9242800973655</double> 
-             </void> 
-             <void property="y"> 
-              <double>349.10217685945383</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>c</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>389.6</double> 
-            </void> 
-            <void property="y"> 
-             <double>85.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>c</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState4"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState2"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>298.8987379827278</double> 
-             </void> 
-             <void property="y"> 
-              <double>476.86382214997656</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>215.8496159596193</double> 
-             </void> 
-             <void property="y"> 
-              <double>-67.08933911519978</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>135.2</double> 
-            </void> 
-            <void property="y"> 
-             <double>-67.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>279.8</double> 
-            </void> 
-            <void property="y"> 
-             <double>482.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>161.14734292823263</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>454.4784882882634</double> 
-             </void> 
-             <void property="y"> 
-              <double>394.49686479579793</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>c</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>425.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>201.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>c</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState5"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState2"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>435.19314613810633</double> 
-             </void> 
-             <void property="y"> 
-              <double>218.20754984904033</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>40.77258455242537</double> 
-             </void> 
-             <void property="y"> 
-              <double>68.83019939616128</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>37.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>13.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>425.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>201.0</double> 
+             <double>597.3333333333335</double> 
             </void> 
            </object> 
           </void> 
@@ -1595,15 +1215,15 @@
            <void property="position"> 
             <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
              <void property="x"> 
-              <double>495.7595104738349</double> 
+              <double>415.8268785834728</double> 
              </void> 
              <void property="y"> 
-              <double>225.861449625942</double> 
+              <double>533.4447656962793</double> 
              </void> 
             </object> 
            </void> 
            <void property="title"> 
-            <string>l</string> 
+            <string>r</string> 
            </void> 
           </void> 
           <void property="selfLoop"> 
@@ -1612,10 +1232,10 @@
           <void property="start"> 
            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
             <void property="x"> 
-             <double>425.0</double> 
+             <double>455.1111111111111</double> 
             </void> 
             <void property="y"> 
-             <double>201.0</double> 
+             <double>597.3333333333335</double> 
             </void> 
            </object> 
           </void> 
@@ -1628,451 +1248,24 @@
          </object> 
         </void> 
         <void property="pattern"> 
-         <string>l</string> 
+         <string>r</string> 
+        </void> 
+        <void property="position"> 
+         <void property="x"> 
+          <double>95.5</double> 
+         </void> 
+         <void property="y"> 
+          <double>9.5</double> 
+         </void> 
         </void> 
         <void property="source"> 
-         <object idref="GElementFAState5"/> 
+         <object idref="GElementFAState4"/> 
         </void> 
         <void property="sourceAnchorKey"> 
          <string>CENTER</string> 
         </void> 
         <void property="target"> 
-         <object idref="GElementFAState5"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>179.7290210192886</double> 
-             </void> 
-             <void property="y"> 
-              <double>291.0159654830283</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>90.230863112451</double> 
-             </void> 
-             <void property="y"> 
-              <double>33.80083883983252</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>86.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>22.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>161.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>284.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>22.37287116787204</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>249.5652062487066</double> 
-             </void> 
-             <void property="y"> 
-              <double>331.1548119715762</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>l</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>347.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>307.20000000000005</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>l</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState1"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState0"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>295.3776643052232</double> 
-             </void> 
-             <void property="y"> 
-              <double>470.2566202802525</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>84.73609547080537</double> 
-             </void> 
-             <void property="y"> 
-              <double>-68.23083362392873</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>49.19999999999999</double> 
-            </void> 
-            <void property="y"> 
-             <double>-32.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>279.8</double> 
-            </void> 
-            <void property="y"> 
-             <double>482.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>54.752648635967184</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>367.0477236693283</double> 
-             </void> 
-             <void property="y"> 
-              <double>415.53033616502773</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>c</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>347.0</double> 
-            </void> 
-            <void property="y"> 
-             <double>307.20000000000005</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>c</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState1"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState2"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>104.11337383200305</double> 
-             </void> 
-             <void property="y"> 
-              <double>119.90550268834033</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>-196.72582811969352</double> 
-             </void> 
-             <void property="y"> 
-              <double>311.2066393884925</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>-54.80000000000001</double> 
-            </void> 
-            <void property="y"> 
-             <double>259.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>114.80000000000001</double> 
-            </void> 
-            <void property="y"> 
-             <double>103.0</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>304.43778321499184</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>24.175154882210705</double> 
-             </void> 
-             <void property="y"> 
-              <double>368.1122154935104</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>l</string> 
-           </void> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>279.8</double> 
-            </void> 
-            <void property="y"> 
-             <double>482.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>l</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState2"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState3"/> 
-        </void> 
-        <void property="targetAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-       </object> 
-      </void> 
-      <void method="add"> 
-       <object class="edu.usfca.xj.appkit.gview.object.GLink"> 
-        <void property="labelVisible"> 
-         <boolean>true</boolean> 
-        </void> 
-        <void property="link"> 
-         <object class="edu.usfca.xj.appkit.gview.shape.SLinkArc"> 
-          <void property="arrow"> 
-           <void property="anchor"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>266.10281916086853</double> 
-             </void> 
-             <void property="y"> 
-              <double>497.37351148694546</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="direction"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>-54.78872335652588</double> 
-             </void> 
-             <void property="y"> 
-              <double>58.294045947781626</double> 
-             </void> 
-            </object> 
-           </void> 
-          </void> 
-          <void property="direction"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>-0.8000000000000114</double> 
-            </void> 
-            <void property="y"> 
-             <double>14.199999999999932</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="end"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>279.8</double> 
-            </void> 
-            <void property="y"> 
-             <double>482.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="endDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="endTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-          <void property="flateness"> 
-           <double>40.0</double> 
-          </void> 
-          <void property="label"> 
-           <void property="position"> 
-            <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-             <void property="x"> 
-              <double>275.5813375445771</double> 
-             </void> 
-             <void property="y"> 
-              <double>557.6812585837553</double> 
-             </void> 
-            </object> 
-           </void> 
-           <void property="title"> 
-            <string>c</string> 
-           </void> 
-          </void> 
-          <void property="selfLoop"> 
-           <boolean>true</boolean> 
-          </void> 
-          <void property="start"> 
-           <object class="edu.usfca.xj.appkit.gview.base.Vector2D"> 
-            <void property="x"> 
-             <double>279.8</double> 
-            </void> 
-            <void property="y"> 
-             <double>482.80000000000007</double> 
-            </void> 
-           </object> 
-          </void> 
-          <void property="startDirection"> 
-           <object idref="Vector2D0"/> 
-          </void> 
-          <void property="startTangentOffset"> 
-           <double>20.0</double> 
-          </void> 
-         </object> 
-        </void> 
-        <void property="pattern"> 
-         <string>c</string> 
-        </void> 
-        <void property="source"> 
-         <object idref="GElementFAState2"/> 
-        </void> 
-        <void property="sourceAnchorKey"> 
-         <string>CENTER</string> 
-        </void> 
-        <void property="target"> 
-         <object idref="GElementFAState2"/> 
+         <object idref="GElementFAState4"/> 
         </void> 
         <void property="targetAnchorKey"> 
          <string>CENTER</string> 
@@ -2088,10 +1281,7 @@
          <string>a</string> 
         </void> 
         <void method="add"> 
-         <string>c</string> 
-        </void> 
-        <void method="add"> 
-         <string>l</string> 
+         <string>r</string> 
         </void> 
        </void> 
       </void> 
@@ -2117,9 +1307,6 @@
         <void method="add"> 
          <object idref="FAState4"/> 
         </void> 
-        <void method="add"> 
-         <object idref="FAState5"/> 
-        </void> 
        </void> 
       </void> 
       <void property="transitions"> 
@@ -2127,19 +1314,6 @@
         <void method="add"> 
          <object class="edu.usfca.vas.machine.fa.FATransition"> 
           <void property="s1"> 
-           <string>providerable</string> 
-          </void> 
-          <void property="s2"> 
-           <string>adopted</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>a</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
            <string>manual</string> 
           </void> 
           <void property="s2"> 
@@ -2179,19 +1353,6 @@
         <void method="add"> 
          <object class="edu.usfca.vas.machine.fa.FATransition"> 
           <void property="s1"> 
-           <string>orphaned</string> 
-          </void> 
-          <void property="s2"> 
-           <string>providerable</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>c</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
            <string>spiderable</string> 
           </void> 
           <void property="s2"> 
@@ -2218,155 +1379,88 @@
         <void method="add"> 
          <object class="edu.usfca.vas.machine.fa.FATransition"> 
           <void property="s1"> 
-           <string>orphaned</string> 
-          </void> 
-          <void property="s2"> 
-           <string>spiderable</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>l</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
-           <string>spiderable</string> 
-          </void> 
-          <void property="s2"> 
-           <string>manual</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>l</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
-           <string>manual</string> 
-          </void> 
-          <void property="s2"> 
-           <string>fostered</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>l</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
-           <string>spiderable</string> 
-          </void> 
-          <void property="s2"> 
-           <string>providerable</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>c</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
-           <string>manual</string> 
-          </void> 
-          <void property="s2"> 
-           <string>providerable</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>c</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
-           <string>fostered</string> 
-          </void> 
-          <void property="s2"> 
-           <string>providerable</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>c</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
-           <string>fostered</string> 
-          </void> 
-          <void property="s2"> 
-           <string>fostered</string> 
-          </void> 
-          <void property="symbol"> 
-           <string>l</string> 
-          </void> 
-         </object> 
-        </void> 
-        <void method="add"> 
-         <object class="edu.usfca.vas.machine.fa.FATransition"> 
-          <void property="s1"> 
            <string>adopted</string> 
           </void> 
           <void property="s2"> 
            <string>orphaned</string> 
           </void> 
           <void property="symbol"> 
-           <string>l</string> 
+           <string>r</string> 
           </void> 
          </object> 
         </void> 
         <void method="add"> 
          <object class="edu.usfca.vas.machine.fa.FATransition"> 
           <void property="s1"> 
-           <string>adopted</string> 
+           <string>spiderable</string> 
           </void> 
           <void property="s2"> 
-           <string>providerable</string> 
+           <string>manual</string> 
           </void> 
           <void property="symbol"> 
-           <string>c</string> 
+           <string>r</string> 
           </void> 
          </object> 
         </void> 
         <void method="add"> 
          <object class="edu.usfca.vas.machine.fa.FATransition"> 
           <void property="s1"> 
-           <string>providerable</string> 
+           <string>orphaned</string> 
           </void> 
           <void property="s2"> 
            <string>spiderable</string> 
           </void> 
           <void property="symbol"> 
-           <string>l</string> 
+           <string>r</string> 
           </void> 
          </object> 
         </void> 
         <void method="add"> 
          <object class="edu.usfca.vas.machine.fa.FATransition"> 
           <void property="s1"> 
-           <string>providerable</string> 
+           <string>manual</string> 
           </void> 
           <void property="s2"> 
-           <string>providerable</string> 
+           <string>fostered</string> 
           </void> 
           <void property="symbol"> 
-           <string>c</string> 
+           <string>r</string> 
+          </void> 
+         </object> 
+        </void> 
+        <void method="add"> 
+         <object class="edu.usfca.vas.machine.fa.FATransition"> 
+          <void property="s1"> 
+           <string>fostered</string> 
+          </void> 
+          <void property="s2"> 
+           <string>fostered</string> 
+          </void> 
+          <void property="symbol"> 
+           <string>r</string> 
           </void> 
          </object> 
         </void> 
        </void> 
       </void> 
      </void> 
+     <void property="position"> 
+      <void property="x"> 
+       <double>95.5</double> 
+      </void> 
+      <void property="y"> 
+       <double>9.5</double> 
+      </void> 
+     </void> 
+    </void> 
+    <void property="horizontalMagnetics"> 
+     <int>8</int> 
     </void> 
     <void property="name"> 
      <string>Page</string> 
     </void> 
-    <void property="string"> 
-     <string>llla</string> 
+    <void property="verticalMagnetics"> 
+     <int>8</int> 
     </void> 
    </object> 
   </void> 
