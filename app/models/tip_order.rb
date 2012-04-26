@@ -1,4 +1,4 @@
-class TipOrderMissing < Exception ; end
+class OrderDeclined < Exception ; end
 
 class TipOrder < ActiveRecord::Base
   has_many :tips, :dependent => :destroy
@@ -7,29 +7,21 @@ class TipOrder < ActiveRecord::Base
   validates :user, presence:true
   validates_associated :user
   
-  scope :current, where('state = ?', 'current')
-  scope :paid, where('state = ?', 'paid')
+  scope :unpaid, where('state = ?', 'unpaid').order('created_at DESC')
   scope :declined, where('state = ?', 'declined')
+  scope :paid, where('state = ?', 'paid')
 
-  state_machine :state, :initial => :current do
-    event :prepare do
-      transition :current => :ready, :if => lambda {|tip_order| tip_order.user.charge_info? }
-    end
-    
-    after_transition :current => :ready do |tip_order,transition|
-      tip_order.user.tip_orders.current.create
-    end
-    
+  state_machine :state, :initial => :unpaid do
     event :process do
-      transition all - :paid => :paid
+      transition [:unpaid,:declined] => :paid
     end
     
     event :decline do
-      transition :ready => :declined
+      transition [:unpaid,:declined] => :declined
     end
     
-    after_transition all => :paid do |tip_order,transition|
-      tip_order.send(:charge)
+    before_transition [:unpaid,:declined] => :paid do |tip_order,transition|
+      tip_order.charge!
     end
   end
   
@@ -57,23 +49,27 @@ class TipOrder < ActiveRecord::Base
     self.subtotal + self.fees
   end
 
-  protected 
-  
-  def charge
-    stripe_charge = Stripe::Charge.create(
-      :amount => self.tips.sum('amount_in_cents') + self.tips.sum('amount_in_cents')/10,
-      :currency => "usd",
-      :customer => self.user.stripe_customer_id,
-      :description => self.user.email
-    )
-    self.charge_token = stripe_charge.id
-    self.save!
-    self.tips.find_each do |tip|
-      tip.pay!
+  def charge!
+    unless paid?
+      begin
+        stripe_charge = Stripe::Charge.create(
+          :amount => subtotal() +fees(),
+          :currency => "usd",
+          :customer => self.user.stripe_customer_id,
+          :description => self.user.email
+        )
+        self.charge_token = stripe_charge.id
+        # self.save!
+        self.tips.find_each do |tip|
+          tip.pay!
+        end
+        stripe_charge
+      rescue Stripe::CardError => e
+        self.decline!
+        raise OrderDeclined
+      end 
+    else
+      raise "There was an attempt to charge! a paid Order: #{self.inspect}"
     end
-    stripe_charge
-  rescue Stripe::CardError => e
-    self.decline
-    nil
   end
 end

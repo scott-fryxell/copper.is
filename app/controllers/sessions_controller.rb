@@ -47,7 +47,7 @@ class SessionsController < ApplicationController
         redirect_to user_tips_path(current_user.id), notice: "Signed in!"
       else
         # No user associated with the identity so we need to create a new one
-        user =  User.create_with_omniauth(auth)
+        user = User.create_with_omniauth(auth)
 
         set_cookie(user)
         current_user = user

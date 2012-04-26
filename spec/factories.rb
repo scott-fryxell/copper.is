@@ -77,14 +77,9 @@ FactoryGirl.define do
     identities [FactoryGirl.create(:identities_facebook)]
   end
 
-  factory :tip_order do
+  factory :tip_order_unpaid, :class => 'TipOrder' do
     association :user
-    state 'current'
-  end
-
-  factory :tip_order_ready, :class => 'TipOrder' do
-    association :user
-    state 'ready'
+    state 'unpaid'
   end
 
   factory :tip_order_paid, :class => 'TipOrder' do
@@ -107,7 +102,7 @@ FactoryGirl.define do
   end
 
   factory :tip do
-    association :tip_order
+    association :tip_order, factory: :tip_order_unpaid
     association :page
     amount_in_cents 100
   end

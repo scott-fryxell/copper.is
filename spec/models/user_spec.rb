@@ -28,9 +28,9 @@ describe User do
   describe "tiping" do
     it "should complain if the tip url is not valid" do
       fan = FactoryGirl.create(:user)
-      fan.tip_orders << FactoryGirl.create(:tip_order,state:'current')
+      fan.tip_orders << FactoryGirl.create(:tip_order_unpaid)
       fan.save!
-      fan.tip(url:'foobar').valid?.should be_false
+      proc { fan.tip(url:'foobar') }.should raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "should handle project-free-tv.com urls" do
@@ -49,8 +49,8 @@ describe User do
 
   describe "current tips" do
     it "should return a list of tips for a user with an current tip order" do
-      @user = FactoryGirl.create(:user)
-      @user.tip_orders.current.count.should == 1
+      @user = User.create!(name:'dude')
+      @user.tip_orders.unpaid.count.should == 1
       @user.current_tips.should_not be_nil
       @user.current_tips.size.should == 0
       @user.current_tips.should be_an_instance_of Array

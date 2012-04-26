@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Enqueueable
+  
   has_many :identities
   has_many :tip_orders
   has_many :tips, :through => :tip_orders
@@ -25,17 +27,12 @@ class User < ActiveRecord::Base
   # end
   
   after_create :create_current_tip_order!
-  
-  @queue = :high
-  def self.perform(page_id, message, args=[])
-    find(page_id).send(message, *args)
-  end
 
   def create_current_tip_order!
-    tip_order = self.tip_orders.build
-    tip_order.state = 'current'
-    tip_order.save!
-    save!
+    if self.tip_orders.unpaid.count > 0
+      raise "there is already an unpaid Order for this user: #{self.inspect}"
+    end
+    self.tip_orders.create!
   end
 
   def self.create_with_omniauth(auth)
@@ -57,12 +54,12 @@ class User < ActiveRecord::Base
     title  = args[:title]  || url
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
     
-    tip = Tip.new(:amount_in_cents => amount_in_cents)
+    tip = current_tip_order.tips.build(amount_in_cents:amount_in_cents)
     unless tip.page = Page.where('url = ?', url).first
       tip.page = Page.create(url:url,title:title)
     end
-    tip.tip_order = self.tip_orders.current.first
-    tip.save
+    tip.tip_order = current_tip_order()
+    tip.save!
     tip
   end
 
@@ -91,7 +88,10 @@ class User < ActiveRecord::Base
   end
 
   def current_tip_order
-    tip_orders.current.first
+    unless order = self.tip_orders.unpaid.first
+      order = self.tip_orders.create
+    end
+    order
   end
   
   def current_tips

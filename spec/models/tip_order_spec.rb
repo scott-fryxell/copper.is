@@ -3,7 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe TipOrder do
   describe "when creating a new tip order" do
     before do
-      @order = FactoryGirl.build(:tip_order)
+      @order = FactoryGirl.build(:tip_order_unpaid)
     end
 
     it "should save correctly when all the required values are set" do
@@ -25,7 +25,7 @@ describe TipOrder do
   describe "when calculating where the money is for the order" do
     before do
       @user = FactoryGirl.create(:user)
-      FactoryGirl.create(:tip_order,user:@user)
+      FactoryGirl.create(:tip_order_unpaid, user:@user)
       @user.tip(:url => 'http://example.com', :title => 'example page', :amount_in_cents => 25)
       @user.tip(:url => 'http://beefdeed.com/chunder', :title => 'CHUNDER POW', :amount_in_cents => 25)
       @user.tip(:url => 'http://beefdeed.com/horde', :title => 'ALL HAIL THE HORDE', :amount_in_cents => 25)
@@ -68,14 +68,12 @@ describe TipOrder do
 
     it "should charge the fan for his tips"  do
       @order = @user.current_tip_order
+      @order.unpaid?.should be_true
       @user.tip(:url => 'http://example.com', :title => 'example page', :amount_in_cents => 500)
       @user.tip(:url => 'http://beefdeed.com/chunder', :title => 'CHUNDER POW', :amount_in_cents => 500)
       @user.tip(:url => 'http://beefdeed.com/horde', :title => 'ALL HAIL THE HORDE', :amount_in_cents => 500)
-      @order.prepare!
-      @order.ready?.should be_true
-      @order.process!
-      @user.current_tip_order.should_not == @order
-      @order.state.should == "paid"
+      @user.current_tip_order.process!
+      TipOrder.find(@order.id).paid?.should be_true
       @order.tips.size.should == 3
       @order.tips.sum(:amount_in_cents).should == 1500
     end
@@ -88,19 +86,11 @@ describe TipOrder do
       def @charge_token.id() 1 end
     end
     
-    it "should transition from :current to :ready on a prepare: event" do
-      @tip_order = FactoryGirl.create(:tip_order)
-      @tip_order.state_name.should == :current
-      @tip_order.user.stripe_customer_id = 1
-      @tip_order.prepare
-      @tip_order.state_name.should == :ready
-    end
-
     it "should transition from :ready to :paid on a process! event and valid payment info"  do
       Stripe::Charge.stub(:create) { @charge_token }
-      @tip_order = FactoryGirl.create(:tip_order_ready)
-      @tip_order.state_name.should == :ready
-      @tip_order.process
+      @tip_order = FactoryGirl.create(:tip_order_unpaid)
+      @tip_order.state_name.should == :unpaid
+      @tip_order.process!
       @tip_order.state_name.should == :paid
     end
     
@@ -146,7 +136,7 @@ describe TipOrder do
     end
 
     it 'has a .current scope'  do
-      TipOrder.current.first.id.should == @current_order.id
+      TipOrder.unpaid.first.id.should == @current_order.id
     end
 
     it 'has a .paid scope' do

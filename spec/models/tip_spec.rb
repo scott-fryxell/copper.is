@@ -4,7 +4,7 @@ describe Tip do
   context do
     before(:each) do
       @tip = Tip.new(:amount_in_cents => 25)
-      @tip.tip_order = FactoryGirl.create(:tip_order)
+      @tip.tip_order = FactoryGirl.create(:tip_order_paid)
       @tip.page = FactoryGirl.create(:authored_page)
       @tip.save
     end
@@ -26,14 +26,14 @@ describe Tip do
 
   it 'should not allow a tip of 0 cents' do
     @tip = Tip.new(:amount_in_cents => 0)
-    @tip.tip_order = FactoryGirl.create(:tip_order)
+    @tip.tip_order = FactoryGirl.create(:tip_order_unpaid)
     @tip.save
     @tip.valid?.should be_false
   end
 
   it 'should not allow a tip of -1 cents' do
     @tip = Tip.new(:amount_in_cents => -1)
-    @tip.tip_order = FactoryGirl.create(:tip_order)
+    @tip.tip_order = FactoryGirl.create(:tip_order_unpaid)
     @tip.save.should be_false
   end
 
