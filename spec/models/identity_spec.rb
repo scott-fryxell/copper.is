@@ -17,6 +17,8 @@ describe Identity do
     describe provider do
       before do
         @identity = FactoryGirl.create factory
+        twitter_user = OpenStruct.new(uid:'123',username:'dude')
+        Twitter.stub(:user).and_return(twitter_user)
       end
 
       it 'has a method to inform a non-user of an earned royalty check' do
@@ -27,18 +29,17 @@ describe Identity do
         Identity.factory provider:provider, uid:FactoryGirl.generate(:uid)
       end
 
-      slow_test do
-        it 'has a method that populates uid or username depending on what\'s missing' do
-          proc{ @identity.populate_uid_and_username! }.should_not raise_error
-        end
 
-        it 'has a method that populates uid given a username' do
-          proc{ @identity.populate_uid_from_username! }.should_not raise_error
-        end
-
-        it 'has a method that populates username given a uid' do
-          proc{ @identity.populate_username_from_uid! }.should_not raise_error
-        end
+      it 'has a method that populates uid or username depending on what\'s missing' do
+        proc{ @identity.populate_uid_and_username! }.should_not raise_error
+      end
+      
+      it 'has a method that populates uid given a username' do
+        proc{ @identity.populate_uid_from_username! }.should_not raise_error
+      end
+      
+      it 'has a method that populates username given a uid' do
+        proc{ @identity.populate_username_from_uid! }.should_not raise_error
       end
 
       describe 'with a page and some tips' do
