@@ -12,7 +12,7 @@ class Tip < ActiveRecord::Base
   
   scope :promised, where("paid_state = ?", 'promised')
   scope :charged, where("paid_state = ?", 'charged')
-  scope :kinged, where("paid_state = ?", 'kinged')
+  scope :kinged, where("paid_state = ?", 'kinged').readonly
 
   MINIMUM_TIP_VALUE = 1
   MAXIMUM_TIP_VALUE = 2000
@@ -33,6 +33,16 @@ class Tip < ActiveRecord::Base
     
     event :claim do
       transition :charged => :kinged
+    end
+    
+    state :charged do
+      validate :validate_presence_of_paid_tip_order
+    end
+  end
+  
+  def validate_presence_of_paid_tip_order
+    unless self.tip_order.paid?
+      errors.add(:tip_order_id, "tip order must be :paid for :charged tips")
     end
   end
 end

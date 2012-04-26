@@ -105,7 +105,7 @@ FactoryGirl.define do
   end
 
   factory :tip_charged, :class => "Tip" do
-    association :tip_order
+    association :tip_order, factory: :tip_order_paid
     association :page
     amount_in_cents 100
     paid_state "charged"

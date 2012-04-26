@@ -223,7 +223,7 @@ describe Page do
     before do
       @page = FactoryGirl.build(:page,author_state:'adopted')
       @identity = FactoryGirl.create(:identities_twitter,user:nil)
-      @tip = FactoryGirl.build(:tip,paid_state:'charged')
+      @tip = FactoryGirl.build(:tip_charged)
       @page.identity = @identity
       @page.save!
       @tip.page = @page

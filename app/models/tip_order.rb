@@ -21,11 +21,15 @@ class TipOrder < ActiveRecord::Base
     end
     
     event :process do
-      transition all - :paid => :paid, :if => lambda {|tip_order| tip_order.send(:charge) }
+      transition all - :paid => :paid
     end
     
     event :decline do
       transition :ready => :declined
+    end
+    
+    after_transition all => :paid do |tip_order,transition|
+      tip_order.send(:charge)
     end
   end
   

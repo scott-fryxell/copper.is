@@ -38,9 +38,18 @@ describe Tip do
   end
 
   describe "state machine" do
+    it "transition fails on :pay event when tip_order is not paid" do
+      tip = FactoryGirl.create(:tip)
+      tip.promised?.should be_true
+      proc { tip.pay! }.should raise_error(StateMachine::InvalidTransition)
+      tip.charged?.should be_false
+    end
+    
     it "should transition from :promised to :charged on a pay: event" do
       tip = FactoryGirl.create(:tip)
       tip.promised?.should be_true
+      tip.tip_order.state = 'paid'
+      tip.tip_order.save!
       tip.pay!
       tip.charged?.should be_true
     end
@@ -56,7 +65,7 @@ describe Tip do
   context 'scopes' do
     before do
       @promised = Array.new(3) { FactoryGirl.create(:tip, paid_state:'promised' ) }
-      @charged = Array.new(4) { FactoryGirl.create(:tip, paid_state:'charged' ) }
+      @charged = Array.new(4) { FactoryGirl.create(:tip_charged) }
       @kinged = Array.new(5) { FactoryGirl.create(:tip, paid_state:'kinged' ) }
     end
 

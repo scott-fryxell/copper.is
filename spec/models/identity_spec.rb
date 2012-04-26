@@ -49,8 +49,10 @@ describe Identity do
           @page = FactoryGirl.create(:page,url:"http://example.com/dudeham",author_state:'adopted')
           @page.identity = @identity
           @page.save!
-          @tip_order = FactoryGirl.create(:tip_order,user:@fan)
-          @tip_order.tips << FactoryGirl.create(:tip,page:@page,amount_in_cents:50,paid_state:'charged')
+          @tip_order = FactoryGirl.create(:tip_order_paid,user:@fan)
+          @tip_order.paid?.should be_true
+          tip = @tip_order.tips.build
+          tip.assign_attributes({page:@page,amount_in_cents:50,paid_state:'charged'},without_protection:true)
           @tip_order.save!
         end
         

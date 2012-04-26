@@ -9,7 +9,7 @@ class Identity < ActiveRecord::Base
   validates :provider, presence:true
   validate :presence_of_username_or_uid
   
-  scope :strangers, where('identity_state = ?', 'stranger')
+  scope :stranger, where('identity_state = ?', 'stranger')
   scope :wanted, where('identity_state = ?', 'wanted')
   scope :known, where('identity_state = ?', 'known')
 
