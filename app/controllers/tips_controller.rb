@@ -43,7 +43,7 @@ class TipsController < ApplicationController
   def destroy
     tip = Tip.find(params[:id])
 
-    if(tip.tip_order.user == current_user && tip.tip_order.current?)
+    if(tip.order.user == current_user && tip.order.current?)
       tip.destroy
     end
     render :nothing => true, :status => :ok

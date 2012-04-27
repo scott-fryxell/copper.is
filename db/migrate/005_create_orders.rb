@@ -1,6 +1,6 @@
-class CreateTipOrders < ActiveRecord::Migration
+class CreateOrders < ActiveRecord::Migration
   def self.up
-    create_table   :tip_orders do |t|
+    create_table   :orders do |t|
       t.references :user,    :null => false
       t.string     :state
       t.string     :charge_token
@@ -9,6 +9,6 @@ class CreateTipOrders < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :tip_orders
+    drop_table :orders
   end
 end

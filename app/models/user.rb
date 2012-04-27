@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   include Enqueueable
   
   has_many :identities
-  has_many :tip_orders
-  has_many :tips, :through => :tip_orders
+  has_many :orders
+  has_many :tips, :through => :orders
   has_many :checks
   has_and_belongs_to_many :roles
   
@@ -20,19 +20,19 @@ class User < ActiveRecord::Base
   EMAIL_RE = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/
   validates :email, format:{with:EMAIL_RE}, :allow_nil => true
 
-  # validate :validate_one_current_tip_order
+  # validate :validate_one_current_order
 
-  # def validate_one_current_tip_order
-  #  errors.add(:tip_orders, "there can be only one") unless self.tip_orders.current.size == 1
+  # def validate_one_current_order
+  #  errors.add(:orders, "there can be only one") unless self.orders.current.size == 1
   # end
   
-  after_create :create_current_tip_order!
+  after_create :create_current_order!
 
-  def create_current_tip_order!
-    if self.tip_orders.unpaid.count > 0
+  def create_current_order!
+    if self.orders.unpaid.count > 0
       raise "there is already an unpaid Order for this user: #{self.inspect}"
     end
-    self.tip_orders.create!
+    self.orders.create!
   end
 
   def self.create_with_omniauth(auth)
@@ -54,11 +54,11 @@ class User < ActiveRecord::Base
     title  = args[:title]  || url
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
     
-    tip = current_tip_order.tips.build(amount_in_cents:amount_in_cents)
+    tip = current_order.tips.build(amount_in_cents:amount_in_cents)
     unless tip.page = Page.where('url = ?', url).first
       tip.page = Page.create(url:url,title:title)
     end
-    tip.tip_order = current_tip_order()
+    tip.order = current_order()
     tip.save!
     tip
   end
@@ -87,15 +87,15 @@ class User < ActiveRecord::Base
     end
   end
 
-  def current_tip_order
-    unless order = self.tip_orders.unpaid.first
-      order = self.tip_orders.create
+  def current_order
+    unless order = self.orders.unpaid.first
+      order = self.orders.create
     end
     order
   end
   
   def current_tips
-    current_tip_order.tips
+    current_order.tips
   end
 
   def try_to_create_check!

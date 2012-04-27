@@ -14,7 +14,7 @@ Copper::Application.routes.draw do
   end
 
   # resources :tips
-  # resources :tip_orders do
+  # resources :orders do
   #   resources :tips
   # end
   # resources :checks do

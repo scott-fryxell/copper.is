@@ -134,9 +134,13 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
+    <li><a href="./Order.html">Order</a>
+  
     <li><a href="./OrderDeclined.html">OrderDeclined</a>
   
     <li><a href="./OrderMailer.html">OrderMailer</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
   
     <li><a href="./Page.html">Page</a>
   
@@ -149,10 +153,6 @@
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
-  
-    <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
     <li><a href="./TipsController.html">TipsController</a>
   
@@ -292,7 +292,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">tip</span> = <span class="ruby-constant">Tip</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 
-  <span class="ruby-keyword">if</span>(<span class="ruby-identifier">tip</span>.<span class="ruby-identifier">tip_order</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">tip_order</span>.<span class="ruby-identifier">current?</span>)
+  <span class="ruby-keyword">if</span>(<span class="ruby-identifier">tip</span>.<span class="ruby-identifier">order</span>.<span class="ruby-identifier">user</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">current_user</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">order</span>.<span class="ruby-identifier">current?</span>)
     <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:ok</span>

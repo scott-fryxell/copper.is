@@ -1,9 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe TipOrder do
+describe Order do
   describe "when creating a new tip order" do
     before do
-      @order = FactoryGirl.build(:tip_order_unpaid)
+      @order = FactoryGirl.build(:order_unpaid)
     end
 
     it "should save correctly when all the required values are set" do
@@ -17,15 +17,15 @@ describe TipOrder do
   end
 
   it "should have a unique current tip order for each user" # do
-  #   tip_order = TipOrder.new
-  #   tip_order.user = FactoryGirl.create(:user)
-  #   TipOrder.new(:user => tip_order.user).save.should be_false
+  #   order = Order.new
+  #   order.user = FactoryGirl.create(:user)
+  #   Order.new(:user => order.user).save.should be_false
   # end
 
   describe "when calculating where the money is for the order" do
     before do
       @user = FactoryGirl.create(:user)
-      FactoryGirl.create(:tip_order_unpaid, user:@user)
+      FactoryGirl.create(:order_unpaid, user:@user)
       @user.tip(:url => 'http://example.com', :title => 'example page', :amount_in_cents => 25)
       @user.tip(:url => 'http://beefdeed.com/chunder', :title => 'CHUNDER POW', :amount_in_cents => 25)
       @user.tip(:url => 'http://beefdeed.com/horde', :title => 'ALL HAIL THE HORDE', :amount_in_cents => 25)
@@ -67,13 +67,13 @@ describe TipOrder do
     end
 
     it "should charge the fan for his tips"  do
-      @order = @user.current_tip_order
+      @order = @user.current_order
       @order.unpaid?.should be_true
       @user.tip(:url => 'http://example.com', :title => 'example page', :amount_in_cents => 500)
       @user.tip(:url => 'http://beefdeed.com/chunder', :title => 'CHUNDER POW', :amount_in_cents => 500)
       @user.tip(:url => 'http://beefdeed.com/horde', :title => 'ALL HAIL THE HORDE', :amount_in_cents => 500)
-      @user.current_tip_order.process!
-      TipOrder.find(@order.id).paid?.should be_true
+      @user.current_order.process!
+      Order.find(@order.id).paid?.should be_true
       @order.tips.size.should == 3
       @order.tips.sum(:amount_in_cents).should == 1500
     end
@@ -88,63 +88,63 @@ describe TipOrder do
     
     it "should transition from :ready to :paid on a process! event and valid payment info"  do
       Stripe::Charge.stub(:create) { @charge_token }
-      @tip_order = FactoryGirl.create(:tip_order_unpaid)
-      @tip_order.state_name.should == :unpaid
-      @tip_order.process!
-      @tip_order.state_name.should == :paid
+      @order = FactoryGirl.create(:order_unpaid)
+      @order.state_name.should == :unpaid
+      @order.process!
+      @order.state_name.should == :paid
     end
     
     it "should transition from :ready to :declined on a process! event and not enough funds"#  do
     #   Stripe::Charge.stub(:create).and_raise(Stripe::CardError.new('error[:message]', 'error[:param]', 402, "foobar", "baz", Object.new))
-    #   @tip_order = FactoryGirl.create(:tip_order_ready)
-    #   @tip_order.state_name.should == :ready
-    #   @tip_order.process
-    #   @tip_order.state_name.should == :declined
+    #   @order = FactoryGirl.create(:order_ready)
+    #   @order.state_name.should == :ready
+    #   @order.process
+    #   @order.state_name.should == :declined
     # end
     
     it "should transition from :declined to :paid on a process! event and valid payment info" do
       Stripe::Charge.stub(:create) { @charge_token }
-      @tip_order = FactoryGirl.create(:tip_order_declined)
-      @tip_order.state_name.should == :declined
-      @tip_order.process
-      @tip_order.state_name.should == :paid
+      @order = FactoryGirl.create(:order_declined)
+      @order.state_name.should == :declined
+      @order.process
+      @order.state_name.should == :paid
     end
     
     it "should transition to :declined to :declined on a process! event and not enough funds"#  do
     #   Stripe::Charge.stub(:create).and_raise(Stripe::CardError.new('error[:message]', 'error[:param]', 402, "foobar", "baz", Object.new))
-    #   @tip_order = FactoryGirl.create(:tip_order_declined)
-    #   @tip_order.state_name.should == :declined
-    #   @tip_order.process
-    #   @tip_order.state_name.should == :declined
+    #   @order = FactoryGirl.create(:order_declined)
+    #   @order.state_name.should == :declined
+    #   @order.process
+    #   @order.state_name.should == :declined
     # end
   end
 
   describe 'scopes' do
     before do
       @user = FactoryGirl.create(:user)
-      @current_order = @user.current_tip_order
+      @current_order = @user.current_order
       @paid_orders = Array.new(2) {
-         to = @user.tip_orders.build()
+         to = @user.orders.build()
          to.state = "paid"
          to.save
       }
       @declined_orders = Array.new(2) {
-         to = @user.tip_orders.build()
+         to = @user.orders.build()
          to.state = "declined"
          to.save
        }
     end
 
     it 'has a .current scope'  do
-      TipOrder.unpaid.first.id.should == @current_order.id
+      Order.unpaid.first.id.should == @current_order.id
     end
 
     it 'has a .paid scope' do
-      TipOrder.paid.count.should == @paid_orders.size
+      Order.paid.count.should == @paid_orders.size
     end
 
     it 'has a .declined scope' do
-      TipOrder.declined.count.should == @declined_orders.size
+      Order.declined.count.should == @declined_orders.size
     end
   end
 end

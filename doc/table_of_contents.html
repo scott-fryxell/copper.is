@@ -87,10 +87,16 @@
     <a href="LayoutHelper.html">LayoutHelper</a>
   </li>
     <li class="class">
+    <a href="Order.html">Order</a>
+  </li>
+    <li class="class">
     <a href="OrderDeclined.html">OrderDeclined</a>
   </li>
     <li class="class">
     <a href="OrderMailer.html">OrderMailer</a>
+  </li>
+    <li class="class">
+    <a href="OrdersController.html">OrdersController</a>
   </li>
     <li class="class">
     <a href="Page.html">Page</a>
@@ -109,12 +115,6 @@
   </li>
     <li class="class">
     <a href="Tip.html">Tip</a>
-  </li>
-    <li class="class">
-    <a href="TipOrder.html">TipOrder</a>
-  </li>
-    <li class="class">
-    <a href="TipOrdersController.html">TipOrdersController</a>
   </li>
     <li class="class">
     <a href="TipsController.html">TipsController</a>
@@ -188,21 +188,21 @@
   
     <li class="method"><a href="LayoutHelper.html#method-i-cents_to_dollars">#cents_to_dollars &mdash; LayoutHelper</a>
   
-    <li class="method"><a href="TipOrder.html#method-i-charge-21">#charge! &mdash; TipOrder</a>
+    <li class="method"><a href="Order.html#method-i-charge-21">#charge! &mdash; Order</a>
   
     <li class="method"><a href="User.html#method-i-charge_info-3F">#charge_info? &mdash; User</a>
   
     <li class="method"><a href="CheckMailer.html#method-i-check">#check &mdash; CheckMailer</a>
   
-    <li class="method"><a href="TipsController.html#method-i-create">#create &mdash; TipsController</a>
-  
     <li class="method"><a href="SessionsController.html#method-i-create">#create &mdash; SessionsController</a>
   
-    <li class="method"><a href="User.html#method-i-create_current_tip_order-21">#create_current_tip_order! &mdash; User</a>
+    <li class="method"><a href="TipsController.html#method-i-create">#create &mdash; TipsController</a>
+  
+    <li class="method"><a href="User.html#method-i-create_current_order-21">#create_current_order! &mdash; User</a>
   
     <li class="method"><a href="User.html#method-i-create_stripe_customer">#create_stripe_customer &mdash; User</a>
   
-    <li class="method"><a href="User.html#method-i-current_tip_order">#current_tip_order &mdash; User</a>
+    <li class="method"><a href="User.html#method-i-current_order">#current_order &mdash; User</a>
   
     <li class="method"><a href="User.html#method-i-current_tips">#current_tips &mdash; User</a>
   
@@ -210,13 +210,13 @@
   
     <li class="method"><a href="TipsController.html#method-i-destroy">#destroy &mdash; TipsController</a>
   
-    <li class="method"><a href="SessionsController.html#method-i-destroy">#destroy &mdash; SessionsController</a>
-  
     <li class="method"><a href="IdentitiesController.html#method-i-destroy">#destroy &mdash; IdentitiesController</a>
+  
+    <li class="method"><a href="SessionsController.html#method-i-destroy">#destroy &mdash; SessionsController</a>
   
     <li class="method"><a href="Page.html#method-i-discover_identity-21">#discover_identity! &mdash; Page</a>
   
-    <li class="method"><a href="Identities/Flickr.html#method-i-discover_uid_and_username_from_url">#discover_uid_and_username_from_url &mdash; Identities::Flickr</a>
+    <li class="method"><a href="Identities/Youtube.html#method-i-discover_uid_and_username_from_url">#discover_uid_and_username_from_url &mdash; Identities::Youtube</a>
   
     <li class="method"><a href="Identities/Vimeo.html#method-i-discover_uid_and_username_from_url">#discover_uid_and_username_from_url &mdash; Identities::Vimeo</a>
   
@@ -226,9 +226,9 @@
   
     <li class="method"><a href="Identities/Soundcloud.html#method-i-discover_uid_and_username_from_url">#discover_uid_and_username_from_url &mdash; Identities::Soundcloud</a>
   
-    <li class="method"><a href="Identities/Youtube.html#method-i-discover_uid_and_username_from_url">#discover_uid_and_username_from_url &mdash; Identities::Youtube</a>
-  
     <li class="method"><a href="Identities/Facebook.html#method-i-discover_uid_and_username_from_url">#discover_uid_and_username_from_url &mdash; Identities::Facebook</a>
+  
+    <li class="method"><a href="Identities/Flickr.html#method-i-discover_uid_and_username_from_url">#discover_uid_and_username_from_url &mdash; Identities::Flickr</a>
   
     <li class="method"><a href="Identities/Tumblr.html#method-i-discover_uid_and_username_from_url">#discover_uid_and_username_from_url &mdash; Identities::Tumblr</a>
   
@@ -236,7 +236,7 @@
   
     <li class="method"><a href="SessionsController.html#method-i-failure">#failure &mdash; SessionsController</a>
   
-    <li class="method"><a href="TipOrder.html#method-i-fees">#fees &mdash; TipOrder</a>
+    <li class="method"><a href="Order.html#method-i-fees">#fees &mdash; Order</a>
   
     <li class="method"><a href="Page.html#method-i-find_identity_from_author_link-21">#find_identity_from_author_link! &mdash; Page</a>
   
@@ -278,45 +278,45 @@
   
     <li class="method"><a href="Identity.html#method-i-populate_uid_and_username-21">#populate_uid_and_username! &mdash; Identity</a>
   
-    <li class="method"><a href="Identities/Twitter.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Twitter</a>
-  
-    <li class="method"><a href="Identities/Github.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Github</a>
-  
-    <li class="method"><a href="Identities/Youtube.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Youtube</a>
-  
-    <li class="method"><a href="Identities/Soundcloud.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Soundcloud</a>
-  
-    <li class="method"><a href="Identities/Google.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Google</a>
-  
-    <li class="method"><a href="Identity.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identity</a>
-  
-    <li class="method"><a href="Identities/Vimeo.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Vimeo</a>
-  
     <li class="method"><a href="Identities/Facebook.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Facebook</a>
-  
-    <li class="method"><a href="Identities/Flickr.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Flickr</a>
   
     <li class="method"><a href="Identities/Tumblr.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Tumblr</a>
   
-    <li class="method"><a href="Identities/Flickr.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Flickr</a>
+    <li class="method"><a href="Identities/Youtube.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Youtube</a>
   
-    <li class="method"><a href="Identities/Google.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Google</a>
+    <li class="method"><a href="Identity.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identity</a>
+  
+    <li class="method"><a href="Identities/Google.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Google</a>
+  
+    <li class="method"><a href="Identities/Flickr.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Flickr</a>
+  
+    <li class="method"><a href="Identities/Vimeo.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Vimeo</a>
+  
+    <li class="method"><a href="Identities/Soundcloud.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Soundcloud</a>
+  
+    <li class="method"><a href="Identities/Github.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Github</a>
+  
+    <li class="method"><a href="Identities/Twitter.html#method-i-populate_uid_from_username-21">#populate_uid_from_username! &mdash; Identities::Twitter</a>
   
     <li class="method"><a href="Identities/Twitter.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Twitter</a>
   
     <li class="method"><a href="Identities/Facebook.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Facebook</a>
   
-    <li class="method"><a href="Identity.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identity</a>
-  
     <li class="method"><a href="Identities/Github.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Github</a>
   
-    <li class="method"><a href="Identities/Vimeo.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Vimeo</a>
+    <li class="method"><a href="Identities/Google.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Google</a>
+  
+    <li class="method"><a href="Identity.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identity</a>
   
     <li class="method"><a href="Identities/Youtube.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Youtube</a>
   
-    <li class="method"><a href="Identities/Tumblr.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Tumblr</a>
-  
     <li class="method"><a href="Identities/Soundcloud.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Soundcloud</a>
+  
+    <li class="method"><a href="Identities/Flickr.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Flickr</a>
+  
+    <li class="method"><a href="Identities/Vimeo.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Vimeo</a>
+  
+    <li class="method"><a href="Identities/Tumblr.html#method-i-populate_username_from_uid-21">#populate_username_from_uid! &mdash; Identities::Tumblr</a>
   
     <li class="method"><a href="OrderMailer.html#method-i-reciept">#reciept &mdash; OrderMailer</a>
   
@@ -328,15 +328,15 @@
   
     <li class="method"><a href="UsersController.html#method-i-show">#show &mdash; UsersController</a>
   
-    <li class="method"><a href="TipOrder.html#method-i-subtotal">#subtotal &mdash; TipOrder</a>
+    <li class="method"><a href="Order.html#method-i-subtotal">#subtotal &mdash; Order</a>
   
-    <li class="method"><a href="TipOrder.html#method-i-time_to_pay-3F">#time_to_pay? &mdash; TipOrder</a>
+    <li class="method"><a href="Order.html#method-i-time_to_pay-3F">#time_to_pay? &mdash; Order</a>
   
     <li class="method"><a href="User.html#method-i-tip">#tip &mdash; User</a>
   
-    <li class="method"><a href="TipOrder.html#method-i-tiped_enough_to_pay-3F">#tiped_enough_to_pay? &mdash; TipOrder</a>
+    <li class="method"><a href="Order.html#method-i-tiped_enough_to_pay-3F">#tiped_enough_to_pay? &mdash; Order</a>
   
-    <li class="method"><a href="TipOrder.html#method-i-total">#total &mdash; TipOrder</a>
+    <li class="method"><a href="Order.html#method-i-total">#total &mdash; Order</a>
   
     <li class="method"><a href="Identity.html#method-i-try_to_add_to_wanted_list-21">#try_to_add_to_wanted_list! &mdash; Identity</a>
   
@@ -350,7 +350,7 @@
   
     <li class="method"><a href="Tip.html#method-i-validate_presence_of_check">#validate_presence_of_check &mdash; Tip</a>
   
-    <li class="method"><a href="Tip.html#method-i-validate_presence_of_paid_tip_order">#validate_presence_of_paid_tip_order &mdash; Tip</a>
+    <li class="method"><a href="Tip.html#method-i-validate_presence_of_paid_order">#validate_presence_of_paid_order &mdash; Tip</a>
   
     <li class="method"><a href="Identity.html#method-i-validate_presence_of_username_or_uid">#validate_presence_of_username_or_uid &mdash; Identity</a>
   

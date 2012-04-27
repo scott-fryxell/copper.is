@@ -45,7 +45,7 @@ class UsersController < ApplicationController
     end
 
     current_user.save
-    order = current_user.current_tip_order
+    order = current_user.current_order
 
     if current_user.accept_terms
       order.process!

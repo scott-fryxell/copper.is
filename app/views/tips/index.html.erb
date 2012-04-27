@@ -21,7 +21,7 @@
       <tr>
         <th>
           <span>Tips</span>
-          <%if current_user.tip_orders.count > 1 %>
+          <%if current_user.orders.count > 1 %>
           <nav id="tip_views">
             <a href="?all=true#all_tips" id="all_tips">All</a>
             <a href="?all=false#active_tips" id="active_tips">Current</a>

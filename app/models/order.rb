@@ -1,6 +1,6 @@
 class OrderDeclined < Exception ; end
 
-class TipOrder < ActiveRecord::Base
+class Order < ActiveRecord::Base
   has_many :tips, :dependent => :destroy
   belongs_to :user
   
@@ -20,8 +20,8 @@ class TipOrder < ActiveRecord::Base
       transition [:unpaid,:declined] => :declined
     end
     
-    before_transition [:unpaid,:declined] => :paid do |tip_order,transition|
-      tip_order.charge!
+    before_transition [:unpaid,:declined] => :paid do |order,transition|
+      order.charge!
     end
   end
   

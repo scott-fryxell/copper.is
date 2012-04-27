@@ -72,7 +72,7 @@
     
     <li><a href="#method-i-validate_presence_of_check">#validate_presence_of_check</a>
     
-    <li><a href="#method-i-validate_presence_of_paid_tip_order">#validate_presence_of_paid_tip_order</a>
+    <li><a href="#method-i-validate_presence_of_paid_order">#validate_presence_of_paid_order</a>
     
   </ul>
 </nav>
@@ -126,9 +126,13 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
+    <li><a href="./Order.html">Order</a>
+  
     <li><a href="./OrderDeclined.html">OrderDeclined</a>
   
     <li><a href="./OrderMailer.html">OrderMailer</a>
+  
+    <li><a href="./OrdersController.html">OrdersController</a>
   
     <li><a href="./Page.html">Page</a>
   
@@ -141,10 +145,6 @@
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
-  
-    <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
     <li><a href="./TipsController.html">TipsController</a>
   
@@ -237,10 +237,10 @@
       </div><!-- validate_presence_of_check-method -->
 
     
-      <div id="method-i-validate_presence_of_paid_tip_order" class="method-detail ">
+      <div id="method-i-validate_presence_of_paid_order" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">validate_presence_of_paid_tip_order</span><span
+          <span class="method-name">validate_presence_of_paid_order</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -252,21 +252,21 @@
           
 
           
-          <div class="method-source-code" id="validate_presence_of_paid_tip_order-source">
+          <div class="method-source-code" id="validate_presence_of_paid_order-source">
             <pre><span class="ruby-comment"># File app/models/tip.rb, line 47</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_presence_of_paid_tip_order</span>
-  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_order</span>.<span class="ruby-identifier">paid?</span>
-    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tip_order_id</span>, <span class="ruby-string">&quot;tip order must be :paid for :charged tips&quot;</span>)
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_presence_of_paid_order</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">order</span>.<span class="ruby-identifier">paid?</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:order_id</span>, <span class="ruby-string">&quot;tip order must be :paid for :charged tips&quot;</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- validate_presence_of_paid_tip_order-source -->
+          </div><!-- validate_presence_of_paid_order-source -->
           
         </div>
 
         
 
         
-      </div><!-- validate_presence_of_paid_tip_order-method -->
+      </div><!-- validate_presence_of_paid_order-method -->
 
     
     </section><!-- public-instance-method-details -->

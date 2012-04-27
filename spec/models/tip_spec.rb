@@ -4,13 +4,13 @@ describe Tip do
   context do
     before(:each) do
       @tip = Tip.new(:amount_in_cents => 25)
-      @tip.tip_order = FactoryGirl.create(:tip_order_paid)
+      @tip.order = FactoryGirl.create(:order_paid)
       @tip.page = FactoryGirl.create(:authored_page)
       @tip.save
     end
 
     it "should always be associated with a tip order" do
-      @tip.tip_order = nil
+      @tip.order = nil
       @tip.save.should be_false
     end
 
@@ -20,28 +20,28 @@ describe Tip do
 
     it "should save correctly with defaults set"  do
       @tip.save.should be_true
-      @tip.tip_order.should_not be_nil
+      @tip.order.should_not be_nil
     end
   end
 
   it 'should not allow a tip of 0 cents' do
     @tip = Tip.new(:amount_in_cents => 0)
-    @tip.tip_order = FactoryGirl.create(:tip_order_unpaid)
+    @tip.order = FactoryGirl.create(:order_unpaid)
     @tip.save
     @tip.valid?.should be_false
   end
 
   it 'should not allow a tip of -1 cents' do
     @tip = Tip.new(:amount_in_cents => -1)
-    @tip.tip_order = FactoryGirl.create(:tip_order_unpaid)
+    @tip.order = FactoryGirl.create(:order_unpaid)
     @tip.save.should be_false
   end
 
   describe "state machine" do
-    it "transition fails on :pay event when tip_order is not paid" do
+    it "transition fails on :pay event when order is not paid" do
       tip = FactoryGirl.create(:tip)
       tip.promised?.should be_true
-      tip.tip_order.paid?.should_not be_true
+      tip.order.paid?.should_not be_true
       #proc { tip.pay! }.should raise_error(StateMachine::InvalidTransition)
       tip.charged?.should be_false
     end
@@ -49,8 +49,8 @@ describe Tip do
     it "should transition from :promised to :charged on a pay: event" do
       tip = FactoryGirl.create(:tip)
       tip.promised?.should be_true
-      tip.tip_order.state = 'paid'
-      tip.tip_order.save!
+      tip.order.state = 'paid'
+      tip.order.save!
       tip.pay!
       tip.charged?.should be_true
     end
