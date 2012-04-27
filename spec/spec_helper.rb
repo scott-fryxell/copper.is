@@ -35,6 +35,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require 'simplecov'
   SimpleCov.start 'rails'
+  
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
   require 'rspec'
@@ -44,6 +45,7 @@ Spork.prefork do
   require 'rack/test'
   require 'omniauth'
   require 'omniauth/test'
+  
   Capybara.default_driver = :webkit
   Capybara.server_port = 8080
   Capybara.app_host = "http://127.0.0.1:8080"
@@ -75,6 +77,7 @@ Spork.each_run do
   RSpec.configure do |config|
     require Rails.root.join("db/seeds.rb")
     # This code will be run each time you run your specs.
+    config.filter_run_excluding :broken => true
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
     end
@@ -82,6 +85,7 @@ Spork.each_run do
     config.before(:each) do
       DatabaseCleaner.start
       ResqueSpec.reset!
+      ResqueSpec.inline = true
     end
 
     config.after(:each) do
