@@ -1,19 +1,19 @@
-# ======  RoyaltyCheck observers =======
+# ======  Check observers =======
 
 class UsersJob
   @queue = :high
   def self.perform
     User.select(:id).find_each do |user|
-      Resque.enqueue User, user.id, :try_to_create_royalty_check!
+      Resque.enqueue User, user.id, :try_to_create_check!
     end
   end
 end
 
-class EarnedRoyaltyChecksJob
+class EarnedChecksJob
   @queue = :high
   def self.perform
-    RoyaltyCheck.earned.select(:id).find_each do |check|
-      # Resque.enqueue RoyaltyCheck, check.id, :message_author!
+    Check.earned.select(:id).find_each do |check|
+      # Resque.enqueue Check, check.id, :message_author!
     end
   end
 end

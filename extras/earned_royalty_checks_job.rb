@@ -1,10 +1,10 @@
-class EarnedRoyaltyChecksJob
+class EarnedChecksJob
   @queue = :high
   
   def self.perform
-    puts "EarnedRoyaltyChecksJob started"
-    RoyaltyCheck.earned.select(:id).find_each do |check|
-      Resque.enqueue InformAuthorOfEarnedRoyaltyCheckJob, check.id
+    puts "EarnedChecksJob started"
+    Check.earned.select(:id).find_each do |check|
+      Resque.enqueue InformAuthorOfEarnedCheckJob, check.id
     end
   end
 end

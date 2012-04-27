@@ -1,5 +1,6 @@
 class TipsController < ApplicationController
   filter_access_to :index, :create, :update, :destroy, :embed_iframe, :agent
+  
   def index
     @user = current_user
     @tip = Tip.new
@@ -15,6 +16,7 @@ class TipsController < ApplicationController
       format.json  { render :json => @user.to_json }
     end
   end
+  
   def create
     @tip = current_user.tip(url:params[:tip][:uri])
 
@@ -24,6 +26,7 @@ class TipsController < ApplicationController
       redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_failed")
     end
   end
+  
   def update
     @tip = Tip.find(params[:id])
 
@@ -36,17 +39,20 @@ class TipsController < ApplicationController
       render :text => '<meta name="event_trigger" content="tip_updated"/>'
     end
   end
+  
   def destroy
     tip = Tip.find(params[:id])
 
-    if(tip.tip_order.user == current_user && tip.tip_order.current?)
+    if(tip.order.user == current_user && tip.order.current?)
       tip.destroy
     end
     render :nothing => true, :status => :ok
   end
+  
   def embed_iframe
     render :action => 'embed_iframe.js', :layout => false
   end
+  
   def agent
     uri = URI.unescape(params[:uri]) rescue params[:uri]
     title = URI.unescape(params[:title]) rescue params[:title]
@@ -57,7 +63,6 @@ class TipsController < ApplicationController
     else
       render :action => 'error', :layout => 'button'
     end
-
   rescue ArgumentError => e
     logger.error e.message
     render :action => 'error', :layout => 'button'

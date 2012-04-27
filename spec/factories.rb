@@ -1,20 +1,28 @@
 FactoryGirl.define do
   sequence 'uid' do |n|
-    n
+    n.to_s
   end
+  
   sequence 'username' do |n|
     "foobar#{n}"
   end
+  
   sequence 'url_with_path' do |n|
     "http://test.com/#{n}/"
   end
 
   factory :identities_facebook, class: 'Identities::Facebook' do
     provider 'facebook'
-    uid { FactoryGirl.generate(:uid) }
+    uid { FactoryGirl.generate('uid') }
   end
   
   factory :identities_twitter, class: 'Identities::Twitter' do
+    provider 'twitter'
+    username '_ugly'
+    uid { FactoryGirl.generate('uid') }
+  end
+                                      
+  factory :identities_twitter_ugly, class: 'Identities::Twitter' do
     provider 'twitter'
     username '_ugly'
     uid '26368397'
@@ -69,22 +77,17 @@ FactoryGirl.define do
     identities [FactoryGirl.create(:identities_facebook)]
   end
 
-  factory :tip_order do
+  factory :order_unpaid, :class => 'Order' do
     association :user
-    state 'current'
+    state 'unpaid'
   end
 
-  factory :tip_order_ready, :class => 'TipOrder' do
-    association :user
-    state 'ready'
-  end
-
-  factory :tip_order_paid, :class => 'TipOrder' do
+  factory :order_paid, :class => 'Order' do
     association :user
     state 'paid'
   end
 
-  factory :tip_order_declined, :class => 'TipOrder' do
+  factory :order_declined, :class => 'Order' do
     association :user
     state 'declined'
   end
@@ -99,36 +102,36 @@ FactoryGirl.define do
   end
 
   factory :tip do
-    association :tip_order
+    association :order, factory: :order_unpaid
     association :page
     amount_in_cents 100
   end
 
   factory :tip_charged, :class => "Tip" do
-    association :tip_order, factory: :tip_order_paid
+    association :order, factory: :order_paid
     association :page
     amount_in_cents 100
     paid_state "charged"
   end
 
   factory :tip_kinged, :class => "Tip" do
-    association :tip_order, factory: :tip_order_paid
+    association :order, factory: :order_paid
     association :page
     amount_in_cents 100
     paid_state "kinged"
-    association :royalty_check                  
+    association :check                  
   end
 
-  factory :royalty_check do
+  factory :check do
     association :user
   end
   
-  factory :royalty_check_paid, :class => 'RoyaltyCheck' do
+  factory :check_paid, :class => 'Check' do
     association :user
     check_state 'paid'
   end
   
-  factory :royalty_check_cashed, :class => 'RoyaltyCheck' do
+  factory :check_cashed, :class => 'Check' do
     association :user
     check_state 'cashed'
   end

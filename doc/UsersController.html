@@ -112,7 +112,13 @@
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
-    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+    <li><a href="./Check.html">Check</a>
+  
+    <li><a href="./CheckMailer.html">CheckMailer</a>
+  
+    <li><a href="./ChecksController.html">ChecksController</a>
+  
+    <li><a href="./EarnedChecksJob.html">EarnedChecksJob</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -124,37 +130,25 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrderDeclined.html">OrderDeclined</a>
+  
     <li><a href="./OrderMailer.html">OrderMailer</a>
   
-    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+    <li><a href="./OrdersController.html">OrdersController</a>
   
     <li><a href="./Page.html">Page</a>
   
     <li><a href="./PagesController.html">PagesController</a>
   
-    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
-  
     <li><a href="./Role.html">Role</a>
   
-    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
-  
-    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
-  
-    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
-  
     <li><a href="./SessionsController.html">SessionsController</a>
-  
-    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
   
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
-  
-    <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
-  
-    <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
     <li><a href="./TipsController.html">TipsController</a>
   
@@ -213,7 +207,7 @@
 
           
           <div class="method-source-code" id="author-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 64</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">author</span>
   <span class="ruby-identifier">render</span> <span class="ruby-string">'users/author'</span>
 <span class="ruby-keyword">end</span></pre>
@@ -243,7 +237,7 @@
 
           
           <div class="method-source-code" id="pay-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">pay</span>
   <span class="ruby-comment"># collect and save the parameters</span>
   <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">accept_terms</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:terms</span>]
@@ -263,16 +257,15 @@
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">save</span>
-  <span class="ruby-identifier">order</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">current_tip_order</span>
+  <span class="ruby-identifier">order</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">current_order</span>
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">accept_terms</span>
-    <span class="ruby-identifier">order</span>.<span class="ruby-identifier">prepare!</span>
     <span class="ruby-identifier">order</span>.<span class="ruby-identifier">process!</span>
     
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">paid?</span>
       <span class="ruby-constant">OrderMailer</span>.<span class="ruby-identifier">reciept</span>(<span class="ruby-identifier">order</span>).<span class="ruby-identifier">deliver</span>
       <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'&lt;meta name=&quot;event_trigger&quot; content=&quot;card_approved&quot;/&gt;'</span>
-    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">decline?</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">order</span>.<span class="ruby-identifier">declined?</span>
       <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'&lt;meta name=&quot;event_trigger&quot; content=&quot;card_declined&quot;/&gt;'</span>
     <span class="ruby-keyword">else</span>
      <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'&lt;meta name=&quot;event_trigger&quot; content=&quot;processing_error&quot;/&gt;'</span> 
@@ -308,7 +301,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@tip</span> = <span class="ruby-constant">Tip</span>.<span class="ruby-identifier">new</span>
@@ -349,7 +342,7 @@
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user</span>])

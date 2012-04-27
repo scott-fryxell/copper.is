@@ -1,13 +1,13 @@
-class TryToCreateRoyaltyCheckJob
+class TryToCreateCheckJob
   @queue = :high
   
   def self.perform(identity_id)
     identity = Identity.find(identity_id)
     if identity and identity.user_id.nil?
-      puts "TryToCreateRoyaltyCheckJob started for: #{identity.inspect}"
-      identity.try_to_create_royalty_check!
+      puts "TryToCreateCheckJob started for: #{identity.inspect}"
+      identity.try_to_create_check!
     else
-      puts 'WARN: an identity with a user sent to the TryToCreateRoyaltyCheckJob'
+      puts 'WARN: an identity with a user sent to the TryToCreateCheckJob'
     end
   end
 end

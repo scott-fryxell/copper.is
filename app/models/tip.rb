@@ -2,9 +2,9 @@ class InvalidTipURL < Exception ; end
 
 class Tip < ActiveRecord::Base
   belongs_to :page
-  belongs_to :tip_order
-  belongs_to :royalty_check
-  has_one :user, :through => :tip_order
+  belongs_to :order
+  belongs_to :check
+  has_one :user, :through => :order
 
   default_scope :order => 'created_at DESC'
 
@@ -23,7 +23,7 @@ class Tip < ActiveRecord::Base
   validates_associated :page
 
   validates :page, presence:true
-  validates :tip_order, presence:true
+  validates :order, presence:true
   validates :amount_in_cents, presence:true
   
   state_machine :paid_state, :initial => :promised do
@@ -36,23 +36,23 @@ class Tip < ActiveRecord::Base
     end
     
     state :charged, :kinged do
-      validate :validate_presence_of_paid_tip_order
+      validate :validate_presence_of_paid_order
     end
     
     state :kinged do
-      validate :validate_presence_of_royalty_check
+      validate :validate_presence_of_check
     end
   end
   
-  def validate_presence_of_paid_tip_order
-    unless self.tip_order.paid?
-      errors.add(:tip_order_id, "tip order must be :paid for :charged tips")
+  def validate_presence_of_paid_order
+    unless self.order.paid?
+      errors.add(:order_id, "tip order must be :paid for :charged tips")
     end
   end
   
-  def validate_presence_of_royalty_check
-    unless self.royalty_check_id
-      errors.add(:royalty_check_id, "royalty_check_id must not be null for :kinged tips")
+  def validate_presence_of_check
+    unless self.check_id
+      errors.add(:check_id, "check_id must not be null for :kinged tips")
     end
   end
 end

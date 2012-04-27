@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class OrphanedPagesJob - RDoc Documentation</title>
+<title>class OrdersController - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/jobs/jobs.rb
+    <li>app/controllers/orders_controller.rb
   </ul>
 </nav>
 
@@ -59,22 +59,12 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link">Object
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
   
 </nav>
 
     
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
     
-    <li><a href="#method-c-perform">::perform</a>
-    
-  </ul>
-</nav>
-
   </div>
 
   <div id="project-metadata">
@@ -106,7 +96,13 @@
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
-    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+    <li><a href="./Check.html">Check</a>
+  
+    <li><a href="./CheckMailer.html">CheckMailer</a>
+  
+    <li><a href="./ChecksController.html">ChecksController</a>
+  
+    <li><a href="./EarnedChecksJob.html">EarnedChecksJob</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -118,37 +114,25 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrderDeclined.html">OrderDeclined</a>
+  
     <li><a href="./OrderMailer.html">OrderMailer</a>
   
-    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+    <li><a href="./OrdersController.html">OrdersController</a>
   
     <li><a href="./Page.html">Page</a>
   
     <li><a href="./PagesController.html">PagesController</a>
   
-    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
-  
     <li><a href="./Role.html">Role</a>
   
-    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
-  
-    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
-  
-    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
-  
     <li><a href="./SessionsController.html">SessionsController</a>
-  
-    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
   
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
-  
-    <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
-  
-    <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
     <li><a href="./TipsController.html">TipsController</a>
   
@@ -167,12 +151,10 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class OrphanedPagesJob</h1>
+  <h1 class="class">class OrdersController</h1>
 
   <div id="description" class="description">
     
-<h6 id="label-Page+observers+%3D%3D%3D%3D%3D%3D%3D"><a href="Page.html">Page</a> observers =======</h6>
-
   </div><!-- description -->
 
   
@@ -189,44 +171,6 @@
 
     <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-perform" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">perform</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="perform-source">
-            <pre><span class="ruby-comment"># File app/jobs/jobs.rb, line 44</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">perform</span>
-  <span class="ruby-constant">Page</span>.<span class="ruby-identifier">orphaned</span>.<span class="ruby-identifier">select</span>(<span class="ruby-value">:id</span>).<span class="ruby-identifier">find_each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
-    <span class="ruby-constant">Resque</span>.<span class="ruby-identifier">enqueue</span> <span class="ruby-constant">Page</span>, <span class="ruby-identifier">page</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:match_url_to_provider!</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- perform-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- perform-method -->
-
-    
-    </section><!-- public-class-method-details -->
-  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

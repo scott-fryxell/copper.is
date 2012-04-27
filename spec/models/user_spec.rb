@@ -28,9 +28,9 @@ describe User do
   describe "tiping" do
     it "should complain if the tip url is not valid" do
       fan = FactoryGirl.create(:user)
-      fan.tip_orders << FactoryGirl.create(:tip_order,state:'current')
+      fan.orders << FactoryGirl.create(:order_unpaid)
       fan.save!
-      fan.tip(url:'foobar').valid?.should be_false
+      proc { fan.tip(url:'foobar') }.should raise_error(ActiveRecord::RecordInvalid)
     end
 
     it "should handle project-free-tv.com urls" do
@@ -49,8 +49,8 @@ describe User do
 
   describe "current tips" do
     it "should return a list of tips for a user with an current tip order" do
-      @user = FactoryGirl.create(:user)
-      @user.tip_orders.current.count.should == 1
+      @user = User.create!(name:'dude')
+      @user.orders.unpaid.count.should == 1
       @user.current_tips.should_not be_nil
       @user.current_tips.size.should == 0
       @user.current_tips.should be_an_instance_of Array
@@ -98,14 +98,14 @@ describe User do
     end
   end
   
-  it 'has a method to find all :earned royalty_checks' do
-    proc { @user.royalty_checks.earned }.should_not raise_error
+  it 'has a method to find all :earned checks' do
+    proc { @user.checks.earned }.should_not raise_error
   end
   
-  it 'returns all :earned royalty_checks' do
-    royalty_check_id = FactoryGirl.create(:royalty_check,check_state:'earned',user:@user).id
-    royalty_checks = @user.royalty_checks.earned
-    royalty_checks.size.should == 1
-    royalty_checks.first.id.should == royalty_check_id
+  it 'returns all :earned checks' do
+    check_id = FactoryGirl.create(:check,check_state:'earned',user:@user).id
+    checks = @user.checks.earned
+    checks.size.should == 1
+    checks.first.id.should == check_id
   end
 end

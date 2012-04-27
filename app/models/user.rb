@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
+  include Enqueueable
+  
   has_many :identities
-  has_many :tip_orders
-  has_many :tips, :through => :tip_orders
-  has_many :royalty_checks
+  has_many :orders
+  has_many :tips, :through => :orders
+  has_many :checks
   has_and_belongs_to_many :roles
   
   # has_many :royalties, :through => :identities, :class => 'Tip'
@@ -18,24 +20,19 @@ class User < ActiveRecord::Base
   EMAIL_RE = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/
   validates :email, format:{with:EMAIL_RE}, :allow_nil => true
 
-  # validate :validate_one_current_tip_order
+  # validate :validate_one_current_order
 
-  # def validate_one_current_tip_order
-  #  errors.add(:tip_orders, "there can be only one") unless self.tip_orders.current.size == 1
+  # def validate_one_current_order
+  #  errors.add(:orders, "there can be only one") unless self.orders.current.size == 1
   # end
   
-  after_create :create_current_tip_order!
-  
-  @queue = :high
-  def self.perform(page_id, message, args=[])
-    find(page_id).send(message, *args)
-  end
+  after_create :create_current_order!
 
-  def create_current_tip_order!
-    tip_order = self.tip_orders.build
-    tip_order.state = 'current'
-    tip_order.save!
-    save!
+  def create_current_order!
+    if self.orders.unpaid.count > 0
+      raise "there is already an unpaid Order for this user: #{self.inspect}"
+    end
+    self.orders.create!
   end
 
   def self.create_with_omniauth(auth)
@@ -57,12 +54,12 @@ class User < ActiveRecord::Base
     title  = args[:title]  || url
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
     
-    tip = Tip.new(:amount_in_cents => amount_in_cents)
+    tip = current_order.tips.build(amount_in_cents:amount_in_cents)
     unless tip.page = Page.where('url = ?', url).first
       tip.page = Page.create(url:url,title:title)
     end
-    tip.tip_order = self.tip_orders.current.first
-    tip.save
+    tip.order = current_order()
+    tip.save!
     tip
   end
 
@@ -90,21 +87,24 @@ class User < ActiveRecord::Base
     end
   end
 
-  def current_tip_order
-    tip_orders.current.first
+  def current_order
+    unless order = self.orders.unpaid.first
+      order = self.orders.create
+    end
+    order
   end
   
   def current_tips
-    current_tip_order.tips
+    current_order.tips
   end
 
-  def try_to_create_royalty_check!
+  def try_to_create_check!
     the_tips = []
     self.identities.each do |ident|
       the_tips += ident.tips.charged.all
     end
     unless the_tips.empty?
-      if check = self.royalty_checks.create
+      if check = self.checks.create
         the_tips.each do |tip|
           check.tips << tip
           tip.claim!
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def message_about_royalty_check(royalty_check_id)
-    RoyaltyCheckMailer.check(RoyaltyCheck.find(royalty_check_id)).deliver
+  def message_about_check(check_id)
+    CheckMailer.check(Check.find(check_id)).deliver
   end
 end

@@ -1,9 +1,9 @@
-class InformAuthorOfEarnedRoyaltyCheckJob
+class InformAuthorOfEarnedCheckJob
   @queue = :high
   
-  def self.perform(royalty_check_id)
-    royalty_check = RoyaltyCheck.find(royalty_check_id)
-    puts "InformAuthorOfEarnedRoyaltyCheckJob starting for: #{royalty_check.inspect}"
-    royalty_check.identity.inform_author_of_earned_royalty_check!
+  def self.perform(check_id)
+    check = Check.find(check_id)
+    puts "InformAuthorOfEarnedCheckJob starting for: #{check.inspect}"
+    check.identity.inform_author_of_earned_check!
   end
 end

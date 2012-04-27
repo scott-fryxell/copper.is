@@ -17,6 +17,8 @@ describe Identity do
     describe provider do
       before do
         @identity = FactoryGirl.create factory
+        twitter_user = OpenStruct.new(uid:'123',username:'dude')
+        Twitter.stub(:user).and_return(twitter_user)
       end
 
       it 'has a method to inform a non-user of an earned royalty check' do
@@ -27,18 +29,17 @@ describe Identity do
         Identity.factory provider:provider, uid:FactoryGirl.generate(:uid)
       end
 
-      slow_test do
-        it 'has a method that populates uid or username depending on what\'s missing' do
-          proc{ @identity.populate_uid_and_username! }.should_not raise_error
-        end
 
-        it 'has a method that populates uid given a username' do
-          proc{ @identity.populate_uid_from_username! }.should_not raise_error
-        end
-
-        it 'has a method that populates username given a uid' do
-          proc{ @identity.populate_username_from_uid! }.should_not raise_error
-        end
+      it 'has a method that populates uid or username depending on what\'s missing' do
+        proc{ @identity.populate_uid_and_username! }.should_not raise_error
+      end
+      
+      it 'has a method that populates uid given a username' do
+        proc{ @identity.populate_uid_from_username! }.should_not raise_error
+      end
+      
+      it 'has a method that populates username given a uid' do
+        proc{ @identity.populate_username_from_uid! }.should_not raise_error
       end
 
       describe 'with a page and some tips' do
@@ -49,42 +50,42 @@ describe Identity do
           @page = FactoryGirl.create(:page,url:"http://example.com/dudeham",author_state:'adopted')
           @page.identity = @identity
           @page.save!
-          @tip_order = FactoryGirl.create(:tip_order_paid,user:@fan)
-          @tip_order.paid?.should be_true
-          tip = @tip_order.tips.build
+          @order = FactoryGirl.create(:order_paid,user:@fan)
+          @order.paid?.should be_true
+          tip = @order.tips.build
           tip.assign_attributes({page:@page,amount_in_cents:50,paid_state:'charged'},without_protection:true)
-          @tip_order.save!
+          @order.save!
         end
         
         it 'can find all :charged tips for an identity' do
           @identity.tips.charged.count.should == 1
         end
         
-        #   describe '#try_to_create_royalty_check!' do
+        #   describe '#try_to_create_check!' do
         #     it 'responds' do
-        #       @identity.respond_to?(:try_to_create_royalty_check!).should be_true
+        #       @identity.respond_to?(:try_to_create_check!).should be_true
         #     end
         
-        #     it 'returns a RoyaltyCheck object' do
-        #       @identity.try_to_create_royalty_check!.class.should == RoyaltyCheck
+        #     it 'returns a Check object' do
+        #       @identity.try_to_create_check!.class.should == Check
         #     end
         
         #     describe 'the returned royalty check' do
         #       before do
-        #         @royalty_check = @identity.try_to_create_royalty_check!
+        #         @check = @identity.try_to_create_check!
         #         @identity = Identity.find(@identity_id)
         #       end
         
         #       it 'has 4 tips' do
-        #         @royalty_check.tips.count.should == 1
+        #         @check.tips.count.should == 1
         #       end
         
         #       it 'is in the :earned state' do
-        #         @royalty_check.earned?.should be_true
+        #         @check.earned?.should be_true
         #       end
 
         #       it 'is saved to @identity' do
-        #         @identity.royalty_checks.earned.first.id.should == @royalty_check.id
+        #         @identity.checks.earned.first.id.should == @check.id
         #       end
         #     end
         #   end

@@ -1,13 +1,23 @@
 class Identity < ActiveRecord::Base
+  include Enqueueable
+  
   belongs_to :user
   has_many :pages
   has_many :tips, :through => :pages
-  has_many :royalty_checks, :through => :pages
+  has_many :checks, :through => :pages
 
   attr_accessible :provider, :uid, :username
 
+  validates :username, uniqueness:{scope:['uid','provider']}
   validates :provider, presence:true
-  validate :presence_of_username_or_uid
+  
+  validate :validate_presence_of_username_or_uid
+  def validate_presence_of_username_or_uid
+    unless self.username or self.uid
+      errors.add(:uid, "uid must exist")
+      errors.add(:username, "username must exist")
+    end
+  end
   
   scope :stranger, where('identity_state = ?', 'stranger')
   scope :wanted, where('identity_state = ?', 'wanted')
@@ -17,24 +27,26 @@ class Identity < ActiveRecord::Base
     event :publicize do
       transition :stranger => :wanted
     end
+    
     event :join do
-      transition :stranger => :known, :if => proc{|ident| ident.user_id}
-      transition :wanted => :known, :if => proc{|ident| ident.user_id}
+      transition any => :known
+    end
+    
+    state :stranger, :wanted do
+      validate :validate_user_id_is_nil
+    end
+    
+    state :known do
+      validates :user_id, presence:true
+    end
+  end
+
+  def validate_user_id_is_nil
+    if self.user_id
+      errors.add(:user_id, "user_id must be nil")
     end
   end
   
-  @queue = :high
-  def self.perform(page_id, message, args=[])
-    find(page_id).send(message, *args)
-  end
-
-  def presence_of_username_or_uid
-    unless self.username or self.uid
-      errors.add(:uid, "uid must exist")
-      errors.add(:username, "username must exist")
-    end
-  end
-
   before_save do
     self.type = Identity.subclass_from_provider(self.provider).to_s unless self.type
   end
@@ -114,20 +126,6 @@ class Identity < ActiveRecord::Base
     yield
     save!
   end
-  
-  # def try_to_create_royalty_check!
-  #   if self.tips.charged.count > 0
-  #     royalty_check = RoyaltyCheck.new
-  #     royalty_check.tips = self.tips.charged.all
-  #     royalty_check.tips.each do |tip|
-  #       tip.king_me!
-  #     end
-  #     royalty_check.save!
-  #     royalty_check
-  #   else
-  #     nil
-  #   end
-  # end
   
   def try_to_add_to_wanted_list!
     if self.tips.charged.sum(:amount_in_cents) > 100

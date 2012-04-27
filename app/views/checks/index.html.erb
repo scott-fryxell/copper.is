@@ -2,7 +2,7 @@
   <title><%=current_user.name%> royalties - Copper</title>
   <%= stylesheet_link_tag "royalties/index" %>
 <%-end-%>
-<section id="royalty_checks">
+<section id="checks">
   <header>
     <h1>Royalties</h1>
   </header>
@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <%-@royalty_checks.each do |check|-%>
+      <%-@checks.each do |check|-%>
        <tr>
          <td>
            <%=cents_to_dollars(check.tips.sum(:amount_in_cents))%>

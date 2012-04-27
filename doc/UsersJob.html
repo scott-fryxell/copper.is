@@ -106,7 +106,13 @@
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
-    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+    <li><a href="./Check.html">Check</a>
+  
+    <li><a href="./CheckMailer.html">CheckMailer</a>
+  
+    <li><a href="./ChecksController.html">ChecksController</a>
+  
+    <li><a href="./EarnedChecksJob.html">EarnedChecksJob</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -118,37 +124,25 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
+    <li><a href="./Order.html">Order</a>
+  
+    <li><a href="./OrderDeclined.html">OrderDeclined</a>
+  
     <li><a href="./OrderMailer.html">OrderMailer</a>
   
-    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+    <li><a href="./OrdersController.html">OrdersController</a>
   
     <li><a href="./Page.html">Page</a>
   
     <li><a href="./PagesController.html">PagesController</a>
   
-    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
-  
     <li><a href="./Role.html">Role</a>
   
-    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
-  
-    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
-  
-    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
-  
     <li><a href="./SessionsController.html">SessionsController</a>
-  
-    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
   
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
-  
-    <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
-  
-    <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
     <li><a href="./TipsController.html">TipsController</a>
   
@@ -171,7 +165,7 @@
 
   <div id="description" class="description">
     
-<h6 id="label-RoyaltyCheck+observers+%3D%3D%3D%3D%3D%3D%3D"><a href="RoyaltyCheck.html">RoyaltyCheck</a> observers =======</h6>
+<h6 id="label-Check+observers+%3D%3D%3D%3D%3D%3D%3D"><a href="Check.html">Check</a> observers =======</h6>
 
   </div><!-- description -->
 
@@ -212,7 +206,7 @@
             <pre><span class="ruby-comment"># File app/jobs/jobs.rb, line 5</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">perform</span>
   <span class="ruby-constant">User</span>.<span class="ruby-identifier">select</span>(<span class="ruby-value">:id</span>).<span class="ruby-identifier">find_each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
-    <span class="ruby-constant">Resque</span>.<span class="ruby-identifier">enqueue</span> <span class="ruby-constant">User</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:try_to_create_royalty_check!</span>
+    <span class="ruby-constant">Resque</span>.<span class="ruby-identifier">enqueue</span> <span class="ruby-constant">User</span>, <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:try_to_create_check!</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- perform-source -->

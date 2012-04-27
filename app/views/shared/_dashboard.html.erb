@@ -13,7 +13,7 @@
         </dd>
       <%-end-%>
       <dt>Balance</dt>
-      <dd itemprop="balance">$<%= cents_to_dollars(current_user.current_tip_order.subtotal) %></dd>
+      <dd itemprop="balance">$<%= cents_to_dollars(current_user.current_order.subtotal) %></dd>
     </dl>
   </aside>
 <% end %>

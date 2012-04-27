@@ -40,9 +40,9 @@ UsersJob:
   class: UsersJob
   description: ""
 
-EarnedRoyaltyChecksJob:
+EarnedChecksJob:
   every: 10s
   queues: high
   args:
-  class: EarnedRoyaltyChecksJob
+  class: EarnedChecksJob
   description: ""
