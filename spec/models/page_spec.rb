@@ -14,6 +14,7 @@ describe Page do
     it "should have a title" do
       @page.title = 'this is a page'
       @page.save.should be_true
+      Page.find(@page.id).title.should == 'this is a page'
     end
 
     it "should not save with an invalid url" do
@@ -22,9 +23,13 @@ describe Page do
     end
 
     it "should allow tips to be added" do
-      tip = FactoryGirl.create(:tip)
-      @page.tips << tip
-      @page.save.should be_true
+      @page.save!
+      tip = @page.tips.build
+      tip.amount_in_cents = 50
+      order = tip.build_order
+      order.user = FactoryGirl.create(:user)
+      tip.save!
+      Page.find(@page.id).tips.first.id.should == tip.id
     end
   end
   
@@ -50,10 +55,8 @@ describe Page do
         end
         
         after do
-          @page.save
-          @page.orphaned?.should be_true
-          @page.discover_identity!
-          @page.adopted?.should be_true
+          @page.save!
+          Page.find(@page.id).adopted?.should be_true
         end
         
         it "finds user on facebook.com" do
@@ -217,29 +220,5 @@ describe Page do
     it 'finds a uid from a youtube profile page' # do
      #      @page = FactoryGirl.create(:page,url:'http://www.youtube.com/user/sfryxell')
      #    end
-  end
-  
-  context do
-    before do
-      @page = FactoryGirl.build(:page,author_state:'adopted')
-      @identity = FactoryGirl.create(:identities_twitter,user:nil)
-      @tip = FactoryGirl.build(:tip_charged)
-      @page.identity = @identity
-      @page.save!
-      @tip.page = @page
-      @tip.save!
-      @check = FactoryGirl.create(:check,check_state:'earned')
-      @check.tips << @tip
-      @check.save!
-    end
-    
-    it 'has many checks' do
-      proc { @page.checks }.should_not raise_error
-    end
-    
-    it 'has the right royalty check in it\'s list' do
-      @page.checks.earned.count.should == 1
-      @page.checks.earned.first.id.should == @check.id
-    end
   end
 end

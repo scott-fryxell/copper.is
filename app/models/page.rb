@@ -17,6 +17,12 @@ class Page < ActiveRecord::Base
   [:orphaned, :spiderable, :manual, :fostered, :adopted].each do |state|
     scope state, where("author_state = ?", state)
   end
+  
+  after_create do |page|
+    if page.orphaned?
+      Resque.enqueue Page, page.id, :discover_identity!
+    end
+  end
 
   state_machine :author_state, initial: :orphaned do
     event :adopt do
@@ -45,24 +51,32 @@ class Page < ActiveRecord::Base
     after_transition any => :fostered do |page,transition|
       Rails.logger.warn "Page set to :fostered, id: #{page.id}"
     end
-  end
-
-  def discover_identity!
-    if Identity.provider_from_url(self.url) and
-        self.identity = Identity.find_or_create_from_url(self.url)
-      adopt!
-    else
-      reject!
+    
+    state :orphaned do
+      def discover_identity!
+        if Identity.provider_from_url(self.url) and
+            self.identity = Identity.find_or_create_from_url(self.url)
+          adopt!
+        else
+          reject!
+        end
+      end
     end
-  end
-
-  def find_identity_from_author_link!
-    if author_tag    = Nokogiri::HTML(open(self.url)).css('link[rel=author]') and
-       author_link   = author_tag.attr('href').value                          and
-       self.identity = Identity.find_or_create_from_url(author_link)
-      adopt!
-    else
-      reject!
+    
+    state :spiderable do
+      def find_identity_from_author_link!
+        author_tag = Nokogiri::HTML(open(self.url)).css('link[rel=author]')
+        unless author_tag.blank?
+          if author_link = author_tag.attr('href').value                   
+            self.identity = Identity.find_or_create_from_url(author_link)
+            adopt!
+          else
+            reject!
+          end
+        else
+          reject!
+        end
+      end
     end
   end
 end
