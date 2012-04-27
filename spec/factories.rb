@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
   
   sequence 'url_with_path' do |n|
-    "http://test.com/#{n}/"
+    "http://www.google.com/?q=#{n}/"
   end
 
   factory :identities_facebook, class: 'Identities::Facebook' do
@@ -77,6 +77,11 @@ FactoryGirl.define do
     identities [FactoryGirl.create(:identities_facebook)]
   end
 
+  factory :order_current, :class => 'Order' do
+    association :user
+    state 'current'
+  end
+
   factory :order_unpaid, :class => 'Order' do
     association :user
     state 'unpaid'
@@ -87,14 +92,15 @@ FactoryGirl.define do
     state 'paid'
   end
 
-  factory :order_declined, :class => 'Order' do
+  factory :order_denied, :class => 'Order' do
     association :user
-    state 'declined'
+    state 'denied'
   end
 
   factory :authored_page, :class => 'Page' do
     url { FactoryGirl.generate(:url_with_path) }
-    association :identity, factory: :identities_twitter
+    author_state 'adopted'
+    association :identity, factory: :identities_google
   end
 
   factory :page do

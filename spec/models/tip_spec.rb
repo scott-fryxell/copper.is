@@ -3,10 +3,9 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe Tip do
   context do
     before(:each) do
-      @tip = Tip.new(:amount_in_cents => 25)
-      @tip.order = FactoryGirl.create(:order_paid)
+      @tip = FactoryGirl.create(:tip)
       @tip.page = FactoryGirl.create(:authored_page)
-      @tip.save
+      @tip.save!
     end
 
     it "should always be associated with a tip order" do

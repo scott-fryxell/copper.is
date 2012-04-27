@@ -53,7 +53,7 @@ class UsersController < ApplicationController
       if order.paid?
         OrderMailer.reciept(order).deliver
         render :text => '<meta name="event_trigger" content="card_approved"/>'
-      elsif order.declined?
+      elsif order.denied?
         render :text => '<meta name="event_trigger" content="card_declined"/>'
       else
        render :text => '<meta name="event_trigger" content="processing_error"/>' 

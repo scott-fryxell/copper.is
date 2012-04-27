@@ -20,7 +20,7 @@ describe Identity do
         twitter_user = OpenStruct.new(uid:'123',username:'dude')
         Twitter.stub(:user).and_return(twitter_user)
       end
-
+      
       it 'has a method to inform a non-user of an earned royalty check' do
         @identity.respond_to?(:inform_non_user_of_promised_tips)
       end
@@ -47,11 +47,11 @@ describe Identity do
           @identity = FactoryGirl.create factory
           @identity_id = @identity.id
           @fan = FactoryGirl.create(:user)
-          @page = FactoryGirl.create(:page,url:"http://example.com/dudeham",author_state:'adopted')
+          @page = FactoryGirl.create(:page,author_state:'adopted')
           @page.identity = @identity
           @page.save!
-          @order = FactoryGirl.create(:order_paid,user:@fan)
-          @order.paid?.should be_true
+          @order = FactoryGirl.create(:order_current,user:@fan)
+          @order.current?.should be_true
           tip = @order.tips.build
           tip.assign_attributes({page:@page,amount_in_cents:50,paid_state:'charged'},without_protection:true)
           @order.save!
@@ -61,34 +61,36 @@ describe Identity do
           @identity.tips.charged.count.should == 1
         end
         
-        #   describe '#try_to_create_check!' do
-        #     it 'responds' do
-        #       @identity.respond_to?(:try_to_create_check!).should be_true
-        #     end
-        
-        #     it 'returns a Check object' do
-        #       @identity.try_to_create_check!.class.should == Check
-        #     end
-        
-        #     describe 'the returned royalty check' do
-        #       before do
-        #         @check = @identity.try_to_create_check!
-        #         @identity = Identity.find(@identity_id)
-        #       end
-        
-        #       it 'has 4 tips' do
-        #         @check.tips.count.should == 1
-        #       end
-        
-        #       it 'is in the :earned state' do
-        #         @check.earned?.should be_true
-        #       end
+        describe '#try_to_create_check!', broken:true do
+          pending "temporarily disabled"
+          
+          it 'responds' do
+            @identity.respond_to?(:try_to_create_check!).should be_true
+          end
+          
+          it 'returns a Check object' do
+            @identity.try_to_create_check!.class.should == Check
+          end
+          
+          describe 'the returned royalty check' do
+            before do
+              @check = @identity.try_to_create_check!
+              @identity = Identity.find(@identity_id)
+            end
+            
+            it 'has 4 tips' do
+              @check.tips.count.should == 1
+            end
+            
+            it 'is in the :earned state' do
+              @check.earned?.should be_true
+            end
 
-        #       it 'is saved to @identity' do
-        #         @identity.checks.earned.first.id.should == @check.id
-        #       end
-        #     end
-        #   end
+            it 'is saved to @identity' do
+              @identity.checks.earned.first.id.should == @check.id
+            end
+          end
+        end
       end
       
       describe "state machine" do

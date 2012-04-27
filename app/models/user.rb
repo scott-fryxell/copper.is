@@ -58,7 +58,6 @@ class User < ActiveRecord::Base
     unless tip.page = Page.where('url = ?', url).first
       tip.page = Page.create(url:url,title:title)
     end
-    tip.order = current_order()
     tip.save!
     tip
   end
@@ -88,10 +87,7 @@ class User < ActiveRecord::Base
   end
 
   def current_order
-    unless order = self.orders.unpaid.first
-      order = self.orders.create
-    end
-    order
+    self.orders.current.first or self.orders.create
   end
   
   def current_tips

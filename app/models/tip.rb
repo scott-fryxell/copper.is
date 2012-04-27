@@ -25,6 +25,12 @@ class Tip < ActiveRecord::Base
   validates :page, presence:true
   validates :order, presence:true
   validates :amount_in_cents, presence:true
+  validate :validate_only_being_added_to_current_order, :on => :create
+  def validate_only_being_added_to_current_order
+    unless self.order.current?
+      errors.add(:order_id,"can only add a tip to a current order") 
+    end
+  end
   
   state_machine :paid_state, :initial => :promised do
     event :pay do

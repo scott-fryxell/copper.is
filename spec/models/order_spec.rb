@@ -25,7 +25,10 @@ describe Order do
   describe "when calculating where the money is for the order" do
     before do
       @user = FactoryGirl.create(:user)
-      FactoryGirl.create(:order_unpaid, user:@user)
+      FactoryGirl.create(:order_current, user:@user)
+      FactoryGirl.create(:page,url:'http://example.com',author_state:'adopted')
+      FactoryGirl.create(:page,url:'http://beefdeed.com/chunder',author_state:'adopted')
+      FactoryGirl.create(:page,url:'http://beefdeed.com/horde',author_state:'adopted')
       @user.tip(:url => 'http://example.com', :title => 'example page', :amount_in_cents => 25)
       @user.tip(:url => 'http://beefdeed.com/chunder', :title => 'CHUNDER POW', :amount_in_cents => 25)
       @user.tip(:url => 'http://beefdeed.com/horde', :title => 'ALL HAIL THE HORDE', :amount_in_cents => 25)
@@ -66,15 +69,35 @@ describe Order do
       @user.delete_stripe_customer
     end
 
-    it "should charge the fan for his tips"  do
+    it 'should not allow a .charge! call on current order' do
+      @order = FactoryGirl.create(:order_current)
+      proc { @order.charge! }.should raise_error
+    end
+    
+    it "should charge the fan for his tips" do
+      @order_id = @user.current_order.id
       @order = @user.current_order
-      @order.unpaid?.should be_true
-      @user.tip(:url => 'http://example.com', :title => 'example page', :amount_in_cents => 500)
-      @user.tip(:url => 'http://beefdeed.com/chunder', :title => 'CHUNDER POW', :amount_in_cents => 500)
-      @user.tip(:url => 'http://beefdeed.com/horde', :title => 'ALL HAIL THE HORDE', :amount_in_cents => 500)
-      @user.current_order.process!
-      Order.find(@order.id).paid?.should be_true
-      @order.tips.size.should == 3
+      @order.current?.should be_true
+      FactoryGirl.create(:order_current, user:@user)
+      
+      FactoryGirl.create(:page,url:'http://example.com',author_state:'adopted')
+      FactoryGirl.create(:page,url:'http://beef.com/chunder',author_state:'adopted')
+      FactoryGirl.create(:page,url:'http://beef.com/horde',author_state:'adopted')
+      
+      @user.tip(:url => 'http://example.com', :title => 'example page',
+                :amount_in_cents => 500)
+      @user.tip(:url => 'http://beef.com/chunder', :title => 'CHUNDER POW',
+                :amount_in_cents => 500)
+      @user.tip(:url => 'http://beef.com/horde', :title => 'ALL HAIL THE HORDE',
+                :amount_in_cents => 500)
+      
+      @order.process!
+      Stripe::Charge.stub(:create).and_return(OpenStruct.new(id:2))
+      @order.charge!
+      
+      @order = Order.find(@order_id)
+      @order.paid?.should be_true
+      @order.tips.count.should == 3
       @order.tips.sum(:amount_in_cents).should == 1500
     end
 
@@ -89,7 +112,7 @@ describe Order do
     it "should transition from :ready to :paid on a process! event and valid payment info"  do
       Stripe::Charge.stub(:create) { @charge_token }
       @order = FactoryGirl.create(:order_unpaid)
-      @order.state_name.should == :unpaid
+      @order.unpaid?.should
       @order.process!
       @order.state_name.should == :paid
     end
@@ -101,13 +124,12 @@ describe Order do
     #   @order.process
     #   @order.state_name.should == :declined
     # end
-    
     it "should transition from :declined to :paid on a process! event and valid payment info" do
       Stripe::Charge.stub(:create) { @charge_token }
-      @order = FactoryGirl.create(:order_declined)
-      @order.state_name.should == :declined
-      @order.process
-      @order.state_name.should == :paid
+      @order = FactoryGirl.create(:order_denied)
+      @order.denied?.should be_true
+      @order.process!
+      @order.paid?.should be_true
     end
     
     it "should transition to :declined to :declined on a process! event and not enough funds"#  do
@@ -128,23 +150,22 @@ describe Order do
          to.state = "paid"
          to.save
       }
-      @declined_orders = Array.new(2) {
+      @denied_orders = Array.new(2) {
          to = @user.orders.build()
-         to.state = "declined"
+         to.state = "denied"
          to.save
        }
     end
 
     it 'has a .current scope'  do
-      Order.unpaid.first.id.should == @current_order.id
+      Order.current.first.id.should == @current_order.id
     end
 
     it 'has a .paid scope' do
       Order.paid.count.should == @paid_orders.size
     end
-
-    it 'has a .declined scope' do
-      Order.declined.count.should == @declined_orders.size
+    it 'has a .denied scope' do
+      Order.denied.count.should == @denied_orders.size
     end
   end
 end
