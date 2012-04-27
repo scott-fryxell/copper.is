@@ -62,14 +62,14 @@ describe TipsController do
       describe '/tips_orders/:id/tips?s=declined' do
         it 'renders a list of all tips in given :declined tip_order'
       end
-      describe '/royalty_checks/:id/tips?s=ready' do
-        it 'renders a list of all tips in given :earned royalty_check'
+      describe '/checks/:id/tips?s=ready' do
+        it 'renders a list of all tips in given :earned check'
       end
-      describe '/royalty_checks/:id/tips?s=paid' do
-        it 'renders a list of all tips in given :paid royalty_check'
+      describe '/checks/:id/tips?s=paid' do
+        it 'renders a list of all tips in given :paid check'
       end
-      describe '/royalty_checks/:id/tips?s=cashed' do
-        it 'renders a list of all tips in given :cashed royalty_check'
+      describe '/checks/:id/tips?s=cashed' do
+        it 'renders a list of all tips in given :cashed check'
       end
     end
     describe 'new' do

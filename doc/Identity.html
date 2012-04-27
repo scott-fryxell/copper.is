@@ -63,7 +63,19 @@
   
 </nav>
 
-    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Enqueueable</span>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
@@ -78,8 +90,6 @@
     
     <li><a href="#method-c-find_with_omniauth">::find_with_omniauth</a>
     
-    <li><a href="#method-c-perform">::perform</a>
-    
     <li><a href="#method-c-provider_from_url">::provider_from_url</a>
     
     <li><a href="#method-c-subclass_from_provider">::subclass_from_provider</a>
@@ -92,9 +102,11 @@
     
     <li><a href="#method-i-populate_username_from_uid-21">#populate_username_from_uid!</a>
     
-    <li><a href="#method-i-presence_of_username_or_uid">#presence_of_username_or_uid</a>
-    
     <li><a href="#method-i-try_to_add_to_wanted_list-21">#try_to_add_to_wanted_list!</a>
+    
+    <li><a href="#method-i-validate_presence_of_username_or_uid">#validate_presence_of_username_or_uid</a>
+    
+    <li><a href="#method-i-validate_user_id_is_nil">#validate_user_id_is_nil</a>
     
   </ul>
 </nav>
@@ -130,7 +142,13 @@
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
-    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+    <li><a href="./Check.html">Check</a>
+  
+    <li><a href="./CheckMailer.html">CheckMailer</a>
+  
+    <li><a href="./ChecksController.html">ChecksController</a>
+  
+    <li><a href="./EarnedChecksJob.html">EarnedChecksJob</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -142,35 +160,23 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
-    <li><a href="./OrderMailer.html">OrderMailer</a>
+    <li><a href="./OrderDeclined.html">OrderDeclined</a>
   
-    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+    <li><a href="./OrderMailer.html">OrderMailer</a>
   
     <li><a href="./Page.html">Page</a>
   
     <li><a href="./PagesController.html">PagesController</a>
   
-    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
-  
     <li><a href="./Role.html">Role</a>
   
-    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
-  
-    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
-  
-    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
-  
     <li><a href="./SessionsController.html">SessionsController</a>
-  
-    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
   
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
   
     <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
   
     <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
@@ -231,7 +237,7 @@
 
           
           <div class="method-source-code" id="create_with_omniauth-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 46</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create_with_omniauth</span>(<span class="ruby-identifier">auth</span>)
   <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">uid</span><span class="ruby-operator">:</span> <span class="ruby-identifier">auth</span>[<span class="ruby-string">'uid'</span>].<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">provider</span><span class="ruby-operator">:</span> <span class="ruby-identifier">auth</span>[<span class="ruby-string">'provider'</span>])
 <span class="ruby-keyword">end</span></pre>
@@ -261,7 +267,7 @@
 
           
           <div class="method-source-code" id="factory-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 55</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">factory</span>(<span class="ruby-identifier">opts</span> = {})
   <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">subclass_from_provider</span>(<span class="ruby-identifier">opts</span>[<span class="ruby-value">:provider</span>]).<span class="ruby-identifier">create</span>(<span class="ruby-identifier">opts</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -291,7 +297,7 @@
 
           
           <div class="method-source-code" id="find_or_create_from_url-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_or_create_from_url</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">provider</span> = <span class="ruby-identifier">provider_from_url</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">i</span> = <span class="ruby-identifier">subclass_from_provider</span>(<span class="ruby-identifier">provider</span>).<span class="ruby-identifier">discover_uid_and_username_from_url</span> <span class="ruby-identifier">url</span>
@@ -328,7 +334,7 @@
 
           
           <div class="method-source-code" id="find_with_omniauth-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_with_omniauth</span>(<span class="ruby-identifier">auth</span>)
   <span class="ruby-identifier">find_by_provider_and_uid</span>(<span class="ruby-identifier">auth</span>[<span class="ruby-string">'provider'</span>], <span class="ruby-identifier">auth</span>[<span class="ruby-string">'uid'</span>].<span class="ruby-identifier">to_s</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -340,36 +346,6 @@
 
         
       </div><!-- find_with_omniauth-method -->
-
-    
-      <div id="method-c-perform" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">perform</span><span
-            class="method-args">(page_id, message, args=[])</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="perform-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 27</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">perform</span>(<span class="ruby-identifier">page_id</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">args</span>=[])
-  <span class="ruby-identifier">find</span>(<span class="ruby-identifier">page_id</span>).<span class="ruby-identifier">send</span>(<span class="ruby-identifier">message</span>, *<span class="ruby-identifier">args</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- perform-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- perform-method -->
 
     
       <div id="method-c-provider_from_url" class="method-detail ">
@@ -388,7 +364,7 @@
 
           
           <div class="method-source-code" id="provider_from_url-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">provider_from_url</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">host</span>
   <span class="ruby-keyword">when</span> <span class="ruby-regexp">%rfacebook\.com$/</span> <span class="ruby-keyword">then</span> <span class="ruby-string">'facebook'</span>
@@ -430,7 +406,7 @@
 
           
           <div class="method-source-code" id="subclass_from_provider-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">subclass_from_provider</span>(<span class="ruby-identifier">provider</span>)
   <span class="ruby-identifier">provider</span> = <span class="ruby-string">'google'</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">provider</span> <span class="ruby-operator">==</span> <span class="ruby-string">'google_oauth2'</span>
   (<span class="ruby-string">&quot;Identities::&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">provider</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">capitalize</span>).<span class="ruby-identifier">constantize</span>
@@ -467,18 +443,15 @@
 
           
           <div class="method-source-code" id="message_wanted-21-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">message_wanted!</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;this identity has a user&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;must be implemented in child class&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;=========================================&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;self.count == #{self.count}&quot;</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">message</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-keyword">yield</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count</span> = <span class="ruby-value">1</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">message</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
     <span class="ruby-identifier">save!</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;self.count (After) == #{self.count}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- message_wanted-21-source -->
           
@@ -506,7 +479,7 @@
 
           
           <div class="method-source-code" id="populate_uid_and_username-21-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 99</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">populate_uid_and_username!</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">uid</span> <span class="ruby-keyword">and</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">username</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">uid</span>
@@ -542,7 +515,7 @@
 
           
           <div class="method-source-code" id="populate_uid_from_username-21-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 115</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 124</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">populate_uid_from_username!</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;not implemented in subclass&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
   <span class="ruby-keyword">yield</span>
@@ -574,7 +547,7 @@
 
           
           <div class="method-source-code" id="populate_username_from_uid-21-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 109</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">populate_username_from_uid!</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;not implemented in subclass&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">block_given?</span>
   <span class="ruby-keyword">yield</span>
@@ -590,39 +563,6 @@
       </div><!-- populate_username_from_uid-21-method -->
 
     
-      <div id="method-i-presence_of_username_or_uid" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">presence_of_username_or_uid</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="presence_of_username_or_uid-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 31</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">presence_of_username_or_uid</span>
-  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">username</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">uid</span>
-    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:uid</span>, <span class="ruby-string">&quot;uid must exist&quot;</span>)
-    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:username</span>, <span class="ruby-string">&quot;username must exist&quot;</span>)
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- presence_of_username_or_uid-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- presence_of_username_or_uid-method -->
-
-    
       <div id="method-i-try_to_add_to_wanted_list-21" class="method-detail ">
         
         <div class="method-heading">
@@ -634,27 +574,12 @@
 
         <div class="method-description">
           
-          <p>def try_to_create_royalty_check!</p>
-
-<pre class="ruby"><span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tips</span>.<span class="ruby-identifier">charged</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-  <span class="ruby-identifier">royalty_check</span> = <span class="ruby-constant">RoyaltyCheck</span>.<span class="ruby-identifier">new</span>
-  <span class="ruby-identifier">royalty_check</span>.<span class="ruby-identifier">tips</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tips</span>.<span class="ruby-identifier">charged</span>.<span class="ruby-identifier">all</span>
-  <span class="ruby-identifier">royalty_check</span>.<span class="ruby-identifier">tips</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tip</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">king_me!</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">royalty_check</span>.<span class="ruby-identifier">save!</span>
-  <span class="ruby-identifier">royalty_check</span>
-<span class="ruby-keyword">else</span>
-  <span class="ruby-keyword">nil</span>
-<span class="ruby-keyword">end</span>
-</pre>
-
-<p>end</p>
+          
           
 
           
           <div class="method-source-code" id="try_to_add_to_wanted_list-21-source">
-            <pre><span class="ruby-comment"># File app/models/identity.rb, line 135</span>
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">try_to_add_to_wanted_list!</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tips</span>.<span class="ruby-identifier">charged</span>.<span class="ruby-identifier">sum</span>(<span class="ruby-value">:amount_in_cents</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">publicize!</span>
@@ -668,6 +593,71 @@
 
         
       </div><!-- try_to_add_to_wanted_list-21-method -->
+
+    
+      <div id="method-i-validate_presence_of_username_or_uid" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_presence_of_username_or_uid</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_presence_of_username_or_uid-source">
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_presence_of_username_or_uid</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">username</span> <span class="ruby-keyword">or</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">uid</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:uid</span>, <span class="ruby-string">&quot;uid must exist&quot;</span>)
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:username</span>, <span class="ruby-string">&quot;username must exist&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_presence_of_username_or_uid-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_presence_of_username_or_uid-method -->
+
+    
+      <div id="method-i-validate_user_id_is_nil" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_user_id_is_nil</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_user_id_is_nil-source">
+            <pre><span class="ruby-comment"># File app/models/identity.rb, line 44</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_user_id_is_nil</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:user_id</span>, <span class="ruby-string">&quot;user_id must be nil&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_user_id_is_nil-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_user_id_is_nil-method -->
 
     
     </section><!-- public-instance-method-details -->

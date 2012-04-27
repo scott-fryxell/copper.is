@@ -63,7 +63,19 @@
   
 </nav>
 
-    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Enqueueable</span>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
@@ -71,8 +83,6 @@
   <ul class="link-list">
     
     <li><a href="#method-c-create_with_omniauth">::create_with_omniauth</a>
-    
-    <li><a href="#method-c-perform">::perform</a>
     
     <li><a href="#method-i-charge_info-3F">#charge_info?</a>
     
@@ -86,13 +96,13 @@
     
     <li><a href="#method-i-delete_stripe_customer">#delete_stripe_customer</a>
     
-    <li><a href="#method-i-message_about_royalty_check">#message_about_royalty_check</a>
+    <li><a href="#method-i-message_about_check">#message_about_check</a>
     
     <li><a href="#method-i-role_symbols">#role_symbols</a>
     
     <li><a href="#method-i-tip">#tip</a>
     
-    <li><a href="#method-i-try_to_create_royalty_check-21">#try_to_create_royalty_check!</a>
+    <li><a href="#method-i-try_to_create_check-21">#try_to_create_check!</a>
     
   </ul>
 </nav>
@@ -128,7 +138,13 @@
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
-    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+    <li><a href="./Check.html">Check</a>
+  
+    <li><a href="./CheckMailer.html">CheckMailer</a>
+  
+    <li><a href="./ChecksController.html">ChecksController</a>
+  
+    <li><a href="./EarnedChecksJob.html">EarnedChecksJob</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -140,35 +156,23 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
-    <li><a href="./OrderMailer.html">OrderMailer</a>
+    <li><a href="./OrderDeclined.html">OrderDeclined</a>
   
-    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+    <li><a href="./OrderMailer.html">OrderMailer</a>
   
     <li><a href="./Page.html">Page</a>
   
     <li><a href="./PagesController.html">PagesController</a>
   
-    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
-  
     <li><a href="./Role.html">Role</a>
   
-    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
-  
-    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
-  
-    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
-  
     <li><a href="./SessionsController.html">SessionsController</a>
-  
-    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
   
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
   
     <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
   
     <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
@@ -242,7 +246,7 @@
 
           
           <div class="method-source-code" id="create_with_omniauth-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 41</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">create_with_omniauth</span>(<span class="ruby-identifier">auth</span>)
   <span class="ruby-identifier">create!</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">user</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-string">&quot;info&quot;</span>][<span class="ruby-string">&quot;name&quot;</span>]
@@ -258,36 +262,6 @@
 
         
       </div><!-- create_with_omniauth-method -->
-
-    
-      <div id="method-c-perform" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">perform</span><span
-            class="method-args">(page_id, message, args=[])</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="perform-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 30</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">perform</span>(<span class="ruby-identifier">page_id</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">args</span>=[])
-  <span class="ruby-identifier">find</span>(<span class="ruby-identifier">page_id</span>).<span class="ruby-identifier">send</span>(<span class="ruby-identifier">message</span>, *<span class="ruby-identifier">args</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- perform-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- perform-method -->
 
     
     </section><!-- public-class-method-details -->
@@ -312,7 +286,7 @@
 
           
           <div class="method-source-code" id="charge_info-3F-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">charge_info?</span>
   <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-keyword">self</span>.<span class="ruby-identifier">stripe_customer_id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -342,12 +316,12 @@
 
           
           <div class="method-source-code" id="create_current_tip_order-21-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_current_tip_order!</span>
-  <span class="ruby-identifier">tip_order</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_orders</span>.<span class="ruby-identifier">build</span>
-  <span class="ruby-identifier">tip_order</span>.<span class="ruby-identifier">state</span> = <span class="ruby-string">'current'</span>
-  <span class="ruby-identifier">tip_order</span>.<span class="ruby-identifier">save!</span>
-  <span class="ruby-identifier">save!</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_orders</span>.<span class="ruby-identifier">unpaid</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;there is already an unpaid Order for this user: #{self.inspect}&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_orders</span>.<span class="ruby-identifier">create!</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- create_current_tip_order-21-source -->
           
@@ -375,7 +349,7 @@
 
           
           <div class="method-source-code" id="create_stripe_customer-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 73</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_stripe_customer</span> (<span class="ruby-identifier">card_token</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stripe_customer_id</span>
     <span class="ruby-identifier">customer</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Customer</span>.<span class="ruby-identifier">retrieve</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">stripe_customer_id</span>)
@@ -414,9 +388,12 @@
 
           
           <div class="method-source-code" id="current_tip_order-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">current_tip_order</span>
-  <span class="ruby-identifier">tip_orders</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">first</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">order</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_orders</span>.<span class="ruby-identifier">unpaid</span>.<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">order</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_orders</span>.<span class="ruby-identifier">create</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">order</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- current_tip_order-source -->
           
@@ -474,7 +451,7 @@
 
           
           <div class="method-source-code" id="delete_stripe_customer-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 86</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_stripe_customer</span>
   <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">stripe_customer_id</span>
     <span class="ruby-identifier">customer</span> = <span class="ruby-constant">Stripe</span><span class="ruby-operator">::</span><span class="ruby-constant">Customer</span>.<span class="ruby-identifier">retrieve</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">stripe_customer_id</span>)
@@ -491,11 +468,11 @@
       </div><!-- delete_stripe_customer-method -->
 
     
-      <div id="method-i-message_about_royalty_check" class="method-detail ">
+      <div id="method-i-message_about_check" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">message_about_royalty_check</span><span
-            class="method-args">(royalty_check_id)</span>
+          <span class="method-name">message_about_check</span><span
+            class="method-args">(check_id)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -506,19 +483,19 @@
           
 
           
-          <div class="method-source-code" id="message_about_royalty_check-source">
+          <div class="method-source-code" id="message_about_check-source">
             <pre><span class="ruby-comment"># File app/models/user.rb, line 118</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">message_about_royalty_check</span>(<span class="ruby-identifier">royalty_check_id</span>)
-  <span class="ruby-constant">RoyaltyCheckMailer</span>.<span class="ruby-identifier">check</span>(<span class="ruby-constant">RoyaltyCheck</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">royalty_check_id</span>)).<span class="ruby-identifier">deliver</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">message_about_check</span>(<span class="ruby-identifier">check_id</span>)
+  <span class="ruby-constant">CheckMailer</span>.<span class="ruby-identifier">check</span>(<span class="ruby-constant">Check</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">check_id</span>)).<span class="ruby-identifier">deliver</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- message_about_royalty_check-source -->
+          </div><!-- message_about_check-source -->
           
         </div>
 
         
 
         
-      </div><!-- message_about_royalty_check-method -->
+      </div><!-- message_about_check-method -->
 
     
       <div id="method-i-role_symbols" class="method-detail ">
@@ -537,7 +514,7 @@
 
           
           <div class="method-source-code" id="role_symbols-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 49</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">role_symbols</span>
   <span class="ruby-identifier">roles</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">role</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">role</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">underscore</span>.<span class="ruby-identifier">to_sym</span>
@@ -569,18 +546,18 @@
 
           
           <div class="method-source-code" id="tip-source">
-            <pre><span class="ruby-comment"># File app/models/user.rb, line 55</span>
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">tip</span>(<span class="ruby-identifier">args</span> = {})
   <span class="ruby-identifier">url</span>    = <span class="ruby-identifier">args</span>[<span class="ruby-value">:url</span>]
   <span class="ruby-identifier">title</span>  = <span class="ruby-identifier">args</span>[<span class="ruby-value">:title</span>]  <span class="ruby-operator">||</span> <span class="ruby-identifier">url</span>
   <span class="ruby-identifier">amount_in_cents</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">:amount_in_cents</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_preference_in_cents</span>
   
-  <span class="ruby-identifier">tip</span> = <span class="ruby-constant">Tip</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:amount_in_cents</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">amount_in_cents</span>)
+  <span class="ruby-identifier">tip</span> = <span class="ruby-identifier">current_tip_order</span>.<span class="ruby-identifier">tips</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">amount_in_cents</span><span class="ruby-value">:amount_in_cents</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">page</span> = <span class="ruby-constant">Page</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">'url = ?'</span>, <span class="ruby-identifier">url</span>).<span class="ruby-identifier">first</span>
     <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">page</span> = <span class="ruby-constant">Page</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">url</span><span class="ruby-value">:url</span>,<span class="ruby-identifier">title</span><span class="ruby-value">:title</span>)
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">tip_order</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_orders</span>.<span class="ruby-identifier">current</span>.<span class="ruby-identifier">first</span>
-  <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">tip_order</span> = <span class="ruby-identifier">current_tip_order</span>()
+  <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">save!</span>
   <span class="ruby-identifier">tip</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- tip-source -->
@@ -593,10 +570,10 @@
       </div><!-- tip-method -->
 
     
-      <div id="method-i-try_to_create_royalty_check-21" class="method-detail ">
+      <div id="method-i-try_to_create_check-21" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">try_to_create_royalty_check!</span><span
+          <span class="method-name">try_to_create_check!</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -608,15 +585,15 @@
           
 
           
-          <div class="method-source-code" id="try_to_create_royalty_check-21-source">
+          <div class="method-source-code" id="try_to_create_check-21-source">
             <pre><span class="ruby-comment"># File app/models/user.rb, line 101</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">try_to_create_royalty_check!</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">try_to_create_check!</span>
   <span class="ruby-identifier">the_tips</span> = []
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">identities</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ident</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">the_tips</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">ident</span>.<span class="ruby-identifier">tips</span>.<span class="ruby-identifier">charged</span>.<span class="ruby-identifier">all</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">the_tips</span>.<span class="ruby-identifier">empty?</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">check</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">royalty_checks</span>.<span class="ruby-identifier">create</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">check</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">checks</span>.<span class="ruby-identifier">create</span>
       <span class="ruby-identifier">the_tips</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">tip</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">check</span>.<span class="ruby-identifier">tips</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">tip</span>
         <span class="ruby-identifier">tip</span>.<span class="ruby-identifier">claim!</span>
@@ -626,14 +603,14 @@
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- try_to_create_royalty_check-21-source -->
+          </div><!-- try_to_create_check-21-source -->
           
         </div>
 
         
 
         
-      </div><!-- try_to_create_royalty_check-21-method -->
+      </div><!-- try_to_create_check-21-method -->
 
     
     </section><!-- public-instance-method-details -->

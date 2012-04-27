@@ -63,20 +63,28 @@
   
 </nav>
 
-    
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Enqueueable</span>
+  
+  
+  </ul>
+</nav>
+
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
   <h3 class="section-header">Methods</h3>
 
   <ul class="link-list">
     
-    <li><a href="#method-c-perform">::perform</a>
-    
     <li><a href="#method-i-discover_identity-21">#discover_identity!</a>
     
     <li><a href="#method-i-find_identity_from_author_link-21">#find_identity_from_author_link!</a>
-    
-    <li><a href="#method-i-match_url_to_provider-21">#match_url_to_provider!</a>
     
     <li><a href="#method-i-url_points_to_real_site">#url_points_to_real_site</a>
     
@@ -114,7 +122,13 @@
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
-    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+    <li><a href="./Check.html">Check</a>
+  
+    <li><a href="./CheckMailer.html">CheckMailer</a>
+  
+    <li><a href="./ChecksController.html">ChecksController</a>
+  
+    <li><a href="./EarnedChecksJob.html">EarnedChecksJob</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -126,35 +140,23 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
-    <li><a href="./OrderMailer.html">OrderMailer</a>
+    <li><a href="./OrderDeclined.html">OrderDeclined</a>
   
-    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+    <li><a href="./OrderMailer.html">OrderMailer</a>
   
     <li><a href="./Page.html">Page</a>
   
     <li><a href="./PagesController.html">PagesController</a>
   
-    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
-  
     <li><a href="./Role.html">Role</a>
   
-    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
-  
-    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
-  
-    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
-  
     <li><a href="./SessionsController.html">SessionsController</a>
-  
-    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
   
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
   
     <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
   
     <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
@@ -195,42 +197,6 @@
 
     <!-- Methods -->
     
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-perform" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">perform</span><span
-            class="method-args">(page_id, message, args=[])</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="perform-source">
-            <pre><span class="ruby-comment"># File app/models/page.rb, line 35</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">perform</span>(<span class="ruby-identifier">page_id</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">args</span>=[])
-  <span class="ruby-identifier">find</span>(<span class="ruby-identifier">page_id</span>).<span class="ruby-identifier">send</span>(<span class="ruby-identifier">message</span>, *<span class="ruby-identifier">args</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- perform-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- perform-method -->
-
-    
-    </section><!-- public-class-method-details -->
-  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
 
@@ -251,13 +217,13 @@
 
           
           <div class="method-source-code" id="discover_identity-21-source">
-            <pre><span class="ruby-comment"># File app/models/page.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/models/page.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">discover_identity!</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">identity</span> = <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">find_or_create_from_url</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">url</span>)
-    <span class="ruby-identifier">save!</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">found!</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">provider_from_url</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">url</span>) <span class="ruby-keyword">and</span>
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">identity</span> = <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">find_or_create_from_url</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">url</span>)
+    <span class="ruby-identifier">adopt!</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lost!</span>
+    <span class="ruby-identifier">reject!</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- discover_identity-21-source -->
@@ -286,18 +252,14 @@
 
           
           <div class="method-source-code" id="find_identity_from_author_link-21-source">
-            <pre><span class="ruby-comment"># File app/models/page.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/models/page.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_identity_from_author_link!</span>
-  <span class="ruby-identifier">author_link</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">HTML</span>(<span class="ruby-identifier">open</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">url</span>)).<span class="ruby-identifier">css</span>(<span class="ruby-string">'link[rel=author]'</span>).<span class="ruby-identifier">attr</span>(<span class="ruby-string">'href'</span>).<span class="ruby-identifier">value</span> <span class="ruby-keyword">rescue</span> <span class="ruby-keyword">nil</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">author_link</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">identity</span> = <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">find_or_create_from_url</span>(<span class="ruby-identifier">author_link</span>)
-      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">found!</span>
-      <span class="ruby-identifier">save!</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lost!</span>
-    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">author_tag</span>    = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">HTML</span>(<span class="ruby-identifier">open</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">url</span>)).<span class="ruby-identifier">css</span>(<span class="ruby-string">'link[rel=author]'</span>) <span class="ruby-keyword">and</span>
+     <span class="ruby-identifier">author_link</span>   = <span class="ruby-identifier">author_tag</span>.<span class="ruby-identifier">attr</span>(<span class="ruby-string">'href'</span>).<span class="ruby-identifier">value</span>                          <span class="ruby-keyword">and</span>
+     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">identity</span> = <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">find_or_create_from_url</span>(<span class="ruby-identifier">author_link</span>)
+    <span class="ruby-identifier">adopt!</span>
   <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lost!</span>
+    <span class="ruby-identifier">reject!</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- find_identity_from_author_link-21-source -->
@@ -308,40 +270,6 @@
 
         
       </div><!-- find_identity_from_author_link-21-method -->
-
-    
-      <div id="method-i-match_url_to_provider-21" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">match_url_to_provider!</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="match_url_to_provider-21-source">
-            <pre><span class="ruby-comment"># File app/models/page.rb, line 39</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">match_url_to_provider!</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-constant">Identity</span>.<span class="ruby-identifier">provider_from_url</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">url</span>)
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">catorgorize!</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">discover!</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- match_url_to_provider-21-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- match_url_to_provider-21-method -->
 
     
       <div id="method-i-url_points_to_real_site" class="method-detail ">
@@ -355,17 +283,12 @@
 
         <div class="method-description">
           
-          <p>def normalize</p>
-
-<pre>self.normalized_url = Page.normalize(self.url)
-# self.url = Addressable::URI.parse(self.url).normalize.to_s</pre>
-
-<p>end</p>
+          
           
 
           
           <div class="method-source-code" id="url_points_to_real_site-source">
-            <pre><span class="ruby-comment"># File app/models/page.rb, line 75</span>
+            <pre><span class="ruby-comment"># File app/models/page.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">url_points_to_real_site</span>
   <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:url</span>, <span class="ruby-string">&quot;must point to a real site&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">url</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r\./</span>
 <span class="ruby-keyword">end</span></pre>

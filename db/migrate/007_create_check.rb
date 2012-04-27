@@ -1,6 +1,6 @@
-class CreateRoyaltyCheck < ActiveRecord::Migration
+class CreateCheck < ActiveRecord::Migration
   def self.up
-    create_table :royalty_checks do |t|
+    create_table :checks do |t|
       t.references :user
       t.string  :check_state
       t.integer :count, :default => 0
@@ -9,6 +9,6 @@ class CreateRoyaltyCheck < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :royalty_checks
+    drop_table :checks
   end
 end

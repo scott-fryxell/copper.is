@@ -61,31 +61,31 @@ describe Identity do
           @identity.tips.charged.count.should == 1
         end
         
-        #   describe '#try_to_create_royalty_check!' do
+        #   describe '#try_to_create_check!' do
         #     it 'responds' do
-        #       @identity.respond_to?(:try_to_create_royalty_check!).should be_true
+        #       @identity.respond_to?(:try_to_create_check!).should be_true
         #     end
         
-        #     it 'returns a RoyaltyCheck object' do
-        #       @identity.try_to_create_royalty_check!.class.should == RoyaltyCheck
+        #     it 'returns a Check object' do
+        #       @identity.try_to_create_check!.class.should == Check
         #     end
         
         #     describe 'the returned royalty check' do
         #       before do
-        #         @royalty_check = @identity.try_to_create_royalty_check!
+        #         @check = @identity.try_to_create_check!
         #         @identity = Identity.find(@identity_id)
         #       end
         
         #       it 'has 4 tips' do
-        #         @royalty_check.tips.count.should == 1
+        #         @check.tips.count.should == 1
         #       end
         
         #       it 'is in the :earned state' do
-        #         @royalty_check.earned?.should be_true
+        #         @check.earned?.should be_true
         #       end
 
         #       it 'is saved to @identity' do
-        #         @identity.royalty_checks.earned.first.id.should == @royalty_check.id
+        #         @identity.checks.earned.first.id.should == @check.id
         #       end
         #     end
         #   end

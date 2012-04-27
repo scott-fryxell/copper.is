@@ -4,7 +4,7 @@ Copper::Application.routes.draw do
   resources :users do
     resources :addresses
     resources :tips
-    resources :royalty_checks do
+    resources :checks do
       resources :royalties
     end
     resources :identities
@@ -17,7 +17,7 @@ Copper::Application.routes.draw do
   # resources :tip_orders do
   #   resources :tips
   # end
-  # resources :royalty_checks do
+  # resources :checks do
   #   resources :tips
   # end
   # resources :pages

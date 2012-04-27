@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class TipOrderMissing - RDoc Documentation</title>
+<title>class Check - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/models/tip_order.rb
+    <li>app/models/check.rb
   </ul>
 </nav>
 
@@ -59,12 +59,34 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link">Exception
+  <p class="link">ActiveRecord::Base
   
 </nav>
 
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><span class="include">Enqueueable</span>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-message_author-21">#message_author!</a>
     
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -96,7 +118,13 @@
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
-    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+    <li><a href="./Check.html">Check</a>
+  
+    <li><a href="./CheckMailer.html">CheckMailer</a>
+  
+    <li><a href="./ChecksController.html">ChecksController</a>
+  
+    <li><a href="./EarnedChecksJob.html">EarnedChecksJob</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -108,35 +136,23 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
-    <li><a href="./OrderMailer.html">OrderMailer</a>
+    <li><a href="./OrderDeclined.html">OrderDeclined</a>
   
-    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+    <li><a href="./OrderMailer.html">OrderMailer</a>
   
     <li><a href="./Page.html">Page</a>
   
     <li><a href="./PagesController.html">PagesController</a>
   
-    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
-  
     <li><a href="./Role.html">Role</a>
   
-    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
-  
-    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
-  
-    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
-  
     <li><a href="./SessionsController.html">SessionsController</a>
-  
-    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
   
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
   
     <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
   
     <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
@@ -157,7 +173,7 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class TipOrderMissing</h1>
+  <h1 class="class">class Check</h1>
 
   <div id="description" class="description">
     
@@ -177,6 +193,46 @@
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-message_author-21" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">message_author!</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="message_author-21-source">
+            <pre><span class="ruby-comment"># File app/models/check.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">message_author!</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user</span>.<span class="ruby-identifier">message_about_check</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">save!</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- message_author-21-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- message_author-21-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

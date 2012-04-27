@@ -228,18 +228,18 @@ describe Page do
       @page.save!
       @tip.page = @page
       @tip.save!
-      @royalty_check = FactoryGirl.create(:royalty_check,check_state:'earned')
-      @royalty_check.tips << @tip
-      @royalty_check.save!
+      @check = FactoryGirl.create(:check,check_state:'earned')
+      @check.tips << @tip
+      @check.save!
     end
     
-    it 'has many royalty_checks' do
-      proc { @page.royalty_checks }.should_not raise_error
+    it 'has many checks' do
+      proc { @page.checks }.should_not raise_error
     end
     
     it 'has the right royalty check in it\'s list' do
-      @page.royalty_checks.earned.count.should == 1
-      @page.royalty_checks.earned.first.id.should == @royalty_check.id
+      @page.checks.earned.count.should == 1
+      @page.checks.earned.first.id.should == @check.id
     end
   end
 end

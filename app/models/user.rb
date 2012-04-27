@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :identities
   has_many :tip_orders
   has_many :tips, :through => :tip_orders
-  has_many :royalty_checks
+  has_many :checks
   has_and_belongs_to_many :roles
   
   # has_many :royalties, :through => :identities, :class => 'Tip'
@@ -98,13 +98,13 @@ class User < ActiveRecord::Base
     current_tip_order.tips
   end
 
-  def try_to_create_royalty_check!
+  def try_to_create_check!
     the_tips = []
     self.identities.each do |ident|
       the_tips += ident.tips.charged.all
     end
     unless the_tips.empty?
-      if check = self.royalty_checks.create
+      if check = self.checks.create
         the_tips.each do |tip|
           check.tips << tip
           tip.claim!
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def message_about_royalty_check(royalty_check_id)
-    RoyaltyCheckMailer.check(RoyaltyCheck.find(royalty_check_id)).deliver
+  def message_about_check(check_id)
+    CheckMailer.check(Check.find(check_id)).deliver
   end
 end

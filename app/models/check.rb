@@ -1,4 +1,6 @@
-class RoyaltyCheck < ActiveRecord::Base
+class Check < ActiveRecord::Base
+  include Enqueueable
+  
   belongs_to :user
   has_many :tips
 
@@ -17,18 +19,9 @@ class RoyaltyCheck < ActiveRecord::Base
     end
   end
   
-  @queue = :high
-  def self.perform(page_id, message, args=[])
-    find(page_id).send(message, *args)
-  end
-
-  # def total_amount_in_cents
-  #   royalties.sum('amount_in_cents')
-  # end
-  
   def message_author!
     if self.count == 0
-      self.user.message_about_royalty_check(self.id)
+      self.user.message_about_check(self.id)
       self.count = self.count + 1
       save!
     end

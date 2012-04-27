@@ -64,7 +64,19 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-validate_presence_of_check">#validate_presence_of_check</a>
+    
+    <li><a href="#method-i-validate_presence_of_paid_tip_order">#validate_presence_of_paid_tip_order</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -96,7 +108,13 @@
   
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
-    <li><a href="./EarnedRoyaltyChecksJob.html">EarnedRoyaltyChecksJob</a>
+    <li><a href="./Check.html">Check</a>
+  
+    <li><a href="./CheckMailer.html">CheckMailer</a>
+  
+    <li><a href="./ChecksController.html">ChecksController</a>
+  
+    <li><a href="./EarnedChecksJob.html">EarnedChecksJob</a>
   
     <li><a href="./HomeController.html">HomeController</a>
   
@@ -108,35 +126,23 @@
   
     <li><a href="./LayoutHelper.html">LayoutHelper</a>
   
-    <li><a href="./OrderMailer.html">OrderMailer</a>
+    <li><a href="./OrderDeclined.html">OrderDeclined</a>
   
-    <li><a href="./OrphanedPagesJob.html">OrphanedPagesJob</a>
+    <li><a href="./OrderMailer.html">OrderMailer</a>
   
     <li><a href="./Page.html">Page</a>
   
     <li><a href="./PagesController.html">PagesController</a>
   
-    <li><a href="./ProviderablePagesJob.html">ProviderablePagesJob</a>
-  
     <li><a href="./Role.html">Role</a>
   
-    <li><a href="./RoyaltyCheck.html">RoyaltyCheck</a>
-  
-    <li><a href="./RoyaltyCheckMailer.html">RoyaltyCheckMailer</a>
-  
-    <li><a href="./RoyaltyChecksController.html">RoyaltyChecksController</a>
-  
     <li><a href="./SessionsController.html">SessionsController</a>
-  
-    <li><a href="./SpiderablePagesJob.html">SpiderablePagesJob</a>
   
     <li><a href="./StrangerIdentitiesJob.html">StrangerIdentitiesJob</a>
   
     <li><a href="./Tip.html">Tip</a>
   
     <li><a href="./TipOrder.html">TipOrder</a>
-  
-    <li><a href="./TipOrderMissing.html">TipOrderMissing</a>
   
     <li><a href="./TipOrdersController.html">TipOrdersController</a>
   
@@ -195,6 +201,76 @@
 
     <!-- Methods -->
     
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-validate_presence_of_check" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_presence_of_check</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_presence_of_check-source">
+            <pre><span class="ruby-comment"># File app/models/tip.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_presence_of_check</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">check_id</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:check_id</span>, <span class="ruby-string">&quot;check_id must not be null for :kinged tips&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_presence_of_check-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_presence_of_check-method -->
+
+    
+      <div id="method-i-validate_presence_of_paid_tip_order" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">validate_presence_of_paid_tip_order</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="validate_presence_of_paid_tip_order-source">
+            <pre><span class="ruby-comment"># File app/models/tip.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">validate_presence_of_paid_tip_order</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">tip_order</span>.<span class="ruby-identifier">paid?</span>
+    <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:tip_order_id</span>, <span class="ruby-string">&quot;tip order must be :paid for :charged tips&quot;</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- validate_presence_of_paid_tip_order-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- validate_presence_of_paid_tip_order-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

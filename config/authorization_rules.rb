@@ -10,7 +10,7 @@
 
     has_permission_on [:users], :to => [:new, :create, :edit, :update, :show, :pay, :identities, :author, :badge] do
       has_permission_on [:tips], :to => [:index, :create, :edit, :update, :destroy, :new, :embed_iframe, :agent]
-      has_permission_on [:royalty_checks], :to => [:index]
+      has_permission_on [:checks], :to => [:index]
       has_permission_on [:identities], :to => [:index, :destroy]
     end
   end

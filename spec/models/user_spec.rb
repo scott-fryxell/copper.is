@@ -98,14 +98,14 @@ describe User do
     end
   end
   
-  it 'has a method to find all :earned royalty_checks' do
-    proc { @user.royalty_checks.earned }.should_not raise_error
+  it 'has a method to find all :earned checks' do
+    proc { @user.checks.earned }.should_not raise_error
   end
   
-  it 'returns all :earned royalty_checks' do
-    royalty_check_id = FactoryGirl.create(:royalty_check,check_state:'earned',user:@user).id
-    royalty_checks = @user.royalty_checks.earned
-    royalty_checks.size.should == 1
-    royalty_checks.first.id.should == royalty_check_id
+  it 'returns all :earned checks' do
+    check_id = FactoryGirl.create(:check,check_state:'earned',user:@user).id
+    checks = @user.checks.earned
+    checks.size.should == 1
+    checks.first.id.should == check_id
   end
 end

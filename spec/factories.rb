@@ -119,19 +119,19 @@ FactoryGirl.define do
     association :page
     amount_in_cents 100
     paid_state "kinged"
-    association :royalty_check                  
+    association :check                  
   end
 
-  factory :royalty_check do
+  factory :check do
     association :user
   end
   
-  factory :royalty_check_paid, :class => 'RoyaltyCheck' do
+  factory :check_paid, :class => 'Check' do
     association :user
     check_state 'paid'
   end
   
-  factory :royalty_check_cashed, :class => 'RoyaltyCheck' do
+  factory :check_cashed, :class => 'Check' do
     association :user
     check_state 'cashed'
   end

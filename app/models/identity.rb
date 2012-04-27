@@ -4,7 +4,7 @@ class Identity < ActiveRecord::Base
   belongs_to :user
   has_many :pages
   has_many :tips, :through => :pages
-  has_many :royalty_checks, :through => :pages
+  has_many :checks, :through => :pages
 
   attr_accessible :provider, :uid, :username
 
