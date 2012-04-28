@@ -50,7 +50,7 @@ describe User do
   describe "current tips" do
     it "should return a list of tips for a user with an current tip order" do
       @user = User.create!(name:'dude')
-      @user.orders.unpaid.count.should == 1
+      @user.orders.current.count.should == 1
       @user.current_tips.should_not be_nil
       @user.current_tips.size.should == 0
       @user.current_tips.should be_an_instance_of Array

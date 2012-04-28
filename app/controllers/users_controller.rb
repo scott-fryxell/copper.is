@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   filter_access_to :all
-  
+
   def update
     @user = current_user
     @user.update_attributes(params[:user])
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
       format.json  { render :json => @user.to_json }
     end
   end
-  
+
   def show
     @user = current_user
     @tip = Tip.new
@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       format.json  { render :json => @user.to_json }
     end
   end
-  
+
   def pay
     # collect and save the parameters
     current_user.accept_terms = params[:terms]
@@ -49,21 +49,21 @@ class UsersController < ApplicationController
 
     if current_user.accept_terms
       order.process!
-      
+      order.charge!
       if order.paid?
         OrderMailer.reciept(order).deliver
         render :text => '<meta name="event_trigger" content="card_approved"/>'
       elsif order.denied?
         render :text => '<meta name="event_trigger" content="card_declined"/>'
       else
-       render :text => '<meta name="event_trigger" content="processing_error"/>' 
+       render :text => '<meta name="event_trigger" content="processing_error"/>'
       end
 
     else
       render :text => '<meta name="event_trigger" content="terms_declined"/>'
     end
   end
-  
+
   def author
     render 'users/author'
   end

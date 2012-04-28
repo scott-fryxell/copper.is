@@ -6,6 +6,7 @@ describe Tip do
       @tip = FactoryGirl.create(:tip)
       @tip.page = FactoryGirl.create(:authored_page)
       @tip.save!
+
     end
 
     it "should always be associated with a tip order" do
@@ -36,50 +37,4 @@ describe Tip do
     @tip.save.should be_false
   end
 
-  describe "state machine" do
-    it "transition fails on :pay event when order is not paid" do
-      tip = FactoryGirl.create(:tip)
-      tip.promised?.should be_true
-      tip.order.paid?.should_not be_true
-      #proc { tip.pay! }.should raise_error(StateMachine::InvalidTransition)
-      tip.charged?.should be_false
-    end
-    
-    it "should transition from :promised to :charged on a pay: event" do
-      tip = FactoryGirl.create(:tip)
-      tip.promised?.should be_true
-      tip.order.state = 'paid'
-      tip.order.save!
-      tip.pay!
-      tip.charged?.should be_true
-    end
-    
-    it "should transition to :changed to :kinged on a claim! event" do
-      tip = FactoryGirl.create(:tip_charged)
-      tip.charged?.should be_true
-      tip.check = FactoryGirl.create(:check)
-      tip.claim!
-      tip.kinged?.should be_true
-    end
-  end
-
-  context 'scopes' do
-    before do
-      @promised = Array.new(3) { FactoryGirl.create(:tip, paid_state:'promised' ) }
-      @charged = Array.new(4) { FactoryGirl.create(:tip_charged) }
-      @kinged = Array.new(5) { FactoryGirl.create(:tip_kinged) }
-    end
-
-    it 'has a .promised scope' do
-      Tip.promised.count.should == @promised.size
-    end
-
-    it 'has a .charged scope' do
-      Tip.charged.count.should == @charged.size
-    end
-
-    it 'has a .kinged scope' do
-      Tip.kinged.count.should == @kinged.size
-    end
-  end
 end

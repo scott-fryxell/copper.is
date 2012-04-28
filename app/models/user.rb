@@ -1,21 +1,21 @@
 class User < ActiveRecord::Base
   include Enqueueable
-  
+
   has_many :identities
   has_many :orders
   has_many :tips, :through => :orders
   has_many :checks
   has_and_belongs_to_many :roles
-  
+
   # has_many :royalties, :through => :identities, :class => 'Tip'
 
   attr_accessible :name, :email, :tip_preference_in_cents
-  
+
   validates :tip_preference_in_cents,
     :numericality => { greater_than_or_equal_to:Tip::MINIMUM_TIP_VALUE },
     :presence => true
   validates :name, length:{in:3..128}
-    
+
   # this doesn't match gmail '+' tags
   EMAIL_RE = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/
   validates :email, format:{with:EMAIL_RE}, :allow_nil => true
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   # def validate_one_current_order
   #  errors.add(:orders, "there can be only one") unless self.orders.current.size == 1
   # end
-  
+
   after_create :create_current_order!
 
   def create_current_order!
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     url    = args[:url]
     title  = args[:title]  || url
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
-    
+
     tip = current_order.tips.build(amount_in_cents:amount_in_cents)
     unless tip.page = Page.where('url = ?', url).first
       tip.page = Page.create(url:url,title:title)
@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
   def current_order
     self.orders.current.first or self.orders.create
   end
-  
+
   def current_tips
     current_order.tips
   end
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
       end
     end
   end
-  
+
   def message_about_check(check_id)
     CheckMailer.check(Check.find(check_id)).deliver
   end

@@ -7,11 +7,11 @@ describe "Tiping a URL" do
   end
 
   it "should be able to tip through the extension" do
-    visit "/tips/agent/?uri=http://test.com&title=a_title"
+    tip_twitter
   end
 
-  it "should be able to update a buck " do
-    visit "/tips/agent/?uri=http://test.com&title=a_title"
+  it "should be able to update a tip" do
+    tip_twitter
     click_on('Change')
     fill_in('tip_amount', :with => '1.5')
     click_on('save')
@@ -28,9 +28,9 @@ describe "Tiping a URL" do
 
   slow_test do
     it "should be able to delete a buck " do
-      visit "/tips/agent/?uri=http://test.com&title=a_title"
+      tip_twitter
       visit "/users/current/tips"
-      page.should have_content 'a_title'
+      page.should have_content 'copper_dev'
       click_on('x')
       sleep 2
       visit "/users/current/tips"
@@ -40,12 +40,12 @@ describe "Tiping a URL" do
   slow_test do
     describe "paying for some tips" do
       before do
-        visit "/tips/agent/?uri=http://test.com&title=a_title"
+        tip_twitter
         click_on('Change')
         fill_in('tip_amount', :with => '10.5')
         click_on('save')
         sleep 2
-        visit "/tips/agent/?uri=http://test2.com&title=a_second_title"
+        tip_twitter
       end
 
       it "should be notified that it's time to pay" do
@@ -111,13 +111,12 @@ describe "Tiping a URL" do
         page.should have_content "Processing your order..."
         sleep 5
         page.should have_content "Success! We've emailed you a reciept"
-
-        visit "/tips/agent/?uri=http://test.com&title=a_title"
+        tip_twitter
         click_on('Change')
         fill_in('tip_amount', :with => '10.5')
         click_on('save')
         sleep 2
-        visit "/tips/agent/?uri=http://test2.com&title=a_second_title"
+        tip_twitter
 
         sleep 2
         fill_in('email', :with => 'google_user@email.com')

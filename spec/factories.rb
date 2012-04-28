@@ -7,8 +7,8 @@ FactoryGirl.define do
     "foobar#{n}"
   end
   
-  sequence 'url_with_path' do |n|
-    "http://www.google.com/?q=#{n}/"
+  sequence 'twitter_url_with_path' do |n|
+    "http://twitter.com/#!/1#{n}"
   end
 
   factory :identities_facebook, class: 'Identities::Facebook' do
@@ -98,34 +98,19 @@ FactoryGirl.define do
   end
 
   factory :authored_page, :class => 'Page' do
-    url { FactoryGirl.generate(:url_with_path) }
+    url { FactoryGirl.generate(:twitter_url_with_path) }
     author_state 'adopted'
     association :identity, factory: :identities_google
   end
 
   factory :page do
-    url { FactoryGirl.generate(:url_with_path) }
+    url { FactoryGirl.generate(:twitter_url_with_path) }
   end
 
   factory :tip do
-    association :order, factory: :order_unpaid
+    association :order, factory: :order_current
     association :page
     amount_in_cents 100
-  end
-
-  factory :tip_charged, :class => "Tip" do
-    association :order, factory: :order_paid
-    association :page
-    amount_in_cents 100
-    paid_state "charged"
-  end
-
-  factory :tip_kinged, :class => "Tip" do
-    association :order, factory: :order_paid
-    association :page
-    amount_in_cents 100
-    paid_state "kinged"
-    association :check                  
   end
 
   factory :check do
