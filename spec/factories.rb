@@ -13,61 +13,56 @@ FactoryGirl.define do
 
   factory :identities_facebook, class: 'Identities::Facebook' do
     provider 'facebook'
-    uid { FactoryGirl.generate('uid') }
+    username 'scott.fryxell'
+    uid '580281278'
   end
   
   factory :identities_twitter, class: 'Identities::Twitter' do
     provider 'twitter'
-    username { FactoryGirl.generate('username') }
-    uid { FactoryGirl.generate('uid') }
+    username '_ugly' 
+    uid '26368397'
   end
                                       
-  # factory :identities_twitter_ugly, class: 'Identities::Twitter' do
-  #   provider 'twitter'
-  #   username '_ugly'
-  #   uid '26368397'
-  # end
-
   factory :identities_google, class: 'Identities::Google' do
     provider 'google'
-    uid { FactoryGirl.generate(:uid) }
-    username { FactoryGirl.generate('username') }
+    uid 
+    username 
   end
 
   factory :identities_vimeo, class: 'Identities::Vimeo' do
     provider 'vimeo'
-    uid { FactoryGirl.generate(:uid) }
-    username { FactoryGirl.generate('username') }
+    uid 
+    username 
   end
 
   factory :identities_flickr, class: 'Identities::Flickr' do
     provider 'flickr'
-    uid { FactoryGirl.generate(:uid) }
-    username { FactoryGirl.generate('username') }
+    uid 
+    username 
   end
 
   factory :identities_tumblr, class: 'Identities::Tumblr' do
     provider 'tumblr'
-    uid { FactoryGirl.generate(:uid) }
-    username { FactoryGirl.generate('username') }
+    uid 
+    username 
   end
 
   factory :identities_github, class: 'Identities::Github' do
     provider 'github'
-    uid { FactoryGirl.generate(:uid) }
-    username { FactoryGirl.generate('username') }
+    uid 
+    username 
   end
 
   factory :identities_soundcloud, class: 'Identities::Soundcloud' do
     provider 'soundcloud'
-    uid { FactoryGirl.generate(:uid) }
-    username { FactoryGirl.generate('username') }
+    uid 
+    username 
   end
 
   factory :identities_youtube, class: 'Identities::Youtube' do
     provider 'youtube'
-    uid { FactoryGirl.generate(:uid) }
-    username { FactoryGirl.generate('username') }
+    uid 
+    username 
   end
 
   factory :role do

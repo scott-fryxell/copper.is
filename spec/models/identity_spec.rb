@@ -17,8 +17,6 @@ describe Identity do
     describe provider do
       before do
         @identity = FactoryGirl.create factory
-        twitter_user = OpenStruct.new(uid:'123',username:'dude')
-        Twitter.stub(:user).and_return(twitter_user)
       end
       
       it 'has a method to inform a non-user of an earned royalty check' do
@@ -28,7 +26,6 @@ describe Identity do
       it 'has a factory creation method based on passsed in provider' do
         Identity.factory provider:provider, uid:FactoryGirl.generate(:uid)
       end
-
 
       it 'has a method that populates uid or username depending on what\'s missing' do
         proc{ @identity.populate_uid_and_username! }.should_not raise_error
