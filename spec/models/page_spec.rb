@@ -49,9 +49,9 @@ describe Page do
 
   describe 'author state machine' do
     describe "happy path" do
-      describe "tranistions from :orphaned to :adopted on adopted!" do
+      describe "transitions from :orphaned to :adopted on it's own" do
         before do
-          @page = FactoryGirl.build(:page, url:'http://dude.com')
+          @page = FactoryGirl.build(:page)
         end
         
         after do
@@ -60,18 +60,18 @@ describe Page do
         end
         
         it "finds user on facebook.com" do
+          stub_request(:any, "www.facebook.com")
           @page.url = "http://www.facebook.com/scott.fryxell"
+        end
+        
+        it "finds user on twitter.com" do
+          stub_request(:any, "twitter.com")
+          @page.url = "https://twitter.com/#!/ChloesThinking"
         end
         
         it "finds user on flickr.com" #do
         #  @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
         #end
-        
-        slow_test do
-          it "finds user on twitter.com" do
-            @page.url = "https://twitter.com/#!/ChloesThinking"
-          end
-        end
         
         it "finds user on youtube.com" #do
         #  @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"

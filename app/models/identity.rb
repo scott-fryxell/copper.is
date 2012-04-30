@@ -8,7 +8,8 @@ class Identity < ActiveRecord::Base
 
   attr_accessible :provider, :uid, :username
 
-  validates :username, uniqueness:{scope:['uid','provider']}
+  # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
+  # validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
   validates :provider, presence:true
   
   validate :validate_presence_of_username_or_uid
@@ -106,8 +107,10 @@ class Identity < ActiveRecord::Base
   end
   
   def populate_uid_and_username!
-    unless self.uid and self.username
-      unless self.uid
+    if self.uid.blank? and self.username.blank?
+      raise "both uid and username can't be blank"
+    else
+      if self.uid.blank?
         populate_uid_from_username!
       else
         populate_username_from_uid!
@@ -117,12 +120,14 @@ class Identity < ActiveRecord::Base
 
   def populate_username_from_uid!
     raise "not implemented in subclass" unless block_given?
+    raise "uid is blank" if self.uid.blank?
     yield
     save!
   end
 
   def populate_uid_from_username!
     raise "not implemented in subclass" unless block_given?
+    raise "username is blank" if self.username.blank?
     yield
     save!
   end
