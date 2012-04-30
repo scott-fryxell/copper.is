@@ -45,7 +45,7 @@ class Order < ActiveRecord::Base
               :amount => subtotal() +fees(),
               :currency => "usd",
               :customer => self.user.stripe_customer_id,
-              :description => self.user.email
+              :description => "order.id=" + self.id.to_s
             )
             self.charge_token = stripe_charge.id
             self.save!
