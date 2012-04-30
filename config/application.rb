@@ -14,7 +14,7 @@ module Copper
   class Application < Rails::Application
     config.encoding = "utf-8"
     config.active_record.timestamped_migrations = false
-
+    config.cache_store = :dalli_store
     config.action_view.embed_authenticity_token_in_remote_forms = false
     config.active_record.whitelist_attributes= true
     
@@ -23,7 +23,7 @@ module Copper
     config.filter_parameters += [:password]
     config.active_record.timestamped_migrations = false
     config.assets.enabled = true
-    config.assets.version = '1.0'
+    config.assets.version = '1.1'
     config.assets.prefix = "/assets"
 
     config.assets.initialize_on_precompile= false

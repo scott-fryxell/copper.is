@@ -12,11 +12,9 @@ Copper::Application.configure do
   config.assets.compile = false
   config.assets.debug = false
   config.assets.digest = true
+  config.serve_static_assets = true
 
   config.action_controller.perform_caching = true
-  # config.cache_store = :dalli_store
-
-  config.serve_static_assets = true
 
   # config.static_cache_control = "public, max-age=315360000"
   config.static_cache_control = "public, max-age=2592000"
