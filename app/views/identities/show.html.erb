@@ -1,15 +1,12 @@
 <%-content_for :head do-%>
   <title>Copper</title>
   <%= stylesheet_link_tag "identities/show" %>
-  <%= javascript_include_tag "identities/show" %>
 <%-end-%>
 <section id="identity">
   <h1>Wanted!</h1>
 
-  <section id="foobar">
-    <header>
-      <h2>Foobar</h2>
-      <p>A foo walks into a bar.</p>
-    </header>
-  </section>
+  <a href="/auth/<%=@identity.provider%>">
+    <%= image_tag "providers/" + @identity.provider + '.png'%>
+  </a>
+
 </section>

@@ -1,0 +1,21 @@
+body > header > hgroup{
+  display:none;
+}
+
+#identity > a {
+  display:block;
+  border:.25em solid gray;
+  line-height:2em;
+  padding:1.5em;
+  margin: .5em auto .5em auto;
+  width:20em;
+  border-radius:.5em;
+  background-color:white;
+}
+
+#identity > a > img {
+  display:inline-block;
+  vertical-align:middle;
+  text-align: center;
+  width:20em;
+}
