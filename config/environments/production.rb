@@ -19,6 +19,12 @@ Copper::Application.configure do
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=315360000"
 
+  config.action_dispatch.rack_cache = {
+    :metastore    => Dalli::Client.new,
+    :entitystore  => 'file:tmp/cache/rack/body',
+    :allow_reload => false
+  }
+
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
