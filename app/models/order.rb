@@ -36,31 +36,31 @@ class Order < ActiveRecord::Base
       end
 
     end
+    
+    state :current do
+      def rotate!
+        process!
+      end
+    end
 
     state :unpaid,:denied do
       def charge!
-        unless paid?
-          begin
-            stripe_charge = Stripe::Charge.create(
-              :amount => subtotal() +fees(),
-              :currency => "usd",
-              :customer => self.user.stripe_customer_id,
-              :description => "order.id=" + self.id.to_s
-            )
-            self.charge_token = stripe_charge.id
-            self.save!
-            self.tips.find_each do |tip|
-              tip.pay!
-            end
-            process!
-            stripe_charge
-          rescue Stripe::CardError => e
-            decline!
-            raise e
-          end
-        else
-          raise "There was an attempt to charge! a paid Order: #{self.inspect}"
+        stripe_charge = Stripe::Charge.create(
+          :amount => subtotal() +fees(),
+          :currency => "usd",
+          :customer => self.user.stripe_customer_id,
+          :description => "order.id=" + self.id.to_s
+        )
+        self.charge_token = stripe_charge.id
+        self.save!
+        self.tips.find_each do |tip|
+          tip.pay!
         end
+        process!
+        stripe_charge
+      rescue Stripe::CardError => e
+        decline!
+        raise e
       end
     end
   end

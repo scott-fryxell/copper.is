@@ -36,9 +36,25 @@ class Identity < ActiveRecord::Base
     state :stranger, :wanted do
       validate :validate_user_id_is_nil
     end
+
+    state :wanted do
+      def message!
+        raise "this identity has a user" if self.user_id
+        raise "must be implemented in child class" unless block_given?
+        if self.message.nil?
+          yield
+          self.message = Time.now
+          save!
+        end
+      end
+    end
     
     state :known do
       validates :user_id, presence:true
+    end
+    
+    after_transition any => :wanted do |author,transition|
+      Resque.enqueue author.class, author.id, :message!
     end
   end
 
@@ -52,6 +68,8 @@ class Identity < ActiveRecord::Base
     self.type = Identity.subclass_from_provider(self.provider).to_s unless self.type
   end
 
+  # --------------------------------------------------------------------
+  
   def self.find_with_omniauth(auth)
     find_by_provider_and_uid(auth['provider'], auth['uid'].to_s)
   end
@@ -96,15 +114,7 @@ class Identity < ActiveRecord::Base
     ident
   end
   
-  def message_wanted!
-    raise "this identity has a user" if self.user_id
-    raise "must be implemented in child class" unless block_given?
-    if self.message.nil?
-      yield
-      self.message = Time.now
-      save!
-    end
-  end
+  # --------------------------------------------------------------------
   
   def populate_uid_and_username!
     if self.uid.blank? and self.username.blank?
@@ -132,9 +142,7 @@ class Identity < ActiveRecord::Base
     save!
   end
   
-  def try_to_add_to_wanted_list!
-    if self.tips.charged.sum(:amount_in_cents) > 100
-      self.publicize!
-    end
+  def try_to_make_wanted!
+    self.publicize! if self.tips.charged.count > 0
   end
 end
