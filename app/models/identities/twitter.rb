@@ -1,4 +1,5 @@
 class Identities::Twitter < Identity
+  include Enqueueable
   # validates :username, presence: true
 
   def self.discover_uid_and_username_from_url url
@@ -22,7 +23,7 @@ class Identities::Twitter < Identity
     end
   end
 
-  def message_wanted!
+  def message!
     super do
       send_tweet("Someone loves you.  http://127.0.0.1:5000/i/#{self.id} #{Time.now.to_i.to_s[6..-1]}")
     end

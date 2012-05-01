@@ -37,7 +37,7 @@ describe Page do
         @page.url = "https://twitter.com/#!/ChloesThinking"
       end
       
-      context broken:true do
+      context '', :broken do
         it "finds user on flickr.com" do
           @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
         end
@@ -69,7 +69,7 @@ describe Page do
     end
     
     describe "transitions from :orphaned to :adopted if from a spiderable page" do
-      it 'spiders a spiderable page', broken:true do
+      it 'spiders a spiderable page', :broken do
         
       end
     end

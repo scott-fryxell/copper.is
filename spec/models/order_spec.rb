@@ -23,11 +23,11 @@ describe Order do
     order.unpaid?.should be_true
   end
   
-  it 'process! moves a unpaid order to paid with good CC info' do
+  it 'charge! moves a unpaid order to paid with good CC info' do
     Stripe::Charge.stub(:create) { @charge_token }
     order = FactoryGirl.create(:order_unpaid)
     order.unpaid?.should be_true
-    order.process!
+    order.charge!
     order.reload
     order.paid?.should be_true
   end

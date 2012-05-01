@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     order = current_user.current_order
 
     if current_user.accept_terms
-      order.process!
+      order.rotate!
       order.charge!
       if order.paid?
         OrderMailer.reciept(order).deliver

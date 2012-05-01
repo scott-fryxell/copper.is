@@ -1,4 +1,16 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
+
+describe User do
+  before do
+    @user = FactoryGirl.create :user
+  end
+  
+  describe Order do
+    
+  end
+end
+
+__END__
 
 describe User do
   before do

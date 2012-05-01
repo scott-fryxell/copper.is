@@ -5,17 +5,6 @@ describe Identities::Twitter do
     @identity = FactoryGirl.create(:identities_twitter, username:"_ugly")
   end
 
-  it "should send a non copper user a tweet that they have royalties"  do
-    Twitter.stub(:update)
-    @identity.message_wanted!
-  end
-
-  it "should not send a copper user a tweet trying to get them to use the service" do
-    @identity.user = FactoryGirl.create(:user)
-    Twitter.should_not_receive(:update)
-    proc { @identity.message_wanted! }.should raise_error
-  end
-
   describe '#populate_uid_and_username!' do
     it 'finds the uid if username is set' do
       @identity.uid = nil
