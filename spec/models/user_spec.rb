@@ -108,4 +108,59 @@ describe User do
     checks.size.should == 1
     checks.first.id.should == check_id
   end
+  describe "paying for an order of tips" do
+    before do
+      stripe = Stripe::Token.create(
+                                    :card => {
+                                      :number => "4242424242424242",
+                                      :exp_month => 3,
+                                      :exp_year => 2013,
+                                      :cvc => 314
+                                    },
+                                    :currency => "usd"
+                                    )
+
+      @user = FactoryGirl.build(:user)
+      @user.create_stripe_customer(stripe.id)
+      @user.save
+    end
+
+    after(:each) do
+      @user.delete_stripe_customer
+    end
+
+    it 'should not allow a .charge! call on current order' do
+      @order = FactoryGirl.create(:order_current)
+      proc { @order.charge! }.should raise_error
+    end
+    
+    it "should charge the fan for his tips" do
+      @order_id = @user.current_order.id
+      @order = @user.current_order
+      @order.current?.should be_true
+      FactoryGirl.create(:order_current, user:@user)
+      
+      FactoryGirl.create(:page,url:'http://example.com',author_state:'adopted')
+      FactoryGirl.create(:page,url:'http://beef.com/chunder',author_state:'adopted')
+      FactoryGirl.create(:page,url:'http://beef.com/horde',author_state:'adopted')
+      
+      @user.tip(:url => 'http://example.com', :title => 'example page',
+                :amount_in_cents => 500)
+      @user.tip(:url => 'http://beef.com/chunder', :title => 'CHUNDER POW',
+                :amount_in_cents => 500)
+      @user.tip(:url => 'http://beef.com/horde', :title => 'ALL HAIL THE HORDE',
+                :amount_in_cents => 500)
+      
+      @order.process!
+      Stripe::Charge.stub(:create).and_return(OpenStruct.new(id:2))
+      @order.charge!
+      
+      @order = Order.find(@order_id)
+      @order.paid?.should be_true
+      @order.tips.count.should == 3
+      @order.tips.sum(:amount_in_cents).should == 1500
+    end
+
+  end
+
 end
