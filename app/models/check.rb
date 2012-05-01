@@ -4,7 +4,7 @@ class Check < ActiveRecord::Base
   belongs_to :user
   has_many :tips
 
-  # validates :user, presence:true
+  validates :user, presence:true
   
   scope :earned, where("check_state = ?", 'earned')
   scope :paid, where("check_state = ?", 'paid')  
@@ -14,16 +14,20 @@ class Check < ActiveRecord::Base
     event :deliver do
       transition :earned => :paid
     end
+    
     event :reconcile do
       transition :paid => :cashed
     end
-  end
-  
-  def message_author!
-    if self.count == 0
-      self.user.message_about_check(self.id)
-      self.count = self.count + 1
-      save!
+    
+    state :earned do
+      def message_author!
+        if self.count == 0
+          self.user.message_about_check(self.id)
+          self.count = self.count + 1
+          save!
+        end
+      end
     end
   end
+  
 end

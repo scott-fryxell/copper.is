@@ -20,11 +20,10 @@ class User < ActiveRecord::Base
   EMAIL_RE = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/
   validates :email, format:{with:EMAIL_RE}, :allow_nil => true
 
-  # validate :validate_one_current_order
-
-  # def validate_one_current_order
-  #  errors.add(:orders, "there can be only one") unless self.orders.current.size == 1
-  # end
+  validate :validate_one_current_order, on:'save'
+  def validate_one_current_order
+    errors.add(:orders, "there must be only one") unless self.orders.current.size == 1
+  end
 
   after_create :create_current_order!
 

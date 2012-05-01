@@ -19,33 +19,31 @@ describe Identity do
         @identity = FactoryGirl.create factory
       end
       
-      describe "state machine" do
-        it "transitions from :stranger to :wanted on a publicize! event" do
-          @identity.stranger?.should be_true
-          @identity.publicize!
-          @identity.wanted?.should be_true
-        end
+      it "transitions from :stranger to :wanted on a publicize! event" do
+        @identity.stranger?.should be_true
+        @identity.publicize!
+        @identity.wanted?.should be_true
+      end
 
-        it "transitions from :stranger to :known on a join! event" do
-          @identity.stranger?.should be_true
-          @identity.user_id = 1
-          @identity.join!
-          @identity.known?.should be_true
-        end
-        
-        it "transitions from :wanted to :known on a join! event" do
-          @identity = FactoryGirl.create(factory, identity_state:'wanted')
-          @identity.wanted?.should be_true
-          @identity.user_id = 1
-          @identity.join!
-          @identity.known?.should be_true
-        end
-        
-        it "does not transition from :wanted on a publicize! event" do
-          @identity = FactoryGirl.create(factory, identity_state:'wanted')
-          @identity.wanted?.should be_true
-          proc { @identity.publicize! }.should raise_error(StateMachine::InvalidTransition)
-        end
+      it "transitions from :stranger to :known on a join! event" do
+        @identity.stranger?.should be_true
+        @identity.user_id = 1
+        @identity.join!
+        @identity.known?.should be_true
+      end
+      
+      it "transitions from :wanted to :known on a join! event" do
+        @identity = FactoryGirl.create(factory, identity_state:'wanted')
+        @identity.wanted?.should be_true
+        @identity.user_id = 1
+        @identity.join!
+        @identity.known?.should be_true
+      end
+      
+      it "does not transition from :wanted on a publicize! event" do
+        @identity = FactoryGirl.create(factory, identity_state:'wanted')
+        @identity.wanted?.should be_true
+        proc { @identity.publicize! }.should raise_error(StateMachine::InvalidTransition)
       end
     end
   end
