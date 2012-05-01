@@ -9,7 +9,7 @@ Copper::Application.configure do
   config.assets.compress = true
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :yui
-  config.assets.compile = false
+  config.assets.compile = true
   config.assets.debug = false
   config.assets.digest = true
   config.serve_static_assets = true

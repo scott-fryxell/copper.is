@@ -13,21 +13,21 @@ end
 module Copper
   class Application < Rails::Application
     config.encoding = "utf-8"
-    config.active_record.timestamped_migrations = false
     config.cache_store = :dalli_store
+    config.active_record.timestamped_migrations = false
     config.action_view.embed_authenticity_token_in_remote_forms = false
     config.active_record.whitelist_attributes= true
-    
+
     config.autoload_paths += %W(#{config.root}/lib)
-    
+
     config.filter_parameters += [:password]
-    config.active_record.timestamped_migrations = false
+
     config.assets.enabled = true
     config.assets.version = '1.1'
     config.assets.prefix = "/assets"
 
     config.assets.initialize_on_precompile= false
-    
+
     %w[
       copper_secret_key
 
