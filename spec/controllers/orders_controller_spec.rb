@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TipOrdersController do
+describe OrdersController do
   describe 'as Guest' do
     before :all do
       unauthenticate
