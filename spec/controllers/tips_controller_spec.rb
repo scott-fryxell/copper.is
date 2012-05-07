@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TipsController,:focus do
+describe TipsController do
   create_me_her_db
   
   describe 'as Guest' do
