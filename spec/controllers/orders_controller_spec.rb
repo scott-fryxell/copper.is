@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe OrdersController do
+  create_me_her_db
+  
   describe 'as Guest' do
     before :all do
       unauthenticate
@@ -56,7 +58,7 @@ describe OrdersController do
   
   describe 'as Patron' do
     before :all do
-      authenticate_as_patron
+      authenticate_as_patron @me
     end
     describe 'index' do
       describe '/tip_orders' do

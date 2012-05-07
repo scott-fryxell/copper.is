@@ -71,12 +71,13 @@ FactoryGirl.define do
 
   # factory :unaccepted_user, :class => 'User' do
   # end
-
+                                 
   factory :user do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
     identities [FactoryGirl.create(:identities_facebook)]
+    roles [Role.find_by_name('Patron')]
   end
 
   factory :order_current, :class => 'Order' do

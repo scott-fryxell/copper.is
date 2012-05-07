@@ -1,4 +1,5 @@
 class InvalidTipURL < Exception ; end
+class CantDestroyException < Exception ; end
 
 class Tip < ActiveRecord::Base
   belongs_to :page
@@ -30,6 +31,10 @@ class Tip < ActiveRecord::Base
     unless self.order.current?
       errors.add(:order_id,"can only add a tip to a current order") 
     end
+  end
+  
+  before_destroy do |tip|
+    raise CantDestroyException unless tip.promised? 
   end
   
   state_machine :paid_state, :initial => :promised do

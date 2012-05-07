@@ -1,131 +1,272 @@
 require 'spec_helper'
 
-describe TipsController do
+describe TipsController,:focus do
+  create_me_her_db
+  
   describe 'as Guest' do
-    before :all do
+    before do
       unauthenticate
     end
+    
     describe 'index' do
-      describe '/tips' do
-        it 'renders a list of the most recent tips'
+      describe '/t' do
+        it 'assigns all tips' do
+          get :index
+          tips = assigns(:tips)
+          tips.should eq([@her_tip2,@her_tip1,@my_tip])
+          tips.first.order_id.should be_nil 
+          tips.first.check_id.should be_nil
+        end
       end
     end
+    
     describe 'new' do
-      describe '/tips/new' do
-        it '302 to signin'
+      describe '/t/new' do
+        it '302 to signin' do
+          get :new
+          response.should redirect_to(signin_path)
+        end
+        
+        it '401 when json requested' do
+          get :new, format: :js
+          response.status.should == 401 
+        end
       end
     end
+    
     describe 'create' do
-      describe 'POST /tips' do
-        it '302 to signin'
+      describe 'POST /t' do
+        it '302 to signin' do
+          proc do
+            post :create
+            response.should redirect_to(signin_path)
+          end.should_not change(Tip, :count)
+        end
       end
     end
+    
     describe 'show' do
-      describe '/tips/:id' do
-        it 'renders a given tip'
+      describe '/t/:id' do
+        it 'should assign a tip' do
+          get :show, id:@my_tip.id
+          assigns(:tip).should eq(@my_tip)
+          tip = assigns(:tip)
+          tip.order_id.should be_nil 
+          tip.check_id.should be_nil
+        end
       end
     end
+    
     describe 'edit' do
-      describe '/tips/:id/edit' do
-        it '302 to signin'
+      describe '/t/:id/edit' do
+        it '302 to signin' do
+          get :edit
+          response.should redirect_to(signin_path)
+        end
+        
+        it '401 when json requested' do
+          get :new, format: :js
+          response.status.should == 401 
+        end
       end
     end
+    
     describe 'update' do
-      describe 'PUT /tips/:id' do
-        it '302 to signin'
+      describe 'PUT /t/:id' do
+        it '302 to signin' do
+          put :update
+          response.should redirect_to(signin_path)
+        end
+        
+        it '401 when json requested' do
+          put :update, format: :js
+          response.status.should == 401 
+        end
       end
     end
+    
     describe 'destroy' do
-      describe 'DELETE /tips/:id' do
-        it '302 to signin'
+      describe 'DELETE /t/:id' do
+        it '302 to signin' do
+          proc do
+            delete :destroy, id:@my_tip.id
+            response.should redirect_to(signin_path)
+          end.should_not change(Tip,:count)
+        end
+        
+        it '401 when json requested' do
+          proc do
+            delete :destroy, format: :js
+            response.status.should == 401 
+          end.should_not change(Tip,:count)
+        end
       end
     end
   end
 
   describe 'as Patron' do
-    before :all do
-      authenticate_as_patron
+    before do
+      authenticate_as_patron @me
     end
+    
     describe 'index' do
-      describe '/tips renders' do
-        it 'a list of the most recent tips of all users and current user'
-      end
-      describe '/tips_orders/current/tips' do
-        it 'renders a list of all tips in :current tip_order for current user'
-      end
-      describe '/tips_orders/:id/tips?s=ready' do
-        it 'renders a list of all tips in given :ready tip_order'
-      end
-      describe '/tips_orders/:id/tips?s=paid' do
-        it 'renders a list of all tips in given :paid tip_order'
-      end
-      describe '/tips_orders/:id/tips?s=declined' do
-        it 'renders a list of all tips in given :declined tip_order'
-      end
-      describe '/checks/:id/tips?s=ready' do
-        it 'renders a list of all tips in given :earned check'
-      end
-      describe '/checks/:id/tips?s=paid' do
-        it 'renders a list of all tips in given :paid check'
-      end
-      describe '/checks/:id/tips?s=cashed' do
-        it 'renders a list of all tips in given :cashed check'
+      describe '/t' do
+        it 'a list of the most recent tips of all users and current user' do
+          get :index
+          assigns(:tips).should eq([@her_tip2,@her_tip1,@my_tip])
+          response.status.should == 200
+        end
       end
     end
+    
     describe 'new' do
-      describe '/tips/new' do
-        it 'renders a form to specify a url to tip'
+      describe '/t/new' do
+        it 'renders a form to specify a url to tip' do
+          get :new
+          assigns(:tip).new_record?.should be_true
+        end
       end
     end
+    
     describe 'create' do
       describe 'POST /tips' do
-        it 'creates a tip to given url wdescribeh default amount'
+        it 'creates a tip to given url with default amount' do
+          post :create, tip:{url:'http://twitter.com/#!/_ugly'}
+          Tip.first.page.url.should == 'http://twitter.com/#!/_ugly'
+          Tip.first.order.user_id.should == @me.id
+        end
       end
-      describe 'POST /tips' do
-        it 'creates a tip to given url wdescribeh given amount'
-      end
-      describe 'POST /tips' do
-        it 'creates a tip to given url wdescribeh given description'
-      end
-      describe 'POST /tips' do
-        it 'creates a tip to given url wdescribeh wdescribeh amount and given description'
+      
+      describe 'POST /t' do
+        it 'creates a tip to given url with given amount' do
+          post :create, tip:{url:'http://twitter.com/#!/_ugly', amount_in_cents:100}
+          Tip.first.page.url.should == 'http://twitter.com/#!/_ugly'
+          Tip.first.amount_in_cents.should == 100
+        end
       end
     end
+    
     describe 'show' do
-      describe '/tips/:id' do
-        it 'renders a tip view'
+      describe '/t/:id' do
+        it 'loads my tip' do
+          get :show, id:@my_tip.id
+          (tip = assigns(:tip)).id.should == @my_tip.id
+        end
+        
+        it 'loads someone else\'s tip' do
+          get :show, id:@her_tip1.id
+          (tip = assigns(:tip)).id.should == @her_tip1.id
+        end
       end
     end
+    
     describe 'edit' do
-      describe '/tips/:id/edit' do
-        it 'renders a form to edit the amount of tip'
+      describe '/t/:id/edit' do
+        it 'assigns the given tip' do
+          get :edit, id:@my_tip.id
+          (tip = assigns(:tip)).id.should == @my_tip.id
+        end
       end
     end
+    
     describe 'update' do
-      describe 'PUT /tips/:id' do
-        it 'update the amount of the tip'
+      describe 'PUT /t/:id' do
+        it 'update the amount of the tip' do
+          put :update, id:@my_tip.id, tip:{amount_in_cents:200}
+          @my_tip.reload
+          @my_tip.amount_in_cents.should == 200
+        end
+        
+        it 'does not update a non-promised tip' do
+          put :update, id:@my_tip.id, tip:{amount_in_cents:200}
+          @my_tip.reload
+          @my_tip.amount_in_cents.should == 200
+        end
+        
+        it 'does not update a her tip' do
+          put :update, id:@her_tip2.id, tip:{amount_in_cents:200}
+          @her_tip2.reload
+          @her_tip2.amount_in_cents.should_not == 200
+          response.status.should == 401
+        end
       end
     end
+    
     describe 'destroy' do
-      describe 'DELETE /tips/:id' do
-        it 'destroys a promised tip'
-        it '403 a :charged tip'
-        it '403 a :received tip'
-        it '403 a :cashed tip'
+      describe 'DELETE /t/:id' do
+        it 'destroys a promised tip' do
+          proc do
+            delete :destroy, id:@my_tip.id
+            proc{Tip.find(@my_tip.id).should be_nil}.should raise_error(ActiveRecord::RecordNotFound)
+          end.should change(Tip, :count)
+        end
+        
+        it '403 a :charged tip' do
+          proc do
+            @my_tip.pay!
+            @my_tip.reload
+            delete :destroy, id:@my_tip.id
+            Tip.find(@my_tip.id).should_not be_nil
+          end.should_not change(Tip, :count)
+        end
+        
+        it '403 a :kinged tip' do
+          proc do
+            order = @me.current_order
+            @me.current_order.rotate!
+            order.reload
+            Stripe::Charge.stub(:create) { OpenStruct.new(id:1) }
+            order.charge!
+            @my_tip.reload
+            @my_tip.check_id = 1
+            @my_tip.claim!
+            @my_tip.kinged?.should be_true
+            delete :destroy, id:@my_tip.id
+            Tip.find(@my_tip.id).should_not be_nil
+          end.should_not change(Tip, :count)
+        end
+        
+        it '403 her tip' do
+          proc do
+            delete :destroy, id:@her_tip1.id
+            Tip.find(@her_tip1.id).should_not be_nil
+          end.should_not change(Tip, :count)
+        end
       end
     end
   end
 
   describe 'as Admin' do
-    before :all do
+    before do
       authenticate_as_admin
     end
-    describe 'index'
-    describe 'new'
-    describe 'create'
-    describe 'show'
-    describe 'edit'
-    describe 'update'
-    describe 'destroy'
+    
+    describe 'index' do
+      it 'should be tested'
+    end
+    
+    describe 'new' do
+      it 'should be tested'
+    end
+    
+    describe 'create' do
+      it 'should be tested'
+    end
+    
+    describe 'show' do
+      it 'should be tested'
+    end
+    
+    describe 'edit' do
+      it 'should be tested'
+    end
+    
+    describe 'update' do
+      it 'should be tested'
+    end
+    
+    describe 'destroy' do
+      it 'should be tested'
+    end
   end
 end

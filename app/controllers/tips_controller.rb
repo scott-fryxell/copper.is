@@ -1,24 +1,29 @@
 class TipsController < ApplicationController
-  filter_access_to :index, :create, :update, :destroy, :embed_iframe, :agent
-  
   def index
-    @user = current_user
-    @tip = Tip.new
-
-    if params[:all] == 'true'
-      @tips = current_user.tips
-    else
-      @tips = current_user.current_tips
-    end
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @user.to_xml }
-      format.json  { render :json => @user.to_json }
+    @tips = Tip.all
+    unless current_user
+      @tips.each do |t|
+        t.order_id = nil
+        t.check_id = nil
+      end
     end
   end
   
+  def show
+    @tip = Tip.find(params[:id])
+    unless current_user
+      @tip.order_id = nil
+      @tip.check_id = nil
+    end
+  end
+  
+  def new
+    @tip = current_user.tips.build
+    render nothing:true
+  end
+  
   def create
-    @tip = current_user.tip(url:params[:tip][:uri])
+    @tip = current_user.tip(params[:tip])
 
     if @tip && @tip.valid?
       redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_success")
@@ -27,8 +32,13 @@ class TipsController < ApplicationController
     end
   end
   
+  def edit
+    @tip = current_user.tips.find(params[:id])
+    render :nothing => true
+  end
+  
   def update
-    @tip = Tip.find(params[:id])
+    @tip = current_user.tips.find(params[:id])
 
     if params[:tip][:amount_in_cents] && params[:tip][:amount_in_cents] != ""
       @tip.amount_in_cents = params[:tip][:amount_in_cents]
@@ -37,34 +47,44 @@ class TipsController < ApplicationController
 
     if request.xhr?
       render :text => '<meta name="event_trigger" content="tip_updated"/>'
+    else
+      redirect_to tips_path(params[:id])
     end
+    
+  rescue ActiveRecord::RecordNotFound
+    render :nothing => true, :status => :unauthorized
   end
   
   def destroy
-    tip = Tip.find(params[:id])
+    tip = current_user.tips.find(params[:id])
 
     if(tip.order.user == current_user && tip.order.current?)
       tip.destroy
     end
     render :nothing => true, :status => :ok
+ 
+  rescue ActiveRecord::RecordNotFound
+    render :nothing => true, :status => :unauthorized
+  rescue CantDestroyException
+    redirect_to tips_path, notice:'Tips can not be changed after they have been paid for'
   end
   
-  def embed_iframe
-    render :action => 'embed_iframe.js', :layout => false
-  end
+#  def embed_iframe
+#    render :action => 'embed_iframe.js', :layout => false
+#  end
   
-  def agent
-    uri = URI.unescape(params[:uri]) rescue params[:uri]
-    title = URI.unescape(params[:title]) rescue params[:title]
-    @tip = current_user.tip(url:uri, title:title )
+  # def agent
+  #   uri = URI.unescape(params[:uri]) rescue params[:uri]
+  #   title = URI.unescape(params[:title]) rescue params[:title]
+  #   @tip = current_user.tip(url:uri, title:title )
 
-    if @tip && @tip.valid?
-      render :action => 'show', :layout => 'button'
-    else
-      render :action => 'error', :layout => 'button'
-    end
-  rescue ArgumentError => e
-    logger.error e.message
-    render :action => 'error', :layout => 'button'
-  end
+  #   if @tip && @tip.valid?
+  #     render :action => 'show', :layout => 'button'
+  #   else
+  #     render :action => 'error', :layout => 'button'
+  #   end
+  # rescue ArgumentError => e
+  #   logger.error e.message
+  #   render :action => 'error', :layout => 'button'
+  # end
 end

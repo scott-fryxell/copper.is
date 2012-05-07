@@ -1,14 +1,20 @@
 require 'resque/server'
 
 Copper::Application.routes.draw do
-  resources :foobars
-
-  resources :tips, :path => :t
-  resources :orders, :path => :o
-  resources :checks, :path => :c
-  resources :pages, :path => :p
-  resources :identities, :path => :i
-  resources :users, :path => :u
+  resources :tips
+  
+  resources :orders
+  resources :checks
+  
+  resources :pages do
+    resources :tips
+  end
+  
+  resources :identities
+  
+  resources :users do
+    resources :tips
+  end
 
   # get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe

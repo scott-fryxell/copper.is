@@ -3,9 +3,9 @@ require 'spork'
 require 'resque_spec/scheduler'
 require 'ostruct'
 
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb' ))].each {|f| require f} 
-
 Spork.prefork do
+  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb' ))].each {|f| require f} 
+
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
@@ -30,7 +30,7 @@ Spork.prefork do
   include Authorization::TestHelper
 
   RSpec.configure do |config|
-    config.fail_fast = true
+    # config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec

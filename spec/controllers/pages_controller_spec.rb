@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe PagesController do
+  create_me_her_db
+  
   describe 'as Guest' do
-    before :all do
+    before do
       unauthenticate
     end
     describe 'index' do
@@ -46,8 +48,8 @@ describe PagesController do
   end
   
   describe 'as Patron' do
-    before :all do
-      authenticate_as_patron
+    before do
+      # authenticate_as_patron @me
     end
     describe 'index' do
       describe '/pages' do
@@ -90,7 +92,7 @@ describe PagesController do
   end
   
   describe 'as Admin' do
-    before :all do
+    before do
       authenticate_as_admin
     end
     describe 'index'

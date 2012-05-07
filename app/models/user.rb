@@ -47,15 +47,18 @@ class User < ActiveRecord::Base
       role.name.underscore.to_sym
     end
   end
+  
+  def patron?
+    roles.find{|e| e.name == 'Patron'}
+  end
 
   def tip(args = {})
     url    = args[:url]
-    title  = args[:title]  || url
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
 
     tip = current_order.tips.build(amount_in_cents:amount_in_cents)
     unless tip.page = Page.where('url = ?', url).first
-      tip.page = Page.create(url:url,title:title)
+      tip.page = Page.create(url:url)
     end
     tip.save!
     tip

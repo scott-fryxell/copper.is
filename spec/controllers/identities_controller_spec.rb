@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe IdentitiesController do
+  create_me_her_db
+  
   describe 'as Guest' do
     before :all do
       unauthenticate
