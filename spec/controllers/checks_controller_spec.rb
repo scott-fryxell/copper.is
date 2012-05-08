@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ChecksController, :focus do
+describe ChecksController do
   create_me_her_db
   
   describe 'as Guest' do

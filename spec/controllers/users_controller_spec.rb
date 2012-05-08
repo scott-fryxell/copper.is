@@ -10,7 +10,7 @@ describe UsersController do
     
     describe 'index' do
       describe '/users' do
-        it 'redirects to root path' do
+        it 'redirects to signin path' do
           get :index
           response.should redirect_to(signin_path)
         end
@@ -19,7 +19,7 @@ describe UsersController do
     
     describe 'new' do
       describe '/users/new' do
-        it 'redirects to home page' do
+        it 'redirects to signin page' do
           get :new
           response.should redirect_to(signin_path)
         end
@@ -28,7 +28,7 @@ describe UsersController do
     
     describe 'create'do
       describe 'POST /users' do
-        it 'redirects to root path' do
+        it 'redirects to signin path' do
           post :create
           response.should redirect_to(signin_path)
         end

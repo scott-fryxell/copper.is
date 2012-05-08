@@ -9,11 +9,13 @@ describe TipsController do
     end
     
     describe 'index' do
-      describe '/t' do
+      describe '/tips' do
         it 'assigns all tips' do
           get :index
           tips = assigns(:tips)
-          tips.should eq([@her_tip2,@her_tip1,@my_tip])
+          tips.include?(@her_tip2).should be_true
+          tips.include?(@her_tip1).should be_true
+          tips.include?(@my_tip).should be_true
           tips.first.order_id.should be_nil 
           tips.first.check_id.should be_nil
         end
@@ -21,7 +23,7 @@ describe TipsController do
     end
     
     describe 'new' do
-      describe '/t/new' do
+      describe '/tips/new' do
         it '302 to signin' do
           get :new
           response.should redirect_to(signin_path)
@@ -35,7 +37,7 @@ describe TipsController do
     end
     
     describe 'create' do
-      describe 'POST /t' do
+      describe 'POST /tips' do
         it '302 to signin' do
           proc do
             post :create
@@ -46,7 +48,7 @@ describe TipsController do
     end
     
     describe 'show' do
-      describe '/t/:id' do
+      describe '/tips/:id' do
         it 'should assign a tip' do
           get :show, id:@my_tip.id
           assigns(:tip).should eq(@my_tip)
@@ -58,7 +60,7 @@ describe TipsController do
     end
     
     describe 'edit' do
-      describe '/t/:id/edit' do
+      describe '/tips/:id/edit' do
         it '302 to signin' do
           get :edit
           response.should redirect_to(signin_path)
@@ -72,7 +74,7 @@ describe TipsController do
     end
     
     describe 'update' do
-      describe 'PUT /t/:id' do
+      describe 'PUT /tips/:id' do
         it '302 to signin' do
           put :update
           response.should redirect_to(signin_path)
@@ -86,7 +88,7 @@ describe TipsController do
     end
     
     describe 'destroy' do
-      describe 'DELETE /t/:id' do
+      describe 'DELETE /tips/:id' do
         it '302 to signin' do
           proc do
             delete :destroy, id:@my_tip.id
@@ -110,17 +112,19 @@ describe TipsController do
     end
     
     describe 'index' do
-      describe '/t' do
+      describe '/tips' do
         it 'a list of the most recent tips of all users and current user' do
           get :index
-          assigns(:tips).should eq([@her_tip2,@her_tip1,@my_tip])
+          assigns(:tips).include?(@her_tip2).should be_true
+          assigns(:tips).include?(@her_tip1).should be_true
+          assigns(:tips).include?(@my_tip).should be_true
           response.status.should == 200
         end
       end
     end
     
     describe 'new' do
-      describe '/t/new' do
+      describe '/tips/new' do
         it 'renders a form to specify a url to tip' do
           get :new
           assigns(:tip).new_record?.should be_true
@@ -137,7 +141,7 @@ describe TipsController do
         end
       end
       
-      describe 'POST /t' do
+      describe 'POST /tips' do
         it 'creates a tip to given url with given amount' do
           post :create, tip:{url:'http://twitter.com/#!/_ugly', amount_in_cents:100}
           Tip.first.page.url.should == 'http://twitter.com/#!/_ugly'
@@ -147,21 +151,21 @@ describe TipsController do
     end
     
     describe 'show' do
-      describe '/t/:id' do
+      describe '/tips/:id' do
         it 'loads my tip' do
           get :show, id:@my_tip.id
-          (tip = assigns(:tip)).id.should == @my_tip.id
+          assigns(:tip).id.should == @my_tip.id
         end
         
         it 'loads someone else\'s tip' do
           get :show, id:@her_tip1.id
-          (tip = assigns(:tip)).id.should == @her_tip1.id
+          assigns(:tip).id.should == @her_tip1.id
         end
       end
     end
     
     describe 'edit' do
-      describe '/t/:id/edit' do
+      describe '/tips/:id/edit' do
         it 'assigns the given tip' do
           get :edit, id:@my_tip.id
           (tip = assigns(:tip)).id.should == @my_tip.id
@@ -170,7 +174,7 @@ describe TipsController do
     end
     
     describe 'update' do
-      describe 'PUT /t/:id' do
+      describe 'PUT /tips/:id' do
         it 'update the amount of the tip' do
           put :update, id:@my_tip.id, tip:{amount_in_cents:200}
           @my_tip.reload
