@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ChecksController do
+describe ChecksController, :focus do
   create_me_her_db
   
   describe 'as Guest' do
@@ -9,49 +9,82 @@ describe ChecksController do
     end
     describe 'index' do
       describe '/checks' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
     end
     describe 'new' do
       describe '/checks/new' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
     end
     describe 'create' do
       describe 'POST /checks' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
     end
     describe 'show' do
       describe '/checks/:id' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
       describe '/checks/current' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
     end
     describe 'edit' do
       describe '/checks/:id/edit' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
       describe '/checks/current/edit' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
     end
     describe 'update' do
       describe 'PUT /checks/:id' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
       describe 'PUT /checks/current' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
     end
     describe 'destroy' do
       describe 'DELETE /checks/:id' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
       describe 'DELETE /checks/current' do
-        it '302'
+        it '302' do
+          get :index
+          response.should redirect_to(signin_path)
+        end
       end
     end
   end
@@ -60,67 +93,131 @@ describe ChecksController do
     before do
       authenticate_as_patron @me
     end
+    
     describe 'index' do
       describe '/checks' do
-        it 'renders all checks for current user: earned, paid and cashed'
+        it 'renders all checks for current user: earned, paid and cashed' do
+          get :index
+          response.status.should == 200
+          assigns(:checks).should == [@check,@check_paid,@check_cashed]
+        end
       end
+      
       describe '/checks?s=earned' do
-        it 'renders just the current check for the current user'
+        it 'renders just the current check for the current user' do
+          get :index, s:'earned'
+          response.status.should == 200
+          assigns(:checks).should == [@check]
+        end
       end
+      
       describe '/checks?s=paid' do
-        it 'renders all paid checks for current user'
+        it 'renders all paid checks for current user' do
+          get :index, s:'paid'
+          response.status.should == 200
+          assigns(:checks).should == [@check_paid]
+        end
       end
+      
       describe '/checks?s=cashed' do
-        it 'renders all declined checks for current user'
+        it 'renders all declined checks for current user' do
+          get :index, s:'cashed'
+          response.status.should == 200
+          assigns(:checks).should == [@check_cashed]
+        end
       end
     end
+    
     describe 'new' do
       describe '/checks/new' do
-        it '403'
+        it '403' do
+          get :new
+          response.status.should == 403
+        end
       end
     end
+    
     describe 'create' do
       describe 'POST /checks' do
-        it '403'
+        it '403' do
+          post :create
+          response.status.should == 403
+        end
       end
     end
+    
     describe 'show' do
       describe '/checks/current' do
-        it 'renders the current earned check of current user'
+        it 'renders the current earned check of current user' do
+          get :show, id:'current'
+          response.status.should == 200
+          assigns(:check).id.should == @check.id
+        end
       end
+      
       describe '/checks/:id' do
-        it 'renders the given check when owned by current user'
-        it '302 to /checks/current if it\'s the current earned check'
-        it '403 if check is not owned by current user'
+        it 'renders the given check when owned by current user' do
+          get :show, id:@check_paid.id
+          response.status.should == 200
+          assigns(:check).id.should == @check_paid.id
+        end
+        
+        it '403 if check is not owned by current user' do
+          get :show, id:@her_check.id
+          response.status.should == 401
+        end
       end
     end
+    
     describe 'edit' do
       describe '/checks/current/edit' do
-        it '403'
+        it '403' do
+          get :edit, id:'current'
+          response.status.should == 403
+        end
       end
       describe '/checks/:id/edit' do
-        it '403'
+        it '403' do
+          get :edit, id:@check.id
+          response.status.should == 403
+        end
       end
     end
+
     describe 'update' do
       describe 'PUT /checks/current' do
         it 'prepares! the current check for the current user'
-        it "doesn't allow any column updates to the check"
+        
+        it "doesn't allow any column updates to the check" do
+          put :update, id:'current'
+          response.status.should == 403
+        end
       end
+      
       describe 'PUT /tips_orders/:id' do
         it 'prepares! the current check for the current user'
-        it '302 to /checks/current if it\'s the current earned check'
-        it '403 if not owned by current user'
+        it '403' do
+          put :update, id:@check.id
+          response.status.should == 403
+        end
       end
     end
+    
     describe 'destroy' do
       describe 'DELETE /checks/current' do
         it 'destroys all contained tips, destroys current check and creates a new check'
+        it '403' do
+          delete :destroy, id:'current'
+          response.status.should == 403
+        end
       end
+      
       describe 'DELETE /checks/:id' do
         it 'if :id is the current check it destroys all contained tips, destroys current check and creates a new check'
-        it '403 if check is not current and owned by current user'
-        it '403 it check is not current and not owned by current user'
+        it '403' do
+          delete :destroy, id:@check.id
+          response.status.should == 403
+        end
       end
     end
   end

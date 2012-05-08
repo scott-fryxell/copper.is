@@ -34,6 +34,47 @@ def create_me_her_db
     @her = FactoryGirl.create(:user)
     @her_tip1 = @her.tip(url:@page1.url)
     @her_tip2 = @her.tip(url:@page2.url)
+    
+    tip = @her.tip(url:@page2.url,amount_in_cents:2000)
+    @her_check = FactoryGirl.create(:check)
+    @her_check.tips << tip
+    @her_check.save!
+    
+    tip = @her.tip(url:@page2.url,amount_in_cents:2000)
+    @her_check_paid = FactoryGirl.create(:check_paid)
+    @her_check_paid.tips << tip
+    @her_check_paid.save!
+    
+    tip = @her.tip(url:@page2.url,amount_in_cents:2000)
+    @her_check_cashed = FactoryGirl.create(:check_cashed)
+    @her_check_cashed.tips << tip
+    @her_check_cashed.save!
+    
+    @her.checks << @her_check
+    @her.checks << @her_check_paid
+    @her.checks << @her_check_cashed
+    @her.save!
+    
+    tip = @me.tip(url:@page2.url,amount_in_cents:2000)
+    @check = FactoryGirl.create(:check)
+    @check.tips << tip
+    @check.save!
+    
+    tip = @me.tip(url:@page2.url,amount_in_cents:2000)
+    @check_paid = FactoryGirl.create(:check_paid)
+    @check_paid.tips << tip
+    @check_paid.save!
+    
+    tip = @me.tip(url:@page2.url,amount_in_cents:2000)
+    @check_cashed = FactoryGirl.create(:check_cashed)
+    @check_cashed.tips << tip
+    @check_cashed.save!
+    
+    @me.checks << @check
+    @me.checks << @check_paid
+    @me.checks << @check_cashed
+    @me.save!
+    
     @her_tip2.pay!
     @her_tip2.check_id = 2
     @her_tip2.save!

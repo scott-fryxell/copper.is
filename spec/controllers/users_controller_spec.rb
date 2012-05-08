@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController,:focus do
+describe UsersController do
   create_me_her_db
   
   describe 'as Guest' do
