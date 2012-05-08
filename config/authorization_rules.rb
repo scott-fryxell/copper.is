@@ -8,7 +8,7 @@
     includes :guest
     has_permission_on [:sessions], :to => [:destroy]
 
-    has_permission_on [:users], :to => [:new, :create, :edit, :update, :show, :pay, :identities, :author, :badge] do
+    has_permission_on [:users], :to => [:index,:new, :create, :edit, :update, :show, :pay, :identities, :author, :badge] do
       has_permission_on [:tips], :to => [:show, :index, :create, :edit, :update, :destroy, :new, :embed_iframe, :agent]
       has_permission_on [:checks], :to => [:index]
       has_permission_on [:identities], :to => [:index, :destroy]
