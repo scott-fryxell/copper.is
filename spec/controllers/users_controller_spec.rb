@@ -1,50 +1,62 @@
 require 'spec_helper'
 
 describe UsersController do
+  create_me_her_db
+  
   describe 'as Guest' do
-    create_me_her_db
-    
     before do
       unauthenticate
     end
     
     describe 'index' do
-      describe '/u' do
-        it 'renders a list of featured users'
-      end
-      
-      describe '/u?q=mike' do
-        it 'does a search for a user with \'mike\' in their name'
+      describe '/users' do
+        it 'renders a list of featured users' do
+          get :index
+          response.should redirect_to(root_path)
+        end
       end
     end
     
     describe 'new' do
-      describe '302'
+      describe '/users/new' do
+        it 'redirects to home page' do
+          get :new
+          response.should redirect_to(root_path)
+        end
+      end
     end
     
     describe 'create'do
-      describe '302'
+      describe 'POST /users' do
+        post :create
+        response.should redirect_to(root_path)
+      end
     end
     
     describe 'show' do
-      describe '/u/:id' do
-        it 'renders the profile page of the given user'
-      end
-      describe '/u/:id' do
-        it '302 for a user who does not want to be known'
-      end
+      describe '/users/1'
+      describe '/users/1'
     end
     
     describe 'edit' do
-      it '302'
+      it '/users/1/edit'  do
+        get :new
+        response.should redirect_to(root_path)
+      end
     end
     
     describe 'update' do
-      it '302'
+      it 'PUT /users/1'  do
+        get :new
+        response.should redirect_to(root_path)
+      end
     end
     
     describe 'destroy' do
-      it '302'
+      it 'DELETE /users/1'  do
+        get :new
+        response.should redirect_to(root_path)
+      end
     end
   end
   
@@ -54,52 +66,75 @@ describe UsersController do
     end
     
     describe 'index' do
-      describe '/u' do
-        it 'renders a list of featured users'
+      describe '/users' do
+        it 'renders a list of featured users'  do
+          get :index
+          response.should redirect_to(root_path)
+        end
       end
-      describe '/u?q=mike' do
-        it 'does a search for a user with \'mike\' in their name'
-      end
+      
+      describe '/users?q=mike'
     end
     
     describe 'new' do
-      describe '/u/new' do 
-        it '403'
-      end
+      describe '/u/new'
     end
     
     describe 'create' do
-      describe 'POST /u' do
-        it '403'
-      end
+      describe 'POST /users'
     end
-    describe 'show' do
-      describe '/u/:id' do
-        it 'renders a profile page a given user'
-      end
-    end
+    
     describe 'edit' do
-      describe '/u/me/edit' do
-        it 'renders a account page'
+      describe '/users/:id' do
+        it 'assigns user for current user only' do
+          get :edit, id:@me.id
+          response.should.state == 200
+          assigns(:user).id.should == @me.id
+        end
+        
+        it 'redirects to home page for an id that is not current user' do
+          get :edit, id:@her.id
+          response.should redirect_to(root_path)
+        end
       end
-      describe '/users/:id/edit' do
-        it '403'
+      
+      describe '/users/current' do
+        it 'assigns user for current user only' do
+          get :show, id:@me.id
+          response.should.state == 200
+          assigns(:user).id.should == @me.id
+        end
       end
     end
+    
+    describe 'show' do
+      describe '/users/current/edit'
+      describe '/users/:id/edit'
+    end
+    
     describe 'update' do
-      describe 'POST /u/me' do 
+      describe 'POST /users/current' do 
         it 'updates email'
+        it 'update name'
+        it 'updates address'
+        it 'updates default tip amount'
       end
-      describe 'POST /u/me' do
+      
+      describe 'POST /users/1' do
+        it 'updates email'
+        it 'update name'
+        it 'update address'
         it 'updates default tip amount'
       end
     end
+    
     describe 'destroy' do
-      describe 'DELETE /u/me' do
-        it 'deactivates the account of the current user only'
+      describe 'DELETE /users/current' do
+        it 'redirects to home page'
       end
-      describe 'DELETE /u/:id' do 
-        it '403'
+      
+      describe 'DELETE /users/:id' do 
+        it 'redirects to home page'
       end
     end
   end
