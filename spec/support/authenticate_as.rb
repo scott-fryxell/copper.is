@@ -37,8 +37,6 @@ def create_me_her_db
     @her_tip1 = @her.tip(url:@page1.url)
     @her_tip2 = @her.tip(url:@page2.url)
 
-    instance_eval { yield } if block_given?
-
     @her_tip2.pay!
     @her_tip2.check_id = 2
     @her_tip2.save!
@@ -46,7 +44,25 @@ def create_me_her_db
 end
 
 def create_me_her_db_with_orders
-  create_me_her_db do
+  before :each do
+    @stranger = FactoryGirl.create(:identities_vimeo)
+    @wanted = FactoryGirl.create(:identities_soundcloud,identity_state:'wanted')
+
+    @page1 = FactoryGirl.create(:page,author_state:'adopted')
+    @page2 = FactoryGirl.create(:page,author_state:'adopted')
+
+    @wanted.pages << @page1
+    @wanted.pages << @page2
+
+    @me = FactoryGirl.build(:user)
+    @me.save!
+    @my_tip = @me.tip(url:@page1.url)
+
+    @her = FactoryGirl.build(:user_twitter)
+    @her.save!
+    @her_tip1 = @her.tip(url:@page1.url)
+    @her_tip2 = @her.tip(url:@page2.url)
+
     Stripe::Charge.stub(:create) { OpenStruct.new(id:1) }
     @me.current_order.rotate!
     @me.orders.unpaid.first.charge!
@@ -64,14 +80,17 @@ def create_me_her_db_with_orders
     tip = @her.tip(url:@page2.url,amount_in_cents:2000)
     @her_check = FactoryGirl.create(:check)
     @her_check.tips << tip
+    tip.save!
 
     tip = @her.tip(url:@page2.url,amount_in_cents:2000)
     @her_check_paid = FactoryGirl.create(:check_paid)
     @her_check_paid.tips << tip
+    tip.save!
 
     tip = @her.tip(url:@page2.url,amount_in_cents:2000)
     @her_check_cashed = FactoryGirl.create(:check_cashed)
     @her_check_cashed.tips << tip
+    tip.save!
 
     @her.checks << @her_check
     @her.checks << @her_check_paid
@@ -80,10 +99,12 @@ def create_me_her_db_with_orders
     tip = @me.tip(url:@page2.url,amount_in_cents:2000)
     @check = FactoryGirl.create(:check)
     @check.tips << tip
+    tip.save!
 
     tip = @me.tip(url:@page2.url,amount_in_cents:2000)
     @check_paid = FactoryGirl.create(:check_paid)
     @check_paid.tips << tip
+    tip.save!
 
     tip = @me.tip(url:@page2.url,amount_in_cents:2000)
     @check_cashed = FactoryGirl.create(:check_cashed)
@@ -93,6 +114,12 @@ def create_me_her_db_with_orders
     @me.checks << @check
     @me.checks << @check_paid
     @me.checks << @check_cashed
+
+    @her_tip2.pay!
+    @her_tip2.check_id = 2
+    @her_tip2.save!
   end
 end
+
+
 

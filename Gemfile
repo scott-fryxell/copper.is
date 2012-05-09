@@ -55,8 +55,6 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'resque_spec'
-  gem 'vcr'
-  gem 'fakeweb'
 end
 
 # Gems used only for assets and not required

@@ -192,6 +192,9 @@ describe TipsController do
       describe 'DELETE /t/:id' do
         it 'destroys a promised tip' do
           proc do
+            @my_tip.promised?.should be_true
+            p @my_tip
+            Tip.find(@my_tip.id).should_not be_nil
             delete :destroy, id:@my_tip.id
             # proc{Tip.find(@my_tip.id).should be_nil}.should raise_error(ActiveRecord::RecordNotFound)
           end.should change(Tip, :count)
@@ -229,40 +232,6 @@ describe TipsController do
           end.should_not change(Tip, :count)
         end
       end
-    end
-  end
-
-  describe 'as Admin' do
-    before do
-      authenticate_as_admin
-    end
-
-    describe 'index' do
-      it 'should be tested'
-    end
-
-    describe 'new' do
-      it 'should be tested'
-    end
-
-    describe 'create' do
-      it 'should be tested'
-    end
-
-    describe 'show' do
-      it 'should be tested'
-    end
-
-    describe 'edit' do
-      it 'should be tested'
-    end
-
-    describe 'update' do
-      it 'should be tested'
-    end
-
-    describe 'destroy' do
-      it 'should be tested'
     end
   end
 end

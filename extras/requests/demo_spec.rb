@@ -28,7 +28,7 @@ describe 'twitter demo' do
     #   end
     # end
 
-    it "should take brokenbydawn to a service description with info about the royalty check" #, :focus do
+    it "should take brokenbydawn to a service description with info about the royalty check" # do
     #   Twitter.search("@brokenbydawn",rpp:1,result_type:"recent").first do |tweet|
     #     @ident_url = tweet[(tweet =~ %r{http://copper.is/}) + 17..-1].split(' ').first
     #   end

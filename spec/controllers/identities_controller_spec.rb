@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe IdentitiesController,:focus do
+describe IdentitiesController do
   create_me_her_db
 
   describe 'as Guest' do
