@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ChecksController do
-  create_me_her_db
+  create_me_her_db_with_orders
   
   describe 'as Guest' do
     before do

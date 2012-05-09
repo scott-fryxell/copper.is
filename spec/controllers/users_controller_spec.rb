@@ -87,7 +87,7 @@ describe UsersController do
     end
     
     describe 'edit' do
-      describe '/users/:id' do
+      describe '/users/:id/edit' do
         it 'assigns user for current user only' do
           get :edit, id:@me.id
           response.status.should == 200
@@ -100,7 +100,7 @@ describe UsersController do
         end
       end
       
-      describe '/users/current' do
+      describe '/users/current/edit' do
         it 'assigns user for current user only' do
           get :edit, id:'current'
           response.status.should == 200

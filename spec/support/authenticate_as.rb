@@ -33,37 +33,55 @@ def create_me_her_db
 
     @her = FactoryGirl.create(:user)
     @her_tip1 = @her.tip(url:@page1.url)
-    @her_tip2 = @her.tip(url:@page2.url)
+    @her_tip2 = @her.tip(url:@page2.url) 
+    
+    instance_eval { yield }
+    
+    @her_tip2.pay!
+    @her_tip2.check_id = 2
+    @her_tip2.save!
+ end
+end
+   
+def create_me_her_db_with_orders
+  create_me_her_db do
+    Stripe::Charge.stub(:create) { OpenStruct.new(id:1) }
+    @me.current_order.rotate!
+    @me.orders.unpaid.first.charge!
+    @my_paid_order = @me.orders.paid.first
+    @my_denied_order = FactoryGirl.create(:order_denied)
+    @me.orders << @my_denied_order
+    
+    Stripe::Charge.stub(:create) { OpenStruct.new(id:2) }
+    @her.current_order.rotate!
+    @her.orders.unpaid.first.charge!
+    @her_paid_order = @her.orders.paid.first 
+    @her_denied_order = FactoryGirl.create(:order_denied)
+    @her.orders << @her_denied_order
     
     tip = @her.tip(url:@page2.url,amount_in_cents:2000)
     @her_check = FactoryGirl.create(:check)
     @her_check.tips << tip
-    @her_check.save!
     
     tip = @her.tip(url:@page2.url,amount_in_cents:2000)
     @her_check_paid = FactoryGirl.create(:check_paid)
     @her_check_paid.tips << tip
-    @her_check_paid.save!
     
     tip = @her.tip(url:@page2.url,amount_in_cents:2000)
     @her_check_cashed = FactoryGirl.create(:check_cashed)
     @her_check_cashed.tips << tip
-    @her_check_cashed.save!
     
     @her.checks << @her_check
     @her.checks << @her_check_paid
     @her.checks << @her_check_cashed
-    @her.save!
     
     tip = @me.tip(url:@page2.url,amount_in_cents:2000)
     @check = FactoryGirl.create(:check)
     @check.tips << tip
-    @check.save!
     
     tip = @me.tip(url:@page2.url,amount_in_cents:2000)
     @check_paid = FactoryGirl.create(:check_paid)
     @check_paid.tips << tip
-    @check_paid.save!
     
     tip = @me.tip(url:@page2.url,amount_in_cents:2000)
     @check_cashed = FactoryGirl.create(:check_cashed)
@@ -73,11 +91,6 @@ def create_me_her_db
     @me.checks << @check
     @me.checks << @check_paid
     @me.checks << @check_cashed
-    @me.save!
-    
-    @her_tip2.pay!
-    @her_tip2.check_id = 2
-    @her_tip2.save!
   end
 end
 
