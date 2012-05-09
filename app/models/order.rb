@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   has_many :tips, :dependent => :destroy
   belongs_to :user
-
+  has_paper_trail
   validates :user, presence:true
   validates_associated :user
 

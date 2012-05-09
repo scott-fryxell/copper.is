@@ -1,6 +1,6 @@
 class Page < ActiveRecord::Base
   include Enqueueable
-  
+  has_paper_trail
   belongs_to :identity
   has_many :tips
   has_many :checks, :through => :tips

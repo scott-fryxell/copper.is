@@ -5,7 +5,7 @@ class Tip < ActiveRecord::Base
   belongs_to :order
   belongs_to :check
   has_one :user, :through => :order
-
+  has_paper_trail
   default_scope :order => 'created_at DESC'
 
   attr_accessible :amount_in_cents

@@ -17,10 +17,10 @@ RailsAdmin.config do |config|
   config.current_user_method { current_user } # auto-generated
 
   # If you want to track changes on your models:
-  # config.audit_with :history, user
+  # config.audit_with :history, User
 
   # Or with a PaperTrail: (you need to install it first)
-  # config.audit_with :paper_trail, Lame
+  config.audit_with :paper_trail, User
 
   # Set the admin name here (optional second array element will appear in a beautiful RailsAdmin red ©)
   config.main_app_name = ['Copper', 'Admin']
@@ -30,7 +30,7 @@ RailsAdmin.config do |config|
 
   #  ==> Global show view settings
   # Display empty fields in show views
-  # config.compact_show_view = false
+  config.compact_show_view = false
 
   #  ==> Global list view settings
   # Number of default rows per-page:
@@ -44,6 +44,17 @@ RailsAdmin.config do |config|
   # Add models here if you want to go 'whitelist mode':
   # config.included_models = [Address, Check, Identities::Facebook, Identities::Flickr, Identities::Github, Identities::Google, Identities::Soundcloud, Identities::Tumblr, Identities::Twitter, Identities::Vimeo, Identities::Youtube, Identity, Order, Page, Role, Tip, User]
   config.included_models = [Check, Identity, Order, Page, Tip, User]
+
+  config.models do
+    edit do
+      fields do
+        visible do
+          visible && !read_only
+        end
+      end
+    end
+  end
+
 
   # Application wide tried label methods for models' instances
   # config.label_methods << :description # Default is [:name, :title]
