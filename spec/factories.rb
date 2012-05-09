@@ -31,8 +31,8 @@ FactoryGirl.define do
 
   factory :identities_vimeo, class: 'Identities::Vimeo' do
     provider 'vimeo'
-    uid 
-    username 
+    uid '1'
+    username 'foo'
   end
 
   factory :identities_flickr, class: 'Identities::Flickr' do
@@ -55,8 +55,8 @@ FactoryGirl.define do
 
   factory :identities_soundcloud, class: 'Identities::Soundcloud' do
     provider 'soundcloud'
-    uid 
-    username 
+    uid '2'
+    username 'bar' 
   end
 
   factory :identities_youtube, class: 'Identities::Youtube' do
@@ -77,6 +77,14 @@ FactoryGirl.define do
     accept_terms true
     tip_preference_in_cents 50
     identities [FactoryGirl.create(:identities_facebook)]
+    roles [Role.find_by_name('Patron')]
+  end
+
+  factory :user_twitter, class:'User' do
+    name 'Joe'
+    accept_terms true
+    tip_preference_in_cents 50
+    identities [FactoryGirl.create(:identities_twitter)]
     roles [Role.find_by_name('Patron')]
   end
 

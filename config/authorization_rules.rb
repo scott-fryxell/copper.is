@@ -18,7 +18,7 @@ authorization do
   
   role :guest do
     has_permission_on :tips,       :to => [:read]
-    has_permission_on :identities, :to => [:read]
+    has_permission_on :identities, :to => [:create]
     has_permission_on :pages,      :to => [:read]
   end
 end
@@ -26,7 +26,7 @@ end
 privileges do
   privilege :manage, :includes => [:create, :read, :update, :delete]
   privilege :read,   :includes => [:index, :show]
-  privilege :create, :includes => [:new,:create]
+  privilege :build,  :includes => [:new,:create]
   privilege :update, :includes => [:edit,:update]
   privilege :delete, :includes => :destroy
 end

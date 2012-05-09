@@ -19,8 +19,8 @@ end
 
 def create_me_her_db
   before :each do
-    @stranger = FactoryGirl.create(:identities_twitter)
-    @wanted = FactoryGirl.create(:identities_facebook,identity_state:'wanted')
+    @stranger = FactoryGirl.create(:identities_vimeo)
+    @wanted = FactoryGirl.create(:identities_soundcloud,identity_state:'wanted')
     
     @page1 = FactoryGirl.create(:page,author_state:'adopted')
     @page2 = FactoryGirl.create(:page,author_state:'adopted')
@@ -28,19 +28,21 @@ def create_me_her_db
     @wanted.pages << @page1
     @wanted.pages << @page2
     
-    @me = FactoryGirl.create(:user)
+    @me = FactoryGirl.build(:user)
+    @me.save!
     @my_tip = @me.tip(url:@page1.url)
 
-    @her = FactoryGirl.create(:user)
+    @her = FactoryGirl.build(:user_twitter)
+    @her.save!
     @her_tip1 = @her.tip(url:@page1.url)
     @her_tip2 = @her.tip(url:@page2.url) 
     
-    instance_eval { yield }
+    instance_eval { yield } if block_given?
     
     @her_tip2.pay!
     @her_tip2.check_id = 2
     @her_tip2.save!
- end
+  end
 end
    
 def create_me_her_db_with_orders
