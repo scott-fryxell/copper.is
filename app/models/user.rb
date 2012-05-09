@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include Enqueueable
-
+  has_one  :address
   has_many :identities
   has_many :orders
   has_many :tips, :through => :orders

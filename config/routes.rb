@@ -1,6 +1,8 @@
 require 'resque/server'
 
 Copper::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+
   resources :users do
     resources :addresses
     resources :tips
