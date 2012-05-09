@@ -27,6 +27,8 @@ gem 'state_machine'
 gem 'nokogiri'
 gem 'twitter'
 gem 'youtube_it'
+gem 'rails_admin'
+gem 'paper_trail', '~> 2'
 
 group :production do
   gem "pg"

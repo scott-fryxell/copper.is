@@ -1,5 +1,6 @@
 class Check < ActiveRecord::Base
   include Enqueueable
+  has_paper_trail
   
   belongs_to :user
   has_many :tips

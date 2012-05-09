@@ -1,5 +1,4 @@
 require 'resque/server'
-
 Copper::Application.routes.draw do
   resources :tips
 
@@ -16,7 +15,6 @@ Copper::Application.routes.draw do
     resources :tips
   end
 
-  # get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe
 
   get 'about', :to => 'home#about'
@@ -34,6 +32,6 @@ Copper::Application.routes.draw do
   match "/signin" => "sessions#new", :as => :signin
 
   mount Resque::Server.new, :at => "/resque"
-
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root :to => 'home#index'
 end
