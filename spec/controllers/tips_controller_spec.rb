@@ -62,13 +62,8 @@ describe TipsController do
     describe 'edit' do
       describe '/tips/:id/edit' do
         it '302 to signin' do
-          get :edit
+          get :edit, id:@my_tip.id
           response.should redirect_to(signin_path)
-        end
-        
-        it '401 when json requested' do
-          get :new, format: :js
-          response.status.should == 401 
         end
       end
     end
@@ -76,13 +71,8 @@ describe TipsController do
     describe 'update' do
       describe 'PUT /tips/:id' do
         it '302 to signin' do
-          put :update
+          put :update, id:@my_tip.id, tip:{url:'laskdjf'}
           response.should redirect_to(signin_path)
-        end
-        
-        it '401 when json requested' do
-          put :update, format: :js
-          response.status.should == 401 
         end
       end
     end
@@ -93,13 +83,6 @@ describe TipsController do
           proc do
             delete :destroy, id:@my_tip.id
             response.should redirect_to(signin_path)
-          end.should_not change(Tip,:count)
-        end
-        
-        it '401 when json requested' do
-          proc do
-            delete :destroy, format: :js
-            response.status.should == 401 
           end.should_not change(Tip,:count)
         end
       end
@@ -139,13 +122,22 @@ describe TipsController do
           Tip.first.page.url.should == 'http://twitter.com/#!/_ugly'
           Tip.first.order.user_id.should == @me.id
         end
-      end
-      
-      describe 'POST /tips' do
+
         it 'creates a tip to given url with given amount' do
           post :create, tip:{url:'http://twitter.com/#!/_ugly', amount_in_cents:100}
           Tip.first.page.url.should == 'http://twitter.com/#!/_ugly'
           Tip.first.amount_in_cents.should == 100
+        end
+      
+        it 'creates a tip to given url with given title' do
+          post :create, tip:{url:'http://twitter.com/#!/_ugly', title:'dude'}
+          Tip.first.url.should == 'http://twitter.com/#!/_ugly'
+          Tip.first.title.should == 'dude'
+        end
+        
+        it 'requires a url' do
+          post :create, tip:{title:'asldkjf'}
+          response.status.should == 403
         end
       end
     end

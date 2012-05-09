@@ -147,14 +147,6 @@ describe ChecksController do
     end
     
     describe 'show' do
-      describe '/checks/current' do
-        it 'renders the current earned check of current user' do
-          get :show, id:'current'
-          response.status.should == 200
-          assigns(:check).id.should == @check.id
-        end
-      end
-      
       describe '/checks/:id' do
         it 'renders the given check when owned by current user' do
           get :show, id:@check_paid.id
@@ -170,12 +162,6 @@ describe ChecksController do
     end
     
     describe 'edit' do
-      describe '/checks/current/edit' do
-        it '403' do
-          get :edit, id:'current'
-          response.status.should == 403
-        end
-      end
       describe '/checks/:id/edit' do
         it '403' do
           get :edit, id:@check.id
@@ -185,17 +171,7 @@ describe ChecksController do
     end
 
     describe 'update' do
-      describe 'PUT /checks/current' do
-        it 'prepares! the current check for the current user'
-        
-        it "doesn't allow any column updates to the check" do
-          put :update, id:'current'
-          response.status.should == 403
-        end
-      end
-      
       describe 'PUT /tips_orders/:id' do
-        it 'prepares! the current check for the current user'
         it '403' do
           put :update, id:@check.id
           response.status.should == 403
@@ -204,16 +180,7 @@ describe ChecksController do
     end
     
     describe 'destroy' do
-      describe 'DELETE /checks/current' do
-        it 'destroys all contained tips, destroys current check and creates a new check'
-        it '403' do
-          delete :destroy, id:'current'
-          response.status.should == 403
-        end
-      end
-      
       describe 'DELETE /checks/:id' do
-        it 'if :id is the current check it destroys all contained tips, destroys current check and creates a new check'
         it '403' do
           delete :destroy, id:@check.id
           response.status.should == 403

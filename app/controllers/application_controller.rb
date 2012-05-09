@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery
   
-  filter_access_to :all
+  # filter_access_to :all
 
   helper_method :current_user
 
@@ -16,10 +16,18 @@ class ApplicationController < ActionController::Base
 
   def permission_denied
     flash[:message] = t("copper.permission_denied")
-    respond_to do |format|
-      format.html { redirect_to signin_url }
-      format.xml  { head :unauthorized }
-      format.js   { head :unauthorized }
+    if current_user
+      respond_to do |format|
+        format.html { render nothing:true, status:403 }
+        format.xml  { head :unauthorized }
+        format.js   { head :unauthorized }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to signin_url }
+        format.xml  { head :unauthorized }
+        format.js   { head :unauthorized }
+      end
     end
   end
 

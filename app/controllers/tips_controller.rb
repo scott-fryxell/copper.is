@@ -1,4 +1,6 @@
 class TipsController < ApplicationController
+  filter_resource_access
+
   def index
     @tips = Tip.all
     unless current_user
@@ -30,6 +32,8 @@ class TipsController < ApplicationController
     else
       redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_failed")
     end
+  rescue ActiveRecord::RecordInvalid
+    render nothing:true, status:403
   end
   
   def edit

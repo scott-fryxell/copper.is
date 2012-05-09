@@ -1,5 +1,5 @@
 class ChecksController < ApplicationController
-  filter_access_to :all
+  filter_resource_access
 
   def index
     case params[:s]
@@ -19,11 +19,7 @@ class ChecksController < ApplicationController
   end
   
   def show
-    if params[:id] == 'current'
-      @check = current_user.checks.earned.first
-    else
-      @check = current_user.checks.find(params[:id])
-    end
+    @check = current_user.checks.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render nothing:true, status:401
   end
