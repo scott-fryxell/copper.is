@@ -48,10 +48,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def patron?
+    roles.find{|e| e.name == 'Patron'}
+  end
+
   def tip(args = {})
     url    = args[:url]
-    title  = args[:title]  || url
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
+    title  = args[:title]
 
     tip = current_order.tips.build(amount_in_cents:amount_in_cents)
     unless tip.page = Page.where('url = ?', url).first

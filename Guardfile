@@ -14,6 +14,7 @@ guard 'rspec', :version => 2, :cli => '--color --format doc --drb', :all_on_star
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
+  watch(%r{^spec/support/.+\.rb$}) { 'spec' }
 
   # Rails example
   # watch(%r{^spec/.+_spec\.rb$})                       { "spec" }

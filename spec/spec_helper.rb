@@ -3,35 +3,9 @@ require 'spork'
 require 'resque_spec/scheduler'
 require 'ostruct'
 
-# def keypress_on(elem, key, charCode = 0)
-#   keyCode = case key
-#             when :enter then 13
-#             else key.to_i
-#             end
-#   elem.base.invoke('keypress', false, false, false, false, keyCode, charCode);
-# end
-#
-# def authenticate_as_admin
-# end
-#
-# def authenticate_as_patron
-# end
-#
-# def unauthenticate
-# end
-
-def tip_twitter
-  visit '/tips/agent/?uri=https%3A%2F%2Ftwitter.com%2F%23!%2Fcopper_dev&title=Copper%20Dev%20(copper_dev)%20on%20Twitter'
-end
-def slow_test
-  unless ENV['FAST_TEST']
-    yield
-  else
-    it 'skipping slow tests'
-  end
-end
-
 Spork.prefork do
+  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb' ))].each {|f| require f}
+
   # Loading more in this block will cause your tests to run faster. However,
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.

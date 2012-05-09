@@ -1,4 +1,4 @@
- authorization do
+authorization do
 
   role :admin do
     includes :patron
@@ -6,19 +6,27 @@
 
   role :patron do
     includes :guest
-    has_permission_on [:sessions], :to => [:destroy]
+    has_permission_on :sessions,   :to => :delete
 
-    has_permission_on [:users], :to => [:new, :create, :edit, :update, :show, :pay, :identities, :author, :badge] do
-      has_permission_on [:tips], :to => [:index, :create, :edit, :update, :destroy, :new, :embed_iframe, :agent]
-      has_permission_on [:checks], :to => [:index]
-      has_permission_on [:identities], :to => [:index, :destroy]
-    end
+    has_permission_on :users,      :to => [:read,:update]
+    has_permission_on :tips,       :to => [:manage]
+    has_permission_on :checks,     :to => [:read]
+    has_permission_on :orders,     :to => [:read,:update]
+    has_permission_on :identities, :to => [:manage]
+    has_permission_on :pages,      :to => [:read]
   end
 
   role :guest do
-    has_permission_on [:home], :to => [:all]
-    has_permission_on [:tips], :to => [:embed_iframe]
-    has_permission_on [:identities], :to => [:show, :wanted]
+    has_permission_on :tips,       :to => [:read]
+    has_permission_on :identities, :to => [:create]
+    has_permission_on :pages,      :to => [:read]
   end
+end
 
+privileges do
+  privilege :manage, :includes => [:create, :read, :update, :delete]
+  privilege :read,   :includes => [:index, :show]
+  privilege :build,  :includes => [:new,:create]
+  privilege :update, :includes => [:edit,:update]
+  privilege :delete, :includes => :destroy
 end

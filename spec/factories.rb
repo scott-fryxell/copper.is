@@ -2,11 +2,11 @@ FactoryGirl.define do
   sequence 'uid' do |n|
     n.to_s
   end
-  
+
   sequence 'username' do |n|
     "foobar#{n}"
   end
-  
+
   sequence 'twitter_url_with_path' do |n|
     "http://twitter.com/#!/1#{n}"
   end
@@ -16,53 +16,53 @@ FactoryGirl.define do
     username 'scott.fryxell'
     uid '580281278'
   end
-  
+
   factory :identities_twitter, class: 'Identities::Twitter' do
     provider 'twitter'
-    username '_ugly' 
+    username '_ugly'
     uid '26368397'
   end
-                                      
+
   factory :identities_google, class: 'Identities::Google' do
     provider 'google'
-    uid 
-    username 
+    uid
+    username
   end
 
   factory :identities_vimeo, class: 'Identities::Vimeo' do
     provider 'vimeo'
-    uid 
-    username 
+    uid '1'
+    username 'foo'
   end
 
   factory :identities_flickr, class: 'Identities::Flickr' do
     provider 'flickr'
-    uid 
-    username 
+    uid
+    username
   end
 
   factory :identities_tumblr, class: 'Identities::Tumblr' do
     provider 'tumblr'
-    uid 
-    username 
+    uid
+    username
   end
 
   factory :identities_github, class: 'Identities::Github' do
     provider 'github'
-    uid 
-    username 
+    uid
+    username
   end
 
   factory :identities_soundcloud, class: 'Identities::Soundcloud' do
     provider 'soundcloud'
-    uid 
-    username 
+    uid '2'
+    username 'bar'
   end
 
   factory :identities_youtube, class: 'Identities::Youtube' do
     provider 'youtube'
-    uid 
-    username 
+    uid
+    username
   end
 
   factory :role do
@@ -77,6 +77,15 @@ FactoryGirl.define do
     accept_terms true
     tip_preference_in_cents 50
     identities [FactoryGirl.create(:identities_facebook)]
+    roles [Role.find_by_name('Patron')]
+  end
+
+  factory :user_twitter, class:'User' do
+    name 'Joe'
+    accept_terms true
+    tip_preference_in_cents 50
+    identities [FactoryGirl.create(:identities_twitter)]
+    roles [Role.find_by_name('Patron')]
   end
 
   factory :order_current, :class => 'Order' do
@@ -118,12 +127,12 @@ FactoryGirl.define do
   factory :check do
     association :user
   end
-  
+
   factory :check_paid, :class => 'Check' do
     association :user
     check_state 'paid'
   end
-  
+
   factory :check_cashed, :class => 'Check' do
     association :user
     check_state 'cashed'

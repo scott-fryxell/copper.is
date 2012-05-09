@@ -32,7 +32,7 @@ describe "Fan account" do
       find_field('user[email]').value.should == 'user@google.com'
       fill_in('user[email]', :with => 'change@google.com')
     end
-    
+
     after do
       click_link 'fan'
       find_field('user[email]').value.should == 'change@google.com'
@@ -43,32 +43,32 @@ describe "Fan account" do
         click_on 'Save'
       end
     end
-    
-    it "and submit using the return key" 
-    
+
+    it "and submit using the return key"
+
   end
-  
+
   describe "should be able to change name" do
     before do
       click_link 'fan'
       find_field('user[name]').value.should == 'google user'
       fill_in('user[name]', :with => 'joe fan')
     end
-    
+
     after do
       click_link 'fan'
       find_field('user[name]').value.should == 'joe fan'
     end
-    
+
     it "and submit by clicking on 'Save'" do
       within("section#name") do
         click_on 'Save'
       end
     end
-    
-    it "and submit using the return key" 
+
+    it "and submit using the return key"
  end
-  
+
   it "should only be able to change name to a valid email address" do
     click_link 'fan'
     find_field('user[email]').value.should == 'user@google.com'

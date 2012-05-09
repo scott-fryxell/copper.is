@@ -64,7 +64,7 @@ describe "An Author" do
       page.should have_content 'Color'
       page.should have_content 'Size'
     end
-    
+
   end
 
   describe "linking accounts" do
@@ -166,15 +166,15 @@ describe "An Author" do
     #  page.should have_content 'Royalties'
     #end
   end
-  
+
   describe "author address" do
     before(:each) do
       click_link 'author'
     end
-    
+
     it "should have an address link" do
       page.should have_content 'Mailing Address'
     end
-    
+
   end
 end

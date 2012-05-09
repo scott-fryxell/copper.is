@@ -27,7 +27,7 @@ describe 'twitter demo' do
     #     page.should have_content "@brokenbydawn"
     #   end
     # end
-    
+
     it "should take brokenbydawn to a service description with info about the royalty check" #, :focus do
     #   Twitter.search("@brokenbydawn",rpp:1,result_type:"recent").first do |tweet|
     #     @ident_url = tweet[(tweet =~ %r{http://copper.is/}) + 17..-1].split(' ').first
@@ -44,18 +44,18 @@ describe 'twitter demo' do
       # puts "found this url in tweet, following it: #{@ident_url}"
       # visit @ident_url
       # page.should have_content 'Foobar'
-    
+
     it "brokenbydawn logs in" # do
     #   Twitter.search("@brokenbydawn",rpp:1,result_type:"recent").first do |tweet|
     #     visit tweet[(tweet =~ %r{http://copper.is/}) + 17..-1].split(' ').first
     #   end
-    #   click_link 'twitter_sign_in'      
+    #   click_link 'twitter_sign_in'
     # end
-    
+
     it "brokenbydawn provides address info and agrees to service terms"
-    
+
     it "a copper admin logs in and views royalty checks"
-    
+
     it "a copper admin pays brokenbydawn for their tips"
   end
 end

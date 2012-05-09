@@ -1,30 +1,22 @@
 require 'resque/server'
 
 Copper::Application.routes.draw do
-  resources :users do
-    resources :addresses
+  resources :tips
+
+  resources :orders
+  resources :checks
+
+  resources :pages do
     resources :tips
-    resources :checks do
-      resources :royalties
-    end
-    resources :identities
-    post 'pay', :on => :member
-    get 'author', :to => 'users#author', :as => :author
-    get 'badge', :to => 'users#badge', :as => :badge
   end
 
-  # resources :tips
-  # resources :orders do
-  #   resources :tips
-  # end
-  # resources :checks do
-  #   resources :tips
-  # end
-  # resources :pages
-  # resources :identities
-  # resources :users
+  resources :identities
 
-  get 'tips/agent', :to => 'tips#agent', :as => :agent
+  resources :users do
+    resources :tips
+  end
+
+  # get 'tips/agent', :to => 'tips#agent', :as => :agent
   get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe
 
   get 'about', :to => 'home#about'
@@ -35,9 +27,6 @@ Copper::Application.routes.draw do
   get 'faq', :to => 'home#faq'
   get 'button', :to => 'home#button'
   get 'buckingthesystem', :to => 'home#index'
-
-  get "i/:id", :to => "identities#show"
-  get "wanted", :to => "identities#wanted", :as => :wanted
 
   match "/auth/:provider/callback" => "sessions#create"
   match '/auth/failure' => 'sessions#failure'
