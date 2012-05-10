@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe UsersController do
-  create_me_her_db
-
   describe 'as Guest' do
     before do
-      unauthenticate
+      controller.instance_eval do
+        @current_user = nil
+      end
     end
 
     describe 'index' do
@@ -63,8 +63,12 @@ describe UsersController do
   end
 
   describe 'as Patron' do
-    before do
-      authenticate_as_patron @me
+    before :each do
+      user = @me
+      controller.instance_eval do
+        cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
+        @current_user = user
+      end
     end
 
     describe 'index' do
@@ -210,18 +214,5 @@ describe UsersController do
         end
       end
     end
-  end
-
-  describe 'as Admin' do
-    before :all do
-      authenticate_as_admin
-    end
-    describe 'index'
-    describe 'new'
-    describe 'create'
-    describe 'show'
-    describe 'edit'
-    describe 'update'
-    describe 'destroy'
   end
 end

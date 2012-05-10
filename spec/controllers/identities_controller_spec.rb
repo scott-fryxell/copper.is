@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 describe IdentitiesController do
-  create_me_her_db
-
   describe 'as Guest' do
-    before do
-      unauthenticate
+    before :all do
+      controller.instance_eval do
+        @current_user = nil
+      end
     end
+    
     describe 'index' do
       describe '/identities' do
         it '302' do
@@ -65,8 +66,12 @@ describe IdentitiesController do
   end
 
   describe 'as Patron' do
-    before do
-      authenticate_as_patron @me
+    before :each do
+      user = @me
+      controller.instance_eval do
+        cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
+        @current_user = user
+      end
     end
 
     describe 'index' do
@@ -97,12 +102,12 @@ describe IdentitiesController do
     describe 'show' do
       describe '/identities/:id' do
         it 'assigns the identity', :broken do
-          get :show, id:@me.identities.first.id
-          assigns(:identity).id.should == @me.identities.first.id
+          get :show, id:@my_identity.id
+          assigns(:identity).id.should == @my_identity.id
         end
 
-        it '401 for another user\'s identity',:broken do
-          get :show, id:@her.identities.first.id
+        it '401 for another user\'s identity' do
+          get :show, id:@her_identity.id
           response.status.should == 401
         end
       end
@@ -111,7 +116,7 @@ describe IdentitiesController do
     describe 'edit', :broken do
       describe '/identities/:id/edit' do
         it '403' do
-          get :edit, id:@me.identities.first.id
+          get :edit, id:@my_identity.id
           response.status.should == 403
         end
       end
@@ -120,7 +125,7 @@ describe IdentitiesController do
     describe 'update', :broken do
       describe 'PUT /identities/:id' do
         it '403' do
-          get :edit, id:@me.identities.first.id
+          get :edit, id:@my_identity.id
           response.status.should == 403
         end
       end
@@ -128,9 +133,9 @@ describe IdentitiesController do
 
     describe 'destroy',:broken do
       describe 'DELETE /identities/:id' do
-        it 'destroys the given identity' do
+        it 'destroys the given identity',:broken do
           proc do
-            delete :destroy, id:@me.identities.first.id
+            delete :destroy, id:@my_identity.id
           end.should change(Identity, :count)
         end
       end

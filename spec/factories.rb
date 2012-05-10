@@ -77,7 +77,7 @@ FactoryGirl.define do
     accept_terms true
     tip_preference_in_cents 50
     identities [FactoryGirl.create(:identities_facebook)]
-    roles [Role.find_by_name('Patron')]
+    roles [Role.find_or_create_by_name('Patron')]
   end
 
   factory :user_twitter, class:'User' do
@@ -85,7 +85,7 @@ FactoryGirl.define do
     accept_terms true
     tip_preference_in_cents 50
     identities [FactoryGirl.create(:identities_twitter)]
-    roles [Role.find_by_name('Patron')]
+    roles [Role.find_or_create_by_name('Patron')]
   end
 
   factory :order_current, :class => 'Order' do
