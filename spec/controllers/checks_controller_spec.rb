@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe ChecksController do
-  create_me_her_db_with_orders
-
   describe 'as Guest' do
     before do
-      unauthenticate
+      controller.instance_eval do
+        @current_user = nil
+      end
     end
     describe 'index' do
       describe '/checks' do
@@ -90,8 +90,19 @@ describe ChecksController do
   end
 
   describe 'as Patron' do
-    before do
-      authenticate_as_patron @me
+    before :all do
+      @check = FactoryGirl.create(:check,user:@me)
+      @check_paid = FactoryGirl.create(:check_paid,user:@me)
+      @check_cashed = FactoryGirl.create(:check_cashed,user:@me)
+      @her_check = FactoryGirl.create(:check,user:@her)
+    end
+    
+    before :each do
+      user = @me
+      controller.instance_eval do
+        cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
+        @current_user = user
+      end
     end
 
     describe 'index' do

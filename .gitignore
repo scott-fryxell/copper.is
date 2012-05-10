@@ -11,3 +11,5 @@ spec/requests/surfing_spec.rb
 Icon
 
 Icon
+
+db/test.sqlite3-journal

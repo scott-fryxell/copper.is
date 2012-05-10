@@ -47,28 +47,14 @@ describe Identity do
       end
     end
     
-    describe 'tipping a stranger' do
+    describe 'tipping a stranger', :broken do
       before do
-        # create a fan
-        @fan = FactoryGirl.create(:user)
-        @stripe = Stripe::Token.create(:card => {
-                                         :number => "4242424242424242",
-                                         :exp_month => 3,
-                                         :exp_year => 2013,
-                                         :cvc => 314 }, :currency => "usd" )
-        @fan.create_stripe_customer(@stripe.id)
-        @fan.save!
+        Stripe::Customer.stub(:create) { OpenStruct.new(id:1) }
+        @me.create_stripe_customer(1)
+        @me.save!
         
         # create an author with 3 pages
-        @author = FactoryGirl.create(factory)
-        @author.pages << FactoryGirl.create(:page,url:'http://twitter.com/_ugly',
-                                            author_state:'adopted')
-        @author.pages << FactoryGirl.create(:page,url:'http://twitter.com/#!/_ugly',
-                                            author_state:'adopted') 
-        @author.pages << FactoryGirl.create(:page,url:'http://twitter.com/#!/_ugly2',
-                                            author_state:'adopted')
-        
-        @fan.tip(url:'http://twitter.com/_ugly',amount_in_cents:500)
+        @stranger = FactoryGirl.create(factory)
       end
 
       it 'is a stranger because tip is not charged' do
@@ -77,7 +63,7 @@ describe Identity do
 
       describe 'with charged tips' do
         before do
-          @order_id = @fan.current_order.id
+          @order_id = @me.current_order.id
           @fan.current_order.rotate!
           Order.find(@order_id).charge!
         end

@@ -4,14 +4,11 @@ require 'resque_spec/scheduler'
 require 'ostruct'
 
 Spork.prefork do
-  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb' ))].each {|f| require f}
-
-  # Loading more in this block will cause your tests to run faster. However,
-  # if you change any configuration or code from libraries loaded here, you'll
-  # need to restart spork for it take effect.
-  ENV["RAILS_ENV"] ||= 'test'
-  require 'simplecov'
-  SimpleCov.start 'rails'
+  ENV["RAILS_ENV"] = 'test'
+  if ENV['RCOV']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
 
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -29,9 +26,21 @@ Spork.prefork do
 
   include Authorization::TestHelper
 
+  class Stripe::Customer
+    def self.create(*args)
+      OpenStruct.new(id:1)
+    end
+  end
+  
+  class Stripe::Charge
+    def self.create(*args)
+      OpenStruct.new(id:1)
+    end
+  end
+  
   RSpec.configure do |config|
-
-    config.fail_fast = true
+    config.filter_run_excluding :broken => true
+    # config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
@@ -51,22 +60,49 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
+  
+  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb' ))].each do |f| 
+    load f
+  end
 
   RSpec.configure do |config|
-    require Rails.root.join("db/seeds.rb")
-    # This code will be run each time you run your specs.
-    config.filter_run_excluding :broken => true
     config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
-    end
-
-    config.before(:each) do
       DatabaseCleaner.start
+      DatabaseCleaner.strategy = :truncation #, {:except => %w[roles]}
       ResqueSpec.reset!
       ResqueSpec.inline = true
     end
+      
+    config.before(:all) do
+      @stranger = FactoryGirl.create(:identities_vimeo)
+      @wanted = FactoryGirl.create(:identities_soundcloud,identity_state:'wanted')
 
-    config.after(:each) do
+      @page1 = FactoryGirl.create(:page,author_state:'adopted')
+      @page2 = FactoryGirl.create(:page,author_state:'adopted')
+
+      @wanted.pages << @page1
+      @wanted.pages << @page2
+
+      @me = FactoryGirl.create(:user)
+      @her = FactoryGirl.create(:user_twitter)
+      
+      @my_identity = @me.identities.first
+      @her_identity = @her.identities.first
+      
+      @my_tip = @me.tip(url:@page1.url)
+
+      @her_tip1 = @her.tip(url:@page1.url)
+      @her_tip2 = @her.tip(url:@page2.url)
+      
+      # @her_tip2.pay!
+      # @her_tip2.check_id = 2
+      # @her_tip2.save!
+    end
+    
+    config.before(:all) do
+    end
+
+    config.after(:suite) do
       DatabaseCleaner.clean
     end
   end
