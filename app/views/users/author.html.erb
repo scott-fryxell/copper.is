@@ -10,47 +10,14 @@
       <h2>Identities <span><%= current_user.identities.count%></span></h2>
       <p>Link the sites you have content on.</p>
     </header>
-    <a href="/users/current/identities">edit</a>
+    <%=link_to 'edit', identities_path %>
   </section>
   <section id="royalty">
     <header>
       <h2>Royalties</h2>
       <p>View a list of the royalties owed to you.</p>
     </header>
-    <%= link_to('royalties', user_checks_path(current_user)) %>
-  </section>
-
-  <section id="address">
-    <header>
-      <h2>Mailing Address</h2>
-      <p>give us an address where we can mail you royalty checks</p>
-    </header>
-
-    <form action="<%= user_addresses_path (current_user)%>" method="post" accept-charset="utf-8">
-      <fieldset>
-        <label for="line1">street</label>
-        <input id="line1" name="user[address][line1]" value="">
-        
-        <label for="line2">street2</label>
-        <input id="line2" name="user[address][line2]" value="">
-        
-        <label for="city">city</label>
-        <input id="city" name="user[address][city]" value="">
-      </fieldset>
-      <fieldset>
-        <label for="state">state</label>
-        <input id="state" name="user[address][state]" value="">
-        <label for="territory">territory</label>
-        <input id="territory" name="user[address][territory]" value="">
-        <label for="postal_code">postal code</label>
-        <input id="postal_code" name="user[address][postal_code]" value="">
-      </fieldset>
-      <fieldset>
-        <label for="country">country</label><input id="country" name="user[address][country]" value="">
-      </fieldset>
-      <input type="submit" value="save">
-    </form>
-
+    <%= link_to'royalties', checks_path %>
   </section>
 
   <section id="badge">
@@ -58,8 +25,7 @@
       <h2>Badge</h2>
       <p>include the badge on your pages.</p>
     </header>
-    <%= link_to('badge', user_badge_path(current_user)) %>
+    <%= link_to 'badge', badge_path %>
   </section>
 
 </section>
-

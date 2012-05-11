@@ -45,9 +45,6 @@ Spork.prefork do
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
 
-    # If you're not using ActiveRecord, or you'd prefer not to run each of your
-    # examples within a transaction, remove the following line or assign false
-    # instead of true.
     config.use_transactional_fixtures = false
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true

@@ -26,7 +26,7 @@ class IdentitiesController < ApplicationController
   def destroy
     identity = Identity.find(params[:id])
     identity.destroy
-    redirect_to user_identities_path(current_user), notice: "Removed that Identity"
+    redirect_to identities_path, notice: "Removed that Identity"
   end
 
   def wanted

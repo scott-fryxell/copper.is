@@ -30,6 +30,10 @@ class UsersController < ApplicationController
   def edit
     if @user = current_user
       if params[:id] == 'current' or @user.id.to_s == params[:id]
+        if params[:author]
+          render 'users/author'
+        end
+
         @tips = @user.tips.all
       else
         redirect_to root_path
@@ -75,10 +79,6 @@ class UsersController < ApplicationController
   #   else
   #     render :text => '<meta name="event_trigger" content="terms_declined"/>'
   #   end
-  # end
-
-  # def author
-  #  render 'users/author'
   # end
 end
 

@@ -6,27 +6,12 @@ describe "An Author" do
     click_link 'twitter_sign_in'
   end
 
-  it "should only link an account once" do
-    page.should have_content 'twitter user'
-    page.should have_content 'Welcome aboard!'
-    visit "/users/current/identities"
-    click_link 'twitter_sign_in'
-    page.should have_content 'Already linked that account'
-  end
-
-  it "should be able to link multiple accounts" do
-    page.should have_content 'twitter user'
-    page.should have_content 'Welcome aboard!'
-    visit "/users/current/identities"
-    click_link 'facebook_sign_in'
-    page.should have_content 'Successfully linked that account'
-  end
-
   it "should visit authors" do
     click_link 'author'
     page.should have_content 'Author Settings'
-    page.should have_content 'Mailing Address'
     page.should have_content 'Identities'
+    page.should have_content 'Royalties'
+    page.should have_content 'Badge'
   end
 
   it "should be able to see how many accounts are linked" do
@@ -37,16 +22,25 @@ describe "An Author" do
 
   end
 
-  it "should have a link to royalty orders" do
+
+  it "should only link an account once" do
+    page.should have_content 'twitter user'
+    page.should have_content 'Welcome aboard!'
     click_link 'author'
-    page.should have_content 'royalties'
+    within("section#identity") do
+      click_link 'edit'
+    end
+    click_link 'twitter_sign_in'
+    page.should have_content 'Already linked that account'
   end
 
-  it "should have a link to the identities page" do
+  it "should be able to link multiple accounts" do
     click_link 'author'
-    within("section#identity > a") do
-      page.should have_content 'edit'
+    within("section#identity") do
+      click_link 'edit'
     end
+    click_link 'facebook_sign_in'
+    page.should have_content 'Successfully linked that account'
   end
 
   it "should have a link to the badge page" do
@@ -156,25 +150,4 @@ describe "An Author" do
     end
   end
 
-  describe "author royalties" do
-    before(:each) do
-      click_link 'author'
-      click_link 'royalties'
-    end
-
-    it "have a list of all royalty checks" # do
-    #  page.should have_content 'Royalties'
-    #end
-  end
-
-  describe "author address" do
-    before(:each) do
-      click_link 'author'
-    end
-
-    it "should have an address link" do
-      page.should have_content 'Mailing Address'
-    end
-
-  end
 end

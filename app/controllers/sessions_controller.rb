@@ -26,14 +26,14 @@ class SessionsController < ApplicationController
         # is the current user. So the identity is already associated with
         # this user. So let's display an error message.
 
-        redirect_to user_identities_path(current_user.id), notice: "Already linked that account!"
+        redirect_to identities_path(current_user.id), notice: "Already linked that account!"
 
       else
         # The identity is not associated with the current_user so lets
         # associate the identity
         @identity.user = current_user
         @identity.save()
-        redirect_to user_identities_path(current_user.id), notice: "Successfully linked that account"
+        redirect_to identities_path(current_user.id), notice: "Successfully linked that account"
       end
     else
       if @identity.user

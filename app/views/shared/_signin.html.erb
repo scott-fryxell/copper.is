@@ -2,8 +2,8 @@
   <% if current_user %>
     <h1><%=current_user.name%></h1>
     <nav>
-      <%= link_to "fan", user_url(current_user)%>
-      <%= link_to "author", user_author_url(current_user)%>
+      <%= link_to "fan", edit_user_url(current_user)%>
+      <%= link_to "author", edit_user_path(current_user, :author => true)%>
       <%= link_to "signout", signout_path %>
     </nav>
   <% else %>
