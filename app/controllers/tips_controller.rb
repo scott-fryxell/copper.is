@@ -2,6 +2,7 @@ class TipsController < ApplicationController
   filter_resource_access
   
   before_filter :set_page
+  before_filter :set_user
 
   def index
     if params[:user_id]
@@ -97,6 +98,10 @@ class TipsController < ApplicationController
   protected
   
   def set_page
+    @page = Page.find(params[:page_id]) if params[:page_id]
+  end
+  
+  def set_user
     @page = Page.find(params[:page_id]) if params[:page_id]
   end
 end
