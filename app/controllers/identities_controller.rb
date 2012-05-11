@@ -28,9 +28,4 @@ class IdentitiesController < ApplicationController
     identity.destroy
     redirect_to user_identities_path(current_user), notice: "Removed that Identity"
   end
-
-  def wanted
-    @wanted = Identity.wanted.all
-  end
-
 end

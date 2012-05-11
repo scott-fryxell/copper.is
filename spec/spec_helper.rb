@@ -25,19 +25,6 @@ Spork.prefork do
   Capybara.app_host = "http://127.0.0.1:8080"
 
   include Authorization::TestHelper
-
-  class Stripe::Customer
-    def self.create(*args)
-      OpenStruct.new(id:1)
-    end
-  end
-  
-  class Stripe::Charge
-    def self.create(*args)
-      OpenStruct.new(id:1)
-    end
-  end
-  
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
     # config.fail_fast = true
@@ -71,6 +58,18 @@ Spork.each_run do
       DatabaseCleaner.strategy = :truncation #, {:except => %w[roles]}
       ResqueSpec.reset!
       ResqueSpec.inline = true
+      
+      class Stripe::Customer
+        def self.create(*args)
+          OpenStruct.new(id:'1')
+        end
+      end
+      
+      class Stripe::Charge
+        def self.create(*args)
+          OpenStruct.new(id:'1')
+        end
+      end
     end
       
     config.before(:all) do
@@ -93,15 +92,8 @@ Spork.each_run do
 
       @her_tip1 = @her.tip(url:@page1.url)
       @her_tip2 = @her.tip(url:@page2.url)
-      
-      # @her_tip2.pay!
-      # @her_tip2.check_id = 2
-      # @her_tip2.save!
     end
     
-    config.before(:all) do
-    end
-
     config.after(:suite) do
       DatabaseCleaner.clean
     end

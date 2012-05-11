@@ -6,6 +6,10 @@ FactoryGirl.define do
   sequence 'username' do |n|
     "foobar#{n}"
   end
+  
+  sequence 'a_n_string' do |n|
+    n.to_s
+  end
 
   sequence 'twitter_url_with_path' do |n|
     "http://twitter.com/#!/1#{n}"
@@ -15,6 +19,12 @@ FactoryGirl.define do
     provider 'facebook'
     username 'scott.fryxell'
     uid '580281278'
+  end
+
+  factory :identities_phony, class: 'Identities::Phony' do
+    provider 'phony'
+    username { FactoryGirl.generate(:a_n_string) }
+    uid { FactoryGirl.generate(:a_n_string) }
   end
 
   factory :identities_twitter, class: 'Identities::Twitter' do
@@ -76,7 +86,7 @@ FactoryGirl.define do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
-    identities [FactoryGirl.create(:identities_facebook)]
+    identities [FactoryGirl.create(:identities_phony)]
     roles [Role.find_or_create_by_name('Patron')]
   end
 
@@ -84,7 +94,7 @@ FactoryGirl.define do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
-    identities [FactoryGirl.create(:identities_twitter)]
+    identities [FactoryGirl.create(:identities_phony)]
     roles [Role.find_or_create_by_name('Patron')]
   end
 

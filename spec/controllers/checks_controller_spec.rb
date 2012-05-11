@@ -91,13 +91,13 @@ describe ChecksController do
 
   describe 'as Patron' do
     before :all do
+    end
+    
+    before :each do
       @check = FactoryGirl.create(:check,user:@me)
       @check_paid = FactoryGirl.create(:check_paid,user:@me)
       @check_cashed = FactoryGirl.create(:check_cashed,user:@me)
       @her_check = FactoryGirl.create(:check,user:@her)
-    end
-    
-    before :each do
       user = @me
       controller.instance_eval do
         cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
@@ -107,34 +107,42 @@ describe ChecksController do
 
     describe 'index' do
       describe '/checks' do
-        it 'renders all checks for current user: earned, paid and cashed' do
+        it 'assigns all checks for current user: earned, paid and cashed' do
           get :index
           response.status.should == 200
-          assigns(:checks).should == [@check,@check_paid,@check_cashed]
+          assigns(:checks).include?(@check).should be_true
+          assigns(:checks).include?(@check_paid).should be_true
+          assigns(:checks).include?(@check_cashed).should be_true
         end
       end
 
       describe '/checks?s=earned' do
-        it 'renders just the current check for the current user' do
+        it 'assigns just the current check for the current user' do
           get :index, s:'earned'
           response.status.should == 200
-          assigns(:checks).should == [@check]
+          assigns(:checks).include?(@check).should be_true
+          assigns(:checks).include?(@check_paid).should_not be_true
+          assigns(:checks).include?(@check_cashed).should_not be_true
         end
       end
 
       describe '/checks?s=paid' do
-        it 'renders all paid checks for current user' do
+        it 'assigns all paid checks for current user' do
           get :index, s:'paid'
           response.status.should == 200
-          assigns(:checks).should == [@check_paid]
+          assigns(:checks).include?(@check).should_not be_true
+          assigns(:checks).include?(@check_paid).should be_true
+          assigns(:checks).include?(@check_cashed).should_not be_true
         end
       end
 
       describe '/checks?s=cashed' do
-        it 'renders all declined checks for current user' do
+        it 'assigns all declined checks for current user' do
           get :index, s:'cashed'
           response.status.should == 200
-          assigns(:checks).should == [@check_cashed]
+          assigns(:checks).include?(@check).should_not be_true
+          assigns(:checks).include?(@check_paid).should_not be_true
+          assigns(:checks).include?(@check_cashed).should be_true
         end
       end
     end

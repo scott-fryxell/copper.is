@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Identity do
   [
     :identities_twitter,
+    :identities_phony,
     #:identities_facebook,
     #:identities_google,
     #:identities_youtube,

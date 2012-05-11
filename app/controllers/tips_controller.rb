@@ -1,5 +1,7 @@
 class TipsController < ApplicationController
   filter_resource_access
+  
+  before_filter :set_page
 
   def index
     @tips = Tip.all
@@ -92,4 +94,9 @@ class TipsController < ApplicationController
   #   logger.error e.message
   #   render :action => 'error', :layout => 'button'
   # end
+  protected
+  
+  def set_page
+    @page = Page.find(params[:page_id]) if params[:page_id]
+  end
 end
