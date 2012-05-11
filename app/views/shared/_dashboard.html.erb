@@ -2,16 +2,11 @@
   <aside itemscope="true" itemtype="order">
     <dl>
       <dt>Tips</dt>
-      <dd itemprop="tips"><%= current_user.current_tips.count %></dd>
-      <%- if @tip.amount_in_cents -%>
-        <dt>Amount</dt>
-        <dd itemprop="balance">$<%= cents_to_dollars(@tip.amount_in_cents) %></dd>
-      <%-else-%>
-        <dt>Rate</dt>
-        <dd itemprop="rate">
-          <%= render :partial => 'shared/tip_rate' %>
-        </dd>
-      <%-end-%>
+      <dd itemprop="tips"><%= current_user.current_order.tips.count %></dd>
+      <dt>Rate</dt>
+      <dd itemprop="rate">
+        <%= render :partial => 'shared/tip_rate' %>
+      </dd>
       <dt>Balance</dt>
       <dd itemprop="balance">$<%= cents_to_dollars(current_user.current_order.subtotal) %></dd>
     </dl>

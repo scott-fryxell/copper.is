@@ -4,12 +4,16 @@ class TipsController < ApplicationController
   before_filter :set_page
 
   def index
-    @tips = Tip.all
-    unless current_user
-      @tips.each do |t|
-        t.order_id = nil
-        t.check_id = nil
-      end
+    if params[:user_id]
+      @tips = current_user.current_tips
+    else
+      @tips = Tip.all
+      unless current_user
+        @tips.each do |t|
+          t.order_id = nil
+          t.check_id = nil
+        end
+    end
     end
   end
 
@@ -63,7 +67,6 @@ class TipsController < ApplicationController
 
   def destroy
     tip = current_user.tips.find(params[:id])
-    p tip
 
     if(tip.order.user == current_user and tip.order.current?)
       tip.destroy
@@ -76,9 +79,6 @@ class TipsController < ApplicationController
     redirect_to tips_path, notice:'Tips can not be changed after they have been paid for'
   end
 
-#  def embed_iframe
-#    render :action => 'embed_iframe.js', :layout => false
-#  end
 
   # def agent
   #   uri = URI.unescape(params[:uri]) rescue params[:uri]

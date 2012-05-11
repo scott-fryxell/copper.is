@@ -15,7 +15,6 @@ Copper::Application.routes.draw do
     resources :tips
   end
 
-  get 'tips/embed_iframe.js', :to => 'tips#embed_iframe', :as => :iframe
 
   get 'about', :to => 'home#about'
   get 'how', :to => 'home#how'
@@ -25,6 +24,8 @@ Copper::Application.routes.draw do
   get 'faq', :to => 'home#faq'
   get 'button', :to => 'home#button'
   get 'buckingthesystem', :to => 'home#index'
+  get 'badge', :to => 'home#badge', :as => :badge
+  get 'embed_iframe.js', :to => 'home#iframe', :as => :iframe
 
   match "/auth/:provider/callback" => "sessions#create"
   match '/auth/failure' => 'sessions#failure'
