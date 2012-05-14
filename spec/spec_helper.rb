@@ -27,7 +27,7 @@ Spork.prefork do
   include Authorization::TestHelper
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
-    # config.fail_fast = true
+    config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
@@ -93,13 +93,13 @@ Spork.each_run do
       @her_tip2 = @her.tip(url:@page2.url)
     end
 
-     config.before(:each) do
-       DatabaseCleaner.start
-     end
+    config.before(:suite) do
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
+    end
 
-     config.after(:each) do
-       DatabaseCleaner.clean
-     end
-
+    config.after(:suite) do
+      DatabaseCleaner.clean
+    end
   end
 end

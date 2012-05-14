@@ -114,17 +114,22 @@ describe UsersController do
     end
 
     describe 'show' do
-      describe '/users/current/show' do
-        get :edit, id:'current'
-        response.status.should == 200
-        assigns(:user).id.should == @me.id
+      describe '/users/current' do
+        it 'assigns user with id current' do
+          get :show, id:'current'
+          response.status.should == 200
+          p assigns(:user)
+          p @me
+          assigns(:user).id.should == @me.id
+        end
       end
       describe '/users/:id' do
-        get :edit, id:'current'
-        response.status.should == 200
-        assigns(:user).id.should == @me.id
+        it 'assigns user with id current' do
+          get :show, id:'current'
+          response.status.should == 200
+          assigns(:user).id.should == @me.id
+        end
       end
-
     end
 
     describe 'update' do
