@@ -44,31 +44,33 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
-  
-  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb' ))].each do |f| 
+
+  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb' ))].each do |f|
     load f
   end
 
   RSpec.configure do |config|
     config.before(:suite) do
       DatabaseCleaner.start
-      DatabaseCleaner.strategy = :truncation #, {:except => %w[roles]}
+      DatabaseCleaner.clean
+      DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
       ResqueSpec.reset!
       ResqueSpec.inline = true
-      
+
       class Stripe::Customer
         def self.create(*args)
           OpenStruct.new(id:'1')
         end
       end
-      
+
       class Stripe::Charge
         def self.create(*args)
           OpenStruct.new(id:'1')
         end
       end
+
     end
-      
+
     config.before(:all) do
       @stranger = FactoryGirl.create(:identities_vimeo)
       @wanted = FactoryGirl.create(:identities_soundcloud,identity_state:'wanted')
@@ -81,18 +83,23 @@ Spork.each_run do
 
       @me = FactoryGirl.create(:user)
       @her = FactoryGirl.create(:user_twitter)
-      
+
       @my_identity = @me.identities.first
       @her_identity = @her.identities.first
-      
+
       @my_tip = @me.tip(url:@page1.url)
 
       @her_tip1 = @her.tip(url:@page1.url)
       @her_tip2 = @her.tip(url:@page2.url)
     end
-    
-    config.after(:suite) do
-      DatabaseCleaner.clean
-    end
+
+     config.before(:each) do
+       DatabaseCleaner.start
+     end
+
+     config.after(:each) do
+       DatabaseCleaner.clean
+     end
+
   end
 end

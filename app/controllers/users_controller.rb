@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    render :json => current_user
+  end
+
   # def pay
   #   # collect and save the parameters
   #   current_user.accept_terms = params[:terms]
