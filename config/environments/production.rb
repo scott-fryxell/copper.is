@@ -16,6 +16,8 @@ Copper::Application.configure do
 
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=2592000"
+  
+  config.hostadderess = "https://copper.is/"
 
   config.action_dispatch.rack_cache = {
     :metastore    => Dalli::Client.new,

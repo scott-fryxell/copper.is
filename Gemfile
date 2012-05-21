@@ -67,3 +67,7 @@ group :assets do
   gem 'uglifier'
   gem 'yui-compressor'
 end
+
+group :development do
+  gem 'guard-rake'
+end

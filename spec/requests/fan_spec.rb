@@ -65,7 +65,7 @@ describe "A Fan" do
 
   end
 
-  describe "tipping",:broken do
+  describe "tipping" do
     it "should be able to load the tip iframe javascript" do
       visit "/embed_iframe.js"
     end
