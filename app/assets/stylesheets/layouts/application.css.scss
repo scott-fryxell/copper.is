@@ -1,0 +1,119 @@
+/*
+*= require_self
+*/
+$gw-column: 30px;          // Column Width
+$gw-gutter: 10px;           // Gutter Width
+
+@import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
+@import "/assets/normalize.css";
+@import "bourbon";
+@import "shared/sign_in.css.scss";
+@import "home/index.css.scss";
+
+* {
+//  outline: 1px solid silver;
+}
+html {
+  min-width: 960px;
+  background-color: #f6f5f0;
+  background-image: image-url('texture.png');
+  font-family: Arial;
+  font-size: 16px;
+  line-height:1.25em;
+}
+h1,h2 {
+  font-family: 'Bree Serif', serif;
+  font-weight:normal;
+  color:#666666;
+}
+h2 {
+  font-size:1.34em;
+}
+p, a {
+  font-family: 'Cantarell', sans-serif;
+  font-weight:normal;
+  font-size:.8em;
+}
+p {
+  color:#666666;
+}
+body {
+  width: 1020px;
+  margin: 0 auto 0 auto;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+body > header {
+  background-color: transparent;
+  width:63.5em;
+  position:absolute;
+  height:3em;
+  top:0;
+  z-index:300;
+  @include transition(background-color 1.4s);
+  &:hover {
+    background-color: #231F20;
+    @include transition(background-color .7s $ease-in-sine);
+  }
+}
+body > header > nav {
+  margin-top:1em;
+  margin-left:9.5em;
+  display:inline-block;
+}
+body > header > nav > a {
+  font-family: 'Doppio One', sans-serif;
+  color:silver;
+  opacity:.8;
+  font-size:.77em;
+  text-decoration:none;
+  text-transform:uppercase;
+  display:inline-block;
+  margin-right:2em;
+}
+body > header > a > img {
+  width: 5em;
+  opacity:.8;
+}
+body > header > a {
+  background-color: #231F20;
+  position:absolute;
+  top:0;
+  left:.5em;
+  vertical-align:top;
+  text-decoration:none;
+  color:white;
+  padding:.5em 1em;
+}
+body > section, body > footer {
+//  background-image: image-url('24_col.gif');
+//  background-repeat: repeat-y;
+//  background-position:center top;
+  padding-left:75px;
+  padding-right:75px;
+}
+
+body > footer {
+  padding-top:2em;
+  height:13em;
+  background-color:#3a3533;
+}
+body > footer > nav {
+  line-height:2em;
+
+}
+body > footer > nav > a {
+  display:block;
+  text-decoration:none;
+  color:#a7a39b;
+}
+
+#message {
+  width:16em;
+  min-height:3em;
+  margin-left:22em;
+  display:inline-block;
+}

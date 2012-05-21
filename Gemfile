@@ -29,7 +29,7 @@ gem 'twitter'
 gem 'youtube_it'
 gem 'rails_admin'
 gem 'paper_trail', '~> 2'
-
+gem 'bourbon'
 group :production do
   gem "pg"
 end
@@ -66,4 +66,5 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'yui-compressor'
+
 end

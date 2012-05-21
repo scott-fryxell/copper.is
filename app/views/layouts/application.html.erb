@@ -2,26 +2,29 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="/favicon.ico?v=2" />
-    <%= csrf_meta_tag %>
+    <link rel="shortcut icon" href="/assets/favicon.ico"/>
     <%= stylesheet_link_tag "layouts/application" %>
     <%= javascript_include_tag "layouts/application" %>
     <%= javascript_include_tag "shared/analytics" if Rails.env.production?%>
+    <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>">
     <header>
-      <a href="/"><%= image_tag "logo/copper/copper.png" %></a>
+      <a href="/"><%= image_tag "icons/logo.svg", :title => "logo" %></a>
+      <nav>
+        <a href="/how">how it works</a>
+        <a href="/button">get the button</a>
+        <a href="/about">about us</a>
+        <a href="http://blog.copper.is">our blog</a>
+        <a href="/contact">contact us</a>
+      </nav>
       <%= render :partial => 'shared/signin' %>
       <%= render :partial => 'shared/flash',:object => flash %>
     </header>
     <%= yield %>
     <footer>
       <nav>
-        <a href="/about">about</a>
-        <a href="/how">how</a>
-        <a href="http://blog.copper.is">blog</a>
-        <a href="/contact">contact</a>
         <a href="/privacy">privacy</a>
         <a href="/terms">terms</a>
         <a href="/faq">faq</a>

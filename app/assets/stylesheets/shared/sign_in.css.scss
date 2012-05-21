@@ -1,0 +1,57 @@
+#sign_in {
+  float:right;
+  display:inline-block;
+  margin-top:.5em;
+  margin-right:1em;
+  text-align:right;
+  nav {
+    background-image: image-url('sign_in_arrow.png');
+    background-repeat:no-repeat;
+    background-position:20% -8%;
+  }
+  nav > h1 {
+    font-family: 'Doppio One', sans-serif;
+    text-transform:uppercase;
+    margin-right:1em;
+    font-weight:normal;
+    opacity:.6;
+    vertical-align:top;
+    color:white;
+    display:inline-block;
+    font-size:.85em;
+  }
+  nav > a > img {
+    width:2em;
+  }
+}
+#signed_in {
+  float:right;
+  display:inline-block;
+  margin-top:.5em;
+  margin-right:.5em;
+  text-align:right;
+  img {
+    vertical-align:baseline;
+    display:block;
+    display:inline-block;
+  }
+  nav {
+    vertical-align:top;
+    margin-right:1em;
+    display:inline-block;
+    text-align:right;
+  }
+  nav > h1 {
+    margin:0;
+    font-family: 'Doppio One', sans-serif;
+    color:#d7d2cf;
+    font-size:.85em;
+  }
+  nav > a {
+    font-family: 'Cantarell', sans-serif;
+    font-size:.75em;
+    line-height:1.25em;
+    display:block;
+    color:#d7d2cf;
+  }
+}
