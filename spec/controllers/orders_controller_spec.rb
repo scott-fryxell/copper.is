@@ -96,6 +96,12 @@ describe OrdersController do
     end
 
     describe 'index' do
+      it 'responds to .json' do
+        get :index, format: :json 
+        response.should be_success
+        response.body.should include(@my_paid_order.to_json)
+      end
+      
       describe '/orders' do
         it 'assigns orders for current user: current, unpaid, paid and denied' do
           get :index
@@ -152,6 +158,12 @@ describe OrdersController do
 
     describe 'show' do
       describe '/orders/current' do
+        it 'responds to .json', :broken do
+          get :show, id:'current', format: :json 
+          response.should be_success
+          response.body.should include(@my_paid_order.to_json)
+        end
+        
         it 'assigns the current open order of current user',:broken do
           get :show, id:'current'
           assigns(:order).id.should == @me.current_order.id

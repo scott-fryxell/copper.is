@@ -10,6 +10,7 @@ class Identity < ActiveRecord::Base
 
   # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   # validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
+  
   validates :provider, presence:true
   
   validate :validate_presence_of_username_or_uid

@@ -12,6 +12,10 @@ class ChecksController < ApplicationController
     else
       @checks = current_user.checks.all
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @checks }
+    end
   end
 
   def create
@@ -20,6 +24,10 @@ class ChecksController < ApplicationController
 
   def show
     @check = current_user.checks.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render :json => @check }
+    end
   rescue ActiveRecord::RecordNotFound
     render nothing:true, status:401
   end

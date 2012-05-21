@@ -12,6 +12,10 @@ class OrdersController < ApplicationController
     else
       @orders = current_user.orders.all
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @orders }
+    end
   end
 
   def show
@@ -19,6 +23,10 @@ class OrdersController < ApplicationController
       @order = current_user.current_order
     else
       @order = current_user.orders.find(params[:id])
+    end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @order }
     end
   rescue ActiveRecord::RecordNotFound
     render nothing:true, status:401

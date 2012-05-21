@@ -115,6 +115,12 @@ describe UsersController do
 
     describe 'show' do
       describe '/users/current' do
+        it 'responds to .json' do
+          get :show, id:'current', format: :json
+          response.should be_success
+          response.body.should == @me.to_json
+        end
+        
         it 'assigns user with id current' do
           get :show, id:'current'
           response.status.should == 200

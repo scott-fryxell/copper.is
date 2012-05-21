@@ -23,9 +23,9 @@ FactoryGirl.define do
 
   factory :identities_phony, class: 'Identities::Phony' do
     provider 'phony'
-    username { FactoryGirl.generate(:a_n_string) }
-    uid { FactoryGirl.generate(:a_n_string) }
-  end
+    username { FactoryGirl.generate(:username) }
+    uid { FactoryGirl.generate(:username) }
+   end
 
   factory :identities_twitter, class: 'Identities::Twitter' do
     provider 'twitter'

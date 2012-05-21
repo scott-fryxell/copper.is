@@ -9,6 +9,12 @@ describe PagesController do
     end
 
     describe 'index' do
+      it 'responds to .json' do
+        get :index, format: :json 
+        response.should be_success
+        response.body.should include(@page1.to_json)
+      end
+      
       describe '/pages' do
         it 'assigns pages in created order' do
           get :index
@@ -37,6 +43,12 @@ describe PagesController do
     end
 
     describe 'show' do
+      it 'responds to .json' do
+        get :show, id:@page1.id, format: :json 
+        response.should be_success
+        response.body.should include(@page1.to_json)
+      end
+      
       describe '/pages/:id' do
         it 'assigns a given page' do
           get :show, id:@page1.id
@@ -85,6 +97,12 @@ describe PagesController do
 
     describe 'index' do
       describe '/pages' do
+        it 'responds to .json' do
+          get :index, format: :json 
+          response.should be_success
+          response.body.should include(@page1.to_json)
+        end
+        
         it 'assigns pages in created order' do
           get :index
           assigns(:pages).include?(@page1).should be_true
@@ -113,6 +131,12 @@ describe PagesController do
 
     describe 'show' do
       describe '/pages/:id' do
+        it 'responds to .json' do
+          get :show, id:@page1.id, format: :json 
+          response.should be_success
+          response.body.should include(@page1.to_json)
+        end
+        
         it 'assigns a given page' do
           get :show, id:@page1.id
           assigns(:page).id.should == @page1.id
