@@ -68,3 +68,7 @@ group :assets do
   gem 'yui-compressor'
 
 end
+
+group :development do
+  gem 'guard-rake'
+end

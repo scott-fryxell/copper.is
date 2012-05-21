@@ -1,5 +1,6 @@
 class Identities::Phony < Identity
-  has_paper_trail
+  include Enqueueable
+  
   # validates :username, presence: true
 
   def self.discover_uid_and_username_from_url url

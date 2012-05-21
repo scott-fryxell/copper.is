@@ -46,3 +46,7 @@ guard 'livereload' do
   watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
   watch(%r{config/locales/.+\.yml})
 end
+
+# guard 'rake', :task => 'copper:old_production' do
+#  watch 'extras/migrate_to_new_schema.rb'
+# end

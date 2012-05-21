@@ -9,6 +9,8 @@ Copper::Application.configure do
   config.active_support.deprecation = :stderr
   config.assets.compress = false
   config.assets.debug = true
+  
+  config.hostaddress = "http://127.0.0.1:8080"
 
   OmniAuth.config.test_mode = true
 

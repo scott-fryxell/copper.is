@@ -80,7 +80,7 @@ describe "Guest" do
       page.should have_content('Sign In With')
     end
 
-    it "should not see user tips" do
+    it "should not see user tips",:broken do
       visit "/users/current/tips"
       page.should have_content('Sign In With')
     end
