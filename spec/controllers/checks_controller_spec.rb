@@ -106,6 +106,12 @@ describe ChecksController do
     end
 
     describe 'index' do
+      it 'responds to .json' do
+        get :index, :format => :json
+        response.should be_success
+        response.body.should include(@check.to_json)
+      end
+      
       describe '/checks' do
         it 'assigns all checks for current user: earned, paid and cashed' do
           get :index
@@ -167,6 +173,12 @@ describe ChecksController do
 
     describe 'show' do
       describe '/checks/:id' do
+        it 'responds to .json' do
+          get :show, id:@check_paid.id, format: :json 
+          response.should be_success
+          response.body.should include(@check_paid.to_json)
+        end
+        
         it 'renders the given check when owned by current user' do
           get :show, id:@check_paid.id
           response.status.should == 200

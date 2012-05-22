@@ -46,7 +46,7 @@ describe "An Author" do
     end
   end
 
-  describe "linking accounts" do
+  describe "linking accounts",:broken do
     before(:each) do
       click_link 'author'
       within("section#identity") do

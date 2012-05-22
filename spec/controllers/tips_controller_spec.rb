@@ -10,6 +10,18 @@ describe TipsController do
 
     describe 'index' do
       describe '/tips' do
+        it 'responds to .json' do
+          get :index, format: :json
+          response.should be_success
+          order_id = @her_tip2.order_id
+          check_id = @her_tip2.check_id
+          @her_tip2.order_id = nil
+          @her_tip2.check_id = nil
+          response.body.should include(@her_tip2.to_json)
+          @her_tip2.order_id = order_id
+          @her_tip2.check_id = check_id
+        end
+        
         it 'assigns all tips' do
           get :index
           tips = assigns(:tips)
@@ -49,6 +61,18 @@ describe TipsController do
 
     describe 'show' do
       describe '/tips/:id' do
+        it 'responds to .json' do
+          get :show, id:@my_tip.id, format: :json
+          response.should be_success
+          order_id = @my_tip.order_id
+          check_id = @my_tip.check_id
+          @my_tip.order_id = nil
+          @my_tip.check_id = nil
+          response.body.should include(@my_tip.to_json)
+          @my_tip.order_id = order_id
+          @my_tip.check_id = check_id
+        end
+        
         it 'should assign a tip' do
           get :show, id:@my_tip.id
           assigns(:tip).should eq(@my_tip)
@@ -101,6 +125,12 @@ describe TipsController do
 
     describe 'index' do
       describe '/tips' do
+        it 'responds to .json' do
+          get :index, format: :json
+          response.should be_success
+          response.body.should include(@her_tip1.to_json)
+        end
+        
         it 'a list of the most recent tips of all users and current user' do
           get :index
           assigns(:tips).include?(@her_tip2).should be_true
@@ -149,6 +179,12 @@ describe TipsController do
 
     describe 'show' do
       describe '/tips/:id' do
+        it 'responds to .json' do
+          get :show, id:@my_tip.id, format: :json
+          response.should be_success
+          response.body.should include(@my_tip.to_json)
+        end
+        
         it 'loads my tip' do
           get :show, id:@my_tip.id
           assigns(:tip).id.should == @my_tip.id

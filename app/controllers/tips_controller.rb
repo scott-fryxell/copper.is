@@ -14,7 +14,11 @@ class TipsController < ApplicationController
           t.order_id = nil
           t.check_id = nil
         end
+      end
     end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @tips }
     end
   end
 
@@ -23,6 +27,10 @@ class TipsController < ApplicationController
     unless current_user
       @tip.order_id = nil
       @tip.check_id = nil
+    end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @tip }
     end
   end
 

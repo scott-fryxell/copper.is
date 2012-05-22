@@ -76,6 +76,11 @@ describe IdentitiesController do
 
     describe 'index' do
       describe '/identities' do
+        it 'responds to .json' do
+          get :index, format: :json
+          response.should be_success
+        end
+        
         it 'assigns all identities for current user' do
           get :index
           assigns(:identities).size.should == 1
@@ -100,13 +105,19 @@ describe IdentitiesController do
     end
 
     describe 'show' do
-      describe '/identities/:id' do
-        it 'assigns the identity', :broken do
+      describe '/identities/:id', :broken do
+        it 'responds to .json' do
+          get :show, id:@my_identity.id, format: :json 
+          response.should be_success
+          response.body.should include(@my_identity.to_json)
+        end
+        
+        it 'assigns the identity' do
           get :show, id:@my_identity.id
           assigns(:identity).id.should == @my_identity.id
         end
 
-        it '401 for another user\'s identity',:broken do
+        it '401 for another user\'s identity' do
           get :show, id:@her_identity.id
           response.status.should == 401
         end

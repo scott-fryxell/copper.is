@@ -31,6 +31,8 @@ Spork.prefork do
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
+    
+    config.profile_examples = true
 
     config.use_transactional_fixtures = false
     config.treat_symbols_as_metadata_keys_with_true_values = true
@@ -72,8 +74,8 @@ Spork.each_run do
     end
 
     config.before(:all) do
-      @stranger = FactoryGirl.create(:identities_vimeo)
-      @wanted = FactoryGirl.create(:identities_soundcloud,identity_state:'wanted')
+      @stranger = FactoryGirl.create(:identities_phony)
+      @wanted = FactoryGirl.create(:identities_phony,identity_state:'wanted')
 
       @page1 = FactoryGirl.create(:page,author_state:'adopted')
       @page2 = FactoryGirl.create(:page,author_state:'adopted')
