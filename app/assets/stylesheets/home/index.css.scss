@@ -56,7 +56,7 @@
 
   #how {
     position:relative;
-    padding-top:4em;
+    padding-top:5em;
     padding-bottom:3em;
     z-index:-1;
     @include background-image(image-url('home/how_background_dark.png'));
@@ -75,6 +75,7 @@
   #how > p {font-size:.90em}
 
   #button {
+    position:relative;
     padding-top:3em;
     padding-bottom:4em;
   }
@@ -82,7 +83,7 @@
     display:inline-block;
     width:grid-width(7);
   }
-  #button > img {
+  #button > img.logo {
     @include box-shadow(inset -1.5em -1.5em 2.5em -1.5em rgba(0, 0, 0, .5));
     display:inline-block;
     vertical-align:bottom;
@@ -93,10 +94,23 @@
     border:.2em solid #888;
     background-color:#ffffff;
     border-radius:6em;
-    margin-left:grid-width(2);
+    margin-left:grid-width(3);
+  }
+  #button > img.top, img.bottom {
+    position:absolute;
+    left:grid-width(12.5);
+    width:3em;
+    height:1.25em;
+  }
+  #button > img.top {
+    top:0;
+  }
+  #button > img.bottom {
+    bottom:0;
+    @include transform(rotate(180deg));
   }
   #button > a {
-    width:grid-width(7);
+    width:grid-width(6);
     height:5em;
     vertical-align:bottom;
     display:inline-block;
@@ -115,6 +129,7 @@
     display:block;
     @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
   }
+
   #more {
     padding-top:4em;
     padding-bottom:5em;
