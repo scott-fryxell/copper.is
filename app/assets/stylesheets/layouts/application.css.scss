@@ -1,14 +1,11 @@
-/*
-*= require_self
-*/
-$gw-column: 2em;          // Column Width
-$gw-gutter: .5em;           // Gutter Width
+$gw-column: 2em; // Column Width
+$gw-gutter: .5em; // Gutter Width
 
 @import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
-@import "/assets/normalize.css";
+@import "normalize";
 @import "bourbon";
-@import "shared/sign_in.css.scss";
-@import "home/index.css.scss";
+@import "shared/sign_in";
+@import "home/index";
 
 * {
 //  outline: 1px solid silver;
@@ -91,7 +88,7 @@ body > section, body > footer {
 }
 body > footer {
   padding-top:2em;
-  height:13em;
+  height:9em;
   background-color:#3a3533;
 }
 body > footer > nav {
@@ -103,7 +100,7 @@ body > footer > nav > a {
   text-decoration:none;
   color:#a7a39b;
 }
- #message {
+#message {
   width:16em;
   min-height:3em;
   margin-left:22em;
