@@ -1,8 +1,8 @@
 /*
 *= require_self
 */
-$gw-column: 30px;          // Column Width
-$gw-gutter: 10px;           // Gutter Width
+$gw-column: 2em;          // Column Width
+$gw-gutter: .5em;           // Gutter Width
 
 @import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
 @import "/assets/normalize.css";
@@ -32,7 +32,6 @@ h2 {
 p, a {
   font-family: 'Cantarell', sans-serif;
   font-weight:normal;
-  font-size:.8em;
 }
 p {
   color:#666666;
@@ -47,17 +46,12 @@ body {
 
 }
 body > header {
-  background-color: transparent;
+  background-color: #231F20;
   width:63.5em;
   position:absolute;
   height:3em;
   top:0;
   z-index:300;
-  @include transition(background-color 1.4s);
-  &:hover {
-    background-color: #231F20;
-    @include transition(background-color .7s $ease-in-sine);
-  }
 }
 body > header > nav {
   margin-top:1em;
