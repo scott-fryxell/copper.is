@@ -69,8 +69,8 @@ describe Page do
     end
     
     describe "transitions from :orphaned to :adopted if from a spiderable page" do
-      it 'spiders a spiderable page', :broken do
-        
+      it 'spiders a spiderable page' do
+        @page.url = 'http://prettypennyrecords.com/woodsboro/pocket_comb'
       end
     end
   end

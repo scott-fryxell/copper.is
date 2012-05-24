@@ -25,6 +25,7 @@ Spork.prefork do
   Capybara.app_host = "http://127.0.0.1:8080"
 
   include Authorization::TestHelper
+  
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
     config.fail_fast = true
@@ -57,6 +58,7 @@ Spork.each_run do
         def self.create(*args)
           OpenStruct.new(id:'1')
         end
+        
         def self.retrieve(*args)
           OpenStruct.new(card:nil,save:nil)
         end
