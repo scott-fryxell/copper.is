@@ -98,12 +98,6 @@ describe IdentitiesController do
       end
     end
 
-    describe 'create' do
-      describe 'POST /identities' do
-        it 'should be tested'
-      end
-    end
-
     describe 'show' do
       describe '/identities/:id', :broken do
         it 'responds to .json' do

@@ -7,6 +7,7 @@ class CreatePages < ActiveRecord::Migration
       t.references :identity
       t.timestamps
     end
+    add_index :pages, :url
   end
 
   def self.down

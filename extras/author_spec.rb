@@ -13,7 +13,7 @@ describe "An Author" do
   #   User.last.destroy
   # end
   
-  it "should have a settings section" do
+  it "should have a settings section",:broken do
     click_link 'author'
     page.should have_content 'Author Settings'
     page.should have_content 'Identities'
@@ -21,7 +21,7 @@ describe "An Author" do
     page.should have_content 'Badge'
   end
 
-  it "should have a link to the badge page" do
+  it "should have a link to the badge page", :broken do
     click_link 'author'
     within("section#badge > a") do
       page.should have_content 'badge'

@@ -8,6 +8,7 @@ class CreateTips < ActiveRecord::Migration
       t.string  :paid_state 
       t.timestamps
     end
+    add_index :tips, :order_id
   end
 
   def self.down

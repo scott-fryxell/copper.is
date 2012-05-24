@@ -2,7 +2,7 @@
  <tr>
    <td>
      <a href='<%= tip.page.url %>' target='new'>
-      <%= CGI::unescape(tip.page.title) %>
+      <%= CGI::unescape(tip.page.title || '') %>
      </a>
    </td>
    <td>
