@@ -30,6 +30,7 @@ gem 'youtube_it'
 gem 'rails_admin'
 gem 'paper_trail', '~> 2'
 gem 'bourbon'
+
 group :production do
   gem "pg"
 end
@@ -71,4 +72,6 @@ end
 
 group :development do
   gem 'guard-rake'
+  gem 'redcarpet'
+  gem 'yard'
 end

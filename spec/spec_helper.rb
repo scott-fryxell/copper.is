@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'spork'
-require 'resque_spec/scheduler'
 require 'ostruct'
 
 Spork.prefork do
@@ -19,49 +18,49 @@ Spork.prefork do
   require 'rack/test'
   require 'omniauth'
   require 'omniauth/test'
-
+  require 'support'
+  
   Capybara.default_driver = :webkit
   Capybara.server_port = 8080
   Capybara.app_host = "http://127.0.0.1:8080"
 
   include Authorization::TestHelper
+  
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
     config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
-    
     config.profile_examples = true
-
     config.use_transactional_fixtures = false
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
-
-    REDIS_PID = "#{Rails.root}/tmp/pids/redis-test.pid"
-    REDIS_CACHE_PATH = "#{Rails.root}/tmp/cache/"
+    # REDIS_PID = "#{Rails.root}/tmp/pids/redis-test.pid"
+    # REDIS_CACHE_PATH = "#{Rails.root}/tmp/cache/"
   end
 end
 
 Spork.each_run do
   FactoryGirl.reload
 
-  Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb' ))].each do |f|
-    load f
-  end
-
   RSpec.configure do |config|
     config.before(:suite) do
       DatabaseCleaner.start
       DatabaseCleaner.clean
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
+      
       ResqueSpec.reset!
       ResqueSpec.inline = true
 
       class Stripe::Customer
         def self.create(*args)
           OpenStruct.new(id:'1')
+        end
+        
+        def self.retrieve(*args)
+          OpenStruct.new(card:nil,save:nil)
         end
       end
 
@@ -70,7 +69,6 @@ Spork.each_run do
           OpenStruct.new(id:'1')
         end
       end
-
     end
 
     config.before(:all) do

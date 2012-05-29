@@ -6,6 +6,7 @@ class CreateCheck < ActiveRecord::Migration
       t.integer :count, :default => 0
       t.timestamps
     end
+    add_index :checks, :user_id
   end
 
   def self.down

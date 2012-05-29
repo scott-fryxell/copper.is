@@ -18,5 +18,7 @@ class CreateIdentities < ActiveRecord::Migration
       t.references :user
       t.timestamps
     end
+    add_index :identities, [:provider, :uid]
+    add_index :identities, [:provider, :username]
   end
 end
