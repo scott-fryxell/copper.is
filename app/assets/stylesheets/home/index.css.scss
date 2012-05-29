@@ -1,6 +1,6 @@
 #home_index {
   p {
-    font-size:.8em;
+//    font-size:.8em;
   }
   & > header {
     background-color: transparent;
@@ -17,7 +17,6 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    @include box-shadow(0 1.5em 2.5em -1em rgba(0, 0, 0, .5));
     height: 26.8em;
   }
   #banner > header {
@@ -61,25 +60,104 @@
     height:1em;
   }
 
-  #how {
+  #connecting {
+    margin-bottom: .5em;
+  }
+  #connecting {
     position:relative;
-    padding-top:5em;
-    padding-bottom:3em;
+    padding-top:4em;
+    padding-bottom:4em;
     z-index:-1;
-    @include background-image(image-url('home/how_background_dark.png'));
-    background-size: cover;
+    background-color: rgba(182, 195, 181, .3);
   }
-  #how > img {
-    width: grid-width(13);
+  #connecting > img {
+    width: grid-width(12);
     display:inline-block;
   }
-  #how > aside{
+  #connecting > aside {
     vertical-align:top;
-    width: grid-width(8);
-    margin-left:35px;
+    width: grid-width(9);
+    margin-left: grid-width(13);
     display:inline-block;
   }
-  #how > p {font-size:.90em}
+  #connecting > aside > p {font-size:.85em;}
+
+  #how {
+    background-color: rgba(182, 195, 181, .3);
+    padding-top:2em;
+  }
+  #how > header {
+    margin-bottom:2em;
+  }
+  #how > header > h1,
+  #how > header > p,
+  #how > header > button {
+    margin:0;
+    display:inline-block;
+    vertical-align:top;
+    margin-right: grid-width(1);
+  }
+  #how > header > h1 {
+      line-height:1em;
+    width: 6em;
+    margin-right: 1em;
+  }
+  #how > header > p {
+    font-size:.85em;
+    width: grid-width(9);
+  }
+  #how > header > button {
+    font-family: 'Doppio One', sans-serif;
+    width: grid-width(4);
+    text-align:center;
+    padding:.5em 0;
+    border-radius:.25em;
+    background-color:#cc9933;
+    border:none;
+    outline:none;
+    @include background-image(linear-gradient(#cc9933 40%, shade(#cc9933, 25%) 100%, transparent 50%));
+    color:white;
+  }
+
+
+  #how > nav > a:first-child  {
+    background-color:darken(rgba(182, 195, 181, .3), 1%);
+  }
+  #how > nav {
+
+  }
+  #how > nav > a {
+    border-radius:.5em .25em 0 0 ;
+    padding:.25em;
+    padding-top:.5em;
+    text-align:center;
+    vertical-align:middle;
+    display:inline-block;
+    width:grid-width(3);
+    height:4em;
+    line-height:2.5em;
+  }
+  #how > nav > a > img {
+    position:relative;
+    z-index:200;
+    opacity:.7;
+    width:5em;
+    display:inline-block;
+    vertical-align:bottom;
+  }
+  #samples {
+    padding-bottom:2em;
+    background-color:darken(rgba(182, 195, 181, .3), 15%);
+  }
+  #samples > figure {
+    padding-top:2em;
+  }
+  #samples > figure > img {
+    width:grid-width(22);
+    display:block;
+    @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
+  }
+
 
   #button {
     position:relative;
@@ -126,16 +204,6 @@
     margin-bottom:2em;
   }
 
-  #samples {
-    padding-top:2em;
-    background-color: rgba(182, 195, 181, .3);
-    min-height:20em;
-  }
-  #samples > img {
-    width:grid-width(22);
-    display:block;
-    @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
-  }
 
   #more {
     padding-top:4em;

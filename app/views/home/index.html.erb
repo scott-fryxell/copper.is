@@ -7,18 +7,42 @@
     <%= image_tag "home/play.svg" %>
   </a>
 </section>
-<section id="how">
-  <%= image_tag "home/how_it_works.png" %>
+
+<section id="connecting">
   <aside>
-    <h1>How It Works</h1>
+    <h1>Connecting Directly</h1>
     <p>
       Many of us see content on the web everyday, and are inspired by it.
       Copper allows you to tip the creator of that content directly.
     </p>
   </aside>
 </section>
+<section id="how">
+  <header>
+    <h1>How It Works</h1>
+    <p>
+      Many of us see content on the web everyday, and are inspired by it.
+      Copper allows you to tip the creator of that content directly.
+    </p>
+    <button>Get The Button</button>
+  </header>
+  <nav>
+    <a href="#tumblr"><%= image_tag "providers/tumblr.png" %></a>
+    <a href="#vimeo"><%= image_tag "providers/mask/vimeo.png" %></a>
+    <a href="#soundcloud"><%= image_tag "providers/mask/soundcloud.png" %></a>
+    <a href="#github"><%= image_tag "providers/mask/github.png" %></a>
+    <a href="#youtube"><%= image_tag "providers/mask/youtube.png" %></a>
+    <a href="#xkcd"><%= image_tag "providers/mask/xkcd.png" %></a>
+    <a href="#more">...and more!</a>
+  </nav>
+</section>
+<section id="samples">
+  <figure>
+    <%= image_tag "screen_shots/missionmission.tumblr.com.png" %>
+  </figure>
+
+</section>
 <section id="button">
-  <%= image_tag "home/triangle_down.svg", :class=>"top" %>
   <aside>
     <h1>The Tip Button</h1>
     <p>
@@ -28,10 +52,6 @@
   </aside>
   <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
   <a href="#"></a>
-  <%= image_tag "home/triangle_down.svg", :class=>"bottom" %>
-</section>
-<section id="samples">
-  <%= image_tag "screen_shots/missionmission.tumblr.com.png" %>
 </section>
 <section id="more">
   <h1>More About Tipping</h1>
