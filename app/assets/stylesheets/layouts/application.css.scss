@@ -6,10 +6,8 @@ $gw-gutter: .5em; // Gutter Width
 @import "bourbon";
 @import "shared/sign_in";
 @import "home/index";
+@import "users/edit";
 
-#samples > header * {
-//  outline: 1px solid silver;
-}
 html {
   min-width: 60em;
   background-color: #f6f5f0;
@@ -18,22 +16,6 @@ html {
   font-size: 16px;
   line-height:1.25em;
 }
-h1, h2 {
-  font-family: 'Bree Serif', serif;
-  font-weight:normal;
-  color:#666666;
-}
-h2 {
-  font-size:1.34em;
-}
-p, a {
-  font-family: 'Cantarell', sans-serif;
-  font-weight:normal;
-}
-p {
-  color:#666666;
-  opacity:.85;
-}
 body {
   width:grid-width(26);
   margin: 0 auto 0 auto;
@@ -41,15 +23,33 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  input, option {
+    font-family: 'Doppio One', sans-serif;
+  }
+  h1, h2 {
+    font-family: 'Bree Serif', serif;
+    font-weight:normal;
+    color:#666666;
+  }
+  h2 {
+    font-size:1.34em;
+  }
+  p, a, figcaption, dd, dt {
+    font-family: 'Cantarell', sans-serif;
+    font-weight:normal;
+  }
+  p {
+    color:#666666;
+    opacity:.85;
+  }
+
 }
 
 body > header {
+  position:relative;
   background-color: #231F20;
   width:grid-width(26);
-  position:absolute;
   height:3.25em;
-  top:0;
-  z-index:300;
 }
 body > header > a > img {
   width: 5em;
@@ -79,7 +79,6 @@ body > header > nav > a {
   text-transform:uppercase;
   margin-right:2em;
 }
-
 body > section, body > footer {
   padding-left:75px;
   padding-right:75px;
@@ -126,9 +125,11 @@ body > footer > nav > a {
   }
 
 }
+
 #message {
   width:16em;
   min-height:3em;
   margin-left:22em;
   display:inline-block;
+  color:yellow;
 }

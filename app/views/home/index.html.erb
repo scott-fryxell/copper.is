@@ -7,7 +7,6 @@
     <%= image_tag "home/play.svg" %>
   </a>
 </section>
-
 <section id="connecting">
   <aside>
     <h1>Connecting Directly</h1>
@@ -40,68 +39,22 @@
   <figure>
     <%= image_tag "screen_shots/missionmission.tumblr.com.png" %>
   </figure>
-
 </section>
 <section id="button">
-  <aside>
-    <h1>The Tip Button</h1>
+  <header>
+    <h1>Connect and Get the Button</h1>
     <p>
-      With the Tip Button, torbi leo risus, porta ac consecteturm
+      Now you can torbi leo risus, porta ac consecteturm
       at eros torbi leo risus, porta ac consecteturm at.
     </p>
-  </aside>
-  <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
-  <a href="#"></a>
-</section>
-<section id="more">
-  <h1>More About Tipping</h1>
-  <article>
-    <h2>It’s Not a Charity</h2>
-    <p>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-      eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.
-    </p>
-  </article>
-  <article>
-    <h2>It’s Safe &amp; Secure</h2>
-    <p>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-      eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.
-    </p>
-  </article>
-  <article>
-    <h2>It Benefits Everyone</h2>
-    <p>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-      eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.
-    </p>
-  </article>
-  <article>
-    <h2>You’re Connecting</h2>
-    <p>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-      eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.
-    </p>
-  </article>
-  <article>
-    <h2>You’re Collecting</h2>
-    <p>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-      eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.
-    </p>
-  </article>
-  <article>
-    <h2>You’re Changing the System</h2>
-    <p>
-      Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-      eget lacinia odio sem nec elit. Vivamus sagittis lacus vel augue
-      laoreet rutrum faucibus dolor auctor.
-    </p>
-  </article>
-
+  </header>
+  <figure>
+    <%-unless current_user-%>
+    <a id="facebook_sign_in" href="/auth/facebook">
+      <%= image_tag "providers/connect_with_facebook.png", :class => 'fb' %>
+    </a>
+    <%-end-%>
+    <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
+    <figcaption><a href="#">Learn More</a> about tipping</figcaption>
+  </figure>
 </section>

@@ -27,20 +27,22 @@
     width:1.25em;
   }
 }
+//#signed_in * {outline: 1px solid silver;}
 #signed_in {
   float:right;
   display:inline-block;
   margin-top:.5em;
-  margin-right:.5em;
+  margin-right:1em;
   text-align:right;
-  img {
-    display:block;
+  & > img {
+    border:0.18em solid #666;
     display:inline-block;
+    width:2em;
   }
   nav {
-    vertical-align:top;
-    margin-right:1em;
+    height:2.5em;
     display:inline-block;
+    vertical-align:top;
     text-align:right;
   }
   nav > h1 {
@@ -50,10 +52,17 @@
     font-size:.85em;
   }
   nav > a {
+    padding-top:.5em;
+    line-height:2em;
+    vertical-align:middle;
+    display:inline-block;
+    margin-right:1.5em;
     font-family: 'Cantarell', sans-serif;
     font-size:.75em;
     line-height:1.25em;
-    display:block;
     color:#d7d2cf;
+  }
+  nav > a > img {
+    vertical-align:middle;
   }
 }

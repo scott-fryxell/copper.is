@@ -1,5 +1,8 @@
 #home_index {
   & > header {
+    position:absolute;
+    top:0;
+    z-index:300;
     background-color: transparent;
     @include transition(background-color 1.4s);
     &:hover {
@@ -18,9 +21,9 @@
   }
   #banner > header {
     display:inline-block;
-    margin-top:8em;
-    margin-right:grid-width(4);
-    width:grid-width(11);
+    margin-top:7em;
+    margin-right:grid-width(1);
+    width:grid-width(10);
   }
   #banner > header > h1 {
     margin:0;
@@ -37,11 +40,13 @@
     line-height:3.5em;
   }
   #banner > a#play_video {
+    margin-top:3em;
     text-decoration:none;
     cursor:pointer;
+    vertical-align:top;
     display:inline-block;
     opacity:.5;
-    font-size:4em;
+    font-size:3em;
     color:#000000;
     @include transition(opacity 1s);
     &:hover {
@@ -74,7 +79,7 @@
   #connecting > aside {
     vertical-align:top;
     width: grid-width(9);
-    margin-left: grid-width(13);
+    margin-left: grid-width(13.5);
     display:inline-block;
   }
   #connecting > aside > p {font-size:.85em;}
@@ -142,7 +147,7 @@
   }
 
   #samples {
-    padding-bottom:2em;
+    padding-bottom:3em;
     background-color:darken(rgba(182, 195, 181, .3), 15%);
   }
   #samples > figure {
@@ -155,73 +160,67 @@
   }
 
   #button {
-    position:relative;
+    vertical-align:top;
     padding-top:3em;
-    padding-bottom:4em;
+    padding-bottom:6em;
   }
-  #button > aside {
+  #button > header {
     display:inline-block;
-    width:grid-width(7);
-  }
-  #button > img.logo {
-    @include box-shadow(inset -1.5em -1.5em 2.5em -1.5em rgba(0, 0, 0, .5));
-    display:inline-block;
-    vertical-align:bottom;
-    line-height:5em;
-    padding:1em;
-    width:5em;
-    height:5em;
-    border:.2em solid #888;
-    background-color:#ffffff;
-    border-radius:6em;
-    margin-left:grid-width(3);
-  }
-  #button > img.top, img.bottom {
-    position:absolute;
-    left:grid-width(12.5);
-    width:3em;
-    height:1.25em;
-  }
-  #button > img.top {
-    top:0;
-  }
-  #button > img.bottom {
-    bottom:0;
-    @include transform(rotate(180deg));
-  }
-  #button > a {
-    width:grid-width(6);
-    height:5em;
-    vertical-align:bottom;
-    display:inline-block;
-    background-color: #231F20;
-    margin-left:grid-width(3);
-    margin-bottom:2em;
-  }
+    width: grid-width(6);
 
-  #more {
-    padding-top:4em;
-    padding-bottom:5em;
-    background-color: rgba(182, 195, 181, .3);
   }
-  #more > h1 {
-    font-size:2.2em;
-    margin-bottom:1.5em;
+  #button > header > h1 {
+    line-height:1.25em;
+    font-size: 2.1em;
+    margin:0;
+  }
+  #button > header > p {
+    font-size:.85em;
+  }
+  #button > figure {
+    display: inline-block;
+    vertical-align:top;
+    width: grid-width(12);
+    height: grid-width(4);
+    position:relative;
+    margin-left: grid-width(2);
+  }
+  #button > figure {
+    vertical-align:top;
+  }
+  #button > figure > a {
+    cursor:pointer;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-9em;
+    margin-top:-2em;
+    z-index:4;
+  }
+  #button > figure > img.logo {
+    z-index:3;
+    margin:1em auto 1em auto;
+    display:block;
+    opacity:.5;
+    @include box-shadow(inset -1.5em -1.5em 2.5em -1.5em rgba(0, 0, 0, .5));
+    vertical-align:middle;
+    border-radius:5em;
+    width:3em;
+    height:3em;
+    background-color:white;
+    padding:1em;
+    border: .2em solid #666;
+  }
+  #button > figure > figcaption {
+    font-size:.75em;
+    color:#CCC;
     text-align:center;
-    opacity:.6;
-    text-shadow: 1px 1px 1px white;
-    &:before, &:after{
-      padding:1.5em;
-      content:".................................................................................";
-      font-size:1px;
-      vertical-align:top;
-    }
+    display:block;
+    vertical-align:bottom;
+    margin:0;
   }
-  #more > article {
-    display:inline-block;
-    margin-right: 7px;
-    margin-bottom:2em;
-    width:grid-width(7);
+  #button > figure > figcaption > a {
+    color:#999;
   }
 
 }

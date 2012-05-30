@@ -1,6 +1,5 @@
 //= require shared/current_user
 //= require shared/tip_rate
-
 $(document).on("get:current_user", function () {
   $('form#fan_email').submit(function (event) {
     event.preventDefault()
@@ -23,7 +22,6 @@ $(document).on("get:current_user", function () {
     });
   });
 });
-
 $(document).on("get:current_user", function () {
   $('form#fan_name').submit(function (event) {
     event.preventDefault()
