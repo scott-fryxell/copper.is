@@ -27,7 +27,7 @@
     width:1.25em;
   }
 }
-//#signed_in * {outline: 1px solid silver;}
+
 #signed_in {
   float:right;
   display:inline-block;
@@ -52,6 +52,7 @@
     font-size:.85em;
   }
   nav > a {
+    opacity:.5;
     padding-top:.5em;
     line-height:2em;
     vertical-align:middle;
@@ -63,6 +64,8 @@
     color:#d7d2cf;
   }
   nav > a > img {
+    height:1.5em;
+    opacity:.5;
     vertical-align:middle;
   }
 }

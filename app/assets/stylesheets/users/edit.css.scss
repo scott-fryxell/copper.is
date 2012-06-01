@@ -1,5 +1,15 @@
 //#users_edit * {outline: 1px solid silver;}
 #users_edit {
+  & > nav {
+    margin-bottom:3em;
+    text-align:center;
+  }
+  & > nav >  a {
+
+    text-decoration:none;
+    color:#666;
+    font-family: 'Doppio One', sans-serif;
+  }
 
   label {
     display:block;
@@ -15,6 +25,7 @@
     display:inline-block;
     width: grid-width(4);
     margin-right:grid-width(1);
+
   }
   section > header > h2 {
     margin-bottom:.5em;
@@ -31,6 +42,7 @@
     display:inline-block;
   }
   section > div > h4 {
+    font-family: 'Cantarell', sans-serif;
     margin:0;
     margin-bottom:0.5em;
     font-size:0.85em;
@@ -40,8 +52,10 @@
     font-family: 'Doppio One', sans-serif;
     color:#333333;
     font-size: 1.1em;
+    opacity:.8;
     margin:0;
   }
+
   #banner {
     background-color: transparent;
   }
@@ -52,7 +66,20 @@
     width:grid-width(11);
     display: inline-block;
   }
+  #banner > div > h1 {
+    opacity:0.85;
+  }
+  #banner > div > p {
+    font-size: 0.85em;
+    opacity:0.65;
+  }
+  #email > div > p{
+
+  }
   #payment {
     margin-bottom:3em;
+  }
+  #payment > form {
+    display:inline-block;
   }
 }

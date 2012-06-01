@@ -11,13 +11,14 @@
   </head>
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>">
     <header>
-      <a href="/"><%= image_tag "icons/logo.svg", :title => "logo" %></a>
+      <a href="/">
+        <%= image_tag "logo.svg", :title => "logo" %>
+      </a>
       <nav>
         <a href="/how">how it works</a>
         <a href="/button">get the button</a>
         <a href="/about">about us</a>
         <a href="http://blog.copper.is">our blog</a>
-        <a href="/contact">contact us</a>
       </nav>
       <%= render :partial => 'shared/signin' %>
       <%= render :partial => 'shared/flash',:object => flash %>

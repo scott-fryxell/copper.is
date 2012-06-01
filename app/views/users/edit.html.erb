@@ -1,69 +1,114 @@
 <%-content_for :head do-%>
   <title><%=current_user.name%> - Copper</title>
 <%-end-%>
-  <section id="banner">
-    <header>
-      <%= image_tag current_user.identities.first.image %>
-    </header>
+<section id="banner">
+  <header>
+    <%= image_tag current_user.identities.first.image %>
+  </header>
+  <div>
+    <h1>Your Settings</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+    </p>
+  </div>
+</section>
+
+<section id="email">
+  <header>
+    <h2>Contact Info</h2>
+    <a href="#">Change</a>
+  </header>
     <div>
-      <h1>Your Settings</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-      </p>
+      <h4>Email Address</h4>
+      <p><%=current_user.email%></p>
     </div>
-  </section>
+  <form id="fan_email" method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
+    <input name="authenticity_token" type="hidden">
+    <input type="input" id="user_email" name="user[email]" value="<%=current_user.email%>">
+    <input type="submit" value="Save"/>
+  </form>
+</section>
 
-  <section id="email">
-    <header>
-      <h2>Contact Info</h2>
-      <a href="#">Change</a>
-    </header>
-      <div>
-        <h4>Email Address</h4>
-        <p><%=current_user.email%></p>
-      </div>
-    <form id="fan_email" method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
-      <input name="authenticity_token" type="hidden">
-      <input type="input" id="user_email" name="user[email]" value="<%=current_user.email%>">
-      <input type="submit" value="Save"/>
-    </form>
-  </section>
+<section id="rate">
+  <header>
+    <h2>Default Tip</h2>
+    <a href="#">Change</a>
+  </header>
+  <div>
+    <p>
+      $<%= cents_to_dollars(current_user.tip_preference_in_cents) %>
+    </p>
+  </div>
+  <form method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
+    <input name="authenticity_token" type="hidden">
+    <select name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
+      <option value="5">$0.05</option>
+      <option value="10">$0.10</option>
+      <option value="25">$0.25</option>
+      <option value="50">$0.50</option>
+      <option value="75">$0.75</option>
+      <option value="100">$1.00</option>
+      <option value="200">$2.00</option>
+      <option value="300">$3.00</option>
+      <option value="500">$5.00</option>
+      <option value="1000">$10.00</option>
+      <option value="2000">$20.00</option>
+    </select>
+    <input type="submit" value="Save"/>
+  </form>
+</section>
 
-  <section id="rate">
-    <header>
-      <h2>Default Tip</h2>
-      <a href="#">Change</a>
-    </header>
-    <form method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
-      <input name="authenticity_token" type="hidden">
-      <select name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
-        <option value="5">$0.05</option>
-        <option value="10">$0.10</option>
-        <option value="25">$0.25</option>
-        <option value="50">$0.50</option>
-        <option value="75">$0.75</option>
-        <option value="100">$1.00</option>
-        <option value="200">$2.00</option>
-        <option value="300">$3.00</option>
-        <option value="500">$5.00</option>
-        <option value="1000">$10.00</option>
-        <option value="2000">$20.00</option>
+<section id="payment">
+  <header>
+    <h2>Payment Info</h2>
+    <a href="#">Change</a>
+  </header>
+  <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+  <script type="text/javascript" charset="utf-8">
+    Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
+  </script>
+  <form method="post" action="<%=user_path(current_user)%>">
+    <fieldset>
+      <input type="text" autocomplete="off" id="number" placeholder="Card Number" required />
+      <input type="text" autocomplete="off" id="cvc" placeholder="CVC"  required />
+    </fieldset>
+    <fieldset>
+      <select id="month">
+        <option value="1">January</option>
+        <option value="2">February</option>
+        <option value="3">March</option>
+        <option value="4">April</option>
+        <option value="5">May</option>
+        <option value="6">June</option>
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
       </select>
-      <input type="submit" value="Save"/>
-    </form>
-  </section>
+      <select id="year">
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+      </select>
+    </fieldset>
+    <fieldset class="pay">
+      <input type="checkbox"  name="terms" id="site_terms" value="true" <%= "checked" if current_user.accept_terms? %> />
+      <label for="site_terms">I accept the <a href="/terms" target="window">terms</a></label>
+    </fieldset>
+    <input type="submit" value="Update" />
+  </form>
+</section>
 
-  <section id="payment">
-    <header>
-      <h2>Payment Info</h2>
-      <a href="#">Change</a>
-    </header>
-    <form action="" method="get" accept-charset="utf-8">
-      <input type="submit" value="Continue &rarr;"/>
-    </form>
-  </section>
-
-  <nav>
-    <a href="#">return to profile </a>
-  </nav>
+<nav>
+  <a href="#">return to profile</a>
+</nav>
