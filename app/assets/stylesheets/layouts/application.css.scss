@@ -4,9 +4,12 @@ $gw-gutter: .5em; // Gutter Width
 @import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
 @import "normalize";
 @import "bourbon";
+@import "shared/mixins";
+@import "shared/forms";
 @import "shared/sign_in";
 @import "home/index";
 @import "users/edit";
+
 
 html {
   min-width: 60em;
@@ -42,7 +45,6 @@ body {
     color:#666666;
     opacity:.85;
   }
-
 }
 
 body > header {
@@ -52,7 +54,6 @@ body > header {
   height:3.25em;
 }
 body > header > a > img {
-  width: 5em;
   opacity:.8;
 }
 body > header > a {
@@ -134,4 +135,8 @@ body > footer > nav > a {
   margin-left:22em;
   display:inline-block;
   color:yellow;
+}
+:focus {
+  outline-offset: -3px;
+  outline: 5px auto #999;
 }

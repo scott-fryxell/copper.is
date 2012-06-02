@@ -40,7 +40,7 @@
     line-height:3.5em;
   }
   #banner > a#play_video {
-    margin-top:3em;
+    margin-top:2.5em;
     text-decoration:none;
     cursor:pointer;
     vertical-align:top;
@@ -109,16 +109,8 @@
     width: grid-width(9);
   }
   #how > header > button {
-    font-family: 'Doppio One', sans-serif;
     width: grid-width(4);
-    text-align:center;
-    padding:.5em 0;
-    border-radius:.25em;
-    background-color:#cc9933;
-    border:none;
-    outline:none;
-    @include background-image(linear-gradient(#cc9933 40%, shade(#cc9933, 25%) 100%, transparent 50%));
-    color:white;
+    @include copper_button;
   }
   #how > nav > a:first-child  {
     background-color:darken(rgba(182, 195, 181, .3), 1%);

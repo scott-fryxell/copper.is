@@ -1,5 +1,6 @@
 <%-content_for :head do-%>
   <title><%=current_user.name%> - Copper</title>
+  <%= javascript_include_tag "users/edit" %>
 <%-end-%>
 <section id="banner">
   <header>
@@ -19,13 +20,13 @@
     <h2>Contact Info</h2>
     <a href="#">Change</a>
   </header>
-    <div>
-      <h4>Email Address</h4>
-      <p><%=current_user.email%></p>
-    </div>
-  <form id="fan_email" method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
+  <div item="user">
+    <h4>Email Address</h4>
+    <p><%=current_user.email%></p>
+  </div>
+  <form item="user" id="fan_email" method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
     <input name="authenticity_token" type="hidden">
-    <input type="input" id="user_email" name="user[email]" value="<%=current_user.email%>">
+    <input itemprop="email" type="email" id="user_email" name="user[email]" value="<%=current_user.email%>" required validate>
     <input type="submit" value="Save"/>
   </form>
 </section>
@@ -35,14 +36,12 @@
     <h2>Default Tip</h2>
     <a href="#">Change</a>
   </header>
-  <div>
-    <p>
-      $<%= cents_to_dollars(current_user.tip_preference_in_cents) %>
-    </p>
+  <div item="user">
+    <p itemprop="tip_preference_in_cents"><%=cents_to_dollars(current_user.tip_preference_in_cents)%></p>
   </div>
-  <form method="put" action="<%=user_url(current_user)%>" accept-charset="UTF-8">
+  <form item="user" method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
     <input name="authenticity_token" type="hidden">
-    <select name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
+    <select itemprop="tip_preference_in_cents" name="user[tip_preference_in_cents]" id="user_tip_preference_in_cents">
       <option value="5">$0.05</option>
       <option value="10">$0.10</option>
       <option value="25">$0.25</option>
@@ -59,16 +58,31 @@
   </form>
 </section>
 
-<section id="payment">
+<section id="card">
   <header>
     <h2>Payment Info</h2>
     <a href="#">Change</a>
   </header>
+  <div>
+    <section>
+      <h4>Type Of Card</h4>
+      <p>visa</p>
+    </section>
+    <section>
+      <h4>Card Number</h4>
+      <p>**** **** **** 4567</p>
+    </section>
+    <section>
+      <h4>Expiration</h4>
+      <p>02/2013</p>
+    </section>
+  </div>
   <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
   <script type="text/javascript" charset="utf-8">
     Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
   </script>
-  <form method="post" action="<%=user_path(current_user)%>">
+  <form user="user" method="post" action="<%=user_path(current_user)%>">
+    <input itemprop="stripe_customer_id" type="hidden" value="<%=current_user.stripe_customer_id%>">
     <fieldset>
       <input type="text" autocomplete="off" id="number" placeholder="Card Number" required />
       <input type="text" autocomplete="off" id="cvc" placeholder="CVC"  required />
@@ -105,10 +119,10 @@
       <input type="checkbox"  name="terms" id="site_terms" value="true" <%= "checked" if current_user.accept_terms? %> />
       <label for="site_terms">I accept the <a href="/terms" target="window">terms</a></label>
     </fieldset>
-    <input type="submit" value="Update" />
+    <input type="submit" value="Save" />
   </form>
 </section>
 
 <nav>
-  <a href="#">return to profile</a>
+  <%= link_to "return to profile", user_path(current_user)%>
 </nav>

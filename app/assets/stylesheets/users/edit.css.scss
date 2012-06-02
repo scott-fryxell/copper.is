@@ -1,61 +1,71 @@
 //#users_edit * {outline: 1px solid silver;}
 #users_edit {
+  a {
+    font-family: 'Doppio One', sans-serif;
+    color:#666;
+  }
   & > nav {
     margin-bottom:3em;
     text-align:center;
   }
-  & > nav >  a {
-
+  & > nav > a {
     text-decoration:none;
-    color:#666;
-    font-family: 'Doppio One', sans-serif;
-  }
 
-  label {
-    display:block;
+
   }
-  section {
+  & > nav > a:after{
+    content: " ";
+    width:.75em;
+    height:.75em;
+    margin-left:.35em;
+    display:inline-block;
+    opacity:.5;
+    @include transform(rotate(-90deg));
+    background: image-url('triangles/isosceles.svg') no-repeat 0% 0%;
+    background-size: .75em;
+  }
+  & > section {
     margin-bottom: 0.5em;
     padding-top:2em;
     padding-bottom:2em;
     background-color: rgba(231, 228, 223, .5);
   }
-  section > header {
+  & > section > header {
     vertical-align:top;
     display:inline-block;
     width: grid-width(4);
     margin-right:grid-width(1);
 
   }
-  section > header > h2 {
+  & > section > header > h2 {
     margin-bottom:.5em;
   }
-  section > header > a {
+  & > section > header > a {
     font-size:.75em;
     color: #999999;
   }
-  section > form {
+  & > section > form {
     display:none;
+    opacity:0;
     vertical-align:top;
   }
-  section > div {
+  & > section > div {
     display:inline-block;
   }
-  section > div > h4 {
+  & > section > div h4 {
     font-family: 'Cantarell', sans-serif;
     margin:0;
     margin-bottom:0.5em;
     font-size:0.85em;
     color:#666;
   }
-  section > div > p {
+  & > section > div p {
     font-family: 'Doppio One', sans-serif;
     color:#333333;
     font-size: 1.1em;
     opacity:.8;
     margin:0;
   }
-
   #banner {
     background-color: transparent;
   }
@@ -73,13 +83,34 @@
     font-size: 0.85em;
     opacity:0.65;
   }
-  #email > div > p{
+  #rate > div > p:before {
+    content: "$";
+  }
 
-  }
-  #payment {
+  #card {
+    height: grid-width(5);
     margin-bottom:3em;
+    #number {
+      width:grid-width(4);
+    }
+    #cvc {
+      width:grid-width(1);
+    }
   }
-  #payment > form {
-    display:inline-block;
+  #card > div {
+    width:40em;
+    @include column-count(3);
+    @include column-gap(2em);
+  }
+  #card > div > section {
+    margin:0;
+  }
+  #card > div > section > p {
+    margin:0
+  }
+  #card > form a {
+    color:#666;
+    font-weight:bold;
   }
 }
+
