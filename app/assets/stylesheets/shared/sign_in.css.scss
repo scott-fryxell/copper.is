@@ -36,6 +36,7 @@
     border:0.18em solid #666;
     display:inline-block;
     width:2em;
+    @include triangle_bottom(#666)
   }
   nav {
     height:2.5em;
@@ -50,7 +51,6 @@
     font-size:.85em;
   }
   nav > a {
-    opacity:.5;
     padding-top:.5em;
     line-height:2em;
     vertical-align:middle;
@@ -63,7 +63,12 @@
   }
   nav > a > img {
     height:1.5em;
-    opacity:.5;
+    opacity:0.3;
     vertical-align:middle;
+    @include transition(opacity 1s);
+    &:hover{
+      @include transition(opacity 1s);
+      opacity:0.9;
+    }
   }
 }

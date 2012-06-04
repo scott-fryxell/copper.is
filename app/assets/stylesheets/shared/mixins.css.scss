@@ -1,0 +1,43 @@
+$gw-column:2em;
+$gw-gutter:0.5em;
+$darkness:#231F20;
+$offset_color:rgba(182, 195, 181, .3);
+$button_color:#CC9933;
+
+@import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
+@import "normalize";
+@import "bourbon";
+
+@mixin copper_button {
+  font-family: 'Doppio One', sans-serif;
+  text-align:center;
+  padding:.5em 1em;
+  background-color:$button_color;
+  @include background-image(linear-gradient($button_color 40%, shade($button_color, 25%) 100%, transparent 50%));
+  color:white;
+  border-radius:.25em;
+  border:0.10em solid darken($button_color, 10%);
+  &:hover {
+    border-radius:.4em;
+    @include transition (border-radius 0.100s ease-in-out);
+  }
+}
+@mixin section {
+  border:0.10em solid darken($offset_color, 1%);
+  background-color: $offset_color;
+}
+@mixin triangle_bottom($color) {
+  position:relative;
+  &:after {
+    margin-left:-2em;
+    position:absolute;
+    bottom:-1.5em;
+    left:50%;
+    content:"";
+    width: 0;
+    height: 0;
+    border-left: 2em solid transparent;
+    border-right: 2em solid transparent;
+    border-top: 1.5em solid $color;
+  }
+}

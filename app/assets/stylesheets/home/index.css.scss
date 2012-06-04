@@ -48,10 +48,11 @@
     opacity:.5;
     font-size:3em;
     color:#000000;
-    @include transition(opacity 1s);
+    @include transition(all 1s);
     &:hover {
       opacity:.7;
-      @include transition(opacity 1s);
+      @include transition(all 1s);
+      @include transform(scale(1.05,1.05));
     }
   }
   #banner > a > img {
@@ -64,13 +65,11 @@
 
   #connecting {
     margin-bottom: .5em;
-  }
-  #connecting {
     position:relative;
     padding-top:4em;
     padding-bottom:4em;
     z-index:-1;
-    background-color: rgba(182, 195, 181, .3);
+    background-color: $offset_color;
   }
   #connecting > img {
     width: grid-width(12);
@@ -85,7 +84,7 @@
   #connecting > aside > p {font-size:.85em;}
 
   #how {
-    background-color: rgba(182, 195, 181, .3);
+    background-color: $offset_color;
     padding-top:2em;
   }
   #how > header {
@@ -112,22 +111,23 @@
     width: grid-width(4);
     @include copper_button;
   }
-  #how > nav > a:first-child  {
-    background-color:darken(rgba(182, 195, 181, .3), 1%);
+  #how > nav > a.selected  {
+    opacity:0.9;
+    background-color:darken($offset_color, 1%);
   }
-  #how > nav {
-
-  }
+  #how > nav {}
   #how > nav > a {
-    border-radius:.5em .25em 0 0 ;
-    padding:.25em;
-    padding-top:.5em;
-    text-align:center;
-    vertical-align:middle;
+    color:darken($offset_color, 30%);;
     display:inline-block;
     width:grid-width(3);
     height:4em;
+    padding:.25em;
+    padding-top:.5em;
     line-height:2.5em;
+    border-radius:.5em .5em 0 0 ;
+    vertical-align:middle;
+    text-align:center;
+    text-decoration:none;
   }
   #how > nav > a > img {
     position:relative;
@@ -140,45 +140,41 @@
 
   #samples {
     padding-bottom:3em;
-    background-color:darken(rgba(182, 195, 181, .3), 15%);
+    background-color:darken($offset_color, 15%);
+    @include triangle_bottom($offset_color)
   }
   #samples > figure {
     padding-top:2em;
   }
   #samples > figure > img {
     width:grid-width(22);
-    display:block;
+    display:inline-block;
+    overflow:hidden;
     @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
   }
 
   #button {
+    background-color:$offset_color;
     vertical-align:top;
     padding-top:3em;
     padding-bottom:6em;
   }
   #button > header {
     display:inline-block;
-    width: grid-width(6);
-
+    width: grid-width(5.5);
   }
   #button > header > h1 {
     line-height:1.25em;
-    font-size: 2.1em;
+    font-size: 2em;
     margin:0;
-  }
-  #button > header > p {
-    font-size:.85em;
   }
   #button > figure {
     display: inline-block;
     vertical-align:top;
-    width: grid-width(12);
     height: grid-width(4);
     position:relative;
-    margin-left: grid-width(2);
-  }
-  #button > figure {
-    vertical-align:top;
+    margin-left: grid-width(4);
+    margin-top: grid-width(1);
   }
   #button > figure > a {
     cursor:pointer;

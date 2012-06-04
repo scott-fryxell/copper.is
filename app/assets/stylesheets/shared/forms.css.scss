@@ -1,14 +1,3 @@
-@mixin copper_button {
-  font-family: 'Doppio One', sans-serif;
-  text-align:center;
-  padding:.5em 1em;
-  border-radius:.25em;
-  background-color:#CC9933;
-  @include background-image(linear-gradient(#cc9933 40%, shade(#CC9933, 25%) 100%, transparent 50%));
-  color:white;
-  border:0.10em solid shade(#CC9933, 15%);
-}
-
 input, textarea, select {
   -webkit-appearance: none;
   margin: 0 1em 0 0;
