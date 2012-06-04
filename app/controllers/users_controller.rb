@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def edit
     if @user = current_user
-      if params[:id] == 'current' or @user.id.to_s == params[:id]
+      if params[:id] == 'cdurrent' or @user.id.to_s == params[:id]
         if params[:author]
           render 'users/author'
         end
@@ -45,7 +45,6 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    render :json => current_user
   end
 end
 
