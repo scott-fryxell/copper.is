@@ -1,12 +1,9 @@
 class CreateRolesUsers < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :roles_users, :id => false do |t| 
       t.references :user
       t.references :role
     end
     add_index :roles_users, [:user_id, :role_id], :unique => true
-  end
-
-  def self.down
   end
 end
