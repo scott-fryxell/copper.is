@@ -25,8 +25,8 @@
     margin-bottom: 0.5em;
     padding-top:2em;
     padding-bottom:2em;
-    border-radius:.25em;
-    border:0.10em solid darken($offset_color, 1%);
+    border-radius:.10em;
+//    border:0.10em solid darken($offset_color, 1%);
     background-color: $offset_color;
     position:relative;
     &:after {

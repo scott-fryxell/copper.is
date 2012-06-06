@@ -9,7 +9,7 @@
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>">
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope()%>>
     <header>
       <a href="/">
         <%= image_tag "icons/logo.svg", :title => "logo" %>
