@@ -4,9 +4,10 @@ setup:
   commands:
   - bundle install --without development production
   - bundle exec rake db:migrate
+  - bundle exec rake db:seed
 test:
   commands:
-  - bundle exec rake
+  - spork & bundle exec rake
 deploy:
   heroku:
     staging:

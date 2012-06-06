@@ -530,7 +530,6 @@ RailsAdmin.config do |config|
   #     configure :email, :string
   #     configure :stripe_customer_id, :string
   #     configure :accept_terms, :boolean
-  #     configure :automatic_rebill, :boolean
   #     configure :created_at, :datetime
   #     configure :updated_at, :datetime   #   # Sections:
   #   list do; end
