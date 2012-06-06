@@ -16,7 +16,8 @@ Copper::Application.configure do
 
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=2592000"
-  
+  config.action_controller.asset_host = "d1qlg1mi5h09s2.cloudfront.net"
+
   config.hostadderess = "https://copper.is/"
 
   config.action_dispatch.rack_cache = {
