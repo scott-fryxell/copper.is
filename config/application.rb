@@ -64,7 +64,7 @@ module Copper
       resque_overview_password
     ].each do |env|
       # raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?
-      # config.send(env.to_s + '=', ENV[env.to_s.upcase])
+      config.send(env.to_s + '=', ENV[env.to_s.upcase])
     end
   end
 end
