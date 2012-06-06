@@ -13,3 +13,5 @@ Icon
 Icon
 
 db/test.sqlite3-journal
+
+config/database.yml
