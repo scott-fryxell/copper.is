@@ -1,4 +1,8 @@
-//= require shared/current_user
+$(document).ready(function () {
+  var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
+  rate = Math.round(100 * parseFloat(rate));
+  $('#rate > form > select > option[value=' + rate +']').attr('selected', true)
+});
 $(document).ready(function(){
   $("section > header > a").click(function(event){
     event.preventDefault();
@@ -22,7 +26,6 @@ $(document).ready(function(){
       div.animate({opacity:1}, 500)
     });
   });
-
 });
 
 // $(document).on("get:current_user", function () {
@@ -134,15 +137,5 @@ $(document).ready(function(){
 //       }
 //     );
 //     return false;
-//   });
-// });
-// $(document).on("get:current_user", function () {
-//   $('form#tip_rate > select > option[value=' + current_user.tip_preference_in_cents +']').attr('selected', true)
-//   $('form#tip_rate > select').change(function (event) {
-//     $.ajax({
-//       type: $('form#tip_rate').attr("method"),
-//       url: $('form#tip_rate').attr('action'),
-//       data: $('form#tip_rate').serialize(),
-//     });
 //   });
 // });
