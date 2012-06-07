@@ -1,2 +1,2 @@
 require 'resque/server'
-Resque.redis = ENV['REDISTOGO_URL'] if ENV['REDISTOGO_URL']
+Resque.redis = Copper::Application.config.redistogo_url
