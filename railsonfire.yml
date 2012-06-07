@@ -42,5 +42,4 @@ env:
 - STRIPE_SECRET=ka2cHE7JczJ0OfMgh3bty2pjvoQ8qltQ
 - CDN_URL=nothin
 - REDISTOGO_URL=redis://127.0.0.1:6379
-
 --trace
