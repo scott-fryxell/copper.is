@@ -92,11 +92,10 @@ ActiveRecord::Schema.define(:version => 9) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.integer  "tip_preference_in_cents", :default => 50,    :null => false
+    t.integer  "tip_preference_in_cents", :default => 25,    :null => false
     t.string   "email"
     t.string   "stripe_customer_id"
     t.boolean  "accept_terms",            :default => false
-    t.boolean  "automatic_rebill",        :default => false
     t.string   "line1"
     t.string   "line2"
     t.string   "postal_code"

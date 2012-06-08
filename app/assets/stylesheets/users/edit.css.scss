@@ -1,0 +1,131 @@
+#users_edit {
+  a {
+    font-family: 'Doppio One', sans-serif;
+    color:#666;
+  }
+  & > nav {
+    margin-bottom:3em;
+    text-align:center;
+  }
+  & > nav > a {
+    text-decoration:none;
+    &:after{
+      content: " ";
+      width:.75em;
+      height:.75em;
+      margin-left:.35em;
+      display:inline-block;
+      opacity:.5;
+      @include transform(rotate(-90deg));
+      background: image-url('triangles/isosceles.svg') no-repeat 0% 0%;
+      background-size: .75em;
+    }
+  }
+  & > section {
+    margin-bottom: 0.5em;
+    padding-top:2em;
+    padding-bottom:2em;
+    border-radius:.10em;
+//    border:0.10em solid darken($offset_color, 1%);
+    background-color: $offset_color;
+    position:relative;
+    &:after {
+      content:"";
+      position:absolute;
+      z-index:-1;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      opacity:0.9;
+    }
+
+  }
+  & > section > header {
+    vertical-align:top;
+    display:inline-block;
+    width: grid-width(4);
+    margin-right:grid-width(1);
+
+  }
+  & > section > header > h2 {
+    margin-bottom:.5em;
+  }
+  & > section > header > a {
+    font-size:.75em;
+    color: #999999;
+  }
+  & > section > form {
+    display:none;
+    opacity:0;
+    vertical-align:top;
+  }
+  & > section > div {
+    display:inline-block;
+  }
+  & > section > div h4 {
+    font-family: 'Cantarell', sans-serif;
+    margin:0;
+    margin-bottom:0.5em;
+    font-size:0.85em;
+    color:#666;
+  }
+  & > section > div p {
+    font-family: 'Doppio One', sans-serif;
+    color:#333333;
+    font-size: 1.1em;
+    opacity:.8;
+    margin:0;
+  }
+
+  #banner {
+    position:inherit;
+    background-color: transparent;
+    border-color:transparent;
+  }
+  #banner > header {
+    vertical-align:top;
+  }
+  #banner > div {
+    width:grid-width(11);
+    display: inline-block;
+  }
+  #banner > div > h1 {
+    opacity:0.85;
+  }
+  #banner > div > p {
+    font-size: 0.85em;
+    opacity:0.65;
+  }
+
+  #rate > div > p:before {
+    content: "$";
+  }
+
+  #card {
+    height: grid-width(5);
+    margin-bottom:3em;
+    #number {
+      width:grid-width(4);
+    }
+    #cvc {
+      width:grid-width(1);
+    }
+  }
+  #card > div {
+    width:40em;
+    @include column-count(3);
+    @include column-gap(2em);
+  }
+  #card > div > section {
+    margin:0;
+  }
+  #card > div > section > p {
+    margin:0
+  }
+  #card > form a {
+    font-weight:bold;
+  }
+}
+
+

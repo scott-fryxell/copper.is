@@ -1,8 +1,5 @@
-/*
-*= require reset
-*= require_self
-*= require_directory ../shared
-*/
+@import "shared/mixins";
+
 body {
   color:#808080;
   border:transparent;
@@ -32,12 +29,10 @@ section.notify {
   -moz-border-radius: 1em;
   border-radius: 1em;
   background:#FBF6F1;
-  -webkit-box-shadow: 0 0.25em 3em #333;
-  -moz-box-shadow: 0 0.25em 3em #333;
+  @import box-shadow(0 0.25em 3em #333);
 }
 section.notify * {
-  -webkit-transition-property: all;
-  -webkit-transition-duration:  1s;
+  @import transition(all 1s)
 }
 section.notify > header {
   vertical-align:top;
@@ -100,7 +95,6 @@ section.notify > aside > form > button {
 
   border:.15em solid gray;
   background-color:white;
-  -moz-border-radius:.5em;
   border-radius:.5em;
   color:red;
   font-weight:bold;
@@ -134,8 +128,7 @@ section.notify > aside > form > input {
 
 
 section.alert {
-  -webkit-box-shadow: 0 0.25em 3em #333;
-  -moz-box-shadow: 0 0.25em 3em #333;
+  @import box-shadow(0 0.25em 3em #333);
   background-color: #FBF6F1;
   position:fixed;
   top: 50%;
@@ -145,7 +138,6 @@ section.alert {
   margin-left:-15em;
   margin-top:-14em;
   border: .25em solid red;
-  -moz-border-radius: 1em;
   border-radius: 1em;
   opacity:1;
   padding:1.5em;
@@ -192,18 +184,15 @@ footer {
   height:14em;
   display:none;
   border-radius: 0 0 .5em .5em;
-  moz-border-radius: 0 0 .5em .5em;
   padding:1em 2em 2em 2em;
   margin: -.15em 1em;
   border: .15em solid black;
   background:#FBF6F1;
   opacity:.95;
-  -webkit-box-shadow: 0 0.25em 3em #333;
-  -moz-box-shadow: 0 0.25em 3em #333;
+  @import box-shadow(0 0.25em 3em #333);
 }
 footer > section > button {
   font-size:2em;
   margin-top:1.5em;
   margin-left:4em;
-
 }

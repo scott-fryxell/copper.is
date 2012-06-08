@@ -1,13 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
-	<!ENTITY ns_flows "http://ns.adobe.com/Flows/1.0/">
-]>
-<svg version="1.1"
-	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-	 x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="overflow:visible;enable-background:new 0 0 16 16;"
-	 xml:space="preserve">
-<defs>
-</defs>
-<polygon points="16,8 0,16 0,0 "/>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+   width="1em" height="1em" viewBox="0 0 16 16"
+   style="overflow:visible;enable-background:new 0 0 16 16;"
+   xml:space="preserve">
+   <style>path{fill:white; opacity:.8}</style>
+   <g id="play">
+     <path d="M8,0C3.6,0,0,3.6,0,8c0,4.4,3.6,8,8,8c4.4,0,8-3.6,8-8C16,3.6,12.4,0,8,0z M4.9,12.1V3.9L13.1,8L4.9,12.1z"/>
+   </g>
 </svg>

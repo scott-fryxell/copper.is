@@ -1,8 +1,8 @@
 #home_index {
-  p {
-    font-size:.8em;
-  }
   & > header {
+    position:absolute;
+    top:0;
+    z-index:300;
     background-color: transparent;
     @include transition(background-color 1.4s);
     &:hover {
@@ -12,19 +12,18 @@
   }
   #banner {
     z-index:2;
-    background: image-url('banner.png') no-repeat left top;
+    background: image-url('home/banner.png') no-repeat left top;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    @include box-shadow(0 1.5em 2.5em -1em rgba(0, 0, 0, .5));
     height: 26.8em;
   }
   #banner > header {
     display:inline-block;
-    margin-top:8em;
-    margin-right:grid-width(4);
-    width:grid-width(11);
+    margin-top:7em;
+    margin-right:grid-width(1);
+    width:grid-width(10);
   }
   #banner > header > h1 {
     margin:0;
@@ -41,16 +40,19 @@
     line-height:3.5em;
   }
   #banner > a#play_video {
+    margin-top:2.5em;
     text-decoration:none;
     cursor:pointer;
+    vertical-align:top;
     display:inline-block;
     opacity:.5;
-    font-size:4em;
+    font-size:3em;
     color:#000000;
-    @include transition(opacity 1s);
+    @include transition(all 1s);
     &:hover {
       opacity:.7;
-      @include transition(opacity 1s);
+      @include transition(all 1s);
+      @include transform(scale(1.05,1.05));
     }
   }
   #banner > a > img {
@@ -61,105 +63,152 @@
     height:1em;
   }
 
-  #how {
+  #connecting {
+    margin-bottom: .5em;
     position:relative;
-    padding-top:5em;
-    padding-bottom:3em;
-    z-index:-1;
-    @include background-image(image-url('home/how_background_dark.png'));
-    background-size: cover;
-  }
-  #how > img {
-    width: grid-width(13);
-    display:inline-block;
-  }
-  #how > aside{
-    vertical-align:top;
-    width: grid-width(8);
-    margin-left:35px;
-    display:inline-block;
-  }
-  #how > p {font-size:.90em}
-
-  #button {
-    position:relative;
-    padding-top:3em;
+    padding-top:4em;
     padding-bottom:4em;
+    z-index:-1;
+    background-color: $offset_color;
   }
-  #button > aside {
+  #connecting > img {
+    width: grid-width(12);
     display:inline-block;
-    width:grid-width(7);
   }
-  #button > img.logo {
-    @include box-shadow(inset -1.5em -1.5em 2.5em -1.5em rgba(0, 0, 0, .5));
+  #connecting > aside {
+    vertical-align:top;
+    width: grid-width(9);
+    margin-left: grid-width(13.5);
     display:inline-block;
-    vertical-align:bottom;
-    line-height:5em;
-    padding:1em;
-    width:5em;
-    height:5em;
-    border:.2em solid #888;
-    background-color:#ffffff;
-    border-radius:6em;
-    margin-left:grid-width(3);
   }
-  #button > img.top, img.bottom {
-    position:absolute;
-    left:grid-width(12.5);
-    width:3em;
-    height:1.25em;
+  #connecting > aside > p {font-size:.85em;}
+
+  #how {
+    background-color: $offset_color;
+    padding-top:2em;
   }
-  #button > img.top {
-    top:0;
-  }
-  #button > img.bottom {
-    bottom:0;
-    @include transform(rotate(180deg));
-  }
-  #button > a {
-    width:grid-width(6);
-    height:5em;
-    vertical-align:bottom;
-    display:inline-block;
-    background-color: #231F20;
-    margin-left:grid-width(3);
+  #how > header {
     margin-bottom:2em;
+  }
+  #how > header > h1,
+  #how > header > p,
+  #how > header > button {
+    margin:0;
+    display:inline-block;
+    vertical-align:top;
+    margin-right: grid-width(1);
+  }
+  #how > header > h1 {
+      line-height:1em;
+    width: 6em;
+    margin-right: 1em;
+  }
+  #how > header > p {
+    font-size:.85em;
+    width: grid-width(9);
+  }
+  #how > header > button {
+    width: grid-width(4);
+    @include copper_button;
+  }
+  #how > nav > a.selected  {
+    opacity:0.9;
+    background-color:darken($offset_color, 1%);
+  }
+  #how > nav {}
+  #how > nav > a {
+    color:darken($offset_color, 30%);;
+    display:inline-block;
+    width:grid-width(3);
+    height:4em;
+    padding:.25em;
+    padding-top:.5em;
+    line-height:2.5em;
+    border-radius:.5em .5em 0 0 ;
+    vertical-align:middle;
+    text-align:center;
+    text-decoration:none;
+  }
+  #how > nav > a > img {
+    position:relative;
+    z-index:200;
+    opacity:.7;
+    width:5em;
+    display:inline-block;
+    vertical-align:bottom;
   }
 
   #samples {
-    padding-top:2em;
-    background-color: rgba(182, 195, 181, .3);
-    min-height:20em;
+    padding-bottom:3em;
+    background-color:darken($offset_color, 15%);
+    @include triangle_bottom($offset_color)
   }
-  #samples > img {
+  #samples > figure {
+    padding-top:2em;
+  }
+  #samples > figure > img {
     width:grid-width(22);
-    display:block;
+    display:inline-block;
+    overflow:hidden;
     @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
   }
 
-  #more {
-    padding-top:4em;
-    padding-bottom:5em;
-    background-color: rgba(182, 195, 181, .3);
+  #button {
+    background-color:$offset_color;
+    vertical-align:top;
+    padding-top:3em;
+    padding-bottom:6em;
   }
-  #more > h1 {
-    font-size:2.2em;
-    margin-bottom:1.5em;
-    text-align:center;
-    opacity:.6;
-    text-shadow: 1px 1px 1px white;
-    &:before, &:after{
-      padding:1.5em;
-      content:".................................................................................";
-      font-size:1px;
-      vertical-align:top;
-    }
-  }
-  #more > article {
+  #button > header {
     display:inline-block;
-    margin-right: 7px;
-    margin-bottom:2em;
-    width:grid-width(7);
+    width: grid-width(5.5);
+  }
+  #button > header > h1 {
+    line-height:1.25em;
+    font-size: 2em;
+    margin:0;
+  }
+  #button > figure {
+    display: inline-block;
+    vertical-align:top;
+    height: grid-width(4);
+    position:relative;
+    margin-left: grid-width(4);
+    margin-top: grid-width(1);
+  }
+  #button > figure > a {
+    cursor:pointer;
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-9em;
+    margin-top:-2em;
+    z-index:4;
+  }
+  #button > figure > img.logo {
+    z-index:3;
+    margin:1em auto 1em auto;
+    display:block;
+    opacity:.5;
+    @include box-shadow(inset -1.5em -1.5em 2.5em -1.5em rgba(0, 0, 0, .5));
+    vertical-align:middle;
+    border-radius:5em;
+    width:3em;
+    height:3em;
+    background-color:white;
+    padding:1em;
+    border: .2em solid #666;
+  }
+  #button > figure > figcaption {
+    font-size:.75em;
+    color:#CCC;
+    text-align:center;
+    display:block;
+    vertical-align:bottom;
+    margin:0;
+  }
+  #button > figure > figcaption > a {
+    color:#999;
   }
 
 }

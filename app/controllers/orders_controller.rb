@@ -46,7 +46,6 @@ class OrdersController < ApplicationController
     # collect and save the parameters
     current_user.accept_terms = params[:terms]
     current_user.email = params[:email]
-    current_user.automatic_rebill = params[:rebill]
 
     if current_user.stripe_customer_id
       customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)

@@ -33,6 +33,8 @@ guard 'rspec', :version => 2, :cli => '--color --format doc --drb', :all_on_star
   watch('config/routes.rb')                           { "spec/routing" }
   watch('app/controllers/application_controller.rb')  { "spec/requests" }
 
+  watch(%r{^app/assets/javascripts/(.+)\.js})         { "spec/requests" }
+
   # Capybara request specs
   watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
 end

@@ -9,26 +9,30 @@
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>">
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope()%>>
     <header>
-      <a href="/"><%= image_tag "icons/logo.svg", :title => "logo" %></a>
+      <a href="/">
+        <%= image_tag "icons/logo.svg", :title => "logo" %>
+      </a>
       <nav>
         <a href="/how">how it works</a>
         <a href="/button">get the button</a>
         <a href="/about">about us</a>
         <a href="http://blog.copper.is">our blog</a>
-        <a href="/contact">contact us</a>
       </nav>
       <%= render :partial => 'shared/signin' %>
       <%= render :partial => 'shared/flash',:object => flash %>
     </header>
     <%= yield %>
     <footer>
+      <h3>Copper, Inc</h3>
       <nav>
-        <a href="/privacy">privacy</a>
-        <a href="/terms">terms</a>
-        <a href="/faq">faq</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Use</a>
+        <a href="/faq">FAQ</a>
+        <a href="/signout">Sign Out</a>
       </nav>
+      <h4>Copyright © 2012 Copper Inc. All rights reserved</h4>
     </footer>
     <%= render :partial => 'shared/ie' %>
   </body>

@@ -27,13 +27,13 @@ Spork.prefork do
   require 'omniauth'
   require 'omniauth/test'
   require 'support'
-  
+
   Capybara.default_driver = :webkit
   Capybara.server_port = 8080
   Capybara.app_host = "http://127.0.0.1:8080"
-
+  Capybara.ignore_hidden_elements = true
   include Authorization::TestHelper
-  
+
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
     config.fail_fast = true
@@ -58,7 +58,7 @@ Spork.each_run do
       DatabaseCleaner.start
       DatabaseCleaner.clean
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
-      
+
       ResqueSpec.reset!
       ResqueSpec.inline = true
 
@@ -66,7 +66,7 @@ Spork.each_run do
         def self.create(*args)
           OpenStruct.new(id:'1')
         end
-        
+
         def self.retrieve(*args)
           OpenStruct.new(card:nil,save:nil)
         end

@@ -1,44 +1,47 @@
 #sign_in {
   float:right;
   display:inline-block;
-  margin-top:.5em;
+  vertical-align:middle;
   margin-right:1em;
+  margin-top:1em;
   text-align:right;
-  nav {
-    background-image: image-url('sign_in_arrow.png');
-    background-repeat:no-repeat;
-    background-position:20% -8%;
-  }
+  nav {}
   nav > h1 {
     font-family: 'Doppio One', sans-serif;
     text-transform:uppercase;
-    margin-right:1em;
+    margin-right:.5em;
     font-weight:normal;
     opacity:.6;
-    vertical-align:top;
     color:white;
-    display:inline-block;
+    display:inline;
     font-size:.85em;
   }
+  nav > a  {
+    padding-right:.25em;
+  }
   nav > a > img {
-    width:2em;
+    display:inline;
+    vertical-align:top;
+    width:1.25em;
   }
 }
+
 #signed_in {
   float:right;
   display:inline-block;
   margin-top:.5em;
-  margin-right:.5em;
+  margin-right:1em;
   text-align:right;
-  img {
-    vertical-align:baseline;
-    display:block;
+  & > img {
+    border:0.18em solid #666;
     display:inline-block;
+    width:2em;
+    @include triangle_bottom(#666)
   }
   nav {
-    vertical-align:top;
-    margin-right:1em;
+    height:2.5em;
     display:inline-block;
+    vertical-align:top;
     text-align:right;
   }
   nav > h1 {
@@ -48,10 +51,24 @@
     font-size:.85em;
   }
   nav > a {
+    padding-top:.5em;
+    line-height:2em;
+    vertical-align:middle;
+    display:inline-block;
+    margin-right:1.5em;
     font-family: 'Cantarell', sans-serif;
     font-size:.75em;
     line-height:1.25em;
-    display:block;
     color:#d7d2cf;
+  }
+  nav > a > img {
+    height:1.5em;
+    opacity:0.3;
+    vertical-align:middle;
+    @include transition(opacity 1s);
+    &:hover{
+      @include transition(opacity 1s);
+      opacity:0.9;
+    }
   }
 }

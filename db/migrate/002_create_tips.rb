@@ -1,5 +1,5 @@
 class CreateTips < ActiveRecord::Migration
-  def self.up
+  def change
     create_table :tips do |t|
       t.references :order, :null => false
       t.references :check
@@ -9,9 +9,5 @@ class CreateTips < ActiveRecord::Migration
       t.timestamps
     end
     add_index :tips, :order_id
-  end
-
-  def self.down
-    drop_table :tips
   end
 end

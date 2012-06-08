@@ -4,12 +4,22 @@ class ApplicationController < ActionController::Base
 
   # filter_access_to :all
 
-  helper_method :current_user
+
+  helper_method :current_user, :item_scope
 
   private
 
   def current_user
     @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
+  end
+
+  def item_scope
+    type = params[:controller].parameterize
+    id = params['id']
+    if id
+      item_id= "itemid='#{type}/#{id}'"
+    end
+    "itemscoped itemtype='#{type}' #{item_id}"
   end
 
   protected
