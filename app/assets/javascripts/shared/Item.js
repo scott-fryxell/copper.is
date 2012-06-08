@@ -1,65 +1,80 @@
 function Item(element) {
-  this.url = $(element).attr('itemid');
-  this.element = element;
-  var temp_props = {};
-  var value;
-
+  var me = this
   $(element).find("*[itemprop]").each(function (){
-    if($(this).is("input") || $(this).is("select") || $(this).is("textarea") ){
-      value = $(this).val();
-    }
-    else if( $(this).is("a") || $(this).is("link")){
-      value = $(this).attr('href');
-    }
-    else if( $(this).is("img") || $(this).is("object") || $(this).is("embed")){
-      value = $(this).attr('src');
-    }
-    else {
-      value = $(this).text().trim();
-    }
-    temp_props[$(this).attr("itemprop")] = value
+    me[$(this).attr("itemprop")] = Item.get_value(this);
   });
-  this.props = temp_props
 }
-Item.prototype.get = function(){};
-Item.prototype.put = function(){
-  jQuery.ajax({
-    url: "put",
-    type: $(this).attr("method"),
-    data: $(this).serialize(),
-    success: function(data, textStatus, jqXHR) {
-      $(this).parents("*[itemscoped]")
-    },
-    error: function(data, textStatus, jqXHR) {
-      console.error("error updating form form", data, textStatus, jqXHR);
-    }
+Item.discover_items = function(){
+  var items = {}
+  $("*[itemscoped]").each(function (index){
+    items[$(this).attr("itemtype")] = {}
+    items[$(this).attr("itemtype")][$(this).attr('itemid')] = new Item(this);
   });
-};
-Item.prototype.post = function (){};
-Item.prototype.delete = function (){};
-
-Item.prototype.sync_property = function (property, value){
-  if($(property).is("input") || $(property).is("select") || $(property).is("textarea") ){
-    return $(property).val(value);
+  Item.items = items;
+  return Item.items;
+}
+Item.get_value = function (element){
+  if($(element).is("input") || $(element).is("select") || $(element).is("textarea") ){
+    return $(element).val().trim();
   }
-  else if( $(property).is("a") || $(property).is("link")){
-    return $(property).attr('href', value);
+  else if( $(element).is("a") || $(element).is("link")){
+    return $(element).attr('href');
   }
-  else if( $(property).is("img") ||  $(property).is("object") ||  $(property).is("embed")){
-    return $(property).attr('src', value);
+  else if( $(element).is("img") || $(element).is("object") || $(element).is("embed")){
+    return $(element).attr('src');
   }
   else {
-    return $(property).text(value);
+    return $(element).text().trim();
   }
-}
-
-Item.prototype.save = function (){
-  $.each(this.props, function(key, value){
-    console.debug(key, value )
+};
+Item.update_page = function (item){
+  $.each(item, function(key, value){
     if(value != null){
       $('*[itemprop=' + key + ']').each(function(){
-        item.sync_property(this, value);
+        if($(this).is("input") || $(this).is("select") || $(this).is("textarea") ){
+          $(this).val(value);
+        }
+        else if( $(this).is("a") || $(this).is("link")){
+          $(this).attr('href', value);
+        }
+        else if( $(this).is("img") ||  $(this).is("object") ||  $(this).is("embed")){
+          $(this).attr('src', value);
+        }
+        else {
+          $(this).text(value);
+        }
       });
     }
   });
 }
+document.getItems = function(type){
+  if(type){
+    return Item.items[type]
+  }
+  else{
+    return Item.items
+  }
+}
+$(document).ready(function (){
+  Item.discover_items()
+  $("*[itemscoped] form").submit(function(event){
+    event.preventDefault()
+    var item_element = $(this).parents("*[itemscoped]")
+    var id = $(item_element).attr('itemid')
+    var type = $(item_element).attr('itemtype')
+
+    $(this).find('*[itemprop]').each(function (){
+      Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
+    });
+    Item.update_page(Item.items[type][id]);
+    jQuery.ajax({
+      url: "/" + id,
+      type: $(this).attr('method'),
+      data: $(this).serialize(),
+      error: function(data, textStatus, jqXHR) {
+        //TODO reload the properties from the server and pop7late the page with a message
+        console.error("error submiting form " + $(this).attr('method'), data, textStatus, jqXHR);
+      }
+    });
+  });
+});

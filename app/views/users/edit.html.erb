@@ -26,7 +26,7 @@
     <p itemprop="email"><%=current_user.email%></p>
   </div>
   <form method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
-    <input itemprop="email" name='email' type="email" required validate value="<%=current_user.email%>">
+    <input itemprop="email" name='user[email]' type="email" required validate value="<%=current_user.email%>">
     <input type="submit" value="Save"/>
   </form>
 </section>
