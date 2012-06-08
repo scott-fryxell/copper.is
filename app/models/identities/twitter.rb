@@ -1,5 +1,8 @@
+# see lib/messages.rb for message methods
+
 class Identities::Twitter < Identity
   include Enqueueable
+  include TwitterMessages
   
   # validates :username, presence: true
 
@@ -21,12 +24,6 @@ class Identities::Twitter < Identity
   def populate_username_from_uid! 
     super do
       self.username = ::Twitter.user(self.uid.to_i).screen_name
-    end
-  end
-
-  def message!
-    super do
-      send_tweet("Someone loves you.  http://127.0.0.1:5000/i/#{self.id} #{Time.now.to_i.to_s[6..-1]}")
     end
   end
 

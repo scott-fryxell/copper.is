@@ -1,11 +1,12 @@
 class Identities::Phony < Identity
   include Enqueueable
+  include PhonyMessages
   
   # validates :username, presence: true
 
   def self.discover_uid_and_username_from_url url
     screen_name = URI.parse(url).path.gsub('/','')
-    { :uid => sreen_name, :username => nil }
+    { :uid => screen_name, :username => screen_name }
   end
 
   def populate_uid_from_username!
@@ -17,12 +18,6 @@ class Identities::Phony < Identity
   def populate_username_from_uid! 
     super do
       self.username = self.uid
-    end
-  end
-
-  def message!
-    super do
-      logger.info "#{self.inspect} has been messaged!!!!"
     end
   end
 end

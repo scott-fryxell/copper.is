@@ -3,6 +3,14 @@ require 'spork'
 require 'ostruct'
 
 Spork.prefork do
+  def create!(factory,*args)
+    record = FactoryGirl.create(factory,*args)
+    record.save!
+    record.reload
+    # record.should be_valid
+    record
+  end
+  
   ENV["RAILS_ENV"] = 'test'
   if ENV['RCOV']
     require 'simplecov'
@@ -72,17 +80,17 @@ Spork.each_run do
     end
 
     config.before(:all) do
-      @stranger = FactoryGirl.create(:identities_phony)
-      @wanted = FactoryGirl.create(:identities_phony,identity_state:'wanted')
+      @stranger = create!(:identities_phony)
+      @wanted = create!(:identities_phony,identity_state:'wanted')
 
-      @page1 = FactoryGirl.create(:page,author_state:'adopted')
-      @page2 = FactoryGirl.create(:page,author_state:'adopted')
+      @page1 = create!(:page,author_state:'adopted')
+      @page2 = create!(:page,author_state:'adopted')
 
       @wanted.pages << @page1
       @wanted.pages << @page2
-
-      @me = FactoryGirl.create(:user)
-      @her = FactoryGirl.create(:user_twitter)
+      
+      @me = create!(:user)
+      @her = create!(:user_phony)
 
       @my_identity = @me.identities.first
       @her_identity = @her.identities.first

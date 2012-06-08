@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-describe Identities::Twitter do
+describe Identities::Youtube do
   before do
-    @identity = FactoryGirl.create(:identities_twitter, username:"_ugly")
-    @identity.stub(:send_tweet)
+    @identity = FactoryGirl.create(:identities_youtube, username:"_ugly")
   end
 
-  describe '#populate_uid_and_username!' do
+  describe '#populate_uid_and_username!',:broken do
     it 'finds the uid if username is set' do
       @identity.uid = nil
       @identity.username = '_ugly'
