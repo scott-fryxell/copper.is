@@ -15,7 +15,6 @@ Copper::Application.routes.draw do
     resources :tips
   end
 
-
   get 'about', :to => 'home#about'
   get 'how', :to => 'home#how'
   get 'contact', :to => 'home#contact'
