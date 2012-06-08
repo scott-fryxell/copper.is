@@ -46,6 +46,7 @@ Item.update_page = function (item){
       });
     }
   });
+  $(document).trigger("copper:update_page_items");
 }
 document.getItems = function(type){
   if(type){

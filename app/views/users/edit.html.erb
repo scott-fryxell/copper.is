@@ -37,10 +37,10 @@
     <a href="#">Change</a>
   </header>
   <div>
-    <p itemprop="tip_preference_in_cents"><%=cents_to_dollars(current_user.tip_preference_in_cents)%></p>
+    <p itemprop="tip_preference_in_cents"><%=current_user.tip_preference_in_cents%></p>
   </div>
   <form method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
-    <select itemprop="tip_preference_in_cents">
+    <select itemprop="tip_preference_in_cents" name="user[tip_preference_in_cents]">
       <option value="5">$0.05</option>
       <option value="10">$0.10</option>
       <option value="25">$0.25</option>

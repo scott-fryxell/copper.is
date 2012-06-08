@@ -1,9 +1,21 @@
-$(document).ready(function () {
+$(document).ready(function (){
   var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
-  rate = Math.round(100 * parseFloat(rate));
   $('#rate > form > select > option[value=' + rate +']').attr('selected', true)
+  format_rate()
+  $(document).on("copper:update_page_items", function (){
+    format_rate()
+  })
 });
-$(document).ready(function(){
+
+function format_rate(){
+  var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
+  rate = (parseFloat(rate) / 100.00)
+  if( rate == 0.5 || rate == 0.1){
+    rate = rate + '0'
+  }
+  $("p[itemprop=tip_preference_in_cents]").text(rate)
+}
+$(document).ready(function (){
   $("section > header > a").click(function(event){
     event.preventDefault();
     var div = $(this).parents("section").find("div");
