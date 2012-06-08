@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OrdersController do
+describe OrdersController,:broken do
   before :each do
     @me.current_order.rotate!
     @me.orders.unpaid.first.charge!

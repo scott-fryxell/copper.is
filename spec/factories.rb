@@ -86,15 +86,15 @@ FactoryGirl.define do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
-    identities [FactoryGirl.create(:identities_phony)]
+    identities [FactoryGirl.create(:identities_phony,identity_state: :known)]
     roles [Role.find_or_create_by_name('Patron')]
   end
 
-  factory :user_twitter, class:'User' do
-    name 'Joe'
+  factory :user_phony, class:'User' do
+    name 'dude'
     accept_terms true
     tip_preference_in_cents 50
-    identities [FactoryGirl.create(:identities_phony)]
+    identities [FactoryGirl.create(:identities_phony,identity_state: :known)]
     roles [Role.find_or_create_by_name('Patron')]
   end
 

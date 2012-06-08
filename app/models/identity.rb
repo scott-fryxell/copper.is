@@ -38,15 +38,13 @@ class Identity < ActiveRecord::Base
       validate :validate_user_id_is_nil
     end
 
-    state :wanted do
-      def message!
+    state :stranger do
+      def send_wanted_message
         raise "this identity has a user" if self.user_id
-        raise "must be implemented in child class" unless block_given?
-        if self.message.nil?
-          yield
-          self.message = Time.now
-          save!
-        end
+        _send_wanted_message
+        self.message = Time.now
+        save!
+        publicize!
       end
     end
     
@@ -54,14 +52,20 @@ class Identity < ActiveRecord::Base
       validates :user_id, presence:true
     end
     
-    after_transition any => :wanted do |author,transition|
-      Resque.enqueue author.class, author.id, :message!
+    after_transition any => :stranger do |author,transition|
+      Resque.enqueue author.class, author.id, :send_wanted_message
     end
   end
 
   def validate_user_id_is_nil
     if self.user_id
       errors.add(:user_id, "user_id must be nil")
+    end
+  end
+
+  after_create do
+    if self.stranger?
+      Resque.enqueue self.class, self.id, :send_wanted_message
     end
   end
   
@@ -99,6 +103,7 @@ class Identity < ActiveRecord::Base
     when /github\.com$/ then 'github'
     when /youtube\.com$/ then 'youtube'
     when /soundcloud\.com$/ then 'soundcloud'
+    when /example\.com$/ then 'phony'
     else
       nil
     end

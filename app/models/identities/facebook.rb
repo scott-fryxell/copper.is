@@ -1,4 +1,6 @@
 class Identities::Facebook < Identity
+  include Enqueueable
+  include FacebookMessages
   # validates :username, presence: true
 
   def self.discover_uid_and_username_from_url(url)
