@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ChecksController, :broken do
+describe ChecksController, :pending do
   describe 'as Guest' do
     before do
       controller.instance_eval do

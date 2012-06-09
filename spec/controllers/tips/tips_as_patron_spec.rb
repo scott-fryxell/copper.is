@@ -52,7 +52,7 @@ describe TipsController do
           Tip.first.amount_in_cents.should == 100
         end
 
-        it 'creates a tip to given url with given title',:broken do
+        it 'creates a tip to given url with given title',:pending do
           post :create, tip:{url:'http://twitter.com/#!/_ugly', title:'dude'}
           Tip.first.url.should == 'http://twitter.com/#!/_ugly'
           Tip.first.title.should == 'dude'
@@ -117,7 +117,7 @@ describe TipsController do
       end
     end
 
-    describe 'destroy',:broken do
+    describe 'destroy',:pending do
       describe 'DELETE /t/:id' do
         it 'destroys a promised tip' do
           proc do
@@ -136,7 +136,7 @@ describe TipsController do
           end.should_not change(Tip, :count)
         end
 
-        it '403 a :kinged tip',:broken do
+        it '403 a :kinged tip',:pending do
           proc do
             order = @me.current_order
             @me.current_order.rotate!

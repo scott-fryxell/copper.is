@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe IdentitiesController,:broken do
+describe IdentitiesController,:pending do
   describe 'as Guest' do
     before :all do
       controller.instance_eval do
@@ -26,7 +26,7 @@ describe IdentitiesController,:broken do
     end
     describe 'create' do
       describe 'POST /identities' do
-        it 'does something',:broken do
+        it 'does something',:pending do
           post :create
         end
       end
@@ -99,7 +99,7 @@ describe IdentitiesController,:broken do
     end
 
     describe 'show' do
-      describe '/identities/:id', :broken do
+      describe '/identities/:id', :pending do
         it 'responds to .json' do
           get :show, id:@my_identity.id, format: :json 
           response.should be_success
@@ -118,7 +118,7 @@ describe IdentitiesController,:broken do
       end
     end
 
-    describe 'edit', :broken do
+    describe 'edit', :pending do
       describe '/identities/:id/edit' do
         it '403' do
           get :edit, id:@my_identity.id
@@ -127,7 +127,7 @@ describe IdentitiesController,:broken do
       end
     end
 
-    describe 'update', :broken do
+    describe 'update', :pending do
       describe 'PUT /identities/:id' do
         it '403' do
           get :edit, id:@my_identity.id
@@ -136,9 +136,9 @@ describe IdentitiesController,:broken do
       end
     end
 
-    describe 'destroy',:broken do
+    describe 'destroy',:pending do
       describe 'DELETE /identities/:id' do
-        it 'destroys the given identity',:broken do
+        it 'destroys the given identity',:pending do
           proc do
             delete :destroy, id:@my_identity.id
           end.should change(Identity, :count)

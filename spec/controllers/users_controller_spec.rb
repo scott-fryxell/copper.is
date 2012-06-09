@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController,:broken do
+describe UsersController,:pending do
   describe 'as Guest' do
     before do
       controller.instance_eval do
@@ -208,7 +208,7 @@ describe UsersController,:broken do
       end
     end
 
-    describe 'destroy', broken:true do
+    describe 'destroy', :pending do
       describe 'DELETE /users/current' do
         it 'redirects to home page' do
           delete :destroy, id:'current'
