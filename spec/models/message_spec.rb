@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe Channel do
+describe Message do
 end
