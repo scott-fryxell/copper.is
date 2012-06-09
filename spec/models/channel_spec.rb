@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Channel do
+describe Channel, :broken do
   before do
     DatabaseCleaner.clean
     @user = User.create!

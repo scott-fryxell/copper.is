@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Page do
+describe Page, :broken do
   context do
     before(:each) do
       @page = Page.new
@@ -75,7 +75,7 @@ describe Page do
     end
   end
   
-  describe "transitions from :orphaned to :manual" do
+  describe "transitions from :orphaned to :manual", :broken do
     before do
       @page = FactoryGirl.build(:page)
     end

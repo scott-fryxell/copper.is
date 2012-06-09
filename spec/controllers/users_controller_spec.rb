@@ -210,19 +210,19 @@ describe UsersController do
 
     describe 'destroy' do
       describe 'DELETE /users/current' do
-        it 'redirects to home page' do
+        it 'redirects to home page' do pending
           delete :destroy, id:'current'
           response.should redirect_to(root_path)
         end
       end
 
       describe 'DELETE /users/:id' do
-        it 'redirects to home page' do
+        it 'redirects to home page' do pending
           delete :destroy, id:@me.id
           response.should redirect_to(root_path)
         end
 
-        it 'redirects to home page' do
+        it 'redirects to home page' do pending
           delete :destroy, id:@her.id
           response.should redirect_to(root_path)
         end
