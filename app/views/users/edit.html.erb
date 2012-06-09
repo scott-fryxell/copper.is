@@ -77,10 +77,8 @@
     </section>
   </div>
   <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-  <script type="text/javascript" charset="utf-8">
-    Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
-  </script>
-  <form user="user" method="post" action="<%=user_path(current_user)%>">
+  <form method="post" action="<%=user_path(current_user)%>">
+    <h1></h1>
     <input itemprop="stripe_customer_id" type="hidden" value="<%=current_user.stripe_customer_id%>">
     <fieldset>
       <input type="text" autocomplete="off" id="number" placeholder="Card Number" required />
