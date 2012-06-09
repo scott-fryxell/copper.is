@@ -48,6 +48,9 @@ $(document).ready(function (){
     $("#card > header > a").click();
   }
 
+  if (!user.email){
+    $("#email > header > a").click();
+  }
   $('#email form').bind('form:invalid', function (){
     console.debug("invalid form")
     $('#email > header > a').click();
@@ -93,23 +96,24 @@ $(document).ready(function() {
     }
     Stripe.createToken(
       {
-        number: $('#number').val(),
-        cvc: $('#cvc').val(),
-        exp_month: $('#month').val(),
-        exp_year: $('#year').val(),
-        email: $('#email').val()
+        number:$('#number').val(),
+        cvc:$('#cvc').val(),
+        exp_month:$('#month').val(),
+        exp_year:$('#year').val(),
+        email:$('#email').val()
       },
       function (status, response) {
         console.debug(status, response);
         if (response.error) {
-          //show the errors on the form
-          $("#card > form > h1").text(response.error.message);
-          $("#card > form > h1").addClass("message");
+          $("#card > form > h1").text(response.error.message)
+          $("#card > form > h1").addClass("message")
         } else {
-          $("#card > form > h1").removeClass("message");
-          var form$ = $("#card > form");
-          // insert the token into the form so it gets submitted to the server
-          ("input[itemprop=stripe_customer_id]").val(response['id']);
+          $("#card > form > h1").removeClass("message")
+          $(document).trigger("copper:create_stripe_customer_id")
+          $("input[name=stripe_token]").val(response['id']);
+          $("#card p.type").text(response.card.type)
+          $("#card p.number").text(response.card.last4)
+          $("#card p.expiration").text(response.card.exp_month + '/' + response.card.exp_year )
         }
       }
     );

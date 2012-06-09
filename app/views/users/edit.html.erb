@@ -26,7 +26,7 @@
     <p itemprop="email"><%=current_user.email%></p>
   </div>
   <form method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
-    <input itemprop="email" name='user[email]' type="email" required validate value="<%=current_user.email%>">
+    <input itemprop="email" name='user[email]' type="email" required value="<%=current_user.email%>">
     <input type="submit" value="Save"/>
   </form>
 </section>
@@ -65,21 +65,22 @@
   <div>
     <section>
       <h4>Type Of Card</h4>
-      <p></p>
+      <p class="type"></p>
     </section>
     <section>
       <h4>Card Number</h4>
-      <p class="card"></p>
+      <p class="number"></p>
     </section>
     <section>
       <h4>Expiration</h4>
-      <p></p>
+      <p class="expiration"></p>
     </section>
   </div>
   <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-  <form method="post" action="<%=user_path(current_user)%>">
+  <input name="stripe_token" type="hidden" value="<%=current_user.stripe_customer_id%>">
+  <form method="post">
     <h1></h1>
-    <input itemprop="stripe_customer_id" type="hidden" value="<%=current_user.stripe_customer_id%>">
+
     <fieldset>
       <input type="text" autocomplete="off" id="number" placeholder="Card Number" required />
       <input type="text" autocomplete="off" id="cvc" placeholder="CVC"  required />

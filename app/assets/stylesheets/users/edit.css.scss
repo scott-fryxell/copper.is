@@ -121,13 +121,16 @@
     height:5em;
     margin:0;
   }
+  #card > div > section > h4 {
+  }
   #card > div > section > p {
     margin:0
   }
   #card > form a {
     font-weight:bold;
   }
-  #card p.card:before {
+
+  #card p.number:before {
    content: "**** **** **** ";
   }
   #card > form > h1 {

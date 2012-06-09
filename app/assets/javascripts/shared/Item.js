@@ -1,10 +1,10 @@
-function Item(element) {
+function Item(element){
   var me = this
   $(element).find("*[itemprop]").each(function (){
     me[$(this).attr("itemprop")] = Item.get_value(this);
   });
 }
-Item.discover_items = function(){
+Item.discover_items = function (){
   var items = {}
   $("*[itemscoped]").each(function (index){
     items[$(this).attr("itemtype")] = {}
@@ -14,7 +14,7 @@ Item.discover_items = function(){
   $(document).trigger("copper:items");
   return Item.items;
 }
-Item.get_value = function (element){
+Item.get_value      = function (element){
   if($(element).is("input") || $(element).is("select") || $(element).is("textarea") ){
     return $(element).val().trim();
   }
@@ -27,8 +27,8 @@ Item.get_value = function (element){
   else {
     return $(element).text().trim();
   }
-};
-Item.update_page = function (item){
+}
+Item.update_page    = function (item){
   $.each(item, function(key, value){
     if(value != null){
       $('*[itemprop=' + key + ']').each(function(){
@@ -49,7 +49,7 @@ Item.update_page = function (item){
   });
   $(document).trigger("copper:update_page_items");
 }
-document.getItems = function(type){
+document.getItems   = function (type){
   if(type){
     return Item.items[type]
   }
@@ -61,6 +61,11 @@ $(document).ready(function (){
   Item.discover_items()
   $("*[itemscoped] form").submit(function(event){
     event.preventDefault()
+
+    if($(this).find("*[itemprop]").length == 0){
+      return true
+    }
+
     var item_element = $(this).parents("*[itemscoped]")
     var id = $(item_element).attr('itemid')
     var type = $(item_element).attr('itemtype')
