@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     type = params[:controller].parameterize
     id = params['id']
     if id
-      item_id= "itemid='#{type}/#{id}'"
+      item_id= "itemid='/#{type}/#{id}'"
     end
     "itemscoped itemtype='#{type}' #{item_id}"
   end

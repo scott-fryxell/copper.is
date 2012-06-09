@@ -118,6 +118,7 @@
     @include column-gap(2em);
   }
   #card > div > section {
+    height:5em;
     margin:0;
   }
   #card > div > section > p {
@@ -125,6 +126,9 @@
   }
   #card > form a {
     font-weight:bold;
+  }
+  #card p.card:before {
+   content: "**** **** **** ";
   }
 }
 

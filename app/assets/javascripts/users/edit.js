@@ -5,6 +5,10 @@ $(document).ready(function (){
   $(document).on("copper:update_page_items", function (){
     format_rate()
   })
+
+});
+$(document).on("copper:items", function (){
+  user = document.getItems()['users'][((window.location.pathname).replace('/edit', ''))]
 });
 
 function format_rate(){
@@ -38,31 +42,20 @@ $(document).ready(function (){
       div.animate({opacity:1}, 500)
     });
   });
+
+  if (!user.credit_card_id){
+    $("#card > header > a").click();
+  }
+
+  $('#email form').bind('form:invalid', function (){
+    console.debug("invalid form")
+    $('#email > header > a').click();
+    $(this).find('input[itemprop=email]').addClass('invalid');
+  });
+
 });
 
-// $(document).on("get:current_user", function () {
-//   $('form#fan_email').submit(function (event) {
-//     event.preventDefault()
-//     var email = $('#user_email').val();
-//     var at_pos=email.indexOf("@");
-//     var dot_pos=email.lastIndexOf(".");
-//
-//     if (at_pos < 1 || dot_pos < at_pos+2 || dot_pos+2>=email.length) {
-//       $('form#fan_email p').append("invalid email");
-//       $('#user_email').addClass("invalid");
-//     }else {
-//       $('form#fan_email p').empty();
-//       $('#user_email').removeClass("invalid");
-//     }
-//
-//     $.ajax({
-//       type: $('form#fan_email').attr("method"),
-//       url: $('form#fan_email').attr('action'),
-//       data: $('form#fan_email').serialize(),
-//     });
-//   });
-// });
-//
+
 // $(document).ready(function() {
 //   $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
 //   $("#credit_card > form").submit(function(event) {

@@ -11,6 +11,7 @@ Item.discover_items = function(){
     items[$(this).attr("itemtype")][$(this).attr('itemid')] = new Item(this);
   });
   Item.items = items;
+  $(document).trigger("copper:items");
   return Item.items;
 }
 Item.get_value = function (element){
@@ -63,18 +64,22 @@ $(document).ready(function (){
     var item_element = $(this).parents("*[itemscoped]")
     var id = $(item_element).attr('itemid')
     var type = $(item_element).attr('itemtype')
+    var form = this
+
+    $(this).find('input.invalid').removeClass('invalid');
 
     $(this).find('*[itemprop]').each(function (){
       Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
     });
     Item.update_page(Item.items[type][id]);
     jQuery.ajax({
-      url: "/" + id,
+      url: id,
       type: $(this).attr('method'),
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
-        //TODO reload the properties from the server and pop7late the page with a message
-        console.error("error submiting form " + $(this).attr('method'), data, textStatus, jqXHR);
+        //TODO reload the properties from the server and populate the page with a message
+        $(form).trigger("form:invalid");
+        console.error("error submiting form " + $(form).attr('method'), data, textStatus, jqXHR);
       }
     });
   });
