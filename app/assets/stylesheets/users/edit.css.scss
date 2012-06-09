@@ -130,6 +130,19 @@
   #card p.card:before {
    content: "**** **** **** ";
   }
+  #card > form > h1 {
+    display:none;
+    opacity:0;
+    @include transition (opacity 3.0s ease-in-out);
+  }
+  #card > form > h1.message {
+    @include transition (opacity 3.0s ease-in-out);
+    display:block;
+    opacity:1;
+    margin:0 0 .5em 0;
+    color:red;
+    font-size:1.2em;
+  }
 }
 
 
