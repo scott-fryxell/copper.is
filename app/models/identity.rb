@@ -1,4 +1,5 @@
 class Identity < ActiveRecord::Base
+  include Enqueueable
   has_paper_trail
   
   belongs_to :user
