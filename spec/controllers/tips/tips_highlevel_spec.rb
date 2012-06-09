@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TipsController,:pending do
+describe TipsController do
   describe 'high level' do
     before :each do
       raise '@me not set' unless @me
@@ -41,7 +41,7 @@ describe TipsController,:pending do
       @page = Page.find_by_url('http://twitter.com/#!/ableton')
     end
     
-    it 'pays known authors',:pending do
+    it 'pays known authors' do
       post :create, tip:{url:"http://example.com/#{@her_identity.username}"}
       @page = Page.find_by_url("http://example.com/#{@her_identity.username}")
       @page.identity.should eq(@her_identity)

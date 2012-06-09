@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   describe 'identities' do
-    describe 'at least one', :pending do
+    describe 'at least one' do
       before do
         @me.identities.count.should == 1
       end

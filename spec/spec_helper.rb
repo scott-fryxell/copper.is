@@ -35,7 +35,7 @@ Spork.prefork do
   include Authorization::TestHelper
 
   RSpec.configure do |config|
-    config.filter_run_excluding :pending => true
+    config.filter_run_excluding :broken => true
     config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy

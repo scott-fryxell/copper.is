@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :tip_preference_in_cents,
     :numericality => { greater_than_or_equal_to:Tip::MINIMUM_TIP_VALUE },
     :presence => true
-  validates :name, length:{in:3..128}
+  validates :name, length:{in:3..128}, allow_nil:true
 
   # this doesn't match gmail '+' tags
   EMAIL_RE = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/

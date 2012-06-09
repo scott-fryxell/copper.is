@@ -17,7 +17,7 @@ guard 'rspec', :version => 2, :cli => '--color --format doc --drb',
 
   watch('app/models/identity.rb') do
     puts; puts "RESTART guard because STI doesn't play well with others"
-    Thread.current.kill
+    Thread .current.kill # this is probably a bad idea
   end
 end
 

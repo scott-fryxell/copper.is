@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PagesController,:pending do
+describe PagesController do
   describe 'as Guest' do
     before do
       controller.instance_eval do

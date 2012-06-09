@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OrdersController,:pending do
+describe OrdersController  do
   before :each do
     @me.current_order.rotate!
     @me.orders.unpaid.first.charge!
@@ -158,13 +158,13 @@ describe OrdersController,:pending do
 
     describe 'show' do
       describe '/orders/current' do
-        it 'responds to .json', :pending do
+        it 'responds to .json' do pending
           get :show, id:'current', format: :json 
           response.should be_success
           response.body.should include(@my_paid_order.to_json)
         end
         
-        it 'assigns the current open order of current user',:pending do
+        it 'assigns the current open order of current user' do pending
           get :show, id:'current'
           assigns(:order).id.should == @me.current_order.id
           response.status.should == 200
@@ -203,7 +203,7 @@ describe OrdersController,:pending do
         assigns(:order).id.should == @my_denied_order.id
       end
 
-      it '401 if order is not owned by current user',:pending do
+      it '401 if order is not owned by current user' do pending
         get :edit, id:@her_denied_order.id
         assigns(:order).should be_nil
         response.status.should == 401

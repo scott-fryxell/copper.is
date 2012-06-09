@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Page, :pending do
+describe Page do
   context do
     before(:each) do
       @page = Page.new
@@ -37,7 +37,7 @@ describe Page, :pending do
         @page.url = "https://twitter.com/#!/ChloesThinking"
       end
       
-      context '', :pending do
+      context '' do
         it "finds user on flickr.com" do
           @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
         end
@@ -106,7 +106,7 @@ describe Page, :pending do
       @page.fostered?.should be_true
     end
     
-    it 'for a site that can\'t be reached', :pending do
+    it 'for a site that can\'t be reached' do pending
       @page.url = "http://test.com/"
     end
   end

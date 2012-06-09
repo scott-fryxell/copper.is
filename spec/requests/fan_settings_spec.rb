@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan's account settings",:pending do
+describe "A Fan's account settings" do
   before(:each) do
     visit "/"
     click_link 'google_sign_in'

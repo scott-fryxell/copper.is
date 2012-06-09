@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe IdentitiesController,:pending do
+describe IdentitiesController do
   describe 'as Guest' do
     before :all do
       controller.instance_eval do
@@ -26,7 +26,8 @@ describe IdentitiesController,:pending do
     end
     describe 'create' do
       describe 'POST /identities' do
-        it 'does something',:pending do
+        it 'does something' do
+          pending
           post :create
         end
       end
@@ -82,6 +83,7 @@ describe IdentitiesController,:pending do
         end
         
         it 'assigns all identities for current user' do
+          pending
           get :index
           assigns(:identities).size.should == 1
           response.status.should == 200
@@ -99,46 +101,46 @@ describe IdentitiesController,:pending do
     end
 
     describe 'show' do
-      describe '/identities/:id', :pending do
-        it 'responds to .json' do
+      describe '/identities/:id' do
+        it 'responds to .json' do pending
           get :show, id:@my_identity.id, format: :json 
           response.should be_success
           response.body.should include(@my_identity.to_json)
         end
         
-        it 'assigns the identity' do
+        it 'assigns the identity' do pending
           get :show, id:@my_identity.id
           assigns(:identity).id.should == @my_identity.id
         end
 
-        it '401 for another user\'s identity' do
+        it '401 for another user\'s identity' do pending
           get :show, id:@her_identity.id
           response.status.should == 401
         end
       end
     end
 
-    describe 'edit', :pending do
+    describe 'edit' do
       describe '/identities/:id/edit' do
-        it '403' do
+        it '403' do pending
           get :edit, id:@my_identity.id
           response.status.should == 403
         end
       end
     end
 
-    describe 'update', :pending do
+    describe 'update' do
       describe 'PUT /identities/:id' do
-        it '403' do
+        it '403' do pending
           get :edit, id:@my_identity.id
           response.status.should == 403
         end
       end
     end
 
-    describe 'destroy',:pending do
+    describe 'destroy' do
       describe 'DELETE /identities/:id' do
-        it 'destroys the given identity',:pending do
+        it 'destroys the given identity' do pending
           proc do
             delete :destroy, id:@my_identity.id
           end.should change(Identity, :count)
