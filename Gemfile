@@ -44,6 +44,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem "capybara-webkit"
   gem 'database_cleaner', '~> 0.6.7'
+  gem 'guard'
   gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload'

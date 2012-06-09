@@ -60,7 +60,7 @@ Spork.each_run do
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
 
       ResqueSpec.reset!
-      ResqueSpec.inline = true
+      # ResqueSpec.inline = true
 
       class Stripe::Customer
         def self.create(*args)
@@ -108,6 +108,10 @@ Spork.each_run do
 
     config.after(:suite) do
       DatabaseCleaner.clean
+    end
+    
+    config.before(:each) do
+      Twitter.stub(:update)
     end
   end
 end

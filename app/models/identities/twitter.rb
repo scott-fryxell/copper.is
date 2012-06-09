@@ -1,5 +1,3 @@
-# see lib/messages.rb for message methods
-
 class Identities::Twitter < Identity
   include Enqueueable
   include TwitterMessages

@@ -37,7 +37,7 @@ describe Page do
         @page.url = "https://twitter.com/#!/ChloesThinking"
       end
       
-      context '', :broken do
+      context '' do
         it "finds user on flickr.com" do
           @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
         end
@@ -106,7 +106,7 @@ describe Page do
       @page.fostered?.should be_true
     end
     
-    it 'for a site that can\'t be reached', broken:true do
+    it 'for a site that can\'t be reached' do pending
       @page.url = "http://test.com/"
     end
   end
