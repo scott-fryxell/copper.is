@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Page do
+describe Page, :pending do
   context do
     before(:each) do
       @page = Page.new
