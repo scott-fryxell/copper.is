@@ -1,17 +1,17 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
-describe "A Fan's account settings", :broken do
+describe "A Fan's account settings",:broken do
   before(:each) do
+    DatabaseCleaner.clean
+    
     visit "/"
     click_link 'facebook_sign_in'
     # save_and_open_page
     click_link 'Account settings'
     page.execute_script("$.fx.off")
-
   end
 
   it "should be able to query items on the page" do
-
     page.evaluate_script("document.getItems().users").should equal(1)
   end
 
@@ -40,6 +40,5 @@ describe "A Fan's account settings", :broken do
       click_on 'Save'
       find("div > p").should have_content("change@google.com")
     end
-
   end
 end

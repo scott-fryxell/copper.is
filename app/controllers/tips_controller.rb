@@ -41,7 +41,6 @@ class TipsController < ApplicationController
 
   def create
     @tip = current_user.tip(params[:tip])
-
     if @tip && @tip.valid?
       redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_success")
     else
@@ -58,30 +57,25 @@ class TipsController < ApplicationController
 
   def update
     @tip = current_user.tips.find(params[:id])
-
     if params[:tip][:amount_in_cents] && params[:tip][:amount_in_cents] != ""
       @tip.amount_in_cents = params[:tip][:amount_in_cents]
       @tip.save
     end
-
     if request.xhr?
       render :text => '<meta name="event_trigger" content="tip_updated"/>'
     else
       redirect_to tips_path(params[:id])
     end
-
   rescue ActiveRecord::RecordNotFound
     render :nothing => true, :status => :unauthorized
   end
 
   def destroy
     tip = current_user.tips.find(params[:id])
-
     if(tip.order.user == current_user and tip.order.current?)
       tip.destroy
     end
     render :nothing => true, :status => :ok
-
   rescue ActiveRecord::RecordNotFound
     render :nothing => true, :status => :unauthorized
   rescue CantDestroyException
