@@ -1,4 +1,4 @@
-# source 'http://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.5'
 gem 'declarative_authorization'
@@ -19,8 +19,8 @@ gem 'dalli'
 gem "foreman"
 gem 'thin'
 gem 'newrelic_rpm'
-gem 'redis' #, '2.2.2'
-gem 'resque' #, '1.20.0'
+gem 'redis'
+gem 'resque'
 # gem 'resque-scheduler', :require => 'resque_scheduler'
 # gem 'resque-heroku-scaling-canary'
 gem 'state_machine'

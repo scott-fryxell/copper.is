@@ -21,7 +21,6 @@ Spork.prefork do
   require 'rspec/rails'
   require 'rspec'
   require 'capybara/rspec'
-  require 'resque_spec'
 
   require 'declarative_authorization/maintenance'
   require 'rack/test'
@@ -58,27 +57,35 @@ Spork.each_run do
       DatabaseCleaner.start
       DatabaseCleaner.clean
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
+
+      ResqueSpec.reset!
+      # ResqueSpec.inline = true
+
+      class Stripe::Customer
+        def self.create(*args)
+          OpenStruct.new(id:'1')
+        end
+
+        def self.retrieve(*args)
+          OpenStruct.new(card:nil,save:nil)
+        end
+      end
+
+      class Stripe::Charge
+        def self.create(*args)
+          OpenStruct.new(id:'1')
+        end
+      end
     end
     
-    config.before(:all) do
-      ResqueSpec.reset!
-      #ResqueSpec.inline = true
+    config.before(:suite) do
+      DatabaseCleaner.start
+      DatabaseCleaner.clean
     end
 
-    class Stripe::Customer
-      def self.create(*args)
-        OpenStruct.new(id:'1')
-      end
-
-      def self.retrieve(*args)
-        OpenStruct.new(card:nil,save:nil)
-      end
-    end
-
-    class Stripe::Charge
-      def self.create(*args)
-        OpenStruct.new(id:'1')
-      end
+    config.before(:each) do
+      DatabaseCleaner.clean
+      Twitter.stub(:update)
     end
   end
 end
