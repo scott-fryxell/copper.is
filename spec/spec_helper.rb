@@ -36,7 +36,6 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
-    config.filter_run_excluding :slow => true
     config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
@@ -46,6 +45,8 @@ Spork.prefork do
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
+    # REDIS_PID = "#{Rails.root}/tmp/pids/redis-test.pid"
+    # REDIS_CACHE_PATH = "#{Rails.root}/tmp/cache/"
   end
 end
 
@@ -77,14 +78,39 @@ Spork.each_run do
         end
       end
     end
-    
+
+    config.before(:all) do
+      @stranger = create!(:identities_phony)
+      @wanted = create!(:identities_phony,identity_state:'wanted')
+
+      @page1 = create!(:page,author_state:'adopted')
+      @page2 = create!(:page,author_state:'adopted')
+
+      @wanted.pages << @page1
+      @wanted.pages << @page2
+      
+      @me = create!(:user)
+      @her = create!(:user_phony)
+
+      @my_identity = @me.identities.first
+      @her_identity = @her.identities.first
+
+      @my_tip = @me.tip(url:@page1.url)
+
+      @her_tip1 = @her.tip(url:@page1.url)
+      @her_tip2 = @her.tip(url:@page2.url)
+    end
+
     config.before(:suite) do
       DatabaseCleaner.start
       DatabaseCleaner.clean
     end
 
-    config.before(:each) do
+    config.after(:suite) do
       DatabaseCleaner.clean
+    end
+    
+    config.before(:each) do
       Twitter.stub(:update)
     end
   end

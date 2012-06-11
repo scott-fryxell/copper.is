@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe IdentitiesController, :broken do
+describe IdentitiesController do
   describe 'as Guest' do
     before :all do
       controller.instance_eval do

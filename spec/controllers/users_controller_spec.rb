@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController,:broken do
+describe UsersController do
   describe 'as Guest' do
     before do
       controller.instance_eval do
@@ -118,6 +118,8 @@ describe UsersController,:broken do
         it 'assigns user with id current' do
           get :show, id:'current'
           response.status.should == 200
+          p assigns(:user)
+          p @me
           assigns(:user).id.should == @me.id
         end
       end

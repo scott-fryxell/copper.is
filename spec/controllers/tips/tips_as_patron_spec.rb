@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TipsController, :broken do
+describe TipsController do
   describe 'as Patron' do
     before :each do
       raise '@me not set' unless @me
@@ -122,6 +122,7 @@ describe TipsController, :broken do
         it 'destroys a promised tip' do
           proc do
             @my_tip.promised?.should be_true
+            p @my_tip
             Tip.find(@my_tip.id).should_not be_nil
             delete :destroy, id:@my_tip.id
             # proc{Tip.find(@my_tip.id).should be_nil}.should raise_error(ActiveRecord::RecordNotFound)

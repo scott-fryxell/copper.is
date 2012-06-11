@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TipsController, :broken do
+describe TipsController do
   describe 'high level' do
     before :each do
       raise '@me not set' unless @me
