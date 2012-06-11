@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AuthSource do
   before do
-    @auth_source = AuthSources::Phony.create! username:'dude'
+    @auth_source = AuthSources::Phony.create!(username:'dude')
   end
   
   it 'can belong to an author' do

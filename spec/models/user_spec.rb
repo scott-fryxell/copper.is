@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe User do
-  it 'contains at least a Fan or an Author'
+  it 'is a collection of AuthSources' do
+    User.create.should respond_to(:auth_sources)
+  end
+  
   it 'can contain both'
 end
 

@@ -250,8 +250,8 @@ GEM
       redis-namespace (~> 1.0.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
-    resque_spec (0.5.1)
-      resque (>= 1.6.0)
+    resque_spec (0.12.1)
+      resque (>= 1.19.0)
       rspec (>= 2.5.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -378,7 +378,7 @@ DEPENDENCIES
   redcarpet
   redis
   resque
-  resque_spec
+  resque_spec (= 0.12.1)
   rspec-rails
   ruby-graphviz (~> 0.9.17)
   ruby_parser

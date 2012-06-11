@@ -2,12 +2,15 @@ class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 
 class Tip < ActiveRecord::Base
+  include Enqueueable
+  has_paper_trail
+  
   belongs_to :page
   belongs_to :order
   belongs_to :check
-  has_one :user, :through => :order
-  has_paper_trail
-  default_scope :order => 'created_at DESC'
+  has_one :fan, :through => :order
+  has_one :author, :through => :page
+  has_one :site, :through => :page
 
   attr_accessor :url,:title
 
@@ -16,6 +19,7 @@ class Tip < ActiveRecord::Base
   scope :promised, where("paid_state = ?", 'promised')
   scope :charged, where("paid_state = ?", 'charged')
   scope :kinged, where("paid_state = ?", 'kinged').readonly
+  default_scope :order => 'created_at DESC'
 
   MINIMUM_TIP_VALUE = 1
   MAXIMUM_TIP_VALUE = 2000
@@ -23,9 +27,6 @@ class Tip < ActiveRecord::Base
     :numericality => { in:(MINIMUM_TIP_VALUE..MAXIMUM_TIP_VALUE) },
     :presence => true
 
-  validates_associated :page
-
-  validates :page, presence:true
   validates :order, presence:true
   validates :amount_in_cents, presence:true
   validate :validate_only_being_added_to_current_order, :on => :create
@@ -33,6 +34,10 @@ class Tip < ActiveRecord::Base
     unless self.order.current?
       errors.add(:order_id,"can only add a tip to a current order")
     end
+  end
+  
+  after_create do |tip|
+    Resque.enqueue Tip, tip.id, :find_or_create_page!
   end
 
   before_destroy do |tip|

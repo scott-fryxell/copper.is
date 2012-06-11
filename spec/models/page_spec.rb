@@ -1,17 +1,9 @@
 require 'spec_helper'
 
 describe Page do
-  before do
-    DatabaseCleaner.clean
-  end
-  
   describe 'without resque' do
     before do
-      @page = Page.create! url:'http://test.com/dude'
-    end
-    
-    it 'creates a site on demand' do
-      @page.site.should be_valid
+      @page = Page.create!(url:'http://test.com/dude')
     end
     
     it 'causes a #find_author! job to enqueue' do
@@ -20,14 +12,14 @@ describe Page do
   end
   
   describe 'with resque' do
-    before :all do
+    before do
       with_resque do
         @page = Page.create! url:'http://test.com/dude'
       end
     end
     
-    it 'finds an author' do
-      @page.author.should be_valid
+    it 'finds an author' do pending
+      @page.author.should_not be_nil
     end
   end
 end

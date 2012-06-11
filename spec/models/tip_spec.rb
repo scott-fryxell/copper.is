@@ -3,9 +3,8 @@ require 'spec_helper'
 describe Tip do
   describe 'without resque' do
     before do
-      @order = User.create.current_order
+      @order = Fan.create.current_order
       @tip = @order.tips.create!(amount_in_cents:10,url:'http://test.com')
-      @order.reload
     end
     
     it 'is valid with an amount, an order, and a URL' do
@@ -17,7 +16,7 @@ describe Tip do
     end
     
     it 'can access it\'s Fan' do
-      @tip.fan.should eq(@order.user)
+      @tip.fan.should eq(@order.fan)
     end
     
     it 'is not initially associated with a Check' do

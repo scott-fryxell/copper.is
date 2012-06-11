@@ -2,10 +2,10 @@ class Check < ActiveRecord::Base
   include Enqueueable
   has_paper_trail
   
-  belongs_to :user
+  belongs_to :author
   has_many :tips
 
-  validates :user, presence:true
+  validates :author, presence:true
   
   scope :earned, where("check_state = ?", 'earned')
   scope :paid, where("check_state = ?", 'paid')  

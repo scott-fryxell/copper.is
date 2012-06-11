@@ -1,16 +1,16 @@
 class Order < ActiveRecord::Base
-  has_many :tips, :order => 'created_at', :dependent => :destroy
-  belongs_to :user
   has_paper_trail
-  validates :user, presence:true
-  validates_associated :user
+  
+  has_many :tips, :order => 'created_at', :dependent => :destroy
+  belongs_to :fan
+  validates :fan, presence:true
 
-  scope :current, where('state = ?', 'current')
-  scope :unpaid, where('state = ?', 'unpaid').order('created_at DESC')
-  scope :denied, where('state = ?', 'denied')
-  scope :paid, where('state = ?', 'paid')
+  scope :current, where('order_state = ?', 'current')
+  scope :unpaid, where('order_state = ?', 'unpaid').order('created_at DESC')
+  scope :denied, where('order_state = ?', 'denied')
+  scope :paid, where('order_state = ?', 'paid')
 
-  state_machine :state, :initial => :current do
+  state_machine :order_state, :initial => :current do
     event :process do
       transition :current => :unpaid,
                  [:unpaid,:denied] => :paid,

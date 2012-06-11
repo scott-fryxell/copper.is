@@ -60,11 +60,10 @@ Spork.each_run do
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
     end
     
-    config.before(:all) do
+    config.before(:each) do
       ResqueSpec.reset!
-      #ResqueSpec.inline = true
     end
-
+    
     class Stripe::Customer
       def self.create(*args)
         OpenStruct.new(id:'1')

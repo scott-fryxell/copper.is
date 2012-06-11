@@ -15,7 +15,7 @@ describe Author do
   
   it 'has many pages' do
     proc do
-      @author.pages.create! url:'http://test.com'
+      @author.pages.create!(url:'http://test.com')
     end.should change(@author.pages,:count).by(1)
   end
   
@@ -34,8 +34,7 @@ describe Author do
     end
     
     it 'the given is destroyed' do
-      @other.reload
-      @other.should_not be_valid
+      proc { @other.reload }.should raise_error(ActiveRecord::RecordNotFound)
     end
     
     it 'the receiver overrides address details' do

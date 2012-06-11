@@ -1,38 +1,11 @@
 class User < ActiveRecord::Base
-  include Enqueueable
-  has_one  :address
-  has_many :identities
-  has_many :orders
-  has_many :tips, :through => :orders
-  has_many :checks
-  has_and_belongs_to_many :roles
   has_paper_trail
-  # has_many :royalties, :through => :identities, :class => 'Tip'
-
-  attr_accessible :name, :email, :tip_preference_in_cents
-
-  validates :tip_preference_in_cents,
-    :numericality => { greater_than_or_equal_to:Tip::MINIMUM_TIP_VALUE },
-    :presence => true
-  validates :name, length:{in:3..128}, allow_nil:true
-
-  # this doesn't match gmail '+' tags
-  EMAIL_RE = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/
-  validates :email, format:{with:EMAIL_RE}, :allow_nil => true
-
-  validate :validate_one_current_order, on:'save'
-  def validate_one_current_order
-    errors.add(:orders, "there must be only one") unless self.orders.current.size == 1
-  end
-
-  after_create :create_current_order!
-
-  def create_current_order!
-    if self.orders.unpaid.count > 0
-      raise "there is already an unpaid Order for this user: #{self.inspect}"
-    end
-    self.orders.create!
-  end
+  include Enqueueable
+  
+  has_one :fan
+  has_one :author
+  
+  has_and_belongs_to_many :roles
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -52,66 +25,12 @@ class User < ActiveRecord::Base
     roles.find{|e| e.name == 'Patron'}
   end
 
-  def tip(args = {})
-    url    = args[:url]
-    amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
-    title  = args[:title]
-
-    tip = current_order.tips.build(amount_in_cents:amount_in_cents)
-    unless tip.page = Page.where('url = ?', url).first
-      tip.page = Page.create(url:url,title:title)
-    end
-    tip.save!
-    tip
-  end
-
   def charge_info?
     !!self.stripe_customer_id
   end
 
-  def create_stripe_customer (card_token)
-    if self.stripe_customer_id
-      customer = Stripe::Customer.retrieve(self.stripe_customer_id)
-    else
-      customer = Stripe::Customer.create(
-        :description => self.email,
-        :card => card_token
-      )
-      self.stripe_customer_id = customer.id
-    end
-    return customer;
-  end
-
-  def delete_stripe_customer
-    if self.stripe_customer_id
-      customer = Stripe::Customer.retrieve(self.stripe_customer_id)
-      customer.delete
-    end
-  end
-
-  def current_order
-    self.orders.current.first or self.orders.create
-  end
-
   def current_tips
     current_order.tips
-  end
-
-  def try_to_create_check!
-    the_tips = []
-    self.identities.each do |ident|
-      the_tips += ident.tips.charged.all
-    end
-    unless the_tips.empty?
-      if check = self.checks.create
-        the_tips.each do |tip|
-          check.tips << tip
-          tip.claim!
-          tip.save!
-        end
-        check.save!
-      end
-    end
   end
 
   def message_about_check(check_id)
