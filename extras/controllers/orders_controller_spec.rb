@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OrdersController  do
+describe OrdersController, :broken  do
   before :each do
     @me.current_order.rotate!
     @me.orders.unpaid.first.charge!
@@ -216,7 +216,7 @@ describe OrdersController  do
         it "doesn't allow any column updates to the order"
       end
 
-      describe 'PUT /orders/:id' do
+      describe 'PUT /orders/:id', :slow do
         before do
           @my_new_tip = @me.tip(url:@page1.url)
           @order_id = @me.current_order.id
