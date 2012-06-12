@@ -19,6 +19,24 @@ describe Author do
     end.should change(@author.pages,:count).by(1)
   end
   
+  describe 'primary_channel' do
+    before do
+      @author.channels.create!(address:'me@test.com')
+    end
+    
+    it 'responds' do
+      @author.should respond_to(:primary_channel)
+    end
+    
+    it 'returns a Channl' do
+      @author.primary_channel.class.ancestors.should include(Channel)
+    end
+    
+    it 'is the only if there is only one' do
+      
+    end
+  end
+  
   describe '#merge!' do
     before do
       @other = Author.create!(city:'Denver')

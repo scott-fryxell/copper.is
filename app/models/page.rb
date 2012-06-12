@@ -12,15 +12,25 @@ class Page < ActiveRecord::Base
   validates :url, :presence => true
 
   after_create do |page|
+    page.find_or_create_site!
     Resque.enqueue Page, page.id, :find_author!
+  end
+  
+  def find_or_create_site!
+    self.site = Site.create!
+    save!
+    self.site
   end
   
   def find_author!
     self.author = Author.create!
+    save!
+    self.author
   end
 end
 
 __END__
+
 validate :url_points_to_real_site
 def url_points_to_real_site
   errors.add(:url, "must point to a real site") unless self.url =~ /\./

@@ -1,6 +1,3 @@
-class InvalidTipURL < Exception ; end
-class CantDestroyException < Exception ; end
-
 class Tip < ActiveRecord::Base
   include Enqueueable
   has_paper_trail
@@ -11,8 +8,6 @@ class Tip < ActiveRecord::Base
   has_one :fan, :through => :order
   has_one :author, :through => :page
   has_one :site, :through => :page
-
-  attr_accessor :url,:title
 
   attr_accessible :amount_in_cents,:url,:title
 
@@ -43,42 +38,53 @@ class Tip < ActiveRecord::Base
   before_destroy do |tip|
     raise CantDestroyException unless tip.promised?
   end
+  
+  def find_or_create_page!
+    to_return = self.create_page!(url:self.url)
+    save!
+    to_return
+  end
+end
 
-  state_machine :paid_state, :initial => :promised do
-    event :pay do
-      transition :promised => :charged
-    end
+__END__
 
-    event :claim do
-      transition :charged => :kinged
-    end
+class InvalidTipURL < Exception ; end
+class CantDestroyException < Exception ; end
 
-    state :charged, :kinged do
-      validate :validate_presence_of_paid_order
-    end
-
-    state :kinged do
-      validate :validate_presence_of_check
-    end
+state_machine :paid_state, :initial => :promised do
+  event :pay do
+    transition :promised => :charged
   end
 
-  def validate_presence_of_paid_order
-    unless self.order.paid?
-      errors.add(:order_id, "tip order must be :paid for :charged tips")
-    end
+  event :claim do
+    transition :charged => :kinged
   end
 
-  def validate_presence_of_check
-    unless self.check_id
-      errors.add(:check_id, "check_id must not be null for :kinged tips")
-    end
+  state :charged, :kinged do
+    validate :validate_presence_of_paid_order
   end
 
-  def url
-    page.url
+  state :kinged do
+    validate :validate_presence_of_check
   end
+end
 
-  def title
-    page.title
+def validate_presence_of_paid_order
+  unless self.order.paid?
+    errors.add(:order_id, "tip order must be :paid for :charged tips")
   end
+end
+
+def validate_presence_of_check
+  unless self.check_id
+    errors.add(:check_id, "check_id must not be null for :kinged tips")
+  end
+end
+
+def url
+  page.url
+end
+
+def title
+  page.title
 end

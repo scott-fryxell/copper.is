@@ -42,9 +42,10 @@ ActiveRecord::Schema.define(:version => 13) do
     t.string   "state"
     t.string   "territory"
     t.string   "city"
+    t.integer  "primary_channel_id"
     t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "channels", :force => true do |t|
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(:version => 13) do
 
   create_table "sites", :force => true do |t|
     t.string   "type"
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -118,13 +120,16 @@ ActiveRecord::Schema.define(:version => 13) do
     t.integer  "check_id"
     t.integer  "page_id"
     t.integer  "amount_in_cents", :null => false
+    t.string   "url",             :null => false
     t.string   "title"
     t.string   "paid_state"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
+  add_index "tips", ["check_id"], :name => "index_tips_on_check_id"
   add_index "tips", ["order_id"], :name => "index_tips_on_order_id"
+  add_index "tips", ["page_id"], :name => "index_tips_on_page_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

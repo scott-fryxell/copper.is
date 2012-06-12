@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe User do
-  it 'is a collection of AuthSources' do
-    User.create.should respond_to(:auth_sources)
+  it 'has a fan' do
+    User.create.should respond_to(:fan)
   end
   
-  it 'can contain both'
+  it 'has a author' do
+    User.create.should respond_to(:author)
+  end
 end
 
 __END__

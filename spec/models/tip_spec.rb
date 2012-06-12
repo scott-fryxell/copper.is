@@ -38,11 +38,32 @@ describe Tip do
     it 'queues the find_or_create_page! job' do
       Tip.should have_queued(@tip.id, :find_or_create_page!)
     end
+    
+    it 'a new tip is in promised state' do
+      @tip.promised?.should be_true
+    end
   end
   
   describe 'with resque' do
-    it 'is associated with a Page'
-    it 'is associated with a Site' 
-    it 'is associated with a Author'
+    before do
+      with_resque do
+        @order = Fan.create.current_order
+        @tip = @order.tips.create!(amount_in_cents:10,url:'http://test.com')
+        @tip.reload
+        @order.reload
+      end
+    end
+    
+    it 'is associated with a Page' do
+      @tip.page.should_not be_nil
+    end
+    
+    it 'is associated with a Site' do
+      @tip.site.should_not be_nil
+    end
+    
+    it 'is associated with a Author' do
+      @tip.author.should_not be_nil
+    end
   end
 end
