@@ -17,7 +17,7 @@ gem 'omniauth-google-oauth2'
 gem 'stripe'
 gem 'dalli'
 gem "foreman"
-gem 'thin'
+gem 'unicorn'
 gem 'newrelic_rpm'
 gem 'redis'
 gem 'resque', '1.20.0'
