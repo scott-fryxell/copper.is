@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Author do
   before do
+    DatabaseCleaner.clean
     @author = Author.create!
   end
   

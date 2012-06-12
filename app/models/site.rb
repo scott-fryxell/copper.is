@@ -5,17 +5,16 @@ class Site < ActiveRecord::Base
   
   @children = Set.new
   
-  after_create do
-    Site.set_child_type(self)
+  before_create do |site|
+    site.set_child_type
   end
   
-  def self.set_child_type(site)
-    @children.find do |child|
-      if child.match(site)
-        site.type = child.class.to_s
+  def set_child_type
+    Site.children.find do |child|
+      if child.match(self)
+        self.type = child.to_s
       end
     end
-    site.save!
   end
   
   def self.inherited(child)
@@ -27,4 +26,4 @@ class Site < ActiveRecord::Base
   end
 end
 
-require 'sites/phony'
+require 'sites/phony' # TODO eliminate this

@@ -11,15 +11,14 @@ class Page < ActiveRecord::Base
 
   validates :url, :presence => true
 
-  after_create do
-    find_or_create_site!
-    Resque.enqueue Page, id, :find_author!
+  after_create do |page|
+    page.find_or_create_site!
+    Resque.enqueue Page, page.id, :find_author!
   end
   
   def find_or_create_site!
     if host = URI.parse(self.url).host
       host.sub!(/^www\./,'')
-      p Site
       if s = Site.where('name = ?', host).first
         self.site = s
       else
@@ -33,9 +32,11 @@ class Page < ActiveRecord::Base
   end
   
   def find_author!
-    self.author = Author.create!
-    save!
-    self.author
+    self.site.find_author!(self)
+  end
+  
+  def path
+    URI.parse(url).path
   end
 end
 

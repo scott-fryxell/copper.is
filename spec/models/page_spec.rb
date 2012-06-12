@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Page do
+  before do
+    DatabaseCleaner.clean
+  end
+  
   describe 'without resque' do
     before do
       @page = Page.create!(url:'http://test.com/dude')
@@ -13,7 +17,6 @@ describe Page do
   
   describe 'with resque' do
     before do
-      DatabaseCleaner.clean
       with_resque do
         @page = Page.create!(url:'http://test.com/dude')
         @page.reload
@@ -52,7 +55,7 @@ describe Page do
     end
     
     it 'sets path on Page' do
-      @page.path.should eq('dude')
+      @page.path.should eq('/dude')
     end
 
     it 'finds the phony author with a dude@test.com email channel' do

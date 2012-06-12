@@ -26,8 +26,10 @@ class Tip < ActiveRecord::Base
   validates :amount_in_cents, presence:true
   validate :validate_only_being_added_to_current_order, :on => :create
   def validate_only_being_added_to_current_order
-    unless self.order.current?
-      errors.add(:order_id,"can only add a tip to a current order")
+    if order
+      unless self.order.current?
+        errors.add(:order_id,"can only add a tip to a current order")
+      end
     end
   end
   

@@ -7,6 +7,8 @@ class Author < ActiveRecord::Base
   
   attr_accessible :city
   
+  validate :at_least_one_channel?, :on => :update
+  
   def merge!(rhs)
     self.checks += rhs.checks
     save!
@@ -16,6 +18,10 @@ class Author < ActiveRecord::Base
   
   def primary_channel
     channels.first
+  end
+  
+  def at_least_one_channel?
+    channels.count > 0
   end
   
   def try_to_create_check!
