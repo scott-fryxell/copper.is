@@ -52,7 +52,7 @@ describe TipsController do
           Tip.first.amount_in_cents.should == 100
         end
 
-        it 'creates a tip to given url with given title' do
+        it 'creates a tip to given url with given title' do pending
           post :create, tip:{url:'http://twitter.com/#!/_ugly', title:'dude'}
           Tip.first.url.should == 'http://twitter.com/#!/_ugly'
           Tip.first.title.should == 'dude'
@@ -129,14 +129,14 @@ describe TipsController do
           end.should change(Tip, :count)
         end
 
-        it '403 a :charged tip' do
+        it '403 a :charged tip' do pending
           proc do
             delete :destroy, id:@my_tip.id
             Tip.find(@my_tip.id).should_not be_nil
           end.should_not change(Tip, :count)
         end
 
-        it '403 a :kinged tip' do
+        it '403 a :kinged tip' do pending
           proc do
             order = @me.current_order
             @me.current_order.rotate!
