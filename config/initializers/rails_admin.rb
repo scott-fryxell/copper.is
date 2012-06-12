@@ -528,7 +528,7 @@ RailsAdmin.config do |config|
   #     configure :name, :string
   #     configure :tip_preference_in_cents, :integer
   #     configure :email, :string
-  #     configure :stripe_customer_id, :string
+  #     configure :stripe_id, :string
   #     configure :accept_terms, :boolean
   #     configure :created_at, :datetime
   #     configure :updated_at, :datetime   #   # Sections:

@@ -8,18 +8,6 @@ $(document).ready(function (){
     format_rate()
   })
 });
-$(document).on("copper:items", function (){
-  user = document.getItems()['users'][((window.location.pathname).replace('/edit', ''))]
-});
-
-function format_rate(){
-  var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
-  rate = (parseFloat(rate) / 100.00)
-  if( rate == 0.5 || rate == 0.1){
-    rate = rate + '0'
-  }
-  $("p[itemprop=tip_preference_in_cents]").text(rate)
-}
 $(document).ready(function (){
   $("section > header > a").click(function(event){
     event.preventDefault();
@@ -44,13 +32,6 @@ $(document).ready(function (){
     });
   });
 
-  if (!user.credit_card_id){
-    $("#card > header > a").click();
-  }
-
-  if (!user.email){
-    $("#email > header > a").click();
-  }
   $('#email form').bind('form:invalid', function (){
     console.debug("invalid form")
     $('#email > header > a').click();
@@ -58,9 +39,7 @@ $(document).ready(function (){
   });
 
 });
-
-
-$(document).ready(function() {
+$(document).ready(function (){
   $("#card > form").submit(function(event) {
     event.preventDefault();
     if( !Stripe.validateCardNumber($('#number').val())){
@@ -90,7 +69,6 @@ $(document).ready(function() {
       $('#site_terms').addClass("invalid");
     }
     if($('#card .invalid').length > 0){
-      console.debug('invalid');
       $('#card > header > a').click();
       return false;
     }
@@ -103,20 +81,70 @@ $(document).ready(function() {
         email:$('#email').val()
       },
       function (status, response) {
-        console.debug(status, response);
+        // console.debug(status, response);
         if (response.error) {
           $("#card > form > h1").text(response.error.message)
           $("#card > form > h1").addClass("message")
-        } else {
-          $("#card > form > h1").removeClass("message")
-          $(document).trigger("copper:create_stripe_customer_id")
-          $("input[name=stripe_token]").val(response['id']);
-          $("#card p.type").text(response.card.type)
-          $("#card p.number").text(response.card.last4)
-          $("#card p.expiration").text(response.card.exp_month + '/' + response.card.exp_year )
+          return
         }
+        $("#card > form > h1").removeClass("message")
+        $("#card p.type").text(response.card.type)
+        $("#card p.number").text(response.card.last4)
+        $("#card p.expiration").text(response.card.exp_month + '/' + response.card.exp_year )
+
+        // post the tip to create if the user hasn't created a stripe id
+        var method = 'post'
+        if(user.stripe_id){
+          method = 'put'
+        }
+        jQuery.ajax({
+          url: '/cards',
+          type: method,
+          data: 'card_token=' + response['id'],
+          error: function(data, textStatus, jqXHR) {
+            console.error("error creating stripe user " + method, data, textStatus, jqXHR);
+          }
+        });
       }
     );
     return false;
   });
 });
+$(document).on("copper:items_discovered", function (){
+  user = document.getItems()['users'][((window.location.pathname).replace('/edit', ''))]
+
+  if (!user.email){
+    $("#email > header > a").click();
+  }
+
+  if (user.stripe_id){
+    console.debug(user.stripe_id)
+    //load the credit card information from stripe
+
+    jQuery.ajax({
+      url: '/cards',
+      type: 'get',
+      success: function (data, textStatus, jqXHR){
+        console.debug(data)
+        $("#card p.type").text(data.active_card.type)
+        $("#card p.number").text(data.active_card.last4)
+        $("#card p.expiration").text(data.active_card.exp_month + '/' + data.active_card.exp_year )
+        // populate stripe information from the returned object
+      },
+      error: function (data, textStatus, jqXHR) {
+        console.error("error getting stripe info", data, textStatus, jqXHR);
+      }
+    });
+  }
+  else{
+    $("#card > header > a").click();
+  }
+});
+function format_rate(){
+  var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
+  rate = (parseFloat(rate) / 100.00)
+  if( rate == 0.5 || rate == 0.1){
+    rate = rate + '0'
+  }
+  $("p[itemprop=tip_preference_in_cents]").text(rate)
+}

@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(:version => 9) do
     t.string   "name"
     t.integer  "tip_preference_in_cents", :default => 25,    :null => false
     t.string   "email"
-    t.string   "stripe_customer_id"
+    t.string   "stripe_id"
     t.boolean  "accept_terms",            :default => false
     t.string   "line1"
     t.string   "line2"

@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_paper_trail
   # has_many :royalties, :through => :identities, :class => 'Tip'
 
-  attr_accessible :name, :email, :tip_preference_in_cents
+  attr_accessible :name, :email, :tip_preference_in_cents, :accept_terms
 
   validates :tip_preference_in_cents,
     :numericality => { greater_than_or_equal_to:Tip::MINIMUM_TIP_VALUE },
@@ -66,27 +66,7 @@ class User < ActiveRecord::Base
   end
 
   def charge_info?
-    !!self.stripe_customer_id
-  end
-
-  def create_stripe_customer (card_token)
-    if self.stripe_customer_id
-      customer = Stripe::Customer.retrieve(self.stripe_customer_id)
-    else
-      customer = Stripe::Customer.create(
-        :description => self.email,
-        :card => card_token
-      )
-      self.stripe_customer_id = customer.id
-    end
-    return customer;
-  end
-
-  def delete_stripe_customer
-    if self.stripe_customer_id
-      customer = Stripe::Customer.retrieve(self.stripe_customer_id)
-      customer.delete
-    end
+    !!self.stripe_id
   end
 
   def current_order

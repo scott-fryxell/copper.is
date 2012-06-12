@@ -16,6 +16,7 @@ authorization do
     has_permission_on :orders,     :to => [:read,:update]
     has_permission_on :identities, :to => [:manage]
     has_permission_on :pages,      :to => [:read]
+    has_permission_on :cards,      :to => [:manage]
   end
 
   role :guest do

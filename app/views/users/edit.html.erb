@@ -77,10 +77,9 @@
     </section>
   </div>
   <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-  <input name="stripe_token" type="hidden" value="<%=current_user.stripe_customer_id%>">
-  <form method="post">
+  <input itemprop="stripe_id" name="stripe_id" type="hidden" value="<%=current_user.stripe_id%>">
+  <form method="put">
     <h1></h1>
-
     <fieldset>
       <input type="text" autocomplete="off" id="number" placeholder="Card Number" required />
       <input type="text" autocomplete="off" id="cvc" placeholder="CVC"  required />
@@ -114,7 +113,7 @@
       </select>
     </fieldset>
     <fieldset class="pay">
-      <input type="checkbox"  name="terms" id="site_terms" value="true" <%= "checked" if current_user.accept_terms? %> />
+      <input itemprop="accept_terms" type="checkbox"  name="user[accept_terms]" id="site_terms" value="true" <%= "checked" if current_user.accept_terms? %> />
       <label for="site_terms">I accept the <a href="/terms" target="window">terms</a></label>
     </fieldset>
     <input type="submit" value="Save" />

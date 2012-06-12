@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  filter_access_to :all
+  filter_resource_access
 
   def index
     redirect_to root_path

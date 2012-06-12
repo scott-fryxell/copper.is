@@ -11,7 +11,7 @@ Item.discover_items = function (){
     items[$(this).attr("itemtype")][$(this).attr('itemid')] = new Item(this);
   });
   Item.items = items;
-  $(document).trigger("copper:items");
+  $(document).trigger("copper:items_discovered");
   return Item.items;
 }
 Item.get_value      = function (element){
@@ -48,6 +48,9 @@ Item.update_page    = function (item){
     }
   });
   $(document).trigger("copper:update_page_items");
+}
+Item.prototype.update_page = function (){
+  Item.update_page(this);
 }
 document.getItems   = function (type){
   if(type){

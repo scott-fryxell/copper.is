@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan's account settings", :broken do
+describe "A Fan's", :focus do
   before(:each) do
+    DatabaseCleaner.clean
     visit "/"
     click_link 'facebook_sign_in'
     # save_and_open_page
@@ -10,36 +11,81 @@ describe "A Fan's account settings", :broken do
 
   end
 
-  it "should be able to query items on the page" do
-
-    page.evaluate_script("document.getItems().users").should equal(1)
-  end
-
-  it "should be able to query for user email" do
-    page.evaluate_script("user.email").should == "user@google.com"
-  end
-
-  it "should be able to change user email from the command line" do
-    within("section#email") do
-      find("div > p").should have_content("user@google.com")
-      page.execute_script("user = document.getItems().users[0]")
-      page.execute_script("user.email = 'change@google.com'")
-      page.execute_script("user.inject()")
-      find("div > p").should have_content("change@google.com")
-      click_link "Change"
-      find_field('user[email]').value.should == 'change@google.com'
+  describe 'Item.js' do
+    it "should be able to query items on the page" do
+      page.evaluate_script("document.getItems().users").should_not be_nil
     end
+
+    it "should be able to query for user email" do
+      page.evaluate_script("user.email").should == "user@facebook.com"
+    end
+
+    it "should be able to change email from the command line" do
+      within("section#email") do
+        find("div > p").should have_content("user@facebook.com")
+        page.execute_script("user.email = 'change@email.com'")
+        page.execute_script("Item.update_page(user)")
+        find("div > p").should have_content("change@email.com")
+        click_link "Change"
+        find_field('user[email]').value.should == 'change@email.com'
+      end
+    end
+
   end
 
   it "should be able to change email" do
     within("section#email") do
-      find("div > p").should have_content("user@google.com")
+      find("div > p").should have_content("user@facebook.com")
       click_link "Change"
-      find_field('user[email]').value.should == 'user@google.com'
-      fill_in('email', :with => 'change@google.com')
+      find_field('user[email]').value.should == 'user@facebook.com'
+      fill_in('user[email]', :with => 'change@email.com')
       click_on 'Save'
-      find("div > p").should have_content("change@google.com")
+      find("div > p").should have_content("change@email.com")
+    end
+    click_link 'Account settings'
+    within("section#email") do
+      find("div > p").should have_content("change@email.com")
+    end
+  end
+
+  it "should be able to change tip amount preference" do
+    within("section#rate") do
+      find("div > p").should have_content("0.25")
+      click_link "Change"
+      find_field('user[tip_preference_in_cents]').value.should == '25'
+      page.select '$1.00', :from => 'user[tip_preference_in_cents]'
+      click_on "Save"
+      find("div > p").should have_content("1")
+    end
+    click_link 'Account settings'
+
+    within("section#rate") do
+      find("div > p").should have_content("1")
+    end
+  end
+
+
+  it "should be able to save their credit card information" do
+    within("section#card") do
+      click_link "Change"
+      fill_in('number', :with => '4242424242424242')
+      fill_in('cvc', :with => '666')
+      select('April', :from => 'month')
+      select('2015', :from => 'year')
+      check('terms')
+      click_on('Save')
+      find("div p.number").should have_content("4242")
+      find("div p.type").should have_content("Visa")
+      find("div p.expiration").should have_content("4/2015")
+    end
+    click_link 'Account settings'
+    within("section#card") do
+      sleep 2
+      find("div p.number").should have_content("4242")
+      find("div p.type").should have_content("Visa")
+      find("div p.expiration").should have_content("4/2015")
     end
 
   end
+
 end

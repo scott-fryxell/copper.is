@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.integer:tip_preference_in_cents,  :null => false, :default => 25
       t.string :email
-      t.string :stripe_customer_id
+      t.string :stripe_id
       t.boolean :accept_terms,            :default => false
       t.string :line1
       t.string :line2

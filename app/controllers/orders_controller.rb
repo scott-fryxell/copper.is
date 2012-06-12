@@ -47,8 +47,8 @@ class OrdersController < ApplicationController
     current_user.accept_terms = params[:terms]
     current_user.email = params[:email]
 
-    if current_user.stripe_customer_id
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    if current_user.stripe_id
+      customer = Stripe::Customer.retrieve(current_user.stripe_id)
       customer.card = params[:stripe_token]
       customer.save
     else
@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
         :card => params[:stripe_token],
         :description => "user.id=" + current_user.id.to_s
       )
-      current_user.stripe_customer_id = customer.id
+      current_user.stripe_id = customer.id
     end
 
     current_user.save
