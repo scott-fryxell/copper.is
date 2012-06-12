@@ -3,52 +3,23 @@ class Order < ActiveRecord::Base
   
   has_many :tips, :order => 'created_at', :dependent => :destroy
   belongs_to :fan
+  
   validates :fan, presence:true
 
   scope :current, where('order_state = ?', 'current')
-  scope :unpaid, where('order_state = ?', 'unpaid').order('created_at DESC')
-  scope :denied, where('order_state = ?', 'denied')
   scope :paid, where('order_state = ?', 'paid')
-
   state_machine :order_state, :initial => :current do
     event :process do
-      transition :current => :unpaid,
-                 [:unpaid,:denied] => :paid,
+      transition [:current,:unpaid,:denied] => :paid,
                  :paid => :paid
     end
 
-    event :decline do
-      transition [:current,:unpaid,:denied] => :denied,
-                 :paid => :paid
-    end
-
-    state :current do
-      def time_to_pay?
-        if ( self.tiped_enough_to_pay? && !self.user.automatic_rebill )
-          return true
-        else
-          return false
-        end
-      end
-
-      def tiped_enough_to_pay?
-        self.tips.sum(:amount_in_cents) >= 1000
-      end
-
-    end
-    
-    state :current do
-      def rotate!
-        process!
-      end
-    end
-
-    state :unpaid,:denied do
+    state :current, :unpaid,:denied do
       def charge!
         stripe_charge = Stripe::Charge.create(
-          :amount => subtotal() +fees(),
+          :amount => subtotal() + fees(),
           :currency => "usd",
-          :customer => self.user.stripe_customer_id,
+          :customer => self.fan.stripe_customer_id,
           :description => "order.id=" + self.id.to_s
         )
         self.charge_token = stripe_charge.id
@@ -64,7 +35,7 @@ class Order < ActiveRecord::Base
       end
     end
   end
-
+  
   def subtotal
     self.tips.sum(:amount_in_cents)
   end
@@ -77,3 +48,36 @@ class Order < ActiveRecord::Base
     self.subtotal + self.fees
   end
 end
+
+__END__
+
+scope :unpaid, where('order_state = ?', 'unpaid').order('created_at DESC')
+scope :denied, where('order_state = ?', 'denied')
+
+  event :decline do
+    transition [:current,:unpaid,:denied] => :denied,
+    :paid => :paid
+  end
+
+  state :current do
+    def time_to_pay?
+      if ( self.tiped_enough_to_pay? && !self.user.automatic_rebill )
+        return true
+      else
+        return false
+      end
+    end
+
+    def tiped_enough_to_pay?
+      self.tips.sum(:amount_in_cents) >= 1000
+    end
+
+  end
+  
+  state :current do
+    def rotate!
+      process!
+    end
+  end
+end
+

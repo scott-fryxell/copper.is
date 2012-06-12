@@ -28,13 +28,11 @@ describe Author do
       @author.should respond_to(:primary_channel)
     end
     
-    it 'returns a Channl' do
+    it 'returns a Channel' do
       @author.primary_channel.class.ancestors.should include(Channel)
     end
     
-    it 'is the only if there is only one' do
-      
-    end
+    it 'is the only if there is only one'
   end
   
   describe '#merge!' do
@@ -47,7 +45,7 @@ describe Author do
       @author.reload
     end
     
-    it 'the receiver remains in DB' do
+    it 'the receiver remains in DB' do pending
       @author.should be_valid
     end
     

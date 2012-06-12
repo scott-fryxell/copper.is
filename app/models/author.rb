@@ -1,6 +1,8 @@
 class Author < ActiveRecord::Base
   has_many :checks
   has_many :pages
+  has_many :channels
+  
   belongs_to :user
   
   attr_accessible :city
@@ -10,6 +12,10 @@ class Author < ActiveRecord::Base
     save!
     rhs.destroy
     self
+  end
+  
+  def primary_channel
+    channels.first
   end
   
   def try_to_create_check!

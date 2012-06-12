@@ -19,6 +19,7 @@ module Copper
     config.active_record.whitelist_attributes= true
 
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/models/sites)
 
     config.filter_parameters += [:password]
 

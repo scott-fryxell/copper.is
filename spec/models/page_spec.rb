@@ -13,10 +13,12 @@ describe Page do
   
   describe 'with resque' do
     before do
+      DatabaseCleaner.clean
       with_resque do
         @page = Page.create!(url:'http://test.com/dude')
         @page.reload
       end
+      @page.site.reload
     end
     
     it 'finds an author' do
@@ -32,9 +34,8 @@ describe Page do
     end
     
     it 'creates a site with the correct subclass' do
-      @page.site.class.should eq(Sites::Phony)
+      @page.site.type.should eq('Sites::Phony')
     end
-
   end
   
   describe 'sites' do
@@ -53,10 +54,10 @@ describe Page do
     it 'sets path on Page' do
       @page.path.should eq('dude')
     end
-  end
 
-  it 'finds the phony author with a dude@test.com email channel' do
-    @page.author.primary_channel.address.should eq('dude@test.com')
-    @page.author.primary_channel.class.should eq(Channels::Email)
+    it 'finds the phony author with a dude@test.com email channel' do
+      @page.author.primary_channel.address.should eq('dude@test.com')
+      @page.author.primary_channel.class.should eq(Channels::Email)
+    end
   end
 end

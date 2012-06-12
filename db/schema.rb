@@ -49,13 +49,14 @@ ActiveRecord::Schema.define(:version => 13) do
   end
 
   create_table "channels", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "check_state"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "author_id"
+    t.string   "address"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "channels", ["user_id"], :name => "index_channels_on_user_id"
+  add_index "channels", ["author_id"], :name => "index_channels_on_author_id"
 
   create_table "checks", :force => true do |t|
     t.integer  "author_id"

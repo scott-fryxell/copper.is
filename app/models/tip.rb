@@ -44,30 +44,30 @@ class Tip < ActiveRecord::Base
     save!
     to_return
   end
+  
+  state_machine :paid_state, :initial => :promised do
+    event :pay do
+      transition :promised => :charged
+    end
+
+    event :claim do
+      transition :charged => :kinged
+    end
+
+    state :charged, :kinged do
+      validate :validate_presence_of_paid_order
+    end
+
+    state :kinged do
+      validate :validate_presence_of_check
+    end
+  end
 end
 
 __END__
 
 class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
-
-state_machine :paid_state, :initial => :promised do
-  event :pay do
-    transition :promised => :charged
-  end
-
-  event :claim do
-    transition :charged => :kinged
-  end
-
-  state :charged, :kinged do
-    validate :validate_presence_of_paid_order
-  end
-
-  state :kinged do
-    validate :validate_presence_of_check
-  end
-end
 
 def validate_presence_of_paid_order
   unless self.order.paid?

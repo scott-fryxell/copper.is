@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Tip do
+  it 'can not be created alone' do
+    Tip.create.should_not be_valid
+  end
+  
   describe 'without resque' do
     before do
       @order = Fan.create.current_order
