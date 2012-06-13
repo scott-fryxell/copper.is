@@ -23,21 +23,4 @@ class Author < ActiveRecord::Base
   def at_least_one_channel?
     channels.count > 0
   end
-  
-  def try_to_create_check!
-    the_tips = []
-    self.identities.each do |ident|
-      the_tips += ident.tips.charged.all
-    end
-    unless the_tips.empty?
-      if check = self.checks.create
-        the_tips.each do |tip|
-          check.tips << tip
-          tip.claim!
-          tip.save!
-        end
-        check.save!
-      end
-    end
-  end
 end

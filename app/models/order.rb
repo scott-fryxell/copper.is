@@ -8,6 +8,9 @@ class Order < ActiveRecord::Base
 
   scope :current, where('order_state = ?', 'current')
   scope :paid, where('order_state = ?', 'paid')
+  scope :unpaid, where('order_state = ?', 'unpaid').order('created_at DESC')
+  scope :denied, where('order_state = ?', 'denied')
+
   state_machine :order_state, :initial => :current do
     event :process do
       transition [:current,:unpaid,:denied] => :paid,
@@ -34,6 +37,20 @@ class Order < ActiveRecord::Base
         raise e
       end
     end
+    event :decline do
+      transition [:current,:unpaid,:denied] => :denied,
+      :paid => :paid
+    end
+
+    state :current do
+      def time_to_pay?
+        self.tiped_enough_to_pay? and !self.user.automatic_rebill
+      end
+
+      def tiped_enough_to_pay?
+        self.tips.sum(:amount_in_cents) >= 1000 # TODO make a config option
+      end
+    end
   end
   
   def subtotal
@@ -48,36 +65,3 @@ class Order < ActiveRecord::Base
     self.subtotal + self.fees
   end
 end
-
-__END__
-
-scope :unpaid, where('order_state = ?', 'unpaid').order('created_at DESC')
-scope :denied, where('order_state = ?', 'denied')
-
-  event :decline do
-    transition [:current,:unpaid,:denied] => :denied,
-    :paid => :paid
-  end
-
-  state :current do
-    def time_to_pay?
-      if ( self.tiped_enough_to_pay? && !self.user.automatic_rebill )
-        return true
-      else
-        return false
-      end
-    end
-
-    def tiped_enough_to_pay?
-      self.tips.sum(:amount_in_cents) >= 1000
-    end
-
-  end
-  
-  state :current do
-    def rotate!
-      process!
-    end
-  end
-end
-

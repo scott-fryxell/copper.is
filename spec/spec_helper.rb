@@ -52,7 +52,15 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
-
+  
+  load Rails.root+'app/models/sti_factory.rb'
+  
+  ['channels','sites'].each do |base|
+    Dir[File.join(Rails.root,'app','models',base,'*.rb')].each do |path|
+      load path
+    end
+  end
+  
   RSpec.configure do |config|
     config.before(:suite) do
       DatabaseCleaner.start

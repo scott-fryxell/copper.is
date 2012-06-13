@@ -40,7 +40,9 @@ describe Order do
         Stripe::Charge.should_receive(:create).and_return(double(id:1))
         @order.charge!
       end
-      proc { @orders.tips.create! }.should raise_error
+      proc do
+        proc { @orders.tips.create! }.should raise_error
+      end.should change(Tip,:count).by(0)
     end
   end
 end

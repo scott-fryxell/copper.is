@@ -7,7 +7,7 @@ class Page < ActiveRecord::Base
   has_many :tips
   has_many :checks, :through => :tips
 
-  attr_accessible :url
+  attr_accessible :url, :type
 
   validates :url, :presence => true
 
@@ -31,12 +31,42 @@ class Page < ActiveRecord::Base
     s
   end
   
+  state_machine :author_state, initial: :orphaned do
+    event :adopt do
+      transition any => :adopted
+    end
+    
+    event :reject do
+      transition any => :manual
+    end
+  end
+  
   def find_author!
     self.site.find_author!(self)
+    self.create_author! unless self.author_id
+    save!
+    reload
+    scrape_for_channels!
   end
   
   def path
     URI.parse(url).path
+  end
+  
+  def scrape_for_channels!
+    raise "WTF!" unless author_id
+    unless Sites::Phony.match?(self.site)
+      doc = Nokogiri.parse(open(self.url))
+      Channel.children.each do |channel_subclass|
+        if address = channel_subclass.scrape_for_address(doc)
+          self.author.channels.create!(address:address, type:channel_subclass)
+          self.author.save!
+        end
+      end
+    end
+  rescue OpenURI::HTTPError => e
+    puts "OpenURI::HTTPError: #{self.url} : #{e.message}"
+    # TODO log this
   end
 end
 
@@ -51,59 +81,4 @@ end
   scope state, where("author_state = ?", state)
 end
 
-state_machine :author_state, initial: :orphaned do
-  event :adopt do
-    transition any => :adopted
-  end
-  
-  event :reject do
-    transition :orphaned   => :spiderable,
-    :spiderable => :manual,
-    :manual     => :fostered,
-    :fostered   => :orphaned
-  end
-  
-  after_transition any => :orphaned do |page,transition|
-    Resque.enqueue Page, page.id, :discover_identity!
-  end
-  
-  after_transition any => :spiderable do |page,transition|
-    Resque.enqueue Page, page.id, :find_identity_from_author_link!
-  end
-  
-  after_transition any => :manual do |page,transition|
-    Rails.logger.warn "Page set to :manual, id: #{page.id}"
-  end
-  
-  after_transition any => :fostered do |page,transition|
-    Rails.logger.warn "Page set to :fostered, id: #{page.id}"
-  end
-  
-  state :orphaned do
-    def discover_identity!
-      if Identity.provider_from_url(self.url) and
-          self.identity = Identity.find_or_create_from_url(self.url)
-        adopt!
-      else
-        reject!
-      end
-    end
-  end
-  
-  state :spiderable do
-    def find_identity_from_author_link!
-      author_tag = Nokogiri::HTML(open(self.url)).css('link[rel=author]')
-      unless author_tag.blank?
-        if author_link = author_tag.attr('href').value                   
-          self.identity = Identity.find_or_create_from_url(author_link)
-          adopt!
-        else
-          reject!
-        end
-      else
-        reject!
-      end
-    end
-  end
-end
 

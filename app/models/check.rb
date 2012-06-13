@@ -1,6 +1,9 @@
 class Check < ActiveRecord::Base
   include Enqueueable
   has_paper_trail
+end
+
+__END__
   
   belongs_to :author
   has_many :tips

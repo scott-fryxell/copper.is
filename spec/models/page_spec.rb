@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Page do
   before do
-    DatabaseCleaner.clean
+    # DatabaseCleaner.clean
   end
   
   describe 'without resque' do
@@ -40,9 +40,39 @@ describe Page do
       @page.site.type.should eq('Sites::Phony')
     end
   end
+
+  describe 'no subclass' do
+    it "scrapes for 'follow me' links" do
+      with_resque do
+        @page = Page.create!(url:'http://crooked-hideout.blogspot.com/')
+        @page.reload
+      end
+      @page.author.channels.map(&:class).should include(Channels::Github)
+      @page.author.channels.map(&:class).should include(Channels::Twitter)
+      @page.author.channels.map(&:class).should include(Channels::Soundcloud)
+      # @page.author.channels.map(&:class).should include(Channels::Email)
+    end
+    
+    it "scrapes for email addresses" do
+      pending
+      with_resque do
+        @page = Page.create!(url:'https://rubygems.org/profiles/bmo')
+      end
+      @page.author.primary_channel.address.should eq('bmoran@onehub.com')
+    end
+    
+    it 'sets page to manual if no channel can be found' do
+      pending
+      with_resque do
+        @page = Page.create!(url:'http://www.chicagotribune.com/news/')
+      end
+      @page.manual?.should be_true
+    end
+  end
   
   describe 'sites' do
     before do
+      DatabaseCleaner.clean
       with_resque do
         @site = Sites::Phony.create!(name:'test.com')
         @page = Page.create!(url:'http://test.com/dude')

@@ -15,7 +15,7 @@ describe Channel do
     it 'save on Channel creates an Email when address matches an email address' do
       channel = Channel.new(address:'me@test.com')
       channel.save!
-      Channel.find(channel.id).class.should eq(Email)
+      Channel.find(channel.id).factory.class.should eq(Email)
     end
     
     it 'create on Channel creates an Email when address matches an email address' do
