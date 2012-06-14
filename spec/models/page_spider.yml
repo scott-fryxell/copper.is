@@ -1,0 +1,37 @@
+crooked-hideout.blogspot.com:
+  variations:
+    - crooked-hideout.blogspot.com
+    - http://crooked-hideout.blogspot.com
+    - https://crooked-hideout.blogspot.com
+    - crooked-hideout.blogspot.com/
+    - http://crooked-hideout.blogspot.com/
+    - https://crooked-hideout.blogspot.com/
+  
+  pages:
+    -
+      site: crooked-hideout.blogspot.com
+      path:
+    -
+      site: github.com
+      path: mgarriss
+    -
+      site: soundcloud.com
+      path: underscore_ugly
+    -
+      site: rubygems.com
+      path: profiles/40496
+      
+  channels:
+    -
+      type: github
+      user: mgarriss
+      auth: true
+    -
+      type: soundcloud
+      user: mgarriss
+      auth: true
+    -
+      type: twitter
+      user: _ugly
+      auth: true
+    

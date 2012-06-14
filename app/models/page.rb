@@ -1,84 +1,43 @@
 class Page < ActiveRecord::Base
-  include Enqueueable
   has_paper_trail
+  include Enqueueable
+  has_many :channels
   
-  belongs_to :author
-  belongs_to :site
-  has_many :tips
-  has_many :checks, :through => :tips
-
-  attr_accessible :url, :type
-
-  validates :url, :presence => true
-
-  after_create do |page|
-    page.find_or_create_site!
-    Resque.enqueue Page, page.id, :find_author!
+  validates :url, presence:true, uniqueness:true
+  
+  def self.spider(url)
+    page = Page.create!(url:url)
+    Resque.enqueue Page, page.id, :scrape_for_channels 
   end
   
-  def find_or_create_site!
-    if host = URI.parse(self.url).host
-      host.sub!(/^www\./,'')
-      if s = Site.where('name = ?', host).first
-        self.site = s
-      else
-        s = self.create_site!(name:host)
-      end
-    else
-      raise "didn't find or create a site for page: #{self.inspect}"
-    end
-    save!
-    s
-  end
-  
-  state_machine :author_state, initial: :orphaned do
-    event :adopt do
-      transition any => :adopted
-    end
-    
-    event :reject do
-      transition any => :manual
-    end
-  end
-  
-  def find_author!
-    self.site.find_author!(self)
-    self.create_author! unless self.author_id
-    save!
-    reload
-    scrape_for_channels!
-  end
-  
-  def path
-    URI.parse(url).path
-  end
-  
-  def scrape_for_channels!
-    raise "WTF!" unless author_id
-    unless Sites::Phony.match?(self.site)
-      doc = Nokogiri.parse(open(self.url))
-      Channel.children.each do |channel_subclass|
-        if address = channel_subclass.scrape_for_address(doc)
-          self.author.channels.create!(address:address, type:channel_subclass)
-          self.author.save!
+  def scrape_for_channels
+    doc = Nokogiri.parse(open(self.url))
+    doc.css('a').each do |link|
+      Page.channels.each do |type,matcher,extractor|
+        if link.attr(:href) and matcher.call(link.attr(:href))
+          channels.create!(type:type,user:extractor.call(link.attr(:href)))
         end
       end
     end
-  rescue OpenURI::HTTPError => e
-    puts "OpenURI::HTTPError: #{self.url} : #{e.message}"
-    # TODO log this
+  end
+  
+  def self.add_http_if_missing(url)
+    url =~ /^http/ ? url : 'http://' + url
+  end
+  
+  def self.site_from_url(url)
+    URI.parse(url).host.sub(/^www\./,'')
+  end
+  
+  def self.path_from_url(url)
+    URI.parse(url).path.sub(/^\//,'')
+  end
+  
+  before_save do |page|
+    page.url  = Page.add_http_if_missing(url)
+    page.site = Page.site_from_url(page.url)
+    page.path = Page.path_from_url(page.url)
+    p page
+    true
   end
 end
-
-__END__
-
-validate :url_points_to_real_site
-def url_points_to_real_site
-  errors.add(:url, "must point to a real site") unless self.url =~ /\./
-end
-
-[:orphaned, :spiderable, :manual, :fostered, :adopted].each do |state|
-  scope state, where("author_state = ?", state)
-end
-
-
