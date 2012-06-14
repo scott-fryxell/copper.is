@@ -5,6 +5,8 @@ class CreatePages < ActiveRecord::Migration
       t.string :url,  :null => false
       t.string :site
       t.string :path
+      t.string :page_state
+      t.references :author
       t.timestamps
     end
     add_index :pages, :url

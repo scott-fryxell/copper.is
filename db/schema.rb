@@ -11,24 +11,63 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 6) do
+
+  create_table "auth_sources", :force => true do |t|
+    t.string   "uid"
+    t.string   "site"
+    t.string   "user"
+    t.string   "name"
+    t.string   "image"
+    t.string   "location"
+    t.string   "urls"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "type"
+    t.string   "auth_source_state"
+    t.integer  "author_id"
+    t.integer  "fan_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "auth_sources", ["type", "site"], :name => "index_auth_sources_on_type_and_site"
+  add_index "auth_sources", ["type", "uid"], :name => "index_auth_sources_on_type_and_uid"
+  add_index "auth_sources", ["type", "user"], :name => "index_auth_sources_on_type_and_user"
+
+  create_table "authors", :force => true do |t|
+    t.string   "name"
+    t.string   "line1"
+    t.string   "line2"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "state"
+    t.string   "territory"
+    t.string   "city"
+    t.integer  "primary_channel_id"
+    t.integer  "user_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "channels", :force => true do |t|
     t.integer  "page_id"
     t.string   "user"
-    t.string   "type"
+    t.string   "site"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   add_index "channels", ["page_id"], :name => "index_channels_on_page_id"
-  add_index "channels", ["type"], :name => "index_channels_on_type"
+  add_index "channels", ["site"], :name => "index_channels_on_site"
 
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.string   "url",        :null => false
     t.string   "site"
     t.string   "path"
+    t.string   "page_state"
+    t.integer  "author_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
