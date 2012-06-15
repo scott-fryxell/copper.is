@@ -13,8 +13,9 @@ $background_color: #313130;
     padding:0 2em;
     opacity:0;
     @include transition(height 1.4s, padding 1s, opacity 3s ease-out);
-    header,p, h1 {
-      @include transition(opacity .4s);
+    header,p,h1 {
+      height:0;
+      @include transition(opacity .4s, height .4s);
       opacity:0;
     }
   }
@@ -24,8 +25,16 @@ $background_color: #313130;
     @include transition(height 1.4s, padding 1.4s);
     opacity:1;
     height:75px;
+    header {
+      @include transition(height 1.4s);
+      height:3em;
+    }
+    p,h1 {
+      @include transition(height 1.4s);
+      height:1.5em;
+    }
     header,p,h1 {
-      @include transition(opacity 2s);
+      @include transition(opacity 2.5s, height 1.4s);
       opacity:1;
     }
   }
@@ -39,7 +48,6 @@ $background_color: #313130;
     color:#999999;
   }
   section > header > p{
-    opacity:0;
     color:#CCCCCC;
   }
   section > header > p[itemprop=amount_in_cents]{
@@ -68,7 +76,3 @@ $background_color: #313130;
   }
   section > form {display:none}
 }
-
-
-
-
