@@ -1,6 +1,6 @@
 class TipsController < ApplicationController
   filter_resource_access
-  
+
   before_filter :set_page
   before_filter :set_user
 
@@ -35,8 +35,7 @@ class TipsController < ApplicationController
   end
 
   def new
-    @tip = current_user.tips.build
-    render nothing:true
+    render :action => 'new', :layout => false
   end
 
   def create
@@ -88,27 +87,12 @@ class TipsController < ApplicationController
     redirect_to tips_path, notice:'Tips can not be changed after they have been paid for'
   end
 
-
-  # def agent
-  #   uri = URI.unescape(params[:uri]) rescue params[:uri]
-  #   title = URI.unescape(params[:title]) rescue params[:title]
-  #   @tip = current_user.tip(url:uri, title:title )
-
-  #   if @tip && @tip.valid?
-  #     render :action => 'show', :layout => 'button'
-  #   else
-  #     render :action => 'error', :layout => 'button'
-  #   end
-  # rescue ArgumentError => e
-  #   logger.error e.message
-  #   render :action => 'error', :layout => 'button'
-  # end
   protected
-  
+
   def set_page
     @page = Page.find(params[:page_id]) if params[:page_id]
   end
-  
+
   def set_user
     @page = Page.find(params[:page_id]) if params[:page_id]
   end

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title><%= params[:action].parameterize%> - copper.is making the magic your friend and holding your hand for ever people love chickens "lots of chickens" and 'little monkeys' i like to move it, i like to move it</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="/assets/favicon.ico"/>
     <%= stylesheet_link_tag "layouts/application" %>
@@ -9,11 +10,9 @@
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope()%>>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
     <header>
-      <a href="/">
-        <%= image_tag "icons/logo.svg", :title => "logo" %>
-      </a>
+      <a href="/"><%= image_tag "icons/logo.svg", :title => "logo" %></a>
       <nav>
         <a href="/how">how it works</a>
         <a href="/button">get the button</a>

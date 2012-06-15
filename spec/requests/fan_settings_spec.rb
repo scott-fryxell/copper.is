@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan's", :focus do
+describe "A Fan's" do
   before(:each) do
     DatabaseCleaner.clean
     visit "/"
@@ -65,7 +65,7 @@ describe "A Fan's", :focus do
   end
 
 
-  it "should be able to save their credit card information" do
+  it "should be able to save their credit card information", :broken do
     within("section#card") do
       click_link "Change"
       fill_in('number', :with => '4242424242424242')
@@ -80,7 +80,6 @@ describe "A Fan's", :focus do
     end
     click_link 'Account settings'
     within("section#card") do
-      sleep 2
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")

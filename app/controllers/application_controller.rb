@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def permission_denied
-    flash[:message] = t("copper.permission_denied")
     if current_user
       respond_to do |format|
         format.html { render nothing:true, status:403 }
@@ -34,7 +33,7 @@ class ApplicationController < ActionController::Base
       end
     else
       respond_to do |format|
-        format.html { redirect_to signin_url }
+        format.html { render nothing:true, status:401 }
         format.xml  { head :unauthorized }
         format.js   { head :unauthorized }
       end

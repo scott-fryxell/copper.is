@@ -1,51 +1,49 @@
-<% cache do %>
 (function(){
   var f = document.getElementById('copper');
   if (f) {
-    console.error("The copper iframe should have been removed.")
+    // increment tip
+    // trigger sound
   }
   else {
     f=document.createElement('iframe');
     f.id='copper';
-    f.frameborder=0;
-    f.scrolling=0;
-    f.target='weave';
-    f.allowtransparency='allowtransparency';
+    f.target='copper';
     f.style.position='fixed';
     f.style.top='0';
+    f.style.right='200px';
     f.style.padding='0';
-    f.style.zIndex='-1000';
     f.style.margin='0';
-    f.style.border='none';
-    f.style.left='0';
-    f.style.background.color='transparent';
     f.scrolling='no';
-    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/?uri=' +
-      encodeURIComponent(window.location) + '&title=' + encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML);
+    f.frameborder=0;
+    f.style.background.color='transparent';
+    f.style.border='none';
+    f.allowtransparency='allowtransparency';
+    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/new?url';
     document.body.appendChild(f);
     f.width='0';
     f.height='0';
     f.style.zIndex='9999999999999999';
-    window.addEventListener('message',function(event) {
-      // if (event.origin == '<%=request.scheme%>://<%=request.host%>:<%=request.port%>') {
-        if (event.data == 'notify_complete') {
-          var frame = document.getElementById('copper');
-          document.body.removeChild(frame);
+    window.addEventListener('message', function(event) {
+      if (event.origin == (window.location.protocol + '//' + f.contentWindow.document.domain)) {
+        var data = JSON.parse(event.data)
+        console.debug(data.type)
+        if (data.type == 'show'){
+          f.width='300px'
+          f.height='300px'
         }
-        else if (event.data == 'reset_frame'){
-          frame = document.getElementById('copper');
-          f.width='0';
-          f.height='0';
-          frame.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/agent/?uri=' +
-            encodeURIComponent(window.location) + '&title=' + encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML);
+        else if (data.type == 'hide'){
+          f.width='0'
+          f.height='0'
         }
-        else if (event.data == 'resize_frame'){
-          frame = document.getElementById('copper');
-          f.width='100%';
-          f.height='100%';
+        else if(data.type == 'tip_info'){
+          var message = {
+            type:"tip_info",
+            url:encodeURIComponent(window.location),
+            title:encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML)
+          }
+          event.source.postMessage(JSON.stringify(message), event.origin);
         }
-      // }
+      }
     }, false);
   }
 })()
-<% end %>

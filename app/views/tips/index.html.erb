@@ -1,21 +1,8 @@
 <%-content_for :head do-%>
   <title><%=current_user.name%> - Copper</title>
-  <%= stylesheet_link_tag "tips/index" %>
   <%= javascript_include_tag "tips/index" %>
 <%-end-%>
-<section id="tip_index">
-  <header>
-    <%= render :partial => 'shared/dashboard' %>
-    <hgroup>
-      <form method="post" accept-charset="utf-8" id="new_tip">
-        <input name="utf8" type="hidden" value="✓">
-        <input name="authenticity_token" type="hidden">
-        <label for="uri">URL</label>
-        <input type="text" name="tip[uri]" value="" id="uri" autofocus />
-        <input type="submit" value="TIP">
-      </form>
-    </hgroup>
-  </header>
+<section>
   <table id="tips">
     <thead>
       <tr>

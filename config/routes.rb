@@ -16,19 +16,20 @@ Copper::Application.routes.draw do
   put    'cards', :to => 'cards#update',:as => :update_card
   delete 'cards', :to => 'cards#delete',:as => :delete_card
 
-  get 'about', :to => 'home#about'
-  get 'how', :to => 'home#how'
+  get 'about',   :to => 'home#about'
+  get 'how',     :to => 'home#how'
   get 'contact', :to => 'home#contact'
-  get 'terms', :to => 'home#terms'
+  get 'terms',   :to => 'home#terms'
   get 'privacy', :to => 'home#privacy'
-  get 'faq', :to => 'home#faq'
-  get 'button', :to => 'home#button'
-  get 'buckingthesystem', :to => 'home#index'
-  get 'badge', :to => 'home#badge', :as => :badge
+  get 'faq',     :to => 'home#faq'
+  get 'button',  :to => 'home#button'
+  get 'test',    :to => 'home#test'
+  get 'badge',   :to => 'home#badge', :as => :badge
   get 'embed_iframe.js', :to => 'home#iframe', :as => :iframe
+  get 'buckingthesystem', :to => 'home#index'
 
   match "/auth/:provider/callback" => "sessions#create"
-  match '/auth/failure' => 'sessions#failure'
+  match '/auth/:provider/failure'  => 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
 

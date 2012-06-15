@@ -1,0 +1,61 @@
+$background_color: #313130;
+@import "shared/mixins";
+
+#tips_new {
+  font-size:16px;
+  section{
+    font-family: 'Cantarell', sans-serif;
+    background-color: $background_color;
+    color:white;
+    height:0;
+    border-radius: 0 0 0.5em 0.5em;
+    padding:2em;
+    @include transition(height 1.4s);
+  }
+  section.show {
+    @include transition(height 1.4s);
+    height:150px;
+  }
+  section > header {}
+  section > header > h1{
+    margin:0;
+    margin-top:1em;
+    margin-right:1em;
+    vertical-align:middle;
+    display:inline-block;
+    font-size:.85em;
+    color:#999999;
+  }
+  section > header > p{
+    color:#CCCCCC;
+  }
+  section > header > p[itemprop=amount_in_cents]{
+    font-family: 'Bree Serif', serif;
+    margin:0;
+    padding:0;
+    vertical-align:top;
+    font-size:2em;
+    display:inline-block;
+    width:3em;
+    &:before{
+      content:"$";
+    }
+  }
+  section > p[itemprop=title]{
+    font-family: 'Doppio One', sans-serif;
+    width:15em;
+    height:6em;
+    margin:0;
+    line-height:1.5em;
+    font-size:1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:pre-line;
+    white-space: nowrap;
+  }
+  section > form {display:none}
+}
+
+
+
+

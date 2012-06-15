@@ -1,0 +1,28 @@
+//= require shared/common
+window.addEventListener('message', function(event) {
+  if (event.origin == (window.location.protocol + '//' + document.domain)) {
+    $(document).trigger(JSON.parse(event.data))
+  }
+});
+document.postMessage = function (message){
+  window.parent.postMessage(message, window.location.protocol + '//' + document.domain);
+}
+$(document).ready(function (){
+  document.postMessage(JSON.stringify({type:'tip_info'}))
+});
+$(document).bind({
+  "tip_info": function (event){
+    console.debug("tip_info")
+    title = decodeURIComponent(event.title)
+    new_tip = document.getItems('tips').create
+    new_tip.title = decodeURIComponent(event.title)
+    new_tip.url = decodeURIComponent(event.url)
+    Item.update_page(new_tip)
+    $(document).trigger("tip_display")
+  },
+  "tip_display": function (event){
+    console.debug("tip_display")
+    $("body > section").addClass("show")
+    document.postMessage(JSON.stringify({type:'show'}))
+  }
+});

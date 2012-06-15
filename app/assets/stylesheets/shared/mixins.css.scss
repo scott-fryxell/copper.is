@@ -3,12 +3,11 @@ $gw-gutter:0.5em;
 $darkness:#231F20;
 $offset_color:rgba(182, 195, 181, .2);
 $button_color:#CC9933;
-//$offset_color:rgba(0, 0, 0, .2);
 
 @import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
 @import "normalize";
 @import "bourbon";
-
+@import "shared/animation";
 @mixin copper_button {
   font-family: 'Doppio One', sans-serif;
   text-align:center;

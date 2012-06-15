@@ -118,14 +118,10 @@ $(document).on("copper:items_discovered", function (){
   }
 
   if (user.stripe_id){
-    console.debug(user.stripe_id)
-    //load the credit card information from stripe
-
     jQuery.ajax({
       url: '/cards',
       type: 'get',
       success: function (data, textStatus, jqXHR){
-        console.debug(data)
         $("#card p.type").text(data.active_card.type)
         $("#card p.number").text(data.active_card.last4)
         $("#card p.expiration").text(data.active_card.exp_month + '/' + data.active_card.exp_year )
