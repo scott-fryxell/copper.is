@@ -72,3 +72,5 @@ module Copper
     end
   end
 end
+
+require './lib/diary'

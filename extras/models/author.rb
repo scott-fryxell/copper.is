@@ -12,7 +12,7 @@ class Author < ActiveRecord::Base
   def merge!(rhs)
     self.checks += rhs.checks
     save!
-    rhs.destroy
+    # rhs.destroy
     self
   end
   

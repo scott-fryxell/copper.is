@@ -4,7 +4,11 @@ crooked-hideout.blogspot.com:
     - http://crooked-hideout.blogspot.com
     - crooked-hideout.blogspot.com/
     - http://crooked-hideout.blogspot.com/
-  
+
+  same_author:
+    - crooked-hideout.blogspot.com/2012/01/ableton-live-set-is-gzipped-xml-ruby.html
+    - github.com/mgarriss/miniscale
+    
   pages:
     -
       site: crooked-hideout.blogspot.com

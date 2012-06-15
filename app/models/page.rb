@@ -8,8 +8,15 @@ class Page < ActiveRecord::Base
   
   validates :url, presence:true, uniqueness:true
   
+  before_save do |page|
+    page.url  = Page.normalize(page.url)
+    page.site = Page.site_from_url(page.url)
+    page.path = Page.path_from_url(page.url)
+    true
+  end
+  
   [:orphaned, :manual, :adopted].each do |state|
-    scope state, where("author_state = ?", state)
+    scope state, where("page_state = ?", state)
   end
   
   state_machine :page_state, initial: :orphaned do
@@ -31,6 +38,12 @@ class Page < ActiveRecord::Base
     end
     page.save!
     Resque.enqueue Page, page.id, :scrape_for_channels 
+  end
+  
+  def self.spider_all_orphaned
+    Page.orphaned.each do |page|
+      Resque.enqueue Page, page.id, :scrape_for_channels
+    end
   end
   
   def self.channels
@@ -60,6 +73,26 @@ class Page < ActiveRecord::Base
     }
   ]
   
+  def self.add_http_if_missing(url)
+    url =~ /^http/ ? url : 'http://' + url
+  end
+  
+  def self.site_from_url(url)
+    URI.parse(url).host.sub(/^www\./,'') rescue nil
+  end
+  
+  def self.path_from_url(url)
+    to_return = URI.parse(url).path.sub(/^\//,'')
+  end
+  
+  def self.replace_https_with_http(url)
+    url.sub(/^https/,'http')
+  end
+  
+  def self.normalize(url)
+    replace_https_with_http(add_http_if_missing(url))
+  end
+  
   def scrape_for_channels
     doc = Nokogiri.parse(open(self.url))
     self.title = doc.title
@@ -72,7 +105,7 @@ class Page < ActiveRecord::Base
           channels.create! site:site, user:user unless
             channels.where('site = ? and user = ?', site, user).count > 0
           if auth
-            author.auth_sources.create! site:site, user:user unless
+            author.auth_sources.create!(site:site, user:user) unless 
               author.auth_sources.where('site = ? and user = ?', site, user).count > 0
           end
         end
@@ -86,24 +119,9 @@ class Page < ActiveRecord::Base
     save!
   rescue OpenURI::HTTPError, SocketError
     logger.warn("Page#scrape_for_channels got 404, page still orphaned: #{self.url}")
-  end
-  
-  def self.add_http_if_missing(url)
-    url =~ /^http/ ? url : 'http://' + url
-  end
-  
-  def self.site_from_url(url)
-    URI.parse(url).host.sub(/^www\./,'')
-  end
-  
-  def self.path_from_url(url)
-    to_return = URI.parse(url).path.sub(/^\//,'')
-  end
-  
-  before_save do |page|
-    page.url  = Page.add_http_if_missing(url)
-    page.site = Page.site_from_url(page.url)
-    page.path = Page.path_from_url(page.url)
-    true
+  rescue RuntimeError => e
+    logger.error("Page#scrape_for_channels: #{e.class}: #{e.message}")
+  rescue URI::InvalidURIError => e
+    logger.warn("Page#scrape_for_channels: #{e.class}: #{e.message}")
   end
 end

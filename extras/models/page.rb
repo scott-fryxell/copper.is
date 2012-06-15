@@ -61,11 +61,4 @@ class Page < ActiveRecord::Base
   end
 end
 
-__END__
-
-validate :url_points_to_real_site
-def url_points_to_real_site
-  errors.add(:url, "must point to a real site") unless self.url =~ /\./
-end
-
 
