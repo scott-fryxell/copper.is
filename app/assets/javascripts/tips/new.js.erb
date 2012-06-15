@@ -1,11 +1,9 @@
 //= require shared/common
 window.addEventListener('message', function(event) {
-  if (event.origin == (window.location.protocol + '//' + document.domain)) {
-    $(document).trigger(JSON.parse(event.data))
-  }
+  $(document).trigger(JSON.parse(event.data))
 });
 document.postMessage = function (message){
-  window.parent.postMessage(message, window.location.protocol + '//' + document.domain);
+  window.parent.postMessage(message, "*");
 }
 $(document).ready(function (){
   document.postMessage(JSON.stringify({type:'tip_info'}))
@@ -22,7 +20,13 @@ $(document).bind({
   },
   "tip_display": function (event){
     console.debug("tip_display")
-    $("body > section").addClass("show")
     document.postMessage(JSON.stringify({type:'show'}))
+    $("body > section").addClass("show")
+    window.setTimeout(function (){
+      $("body > section").removeClass('show')
+    },3000);
+    window.setTimeout(function (){
+      document.postMessage(JSON.stringify({type:'hide'}))
+    },4000);
   }
 });

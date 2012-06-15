@@ -10,39 +10,37 @@
     f.target='copper';
     f.style.position='fixed';
     f.style.top='0';
-    f.style.right='200px';
+    f.style.right='50%';
     f.style.padding='0';
-    f.style.margin='0';
+    f.style.margin='0 -350px 0';
     f.scrolling='no';
     f.frameborder=0;
     f.style.background.color='transparent';
     f.style.border='none';
     f.allowtransparency='allowtransparency';
-    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/new?url';
+    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/new'
     document.body.appendChild(f);
     f.width='0';
     f.height='0';
     f.style.zIndex='9999999999999999';
     window.addEventListener('message', function(event) {
-      if (event.origin == (window.location.protocol + '//' + f.contentWindow.document.domain)) {
-        var data = JSON.parse(event.data)
-        console.debug(data.type)
-        if (data.type == 'show'){
-          f.width='300px'
-          f.height='300px'
+      var data = JSON.parse(event.data)
+      console.debug(data.type)
+      if (data.type == 'show'){
+        f.width='350px'
+        f.height='200px'
+      }
+      else if (data.type == 'hide'){
+        f.width='0'
+        f.height='0'
+      }
+      else if(data.type == 'tip_info'){
+        var message = {
+          type:"tip_info",
+          url:encodeURIComponent(window.location),
+          title:encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML)
         }
-        else if (data.type == 'hide'){
-          f.width='0'
-          f.height='0'
-        }
-        else if(data.type == 'tip_info'){
-          var message = {
-            type:"tip_info",
-            url:encodeURIComponent(window.location),
-            title:encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML)
-          }
-          event.source.postMessage(JSON.stringify(message), event.origin);
-        }
+        event.source.postMessage(JSON.stringify(message), "*");
       }
     }, false);
   }
