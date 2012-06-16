@@ -40,12 +40,7 @@ class TipsController < ApplicationController
 
   def create
     @tip = current_user.tip(params[:tip])
-
-    if @tip && @tip.valid?
-      redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_success")
-    else
-      redirect_to user_tips_url(current_user.id), :notice => t("copper.tip_failed")
-    end
+    render :json => @tip
   rescue ActiveRecord::RecordInvalid
     render nothing:true, status:403
   end

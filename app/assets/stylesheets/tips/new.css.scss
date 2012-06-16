@@ -38,7 +38,7 @@ $background_color: #313130;
       opacity:1;
     }
   }
-  section > header > h1{
+  section > header > h1 {
     margin:0;
     margin-top:1em;
     margin-right:1em;
@@ -47,10 +47,10 @@ $background_color: #313130;
     font-size:.85em;
     color:#999999;
   }
-  section > header > p{
+  section > header > p {
     color:#CCCCCC;
   }
-  section > header > p[itemprop=amount_in_cents]{
+  section > header > p[itemprop=amount_in_cents] {
     font-family: 'Bree Serif', serif;
     margin:0;
     padding:0;
@@ -62,7 +62,7 @@ $background_color: #313130;
       content:"$";
     }
   }
-  section > p[itemprop=title]{
+  section > p[itemprop=title] {
     font-family: 'Doppio One', sans-serif;
     width:15em;
     height:6em;
@@ -73,5 +73,7 @@ $background_color: #313130;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  section > form {display:none}
+  section > form {
+    display:none
+  }
 }

@@ -9,9 +9,8 @@ authorization do
   role :patron do
     includes :guest
     has_permission_on :sessions,   :to => :delete
-
     has_permission_on :users,      :to => [:read,:update]
-    has_permission_on :tips,       :to => [:manage, :build, :delete]
+    has_permission_on :tips,       :to => [:manage,:build,:delete,:update]
     has_permission_on :checks,     :to => [:read]
     has_permission_on :orders,     :to => [:read,:update]
     has_permission_on :identities, :to => [:manage]

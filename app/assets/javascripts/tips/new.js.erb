@@ -10,9 +10,8 @@ $(document).ready(function (){
 });
 $(document).bind({
   "tip_info": function (event){
-    console.debug("tip_info")
     title = decodeURIComponent(event.title)
-    new_tip = document.getItems('tips').create
+    new_tip = document.getItems('tips').new
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
     Item.update_page(new_tip)
@@ -20,16 +19,16 @@ $(document).bind({
     $(document).trigger("tip_display")
   },
   "tip_display": function (event){
-    console.debug("tip_display")
     document.postMessage(JSON.stringify({type:'show'}))
     $("body > section").addClass("show")
+
     window.setTimeout(function (){
       $("body > section").removeClass('show')
     },3000);
+
     window.setTimeout(function (){
       document.postMessage(JSON.stringify({type:'hide'}))
-
-      $("form").submit()
+      $("body > form").submit()
     },4000);
   }
 });

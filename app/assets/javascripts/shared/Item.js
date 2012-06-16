@@ -16,7 +16,9 @@ Item.discover_items = function (){
 }
 Item.get_value      = function (element){
   if($(element).is("input") || $(element).is("select") || $(element).is("textarea") ){
-    return $(element).val().trim();
+    if($(element).val()){
+      return $(element).val().trim();
+    }
   }
   else if( $(element).is("a") || $(element).is("link")){
     return $(element).attr('href');
@@ -25,7 +27,9 @@ Item.get_value      = function (element){
     return $(element).attr('src');
   }
   else {
-    return $(element).text().trim();
+    if($(element).text()){
+      return $(element).text().trim();
+    }
   }
 }
 Item.update_page    = function (item){
@@ -80,6 +84,10 @@ $(document).ready(function (){
       Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
     });
     Item.update_page(Item.items[type][id]);
+    console.debug(id)
+    if(id =='new'){
+      id="/tips"
+    }
     jQuery.ajax({
       url: id,
       type: $(this).attr('method'),

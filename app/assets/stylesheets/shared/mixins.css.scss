@@ -48,7 +48,6 @@ $button_color:#CC9933;
   @-khtml-keyframes #{$name} { @content; }
   @keyframes #{$name} { @content; }
 }
-
 @include keyframes(spinning) {
   from { @include transform(rotate(0deg)); }
   to { @include transform(rotate(360deg)); }
