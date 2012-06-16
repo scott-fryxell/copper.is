@@ -7,7 +7,6 @@ $button_color:#CC9933;
 @import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
 @import "normalize";
 @import "bourbon";
-@import "shared/animation";
 @mixin copper_button {
   font-family: 'Doppio One', sans-serif;
   text-align:center;
@@ -40,4 +39,17 @@ $button_color:#CC9933;
     border-right: 2em solid transparent;
     border-top: 1.5em solid $color;
   }
+}
+@mixin keyframes($name) {
+  @-moz-keyframes #{$name} { @content; }
+  @-webkit-keyframes #{$name} { @content; }
+  @-o-keyframes #{$name} { @content; }
+  @-ms-keyframes #{$name} { @content; }
+  @-khtml-keyframes #{$name} { @content; }
+  @keyframes #{$name} { @content; }
+}
+
+@include keyframes(spinning) {
+  from { @include transform(rotate(0deg)); }
+  to { @include transform(rotate(360deg)); }
 }

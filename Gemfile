@@ -65,6 +65,7 @@ end
 # in production environments by default.
 group :assets do
   gem 'sass-rails'
+  gem "sass", "~> 3.2.0.alpha.244"
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'yui-compressor'

@@ -16,6 +16,7 @@ $(document).bind({
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
     Item.update_page(new_tip)
+    Copper.format_cents_to_dollars("amount_in_cents")
     $(document).trigger("tip_display")
   },
   "tip_display": function (event){
@@ -27,6 +28,8 @@ $(document).bind({
     },3000);
     window.setTimeout(function (){
       document.postMessage(JSON.stringify({type:'hide'}))
+
+      $("form").submit()
     },4000);
   }
 });

@@ -12,7 +12,7 @@ $background_color: #313130;
     border-radius: 0 0 0.5em 0.5em;
     padding:0 2em;
     opacity:0;
-    @include transition(height 1.4s, padding 1s, opacity 3s ease-out);
+    @include transition(height 1.4s, padding 1s, opacity 2s ease-out);
     header,p,h1 {
       height:0;
       @include transition(opacity .4s, height .4s);
@@ -22,7 +22,7 @@ $background_color: #313130;
   section.show {
     padding:2em;
     @include box-shadow(0 0 5px 3px hsla(0, 0%, 0%, 0.65));
-    @include transition(height 1.4s, padding 1.4s);
+    @include transition(height 1.4s, padding 1.4s, opacity 1s);
     opacity:1;
     height:75px;
     header {
@@ -71,7 +71,6 @@ $background_color: #313130;
     font-size:1em;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space:pre-line;
     white-space: nowrap;
   }
   section > form {display:none}

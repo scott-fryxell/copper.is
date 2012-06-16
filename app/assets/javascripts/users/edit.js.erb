@@ -3,9 +3,9 @@ $(document).ready(function (){
   var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
   $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
   $('#rate > form > select > option[value=' + rate +']').attr('selected', true)
-  format_rate()
+  Copper.format_cents_to_dollars("tip_preference_in_cents")
   $(document).on("copper:update_page_items", function (){
-    format_rate()
+    Copper.format_cents_to_dollars("tip_preference_in_cents")
   })
 });
 $(document).ready(function (){
@@ -112,11 +112,9 @@ $(document).ready(function (){
 });
 $(document).on("copper:items_discovered", function (){
   user = document.getItems()['users'][((window.location.pathname).replace('/edit', ''))]
-
   if (!user.email){
     $("#email > header > a").click();
   }
-
   if (user.stripe_id){
     jQuery.ajax({
       url: '/cards',
@@ -136,11 +134,3 @@ $(document).on("copper:items_discovered", function (){
     $("#card > header > a").click();
   }
 });
-function format_rate(){
-  var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
-  rate = (parseFloat(rate) / 100.00)
-  if( rate == 0.5 || rate == 0.1){
-    rate = rate + '0'
-  }
-  $("p[itemprop=tip_preference_in_cents]").text(rate)
-}
