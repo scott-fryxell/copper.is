@@ -1,12 +1,12 @@
 authorization do
 
   role :admin do
-    includes :patron
+    includes :fan
     has_permission_on :rails_admin_history, :to => [:list, :slider, :for_model, :for_object, :history_show]
     has_permission_on :rails_admin_main, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :list, :delete, :bulk_delete, :bulk_destroy, :get_pages, :history_show, :history_index, :dashboard, :show_in_app]
   end
 
-  role :patron do
+  role :fan do
     includes :guest
     has_permission_on :sessions,   :to => :delete
     has_permission_on :users,      :to => [:read,:update]

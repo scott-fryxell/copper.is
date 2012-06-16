@@ -11,7 +11,7 @@ describe ChecksController do
       describe '/checks' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -19,7 +19,7 @@ describe ChecksController do
       describe '/checks/new' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -27,7 +27,7 @@ describe ChecksController do
       describe 'POST /checks' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -35,13 +35,13 @@ describe ChecksController do
       describe '/checks/:id' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
       describe '/checks/current' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -49,13 +49,13 @@ describe ChecksController do
       describe '/checks/:id/edit' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
       describe '/checks/current/edit' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -63,13 +63,13 @@ describe ChecksController do
       describe 'PUT /checks/:id' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
       describe 'PUT /checks/current' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -77,19 +77,19 @@ describe ChecksController do
       describe 'DELETE /checks/:id' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
       describe 'DELETE /checks/current' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
   end
 
-  describe 'as Patron' do
+  describe 'as Fan' do
     before :all do
     end
     

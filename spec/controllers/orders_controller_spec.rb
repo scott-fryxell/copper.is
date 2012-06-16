@@ -19,7 +19,8 @@ describe OrdersController  do
       describe '/orders' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
+          response.status.should == 401
         end
       end
     end
@@ -28,7 +29,7 @@ describe OrdersController  do
       describe '/orders/new' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -37,7 +38,7 @@ describe OrdersController  do
       describe 'POST /orders' do
         it '302' do
           post :create
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -46,7 +47,7 @@ describe OrdersController  do
       describe '/orders/:id' do
         it '302' do
           get :show, id:@my_paid_order.id
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -55,7 +56,7 @@ describe OrdersController  do
       describe '/orders/:id/edit' do
         it '302' do
           get :edit, id:@my_paid_order.id
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -64,7 +65,7 @@ describe OrdersController  do
       describe 'PUT /orders/:id' do
         it '302' do
           put :update, id:@my_paid_order.id
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -73,13 +74,13 @@ describe OrdersController  do
       describe 'DELETE /orders/:id' do
         it '302' do
           delete :destroy, id:@my_paid_order.id
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
   end
 
-  describe 'as Patron' do
+  describe 'as Fan' do
     before :each do
       user = @me
       controller.instance_eval do

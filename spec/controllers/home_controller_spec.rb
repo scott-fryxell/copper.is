@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe HomeController do
-  [:unauthenticate, :authenticate_as_patron, :authenticate_as_admin].each do |method_name|
+  [:unauthenticate, :authenticate_as_fan, :authenticate_as_admin].each do |method_name|
     # before :all do
     #   send method_name
     # end

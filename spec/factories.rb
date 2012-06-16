@@ -76,7 +76,7 @@ FactoryGirl.define do
   end
 
   factory :role do
-    name "Patron"
+    name "Fan"
   end
 
   # factory :unaccepted_user, :class => 'User' do
@@ -87,7 +87,7 @@ FactoryGirl.define do
     accept_terms true
     tip_preference_in_cents 50
     identities [FactoryGirl.create(:identities_phony,identity_state: :known)]
-    roles [Role.find_or_create_by_name('Patron')]
+    roles [Role.find_or_create_by_name('Fan')]
   end
 
   factory :user_phony, class:'User' do
@@ -95,7 +95,7 @@ FactoryGirl.define do
     accept_terms true
     tip_preference_in_cents 50
     identities [FactoryGirl.create(:identities_phony,identity_state: :known)]
-    roles [Role.find_or_create_by_name('Patron')]
+    roles [Role.find_or_create_by_name('Fan')]
   end
 
   factory :order_current, :class => 'Order' do

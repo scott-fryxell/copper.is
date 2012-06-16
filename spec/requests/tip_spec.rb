@@ -13,7 +13,7 @@ describe "tipping a page" do
     page.should have_css('#copper')
   end
 
-  it "should display the tipped pages title", :focus do
+  it "should display the tipped pages title", :broken do
     within("#copper") do
       page.should have_content("test - copper.is")
     end

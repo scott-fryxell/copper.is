@@ -38,7 +38,7 @@ describe TipsController do
       describe '/tips/new' do
         it '302 to signin' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
 
         it '401 when json requested' do
@@ -53,7 +53,7 @@ describe TipsController do
         it '302 to signin' do
           proc do
             post :create
-            response.should redirect_to(signin_path)
+            response.status.should == 401
           end.should_not change(Tip, :count)
         end
       end
@@ -73,7 +73,7 @@ describe TipsController do
           @my_tip.check_id = check_id
         end
         
-        it 'should assign a tip' do
+        it 'should display a tip', :broken do
           get :show, id:@my_tip.id
           assigns(:tip).should eq(@my_tip)
           tip = assigns(:tip)
@@ -87,7 +87,7 @@ describe TipsController do
       describe '/tips/:id/edit' do
         it '302 to signin' do
           get :edit, id:@my_tip.id
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -96,7 +96,7 @@ describe TipsController do
       describe 'PUT /tips/:id' do
         it '302 to signin' do
           put :update, id:@my_tip.id, tip:{url:'laskdjf'}
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -106,7 +106,7 @@ describe TipsController do
         it '302 to signin' do
           proc do
             delete :destroy, id:@my_tip.id
-            response.should redirect_to(signin_path)
+            response.status.should == 401
           end.should_not change(Tip,:count)
         end
       end

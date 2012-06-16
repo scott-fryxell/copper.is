@@ -28,7 +28,7 @@ describe PagesController do
       describe '/pages/new' do
         it '302 to signin' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -37,7 +37,7 @@ describe PagesController do
       describe 'POST /pages' do
         it '302 in signin' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -62,7 +62,7 @@ describe PagesController do
       describe '/pages/:id/edit' do
         it '302 in signin' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -71,7 +71,7 @@ describe PagesController do
       describe 'PUT /pages/:id' do
         it '302s to signin page' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -80,13 +80,13 @@ describe PagesController do
       describe 'DELETE /pages/:id' do
         it '302s to signin page' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
   end
 
-  describe 'as Patron' do
+  describe 'as Fan' do
     before :each do
       user = @me
       controller.instance_eval do

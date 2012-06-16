@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
     create! do |user|
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
-      user.roles << Role.find_by_name('Patron')
+      user.roles << Role.find_by_name('Fan')
     end
   end
 
@@ -48,8 +48,8 @@ class User < ActiveRecord::Base
     end
   end
 
-  def patron?
-    roles.find{|e| e.name == 'Patron'}
+  def fan?
+    roles.find{|e| e.name == 'Fan'}
   end
 
   def tip(args = {})

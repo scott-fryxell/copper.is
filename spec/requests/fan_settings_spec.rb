@@ -64,10 +64,8 @@ describe "A Fan's" do
     end
   end
 
-
-  it "should be able to save their credit card information", :broken do
-    within("section#card") do
-      click_link "Change"
+  it "should be able to save their credit card information", :focus do
+    within("#card") do
       fill_in('number', :with => '4242424242424242')
       fill_in('cvc', :with => '666')
       select('April', :from => 'month')
@@ -79,7 +77,8 @@ describe "A Fan's" do
       find("div p.expiration").should have_content("4/2015")
     end
     click_link 'Account settings'
-    within("section#card") do
+    sleep 2
+    within("#card") do
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")

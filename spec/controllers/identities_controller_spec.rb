@@ -12,7 +12,7 @@ describe IdentitiesController do
       describe '/identities' do
         it '302' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -20,7 +20,7 @@ describe IdentitiesController do
       describe '/identities/new' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -36,7 +36,7 @@ describe IdentitiesController do
       describe '/identities/:id' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -44,7 +44,7 @@ describe IdentitiesController do
       describe '/identities/:id/edit' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -52,7 +52,7 @@ describe IdentitiesController do
       describe 'PUT /identities/:id' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -60,13 +60,13 @@ describe IdentitiesController do
       describe 'DELETE /identities/:id' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
   end
 
-  describe 'as Patron' do
+  describe 'as Fan' do
     before :each do
       user = @me
       controller.instance_eval do
