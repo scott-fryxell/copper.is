@@ -64,7 +64,7 @@ describe "A Fan's" do
     end
   end
 
-  it "should be able to save their credit card information", :focus do
+  it "should be able to save their credit card information" do
     within("#card") do
       fill_in('number', :with => '4242424242424242')
       fill_in('cvc', :with => '666')
