@@ -2,6 +2,7 @@
 //= require jquery.cookie
 //= require jquery.timeago
 //= require jquery.tmpl
+//= require jquery.inspect
 //= require shared/Item
 $(document).ready(function() {
   jQuery('time').timeago();

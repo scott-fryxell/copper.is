@@ -59,6 +59,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'resque_spec'
+  gem 'hashugar'
 end
 
 # Gems used only for assets and not required
@@ -66,6 +67,7 @@ end
 group :assets do
   gem 'sass-rails'
   gem "sass", "~> 3.2.0.alpha.244"
+
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'yui-compressor'

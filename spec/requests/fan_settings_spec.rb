@@ -76,8 +76,15 @@ describe "A Fan's" do
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
     end
+
+    within("#card") do
+      find("div p.number").should have_content("4242")
+      find("div p.type").should have_content("Visa")
+      find("div p.expiration").should have_content("4/2015")
+    end
+
     click_link 'Account settings'
-    sleep 2
+
     within("#card") do
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")

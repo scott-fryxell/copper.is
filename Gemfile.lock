@@ -101,6 +101,7 @@ GEM
       spork (>= 0.8.4)
     haml (3.1.6)
     hashie (1.2.0)
+    hashugar (0.0.6)
     heroku (2.26.7)
       heroku-api (~> 0.2.4)
       launchy (>= 0.3.2)
@@ -356,6 +357,7 @@ DEPENDENCIES
   guard-rake
   guard-rspec
   guard-spork
+  hashugar
   heroku
   jquery-rails
   launchy

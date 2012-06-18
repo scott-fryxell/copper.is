@@ -4,6 +4,7 @@ class CardsController < ApplicationController
   def show
     # should return the current credit card
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
+    # p customer.to_json
     respond_to do |format|
       format.json { render :json => customer }
     end
@@ -25,6 +26,7 @@ class CardsController < ApplicationController
     )
     current_user.stripe_id = customer.id
     current_user.save
+    # p customer.to_json
     respond_to do |format|
       format.json { render :json => customer }
     end

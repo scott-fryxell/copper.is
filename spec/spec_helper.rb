@@ -1,6 +1,10 @@
 require 'rubygems'
 require 'spork'
-require 'ostruct'
+class OpenStruct
+  def to_json(*args)
+    table.to_json
+  end
+end
 
 Spork.prefork do
   def create!(factory,*args)
@@ -10,7 +14,7 @@ Spork.prefork do
     # record.should be_valid
     record
   end
-  
+
   ENV["RAILS_ENV"] = 'test'
   if ENV['RCOV']
     require 'simplecov'
@@ -61,14 +65,14 @@ Spork.each_run do
 
       ResqueSpec.reset!
       # ResqueSpec.inline = true
-
       class Stripe::Customer
+
         def self.create(*args)
-          OpenStruct.new(id:'1')
+          OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
         end
 
         def self.retrieve(*args)
-          OpenStruct.new(card:nil,save:nil)
+          OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
         end
       end
 
@@ -88,7 +92,7 @@ Spork.each_run do
 
       @wanted.pages << @page1
       @wanted.pages << @page2
-      
+
       @me = create!(:user)
       @her = create!(:user_phony)
 
@@ -109,7 +113,7 @@ Spork.each_run do
     config.after(:suite) do
       DatabaseCleaner.clean
     end
-    
+
     config.before(:each) do
       Twitter.stub(:update)
     end

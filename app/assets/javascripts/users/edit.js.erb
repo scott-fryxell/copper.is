@@ -9,37 +9,6 @@ $(document).ready(function (){
   })
 });
 $(document).ready(function (){
-  $("section > header > a").click(function(event){
-    event.preventDefault();
-    var div = $(this).parents("section").find("div");
-    var form = $(this).parents("section").find("form")
-    $(this).animate({opacity:0}, 200);
-    div.animate({opacity:0},500, function (){
-      div.css("display", "none")
-      form.css("display", "inline-block")
-      form.animate({opacity:1},500);
-    });
-  });
-
-  $("section > form").submit(function(event){
-    event.preventDefault()
-    div = $(this).parents("section").find("div")
-    $(this).animate({opacity:0},500,function (){
-      $(this).css("display", "none")
-      $(this).parents("section").find("header > a").animate({opacity:1}, 200)
-      div.css("display","inline-block")
-      div.animate({opacity:1}, 500)
-    });
-  });
-
-  $('#email form').bind('form:invalid', function (){
-    console.debug("invalid form")
-    $('#email > header > a').click();
-    $(this).find('input[itemprop=email]').addClass('invalid');
-  });
-
-});
-$(document).ready(function (){
   $("#card > form").submit(function(event) {
     event.preventDefault();
     if( !Stripe.validateCardNumber($('#number').val())){
@@ -100,7 +69,7 @@ $(document).ready(function (){
         jQuery.ajax({
           url: '/cards',
           type: method,
-          data: 'card_token=' + response['id'],
+          data: 'card_token=' + response.id,
           error: function(data, textStatus, jqXHR) {
             console.error("error creating stripe user " + method, data, textStatus, jqXHR);
           }
@@ -111,6 +80,33 @@ $(document).ready(function (){
   });
 });
 $(document).on("copper:items_discovered", function (){
+  $("section > header > a").click(function(event){
+    event.preventDefault();
+    var div = $(this).parents("section").find("div");
+    var form = $(this).parents("section").find("form")
+    $(this).animate({opacity:0}, 200);
+    div.animate({opacity:0},500, function (){
+      div.css("display", "none")
+      form.css("display", "inline-block")
+      form.animate({opacity:1},500);
+    });
+  });
+  $("section > form").submit(function(event){
+    event.preventDefault()
+    div = $(this).parents("section").find("div")
+    $(this).animate({opacity:0},500,function (){
+      $(this).css("display", "none")
+      $(this).parents("section").find("header > a").animate({opacity:1}, 200)
+      div.css("display","inline-block")
+      div.animate({opacity:1}, 500)
+    });
+  });
+
+  $('#email form').bind('form:invalid', function (){
+    $('#email > header > a').click();
+    $(this).find('input[itemprop=email]').addClass('invalid');
+  });
+
   user = document.getItems()['users'][((window.location.pathname).replace('/edit', ''))]
   if (!user.email){
     $("#email > header > a").click();
@@ -123,7 +119,6 @@ $(document).on("copper:items_discovered", function (){
         $("#card p.type").text(data.active_card.type)
         $("#card p.number").text(data.active_card.last4)
         $("#card p.expiration").text(data.active_card.exp_month + '/' + data.active_card.exp_year )
-        // populate stripe information from the returned object
       },
       error: function (data, textStatus, jqXHR) {
         console.error("error getting stripe info", data, textStatus, jqXHR);

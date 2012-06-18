@@ -11,7 +11,9 @@ Item.discover_items = function (){
     items[$(this).attr("itemtype")][$(this).attr('itemid')] = new Item(this);
   });
   Item.items = items;
-  $(document).trigger("copper:items_discovered");
+  if(Item.items){
+    $(document).trigger("copper:items_discovered");
+  }
   return Item.items;
 }
 Item.get_value      = function (element){
@@ -84,7 +86,6 @@ $(document).ready(function (){
       Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
     });
     Item.update_page(Item.items[type][id]);
-    console.debug(id)
     if(id =='new'){
       id="/tips"
     }
