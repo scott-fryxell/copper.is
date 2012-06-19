@@ -1,9 +1,10 @@
+//= require shared/me
 $(document).ready(function (){
   Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
   var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
   $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
   $('#rate > form > select > option[value=' + rate +']').attr('selected', true)
-  Copper.format_cents_to_dollars("tip_preference_in_cents")
+  copper.format_cents_to_dollars("tip_preference_in_cents")
   $(document).on("copper:update_page_items", function (){
     Copper.format_cents_to_dollars("tip_preference_in_cents")
   })
@@ -78,6 +79,9 @@ $(document).ready(function (){
     );
     return false;
   });
+});
+$(document).on("copper:me", function (){
+  $('img.provider').attr('src', copper.get_image())
 });
 $(document).on("copper:items_discovered", function (){
   $("section > header > a").click(function(event){
