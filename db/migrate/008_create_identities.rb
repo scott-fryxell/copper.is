@@ -4,12 +4,6 @@ class CreateIdentities < ActiveRecord::Migration
       t.string :provider, :null => false
       t.string :uid
       t.string :username
-      t.string :name
-      t.string :email
-      t.string :image
-      t.string :location
-      t.string :phone
-      t.string :urls
       t.string :token
       t.string :secret
       t.string :type, :null => false

@@ -26,7 +26,6 @@
             <%= link_to image_tag("icons/silhouette.svg"), user_path(current_user), :title => "View profile" %>
             <%= link_to image_tag("icons/gear.svg"), edit_user_path(current_user), :title => "Account settings"%>
           </nav>
-          <%= image_tag current_user.identities.first.image %>
         </hgroup>
       <% else %>
         <hgroup id='sign_in'>

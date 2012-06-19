@@ -10,11 +10,6 @@ class SessionsController < ApplicationController
       @identity = Identity.create_with_omniauth(auth)
     end
 
-    @identity.name = auth['info']['name']
-    @identity.email = auth['info']['email']
-    @identity.location = auth['info']['location']
-    @identity.image = auth['info']['image']
-    @identity.urls = auth['info']['urls']
     @identity.token = auth['credentials']['token']
     @identity.secret = auth['credentials']['secret']
     @identity.save
