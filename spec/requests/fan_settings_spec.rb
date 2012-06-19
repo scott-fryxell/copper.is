@@ -5,10 +5,8 @@ describe "A Fan's" do
     DatabaseCleaner.clean
     visit "/"
     click_link 'facebook_sign_in'
-    # save_and_open_page
     click_link 'Account settings'
     page.execute_script("$.fx.off")
-
   end
 
   describe 'Item.js' do
@@ -34,50 +32,80 @@ describe "A Fan's" do
   end
 
   it "should be able to change email" do
-    within("section#email") do
+    within("#email") do
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
       find("div > p").should have_content("user@facebook.com")
       click_link "Change"
+      page.should have_css('form', :visible => true)
+      page.should have_css('div', :visible => false)
+
       find_field('user[email]').value.should == 'user@facebook.com'
       fill_in('user[email]', :with => 'change@email.com')
       click_on 'Save'
+      page.should have_css('form', :visible => true)
+      page.should have_css('div', :visible => false)
       find("div > p").should have_content("change@email.com")
     end
     click_link 'Account settings'
     within("section#email") do
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
       find("div > p").should have_content("change@email.com")
     end
   end
 
   it "should be able to change tip amount preference" do
     within("section#rate") do
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+
       find("div > p").should have_content("0.25")
       click_link "Change"
+      page.should have_css('form', :visible => true)
+      page.should have_css('div', :visible => false)
+
       find_field('user[tip_preference_in_cents]').value.should == '25'
       page.select '$1.00', :from => 'user[tip_preference_in_cents]'
       click_on "Save"
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+
       find("div > p").should have_content("1")
     end
     click_link 'Account settings'
 
     within("section#rate") do
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
       find("div > p").should have_content("1")
     end
   end
 
   it "should be able to save their credit card information" do
+
     within("#card") do
+      page.should have_css('form', :visible => true)
+      page.should have_css('div', :visible => false)
+
       fill_in('number', :with => '4242424242424242')
       fill_in('cvc', :with => '666')
       select('April', :from => 'month')
       select('2015', :from => 'year')
       check('terms')
       click_on('Save')
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
     end
 
     within("#card") do
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
@@ -86,6 +114,9 @@ describe "A Fan's" do
     click_link 'Account settings'
 
     within("#card") do
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
