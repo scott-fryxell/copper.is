@@ -2,12 +2,10 @@
   var f = document.getElementById('copper');
   if (f) {
     // increment tip
-    // trigger sound
   }
   else {
     f=document.createElement('iframe');
     f.id='copper';
-    f.target='copper';
     f.style.position='fixed';
     f.style.top='0';
     f.style.right='50%';
@@ -25,7 +23,6 @@
     f.style.zIndex='9999999999999999';
     window.addEventListener('message', function(event) {
       var data = JSON.parse(event.data)
-      console.debug(data.type)
       if (data.type == 'show'){
         f.width='350px'
         f.height='200px'

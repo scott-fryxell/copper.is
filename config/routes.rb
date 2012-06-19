@@ -23,7 +23,10 @@ Copper::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
   get 'faq',     :to => 'home#faq'
   get 'button',  :to => 'home#button'
-  get 'test',    :to => 'home#test'
+  if Rails.env.test? || Rails.env.development?
+    get 'test',    :to => 'home#test'
+  end
+
   get 'badge',   :to => 'home#badge', :as => :badge
   get 'embed_iframe.js', :to => 'home#iframe', :as => :iframe
   get 'buckingthesystem', :to => 'home#index'

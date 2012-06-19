@@ -1,5 +1,6 @@
 (function () {
   var s=document.createElement('script');
-  s.src = '<%=request.scheme%>://<%=request.host%>:<%=request.port%>/embed_iframe.js';
+  s.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/embed_iframe.js';
+  s.id='copper_embeder';
   document.body.appendChild(s);
 })()

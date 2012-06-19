@@ -35,7 +35,7 @@ Spork.prefork do
   Capybara.default_driver = :webkit
   Capybara.server_port = 8080
   Capybara.app_host = "http://127.0.0.1:8080"
-  Capybara.ignore_hidden_elements = true
+  Capybara.ignore_hidden_elements = false
   include Authorization::TestHelper
 
   RSpec.configure do |config|
