@@ -19,7 +19,7 @@ gem 'stripe'
 gem 'dalli'
 gem "foreman"
 gem 'unicorn'
-gem 'newrelic_rpm'
+
 gem 'redis'
 gem 'resque', '1.20.0'
 # gem 'resque-scheduler', :require => 'resque_scheduler'
@@ -36,6 +36,10 @@ group :production do
   gem "pg"
 end
 
+group :development, :production do
+ gem 'newrelic_rpm'
+end
+
 group :development, :test do
   gem 'simplecov', :require => false
   gem 'sqlite3', :require => 'sqlite3'
@@ -50,7 +54,7 @@ group :development, :test do
   gem 'guard-livereload'
   gem 'guard-spork'
   gem 'rb-fsevent'
-  gem 'spork'
+  gem 'spork-rails'
   gem 'launchy'
   gem 'ruby-graphviz', '~> 0.9.17'
   gem 'rails-erd'
