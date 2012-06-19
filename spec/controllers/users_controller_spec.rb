@@ -104,7 +104,7 @@ describe UsersController do
         end
       end
 
-      describe '/users/current/edit', :broken do
+      describe '/users/current/edit' do
         it 'assigns user for current user only' do
           get :edit, id:'current'
           response.status.should == 200
@@ -114,9 +114,9 @@ describe UsersController do
     end
 
     describe 'show' do
-      describe '/users/current' do
-        it 'assigns user with id current', :broken do
-          get :show, id:'current'
+      describe '/users/me' do
+        it 'assigns user with id me' do
+          get :show, id:'me'
           response.status.should == 200
           p assigns(:user)
           p @me
@@ -124,24 +124,24 @@ describe UsersController do
         end
       end
       describe '/users/:id' do
-        it 'assigns user with id current', :broken do
-          get :show, id:'current'
+        it 'assigns user with id current' do
+          get :show, id:'me'
           response.status.should == 200
           assigns(:user).id.should == @me.id
         end
       end
     end
 
-    describe 'update', :broken do
-      describe 'PUT /users/current' do
+    describe 'update' do
+      describe 'PUT /users/me' do
         it 'updates email' do
-          put :update, id:'current', user:{email:'dude@place.com'}
+          put :update, id:'me', user:{email:'dude@place.com'}
           @me.reload
           @me.email.should == 'dude@place.com'
         end
 
         it 'update name' do
-          put :update, id:'current', user:{name:'the man'}
+          put :update, id:'me', user:{name:'the man'}
           @me.reload
           @me.name.should == 'the man'
         end
@@ -149,7 +149,7 @@ describe UsersController do
         it 'updates address'
 
         it 'updates default tip amount' do
-          put :update, id:'current', user:{tip_preference_in_cents:500}
+          put :update, id:'me', user:{tip_preference_in_cents:500}
           @me.reload
           @me.tip_preference_in_cents.should == 500
         end

@@ -2,9 +2,6 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery
 
-  # filter_access_to :all
-
-
   helper_method :current_user, :item_scope
 
   private

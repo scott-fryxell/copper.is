@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  filter_resource_access
+  filter_access_to :all ,:attribute_check => false
 
   def index
     redirect_to root_path
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
   def update
     if @user = current_user
-      if params[:id] == 'current' or @user.id.to_s == params[:id]
+      if params[:id] == 'me' or @user.id.to_s == params[:id]
         @user.update_attributes(params[:user])
         @user.save!
         render nothing:true
@@ -44,7 +44,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    if params[:id] == 'me' or @user.id.to_s == params[:id]
+      @user = current_user
+    end
   end
 end
 
