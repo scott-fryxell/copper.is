@@ -14,6 +14,7 @@ gem 'omniauth-vimeo'
 gem 'omniauth-soundcloud', '~> 1.0.0'
 gem 'omniauth-google-oauth2'
 
+gem 'jbuilder'
 gem 'stripe'
 gem 'dalli'
 gem "foreman"
@@ -45,12 +46,11 @@ group :development, :test do
   gem "capybara-webkit"
   gem 'database_cleaner', '~> 0.6.7'
   gem 'guard'
-  gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-spork'
   gem 'rb-fsevent'
-  gem 'spork', '> 0.9.0.rc'
+  gem 'spork'
   gem 'launchy'
   gem 'ruby-graphviz', '~> 0.9.17'
   gem 'rails-erd'
