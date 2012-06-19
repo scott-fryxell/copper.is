@@ -32,13 +32,4 @@ describe CardsController do
     end
   end
 
-  describe 'destroy' do
-    # should remove a users credit card info
-    it 'responds to .json' do
-      delete :destroy, format: :json
-      response.status.should == 200
-      response.should be_success
-    end
-  end
-
 end

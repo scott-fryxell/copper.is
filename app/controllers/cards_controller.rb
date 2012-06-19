@@ -32,10 +32,4 @@ class CardsController < ApplicationController
     end
   end
 
-  def destroy
-    # should remove a users credit card info
-    customer = Stripe::Customer.retrieve(current_user.stripe_id)
-    customer.delete
-    render nothing:true, status:200
-  end
 end
