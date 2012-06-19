@@ -417,35 +417,35 @@ RailsAdmin.config do |config|
   #   create do; end
   #   update do; end
   # end
-  config.model Identity do
-    # Found associations:
-      configure :user, :belongs_to_association
-      configure :pages, :has_many_association
-      configure :tips, :has_many_association
-      configure :checks, :has_many_association   #   # Found columns:
-      configure :id, :integer
-      configure :provider, :string
-      configure :uid, :string
-      configure :username, :string
-      configure :name, :string
-      configure :email, :string
-      configure :image, :string
-      configure :location, :string
-      configure :phone, :string
-      configure :urls, :string
-      configure :type, :string
-      configure :identity_state, :string
-      configure :message, :datetime
-      configure :user_id, :integer         # Hidden
-      configure :created_at, :datetime
-      configure :updated_at, :datetime   #   # Sections:
-    list do; end
-    export do; end
-    show do; end
-    edit do; end
-    create do; end
-    update do; end
-  end
+  # config.model Identity do
+  #    # Found associations:
+  #      configure :user, :belongs_to_association
+  #      configure :pages, :has_many_association
+  #      configure :tips, :has_many_association
+  #      configure :checks, :has_many_association   #   # Found columns:
+  #      configure :id, :integer
+  #      configure :provider, :string
+  #      configure :uid, :string
+  #      configure :username, :string
+  #      configure :name, :string
+  #      configure :email, :string
+  #      configure :image, :string
+  #      configure :location, :string
+  #      configure :phone, :string
+  #      configure :urls, :string
+  #      configure :type, :string
+  #      configure :identity_state, :string
+  #      configure :message, :datetime
+  #      configure :user_id, :integer         # Hidden
+  #      configure :created_at, :datetime
+  #      configure :updated_at, :datetime   #   # Sections:
+  #    list do; end
+  #    export do; end
+  #    show do; end
+  #    edit do; end
+  #    create do; end
+  #    update do; end
+  #  end
   # config.model Order do
   #   # Found associations:
   #     configure :user, :belongs_to_association
