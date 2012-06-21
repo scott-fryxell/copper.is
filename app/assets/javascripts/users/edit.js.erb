@@ -1,15 +1,15 @@
-//= require shared/me
-$(document).ready(function (){
+$(document).on("copper:users_edit", function (){
   Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
   var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
   $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
   $('#rate > form > select > option[value=' + rate +']').attr('selected', true)
   copper.format_cents_to_dollars("tip_preference_in_cents")
-  $(document).on("copper:update_page_items", function (){
-    Copper.format_cents_to_dollars("tip_preference_in_cents")
-  })
 });
-$(document).ready(function (){
+$(document).on("copper:users_edit:update_page_items", function (){
+  copper.format_cents_to_dollars("tip_preference_in_cents")
+})
+
+$(document).on("copper:users_edit", function (){
   $("#card > form").submit(function(event) {
     event.preventDefault();
     if( !Stripe.validateCardNumber($('#number').val())){
@@ -80,10 +80,7 @@ $(document).ready(function (){
     return false;
   });
 });
-$(document).on("copper:me", function (){
-  $('img.provider').attr('src', copper.get_image())
-});
-$(document).on("copper:items_discovered", function (){
+$(document).on("copper:users_edit:items", function (){
   $("section > header > a").click(function(event){
     event.preventDefault();
     var div = $(this).parents("section").find("div");
@@ -98,7 +95,7 @@ $(document).on("copper:items_discovered", function (){
   $("section > form").submit(function(event){
     event.preventDefault()
     div = $(this).parents("section").find("div")
-    $(this).animate({opacity:0},500,function (){
+    $(this).animate({opacity:0},500, function (){
       $(this).css("display", "none")
       $(this).parents("section").find("header > a").animate({opacity:1}, 200)
       div.css("display","inline-block")
@@ -106,7 +103,7 @@ $(document).on("copper:items_discovered", function (){
     });
   });
 
-  $('#email form').bind('form:invalid', function (){
+  $('#email form').bind('copper:invalid', function (){
     $('#email > header > a').click();
     $(this).find('input[itemprop=email]').addClass('invalid');
   });

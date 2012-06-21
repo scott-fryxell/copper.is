@@ -17,7 +17,7 @@
       display:inline-block;
       opacity:.5;
       @include transform(rotate(-90deg));
-      background: image-url('triangles/isosceles.svg') no-repeat 0% 0%;
+      background: image-url('shared/triangles/isosceles.svg') no-repeat 0% 0%;
       background-size: .75em;
     }
   }

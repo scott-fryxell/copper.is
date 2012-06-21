@@ -1,4 +1,9 @@
-//= require shared/common
+//= require jquery
+//= require jquery.cookie
+//= require jquery.timeago
+//= require jquery.tmpl
+//= require shared/Item
+//= require shared/copper
 window.addEventListener('message', function(event) {
   $(document).trigger(JSON.parse(event.data))
 });
@@ -15,7 +20,7 @@ $(document).bind({
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
     Item.update_page(new_tip)
-    Copper.format_cents_to_dollars("amount_in_cents")
+    copper.format_cents_to_dollars("amount_in_cents")
     $(document).trigger("tip_display")
   },
   "tip_display": function (event){

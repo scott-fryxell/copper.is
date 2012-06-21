@@ -1,5 +1,6 @@
 #home_index {
   & > header {
+    opacity:.8;
     position:absolute;
     top:0;
     z-index:300;
@@ -140,20 +141,28 @@
   }
 
   #samples {
+    padding:0;
+    position:relative;
+    overflow: hidden;
+    width:100%;
     padding-bottom:3em;
     background-color:darken($offset_color, 15%);
     @include triangle_bottom($offset_color)
   }
   #samples > figure {
+    width:300%;
     padding-top:2em;
   }
   #samples > figure > img {
+    margin-left: grid-width(1);
     width:grid-width(22);
     display:inline-block;
     overflow:hidden;
     @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
   }
-
+  #samples > figure > img:first-child{
+    margin-left: grid-width(2);
+  }
   #button {
     background-color:$offset_color;
     vertical-align:top;

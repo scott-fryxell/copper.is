@@ -12,7 +12,8 @@ Item.discover_items = function (){
   });
   Item.items = items;
   if(Item.items){
-    $(document).trigger("copper:items_discovered");
+    $(document).trigger("copper:items");
+    $(document).trigger("copper:" + $('body').attr('id')+ ":items");
   }
   return Item.items;
 }
@@ -54,6 +55,7 @@ Item.update_page    = function (item){
     }
   });
   $(document).trigger("copper:update_page_items");
+  $(document).trigger("copper:" + $('body').attr('id')+ ":update_page_items");
 }
 Item.prototype.update_page = function (){
   Item.update_page(this);
@@ -95,7 +97,7 @@ $(document).ready(function (){
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
         //TODO reload the properties from the server and populate the page with a message
-        $(form).trigger("form:invalid");
+        $(form).trigger("copper:invalid");
         console.error("error submiting form " + $(form).attr('method'), data, textStatus, jqXHR);
       }
     });
