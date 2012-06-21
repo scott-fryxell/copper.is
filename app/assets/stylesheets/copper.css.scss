@@ -9,7 +9,7 @@ html {
   min-width: 60em;
   min-height:30em;
   background-color: #f6f5f0;
-  background-image: image-url('texture_dark.png');
+  background-image: image-url('shared/texture_dark.png');
   font-family: Arial;
   font-size: 16px;
   line-height:1.25em;
@@ -65,6 +65,94 @@ body > header {
   background-color: $darkness;
   width:grid-width(26);
   height:3.4em;
+  hgroup {
+    display:none;
+    &.show{
+      display:inline-block;
+    }
+  }
+  #sign_in {
+    float:right;
+    vertical-align:middle;
+    margin-right:1em;
+    margin-top:1em;
+    text-align:right;
+    nav {}
+    nav > h1 {
+      font-family: 'Doppio One', sans-serif;
+      text-transform:uppercase;
+      margin-right:.5em;
+      font-weight:normal;
+      opacity:.6;
+      color:white;
+      display:inline;
+      font-size:.85em;
+    }
+    nav > a  {
+      padding-right:.25em;
+    }
+    nav > a > img {
+      display:inline;
+      vertical-align:top;
+      width:1.25em;
+    }
+  }
+  #signed_in {
+    float:right;
+    margin-top:.5em;
+    margin-right:1em;
+    text-align:right;
+    & > img {
+      border:0.18em solid #666;
+      display:inline-block;
+      width:2em;
+      @include triangle_bottom(#666)
+    }
+    nav {
+      height:2.5em;
+      display:inline-block;
+      vertical-align:top;
+      text-align:right;
+    }
+    nav > h1 {
+      margin:0;
+      font-family: 'Doppio One', sans-serif;
+      color:#d7d2cf;
+      font-size:.85em;
+    }
+    nav > a {
+      padding-top:.5em;
+      line-height:2em;
+      vertical-align:middle;
+      display:inline-block;
+      margin-right:1.5em;
+      font-family: 'Cantarell', sans-serif;
+      font-size:.75em;
+      line-height:1.25em;
+      color:#d7d2cf;
+    }
+    nav > a > img {
+      height:1.5em;
+      opacity:0.3;
+      vertical-align:middle;
+      @include transition(opacity 1s);
+      &:hover{
+        @include transition(opacity 1s);
+        opacity:0.9;
+      }
+    }
+  }
+  #message {
+    background-color: $darkness;
+    width:grid-width(6);
+    border-radius: 0 0 .5em .5em;
+    min-height:3em;
+    margin-top:0;
+    margin-left:grid-width(10);
+    @include box-shadow(2px 0 16px -4px hsla(0, 0%, 0%, 0.65));
+    display:none;
+    color:white;
+  }
 }
 body > header > a {
   background-color: $darkness;
@@ -147,88 +235,4 @@ body > footer > nav > a {
   @include animation-duration(0.5s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(infinite);
-}
-#message {
-  background-color: $darkness;
-  width:grid-width(6);
-  border-radius: 0 0 .5em .5em;
-  min-height:3em;
-  margin-top:0;
-  margin-left:grid-width(10);
-  @include box-shadow(2px 0 16px -4px hsla(0, 0%, 0%, 0.65));
-  display:none;
-  color:white;
-}
-#sign_in {
-  float:right;
-  display:inline-block;
-  vertical-align:middle;
-  margin-right:1em;
-  margin-top:1em;
-  text-align:right;
-  nav {}
-  nav > h1 {
-    font-family: 'Doppio One', sans-serif;
-    text-transform:uppercase;
-    margin-right:.5em;
-    font-weight:normal;
-    opacity:.6;
-    color:white;
-    display:inline;
-    font-size:.85em;
-  }
-  nav > a  {
-    padding-right:.25em;
-  }
-  nav > a > img {
-    display:inline;
-    vertical-align:top;
-    width:1.25em;
-  }
-}
-#signed_in {
-  float:right;
-  display:inline-block;
-  margin-top:.5em;
-  margin-right:1em;
-  text-align:right;
-  & > img {
-    border:0.18em solid #666;
-    display:inline-block;
-    width:2em;
-    @include triangle_bottom(#666)
-  }
-  nav {
-    height:2.5em;
-    display:inline-block;
-    vertical-align:top;
-    text-align:right;
-  }
-  nav > h1 {
-    margin:0;
-    font-family: 'Doppio One', sans-serif;
-    color:#d7d2cf;
-    font-size:.85em;
-  }
-  nav > a {
-    padding-top:.5em;
-    line-height:2em;
-    vertical-align:middle;
-    display:inline-block;
-    margin-right:1.5em;
-    font-family: 'Cantarell', sans-serif;
-    font-size:.75em;
-    line-height:1.25em;
-    color:#d7d2cf;
-  }
-  nav > a > img {
-    height:1.5em;
-    opacity:0.3;
-    vertical-align:middle;
-    @include transition(opacity 1s);
-    &:hover{
-      @include transition(opacity 1s);
-      opacity:0.9;
-    }
-  }
 }

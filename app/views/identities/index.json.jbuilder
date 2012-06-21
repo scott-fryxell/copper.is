@@ -1,0 +1,1 @@
+json.(@identities, :provider, :username, :uid, :token)
