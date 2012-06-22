@@ -10,7 +10,7 @@ describe UsersController do
 
     describe 'index' do
       describe '/users' do
-        it 'redirects to signin path' do
+        it 'responds with status 401' do
           get :index
           response.status.should == 401
         end
@@ -19,7 +19,7 @@ describe UsersController do
 
     describe 'new' do
       describe '/users/new' do
-        it 'redirects to signin page' do
+        it 'responds with status 401' do
           get :new
           response.status.should == 401
         end
@@ -28,7 +28,7 @@ describe UsersController do
 
     describe 'create'do
       describe 'POST /users' do
-        it 'redirects to signin path' do
+        it 'responds with status 401' do
           post :create
           response.status.should == 401
         end
@@ -73,17 +73,11 @@ describe UsersController do
 
     describe 'index' do
       describe '/users' do
-        it 'redirects to root path' do
+        it 'responds with status 403' do
           get :index
-          response.should redirect_to(root_path)
+          response.status.should == 403
         end
       end
-
-      describe '/users?q=mike'
-    end
-
-    describe 'new' do
-      describe '/u/new'
     end
 
     describe 'create' do
@@ -98,15 +92,15 @@ describe UsersController do
           assigns(:user).id.should == @me.id
         end
 
-        it 'redirects to home page for an id that is not current user' do
+        it 'responds with a 403 for an id that is not current user' do
           get :edit, id:@her.id
-          response.should redirect_to(root_path)
+          response.status.should == 403
         end
       end
 
-      describe '/users/current/edit' do
+      describe '/users/me/edit' do
         it 'assigns user for current user only' do
-          get :edit, id:'current'
+          get :edit, id:'me'
           response.status.should == 200
           assigns(:user).id.should == @me.id
         end
@@ -146,8 +140,6 @@ describe UsersController do
           @me.name.should == 'the man'
         end
 
-        it 'updates address'
-
         it 'updates default tip amount' do
           put :update, id:'me', user:{tip_preference_in_cents:500}
           @me.reload
@@ -182,49 +174,48 @@ describe UsersController do
         end
 
         describe 'her' do
-          it 'updates email' do
+          it 'does not update email' do
             put :update, id:@her.id, user:{email:'dude@place.com'}
             @her.reload
             @her.email.should_not == 'dude@place.com'
-            response.status.should == 401
+            response.status.should == 403
           end
 
-          it 'update name' do
+          it 'does not update name' do
             put :update, id:@her.id, user:{name:'the man'}
             @her.reload
             @her.name.should_not == 'the man'
-            response.status.should == 401
+            response.status.should == 403
           end
 
-          it 'updates address'
 
-          it 'updates default tip amount' do
+          it 'does not update tip amount' do
             put :update, id:@her.id, user:{tip_preference_in_cents:500}
             @her.reload
             @her.tip_preference_in_cents.should_not == 500
-            response.status.should == 401
+            response.status.should == 403
           end
         end
       end
     end
 
     describe 'destroy' do
-      describe 'DELETE /users/current' do
-        it 'redirects to home page' do pending
-          delete :destroy, id:'current'
-          response.should redirect_to(root_path)
+      describe 'DELETE /users/me' do
+        it 'responds with 403' do pending
+          delete :destroy, id:'me'
+          response.status.should == 403
         end
       end
 
       describe 'DELETE /users/:id' do
         it 'redirects to home page' do pending
           delete :destroy, id:@me.id
-          response.should redirect_to(root_path)
+          response.status.should == 403
         end
 
         it 'redirects to home page' do pending
           delete :destroy, id:@her.id
-          response.should redirect_to(root_path)
+          response.status.should == 403
         end
       end
     end

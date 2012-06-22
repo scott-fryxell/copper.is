@@ -13,13 +13,6 @@ describe TipsController do
         it 'responds to .json' do
           get :index, format: :json
           response.should be_success
-          order_id = @her_tip2.order_id
-          check_id = @her_tip2.check_id
-          @her_tip2.order_id = nil
-          @her_tip2.check_id = nil
-          response.body.should include(@her_tip2.to_json)
-          @her_tip2.order_id = order_id
-          @her_tip2.check_id = check_id
         end
         
         it 'assigns all tips' do
@@ -28,21 +21,19 @@ describe TipsController do
           tips.include?(@her_tip2).should be_true
           tips.include?(@her_tip1).should be_true
           tips.include?(@my_tip).should be_true
-          tips.first.order_id.should be_nil
-          tips.first.check_id.should be_nil
         end
       end
     end
 
     describe 'new' do
       describe '/tips/new' do
-        it '302 to signin' do
+        it 'should respond with 401' do
           get :new
           response.status.should == 401
         end
 
         it '401 when json requested' do
-          get :new, format: :js
+          get :new, format: :json
           response.status.should == 401
         end
       end
@@ -50,7 +41,7 @@ describe TipsController do
 
     describe 'create' do
       describe 'POST /tips' do
-        it '302 to signin' do
+        it 'should respond with 401' do
           proc do
             post :create
             response.status.should == 401
@@ -64,21 +55,13 @@ describe TipsController do
         it 'responds to .json' do
           get :show, id:@my_tip.id, format: :json
           response.should be_success
-          order_id = @my_tip.order_id
-          check_id = @my_tip.check_id
-          @my_tip.order_id = nil
-          @my_tip.check_id = nil
-          response.body.should include(@my_tip.to_json)
-          @my_tip.order_id = order_id
-          @my_tip.check_id = check_id
         end
         
         it 'should display a tip', :broken do
+          # currently there is no use case for this in the UI
           get :show, id:@my_tip.id
           assigns(:tip).should eq(@my_tip)
           tip = assigns(:tip)
-          tip.order_id.should be_nil
-          tip.check_id.should be_nil
         end
       end
     end

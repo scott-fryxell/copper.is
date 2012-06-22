@@ -10,7 +10,7 @@ describe IdentitiesController do
     
     describe 'index' do
       describe '/identities' do
-        it '302' do
+        it '401' do
           get :index
           response.status.should == 401
         end

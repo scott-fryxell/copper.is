@@ -1,0 +1,1 @@
+json.(@tip, :id, :url, :title, :amount_in_cents, :page)

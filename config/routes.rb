@@ -23,6 +23,7 @@ Copper::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
   get 'faq',     :to => 'home#faq'
   get 'button',  :to => 'home#button'
+
   if Rails.env.test? || Rails.env.development?
     get 'test',    :to => 'home#test'
   end

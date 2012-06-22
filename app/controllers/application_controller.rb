@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
   end
+  before_filter :set_current_user
 
   def item_scope
     type = params[:controller].parameterize
@@ -21,19 +22,15 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def set_current_user
+    Authorization.current_user = current_user
+  end
+
   def permission_denied
     if current_user
-      respond_to do |format|
-        format.html { render nothing:true, status:403 }
-        format.xml  { head :unauthorized }
-        format.js   { head :unauthorized }
-      end
+      render nothing:true, status:403
     else
-      respond_to do |format|
-        format.html { render nothing:true, status:401 }
-        format.xml  { head :unauthorized }
-        format.js   { head :unauthorized }
-      end
+      render nothing:true, status:401
     end
   end
 
