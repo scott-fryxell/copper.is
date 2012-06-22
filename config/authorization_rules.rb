@@ -19,7 +19,7 @@ authorization do
     end
     has_permission_on :checks,     :to => [:read]
     has_permission_on :orders,     :to => [:read,:update]
-    has_permission_on :identities, :to => [:manage]
+    has_permission_on :identities, :to => [:edit]
     has_permission_on :pages,      :to => [:read]
     has_permission_on :cards,      :to => [:manage]
   end

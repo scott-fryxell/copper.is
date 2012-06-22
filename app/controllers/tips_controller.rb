@@ -14,7 +14,7 @@ class TipsController < ApplicationController
   end
 
   def new
-    render :action => 'new', :layout => false
+    render action:'new', layout:false
   end
 
   def create
@@ -24,7 +24,7 @@ class TipsController < ApplicationController
   end
 
   def edit
-    render :nothing => true
+    render nothing:true
   end
 
   def update
@@ -33,14 +33,14 @@ class TipsController < ApplicationController
       @tip.save
     end
   rescue ActiveRecord::RecordNotFound
-    render :nothing => true, :status => :unauthorized
+    render nothing:true, status:403
   end
 
   def destroy
     if(@tip.order.user == current_user and @tip.order.current?)
       @tip.destroy
     end
-    render :nothing => true, :status => :ok
+    render nothing:true, status:200
   rescue CantDestroyException
     redirect_to tips_path, notice:'Tips can not be changed after they have been paid for'
   end

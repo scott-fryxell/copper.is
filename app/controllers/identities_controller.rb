@@ -6,7 +6,6 @@ class IdentitiesController < ApplicationController
   end
 
   def new
-    render nothing:true, status:403
   end
 
   def show
@@ -16,11 +15,9 @@ class IdentitiesController < ApplicationController
   end
 
   def edit
-    render nothing:true, status:403
   end
 
   def update
-    render nothing:true, status:403
   end
 
   def destroy

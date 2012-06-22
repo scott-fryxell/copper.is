@@ -15,7 +15,6 @@ class ChecksController < ApplicationController
   end
 
   def create
-    render nothing:true, status:403
   end
 
   def show
@@ -25,18 +24,14 @@ class ChecksController < ApplicationController
   end
 
   def new
-    render nothing:true, status:403
   end
 
   def edit
-    render nothing:true, status:403
   end
 
   def update
-    render nothing:true, status:403
   end
 
   def destroy
-    render nothing:true, status:403
   end
 end

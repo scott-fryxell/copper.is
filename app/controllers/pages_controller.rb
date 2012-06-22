@@ -8,14 +8,11 @@ class PagesController < ApplicationController
   end
 
   def new
-    render nothing:true, status:403
   end
 
   def create
-    render nothing:true, status:403
   end
 
   def destroy
-    render nothing:true, status:403
   end
 end
