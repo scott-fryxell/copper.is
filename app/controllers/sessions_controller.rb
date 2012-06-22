@@ -72,7 +72,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-    render :action => 'new', :layout => 'sign_in'
+
   end
 
   private

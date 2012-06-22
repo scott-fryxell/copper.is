@@ -7,7 +7,7 @@ describe IdentitiesController do
         @current_user = nil
       end
     end
-    
+
     describe 'index' do
       describe '/identities' do
         it '401' do
@@ -77,14 +77,9 @@ describe IdentitiesController do
 
     describe 'index' do
       describe '/identities' do
-        it 'responds to .json' do
+        it 'assigns all identities for current user' do pending
           get :index, format: :json
           response.should be_success
-        end
-        
-        it 'assigns all identities for current user' do
-          pending
-          get :index
           assigns(:identities).size.should == 1
           response.status.should == 200
         end
@@ -94,7 +89,7 @@ describe IdentitiesController do
     describe 'new' do
       describe '/identities/new' do
         it '403' do
-          get :new
+          get :new, format: :json
           response.status.should == 403
         end
       end
@@ -102,19 +97,15 @@ describe IdentitiesController do
 
     describe 'show' do
       describe '/identities/:id' do
-        it 'responds to .json' do pending
-          get :show, id:@my_identity.id, format: :json 
-          response.should be_success
-          response.body.should include(@my_identity.to_json)
-        end
-        
+
         it 'assigns the identity' do pending
-          get :show, id:@my_identity.id
+          get :show, id:@my_identity.id, format: :json
+          response.should be_success
           assigns(:identity).id.should == @my_identity.id
         end
 
         it '401 for another user\'s identity' do pending
-          get :show, id:@her_identity.id
+          get :show, id:@her_identity.id, format: :json
           response.status.should == 401
         end
       end
@@ -123,7 +114,7 @@ describe IdentitiesController do
     describe 'edit' do
       describe '/identities/:id/edit' do
         it '403' do pending
-          get :edit, id:@my_identity.id
+          get :edit, id:@my_identity.id, format: :json
           response.status.should == 403
         end
       end

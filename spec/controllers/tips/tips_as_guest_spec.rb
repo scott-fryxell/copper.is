@@ -10,13 +10,9 @@ describe TipsController do
 
     describe 'index' do
       describe '/tips' do
-        it 'responds to .json' do
-          get :index, format: :json
-          response.should be_success
-        end
-        
+
         it 'assigns all tips' do
-          get :index
+          get :index, format: :json
           tips = assigns(:tips)
           tips.include?(@her_tip2).should be_true
           tips.include?(@her_tip1).should be_true
@@ -28,11 +24,6 @@ describe TipsController do
     describe 'new' do
       describe '/tips/new' do
         it 'should respond with 401' do
-          get :new
-          response.status.should == 401
-        end
-
-        it '401 when json requested' do
           get :new, format: :json
           response.status.should == 401
         end
@@ -52,24 +43,20 @@ describe TipsController do
 
     describe 'show' do
       describe '/tips/:id' do
-        it 'responds to .json' do
-          get :show, id:@my_tip.id, format: :json
-          response.should be_success
-        end
-        
-        it 'should display a tip', :broken do
+        it 'should display a tip' do pending
           # currently there is no use case for this in the UI
-          get :show, id:@my_tip.id
+          get :show, id:@my_tip.id, format: :json
           assigns(:tip).should eq(@my_tip)
           tip = assigns(:tip)
+          response.should be_success
         end
       end
     end
 
     describe 'edit' do
       describe '/tips/:id/edit' do
-        it '302 to signin' do
-          get :edit, id:@my_tip.id
+        it 'respond with not authorized' do
+          get :edit, id:@my_tip.id, format: :json
           response.status.should == 401
         end
       end
@@ -77,7 +64,7 @@ describe TipsController do
 
     describe 'update' do
       describe 'PUT /tips/:id' do
-        it '302 to signin' do
+        it 'respond with not authorized' do
           put :update, id:@my_tip.id, tip:{url:'laskdjf'}
           response.status.should == 401
         end
@@ -86,7 +73,7 @@ describe TipsController do
 
     describe 'destroy' do
       describe 'DELETE /tips/:id' do
-        it '302 to signin' do
+        it 'should respond with not authorized' do
           proc do
             delete :destroy, id:@my_tip.id
             response.status.should == 401
