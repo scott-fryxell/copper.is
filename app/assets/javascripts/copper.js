@@ -16,13 +16,14 @@ $(document).ready(function() {
       $("#signed_in").addClass('show')
       $(document).trigger("copper:" + $('body').attr('id')+ ":me");
     },
+    error:function (){
+      $("#sign_in").addClass('show')
+      $("#sign_in > nav > a > img").click(function(event){
+        $(this).addClass("working");
+      });
+    },
+
     statusCode: {
-      401:function (){
-        $("#sign_in").addClass('show')
-        $("#sign_in > nav > a > img").click(function(event){
-          $(this).addClass("working");
-        });
-      }
     }
   });
 });
