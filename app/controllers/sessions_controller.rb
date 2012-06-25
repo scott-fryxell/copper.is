@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
         # No user associated with the identity so we need to create a new one
         user = User.create_with_omniauth(auth)
 
-        session[:user_id] = @identity.user.id
+        session[:user_id] = user.id #was identity.user.id
         current_user = user
 
         @identity.user = current_user
