@@ -37,32 +37,27 @@ class SessionsController < ApplicationController
         # just log them in
         current_user = @identity.user
 
-        set_cookie(@identity.user)
+        session[:user_id] = @identity.user.id
 
         redirect_to user_path(current_user.id), notice: "Signed in!"
       else
         # No user associated with the identity so we need to create a new one
         user = User.create_with_omniauth(auth)
 
-        set_cookie(user)
+        session[:user_id] = @identity.user.id
         current_user = user
 
         @identity.user = current_user
         @identity.save()
 
-        redirect_to button_path, notice: "Welcome aboard!"
+        redirect_to root_url, :notice => "Welcome aboard!"
 
       end
     end
   end
 
   def destroy
-    if Rails.env.production?
-      cookies[:user_id] = {:value => nil, :expires => 90.days.ago, :domain => '.copper.is'}
-    else
-      cookies[:user_id] = {:value => nil, :expires => 90.days.ago}
-    end
-
+    session[:user_id] = nil
     redirect_to root_url, :notice => "Signed out"
   end
 
@@ -72,16 +67,7 @@ class SessionsController < ApplicationController
   end
 
   def new
-
   end
 
   private
-
-  def set_cookie(user)
-    if Rails.env.production?
-      cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now, :domain => '.copper.is'}
-    else
-      cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
-    end
-  end
 end

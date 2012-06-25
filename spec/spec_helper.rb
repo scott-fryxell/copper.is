@@ -95,7 +95,7 @@ Spork.each_run do
 
       @me = create!(:user)
       @her = create!(:user_phony)
-
+      @guest = create!(:guest)
       @my_identity = @me.identities.first
       @her_identity = @her.identities.first
 

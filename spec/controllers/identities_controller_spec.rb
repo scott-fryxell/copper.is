@@ -2,12 +2,6 @@ require 'spec_helper'
 
 describe IdentitiesController do
   describe 'as Guest' do
-    before :all do
-      controller.instance_eval do
-        @current_user = nil
-      end
-    end
-
     describe 'index' do
       describe '/identities' do
         it '401' do
@@ -67,18 +61,11 @@ describe IdentitiesController do
   end
 
   describe 'as Fan' do
-    before :each do
-      user = @me
-      controller.instance_eval do
-        cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
-        @current_user = user
-      end
-    end
 
     describe 'index' do
       describe '/identities' do
         it 'assigns all identities for current user' do pending
-          get :index, format: :json
+          get_with @me, :index, format: :json
           response.should be_success
           assigns(:identities).size.should == 1
           response.status.should == 200
@@ -89,7 +76,7 @@ describe IdentitiesController do
     describe 'new' do
       describe '/identities/new' do
         it '403' do
-          get :new, format: :json
+          get_with @me, :new, format: :json
           response.status.should == 403
         end
       end
@@ -99,13 +86,13 @@ describe IdentitiesController do
       describe '/identities/:id' do
 
         it 'assigns the identity' do pending
-          get :show, id:@my_identity.id, format: :json
+          get_with @me, :show, id:@my_identity.id, format: :json
           response.should be_success
           assigns(:identity).id.should == @my_identity.id
         end
 
         it '401 for another user\'s identity' do pending
-          get :show, id:@her_identity.id, format: :json
+          get_with @me, :show, id:@her_identity.id, format: :json
           response.status.should == 401
         end
       end
@@ -114,7 +101,7 @@ describe IdentitiesController do
     describe 'edit' do
       describe '/identities/:id/edit' do
         it '403' do pending
-          get :edit, id:@my_identity.id, format: :json
+          get_with @me, :edit, id:@my_identity.id, format: :json
           response.status.should == 403
         end
       end
@@ -123,7 +110,7 @@ describe IdentitiesController do
     describe 'update' do
       describe 'PUT /identities/:id' do
         it '403' do pending
-          get :edit, id:@my_identity.id
+          get_with @me, :edit, id:@my_identity.id
           response.status.should == 403
         end
       end

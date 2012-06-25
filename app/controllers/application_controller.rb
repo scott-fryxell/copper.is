@@ -4,22 +4,6 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :item_scope
 
-  private
-
-  def current_user
-    @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
-  end
-  before_filter :set_current_user
-
-  def item_scope
-    type = params[:controller].parameterize
-    id = params['id']
-    if id
-      item_id= "itemid='/#{type}/#{id}'"
-    end
-    "itemscoped itemtype='#{type}' #{item_id}"
-  end
-
   protected
 
   def set_current_user
@@ -33,5 +17,23 @@ class ApplicationController < ActionController::Base
       render nothing:true, status:401
     end
   end
+
+  private
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  before_filter :set_current_user
+
+  def item_scope
+    type = params[:controller].parameterize
+    id = params['id']
+    if id
+      item_id= "itemid='/#{type}/#{id}'"
+    end
+    "itemscoped itemtype='#{type}' #{item_id}"
+  end
+
 
 end

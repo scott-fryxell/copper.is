@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan's" do
+describe "A Fan's", :broken do
   before(:each) do
     DatabaseCleaner.clean
     visit "/"

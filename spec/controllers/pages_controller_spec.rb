@@ -77,18 +77,11 @@ describe PagesController do
   end
 
   describe 'as Fan' do
-    before :each do
-      user = @me
-      controller.instance_eval do
-        cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
-        @current_user = user
-      end
-    end
 
     describe 'index' do
       describe '/pages' do
         it 'assigns pages in created order' do pending
-          get :index, format: :json
+          get_with @me, :index, format: :json
           response.status.should == 200
           assigns(:pages).include?(@page1).should be_true
           assigns(:pages).include?(@page2).should be_true
@@ -99,7 +92,7 @@ describe PagesController do
     describe 'new' do
       describe '/pages/new' do
         it 'should respond with not allowed' do
-          get :new, format: :json
+          get_with @me, :new, format: :json
           response.status.should == 403
         end
       end
@@ -108,7 +101,7 @@ describe PagesController do
     describe 'create' do
       describe 'POST /pages' do
         it 'should respond with not allowed' do
-          get :new, format: :json
+          get_with @me, :new, format: :json
           response.status.should == 403
         end
       end
@@ -117,7 +110,7 @@ describe PagesController do
     describe 'show' do
       describe '/pages/:id' do
         it 'assigns a given page' do
-          get :show, id:@page1.id, format: :json
+          get_with @me, :show, id:@page1.id, format: :json
           assigns(:page).id.should == @page1.id
           response.status.should == 200
         end
@@ -127,7 +120,7 @@ describe PagesController do
     describe 'edit' do
       describe '/pages/:id/edit' do
         it 'should respond with not allowed' do
-          get :new, format: :json
+          get_with @me, :new, format: :json
           response.status.should == 403
         end
       end
@@ -136,7 +129,7 @@ describe PagesController do
     describe 'update' do
       describe 'PUT /pages/:id' do
         it 'should respond with not allowed' do
-          get :new, format: :json
+          get_with @me, :new, format: :json
           response.status.should == 403
         end
       end
@@ -145,7 +138,7 @@ describe PagesController do
     describe 'destroy' do
       describe 'DELETE /pages/:id' do
         it 'should respond with not allowed' do
-          get :new
+          get_with @me, :new
           response.status.should == 403
         end
       end

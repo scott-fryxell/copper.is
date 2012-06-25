@@ -2,11 +2,6 @@ require 'spec_helper'
 
 describe TipsController do
   describe 'as Guest' do
-    before do
-      controller.instance_eval do
-        @current_user = nil
-      end
-    end
 
     describe 'index' do
       describe '/tips' do
