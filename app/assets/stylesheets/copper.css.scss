@@ -89,12 +89,16 @@ body > header {
       font-size:.85em;
     }
     nav > a  {
+      text-decoration:none;
       padding-right:.25em;
     }
     nav > a > img {
       display:inline;
       vertical-align:top;
       width:1.25em;
+      &.hover{
+        display:none;
+      }
     }
   }
   #signed_in {

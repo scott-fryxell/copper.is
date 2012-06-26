@@ -7,6 +7,16 @@
 $(document).ready(function() {
   jQuery('time').timeago();
   $(document).trigger("copper:" + $('body').attr('id'))
+  $("#sign_in > nav > a").hover(
+    function (){
+      $(this).find("img").hide();
+      $(this).find("img.hover").show();
+    },
+    function (){
+      $(this).find("img").show();
+      $(this).find("img.hover").hide();
+    }
+  );
 
   jQuery.ajax({url:'/users/me',
     dataType:'json',
@@ -22,7 +32,6 @@ $(document).ready(function() {
         $(this).addClass("working");
       });
     },
-
     statusCode: {
     }
   });

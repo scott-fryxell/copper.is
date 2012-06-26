@@ -27,11 +27,11 @@
   </header>
   <nav>
     <a href="#tumblr" class="selected"><%= image_tag "providers/tumblr.png" %></a>
-    <a href="#vimeo"><%= image_tag "providers/mask/vimeo.png" %></a>
-    <a href="#soundcloud"><%= image_tag "providers/mask/soundcloud.png" %></a>
-    <a href="#github"><%= image_tag "providers/mask/github.png" %></a>
-    <a href="#youtube"><%= image_tag "providers/mask/youtube.png" %></a>
-    <a href="#xkcd"><%= image_tag "providers/mask/xkcd.png" %></a>
+    <a href="#vimeo"><%= image_tag "providers/vimeo/mask.png" %></a>
+    <a href="#soundcloud"><%= image_tag "providers/soundcloud/mask.png" %></a>
+    <a href="#github"><%= image_tag "providers/github/mask.png" %></a>
+    <a href="#youtube"><%= image_tag "providers/youtube/mask.png" %></a>
+    <a href="#xkcd"><%= image_tag "providers/xkcd/mask.png" %></a>
     <a href="#more">...and more!</a>
   </nav>
 </section>
@@ -53,7 +53,7 @@
   <figure>
     <%-unless current_user-%>
     <a id="facebook_sign_in" href="/auth/facebook">
-      <%= image_tag "providers/connect_with_facebook.png", :class => 'fb' %>
+      <%= image_tag "providers/facebook/connect.png", :class => 'fb' %>
     </a>
     <%-end-%>
     <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
