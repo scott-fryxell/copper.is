@@ -25,10 +25,14 @@ class UsersController < ApplicationController
   protected
 
   def load_user
-    if params[:id] == 'me' or current_user.id.to_s == params[:id]
-      @user = current_user
+    if params[:id] == 'me'
+      if current_user
+        @user = current_user
+      else
+        @user = User.new
+      end
     else
-      @user = User.new
+      @user = User.find(params[:id])
     end
   end
 end

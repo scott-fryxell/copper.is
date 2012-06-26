@@ -23,7 +23,7 @@
       Many of us see content on the web everyday, and are inspired by it.
       Copper allows you to tip the creator of that content directly.
     </p>
-    <button>Get The Button</button>
+    <a href="#" class="button">Get The Button</a>
   </header>
   <nav>
     <a href="#tumblr" class="selected"><%= image_tag "providers/tumblr.png" %></a>
@@ -56,7 +56,9 @@
       <%= image_tag "providers/facebook/connect.png", :class => 'fb' %>
     </a>
     <%-end-%>
-    <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
+    <a href="#" class="button">
+      <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
+    </a>
     <figcaption><a href="/how">Learn More</a> about tipping</figcaption>
   </figure>
 </section>

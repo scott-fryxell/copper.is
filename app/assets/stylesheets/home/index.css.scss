@@ -94,7 +94,7 @@
   }
   #how > header > h1,
   #how > header > p,
-  #how > header > button {
+  #how > header > a.button {
     margin:0;
     display:inline-block;
     vertical-align:top;
@@ -109,7 +109,9 @@
     font-size:.85em;
     width: grid-width(9);
   }
-  #how > header > button {
+  #how > header > a.button {
+    text-decoration:none;
+    font-size:.85em;
     width: grid-width(4);
     @include copper_button;
   }
@@ -186,7 +188,7 @@
     margin-left: grid-width(4);
     margin-top: grid-width(1);
   }
-  #button > figure > a {
+  #button > figure > a#facebook_sign_in {
     cursor:pointer;
     position:absolute;
     top:50%;
@@ -195,7 +197,7 @@
     margin-top:-2em;
     z-index:4;
   }
-  #button > figure > img.logo {
+  #button > figure > a > img.logo {
     z-index:3;
     margin:1em auto 1em auto;
     display:block;
