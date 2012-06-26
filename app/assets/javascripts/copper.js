@@ -4,6 +4,7 @@
 //= require jquery.tmpl
 //= require shared/Item
 //= require shared/copper
+//= require home/index
 $(document).ready(function() {
   jQuery('time').timeago();
   $(document).trigger("copper:" + $('body').attr('id'))
@@ -26,13 +27,13 @@ $(document).ready(function() {
       $("#signed_in").addClass('show')
       $(document).trigger("copper:" + $('body').attr('id')+ ":me");
     },
-    error:function (){
-      $("#sign_in").addClass('show')
-      $("#sign_in > nav > a > img").click(function(event){
-        $(this).addClass("working");
-      });
-    },
     statusCode: {
+      401:function (){
+        $("#sign_in").addClass('show')
+        $("#sign_in > nav > a > img").click(function(event){
+          $(this).addClass("working");
+        });
+      }
     }
   });
 });
