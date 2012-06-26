@@ -1,10 +1,5 @@
 $(document).on("copper:home_index", function (){
-  console.debug("home_index");
-
-  //what's the browser
   var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
-  console.debug($.browser)
-
   if(is_chrome){
     $("a.button").click(function(){
       $(this).attr("href", "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/chrome.crx")
@@ -25,7 +20,5 @@ $(document).on("copper:home_index", function (){
       InstallTrigger.install(params);
       return false;
     });
-
   }
-
 });
