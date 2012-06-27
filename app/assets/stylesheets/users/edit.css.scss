@@ -1,8 +1,4 @@
 #users_edit {
-  a {
-    font-family: 'Doppio One', sans-serif;
-    color:#666;
-  }
   & > nav {
     margin-bottom:3em;
     text-align:center;
@@ -26,7 +22,6 @@
     padding-top:2em;
     padding-bottom:2em;
     border-radius:.10em;
-//    border:0.10em solid darken($offset_color, 1%);
     background-color: $offset_color;
     position:relative;
     &:after {
@@ -39,7 +34,6 @@
       right:0;
       opacity:0.9;
     }
-
   }
   & > section > header {
     vertical-align:top;
@@ -68,11 +62,10 @@
     margin:0;
     margin-bottom:0.5em;
     font-size:0.85em;
-    color:#666;
   }
   & > section > div p {
     font-family: 'Doppio One', sans-serif;
-    color:#333333;
+    color:$darkness;
     font-size: 1.1em;
     opacity:.8;
     margin:0;
@@ -125,15 +118,12 @@
     height:5em;
     margin:0;
   }
-  #card > div > section > h4 {
-  }
   #card > div > section > p {
     margin:0
   }
   #card > form a {
     font-weight:bold;
   }
-
   #card p.number:before {
    content: "**** **** **** ";
   }

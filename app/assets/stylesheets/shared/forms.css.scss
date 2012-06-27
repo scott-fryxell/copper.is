@@ -3,7 +3,6 @@ input, textarea, select {
   -webkit-appearance: none;
   margin: 0 1em 0 0;
   font-family: 'Cantarell', sans-serif;
-  color:#666;
   padding: 0.5em;
   font-size: 1em;
   line-height: 1.2em;
@@ -46,7 +45,6 @@ fieldset{
 label {
   display:inline-block;
   font-family: 'Doppio One', sans-serif;
-  color:#666;
 }
 
 /* RADIOS & CHECKBOXES STYLES  from https://gist.github.com/1367918 */
@@ -129,7 +127,7 @@ input:disabled {
 
 /* style label for disabled input */
 input:disabled + label {
-  color:#666;
+  color:$text;
   cursor:default;
   -webkit-user-select: none;
 }

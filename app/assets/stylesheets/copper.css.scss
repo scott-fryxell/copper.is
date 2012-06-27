@@ -8,11 +8,11 @@ html {
   position:relative;
   min-width: 60em;
   min-height:30em;
-  background-color: #f6f5f0;
   background-image: image-url('shared/texture_dark.png');
-  font-family: Arial;
-  font-size: 16px;
+  font-family: 'Cantarell', sans-serif;
+  font-weight:normal;
   line-height:1.25em;
+  color:$text;
   &:after {
     content:"";
     position:absolute;
@@ -28,33 +28,16 @@ html {
 body {
   width:grid-width(26);
   margin: 0 auto 0 auto;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  input, option {
-    font-family: 'Doppio One', sans-serif;
-  }
-  h1, h2 {
+  h1, h2, h3, h4, h5, h6 {
+    color:$title;
     font-family: 'Bree Serif', serif;
     font-weight:normal;
-    color:#666666;
   }
   h2 {
     font-size:1.34em;
   }
-  p, a, figcaption, dd, dt {
-    font-family: 'Cantarell', sans-serif;
-    font-weight:normal;
-  }
-  p, color, a, ul {
-    color:#666666;
-    opacity:.85;
-    line-height:1.5em;
-  }
-  a {
-    opacity:1;
-    font-size:1em;
+  p {
+    font-size:0.85em;
   }
   ul, ol, dl {
     list-style: none;
@@ -62,7 +45,7 @@ body {
 }
 body > header {
   position:relative;
-  background-color: $darkness;
+  background-color: $header;
   width:grid-width(26);
   height:3.4em;
   hgroup {
@@ -107,10 +90,10 @@ body > header {
     margin-right:1em;
     text-align:right;
     & > img {
-      border:0.18em solid #666;
+      border:0.18em solid $text;
       display:inline-block;
       width:2em;
-      @include triangle_bottom(#666)
+      @include triangle_down($text)
     }
     nav {
       height:2.5em;
@@ -118,22 +101,13 @@ body > header {
       vertical-align:top;
       text-align:right;
     }
-    nav > h1 {
-      margin:0;
-      font-family: 'Doppio One', sans-serif;
-      color:#d7d2cf;
-      font-size:.85em;
-    }
     nav > a {
       padding-top:.5em;
-      line-height:2em;
       vertical-align:middle;
       display:inline-block;
       margin-right:1.5em;
-      font-family: 'Cantarell', sans-serif;
       font-size:.75em;
       line-height:1.25em;
-      color:#d7d2cf;
     }
     nav > a > img {
       height:1.5em;
@@ -159,7 +133,6 @@ body > header {
   }
 }
 body > header > a {
-  background-color: $darkness;
   position:absolute;
   top:0;
   left:1em;
@@ -169,7 +142,6 @@ body > header > a {
   padding:.75em 1em;
 }
 body > header > a > img {
-  opacity:.8;
 }
 body > header > nav {
   margin-top:1em;
@@ -178,8 +150,8 @@ body > header > nav {
 }
 body > header > nav > a {
   font-family: 'Doppio One', sans-serif;
-  color:silver;
-  opacity:.8;
+  color:white;
+  opacity:.5;
   font-size:.77em;
   text-decoration:none;
   text-transform:uppercase;
@@ -190,6 +162,10 @@ body > section, body > footer {
   padding-right:75px;
 }
 
+body > section a {
+  font-family: 'Doppio One', sans-serif;
+  color:$text;
+}
 body > footer {
   padding-top:1em;
   padding-bottom:0.75em;
@@ -240,3 +216,5 @@ body > footer > nav > a {
   @include animation-timing-function(ease);
   @include animation-iteration-count(infinite);
 }
+
+svg:path{fill:white;}
