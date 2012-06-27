@@ -19,6 +19,11 @@ $(document).ready(function() {
     }
   );
 
+  $("img[alt=Gear]").click(function(event){
+    $(this).addClass("working");
+  });
+
+
   jQuery.ajax({url:'/users/me',
     dataType:'json',
     success:function(data) {
