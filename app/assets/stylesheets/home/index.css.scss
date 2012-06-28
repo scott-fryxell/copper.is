@@ -212,37 +212,6 @@
 
   #congrats {
     position:relative;
-    header {
-      vertical-align:bottom;
-      position:relative;
-      height: grid-width(3.5);
-      line-height:grid-width(3.5);
-      margin-bottom:1em;
-    }
-    header > h3 {
-      @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
-      background-repeat: no-repeat;
-      background-position:center;
-      @include background-size(cover);
-      font-size:2em;
-      line-height:1em;
-      position:absolute;
-      top:0;
-      right:0;
-      display:inline-block;
-      color:white;
-      padding:.75em;
-      height: grid-width(1);
-    }
-    header > h1 {
-      padding:0;
-      margin:0;
-      font-size:2em;
-      width:grid-width(6);
-      display:inline-block;
-      vertical-align:bottom;
-      line-height:1.25em;
-    }
     & > p {
       display:inline-block;
       width:grid-width(9.5);
@@ -256,39 +225,93 @@
       font-size:.75em;
       color:#999999;
     }
-    footer {
-      padding:1em;
-      vertical-align:bottom;
-      display:inline-block;
-      text-align:center;
-      background-color:$offset_color;
-      position:absolute;
-      right:7em;
-      bottom:0;
-    }
-    footer > h3 {
-      font-family: 'Cantarell', sans-serif;
-      font-size:.85em;
-      color:#999999;
-      margin-bottom:0.5em;
-    }
-    footer > p {
-      opacity:1;
-      color:$darkness;
-      margin:0;
-      line-height:1em;
-      font-family: 'Bree Serif', serif;
-      font-size:2em;
-    }
-    footer > p:before{
-      content: "$";
-    }
   }
+  #congrats > header {
+    vertical-align:bottom;
+    position:relative;
+    height: grid-width(3.5);
+    line-height:grid-width(3.5);
+    margin-bottom:1em;
+  }
+  #congrats > header > h3 {
+    @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+    background-repeat: no-repeat;
+    background-position:center;
+    @include background-size(cover);
+    font-size:2em;
+    line-height:1em;
+    position:absolute;
+    top:0;
+    right:0;
+    display:inline-block;
+    color:white;
+    padding:.75em;
+    height: grid-width(1);
+  }
+  #congrats > header > h1 {
+    padding:0;
+    margin:0;
+    font-size:2em;
+    width:grid-width(6);
+    display:inline-block;
+    vertical-align:bottom;
+    line-height:1.25em;
+  }
+  #congrats > footer {
+    padding:1em;
+    vertical-align:bottom;
+    display:inline-block;
+    text-align:center;
+    background-color:$offset_color;
+    position:absolute;
+    right:7em;
+    bottom:0;
+  }
+  #congrats > footer > h3 {
+    font-family: 'Cantarell', sans-serif;
+    font-size:.85em;
+    color:#999999;
+    margin-bottom:0.5em;
+  }
+  #congrats > footer > p {
+    opacity:1;
+    color:$darkness;
+    margin:0;
+    line-height:1em;
+    font-family: 'Bree Serif', serif;
+    font-size:2em;
+  }
+  #congrats > footer > p:before{
+    content: "$";
+  }
+
   #facebook {
     min-height:4em;
     margin-bottom:.25em;
     padding-top:grid-width(1);
     background-color:$offset_color;
+  }
+  #facebook > ul {
+    padding:0;
+    margin-left:0;
+
+    display:inline-block;
+    width:grid-width(10.5);
+  }
+  #facebook > ul.activity {
+    margin-right:grid-width(1);
+  }
+  #facebook > ul > h4 {
+    font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+    color:#3B5998;
+    line-height:3em;
+    vertical-align:middle;
+    background-color:#f1f1f1;
+  }
+  #facebook > ul > h4 > img{
+    display:inline-block;
+    margin:.5em;
+    vertical-align:middle;
   }
   .settings {
     display:inline-block;
