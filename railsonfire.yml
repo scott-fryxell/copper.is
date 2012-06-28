@@ -41,4 +41,4 @@ env:
 - STRIPE_KEY=pk_qEzaggStJKIO4Bxg2myCnveWCj1A5
 - STRIPE_SECRET=ka2cHE7JczJ0OfMgh3bty2pjvoQ8qltQ
 - CDN_URL=nothin
-- REDISTOGO_URL=
+- REDISTOGO_URL=redis://redistogo:23dc1ae970dc20322bd782ba9ed4bcfa@cod.redistogo.com:9716/
