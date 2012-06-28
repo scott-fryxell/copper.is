@@ -1,5 +1,5 @@
 ---
-id: 985d29b0-91a0-012f-99d4-12313d18c09a
+id:  985d29b0-91a0-012f-99d4-12313d18c09a
 setup:
   commands:
   - bundle install --without development production
@@ -7,7 +7,7 @@ setup:
   - bundle exec rake db:seed
 test:
   commands:
-  - spork & bundle exec rake
+  - bundle exec rake --trace
 deploy:
   heroku:
     staging:
