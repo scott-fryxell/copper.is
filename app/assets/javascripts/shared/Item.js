@@ -60,6 +60,10 @@ Item.update_page    = function (item){
 Item.prototype.update_page = function (){
   Item.update_page(this);
 }
+Item.CSRFProtection =  function(xhr) {
+  var token = $('meta[name="csrf-token"]').attr('content');
+  if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+},
 document.getItems   = function (type){
   if(type){
     return Item.items[type]
@@ -69,6 +73,8 @@ document.getItems   = function (type){
   }
 }
 $(document).ready(function (){
+
+  $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
   Item.discover_items()
   $("*[itemscoped] form").submit(function(event){
     event.preventDefault()

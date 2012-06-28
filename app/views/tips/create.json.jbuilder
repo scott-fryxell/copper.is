@@ -1,1 +1,1 @@
-json.(@tips, :id, :title, :url, :amount_in_cents)
+json.(@tip, :id, :amount_in_cents, :page)
