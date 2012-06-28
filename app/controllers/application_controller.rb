@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update_activity_time
-    session[:expires_at] = 30.days.from_now
+    session[:expires_at] = 90.days.from_now
   end
 
   def set_current_user
