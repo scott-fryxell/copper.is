@@ -7,6 +7,7 @@ class Tip < ActiveRecord::Base
   belongs_to :check
   has_one :user, :through => :order
   has_paper_trail
+  using_access_control
   default_scope :order => 'created_at DESC'
 
   attr_accessor :url,:title
