@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   helper_method :current_user, :item_scope
+  before_filter :set_current_user
 
   protected
 
@@ -24,7 +25,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  before_filter :set_current_user
+
 
   def item_scope
     type = params[:controller].parameterize
