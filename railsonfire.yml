@@ -1,19 +1,20 @@
 ---
-id: 985d29b0-91a0-012f-99d4-12313d18c09a
+id: 5fddb340-a390-012f-123d-1231381d78a1
 setup:
   commands:
   - bundle install --without development production
-  - bundle exec rake db:migrate
-  - bundle exec rake db:seed
+  - bundle exec rake db:seed --trace
+  - bundle exec rake db:migrate --trace
 test:
   commands:
-  - spork & bundle exec rake
+  - bundle exec rake
 deploy:
   heroku:
     staging:
       name: copper-stage
     production:
       name: ""
+      backup: false
 ruby_versions:
 - 1.9.2
 env:
