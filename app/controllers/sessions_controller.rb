@@ -38,7 +38,6 @@ class SessionsController < ApplicationController
         current_user = @identity.user
 
         session[:user_id] = @identity.user.id
-        update_activity_time
 
         redirect_to user_path(current_user.id), notice: "Signed in!"
       else
@@ -46,7 +45,6 @@ class SessionsController < ApplicationController
         user = User.create_with_omniauth(auth)
 
         session[:user_id] = user.id #was identity.user.id
-        update_activity_time
 
         current_user = user
 
