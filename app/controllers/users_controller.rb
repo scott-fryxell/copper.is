@@ -22,6 +22,9 @@ class UsersController < ApplicationController
   def show
   end
 
+  def destroy
+  end
+
   protected
 
   def load_user
