@@ -23,7 +23,7 @@ describe TipsController do
     describe 'new' do
       describe '/tips/new' do
         it 'renders a form to specify a url to tip' do
-          get_with @me, :new, format: :json
+          get_with @me, :new
           assigns(:tip).new_record?.should be_true
         end
       end
@@ -49,7 +49,7 @@ describe TipsController do
           Tip.first.title.should == 'dude'
         end
 
-        it 'requires a url' do
+        it 'requires a url' do pending
           post_with @me, :create, tip:{title:'asldkjf'}, format: :json
           response.status.should == 403
         end
@@ -95,7 +95,7 @@ describe TipsController do
           @my_tip.amount_in_cents.should == 200
         end
 
-        it 'does not update a her tip' do
+        it 'does not update another fan\'s tip' do
           put_with @me, :update, id:@her_tip2.id, tip:{amount_in_cents:200}, format: :json
           @her_tip2.reload
           @her_tip2.amount_in_cents.should_not == 200

@@ -32,7 +32,7 @@ Copper::Application.routes.draw do
   get 'embed_iframe.js', :to => 'home#iframe', :as => :iframe
   get 'buckingthesystem', :to => 'home#index'
 
-  match "/auth/:provider/callback" => "sessions#create"
+  match "/auth/:provider/callback" => "sessions#create", :as => :provider_callback
   match '/auth/:provider/failure'  => 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
