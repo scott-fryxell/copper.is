@@ -194,20 +194,20 @@ describe UsersController do
 
     describe 'destroy' do
       describe 'DELETE /users/me' do
-        it 'responds with 403' do pending
+        it 'responds with 403' do
           delete_with @me, :destroy, id:'me'
           response.status.should == 403
         end
       end
 
       describe 'DELETE /users/:id' do
-        it 'redirects to home page' do pending
-          delete :destroy, id:@me.id
+        it 'can not delete your self' do
+          delete_with @me, :destroy, id:@me.id
           response.status.should == 403
         end
 
-        it 'redirects to home page' do pending
-          delete :destroy, id:@her.id
+        it 'cannot delete another user' do
+          delete_with @me, :destroy, id:@her.id
           response.status.should == 403
         end
       end

@@ -12,11 +12,15 @@ describe "tipping a page" do
     page.should have_selector('#copper')
   end
 
-  it "should display the tipped pages title" do pending
+  it "should display the tipped pages title" do
     within_frame('copper') do
       page.execute_script("$.fx.off")
       page.should have_content("copper-test page")
       page.should have_content("0.25")
     end
   end
+
+  it "should be able to update a tip"
+
+  it "should confirm that tip was created"
 end
