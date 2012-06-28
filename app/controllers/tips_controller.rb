@@ -28,7 +28,7 @@ class TipsController < ApplicationController
   end
 
   def update
-    if (params[:tip][:amount_in_cents] && params[:tip][:amount_in_cents] != "" and @tip.order.current?)
+    if (params[:tip][:amount_in_cents] && params[:tip][:amount_in_cents] != "" and @tip.order.current? and @tip.user == current_user)
       @tip.amount_in_cents = params[:tip][:amount_in_cents]
       @tip.save
     end
@@ -49,7 +49,7 @@ class TipsController < ApplicationController
 
   def load_tip
     @page = Page.find(params[:page_id]) if params[:page_id]
-    @user = Page.find(params[:user_id]) if params[:user_id]
+    @user = User.find(params[:user_id]) if params[:user_id]
     @tip = Tip.find(params[:id])
   end
   def new_tip
