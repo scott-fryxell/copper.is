@@ -289,6 +289,7 @@
     min-height:4em;
     margin-bottom:.25em;
     padding-top:grid-width(1);
+    padding-bottom:grid-width(1.5);
     background-color:$offset_color;
   }
   #facebook > ul {
@@ -313,6 +314,13 @@
     margin:.5em;
     vertical-align:middle;
   }
+  #facebook > ul > li{
+    background-color:white;
+    min-height:3em;
+    margin-top:.25em;
+
+  }
+
   .settings {
     display:inline-block;
     width:grid-width(10.75);

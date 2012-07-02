@@ -20,5 +20,37 @@ $(document).on("copper:home_index", function (){
       InstallTrigger.install(params);
       return false;
     });
+  }else{
+    $("a.button").hide();
+  }
+
+});
+
+$(document).on("copper:home_index:me", function (){
+  if('facebook' == copper.me.identities[0].provider){
+
+    //get the users recent likes
+    var likes_url = 'https://graph.facebook.com/' + copper.me.identities[0].uid + '/likes?limit=8&access_token=' + copper.me.identities[0].token;
+    $.getJSON(likes_url).success(function(facebook) {
+
+      $.each(facebook.data,function(i, a_like){
+        $.getJSON("http://graph.facebook.com/" + a_like.id).success(function(like){
+          console.debug(like)
+          like.picture
+        })
+      })
+    })
+
   }
 });
+
+
+
+$.each(data, function(key, val) {
+  items.push('<li id="' + key + '">' + val + '</li>');
+});
+
+$('<ul/>', {
+  'class': 'my-new-list',
+  html: items.join('')
+}).appendTo('body');

@@ -23,7 +23,6 @@ $(document).ready(function() {
     $(this).addClass("working");
   });
 
-
   jQuery.ajax({url:'/users/me',
     dataType:'json',
     success:function(data) {
@@ -31,6 +30,7 @@ $(document).ready(function() {
       $('img.identity').attr('src', copper.get_identity_image())
       $("#signed_in").addClass('show')
       $(document).trigger("copper:" + $('body').attr('id')+ ":me");
+      $(document).trigger("copper:me");
     },
     statusCode: {
       401:function (){
