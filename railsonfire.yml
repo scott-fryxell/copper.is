@@ -40,5 +40,5 @@ env:
 - INSTRAGRAM_SECRET=38660c7a6ddd4705b49f9cb705cb48ae
 - STRIPE_KEY=pk_qEzaggStJKIO4Bxg2myCnveWCj1A5
 - STRIPE_SECRET=ka2cHE7JczJ0OfMgh3bty2pjvoQ8qltQ
+- REDISTOGO_URL=redis://redistogo:23dc1ae970dc20322bd782ba9ed4bcfa@cod.redistogo.com:9716
 - CDN_URL=nothin
-- REDISTOGO_URL=redis://redistogo:23dc1ae970dc20322bd782ba9ed4bcfa@cod.redistogo.com:9716/
