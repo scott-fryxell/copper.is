@@ -159,7 +159,7 @@
     overflow:hidden;
     @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
   }
-  #samples > figure > img:first-child{
+  #samples > figure > img:first-child {
     margin-left: grid-width(2);
   }
 
@@ -219,11 +219,11 @@
     display:none;
     position:relative;
     & > p {
+      margin-top:0;
       display:inline-block;
       width:grid-width(9.5);
       font-size:.85em;
       margin-right:1em;
-      margin-bottom:grid-width(2);
     }
     & > p.sub {
       width:grid-width(10);
@@ -263,23 +263,19 @@
     vertical-align:bottom;
     line-height:1.25em;
   }
-  #congrats > footer {
-    padding:1em;
-    vertical-align:bottom;
+  #congrats > div {
+    vertical-align:top;
     display:inline-block;
-    text-align:center;
-    background-color:$offset_color;
-    position:absolute;
-    right:7em;
-    bottom:0;
+    text-align:left;
+    width: grid-width(3);
   }
-  #congrats > footer > h3 {
+  #congrats > div > h3 {
     font-family: 'Cantarell', sans-serif;
     font-size:.85em;
     color:#999999;
     margin-bottom:0.5em;
   }
-  #congrats > footer > p {
+  #congrats > div > p {
     opacity:1;
     color:$darkness;
     margin:0;
@@ -287,45 +283,40 @@
     font-family: 'Bree Serif', serif;
     font-size:2em;
   }
-  #congrats > footer > p:before{
+  #congrats > div > p:before{
     content: "$";
   }
-
   #facebook {
     display:none;
-    min-height:4em;
-    margin-bottom:.25em;
-    padding-top:grid-width(1);
-    padding-bottom:grid-width(1.5);
-    background-color:$offset_color;
   }
-  #facebook > ul {
+  #facebook > h4 {
+    display:inline-block;
+    width:grid-width(2);
+    margin-top:.5em;
+    margin-right: grid-width(1);
+  }
+  #facebook > nav {
+    display:inline-block;
+    vertical-align:top;
     padding:0;
     margin-left:0;
-
-    display:inline-block;
-    width:grid-width(10.5);
   }
-  #facebook > ul.activity {
-    margin-right:grid-width(1);
-  }
-  #facebook > ul > h4 {
-    font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
-    color:#3B5998;
-    line-height:3em;
-    vertical-align:middle;
-    background-color:#f1f1f1;
-  }
-  #facebook > ul > h4 > img{
+  #facebook h4 > img {
     display:inline-block;
     margin:.5em;
     vertical-align:middle;
   }
-  #facebook > ul > li{
-    background-color:white;
-    min-height:3em;
-    margin-top:.25em;
-
+  #facebook > nav {
+    padding:1em;
+  }
+  #facebook > nav > a {
+    display:inline-block;
+    margin-right:.5em;
+    margin-bottom:.5em;
+  }
+  #facebook > nav > a > img {
+    width:6em;
+    vertical-align:top;
   }
 
   .settings {
