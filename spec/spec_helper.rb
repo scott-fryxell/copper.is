@@ -17,10 +17,9 @@ Spork.prefork do
   end
 
   require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
   require 'rspec'
+  require 'rspec/rails'
   require 'capybara/rspec'
-
   require 'declarative_authorization/maintenance'
   require 'rack/test'
   require 'omniauth'
@@ -28,9 +27,10 @@ Spork.prefork do
   require 'support'
 
   Capybara.default_driver = :webkit
+  Capybara.javascript_driver = :webkit
+  Capybara.ignore_hidden_elements = false
   Capybara.server_port = 8080
   Capybara.app_host = "http://127.0.0.1:8080"
-  Capybara.ignore_hidden_elements = false
   include Authorization::TestHelper
 
   RSpec.configure do |config|
@@ -106,6 +106,7 @@ Spork.each_run do
 
     config.after(:suite) do
       DatabaseCleaner.clean
+
     end
 
     config.before(:each) do

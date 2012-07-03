@@ -1,12 +1,16 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan's", :broken do
+describe "A Fan's" do
   before(:each) do
     DatabaseCleaner.clean
     visit "/"
     click_link 'facebook_sign_in'
     click_link 'Account settings'
-    page.execute_script("$.fx.off")
+    page.execute_script("jQuery.fx.off = true")
+  end
+
+  after(:each) do
+    page.driver.error_messages.should be_empty
   end
 
   describe 'Item.js' do

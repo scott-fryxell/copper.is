@@ -18,7 +18,6 @@ $(document).ready(function() {
       $(this).find("img.hover").hide();
     }
   );
-
   $("img[alt=Gear]").click(function(event){
     $(this).addClass("working");
   });
@@ -29,6 +28,7 @@ $(document).ready(function() {
       copper.me = data;
       $('img.identity').attr('src', copper.get_identity_image())
       $("#signed_in").addClass('show')
+      $('a[href="/signout"]').css('display','inline-block');
       $(document).trigger("copper:" + $('body').attr('id')+ ":me");
       $(document).trigger("copper:me");
     },
@@ -41,18 +41,5 @@ $(document).ready(function() {
       }
     }
   });
-});
-
-$(document).on("copper:me", function (){
-
-  //todo get all of the users social media data
-
-  //TODO if there logged in for the first time show welcome message
-  // if(copper.me.logins == 1){
-  //   copper.me.name
-  // }
-
-  //TODO display any messages for user
-
 });
 

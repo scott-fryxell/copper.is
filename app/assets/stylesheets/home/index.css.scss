@@ -109,7 +109,7 @@
   }
   #how > header > p {
     font-size:.85em;
-    width: grid-width(9);
+    width: grid-width(10);
   }
 
   #how > nav > a.selected  {
@@ -163,27 +163,28 @@
     margin-left: grid-width(2);
   }
 
-  #button {
+  .workflow {
     background-color:$offset_color;
     vertical-align:top;
     padding-top:3em;
     padding-bottom:6em;
   }
-  #button > header {
+  .workflow > header {
     display:inline-block;
-    width: grid-width(5.5);
+    width: grid-width(7);
   }
-  #button > header > h1 {
+  .workflow > header > h1 {
     line-height:1.25em;
     font-size: 2em;
     margin:0;
   }
-  #button > figure {
+  .workflow > figure {
+    vertical-align:top;
     display: inline-block;
     position:relative;
-    margin-left: grid-width(4);
+    margin-left: grid-width(3);
   }
-  #button > figure > a#facebook_sign_in {
+  .workflow > figure > a#facebook_sign_in {
     cursor:pointer;
     position:absolute;
     top:50%;
@@ -192,7 +193,7 @@
     margin-top:-2em;
     z-index:4;
   }
-  #button > figure > a > img.logo {
+  .workflow > figure > a > img.logo {
     z-index:3;
     margin:1em auto 1em auto;
     display:block;
@@ -205,12 +206,17 @@
     padding:1em;
     border: .3em solid #5f5f5f;
   }
-  #button > figure > figcaption {
+  .workflow > figure > figcaption {
     display:block;
     margin-top:2em;
   }
 
+  #welcome {
+    display:none;
+  }
+
   #congrats {
+    display:none;
     position:relative;
     & > p {
       display:inline-block;
@@ -286,6 +292,7 @@
   }
 
   #facebook {
+    display:none;
     min-height:4em;
     margin-bottom:.25em;
     padding-top:grid-width(1);
@@ -322,7 +329,7 @@
   }
 
   .settings {
-    display:inline-block;
+    display:none;
     width:grid-width(10.75);
     padding-top:2em;
     padding-bottom:1em;

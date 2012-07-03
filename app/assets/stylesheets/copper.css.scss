@@ -216,5 +216,6 @@ body > footer > nav > a {
   @include animation-timing-function(ease);
   @include animation-iteration-count(infinite);
 }
-
-svg:path{fill:white;}
+a[href='/signout'] {
+  display:none;
+}
