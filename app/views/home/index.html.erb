@@ -1,31 +1,28 @@
 <section id="banner">
   <header>
-    <h1>The new tipping service for creators &amp; fans.</h1>
-    <a href="#">WATCH OUR VIDEO &gt;</a>
+    <h1>
+      The new tipping service for creators &amp; fans.
+      <a href="#">WATCH OUR VIDEO &gt;</a>
+    </h1>
+    <a href="#" id="play_video">
+      <%= image_tag "icons/play.svg" %>
+    </a>
   </header>
-  <a href="#" id="play_video">
-    <%= image_tag "icons/play.svg" %>
-  </a>
-</section>
-<section id="connecting">
-  <aside>
-    <h1>Make a Connection</h1>
-    <p>
-      Copper is how you connect with the people whose
-      stuff you appreciate online.
-    </p>
-  </aside>
 </section>
 <section id="how">
   <header>
-    <h1>How It Works</h1>
+    <h1>Copper connects you with the people creating the content you like online.</h1>
     <p>
       You find something cool anywhere online. You click a button to
       tip the content. We find the person who made it and pass along
       your appreciation. They keep on doing what they do!
     </p>
-    <a href="#" class="button install">Get The Button</a>
   </header>
+  <figure>
+    <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
+  </figure>
+</section>
+<section id="samples">
   <nav>
     <a href="#tumblr" class="selected"><%= image_tag "providers/tumblr.png" %></a>
     <a href="#vimeo"><%= image_tag "providers/vimeo/mask.png" %></a>
@@ -35,8 +32,6 @@
     <a href="#xkcd"><%= image_tag "providers/xkcd/mask.png" %></a>
     <a href="#more">...and more!</a>
   </nav>
-</section>
-<section id="samples">
   <figure>
     <%= image_tag "home/screen_shots/missionmission.tumblr.com.png" %>
     <%= image_tag "home/screen_shots/missionmission.tumblr.com.png" %>

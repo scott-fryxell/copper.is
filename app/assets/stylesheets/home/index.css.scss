@@ -1,8 +1,20 @@
 #home_index {
+  width:auto;
+  margin:auto;
+
+  & > section,
+  & > footer {
+    width:grid-width(24);
+    margin: 0 auto 0 auto;
+    padding-left:0;
+    padding-right:0;
+  }
+
   & * {
 //    outline:1px solid silver;
   }
   & > header {
+    width:100%;
     position:absolute;
     top:0;
     z-index:300;
@@ -17,37 +29,42 @@
     @include copper_button;
   }
   #banner {
+    width:auto;
     z-index:2;
-    background: image-url('home/katie.png') no-repeat left top;
-    @include background-size(cover);
-    height: 26.8em;
+    background-color:black;
   }
   #banner > header {
-    display:inline-block;
-    margin-top:7em;
-    margin-right:grid-width(1);
-    width:grid-width(10);
+    background: image-url('home/banner.png') no-repeat center top;
+    @include background-size(cover);
+    width:grid-width(24);
+    height: 26.8em;
+    margin: 0 auto 0 auto;
+    display:block;
   }
   #banner > header > h1 {
-    margin:0;
+    display:inline-block;
+    width:grid-width(4);
+    display:inline-block;
+    margin-top: grid-width(1.25);
     opacity:.8;
     line-height:1em;
     color:#ffffff;
     font-size:2.5em;
-
   }
-  #banner > header a {
+  #banner > header > h1 > a {
+    vertical-align:middle;
     font-family: 'Doppio One', sans-serif;
     color:#999999;
     text-decoration:none;
-    font-size:.05em;
+    font-size:.30em;
     line-height:3.5em;
   }
-  #banner > a#play_video {
-    margin-top:2.5em;
+  #banner > header > a#play_video {
+    margin-top:3em;
     text-decoration:none;
     cursor:pointer;
-    vertical-align:top;
+    vertical-align:baseline;
+    margin-left:.5em;
     display:inline-block;
     opacity:.5;
     font-size:3em;
@@ -59,65 +76,65 @@
       @include transform(scale(1.05,1.05));
     }
   }
-  #banner > a > img {
+  #banner > header > a > img {
     height:2em;
   }
-  #banner > img {
+  #banner > header img {
     padding-left:.10em;
     height:1em;
   }
 
-  #connecting {
-    margin-bottom: .5em;
-    position:relative;
-    padding-top:4em;
-    padding-bottom:4em;
-    z-index:-1;
-    background-color: $offset_color;
-  }
-  #connecting > img {
-    width: grid-width(12);
-    display:inline-block;
-  }
-  #connecting > aside {
-    vertical-align:top;
-    width: grid-width(9);
-    margin-left: grid-width(13.5);
-    display:inline-block;
-  }
-  #connecting > aside > p {font-size:.85em;}
-
   #how {
-    background-color: $offset_color;
-    padding-top:2em;
+    padding-top:3em;
+    padding-bottom:2em;
+
   }
   #how > header {
+    vertical-align:top;
+    width: grid-width(15);
+    display:inline-block;
     margin-bottom:2em;
   }
   #how > header > h1,
-  #how > header > p,
-  #how > header > a.button {
+  #how > header > p {
     margin:0;
     display:inline-block;
     vertical-align:top;
     margin-right: grid-width(1);
   }
   #how > header > h1 {
-      line-height:1em;
-    width: 6em;
-    margin-right: 1em;
+    line-height:1.25em;
+    margin-bottom:.5em;
   }
   #how > header > p {
     font-size:.85em;
-    width: grid-width(10);
+  }
+  #how > figure {
+    vertical-align:baseline;
+    display:inline-block;
+  }
+  #how > figure > img {
+    opacity:.21;
+    width:10em;
   }
 
-  #how > nav > a.selected  {
-    opacity:0.9;
-    background-color:darken($offset_color, 1%);
+  #samples {
+    @include box-shadow(inset 0 .75em 1em -0.75em rgba(0, 0, 0, .3));
+    padding:0;
+    position:relative;
+    width:100%;
+    padding-bottom:3em;
+    background-color:rgba(230,232,233, .5);
   }
-  #how > nav {}
-  #how > nav > a {
+  #samples > nav > a.selected  {
+    opacity:0.9;
+  }
+  #samples > nav {
+    width:grid-width(24);
+    margin: 1em auto 0 auto;
+    display:block;
+  }
+  #samples > nav > a {
     color:darken($offset_color, 30%);;
     display:inline-block;
     width:grid-width(3);
@@ -130,23 +147,13 @@
     text-align:center;
     text-decoration:none;
   }
-  #how > nav > a > img {
+  #samples > nav > a > img {
     position:relative;
     z-index:200;
     opacity:.7;
     width:5em;
     display:inline-block;
     vertical-align:bottom;
-  }
-
-  #samples {
-    padding:0;
-    position:relative;
-    overflow: hidden;
-    width:100%;
-    padding-bottom:3em;
-    background-color:darken($offset_color, 15%);
-    @include triangle_down($offset_color)
   }
   #samples > figure {
     width:300%;
@@ -164,7 +171,6 @@
   }
 
   .workflow {
-    background-color:$offset_color;
     vertical-align:top;
     padding-top:3em;
     padding-bottom:6em;
@@ -286,6 +292,7 @@
   #congrats > div > p:before{
     content: "$";
   }
+
   #facebook {
     display:none;
   }
