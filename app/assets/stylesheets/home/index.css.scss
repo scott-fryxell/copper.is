@@ -4,10 +4,12 @@
   & * {
 //    outline:1px solid silver;
   }
-  & > section,
-  & > footer {
+  & > section{
     width:grid-width(22);
     margin: 0 auto 0 auto;
+  }
+  & > div {
+    background-color:$offset_color;
   }
   & > header {
     width:100%;
@@ -261,6 +263,7 @@
   #join > figure.step_two > figcaption {
     width:grid-width(13);
   }
+
   #congrats {
     display:none;
     position:relative;
@@ -367,18 +370,36 @@
   }
 
   .settings {
-    display:none;
-    width:grid-width(10.75);
+    display:inline-block;
+    width:41.5%;
     padding-top:2em;
     padding-bottom:1em;
-    padding-right:1em;
+    margin: 0 auto 0 auto;
     background-color:$offset_color;
   }
-  .settings > header {
-    display:inline-block;
-    width:grid-width(7.25);
+  .first > div {
+    position:relative;
+    float:right;
   }
-  .settings > a > img {
+  .second {
+    padding-left:1em;
+  }
+  .second > div {
+    position:relative;
+    float:left;
+  }
+
+  .settings header {
+    display:inline-block;
+    width:grid-width(8);
+  }
+  .settings > div > img {
+    position:absolute;
+    top:0;
+    right:4em;
+    opacity:.3;
+  }
+  .settings  a > img {
     vertical-align:top;
     margin-left:4em;
     opacity:.5;
