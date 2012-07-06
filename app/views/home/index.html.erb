@@ -18,9 +18,6 @@
       your appreciation. They keep on doing what they do!
     </p>
   </header>
-  <figure>
-    <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
-  </figure>
 </section>
 <section id="samples">
   <nav>
@@ -38,33 +35,42 @@
     <%= image_tag "home/screen_shots/missionmission.tumblr.com.png" %>
   </figure>
 </section>
-<section id="signin_with_fb" class="workflow">
+<section id="join">
   <header>
-    <h1>Sign in with Facebook</h1>
+    <h1>So, how do I get this Button?</h1>
     <p>
-      We'll never post to your timeline without your permission.
+      Download the Copper button right here. It will live
+      on your browser’s tool bar, ready and waiting for when
+      you find something tip-worthy. Then all you have to
+      do is click it...
     </p>
   </header>
-  <figure>
+  <figure class="step_one">
     <a id="facebook_sign_in" href="/auth/facebook" title="connect with facebook">
     <%= image_tag "providers/facebook/connect.png", :class => 'fb' %>
     </a>
-    <a href="#"><%= image_tag "icons/letter_logo.svg", :class => 'logo' %></a>
+    <%= image_tag "arrows/right.svg"%>
+    <a class="button get"><%= image_tag "icons/letter_logo_white.svg" %> Get The Button</a>
+    <%= image_tag "arrows/right_two.svg"%>
+    <a class="button">Start Tipping</a>
+    <figcaption>We'll never post to your timeline without your permission.</figcaption>
   </figure>
-</section>
-<section id="welcome" class="workflow">
-  <header>
-    <h1>Welcome, James!</h1>
-    <p>
-      You’re now officially a fan on Copper. As soon as you
-      have the button, you can start tipping! You also now
-      have a Copper profile, where you can keep track of
-      your tipping and your favorite content.
-    </p>
-  </header>
-  <figure>
-    <a href="#" class="install"><%= image_tag "icons/letter_logo.svg", :class => 'logo' %></a>
-    <figcaption><a href="#" class="button install">Get The Button</a></figcaption>
+  <figure class="step_two">
+    <h5>
+      <figure>
+        <%= image_tag "icons/silhouette.svg", class:"identity", alt:"me" %>
+      </figure>
+      <p><%= image_tag "providers/facebook/logo.png" %>Welcome, James!</p>
+    </h5>
+    <%= image_tag "arrows/right.svg"%>
+    <a class="button install get"><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
+    <%= image_tag "arrows/right_two.svg"%>
+    <a class="button">Start Tipping</a>
+    <figcaption>You’re now officially a fan on Copper. As soon as you
+    have the button, you can start tipping! You also now
+    have a Copper profile, where you can keep track of
+    your tipping and your favorite content.
+    </figcaption>
   </figure>
 </section>
 <section id="congrats">

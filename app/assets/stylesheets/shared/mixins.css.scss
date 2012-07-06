@@ -40,11 +40,27 @@ $text:rgba(102,102,102,0.8);
     content:"";
     width: 0;
     height: 0;
-    border-left: 2em solid transparent;
-    border-right: 2em solid transparent;
-    border-top: 1.5em solid $color;
+    border-left: 1em solid transparent;
+    border-right: 1em solid transparent;
+    border-top: 1em solid $color;
   }
 }
+@mixin triangle_down_small($color) {
+  position:relative;
+  &:after {
+    margin-left:-0.5em;
+    position:absolute;
+    bottom:-0.5em;
+    left:50%;
+    content:"";
+    width: 0;
+    height: 0;
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    border-top: 0.5em solid $color;
+  }
+}
+
 
 @mixin triangle_up($color){
   position:relative;

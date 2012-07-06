@@ -8,7 +8,7 @@ html {
   position:relative;
   min-width: 60em;
   min-height:30em;
-  background-image: image-url('shared/texture_dark.png');
+  background-image: image-url('shared/texture_light.png');
   font-family: 'Cantarell', sans-serif;
   font-weight:normal;
   line-height:1.25em;
@@ -177,6 +177,7 @@ body > footer > h3 {
   font-family: 'Patua One', cursive;
   color:white;
   opacity:.5;
+
 }
 body > footer > h4 {
   font-family: 'Cantarell', sans-serif;

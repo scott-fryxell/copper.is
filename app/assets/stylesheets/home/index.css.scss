@@ -1,17 +1,13 @@
 #home_index {
   width:auto;
   margin:auto;
-
-  & > section,
-  & > footer {
-    width:grid-width(24);
-    margin: 0 auto 0 auto;
-    padding-left:0;
-    padding-right:0;
-  }
-
   & * {
 //    outline:1px solid silver;
+  }
+  & > section,
+  & > footer {
+    width:grid-width(22);
+    margin: 0 auto 0 auto;
   }
   & > header {
     width:100%;
@@ -34,9 +30,9 @@
     background-color:black;
   }
   #banner > header {
-    background: image-url('home/banner.png') no-repeat center top;
+    background: image-url('home/banner.jpg') no-repeat center top;
     @include background-size(cover);
-    width:grid-width(24);
+    width:grid-width(22);
     height: 26.8em;
     margin: 0 auto 0 auto;
     display:block;
@@ -85,13 +81,14 @@
   }
 
   #how {
+    background: image-url('home/logo_arrows.png') no-repeat 100% 60%;
+    background-size: 50%;
     padding-top:3em;
     padding-bottom:2em;
-
   }
   #how > header {
     vertical-align:top;
-    width: grid-width(15);
+    width: grid-width(13);
     display:inline-block;
     margin-bottom:2em;
   }
@@ -100,23 +97,22 @@
     margin:0;
     display:inline-block;
     vertical-align:top;
-    margin-right: grid-width(1);
   }
   #how > header > h1 {
+    font-size:30px;
     line-height:1.25em;
     margin-bottom:.5em;
   }
   #how > header > p {
-    font-size:.85em;
+    font-size:14px;
+    width: grid-width(12);
   }
   #how > figure {
     vertical-align:baseline;
     display:inline-block;
+    margin-right:-15em;
   }
-  #how > figure > img {
-    opacity:.21;
-    width:10em;
-  }
+  #how > figure > img {}
 
   #samples {
     @include box-shadow(inset 0 .75em 1em -0.75em rgba(0, 0, 0, .3));
@@ -170,57 +166,100 @@
     margin-left: grid-width(2);
   }
 
-  .workflow {
+  #join {
     vertical-align:top;
     padding-top:3em;
     padding-bottom:6em;
   }
-  .workflow > header {
-    display:inline-block;
-    width: grid-width(7);
+  #join > header {
+    width: grid-width(11);
+    margin-bottom:2em;
   }
-  .workflow > header > h1 {
+  #join > header > h1 {
     line-height:1.25em;
     font-size: 2em;
     margin:0;
   }
-  .workflow > figure {
+  #join > figure {
     vertical-align:top;
     display: inline-block;
+  }
+  #join > figure > figcaption {
+    font-size:.70em;
+    display:block;
+    margin-top:.5em;
+    width:grid-width(13);
+  }
+  #join > figure > a {
     position:relative;
-    margin-left: grid-width(3);
+    vertical-align:top;
+    display:inline-block;
   }
-  .workflow > figure > a#facebook_sign_in {
-    cursor:pointer;
+  #join > figure > a.button{
+    opacity:0.5;
+  }
+  #join > figure > a.get {
+    padding-left: 3em;
+  }
+  #join > figure > a.get > img {
     position:absolute;
-    top:50%;
-    left:50%;
-    margin-left:-9em;
-    margin-top:-2em;
-    z-index:4;
+    top:0;
+    left:0;
+    padding:.5em;
+    width:1.15em;
+    border-right:1px solid darken(#907744, 10%);
   }
-  .workflow > figure > a > img.logo {
-    z-index:3;
-    margin:1em auto 1em auto;
-    display:block;
-    @include box-shadow(inset -1.5em -1.5em 2.5em -1.5em rgba(0, 0, 0, .5));
+  #join > figure > img {
+    display:inline-block;
     vertical-align:middle;
-    border-radius:5em;
-    width:3em;
-    height:3em;
-    background-color:white;
-    padding:1em;
-    border: .3em solid #5f5f5f;
+    width:2em;
+    margin:.25em;
+    opacity:.21;
   }
-  .workflow > figure > figcaption {
-    display:block;
-    margin-top:2em;
-  }
-
-  #welcome {
+  #join > figure.step_one {
     display:none;
   }
-
+  #join > figure.step_two {
+    display:block;
+  }
+  #join > figure.step_two > a.get{
+    opacity:1;
+  }
+  #join > figure.step_two > h5 {
+    margin-top:-0.25em;
+    vertical-align:middle;
+    width:grid-width(8);
+    display:inline-block;
+  }
+  #join > figure.step_two > h5 > figure {
+    display:inline-block;
+    background-color:#e5e9ef;
+    padding:0.65em;
+    border-radius: .5em 0 0 .5em;
+    @include triangle_down_small(#e5e9ef)
+  }
+  #join > figure.step_two > h5 > figure > img {
+     width:2em;
+  }
+  #join > figure.step_two > h5 > p {
+    border-radius: 0 .5em .5em 0;
+    width:16.5em;
+    font-family: 'Cantarell', sans-serif;
+    background-color:#e5e9ef;
+    color:#30436C;
+    vertical-align:top;
+    margin:0 0 0 .5em;
+    padding:1em;
+    display:inline-block;
+  }
+  #join > figure.step_two > h5 > p > img {
+    display:inline-block;
+    width:1.75em;
+    margin-right:.5em;
+  }
+  #join > figure.step_two > figcaption {
+    width:grid-width(13);
+  }
   #congrats {
     display:none;
     position:relative;
