@@ -38,6 +38,7 @@ end
 
 group :development, :production do
  gem 'newrelic_rpm'
+
 end
 
 group :development, :test do
@@ -71,14 +72,13 @@ end
 group :assets do
   gem 'sass-rails'
   gem "sass", "~> 3.2.0.alpha.244"
-
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'yui-compressor'
-
 end
 
 group :development do
+  gem 'quiet_assets'
   gem 'guard-rake'
   gem 'redcarpet'
   gem 'yard'
