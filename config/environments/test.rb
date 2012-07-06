@@ -9,6 +9,7 @@ Copper::Application.configure do
   config.active_support.deprecation = :stderr
   config.assets.compress = false
   config.assets.debug = true
+  config.log_level = :info
   
   config.hostaddress = "http://127.0.0.1:8080"
 

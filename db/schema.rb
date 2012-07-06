@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 10) do
 
   create_table "auth_sources", :force => true do |t|
     t.string   "uid"
@@ -54,12 +54,43 @@ ActiveRecord::Schema.define(:version => 6) do
     t.integer  "page_id"
     t.string   "user"
     t.string   "site"
+    t.string   "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   add_index "channels", ["page_id"], :name => "index_channels_on_page_id"
   add_index "channels", ["site"], :name => "index_channels_on_site"
+
+  create_table "fans", :force => true do |t|
+    t.string   "name"
+    t.integer  "tip_preference_in_cents", :default => 25,    :null => false
+    t.string   "stripe_customer_id"
+    t.boolean  "accept_terms",            :default => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
+
+  add_index "fans", ["stripe_customer_id"], :name => "index_fans_on_stripe_customer_id"
+
+  create_table "messages", :force => true do |t|
+    t.string   "subject"
+    t.datetime "sent"
+    t.string   "slug"
+    t.integer  "channel_id"
+    t.string   "redirect_to"
+    t.datetime "checked"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "fan_id"
+    t.string   "order_state"
+    t.string   "charge_token"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -80,6 +111,22 @@ ActiveRecord::Schema.define(:version => 6) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "tips", :force => true do |t|
+    t.integer  "order_id",        :null => false
+    t.integer  "check_id"
+    t.integer  "page_id"
+    t.integer  "amount_in_cents", :null => false
+    t.string   "url",             :null => false
+    t.string   "title"
+    t.string   "tip_state"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "tips", ["check_id"], :name => "index_tips_on_check_id"
+  add_index "tips", ["order_id"], :name => "index_tips_on_order_id"
+  add_index "tips", ["page_id"], :name => "index_tips_on_page_id"
 
   create_table "versions", :force => true do |t|
     t.string   "item_type",  :null => false

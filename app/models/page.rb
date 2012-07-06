@@ -1,4 +1,11 @@
 class Page < ActiveRecord::Base
+  class SpiderJob
+    @queue = :high
+    def self.perform(tip_url)
+      Page.spider(tip_url)
+    end
+  end
+  
   has_paper_trail
   
   include Enqueueable

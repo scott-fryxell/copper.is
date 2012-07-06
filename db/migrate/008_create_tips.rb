@@ -7,7 +7,7 @@ class CreateTips < ActiveRecord::Migration
       t.integer :amount_in_cents, null:false
       t.string :url, null:false
       t.string :title
-      t.string :paid_state 
+      t.string :tip_state 
       t.timestamps
     end
     add_index :tips, :order_id

@@ -4,6 +4,7 @@ class CreateChannels < ActiveRecord::Migration
       t.references :page
       t.string :user
       t.string :site
+      t.string :type
       t.timestamps
     end
     add_index :channels, :page_id

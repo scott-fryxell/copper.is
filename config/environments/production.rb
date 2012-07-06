@@ -35,4 +35,6 @@ Copper::Application.configure do
     :domain         => 'heroku.com'
   }
   ActionMailer::Base.delivery_method = :smtp
+  
+  config.log_level = :warn
 end
