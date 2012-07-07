@@ -33,7 +33,7 @@ Copper::Application.routes.draw do
   get 'buckingthesystem', :to => 'home#index'
 
   match "/auth/:provider/callback" => "sessions#create", :as => :provider_callback
-  match '/auth/:provider/failure'  => 'sessions#failure'
+  match '/auth/failure'  => 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
 
