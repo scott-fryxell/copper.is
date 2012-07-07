@@ -47,8 +47,8 @@ describe "A Fan's" do
       find_field('user[email]').value.should == 'user@facebook.com'
       fill_in('user[email]', :with => 'change@email.com')
       click_on 'Save'
-      page.should have_css('form', :visible => true)
-      page.should have_css('div', :visible => false)
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
       find("div > p").should have_content("change@email.com")
     end
     click_link 'Account settings'
