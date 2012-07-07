@@ -1,66 +1,15 @@
-$(document).ready(function (){
+$(document).on("copper:users_edit", function (){
   Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
   var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
   $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
   $('#rate > form > select > option[value=' + rate +']').attr('selected', true)
-  format_rate()
-  $(document).on("copper:update_page_items", function (){
-    format_rate()
-  })
+  copper.format_cents_to_dollars("tip_preference_in_cents")
 });
-$(document).on("copper:items", function (){
-  user = document.getItems()['users'][((window.location.pathname).replace('/edit', ''))]
-});
+$(document).on("copper:users_edit:update_page_items", function (){
+  copper.format_cents_to_dollars("tip_preference_in_cents")
+})
 
-function format_rate(){
-  var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
-  rate = (parseFloat(rate) / 100.00)
-  if( rate == 0.5 || rate == 0.1){
-    rate = rate + '0'
-  }
-  $("p[itemprop=tip_preference_in_cents]").text(rate)
-}
-$(document).ready(function (){
-  $("section > header > a").click(function(event){
-    event.preventDefault();
-    var div = $(this).parents("section").find("div");
-    var form = $(this).parents("section").find("form")
-    $(this).animate({opacity:0}, 200);
-    div.animate({opacity:0},500, function (){
-      div.css("display", "none")
-      form.css("display", "inline-block")
-      form.animate({opacity:1},500);
-    });
-  });
-
-  $("section > form").submit(function(event){
-    event.preventDefault()
-    div = $(this).parents("section").find("div")
-    $(this).animate({opacity:0},500,function (){
-      $(this).css("display", "none")
-      $(this).parents("section").find("header > a").animate({opacity:1}, 200)
-      div.css("display","inline-block")
-      div.animate({opacity:1}, 500)
-    });
-  });
-
-  if (!user.credit_card_id){
-    $("#card > header > a").click();
-  }
-
-  if (!user.email){
-    $("#email > header > a").click();
-  }
-  $('#email form').bind('form:invalid', function (){
-    console.debug("invalid form")
-    $('#email > header > a').click();
-    $(this).find('input[itemprop=email]').addClass('invalid');
-  });
-
-});
-
-
-$(document).ready(function() {
+$(document).on("copper:users_edit", function (){
   $("#card > form").submit(function(event) {
     event.preventDefault();
     if( !Stripe.validateCardNumber($('#number').val())){
@@ -90,7 +39,6 @@ $(document).ready(function() {
       $('#site_terms').addClass("invalid");
     }
     if($('#card .invalid').length > 0){
-      console.debug('invalid');
       $('#card > header > a').click();
       return false;
     }
@@ -103,20 +51,82 @@ $(document).ready(function() {
         email:$('#email').val()
       },
       function (status, response) {
-        console.debug(status, response);
+        // console.debug(status, response);
         if (response.error) {
           $("#card > form > h1").text(response.error.message)
           $("#card > form > h1").addClass("message")
-        } else {
-          $("#card > form > h1").removeClass("message")
-          $(document).trigger("copper:create_stripe_customer_id")
-          $("input[name=stripe_token]").val(response['id']);
-          $("#card p.type").text(response.card.type)
-          $("#card p.number").text(response.card.last4)
-          $("#card p.expiration").text(response.card.exp_month + '/' + response.card.exp_year )
+          return
         }
+        $("#card > form > h1").removeClass("message")
+        $("#card p.type").text(response.card.type)
+        $("#card p.number").text(response.card.last4)
+        $("#card p.expiration").text(response.card.exp_month + '/' + response.card.exp_year )
+
+        // post the tip to create if the user hasn't created a stripe id
+        var method = 'post'
+        if(user.stripe_id){
+          method = 'put'
+        }
+        jQuery.ajax({
+          url: '/cards',
+          type: method,
+          data: 'card_token=' + response.id,
+          error: function(data, textStatus, jqXHR) {
+            console.error("error creating stripe user " + method, data, textStatus, jqXHR);
+          }
+        });
       }
     );
     return false;
   });
+});
+$(document).on("copper:users_edit:items", function (){
+  $("section > header > a").click(function(event){
+    event.preventDefault();
+    var div = $(this).parents("section").find("div");
+    var form = $(this).parents("section").find("form")
+    $(this).animate({opacity:0}, 200);
+    div.animate({opacity:0},500, function (){
+      div.css("display", "none")
+      form.css("display", "inline-block")
+      form.animate({opacity:1},500);
+    });
+  });
+  $("section > form").submit(function(event){
+    event.preventDefault()
+    div = $(this).parents("section").find("div")
+    $(this).animate({opacity:0},500, function (){
+      $(this).css("display", "none")
+      $(this).parents("section").find("header > a").animate({opacity:1}, 200)
+      div.css("display","inline-block")
+      div.animate({opacity:1}, 500)
+    });
+  });
+
+  $('#email form').bind('copper:invalid', function (){
+    $('#email > header > a').click();
+    $(this).find('input[itemprop=email]').addClass('invalid');
+  });
+
+  user = document.getItems()['users'][((window.location.pathname).replace('/edit', ''))]
+  if (!user.email){
+    $("#email > header > a").click();
+  }
+  if (user.stripe_id){
+    jQuery.ajax({
+      url: '/cards',
+      type: 'get',
+      success: function (data, textStatus, jqXHR){
+        $("#card p.type").text(data.active_card.type)
+        $("#card p.number").text(data.active_card.last4)
+        $("#card p.expiration").text(data.active_card.exp_month + '/' + data.active_card.exp_year )
+      },
+      error: function (data, textStatus, jqXHR) {
+        console.error("error getting stripe info", data, textStatus, jqXHR);
+      }
+    });
+  }
+  else{
+    $("#card > header > a").click();
+  }
 });

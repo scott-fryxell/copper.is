@@ -1,60 +1,126 @@
 <section id="banner">
   <header>
-    <h1>The new tipping and appreciation service for creators &amp; fans.</h1>
-    <a href="#">WATCH OUR VIDEO &gt;</a>
+    <h1>
+      The new tipping service for creators &amp; fans.
+      <a href="#">WATCH OUR VIDEO &gt;</a>
+    </h1>
+    <a href="#" id="play_video">
+      <%= image_tag "icons/play.svg" %>
+    </a>
   </header>
-  <a href="#" id="play_video">
-    <%= image_tag "icons/play.svg" %>
-  </a>
-</section>
-<section id="connecting">
-  <aside>
-    <h1>Connecting Directly</h1>
-    <p>
-      Many of us see content on the web everyday, and are inspired by it.
-      Copper allows you to tip the creator of that content directly.
-    </p>
-  </aside>
 </section>
 <section id="how">
   <header>
-    <h1>How It Works</h1>
+    <h1>Copper connects you with the people creating the content you like online.</h1>
     <p>
-      Many of us see content on the web everyday, and are inspired by it.
-      Copper allows you to tip the creator of that content directly.
+      You find something cool anywhere online. You click a button to
+      tip the content. We find the person who made it and pass along
+      your appreciation. They keep on doing what they do!
     </p>
-    <button>Get The Button</button>
   </header>
-  <nav>
-    <a href="#tumblr" class="selected"><%= image_tag "providers/tumblr.png" %></a>
-    <a href="#vimeo"><%= image_tag "providers/mask/vimeo.png" %></a>
-    <a href="#soundcloud"><%= image_tag "providers/mask/soundcloud.png" %></a>
-    <a href="#github"><%= image_tag "providers/mask/github.png" %></a>
-    <a href="#youtube"><%= image_tag "providers/mask/youtube.png" %></a>
-    <a href="#xkcd"><%= image_tag "providers/mask/xkcd.png" %></a>
-    <a href="#more">...and more!</a>
-  </nav>
 </section>
 <section id="samples">
+  <nav>
+    <a href="#tumblr" class="selected"><%= image_tag "providers/tumblr.png" %></a>
+    <a href="#vimeo"><%= image_tag "providers/vimeo/mask.png" %></a>
+    <a href="#soundcloud"><%= image_tag "providers/soundcloud/mask.png" %></a>
+    <a href="#github"><%= image_tag "providers/github/mask.png" %></a>
+    <a href="#youtube"><%= image_tag "providers/youtube/mask.png" %></a>
+    <a href="#xkcd"><%= image_tag "providers/xkcd/mask.png" %></a>
+    <a href="#more">...and more!</a>
+  </nav>
   <figure>
-    <%= image_tag "screen_shots/missionmission.tumblr.com.png" %>
+    <%= image_tag "home/screen_shots/missionmission.tumblr.com.png" %>
+    <%= image_tag "home/screen_shots/missionmission.tumblr.com.png" %>
+    <%= image_tag "home/screen_shots/missionmission.tumblr.com.png" %>
   </figure>
 </section>
-<section id="button">
+<section id="join">
   <header>
-    <h1>Connect and Get the Button</h1>
+    <h1>So, how do I get this Button?</h1>
     <p>
-      Now you can torbi leo risus, porta ac consecteturm
-      at eros torbi leo risus, porta ac consecteturm at.
+      Download the Copper button right here. It will live
+      on your browser’s tool bar, ready and waiting for when
+      you find something tip-worthy. Then all you have to
+      do is click it...
     </p>
   </header>
-  <figure>
-    <%-unless current_user-%>
-    <a id="facebook_sign_in" href="/auth/facebook">
-      <%= image_tag "providers/connect_with_facebook.png", :class => 'fb' %>
+  <figure class="step_one">
+    <a id="facebook_sign_in" href="/auth/facebook" title="connect with facebook">
+    <%= image_tag "providers/facebook/connect.png", :class => 'fb' %>
     </a>
-    <%-end-%>
-    <%= image_tag "icons/letter_logo.svg", :class => 'logo' %>
-    <figcaption><a href="/how">Learn More</a> about tipping</figcaption>
+    <%= image_tag "arrows/right.svg"%>
+    <a class="button get"><%= image_tag "icons/letter_logo_white.svg" %> Get The Button</a>
+    <%= image_tag "arrows/right_two.svg"%>
+    <a class="button">Start Tipping</a>
+    <figcaption>We'll never post to your timeline without your permission.</figcaption>
+  </figure>
+  <figure class="step_two">
+    <h5>
+      <figure>
+        <%= image_tag "icons/silhouette.svg", class:"identity", alt:"me" %>
+      </figure>
+      <p><%= image_tag "providers/facebook/logo.png" %>Welcome, James!</p>
+    </h5>
+    <%= image_tag "arrows/right.svg"%>
+    <a class="button install get"><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
+    <%= image_tag "arrows/right_two.svg"%>
+    <a class="button">Start Tipping</a>
+    <figcaption>You’re now officially a fan on Copper. As soon as you
+    have the button, you can start tipping! You also now
+    have a Copper profile, where you can keep track of
+    your tipping and your favorite content.
+    </figcaption>
   </figure>
 </section>
+<section id="congrats">
+  <header>
+    <h3>Congrats!</h3>
+    <h1>Your button is now installed! Take it for a test drive...</h1>
+  </header>
+  <div>
+    <h3>Default Tip</h3>
+    <p>0.25</p>
+  </div>
+  <p>
+    Below are some things we have transferred from your News Feed
+    that you might want to tip! But of course, the tip button
+    works anywhere.
+  </p>
+  <p class="sub">
+    Note: We won’t ask for any payment info until you've been using
+    the service for a bit, but if you want to get that squared away now,
+    you can do that <a href="/users/me/edit">here</a>.
+  </p>
+</section>
+<section id="facebook">
+  <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
+  <nav></nav>
+</section>
+<section class="settings first">
+  <div>
+    <header>
+      <h3>Check out Your Profile</h3>
+      <p>
+        We’ve made a profile page for you where you
+        can keep track of your generosity.
+      </p>
+    </header>
+    <%= image_tag "arrows/swoop_down.svg"%>
+    <%= link_to image_tag("icons/silhouette.svg"), '/users/me', :title => "View profile" %>
+  </div>
+</section>
+<section class="settings second">
+  <div>
+    <header>
+      <h3>Customize Your Settings</h3>
+      <p>
+        We’ve also made a settings page for you where
+        you can adjust and personalize tips.
+      </p>
+    </header>
+    <%= image_tag "arrows/swoop_down.svg"%>
+    <%= link_to image_tag("icons/gear.svg"), '/users/me/edit', :title => "Account settings"%>
+  </div>
+</section>
+

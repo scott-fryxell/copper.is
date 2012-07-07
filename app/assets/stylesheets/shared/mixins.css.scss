@@ -3,19 +3,22 @@ $gw-gutter:0.5em;
 $darkness:#231F20;
 $offset_color:rgba(182, 195, 181, .2);
 $button_color:#CC9933;
-//$offset_color:rgba(0, 0, 0, .2);
-
+$darkness:#333333;
+$header:rgba(42,41,41,0.75);
+$title:rgba(102,102,102,1);
+$text:rgba(102,102,102,0.8);
 @import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
 @import "normalize";
 @import "bourbon";
-
 @mixin copper_button {
+  font-size:1.15em;
   font-family: 'Doppio One', sans-serif;
   text-align:center;
-  padding:.5em 1em;
+  text-decoration:none;
+  padding:.5em .75em;
   background-color:$button_color;
   @include background-image(linear-gradient($button_color 40%, shade($button_color, 25%) 100%, transparent 50%));
-  color:white;
+  color:white !important;
   border-radius:.25em;
   border:0.10em solid darken($button_color, 10%);
   &:hover {
@@ -27,7 +30,7 @@ $button_color:#CC9933;
   border:0.10em solid darken($offset_color, 1%);
   background-color: $offset_color;
 }
-@mixin triangle_bottom($color) {
+@mixin triangle_down($color) {
   position:relative;
   &:after {
     margin-left:-2em;
@@ -37,8 +40,53 @@ $button_color:#CC9933;
     content:"";
     width: 0;
     height: 0;
-    border-left: 2em solid transparent;
-    border-right: 2em solid transparent;
-    border-top: 1.5em solid $color;
+    border-left: 1em solid transparent;
+    border-right: 1em solid transparent;
+    border-top: 1em solid $color;
   }
+}
+@mixin triangle_down_small($color) {
+  position:relative;
+  &:after {
+    margin-left:-0.5em;
+    position:absolute;
+    bottom:-0.5em;
+    left:50%;
+    content:"";
+    width: 0;
+    height: 0;
+    border-left: 0.5em solid transparent;
+    border-right: 0.5em solid transparent;
+    border-top: 0.5em solid $color;
+  }
+}
+
+
+@mixin triangle_up($color){
+  position:relative;
+  &:after {
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+
+    width: 0;
+    height: 0;
+    border-left: 3em solid transparent;
+    border-right: 3em solid transparent;
+    border-bottom: 1em solid $color;
+  }
+}
+
+@mixin keyframes($name) {
+  @-moz-keyframes #{$name} { @content; }
+  @-webkit-keyframes #{$name} { @content; }
+  @-o-keyframes #{$name} { @content; }
+  @-ms-keyframes #{$name} { @content; }
+  @-khtml-keyframes #{$name} { @content; }
+  @keyframes #{$name} { @content; }
+}
+@include keyframes(spinning) {
+  from { @include transform(rotate(0deg)); }
+  to { @include transform(rotate(360deg)); }
 }

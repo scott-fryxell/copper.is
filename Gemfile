@@ -14,13 +14,14 @@ gem 'omniauth-vimeo'
 gem 'omniauth-soundcloud', '~> 1.0.0'
 gem 'omniauth-google-oauth2'
 
+gem 'jbuilder'
 gem 'stripe'
 gem 'dalli'
 gem "foreman"
-gem 'thin'
-gem 'newrelic_rpm'
-gem 'redis' #, '2.2.2'
-gem 'resque' #, '1.20.0'
+gem 'unicorn'
+
+gem 'redis'
+gem 'resque', '1.20.0'
 # gem 'resque-scheduler', :require => 'resque_scheduler'
 # gem 'resque-heroku-scaling-canary'
 gem 'state_machine'
@@ -35,6 +36,10 @@ group :production do
   gem "pg"
 end
 
+group :development, :production do
+ gem 'newrelic_rpm'
+end
+
 group :development, :test do
   gem 'simplecov', :require => false
   gem 'sqlite3', :require => 'sqlite3'
@@ -45,12 +50,11 @@ group :development, :test do
   gem "capybara-webkit"
   gem 'database_cleaner', '~> 0.6.7'
   gem 'guard'
-  gem 'guard-bundler'
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-spork'
   gem 'rb-fsevent'
-  gem 'spork', '> 0.9.0.rc'
+  gem 'spork-rails'
   gem 'launchy'
   gem 'ruby-graphviz', '~> 0.9.17'
   gem 'rails-erd'
@@ -58,13 +62,16 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'resque_spec', '0.12.1'
+  gem 'resque_spec'
+  gem 'hashugar'
 end
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass-rails'
+  gem "sass", "~> 3.2.0.alpha.244"
+
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'yui-compressor'

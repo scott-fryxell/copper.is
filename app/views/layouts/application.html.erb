@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title><%= params[:action].parameterize%> - copper.is</title>
     <meta charset="utf-8">
-    <link rel="shortcut icon" href="/assets/favicon.ico"/>
-    <%= stylesheet_link_tag "layouts/application" %>
-    <%= javascript_include_tag "layouts/application" %>
+    <link rel="shortcut icon" href="/assets/shared/favicon.ico"/>
+    <%= stylesheet_link_tag "copper" %>
+    <%= javascript_include_tag "copper" %>
     <%= javascript_include_tag "shared/analytics" if Rails.env.production?%>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope()%>>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
     <header>
-      <a href="/">
-        <%= image_tag "icons/logo.svg", :title => "logo" %>
-      </a>
+      <a href="/"><%= image_tag "icons/logo.svg", :title => "logo" %></a>
       <nav>
         <a href="/how">how it works</a>
         <a href="/button">get the button</a>
         <a href="/about">about us</a>
         <a href="http://blog.copper.is">our blog</a>
       </nav>
-      <%= render :partial => 'shared/signin' %>
-      <%= render :partial => 'shared/flash',:object => flash %>
+      <hgroup id="signed_in">
+        <nav>
+          <%= link_to image_tag("icons/silhouette_white.svg"), '/users/me', :title => "View profile" %>
+          <%= link_to image_tag("icons/gear_white.svg"), '/users/me/edit', :title => "Account settings"%>
+        </nav>
+        <%= image_tag "icons/silhouette.svg", class:"identity", alt:"me" %>
+      </hgroup>
+      <hgroup id='sign_in'>
+        <nav>
+          <h1>SIGN IN</h1>
+          <a id="facebook_sign_in" href="/auth/facebook" title="sign in with facebook">
+            <%= image_tag "providers/facebook/sign_in_mask.png" %>
+            <%= image_tag "providers/facebook/sign_in.png", class:"hover" %>
+          </a>
+          <a id="twitter_sign_in" href="/auth/twitter" title="sign in with twitter">
+            <%= image_tag "providers/twitter/sign_in_mask.png" %>
+            <%= image_tag "providers/twitter/sign_in.png", class:"hover" %>
+          </a>
+          <a id="google_sign_in" href="/auth/google_oauth2" title="sign in with google">
+            <%= image_tag "providers/google/sign_in_mask.png" %>
+            <%= image_tag "providers/google/sign_in.png", class:"hover" %>
+          </a>
+        </nav>
+      </hgroup>
     </header>
     <%= yield %>
     <footer>

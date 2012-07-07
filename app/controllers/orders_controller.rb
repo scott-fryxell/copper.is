@@ -12,10 +12,6 @@ class OrdersController < ApplicationController
     else
       @orders = current_user.orders.all
     end
-    respond_to do |format|
-      format.html
-      format.json { render :json => @orders }
-    end
   end
 
   def show
@@ -23,10 +19,6 @@ class OrdersController < ApplicationController
       @order = current_user.current_order
     else
       @order = current_user.orders.find(params[:id])
-    end
-    respond_to do |format|
-      format.html
-      format.json { render :json => @order }
     end
   rescue ActiveRecord::RecordNotFound
     render nothing:true, status:401
@@ -47,8 +39,8 @@ class OrdersController < ApplicationController
     current_user.accept_terms = params[:terms]
     current_user.email = params[:email]
 
-    if current_user.stripe_customer_id
-      customer = Stripe::Customer.retrieve(current_user.stripe_customer_id)
+    if current_user.stripe_id
+      customer = Stripe::Customer.retrieve(current_user.stripe_id)
       customer.card = params[:stripe_token]
       customer.save
     else
@@ -56,7 +48,7 @@ class OrdersController < ApplicationController
         :card => params[:stripe_token],
         :description => "user.id=" + current_user.id.to_s
       )
-      current_user.stripe_customer_id = customer.id
+      current_user.stripe_id = customer.id
     end
 
     current_user.save
@@ -85,14 +77,14 @@ class OrdersController < ApplicationController
   end
 
   def new
-    render nothing:true, status:403
+
   end
 
   def create
-    render nothing:true, status:403
+
   end
 
   def destroy
-    render nothing:true, status:403
+
   end
 end

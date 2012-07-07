@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'spork'
-require 'ostruct'
 
 Spork.prefork do
   def create!(factory,*args)
@@ -10,7 +9,7 @@ Spork.prefork do
     # record.should be_valid
     record
   end
-  
+
   ENV["RAILS_ENV"] = 'test'
   if ENV['RCOV']
     require 'simplecov'
@@ -18,11 +17,11 @@ Spork.prefork do
   end
 
   require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
   require 'rspec'
+  require 'rspec/rails'
   require 'capybara/rspec'
   require 'resque_spec'
-
+  
   require 'declarative_authorization/maintenance'
   require 'rack/test'
   require 'omniauth'
@@ -30,9 +29,10 @@ Spork.prefork do
   require 'support'
 
   Capybara.default_driver = :webkit
+  Capybara.javascript_driver = :webkit
+  Capybara.ignore_hidden_elements = false
   Capybara.server_port = 8080
   Capybara.app_host = "http://127.0.0.1:8080"
-  Capybara.ignore_hidden_elements = true
   include Authorization::TestHelper
 
   RSpec.configure do |config|
@@ -74,11 +74,12 @@ Spork.each_run do
     
     class Stripe::Customer
       def self.create(*args)
-        OpenStruct.new(id:'1')
+        OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
       end
-
+      
       def self.retrieve(*args)
-        OpenStruct.new(card:nil,save:nil)
+        OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4242', last4:"4242"})
+        end
       end
     end
 

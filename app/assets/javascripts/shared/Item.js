@@ -11,12 +11,17 @@ Item.discover_items = function (){
     items[$(this).attr("itemtype")][$(this).attr('itemid')] = new Item(this);
   });
   Item.items = items;
-  $(document).trigger("copper:items");
+  if(Item.items){
+    $(document).trigger("copper:items");
+    $(document).trigger("copper:" + $('body').attr('id')+ ":items");
+  }
   return Item.items;
 }
 Item.get_value      = function (element){
   if($(element).is("input") || $(element).is("select") || $(element).is("textarea") ){
-    return $(element).val().trim();
+    if($(element).val()){
+      return $(element).val().trim();
+    }
   }
   else if( $(element).is("a") || $(element).is("link")){
     return $(element).attr('href');
@@ -25,7 +30,9 @@ Item.get_value      = function (element){
     return $(element).attr('src');
   }
   else {
-    return $(element).text().trim();
+    if($(element).text()){
+      return $(element).text().trim();
+    }
   }
 }
 Item.update_page    = function (item){
@@ -48,7 +55,15 @@ Item.update_page    = function (item){
     }
   });
   $(document).trigger("copper:update_page_items");
+  $(document).trigger("copper:" + $('body').attr('id')+ ":update_page_items");
 }
+Item.prototype.update_page = function (){
+  Item.update_page(this);
+}
+Item.CSRFProtection =  function(xhr) {
+  var token = $('meta[name="csrf-token"]').attr('content');
+  if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+},
 document.getItems   = function (type){
   if(type){
     return Item.items[type]
@@ -58,6 +73,8 @@ document.getItems   = function (type){
   }
 }
 $(document).ready(function (){
+
+  $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
   Item.discover_items()
   $("*[itemscoped] form").submit(function(event){
     event.preventDefault()
@@ -77,13 +94,16 @@ $(document).ready(function (){
       Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
     });
     Item.update_page(Item.items[type][id]);
+    if(id =='new'){
+      id="/tips"
+    }
     jQuery.ajax({
       url: id,
       type: $(this).attr('method'),
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
         //TODO reload the properties from the server and populate the page with a message
-        $(form).trigger("form:invalid");
+        $(form).trigger("copper:invalid");
         console.error("error submiting form " + $(form).attr('method'), data, textStatus, jqXHR);
       }
     });

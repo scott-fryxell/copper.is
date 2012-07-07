@@ -18,7 +18,7 @@ class Order < ActiveRecord::Base
         stripe_charge = Stripe::Charge.create(
           :amount => total(),
           :currency => "usd",
-          :customer => self.fan.stripe_customer_id,
+          :customer => self.fan.stripe_id,
           :description => "order.id=" + self.id.to_s
         )
         self.charge_token = stripe_charge.id

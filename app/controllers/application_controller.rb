@@ -2,15 +2,25 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery
 
-  # filter_access_to :all
-
-
   helper_method :current_user, :item_scope
+  before_filter :set_current_user
 
-  private
+  protected
+
+  def set_current_user
+    Authorization.current_user = current_user
+  end
+
+  def permission_denied
+    if current_user
+      render nothing:true, status:403
+    else
+      render nothing:true, status:401
+    end
+  end
 
   def current_user
-    @current_user ||= User.find(cookies[:user_id]) if cookies[:user_id]
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   def item_scope
@@ -20,25 +30,6 @@ class ApplicationController < ActionController::Base
       item_id= "itemid='/#{type}/#{id}'"
     end
     "itemscoped itemtype='#{type}' #{item_id}"
-  end
-
-  protected
-
-  def permission_denied
-    flash[:message] = t("copper.permission_denied")
-    if current_user
-      respond_to do |format|
-        format.html { render nothing:true, status:403 }
-        format.xml  { head :unauthorized }
-        format.js   { head :unauthorized }
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to signin_url }
-        format.xml  { head :unauthorized }
-        format.js   { head :unauthorized }
-      end
-    end
   end
 
 end

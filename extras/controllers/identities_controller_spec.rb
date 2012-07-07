@@ -2,17 +2,11 @@ require 'spec_helper'
 
 describe IdentitiesController, :broken do
   describe 'as Guest' do
-    before :all do
-      controller.instance_eval do
-        @current_user = nil
-      end
-    end
-    
     describe 'index' do
       describe '/identities' do
-        it '302' do
+        it '401' do
           get :index
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -20,7 +14,7 @@ describe IdentitiesController, :broken do
       describe '/identities/new' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -36,7 +30,7 @@ describe IdentitiesController, :broken do
       describe '/identities/:id' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -44,7 +38,7 @@ describe IdentitiesController, :broken do
       describe '/identities/:id/edit' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -52,7 +46,7 @@ describe IdentitiesController, :broken do
       describe 'PUT /identities/:id' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
@@ -60,31 +54,19 @@ describe IdentitiesController, :broken do
       describe 'DELETE /identities/:id' do
         it '302' do
           get :new
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
   end
 
-  describe 'as Patron' do
-    before :each do
-      user = @me
-      controller.instance_eval do
-        cookies[:user_id] = {:value => user.id, :expires => 90.days.from_now}
-        @current_user = user
-      end
-    end
+  describe 'as Fan' do
 
     describe 'index' do
       describe '/identities' do
-        it 'responds to .json' do
-          get :index, format: :json
+        it 'assigns all identities for current user' do pending
+          get_with @me, :index, format: :json
           response.should be_success
-        end
-        
-        it 'assigns all identities for current user' do
-          pending
-          get :index
           assigns(:identities).size.should == 1
           response.status.should == 200
         end
@@ -94,7 +76,7 @@ describe IdentitiesController, :broken do
     describe 'new' do
       describe '/identities/new' do
         it '403' do
-          get :new
+          get_with @me, :new, format: :json
           response.status.should == 403
         end
       end
@@ -102,19 +84,15 @@ describe IdentitiesController, :broken do
 
     describe 'show' do
       describe '/identities/:id' do
-        it 'responds to .json' do pending
-          get :show, id:@my_identity.id, format: :json 
-          response.should be_success
-          response.body.should include(@my_identity.to_json)
-        end
-        
+
         it 'assigns the identity' do pending
-          get :show, id:@my_identity.id
+          get_with @me, :show, id:@my_identity.id, format: :json
+          response.should be_success
           assigns(:identity).id.should == @my_identity.id
         end
 
         it '401 for another user\'s identity' do pending
-          get :show, id:@her_identity.id
+          get_with @me, :show, id:@her_identity.id, format: :json
           response.status.should == 401
         end
       end
@@ -123,7 +101,7 @@ describe IdentitiesController, :broken do
     describe 'edit' do
       describe '/identities/:id/edit' do
         it '403' do pending
-          get :edit, id:@my_identity.id
+          get_with @me, :edit, id:@my_identity.id, format: :json
           response.status.should == 403
         end
       end
@@ -132,7 +110,7 @@ describe IdentitiesController, :broken do
     describe 'update' do
       describe 'PUT /identities/:id' do
         it '403' do pending
-          get :edit, id:@my_identity.id
+          get_with @me, :edit, id:@my_identity.id
           response.status.should == 403
         end
       end

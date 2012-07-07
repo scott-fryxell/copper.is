@@ -1,3 +1,2 @@
-web: bundle exec rails server thin -p $PORT
-redis: /usr/local/bin/redis-server ./config/redis.conf
+web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
 worker: bundle exec rake jobs:work

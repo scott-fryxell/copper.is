@@ -2,47 +2,24 @@ require 'spec_helper'
 
 describe TipsController, :broken do
   describe 'as Guest' do
-    before do
-      controller.instance_eval do
-        @current_user = nil
-      end
-    end
 
     describe 'index' do
       describe '/tips' do
-        it 'responds to .json' do
-          get :index, format: :json
-          response.should be_success
-          order_id = @her_tip2.order_id
-          check_id = @her_tip2.check_id
-          @her_tip2.order_id = nil
-          @her_tip2.check_id = nil
-          response.body.should include(@her_tip2.to_json)
-          @her_tip2.order_id = order_id
-          @her_tip2.check_id = check_id
-        end
-        
+
         it 'assigns all tips' do
-          get :index
+          get :index, format: :json
           tips = assigns(:tips)
           tips.include?(@her_tip2).should be_true
           tips.include?(@her_tip1).should be_true
           tips.include?(@my_tip).should be_true
-          tips.first.order_id.should be_nil
-          tips.first.check_id.should be_nil
         end
       end
     end
 
     describe 'new' do
       describe '/tips/new' do
-        it '302 to signin' do
-          get :new
-          response.should redirect_to(signin_path)
-        end
-
-        it '401 when json requested' do
-          get :new, format: :js
+        it 'should respond with 401' do
+          get :new, format: :json
           response.status.should == 401
         end
       end
@@ -50,10 +27,10 @@ describe TipsController, :broken do
 
     describe 'create' do
       describe 'POST /tips' do
-        it '302 to signin' do
+        it 'should respond with 401' do
           proc do
             post :create
-            response.should redirect_to(signin_path)
+            response.status.should == 401
           end.should_not change(Tip, :count)
         end
       end
@@ -61,52 +38,40 @@ describe TipsController, :broken do
 
     describe 'show' do
       describe '/tips/:id' do
-        it 'responds to .json' do
+        it 'should display a tip' do pending
+          # currently there is no use case for this in the UI
           get :show, id:@my_tip.id, format: :json
-          response.should be_success
-          order_id = @my_tip.order_id
-          check_id = @my_tip.check_id
-          @my_tip.order_id = nil
-          @my_tip.check_id = nil
-          response.body.should include(@my_tip.to_json)
-          @my_tip.order_id = order_id
-          @my_tip.check_id = check_id
-        end
-        
-        it 'should assign a tip' do
-          get :show, id:@my_tip.id
           assigns(:tip).should eq(@my_tip)
           tip = assigns(:tip)
-          tip.order_id.should be_nil
-          tip.check_id.should be_nil
+          response.should be_success
         end
       end
     end
 
     describe 'edit' do
       describe '/tips/:id/edit' do
-        it '302 to signin' do
-          get :edit, id:@my_tip.id
-          response.should redirect_to(signin_path)
+        it 'respond with not authorized' do
+          get :edit, id:@my_tip.id, format: :json
+          response.status.should == 401
         end
       end
     end
 
     describe 'update' do
       describe 'PUT /tips/:id' do
-        it '302 to signin' do
+        it 'respond with not authorized' do
           put :update, id:@my_tip.id, tip:{url:'laskdjf'}
-          response.should redirect_to(signin_path)
+          response.status.should == 401
         end
       end
     end
 
     describe 'destroy' do
       describe 'DELETE /tips/:id' do
-        it '302 to signin' do
+        it 'should respond with not authorized' do
           proc do
             delete :destroy, id:@my_tip.id
-            response.should redirect_to(signin_path)
+            response.status.should == 401
           end.should_not change(Tip,:count)
         end
       end

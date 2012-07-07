@@ -1,0 +1,79 @@
+$background_color: #313130;
+@import "shared/mixins";
+
+#tips_new {
+  width:300px;
+  font-size:16px;
+  section {
+    font-family: 'Cantarell', sans-serif;
+    background-color: $background_color;
+    color:white;
+    height:0;
+    border-radius: 0 0 0.5em 0.5em;
+    padding:0 2em;
+    opacity:0;
+    @include transition(height 1.4s, padding 1s, opacity 2s ease-out);
+    header,p,h1 {
+      height:0;
+      @include transition(opacity .4s, height .4s);
+      opacity:0;
+    }
+  }
+  section.show {
+    padding:2em;
+    @include box-shadow(0 0 5px 3px hsla(0, 0%, 0%, 0.65));
+    @include transition(height 1.4s, padding 1.4s, opacity 1s);
+    opacity:1;
+    height:75px;
+    header {
+      @include transition(height 1.4s);
+      height:3em;
+    }
+    p,h1 {
+      @include transition(height 1.4s);
+      height:1.5em;
+    }
+    header,p,h1 {
+      @include transition(opacity 2.5s, height 1.4s);
+      opacity:1;
+    }
+  }
+  section > header > h1 {
+    margin:0;
+    margin-top:1em;
+    margin-right:1em;
+    vertical-align:middle;
+    display:inline-block;
+    font-size:.85em;
+    color:#999999;
+  }
+  section > header > p {
+    color:#CCCCCC;
+  }
+  section > header > p[itemprop=amount_in_cents] {
+    font-family: 'Bree Serif', serif;
+    margin:0;
+    padding:0;
+    vertical-align:top;
+    font-size:2em;
+    display:inline-block;
+    width:3em;
+    &:before{
+      content:"$";
+    }
+  }
+  section > p[itemprop=title] {
+    font-family: 'Doppio One', sans-serif;
+    width:15em;
+    height:6em;
+    margin:0;
+    line-height:1.5em;
+    font-size:1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  section > form {
+    display:none
+  }
+}

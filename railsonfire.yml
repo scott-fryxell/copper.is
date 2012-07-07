@@ -1,0 +1,44 @@
+---
+id:  985d29b0-91a0-012f-99d4-12313d18c09a
+setup:
+  commands:
+  - bundle install --without development production
+  - bundle exec rake db:migrate --trace
+  - bundle exec rake db:seed --trace
+test:
+  commands:
+  - bundle exec rake --trace
+deploy:
+  heroku:
+    staging:
+      name: copper-stage
+    production:
+      name: ""
+ruby_versions:
+- 1.9.2
+env:
+- COPPER_SECRET_KEY=7c30a854a1640b267440ddff5f5290b27a671d3e32243655ff89bc0a50239a01be2b5920d484542a16406a7b7d8828e23060ac5c393f6d023a1ec5a3631a6e23
+- FACEBOOK_KEY=180829622036113
+- FACEBOOK_SECRET=97e70c028db12c9d987b7ea8011d8e6a
+- TWITTER_KEY=AuR7vY7OOHs79fZXVpJr2Q
+- TWITTER_SECRET=ufhBNQqhKC5RA7Gkqs3lC9zQnK3Dx6aYmNlzrmzHZ4
+- TWITTER_OAUTH_KEY=555540359-x3Bpu7fwiF2T8FLNLo7LReZ0nwifwfBrCu1hrKzP
+- TWITTER_OAUTH_SECRET=BLZzqSXsq314K4W2T8y9lM7U4SUGlDdHN5LPaxwoZTI
+- GOOGLE_KEY=492524038150.apps.googleusercontent.com
+- GOOGLE_SECRET=zuIsIHRU_RaqynrItBpX7Qtj
+- TUMBLR_KEY=kLinLbK8Rf8e46pWWmFwQj9nsaThdS4FfXbcD1wqyS7OFR0CsD
+- TUMBLR_SECRET=GkxOuy5j0WbDScfZm1bbU0tQ5Gw2cr6Rn5qqycMG0ocbSJxumV
+- GITHUB_KEY=b57de020d7f77276c078
+- GITHUB_SECRET=cb0db5697a9a0b53f0004082b514d46e68f61044
+- VIMEO_KEY=0556d210cd9d4159154e4777b0a6c395
+- VIMEO_SECRET=80c2e6a232ac1b25
+- SOUNDCLOUD_KEY=dabf47ea25387732297ed67bf4704311
+- SOUNDCLOUD_SECRET=bada7164ac2ce36f8c19a0bff63ca20c
+- FLICKR_KEY=0c70ec977dc090834dc7f010c4164f63
+- FLICKR_SECRET=393b137fceed221e
+- INSTAGRAM_KEY=421883b7b0cd45a9b2ff11ba4bab5b5f
+- INSTRAGRAM_SECRET=38660c7a6ddd4705b49f9cb705cb48ae
+- STRIPE_KEY=pk_qEzaggStJKIO4Bxg2myCnveWCj1A5
+- STRIPE_SECRET=ka2cHE7JczJ0OfMgh3bty2pjvoQ8qltQ
+- REDISTOGO_URL=redis://redistogo:23dc1ae970dc20322bd782ba9ed4bcfa@cod.redistogo.com:9716
+- CDN_URL=nothin

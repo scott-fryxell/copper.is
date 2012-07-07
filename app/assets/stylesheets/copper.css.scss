@@ -1,0 +1,222 @@
+@import "shared/mixins";
+@import "shared/forms";
+@import "shared/ie";
+@import "home/index";
+@import "users/edit";
+
+html {
+  position:relative;
+  min-width: 60em;
+  min-height:30em;
+  background-image: image-url('shared/texture_light.png');
+  font-family: 'Cantarell', sans-serif;
+  font-weight:normal;
+  line-height:1.25em;
+  color:$text;
+  &:after {
+    content:"";
+    position:absolute;
+    z-index:-1;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    opacity:.2;
+    @include background-image(linear-gradient(rgba(0,0,0,.5) 0em, lighten(rgba(0,0,0,.5), 100%) grid-width(10)));
+  }
+}
+body {
+  width:grid-width(26);
+  margin: 0 auto 0 auto;
+  h1, h2, h3, h4, h5, h6 {
+    color:$title;
+    font-family: 'Bree Serif', serif;
+    font-weight:normal;
+  }
+  h2 {
+    font-size:1.34em;
+  }
+  p {
+    font-size:0.85em;
+  }
+  ul, ol, dl {
+    list-style: none;
+  }
+}
+body > header {
+  position:relative;
+  background-color: $header;
+  width:grid-width(26);
+  height:3.4em;
+  hgroup {
+    display:none;
+    &.show{
+      display:inline-block;
+    }
+  }
+  #sign_in {
+    float:right;
+    vertical-align:middle;
+    margin-right:1em;
+    margin-top:1em;
+    text-align:right;
+    nav {}
+    nav > h1 {
+      font-family: 'Doppio One', sans-serif;
+      text-transform:uppercase;
+      margin-right:.5em;
+      font-weight:normal;
+      opacity:.6;
+      color:white;
+      display:inline;
+      font-size:.85em;
+    }
+    nav > a  {
+      text-decoration:none;
+      padding-right:.25em;
+    }
+    nav > a > img {
+      display:inline;
+      vertical-align:top;
+      width:1.25em;
+      &.hover{
+        display:none;
+      }
+    }
+  }
+  #signed_in {
+    float:right;
+    margin-top:.5em;
+    margin-right:1em;
+    text-align:right;
+    & > img {
+      border:0.18em solid $text;
+      display:inline-block;
+      width:2em;
+      @include triangle_down($text)
+    }
+    nav {
+      height:2.5em;
+      display:inline-block;
+      vertical-align:top;
+      text-align:right;
+    }
+    nav > a {
+      padding-top:.5em;
+      vertical-align:middle;
+      display:inline-block;
+      margin-right:1.5em;
+      font-size:.75em;
+      line-height:1.25em;
+    }
+    nav > a > img {
+      height:1.5em;
+      opacity:0.3;
+      vertical-align:middle;
+      @include transition(opacity 1s);
+      &:hover{
+        @include transition(opacity 1s);
+        opacity:0.9;
+      }
+    }
+  }
+  #message {
+    background-color: $darkness;
+    width:grid-width(6);
+    border-radius: 0 0 .5em .5em;
+    min-height:3em;
+    margin-top:0;
+    margin-left:grid-width(10);
+    @include box-shadow(2px 0 16px -4px hsla(0, 0%, 0%, 0.65));
+    display:none;
+    color:white;
+  }
+}
+body > header > a {
+  position:absolute;
+  top:0;
+  left:1em;
+  vertical-align:top;
+  text-decoration:none;
+  color:white;
+  padding:.75em 1em;
+}
+body > header > a > img {
+}
+body > header > nav {
+  margin-top:1em;
+  margin-left:9.5em;
+  display:inline-block;
+}
+body > header > nav > a {
+  font-family: 'Doppio One', sans-serif;
+  color:white;
+  opacity:.5;
+  font-size:.77em;
+  text-decoration:none;
+  text-transform:uppercase;
+  margin-right:2em;
+}
+body > section, body > footer {
+  padding-left:75px;
+  padding-right:75px;
+}
+
+body > section a {
+  font-family: 'Doppio One', sans-serif;
+  color:$text;
+}
+body > footer {
+  padding-top:1em;
+  padding-bottom:0.75em;
+  background-color:$darkness;
+}
+body > footer > h3 {
+  font-size:.85em;
+  display:inline-block;
+  font-family: 'Patua One', cursive;
+  color:white;
+  opacity:.5;
+
+}
+body > footer > h4 {
+  font-family: 'Cantarell', sans-serif;
+  display:inline-block;
+  font-size:.75em;
+  color:white;
+  opacity:.5;
+  &:before {
+    display:inline-block;
+    content: '|';
+    margin-right:1em;
+    margin-left:1em;
+    text-decoration:none !important;
+  }
+}
+body > footer > nav {
+  color:#A7A39B;
+  display:inline-block;
+}
+body > footer > nav > a {
+  font-size:.75em;
+  display:inline-block;
+  color:#a7a39b;
+  &:before {
+    display:inline-block;
+    content: '|';
+    margin-right:1em;
+    margin-left:1em;
+    text-decoration:none !important;
+  }
+
+}
+
+.working {
+  @include animation-name(spinning);
+  @include animation-duration(0.5s);
+  @include animation-timing-function(ease);
+  @include animation-iteration-count(infinite);
+}
+a[href='/signout'] {
+  display:none;
+}

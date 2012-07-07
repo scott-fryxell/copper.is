@@ -3,32 +3,21 @@ class IdentitiesController < ApplicationController
 
   def index
     @identities = current_user.identities
-    respond_to do |format|
-      format.html
-      format.json { render :json => @identities }
-    end
   end
 
   def new
-    render nothing:true, status:403
   end
 
   def show
     @identity = current_user.identities.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.json { render :json => @identity }
-    end
   rescue ActiveRecord::RecordNotFound
     render nothing:true, status:401
   end
 
   def edit
-    render nothing:true, status:403
   end
 
   def update
-    render nothing:true, status:403
   end
 
   def destroy
