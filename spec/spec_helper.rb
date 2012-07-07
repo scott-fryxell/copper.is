@@ -79,7 +79,6 @@ Spork.each_run do
       
       def self.retrieve(*args)
         OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4242', last4:"4242"})
-        end
       end
     end
 

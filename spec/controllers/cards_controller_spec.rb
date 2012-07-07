@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CardsController do
+describe CardsController,:broken do
 
   describe 'show' do
     it 'responds to .json' do
