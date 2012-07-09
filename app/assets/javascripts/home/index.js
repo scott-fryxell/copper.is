@@ -41,8 +41,16 @@ $(document).on("copper:home_index", function (){
     $('.settings').delay(1600).fadeIn(800, function (){
       $('.settings').delay(1600).css("display",'inline-block');
     });
-
   });
+
+  $("#samples > nav > a").click(function (event){
+    $("#samples > nav > a").removeClass("selected")
+    $(this).addClass("selected")
+    var distance = parseInt($(this).attr('data-order')) * 55.5
+    console.debug($(this).attr('data-order'), distance)
+    $('#samples > figure').animate({marginLeft: '-'+ distance + 'em'})
+  });
+
 });
 
 $(document).on("copper:home_index:me", function (){
@@ -58,6 +66,12 @@ $(document).on("copper:home_index:me", function (){
           $('<a/>', {href:like.link, html:image}).appendTo('#facebook > nav')
         })
       })
-    })
+    });
+
+    var me_url = 'https://graph.facebook.com/me?&access_token=' + copper.me.identities[0].token;
+    $.getJSON(me_url).success(function(me) {
+      $('figure.step_two > h5 > p').append('Welcome, ' + me.first_name + '!')
+      console.debug(me.first_name)
+    });
   }
 });

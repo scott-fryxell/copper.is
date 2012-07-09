@@ -60,6 +60,9 @@ body > header {
     margin-right:1em;
     margin-top:1em;
     text-align:right;
+    iframe {
+      display:none;
+    }
     nav {}
     nav > h1 {
       font-family: 'Doppio One', sans-serif;
@@ -110,6 +113,7 @@ body > header {
       line-height:1.25em;
     }
     nav > a > img {
+      width:1.5em;
       height:1.5em;
       opacity:0.3;
       vertical-align:middle;
@@ -140,8 +144,6 @@ body > header > a {
   text-decoration:none;
   color:white;
   padding:.75em 1em;
-}
-body > header > a > img {
 }
 body > header > nav {
   margin-top:1em;

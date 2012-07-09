@@ -51,7 +51,7 @@ class SessionsController < ApplicationController
         @identity.user = current_user
         @identity.save()
 
-        redirect_to root_url, :notice => "Welcome aboard!"
+        redirect_to root_url + '#join', :notice => "Welcome aboard!"
 
       end
     end
