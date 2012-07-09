@@ -7,11 +7,14 @@ Copper::Application.configure do
   config.action_controller.allow_forgery_protection = false
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
-  config.assets.compress = false
-  config.assets.debug = true
+  config.assets.compress = true
+  config.assets.js_compressor  = :uglifier
+  config.assets.css_compressor = :yui
+  config.assets.compile = true
+  config.assets.debug = false
+  config.assets.digest = true
   config.log_level = :info
-  
-  config.hostaddress = "http://127.0.0.1:8080"
+  # config.hostaddress = "http://127.0.0.1:8080"
 
   OmniAuth.config.test_mode = true
 
@@ -72,7 +75,6 @@ Copper::Application.configure do
       'user_hash' => 'google magic'
     }
   }
-
   OmniAuth.config.mock_auth[:tumblr] = {
     'provider' => 'tumblr',
     'uid' => '234567',
@@ -92,7 +94,6 @@ Copper::Application.configure do
       'user_hash' => 'tumblr magic'
     }
   }
-
   OmniAuth.config.mock_auth[:github] = {
     'provider' => 'github',
     'uid' => '3456789',
@@ -112,7 +113,6 @@ Copper::Application.configure do
       'user_hash' => 'github magic'
     }
   }
-
   OmniAuth.config.mock_auth[:vimeo] = {
     'provider' => 'vimeo',
     'uid' => '3456789',
@@ -132,7 +132,6 @@ Copper::Application.configure do
       'user_hash' => 'vimeo magic'
     }
   }
-
   OmniAuth.config.mock_auth[:soundcloud] = {
     'provider' => 'soundcloud',
     'uid' => '3456789',
@@ -152,7 +151,6 @@ Copper::Application.configure do
       'user_hash' => 'soundcloud magic'
     }
   }
-
   OmniAuth.config.mock_auth[:flickr] = {
     'provider' => 'flickr',
     'uid' => '3456789',
@@ -172,7 +170,6 @@ Copper::Application.configure do
       'user_hash' => 'flickr magic'
     }
   }
-
 
   # Raise exception on mass assignment protection for Active Record models
   config.active_record.mass_assignment_sanitizer = :strict

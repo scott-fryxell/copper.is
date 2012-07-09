@@ -41,6 +41,19 @@ describe Page do
           end
         end
       end
+      describe 'confidence of channels' do
+        it 'orders the channels by how confident we are about them'
+      end
+      it 'creates an author' do
+        Author.count.should eq(1)
+      end
+      describe Message do
+        it 'messages the author on the primary message channel' do
+          Channel.any_instance.should_receive(:you_have_tips_waiting)
+          Author.first.primary_channel.messages.first.sent?.should be_true
+        end
+        it 'provides an auth_source'
+      end
     end
   end
   
@@ -57,4 +70,5 @@ describe Page do
       end
     end
   end
+  
 end

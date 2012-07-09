@@ -219,12 +219,13 @@
     opacity:.21;
   }
   #join > figure.step_one {
-    display:none;
-  }
-  #join > figure.step_two {
     display:block;
   }
+  #join > figure.step_two {
+    display:none;
+  }
   #join > figure.step_two > a.get{
+    cursor:pointer;
     opacity:1;
   }
   #join > figure.step_two > h5 {
@@ -246,13 +247,14 @@
   }
   #join > figure.step_two > h5 > p {
     border-radius: 0 .5em .5em 0;
-    width:16.5em;
+    width:13em;
     font-family: 'Cantarell', sans-serif;
+    font-size:1em;
     background-color:#e5e9ef;
     color:#30436C;
     vertical-align:top;
     margin:0 0 0 .5em;
-    padding:1em;
+    padding:0.8em;
     display:inline-block;
   }
   #join > figure.step_two > h5 > p > img {
@@ -370,7 +372,7 @@
   }
 
   .settings {
-    display:inline-block;
+    display:none;
     width:41.5%;
     padding-top:2em;
     padding-bottom:1em;

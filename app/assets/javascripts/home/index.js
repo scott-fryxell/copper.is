@@ -35,7 +35,7 @@ $(document).on("copper:home_index", function (){
 
   $(document).on("copper:button_installed",  function(event){
     // hide the welcome screen and show congrats
-    $('#welcome').delay(800).fadeOut(800);
+    $('#join').delay(800).fadeOut(800);
     $('#congrats').delay(1600).fadeIn(800);
     $('#facebook').delay(1600).fadeIn(800);
     $('.settings').delay(1600).fadeIn(800, function (){
@@ -46,8 +46,8 @@ $(document).on("copper:home_index", function (){
 });
 
 $(document).on("copper:home_index:me", function (){
-  $('#signin_with_fb').hide();
-  $('#welcome').show();
+  $('#join figure.step_one').hide();
+  $('#join figure.step_two').show();
 
   if('facebook' == copper.me.identities[0].provider){
     var likes_url = 'https://graph.facebook.com/' + copper.me.identities[0].uid + '/likes?limit=7&access_token=' + copper.me.identities[0].token;
