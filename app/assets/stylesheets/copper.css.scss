@@ -22,7 +22,7 @@ html {
     left:0;
     right:0;
     opacity:.2;
-    @include background-image(linear-gradient(rgba(0,0,0,.5) 0em, lighten(rgba(0,0,0,.5), 100%) grid-width(10)));
+    @include background-image(linear-gradient(rgba(0,0,0,.5) 0em, lighten(rgba(0,0,0,.5), 100%) grid-width(17)));
   }
 }
 body {

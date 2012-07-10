@@ -85,7 +85,7 @@
   }
 
   #how {
-    background: image-url('home/logo_arrows.png') no-repeat 100% 60%;
+    background: image-url('home/look-at-me-logo.svg') no-repeat 100% 60%;
     background-size: 50%;
     padding-top:3em;
     padding-bottom:2em;
@@ -197,6 +197,8 @@
   }
 
   #join {
+    background: image-url('home/watermark.svg') no-repeat 50% 300%;
+    background-size: 50%;
     min-height:30em;
     vertical-align:top;
     padding-top:3em;
