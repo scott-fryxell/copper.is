@@ -119,29 +119,31 @@
   <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
   <nav></nav>
 </section>
-<section class="settings first">
-  <div>
-    <header>
-      <h3>Check out Your Profile</h3>
-      <p>
-        We’ve made a profile page for you where you
-        can keep track of your generosity.
-      </p>
-    </header>
-    <%= image_tag "arrows/swoop_down.svg"%>
-    <%= link_to image_tag("icons/silhouette.svg"), '/users/me', :title => "View profile" %>
-  </div>
-</section>
-<section class="settings second">
-  <div>
-    <header>
-      <h3>Customize Your Settings</h3>
-      <p>
-        We’ve also made a settings page for you where
-        you can adjust and personalize tips.
-      </p>
-    </header>
-    <%= image_tag "arrows/swoop_down.svg"%>
-    <%= link_to image_tag("icons/gear.svg"), '/users/me/edit', :title => "Account settings"%>
-  </div>
-</section>
+<div>
+  <section class="settings first">
+    <div>
+      <header>
+        <h3>Check out Your Profile</h3>
+        <p>
+          We’ve made a profile page for you where you
+          can keep track of your generosity.
+        </p>
+      </header>
+      <%= image_tag "arrows/swoop_down.svg"%>
+      <%= link_to image_tag("icons/silhouette.svg"), '/users/me', :title => "View profile" %>
+    </div>
+  </section>
+  <section class="settings second">
+    <div>
+      <header>
+        <h3>Customize Your Settings</h3>
+        <p>
+          We’ve also made a settings page for you where
+          you can adjust and personalize tips.
+        </p>
+      </header>
+      <%= image_tag "arrows/swoop_down.svg"%>
+      <%= link_to image_tag("icons/gear.svg"), '/users/me/edit', :title => "Account settings"%>
+    </div>
+  </section>
+</div>

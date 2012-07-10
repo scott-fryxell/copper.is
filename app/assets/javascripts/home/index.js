@@ -38,8 +38,8 @@ $(document).on("copper:home_index", function (){
     $('#join').delay(800).fadeOut(800);
     $('#congrats').delay(1600).fadeIn(800);
     $('#facebook').delay(1600).fadeIn(800);
-    $('.settings').delay(1600).fadeIn(800, function (){
-      $('.settings').delay(1600).css("display",'inline-block');
+    $('body > div').delay(1600).fadeIn(800, function (){
+      $('body > div').delay(1600).css("display",'block');
     });
   });
 

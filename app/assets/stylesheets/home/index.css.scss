@@ -8,9 +8,6 @@
     width:grid-width(22);
     margin: 0 auto 0 auto;
   }
-  & > div {
-    background-color:$offset_color;
-  }
   & > header {
     width:100%;
     position:absolute;
@@ -406,15 +403,14 @@
   }
 
   .settings {
-    display:none;
-    width:45.8%;
+    width:49.5%;
     padding-top:2em;
     padding-bottom:1em;
     margin: 0 auto 0 auto;
     background-color:$offset_color;
   }
   .first > div {
-    margin-right:-2em;
+    margin-right:2em;
     position:relative;
     float:right;
   }
@@ -436,7 +432,7 @@
     right:4em;
     opacity:.3;
   }
-  .settings  a > img {
+  .settings a > img {
     vertical-align:top;
     margin-left:4em;
     opacity:.5;
@@ -444,4 +440,17 @@
     width:2.5em;
     height:2.5em;
   }
+  & > div {
+    display:none;
+    width:100%;
+    height:8.4em;
+    overflow:hidden;
+  }
+  .first {
+    float:left;
+  }
+  .second {
+    float:right;
+  }
+
 }
