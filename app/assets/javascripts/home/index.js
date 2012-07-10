@@ -25,7 +25,6 @@ $(document).on("copper:home_index", function (){
     $("a.install").hide();
   }
 });
-
 $(document).on("copper:home_index", function (){
 
   $("a.install").click(function (){
@@ -52,7 +51,6 @@ $(document).on("copper:home_index", function (){
   });
 
 });
-
 $(document).on("copper:home_index:me", function (){
   $('#join figure.step_one').hide();
   $('#join figure.step_two').show();

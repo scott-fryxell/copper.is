@@ -8,7 +8,6 @@ $(document).on("copper:users_edit", function (){
 $(document).on("copper:users_edit:update_page_items", function (){
   copper.format_cents_to_dollars("tip_preference_in_cents")
 })
-
 $(document).on("copper:users_edit", function (){
   $("#card > form").submit(function(event) {
     event.preventDefault();

@@ -5,9 +5,11 @@
 //= require shared/Item
 //= require shared/copper
 //= require home/index
+//= require users/edit
 $(document).ready(function() {
   jQuery('time').timeago();
   $(document).trigger("copper:" + $('body').attr('id'))
+
   $("#sign_in > nav > a").hover(
     function (){
       $(this).find("img").hide();
