@@ -1,0 +1,53 @@
+<section id="banner">
+  <figure>
+    <%= image_tag "icons/silhouette.svg", class:"identity", alt:'me' %>
+    <figcaption>0.75</figcaption>
+  </figure>
+  <h1>
+    <span>Hey there!</span> Looks like you’ve
+    just received some tips from a fan...
+  </h1>
+  <p>
+    Copper and tempus porttitor. Maecenas sed diam eget
+    risus variusla ndit sit amet non magna. Curabitur blandit
+    tempus porttitorumiis natoque spenatibus et magnis dis
+    parturient montes, nascetur ridiculus mus.
+  </p>
+</section>
+<section id="login" class="form">
+  <header>
+    <h2>Step 1: Login</h2>
+  </header>
+  <figure>
+    <%= link_to image_tag("providers/twitter/authorize.png"), '/users/me', :title => "Authorize Twitter" %>
+    <figcaption>So we can make sure it’s really you</figcaption>
+  </figure>
+</section>
+<section id="email" class="form">
+  <header>
+    <h2>Step 2: Email</h2>
+  </header>
+  <form method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
+    <input itemprop="email" name='user[email]' type="email" placeholder="Your Email Address" required value="">
+  </form>
+  <p>So we can tell you when you’ve been tipped</p>
+</section>
+
+<section id="address" class="form">
+  <header>
+    <h2>Step 3: Get Check</h2>
+  </header>
+  <form method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
+    <input itemprop="name" name='user[name]' type="text" placeholder="Your Name/Company Name" required>
+    <input itemprop="street" name='user[street]' type="text" placeholder="Street Address" required>
+    <input itemprop="city" name='user[city]' type="text" placeholder="City/Town" required>
+    <select name="user[state]" itemprop='state'>
+      <option value="AA">AL</option>
+    </select>
+    <select name="user[Country]" itemprop='country'>
+      <option value="US">United States</option>
+    </select>
+
+  </form>
+  <p>So we can pay you</p>
+</section>

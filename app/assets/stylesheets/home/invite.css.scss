@@ -1,0 +1,122 @@
+#home_invite {
+  & * {
+//    outline:1px solid silver;
+  }
+  section.form > header {height:100%}
+  section.form > header > h2 {
+    text-align:right;
+  }
+  section.form > form {
+    max-width: grid-width(14);
+  }
+  section.form > form > input {
+    width:grid-width(8);
+    margin-bottom:1em;
+  }
+
+  #banner {
+    padding-top:4em;
+    padding-bottom:5em;
+    position:inherit;
+    background-color: transparent;
+    border-color:transparent;
+  }
+  #banner figure, #banner h1, #banner p {
+    display:inline-block;
+    vertical-align:top;
+  }
+  #banner > figure {
+    margin-right:2em;
+  }
+  #banner > figure > img {
+    width:3.5em;
+    vertical-align:bottom;
+    border: .25em solid $text;
+  }
+  #banner > figure > figcaption {
+    font-size:1.25em;
+    font-family: 'Bree Serif', serif;
+    color:white;
+    padding:.7em .25em 1.25em .35em;
+    @include background-image( linear-gradient($text 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+    background-repeat: no-repeat;
+    background-position:center;
+    @include background-size(cover);
+  }
+  #banner > figure > figcaption:before {
+    content:'$';
+  }
+  #banner > h1 {
+    vertical-align:top;
+    opacity:.85;
+    margin:0;
+    line-height:1.15em;
+    font-size:2.7em;
+    width:grid-width(4.2);
+    margin-right:.5em;
+    margin-top:-0.44em;
+  }
+  #banner > h1 > span {
+    color:$darkness;
+  }
+  #banner > p {
+    margin:0;
+    width:grid-width(9);
+    font-size:.92em;
+  }
+  form {
+    display:inline-block;
+    opacity:1;
+  }
+  #login {
+    vertical-align:middle;
+  }
+  #login header {
+    vertical-align:middle;
+  }
+  #login > figure {
+    vertical-align:middle;
+    display:inline-block;
+  }
+  #login > figure > a {
+    display:inline-block;
+    margin-right:3em;
+  }
+  #login > figure > a > img {}
+  #login > figure > figcaption{
+    position:relative;
+    padding-left:grid-width(3);
+    line-height:1.25em;
+    width:grid-width(4);
+    display:inline-block;
+    font-family: 'Nothing You Could Do', cursive;
+    @include help_text
+  }
+  section.form > p {
+    margin:0;
+    display:inline-block;
+    width:grid-width(5);
+    @include help_text
+  }
+  #address {
+    padding-bottom:15em;
+  }
+  #address > p {
+    float:right;
+    vertical-align:top;
+    padding-left:0;
+    width:10em;
+  }
+  #address > form > input {
+    width:grid-width(13);
+  }
+  #address > form > input[itemprop=city] {
+    width:13em;
+  }
+  #address > form > select[itemprop=state] {
+    width:grid-width(2.5);
+  }
+  #address > form > select[itemprop=country] {
+    width:grid-width(4.5);
+  }
+}

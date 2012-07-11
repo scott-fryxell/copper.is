@@ -25,6 +25,31 @@ $text:rgba(102,102,102,0.8);
     @include transition (border-radius 0.100s ease-in-out);
   }
 }
+@mixin ribbon {
+  @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+  background-repeat: no-repeat;
+  background-position:center;
+  @include background-size(cover);
+}
+
+@mixin help_text {
+  font-family: 'Nothing You Could Do', cursive;
+  position:relative;
+  padding-left:grid-width(2);
+  &:before {
+    content:"";
+    position:absolute;
+    z-index:-1;
+    top:0;
+    bottom:0;
+    left:0em;
+    right:0;
+    opacity:0.3;
+    background: image-url('arrows/slight_down.svg') no-repeat 1% 60%;
+    background-size:3em;
+  }
+}
+
 @mixin section {
   border:0.10em solid darken($offset_color, 1%);
   background-color: $offset_color;
@@ -59,8 +84,6 @@ $text:rgba(102,102,102,0.8);
     border-top: 0.5em solid $color;
   }
 }
-
-
 @mixin triangle_up($color){
   position:relative;
   &:after {
@@ -76,7 +99,6 @@ $text:rgba(102,102,102,0.8);
     border-bottom: 1em solid $color;
   }
 }
-
 @mixin keyframes($name) {
   @-moz-keyframes #{$name} { @content; }
   @-webkit-keyframes #{$name} { @content; }

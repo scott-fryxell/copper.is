@@ -10,8 +10,11 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+
+
 module Copper
   class Application < Rails::Application
+    config.sass.load_paths += %w(vendor lib).map {|l| Rails.root.join(l, 'assets', 'stylesheets') }
     config.encoding = "utf-8"
     config.cache_store = :dalli_store
     config.active_record.timestamped_migrations = false

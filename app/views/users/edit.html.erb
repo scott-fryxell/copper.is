@@ -1,8 +1,4 @@
-<%-content_for :head do-%>
-  <title><%=current_user.name%> - Copper</title>
-<%-end-%>
-
-<section id="banner">
+<section id="banner" class="form">
   <header>
     <%= image_tag "icons/silhouette.svg", class:"identity", alt:'me' %>
   </header>
@@ -15,7 +11,7 @@
   </div>
 </section>
 
-<section id="email">
+<section id="email" class="form">
   <header>
     <h2>Contact Info</h2>
     <a href="#">Change</a>
@@ -30,7 +26,7 @@
   </form>
 </section>
 
-<section id="rate">
+<section id="rate" class="form">
   <header>
     <h2>Default Tip</h2>
     <a href="#">Change</a>
@@ -56,7 +52,7 @@
   </form>
 </section>
 
-<section id="card">
+<section id="card" class="form">
   <header>
     <h2>Payment Info</h2>
     <a href="#">Change</a>

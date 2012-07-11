@@ -17,59 +17,6 @@
       background-size: .75em;
     }
   }
-  & > section {
-    margin-bottom: 0.5em;
-    padding-top:2em;
-    padding-bottom:2em;
-    border-radius:.10em;
-    background-color: $offset_color;
-    position:relative;
-    &:after {
-      content:"";
-      position:absolute;
-      z-index:-1;
-      top:0;
-      bottom:0;
-      left:0;
-      right:0;
-      opacity:0.9;
-    }
-  }
-  & > section > header {
-    vertical-align:top;
-    display:inline-block;
-    width: grid-width(4);
-    margin-right:grid-width(1);
-
-  }
-  & > section > header > h2 {
-    margin-bottom:.5em;
-  }
-  & > section > header > a {
-    font-size:.75em;
-    color: #999999;
-  }
-  & > section > form {
-    display:none;
-    opacity:0;
-    vertical-align:top;
-  }
-  & > section > div {
-    display:inline-block;
-  }
-  & > section > div h4 {
-    font-family: 'Cantarell', sans-serif;
-    margin:0;
-    margin-bottom:0.5em;
-    font-size:0.85em;
-  }
-  & > section > div p {
-    font-family: 'Doppio One', sans-serif;
-    color:$darkness;
-    font-size: 1.1em;
-    opacity:.8;
-    margin:0;
-  }
 
   #banner {
     position:inherit;
