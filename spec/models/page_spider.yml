@@ -4,6 +4,7 @@ crooked-hideout.blogspot.com:
     - http://crooked-hideout.blogspot.com
     - crooked-hideout.blogspot.com/
     - http://crooked-hideout.blogspot.com/
+    - https://crooked-hideout.blogspot.com/
 
   same_author:
     - crooked-hideout.blogspot.com/2012/01/ableton-live-set-is-gzipped-xml-ruby.html
@@ -25,15 +26,15 @@ crooked-hideout.blogspot.com:
       
   channels:
     -
+      site: twitter.com
+      user: _ugly
+      auth: true
+    -
       site: github.com
       user: mgarriss
       auth: true
     -
       site: soundcloud.com
       user: underscore_ugly
-      auth: true
-    -
-      site: twitter.com
-      user: _ugly
       auth: true
     

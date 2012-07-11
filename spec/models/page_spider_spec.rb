@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Page do
   YAML.load(File.read(Rails.root+'./spec/models/page_spider.yml')).each do |node|
     ((node[1]['variations'] ||= []) << node.first).each do |url|
-      context url do
+      describe url do
         before :all do
           DatabaseCleaner.clean
           with_resque do
@@ -20,13 +20,13 @@ describe Page do
           end
         end
         node[1]['channels'].each do |page|
-          site,user,auth = page['site'],page['user'],page['auth']
-          it "Channel with site:#{site.inspect}, and user:#{user.inspect}" do
-            Channel.where('site = ? and user = ?', site, user).count.should eq(1)
+          site,auth = page['site'],page['auth']
+          it "Channel with site:#{site.inspect}" do
+            Channel.where('site = ?', site).count.should eq(1)
           end
           if auth
-            it "AuthSource with site:#{site.inspect}, and user:#{user.inspect}" do
-              AuthSource.where('site = ? and user = ?', site, user).count.should eq(1)
+            it "AuthSource with site:#{site.inspect}" do
+              AuthSource.where('site = ?', site).count.should eq(1)
             end
           end
         end
@@ -43,16 +43,10 @@ describe Page do
       end
       describe 'confidence of channels' do
         it 'orders the channels by how confident we are about them'
+        it 'only these channels are found'
       end
       it 'creates an author' do
         Author.count.should eq(1)
-      end
-      describe Message do
-        it 'messages the author on the primary message channel' do
-          Channel.any_instance.should_receive(:you_have_tips_waiting)
-          Author.first.primary_channel.messages.first.sent?.should be_true
-        end
-        it 'provides an auth_source'
       end
     end
   end
