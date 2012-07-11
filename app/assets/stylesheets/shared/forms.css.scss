@@ -138,17 +138,6 @@ section.form {
   padding-bottom:2em;
   border-radius:.10em;
   background-color: $offset_color;
-  position:relative;
-  &:after {
-    content:"";
-    position:absolute;
-    z-index:-1;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    opacity:0.9;
-  }
 }
 section.form > header {
   vertical-align:top;

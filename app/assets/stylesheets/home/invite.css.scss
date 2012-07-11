@@ -1,10 +1,10 @@
-#home_invite {
+  #home_invite {
   & * {
 //    outline:1px solid silver;
   }
   section.form > header {height:100%}
   section.form > header > h2 {
-    text-align:right;
+    text-align:left;
   }
   section.form > form {
     max-width: grid-width(14);
@@ -99,13 +99,35 @@
     @include help_text
   }
   #address {
-    padding-bottom:15em;
+    padding-bottom:3em;
+    position:relative;
+    &:after {
+      margin-left:-2em;
+      position:absolute;
+      bottom:-1.5em;
+      left:50%;
+      content:"";
+      width: 0;
+      height: 0;
+      border-left: 2em solid transparent;
+      border-right: 2em solid transparent;
+      border-top: 1.5em solid $offset_color;
+    }
   }
   #address > p {
+    padding-bottom:3em;
     float:right;
     vertical-align:top;
     padding-left:0;
     width:10em;
+    &:before {
+      @include transform(rotate(140deg));
+      background-image: image-url('arrows/swoop_down.svg');
+      background-repeat: no-repeat;
+      background-position-x: 90%;
+      background-position-y: 100%;
+    }
+
   }
   #address > form > input {
     width:grid-width(13);
@@ -118,5 +140,41 @@
   }
   #address > form > select[itemprop=country] {
     width:grid-width(4.5);
+  }
+  #submit {
+    height:17em;
+    position:relative;
+    &:after {
+      content:"";
+      position:absolute;
+      bottom:4em;
+      margin-left:-2em;
+      left:50%;
+      width: 0;
+      height: 0;
+      border-left: 2em solid transparent;
+      border-right: 2em solid transparent;
+      border-bottom: 1.5em solid $offset_color;
+    }
+    &:before{
+      content:"";
+      height:4em;
+      width:100%;
+      background-color:$offset_color;
+      position:absolute;
+      bottom:0;
+      left:0;
+    }
+  }
+  #submit > a {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-3.5em;
+    margin-top:-3em;
+    @include copper_button;
+    font-size:1.25em;
+    width:5em;
+    display:block;
   }
 }
