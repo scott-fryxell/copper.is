@@ -1,7 +1,7 @@
 class Identity < ActiveRecord::Base
   include Enqueueable
   has_paper_trail
-  
+
   belongs_to :user
   has_many :pages
   has_many :tips, :through => :pages
@@ -11,9 +11,9 @@ class Identity < ActiveRecord::Base
 
   # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   # validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
-  
+
   validates :provider, presence:true
-  
+
   validate :validate_presence_of_username_or_uid
   def validate_presence_of_username_or_uid
     unless self.username or self.uid
@@ -21,7 +21,7 @@ class Identity < ActiveRecord::Base
       errors.add(:username, "username must exist")
     end
   end
-  
+
   scope :stranger, where('identity_state = ?', 'stranger')
   scope :wanted, where('identity_state = ?', 'wanted')
   scope :known, where('identity_state = ?', 'known')
@@ -30,11 +30,11 @@ class Identity < ActiveRecord::Base
     event :publicize do
       transition :stranger => :wanted
     end
-    
+
     event :join do
       transition any => :known
     end
-    
+
     state :stranger, :wanted do
       validate :validate_user_id_is_nil
     end
@@ -48,11 +48,11 @@ class Identity < ActiveRecord::Base
         publicize!
       end
     end
-    
+
     state :known do
       validates :user_id, presence:true
     end
-    
+
     after_transition any => :stranger do |author,transition|
       Resque.enqueue author.class, author.id, :send_wanted_message
     end
@@ -69,13 +69,13 @@ class Identity < ActiveRecord::Base
       Resque.enqueue self.class, self.id, :send_wanted_message
     end
   end
-  
+
   before_save do
     self.type = Identity.subclass_from_provider(self.provider).to_s unless self.type
   end
 
   # --------------------------------------------------------------------
-  
+
   def self.find_with_omniauth(auth)
     find_by_provider_and_uid(auth['provider'], auth['uid'].to_s)
   end
@@ -109,7 +109,7 @@ class Identity < ActiveRecord::Base
       nil
     end
   end
-  
+
   def self.find_or_create_from_url(url)
     provider = provider_from_url(url)
     i = subclass_from_provider(provider).discover_uid_and_username_from_url url
@@ -120,9 +120,9 @@ class Identity < ActiveRecord::Base
     end
     ident
   end
-  
+
   # --------------------------------------------------------------------
-  
+
   def populate_uid_and_username!
     if self.uid.blank? and self.username.blank?
       raise "both uid and username can't be blank"
@@ -148,7 +148,7 @@ class Identity < ActiveRecord::Base
     yield
     save!
   end
-  
+
   def try_to_make_wanted!
     self.publicize! if self.tips.charged.count > 0
   end

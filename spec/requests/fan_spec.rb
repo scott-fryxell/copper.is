@@ -5,12 +5,12 @@ describe "A Fan" do
     visit "/"
     click_link 'google_sign_in'
   end
-  
+
   describe "signing in" do
     before(:each) do
       visit '/signout'
     end
-    
+
     it "should have access to a signin link" do
       visit "/"
       # page.should have_content 'Sign In With'
@@ -215,10 +215,10 @@ describe "A Fan" do
         within("section#email") do
           click_on 'Save'
         end
-        
+
         click_link 'fan'
         find_field('user[email]').value.should == 'change@google.com'
-        
+
         fill_in('user[email]', :with => 'user@google.com')
         within("section#email") do
           click_on 'Save'

@@ -3,6 +3,7 @@ class Fan < ActiveRecord::Base
   has_many :orders
   has_many :tips, :through => :orders
   has_and_belongs_to_many :roles
+  belongs_to :author
   has_paper_trail
 
   validates :tip_preference_in_cents,
@@ -56,6 +57,26 @@ class Fan < ActiveRecord::Base
 
   def current_tips
     current_order.tips
+  end
+
+  def create_stripe_customer (card_token)
+    if self.stripe_id
+      customer = Stripe::Customer.retrieve(self.stripe_id)
+    else
+      customer = Stripe::Customer.create(
+        :description => self.email,
+        :card => card_token
+      )
+      self.stripe_id = customer.id
+    end
+    return customer;
+  end
+
+  def delete_stripe_customer
+    if self.stripe_id
+      customer = Stripe::Customer.retrieve(self.stripe_id)
+      customer.delete
+    end
   end
 
 

@@ -1,7 +1,7 @@
 class Identities::Youtube < Identity
   include Enqueueable
   include YoutubeMessages
-  
+
   def self.discover_uid_and_username_from_url url
   end
 
@@ -23,29 +23,29 @@ class Identities::Youtube < Identity
     super do
     end
   end
-  
+
   private
-  
+
   def youtube_it_client
     @client ||= YouTubeIt::Client.new(:dev_key =>
                   Copper::Application.config.google_code_developer_key)
   end
-  
+
   def author_uri
     youtube_it_client.video_by("9Z8Z9bGBe_M").author.uri
   end
-  
+
   def channel_uri
     doc = Nokogiri::Document.new(open(author_uri))
     doc.css('link').find do |e|
       e.attr('href') =~ %r{http://www.youtube.com/channel/}
     end.attr('href')
   end
-  
+
   def channel_id
-    
+
   end
-  
+
   def comment(message)
     @comment = Net::HTTP::Post.new(
       "gdata.youtube.com/feeds/api/channels/#{channel_id}/comments",
@@ -56,7 +56,7 @@ class Identities::Youtube < Identity
     @comment.body = comment_content_template(message)
     @comment
   end
-  
+
   def comment_content_template(message)
 <<POST
 <?xml version="1.0" encoding="UTF-8"?>

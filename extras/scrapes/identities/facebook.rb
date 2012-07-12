@@ -14,7 +14,7 @@ class Identities::Facebook < Identity
       { :uid => facebook_user["id"], :username => facebook_user[:username]}
     end
   end
-  
+
   def discover_uid_and_username_from_url
     Facebook.discover_uid_and_username_from_url self.url
   end
@@ -34,7 +34,7 @@ class Identities::Facebook < Identity
     super do
     end
   end
-  
+
   def populate_username_from_uid!
     super do
     end

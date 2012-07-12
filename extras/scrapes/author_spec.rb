@@ -5,14 +5,14 @@ describe "An Author" do
     visit "/"
     click_link 'twitter_sign_in'
   end
-  
+
   # after do
   #   User.last.identities.each do |i|
   #     i.destroy
   #   end
   #   User.last.destroy
   # end
-  
+
   it "should have a settings section",:broken do
     click_link 'author'
     page.should have_content 'Author Settings'
@@ -53,7 +53,7 @@ describe "An Author" do
         click_link 'edit'
       end
     end
-    
+
     it "should only link an account once" do
       page.should have_content 'twitter user'
       # page.should have_content 'Welcome aboard!'

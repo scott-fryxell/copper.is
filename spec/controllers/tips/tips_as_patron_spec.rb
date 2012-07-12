@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-<<<<<<< HEAD:extras/controllers/tips/tips_as_patron_spec.rb
 describe TipsController, :broken do
   describe 'as Patron' do
     before :each do
@@ -11,10 +10,6 @@ describe TipsController, :broken do
         @current_user = user
       end
     end
-=======
-describe TipsController do
-  describe 'as Fan' do
->>>>>>> master:spec/controllers/tips/tips_as_patron_spec.rb
 
     describe 'index' do
       describe '/tips' do
