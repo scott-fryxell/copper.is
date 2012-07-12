@@ -27,9 +27,11 @@ $(document).on("copper:home_index", function (){
 });
 $(document).on("copper:home_index", function (){
 
-  $("a.install").click(function (){
+  $("a.install").click(function (event){
+    event.preventDefault();
     // this is temporariy until we can get the extensions to trigger the event.
     $(document).trigger("copper:button_installed")
+
   })
 
   $(document).on("copper:button_installed",  function(event){
