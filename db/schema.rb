@@ -11,38 +11,82 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 9) do
+ActiveRecord::Schema.define(:version => 10) do
 
-  create_table "checks", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "check_state"
-    t.integer  "count",       :default => 0
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-  end
-
-  add_index "checks", ["user_id"], :name => "index_checks_on_user_id"
-
-  create_table "identities", :force => true do |t|
-    t.string   "provider",       :null => false
+  create_table "auth_sources", :force => true do |t|
     t.string   "uid"
-    t.string   "username"
+    t.string   "site"
+    t.string   "user"
+    t.string   "name"
+    t.string   "image"
+    t.string   "location"
+    t.string   "urls"
     t.string   "token"
     t.string   "secret"
-    t.string   "type",           :null => false
-    t.string   "identity_state"
-    t.datetime "message"
-    t.integer  "user_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string   "type"
+    t.string   "auth_source_state"
+    t.integer  "author_id"
+    t.integer  "fan_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
-  add_index "identities", ["provider", "uid"], :name => "index_identities_on_provider_and_uid"
-  add_index "identities", ["provider", "username"], :name => "index_identities_on_provider_and_username"
+  add_index "auth_sources", ["type", "site"], :name => "index_auth_sources_on_type_and_site"
+  add_index "auth_sources", ["type", "uid"], :name => "index_auth_sources_on_type_and_uid"
+  add_index "auth_sources", ["type", "user"], :name => "index_auth_sources_on_type_and_user"
+
+  create_table "authors", :force => true do |t|
+    t.string   "name"
+    t.string   "line1"
+    t.string   "line2"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "state"
+    t.string   "territory"
+    t.string   "city"
+    t.integer  "primary_channel_id"
+    t.integer  "user_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "channels", :force => true do |t|
+    t.integer  "page_id"
+    t.string   "user"
+    t.string   "site"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "channels", ["page_id"], :name => "index_channels_on_page_id"
+  add_index "channels", ["site"], :name => "index_channels_on_site"
+
+  create_table "fans", :force => true do |t|
+    t.string   "name"
+    t.integer  "tip_preference_in_cents", :default => 25,    :null => false
+    t.string   "stripe_customer_id"
+    t.boolean  "accept_terms",            :default => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+  end
+
+  add_index "fans", ["stripe_customer_id"], :name => "index_fans_on_stripe_customer_id"
+
+  create_table "messages", :force => true do |t|
+    t.string   "subject"
+    t.datetime "sent"
+    t.string   "slug"
+    t.integer  "channel_id"
+    t.string   "redirect_to"
+    t.datetime "checked"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "orders", :force => true do |t|
-    t.integer  "user_id",      :null => false
-    t.string   "state"
+    t.integer  "fan_id"
+    t.string   "order_state"
     t.string   "charge_token"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
@@ -50,13 +94,16 @@ ActiveRecord::Schema.define(:version => 9) do
 
   create_table "pages", :force => true do |t|
     t.string   "title"
-    t.string   "url",          :null => false
-    t.string   "author_state"
-    t.integer  "identity_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.string   "url",        :null => false
+    t.string   "site"
+    t.string   "path"
+    t.string   "page_state"
+    t.integer  "author_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
+  add_index "pages", ["site"], :name => "index_pages_on_site"
   add_index "pages", ["url"], :name => "index_pages_on_url"
 
   create_table "roles", :force => true do |t|
@@ -65,43 +112,21 @@ ActiveRecord::Schema.define(:version => 9) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "roles_users", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "role_id"
-  end
-
-  add_index "roles_users", ["user_id", "role_id"], :name => "index_roles_users_on_user_id_and_role_id", :unique => true
-
   create_table "tips", :force => true do |t|
     t.integer  "order_id",        :null => false
     t.integer  "check_id"
-    t.integer  "page_id",         :null => false
+    t.integer  "page_id"
     t.integer  "amount_in_cents", :null => false
-    t.string   "paid_state"
+    t.string   "url",             :null => false
+    t.string   "title"
+    t.string   "tip_state"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
+  add_index "tips", ["check_id"], :name => "index_tips_on_check_id"
   add_index "tips", ["order_id"], :name => "index_tips_on_order_id"
-
-  create_table "users", :force => true do |t|
-    t.string   "name"
-    t.integer  "tip_preference_in_cents", :default => 25,    :null => false
-    t.string   "email"
-    t.string   "stripe_id"
-    t.boolean  "accept_terms",            :default => false
-    t.string   "line1"
-    t.string   "line2"
-    t.string   "postal_code"
-    t.string   "country"
-    t.string   "state"
-    t.string   "territory"
-    t.string   "city"
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
-  end
-
-  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "tips", ["page_id"], :name => "index_tips_on_page_id"
 
   create_table "versions", :force => true do |t|
     t.string   "item_type",  :null => false

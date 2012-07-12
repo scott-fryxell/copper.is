@@ -14,7 +14,7 @@ Copper::Application.configure do
   config.assets.debug = false
   config.assets.digest = true
   config.log_level = :info
-  config.hostaddress = "http://127.0.0.1:8080"
+  # config.hostaddress = "http://127.0.0.1:8080"
 
   OmniAuth.config.test_mode = true
 

@@ -19,9 +19,10 @@ module Copper
     config.cache_store = :dalli_store
     config.active_record.timestamped_migrations = false
     config.action_view.embed_authenticity_token_in_remote_forms = false
-    config.active_record.whitelist_attributes= true
+    # config.active_record.whitelist_attributes= true
 
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/app/models/sites)
 
     config.filter_parameters += [:password]
 
@@ -75,4 +76,4 @@ module Copper
   end
 end
 
-require 'messages'
+require './lib/diary'

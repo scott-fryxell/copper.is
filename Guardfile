@@ -11,6 +11,7 @@ end
 guard 'rspec', :version => 2, :cli => '--color --format doc --drb',
                :all_on_start => true, :all_after_pass => false do
   watch(/^spec\/.+\.rb$/) { 'spec' }
+  watch(/^spec\/.+\.yml$/) { 'spec' }
   watch(/^app\/.+\.rb$/) { 'spec' }
   watch(/^lib\/.+\.rb$/) { 'spec' }
   watch(/^config\/.+\.rb$/) { 'spec' }

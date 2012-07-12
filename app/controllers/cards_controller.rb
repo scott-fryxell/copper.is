@@ -1,4 +1,4 @@
-class CardsController < ApplicationController
+  class CardsController < ApplicationController
   filter_access_to :all
 
   def show

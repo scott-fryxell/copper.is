@@ -20,6 +20,8 @@ Spork.prefork do
   require 'rspec'
   require 'rspec/rails'
   require 'capybara/rspec'
+  require 'resque_spec'
+  
   require 'declarative_authorization/maintenance'
   require 'rack/test'
   require 'omniauth'
@@ -35,6 +37,7 @@ Spork.prefork do
 
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
+    config.filter_run_excluding :slow => true
     config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
@@ -44,73 +47,45 @@ Spork.prefork do
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
-    # REDIS_PID = "#{Rails.root}/tmp/pids/redis-test.pid"
-    # REDIS_CACHE_PATH = "#{Rails.root}/tmp/cache/"
   end
 end
 
 Spork.each_run do
   FactoryGirl.reload
-
+  
+  # load Rails.root+'app/models/sti_factory.rb'
+  
+  # ['channels','sites'].each do |base|
+  #   Dir[File.join(Rails.root,'app','models',base,'*.rb')].each do |path|
+  #     load path
+  #   end
+  # end
+  
   RSpec.configure do |config|
     config.before(:suite) do
       DatabaseCleaner.start
-      DatabaseCleaner.clean
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
-
-      ResqueSpec.reset!
-      # ResqueSpec.inline = true
-      class Stripe::Customer
-
-        def self.create(*args)
-          OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
-        end
-
-        def self.retrieve(*args)
-          OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
-        end
-      end
-
-      class Stripe::Charge
-        def self.create(*args)
-          OpenStruct.new(id:'1')
-        end
-      end
-    end
-
-    config.before(:all) do
-      @stranger = create!(:identities_phony)
-      @wanted = create!(:identities_phony,identity_state:'wanted')
-
-      @page1 = create!(:page,author_state:'adopted')
-      @page2 = create!(:page,author_state:'adopted')
-
-      @wanted.pages << @page1
-      @wanted.pages << @page2
-
-      @me = create!(:user)
-      @her = create!(:user_phony)
-      @my_identity = @me.identities.first
-      @her_identity = @her.identities.first
-
-      @my_tip = @me.tip(url:@page1.url)
-
-      @her_tip1 = @her.tip(url:@page1.url)
-      @her_tip2 = @her.tip(url:@page2.url)
-    end
-
-    config.before(:suite) do
-      DatabaseCleaner.start
       DatabaseCleaner.clean
     end
-
-    config.after(:suite) do
-      DatabaseCleaner.clean
-
-    end
-
+    
     config.before(:each) do
-      Twitter.stub(:update)
+      ResqueSpec.reset!
+    end
+    
+    class Stripe::Customer
+      def self.create(*args)
+        OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
+      end
+      
+      def self.retrieve(*args)
+        OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4242', last4:"4242"})
+      end
+    end
+
+    class Stripe::Charge
+      def self.create(*args)
+        OpenStruct.new(id:'1')
+      end
     end
   end
 end
