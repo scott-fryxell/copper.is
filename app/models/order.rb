@@ -39,15 +39,6 @@ class Order < ActiveRecord::Base
       :paid => :paid
     end
 
-    state :current do
-      def time_to_pay?
-        self.tiped_enough_to_pay? and !self.user.automatic_rebill
-      end
-
-      def tiped_enough_to_pay?
-        self.tips.sum(:amount_in_cents) >= 1000 # TODO make a config option
-      end
-    end
   end
   
   def subtotal

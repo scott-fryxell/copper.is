@@ -4,7 +4,8 @@ class Author < ActiveRecord::Base
   has_many :auth_sources
   has_many :channels, :through => :pages
   has_many :tips, :through => :pages
-  
+  has_many :checks
+
   def merge!(rhs)
     self.auth_sources += rhs.auth_sources
     self.pages += rhs.pages

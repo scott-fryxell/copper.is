@@ -38,7 +38,7 @@ Spork.prefork do
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
     config.filter_run_excluding :slow => true
-    config.fail_fast = true
+    # config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
