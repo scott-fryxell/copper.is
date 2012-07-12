@@ -148,6 +148,7 @@
     display:block;
   }
   #samples > nav > a {
+    cursor:pointer;
     color:darken($offset_color, 30%);;
     display:inline-block;
     width:grid-width(3);
@@ -159,6 +160,9 @@
     vertical-align:middle;
     text-align:center;
     text-decoration:none;
+  }
+  #samples > nav > a[data-distance='nope']{
+    cursor:auto;
   }
   #samples > nav > a > img {
     position:relative;
@@ -179,6 +183,7 @@
     display:none;
   }
   #samples > figure {
+    margin-left: 14em;
     width:700%;
     padding-top:2em;
   }
@@ -189,9 +194,8 @@
     overflow:hidden;
     @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
   }
-  #samples > figure > img:first-child {
-    margin-left: grid-width(10);
-  }
+
+
 
   #join {
     background: image-url('home/watermark.svg') no-repeat 50% 300%;

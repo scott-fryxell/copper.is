@@ -43,11 +43,11 @@ $(document).on("copper:home_index", function (){
   });
 
   $("#samples > nav > a").click(function (event){
-    $("#samples > nav > a").removeClass("selected")
-    $(this).addClass("selected")
-    var distance = parseInt($(this).attr('data-order')) * 55.5
-    console.debug($(this).attr('data-order'), distance)
-    $('#samples > figure').animate({marginLeft: '-'+ distance + 'em'})
+    if('nope' != $(this).attr('data-distance')){
+      $("#samples > nav > a").removeClass("selected")
+      $(this).addClass("selected")
+      $('#samples > figure').animate({marginLeft: $(this).attr('data-distance')})
+    }
   });
 
 });
