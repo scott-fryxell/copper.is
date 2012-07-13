@@ -10,20 +10,6 @@ crooked-hideout.blogspot.com:
     - crooked-hideout.blogspot.com/2012/01/ableton-live-set-is-gzipped-xml-ruby.html
     - github.com/mgarriss/miniscale
     
-  pages:
-    -
-      site: crooked-hideout.blogspot.com
-      path:
-    -
-      site: github.com
-      path: mgarriss
-    -
-      site: soundcloud.com
-      path: underscore_ugly
-    -
-      site: rubygems.org
-      path: profiles/40496
-      
   channels:
     -
       type: Channels::Twitter

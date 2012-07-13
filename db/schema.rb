@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 10) do
 
   create_table "identities", :force => true do |t|
     t.string   "uid"
-    t.string   "user_name"
+    t.string   "uri"
     t.string   "token"
     t.string   "secret"
     t.string   "type"

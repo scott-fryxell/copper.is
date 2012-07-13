@@ -10,8 +10,6 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-
-
 module Copper
   class Application < Rails::Application
     config.sass.load_paths += %w(vendor lib).map {|l| Rails.root.join(l, 'assets', 'stylesheets') }
@@ -19,7 +17,7 @@ module Copper
     config.cache_store = :dalli_store
     config.active_record.timestamped_migrations = false
     config.action_view.embed_authenticity_token_in_remote_forms = false
-    config.active_record.whitelist_attributes = false
+    config.active_record.whitelist_attributes = nil
 
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += %W(#{config.root}/app/models/sites)
@@ -70,10 +68,8 @@ module Copper
       redistogo_url
 
     ].each do |env|
-      # raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?
+      raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?
       config.send(env.to_s + '=', ENV[env.to_s.upcase])
     end
   end
 end
-
-require './lib/diary'

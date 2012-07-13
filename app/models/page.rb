@@ -5,6 +5,8 @@ class Page < ActiveRecord::Base
       Page.spider(tip_url)
     end
   end
+  
+  attr_accessible :type, :url, :author
 
   has_paper_trail
 

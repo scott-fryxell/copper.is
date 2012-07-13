@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 
-describe "Guest" do
+describe "Guest", :broken do
 
   describe "every page" do
     before(:each) do

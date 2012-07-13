@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan" do
+describe "A Fan", :broken do
   before(:each) do
     visit "/"
     click_link 'google_sign_in'

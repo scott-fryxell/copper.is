@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "tipping a page" do
+describe "tipping a page",:broken do
   before(:each) do
     DatabaseCleaner.clean
     visit "/"

@@ -12,21 +12,14 @@ describe Page do
           page = Page.where('url = ?',Page.normalize(url)).first
           page.adopted?.should be_true
         end
-        node[1]['pages'].each do |page|
-          site, path = page['site'], (page['path'] || '')
-          it "Page with site:#{site.inspect}, and path:#{path.inspect}" do
-            selection = Page.where('site = ? and path = ?', site, path)
-            selection.count.should eq(1)
-          end
-        end
         node[1]['channels'].each do |page|
-          site,auth = page['site'],page['auth']
-          it "Channel with site:#{site.inspect}" do
-            Channel.where('site = ?', site).count.should eq(1)
+          type, auth = page['type'],page['auth']
+          it "Channel with type:#{type}" do
+            Channel.where('type = ?', type).count.should eq(1)
           end
           if auth
-            it "Identity with site:#{site.inspect}" do
-              Identity.where('site = ?', site).count.should eq(1)
+            it "Identity with type:#{type}" do
+              Identity.where('type = ?', type).count.should eq(1)
             end
           end
         end
