@@ -10,7 +10,6 @@ class CreateAuthors < ActiveRecord::Migration
       t.string :territory
       t.string :city
       t.integer :primary_channel_id
-      t.integer :user_id
       t.timestamps
     end
   end

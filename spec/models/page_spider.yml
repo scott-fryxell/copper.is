@@ -26,15 +26,15 @@ crooked-hideout.blogspot.com:
       
   channels:
     -
-      site: twitter.com
+      type: Channels::Twitter
       user: _ugly
       auth: true
     -
-      site: github.com
+      type: Channels::Github
       user: mgarriss
       auth: true
     -
-      site: soundcloud.com
+      type: Channels::Soundcloud
       user: underscore_ugly
       auth: true
     

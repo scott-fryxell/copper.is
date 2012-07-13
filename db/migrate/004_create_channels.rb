@@ -2,7 +2,7 @@ class CreateChannels < ActiveRecord::Migration
   def change
     create_table :channels do |t|
       t.references :page
-      t.string :user
+      t.string :uri
       t.string :site
       t.string :type
       t.timestamps

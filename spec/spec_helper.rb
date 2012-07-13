@@ -21,7 +21,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'resque_spec'
-  
+
   require 'declarative_authorization/maintenance'
   require 'rack/test'
   require 'omniauth'
@@ -38,7 +38,7 @@ Spork.prefork do
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
     config.filter_run_excluding :slow => true
-    # config.fail_fast = true
+    config.fail_fast = true
     # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
@@ -52,31 +52,31 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
-  
+
   # load Rails.root+'app/models/sti_factory.rb'
-  
+
   # ['channels','sites'].each do |base|
   #   Dir[File.join(Rails.root,'app','models',base,'*.rb')].each do |path|
   #     load path
   #   end
   # end
-  
+
   RSpec.configure do |config|
     config.before(:suite) do
       DatabaseCleaner.start
       DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
       DatabaseCleaner.clean
     end
-    
+
     config.before(:each) do
       ResqueSpec.reset!
     end
-    
+
     class Stripe::Customer
       def self.create(*args)
         OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
       end
-      
+
       def self.retrieve(*args)
         OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4242', last4:"4242"})
       end

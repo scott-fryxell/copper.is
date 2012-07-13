@@ -13,28 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 10) do
 
-  create_table "auth_sources", :force => true do |t|
-    t.string   "uid"
-    t.string   "site"
-    t.string   "user"
-    t.string   "name"
-    t.string   "image"
-    t.string   "location"
-    t.string   "urls"
-    t.string   "token"
-    t.string   "secret"
-    t.string   "type"
-    t.string   "auth_source_state"
-    t.integer  "author_id"
-    t.integer  "fan_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-  end
-
-  add_index "auth_sources", ["type", "site"], :name => "index_auth_sources_on_type_and_site"
-  add_index "auth_sources", ["type", "uid"], :name => "index_auth_sources_on_type_and_uid"
-  add_index "auth_sources", ["type", "user"], :name => "index_auth_sources_on_type_and_user"
-
   create_table "authors", :force => true do |t|
     t.string   "name"
     t.string   "line1"
@@ -45,14 +23,13 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "territory"
     t.string   "city"
     t.integer  "primary_channel_id"
-    t.integer  "user_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
 
   create_table "channels", :force => true do |t|
     t.integer  "page_id"
-    t.string   "user"
+    t.string   "uri"
     t.string   "site"
     t.string   "type"
     t.datetime "created_at", :null => false
@@ -64,14 +41,28 @@ ActiveRecord::Schema.define(:version => 10) do
 
   create_table "fans", :force => true do |t|
     t.string   "name"
-    t.integer  "tip_preference_in_cents", :default => 25,    :null => false
-    t.string   "stripe_customer_id"
-    t.boolean  "accept_terms",            :default => false
-    t.datetime "created_at",                                 :null => false
-    t.datetime "updated_at",                                 :null => false
+    t.integer  "tip_preference_in_cents", :default => 25, :null => false
+    t.string   "stripe_id"
+    t.integer  "author_id"
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
   end
 
-  add_index "fans", ["stripe_customer_id"], :name => "index_fans_on_stripe_customer_id"
+  add_index "fans", ["stripe_id"], :name => "index_fans_on_stripe_id"
+
+  create_table "identities", :force => true do |t|
+    t.string   "uid"
+    t.string   "user_name"
+    t.string   "token"
+    t.string   "secret"
+    t.string   "type"
+    t.string   "identity_state"
+    t.integer  "author_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "identities", ["type", "uid"], :name => "index_identities_on_type_and_uid"
 
   create_table "messages", :force => true do |t|
     t.string   "subject"

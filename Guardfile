@@ -8,7 +8,7 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('spec/spec_helper.rb')
 end
 
-guard 'rspec', :version => 2, :cli => '--color --format doc --drb',
+guard 'rspec', :version => 2, :cli => '--color --format doc --fail-fast --drb',
                :all_on_start => true, :all_after_pass => false do
   watch(/^spec\/.+\.rb$/) { 'spec' }
   watch(/^spec\/.+\.yml$/) { 'spec' }

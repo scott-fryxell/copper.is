@@ -25,8 +25,8 @@ describe Page do
             Channel.where('site = ?', site).count.should eq(1)
           end
           if auth
-            it "AuthSource with site:#{site.inspect}" do
-              AuthSource.where('site = ?', site).count.should eq(1)
+            it "Identity with site:#{site.inspect}" do
+              Identity.where('site = ?', site).count.should eq(1)
             end
           end
         end
@@ -40,13 +40,14 @@ describe Page do
             Page.where('url = ?',Page.normalize(url)).first.author.should eq(@author)
           end
         end
+        it 'creates an author' do
+          Author.count.should eq(1)
+        end
+
       end
       describe 'confidence of channels' do
         it 'orders the channels by how confident we are about them'
         it 'only these channels are found'
-      end
-      it 'creates an author' do
-        Author.count.should eq(1)
       end
     end
   end

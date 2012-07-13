@@ -4,7 +4,7 @@ class Channel < ActiveRecord::Base
   has_many :messages
   has_one :author, :through => :page
   
-  attr_accessible :site, :user, :type
+  # attr_accessible :site, :user, :type
   
   def you_have_tips_waiting!(check_id)
     messages.create! subject:     'you_have_tips_waiting',

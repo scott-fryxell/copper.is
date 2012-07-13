@@ -1,14 +1,14 @@
 class Author < ActiveRecord::Base
   has_paper_trail
   has_many :pages
-  has_many :identity
+  has_many :identities
   has_many :channels, :through => :pages
   has_many :tips, :through => :pages
   has_many :checks
   has_one  :fan
 
   def merge!(rhs)
-    self.auth_sources += rhs.auth_sources
+    self.identities += rhs.identities
     self.pages += rhs.pages
     save!
     # rhs.destroy
