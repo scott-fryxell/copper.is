@@ -36,11 +36,11 @@ $(document).on("copper:home_index", function (){
 
   $(document).on("copper:button_installed",  function(event){
     // hide the welcome screen and show congrats
-    $('#join').delay(800).fadeOut(800);
-    $('#congrats').delay(1600).fadeIn(800);
-    $('#facebook').delay(1600).fadeIn(800);
-    $('body > div').delay(1600).fadeIn(800, function (){
-      $('body > div').delay(1600).css("display",'block');
+    $('#join').delay(0).fadeOut(800);
+    $('#congrats').delay(800).fadeIn(800);
+    $('#facebook').delay(800).fadeIn(800);
+    $('body > div').delay(800).fadeIn(800, function (){
+      $('body > div').delay(800).css("display",'block');
     });
   });
 
