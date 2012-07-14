@@ -2,9 +2,6 @@
   height:133em;
   width:auto;
   margin:auto;
-  & * {
-//    outline:1px solid silver;
-  }
   & > section{
     width:grid-width(22);
     margin: 0 auto 0 auto;
@@ -115,7 +112,6 @@
     margin-right:-15em;
   }
 
-
   #samples {
     @include box-shadow(inset 0 .75em 1.5em -0.75em rgba(0, 0, 0, .1), inset 0 -0.5em 1.5em -1em rgba(0, 0, 0, .3));
     padding:0;
@@ -195,8 +191,6 @@
     overflow:hidden;
     @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
   }
-
-
 
   #join {
     background: image-url('home/watermark.svg') no-repeat 50% 300%;
@@ -426,7 +420,6 @@
     position:relative;
     float:left;
   }
-
   .settings header {
     display:inline-block;
     width:grid-width(8);
