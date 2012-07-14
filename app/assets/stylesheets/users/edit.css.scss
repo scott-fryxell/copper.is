@@ -1,4 +1,8 @@
 #users_edit {
+  #signed_in > nav > a[href='/users/me/edit'] > img {
+    opacity:1;
+  }
+  
   & > nav {
     margin-bottom:3em;
     text-align:center;
