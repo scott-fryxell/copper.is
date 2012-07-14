@@ -2,8 +2,10 @@
 @import "shared/forms";
 @import "shared/ie";
 @import "home/index";
-@import "users/edit";
 @import "home/invite";
+@import "users/edit";
+@import "users/show";
+
 
 html {
   position:relative;
