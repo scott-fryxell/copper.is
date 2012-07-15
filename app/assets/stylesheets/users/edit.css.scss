@@ -8,20 +8,8 @@
     text-align:center;
   }
   & > nav > a {
-    text-decoration:none;
-    &:after{
-      content: " ";
-      width:.75em;
-      height:.75em;
-      margin-left:.35em;
-      display:inline-block;
-      opacity:.5;
-      @include transform(rotate(-90deg));
-      background: image-url('shared/triangles/isosceles.svg') no-repeat 0% 0%;
-      background-size: .75em;
-    }
+    @include settings_pointer
   }
-
   #banner {
     position:inherit;
     background-color: transparent;

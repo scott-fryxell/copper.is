@@ -48,5 +48,85 @@
     width:5em;
 
   }
+  
+  #stats {
+    padding-bottom:1em;
+  }
+  #stats > header {}
+  #stats > header > h1 {
+    font-size:1.5em;
+  }
+  #stats > div,
+  #stats > footer {
+    vertical-align:middle;
+    height:grid-width(2);
+    display:inline-block;
+  }
+  #stats > div {
+    padding:1em 0 0 2em;
+    background-color:$offset_color;
+    margin-right:.5em;
+    width:grid-width(4);
+  }
+  #stats > div > h2 {
+    font-family: 'Cantarell', sans-serif;
+    font-size:.85em;
+    color:$text;
+  }
+  #stats > div > p {
+    margin:.4em 0 0 0;
+    font-family: 'Bree Serif', serif;
+    font-size:1.5em;
+    color:$title;
+  }
+  #stats > div > p > span {
+    padding:0 1em 0 0;
+    line-height:1em;
+  }
+  #stats > div > p > span:before {
+    content:"$";
+  }
+  #stats > div > p > button {
+    @include copper_button;
+    font-size:.75em;
+    padding:0 .25em;
+    vertical-align:top;
+    border:none;
+  }
+  #stats > div:nth-child(2){
+    position:relative;
+    padding-left:0;
+  }
+  #stats > div:nth-child(2):after{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:100%;
+    background-color: $offset_color;
+    width: 9999px;   /* some huge width */
+  }
+  #stats > footer {
+    position:relative;
+    padding-top:1em;
+    background-color: $offset_color;
+  }
+  #stats > footer:after {
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:100%;
+    background-color: $offset_color;
+    width: 9999px;   /* some huge width */
+  }
+  #stats > footer > a {
+    display:inline-block;
+    margin: 1.75em 3em;
+    width:10em;
+    font-family: 'Doppio One', sans-serif;
+    font-size:.75em;
+    @include settings_pointer
+  }
 
 }

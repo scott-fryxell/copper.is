@@ -13,6 +13,29 @@
   </p>
 </section>
 
-<section id="stats"></section>
+<section id="stats">
+  <header>
+    <h1>Your Stats</h1>
+  </header>
+  <div>
+    <h2>Authors tipped</h2>
+    <p>24</p>
+  </div>
+  <div>
+    <h2>Average Tip</h2>
+    <p>75</p>
+  </div>
+  <div>
+    <h2>Default Tip</h2>
+    <p>
+      <span itemprop="tip_preference_in_cents"><%=current_user.tip_preference_in_cents%></span>
+      <button>+</button>
+      <button>-</button>
+    </p>
+  </div>
+  <footer>
+    <a href="/users/me/edit">Edit your settings</a>
+  </footer>
+</section>
 
 <section id="tips"></section>

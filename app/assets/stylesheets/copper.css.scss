@@ -6,6 +6,10 @@
 @import "users/edit";
 @import "users/show";
 
+html {
+  //set width with pseudo selectors without horizontal scrollbars
+  overflow-x: hidden;
+}
 
 html {
   position:relative;

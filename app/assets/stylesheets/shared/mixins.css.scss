@@ -6,6 +6,7 @@ $darkness:#333333;
 $header:rgba(42,41,41,0.75);
 $title:rgba(102,102,102,1);
 $text:rgba(102,102,102,0.8);
+
 @import url(http://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One);
 @import "normalize";
 @import "bourbon";
@@ -55,6 +56,21 @@ $text:rgba(102,102,102,0.8);
   border:0.10em solid darken($offset_color, 1%);
   background-color: $offset_color;
 }
+
+@mixin settings_pointer{
+  text-decoration:none;
+  &:after{
+    content:"";
+    width:.75em;
+    height:.75em;
+    margin-left:.35em;
+    display:inline-block;
+    opacity:.5;
+    @include transform(rotate(-90deg));
+    background: image-url('shared/triangles/isosceles.svg') no-repeat 0% 0%;
+    background-size: .75em;
+  }
+}
 @mixin triangle_down($color) {
   position:relative;
   &:after {
@@ -100,6 +116,7 @@ $text:rgba(102,102,102,0.8);
     border-bottom: 1em solid $color;
   }
 }
+
 @mixin keyframes($name) {
   @-moz-keyframes #{$name} { @content; }
   @-webkit-keyframes #{$name} { @content; }
