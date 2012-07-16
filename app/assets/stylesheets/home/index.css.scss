@@ -22,18 +22,12 @@
     @include copper_button;
   }
   #banner {
-    width:auto;
-    z-index:2;
-    background-color:black;
-  }
-  #banner > header {
     background: image-url('home/banner.png') no-repeat center top;
-    @include background-size(cover);
-    width:grid-width(22);
     height: 26.8em;
-    margin: 0 auto 0 auto;
-    display:block;
+    @include background-size(cover);
+    @include full_width(black)
   }
+  #banner > header {}
   #banner > header > h1 {
     display:inline-block;
     width:grid-width(4);
@@ -425,7 +419,6 @@
   #settings > div:first-child > header {
     margin-left:0;
   }
-  
   #settings > div > img {
     position:absolute;
     top:2em;
