@@ -9,9 +9,6 @@
 html {
   //set width with pseudo selectors without horizontal scrollbars
   overflow-x: hidden;
-}
-
-html {
   position:relative;
   min-width: 60em;
   min-height:30em;
@@ -50,9 +47,8 @@ body {
     list-style: none;
   }
 }
-body > header {
-  position:relative;
-  background-color: $header;
+body > header { 
+  @include full_width($header);
   width:grid-width(26);
   height:3.4em;
   hgroup {
@@ -178,7 +174,7 @@ body > section a {
 body > footer {
   padding-top:1em;
   padding-bottom:0.75em;
-  background-color:$darkness;
+  @include full_width($darkness);
 }
 body > footer > h3 {
   font-size:.85em;

@@ -129,3 +129,35 @@ $text:rgba(102,102,102,0.8);
   from { @include transform(rotate(0deg)); }
   to { @include transform(rotate(360deg)); }
 }
+
+// expand a backroud color the full width of the page
+@mixin full_width($color){
+  @include left_width($color);
+  @include right_width($color);
+}
+@mixin left_width($color){
+  background-color:$color;
+  position:relative;
+  &:before {
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:100%;
+    background-color: $color;
+    width: 9999px;   /* some huge width */
+  }
+}
+@mixin right_width($color){
+  background-color:$color;
+  position:relative;
+  &:after{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    right:100%;
+    background-color: $color;
+    width: 9999px;   /* some huge width */
+  }
+}

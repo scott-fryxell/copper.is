@@ -15,18 +15,18 @@
 
 <section id="stats">
   <header>
-    <h1>Your Stats</h1>
+    <h1>Your stats</h1>
   </header>
   <div>
     <h2>Authors tipped</h2>
     <p>24</p>
   </div>
   <div>
-    <h2>Average Tip</h2>
+    <h2>Average tip</h2>
     <p>75</p>
   </div>
   <div>
-    <h2>Default Tip</h2>
+    <h2>Default tip</h2>
     <p>
       <span itemprop="tip_preference_in_cents"><%=current_user.tip_preference_in_cents%></span>
       <button>+</button>
@@ -38,4 +38,27 @@
   </footer>
 </section>
 
-<section id="tips"></section>
+<section id="tips">
+  <header>
+    <h1>What you've tipped</h1>
+    <nav>
+      <h2>filter by</h2>
+      <a href="#recent">Most recent</a>
+      <a href="#author">Author</a>
+      <a href="#author">Site</a>
+      <a href="#author">Status</a>
+    </nav>
+  </header>
+  
+  <aside>
+    
+  </aside>
+  
+  <ul id="grid">
+    <li></li>
+  </ul>
+  
+  <footer>
+    <a href="/users/me/edit">Edit your settings</a>
+  </footer>
+</section>
