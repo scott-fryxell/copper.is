@@ -1,14 +1,14 @@
 <section id="banner">
   <header>
-    <%= image_tag "icons/silhouette.svg", class:"identity", alt:'me' %>    
+    <%= image_tag "icons/silhouette.svg", class:"identity", alt:'me' %>
   </header>
   <hgroup>
     <h1>Your Profile</h1>
     <p><%=@user.name%><a href="/signout">not you?</a></p>
   </hgroup>
   <p>
-    Copper and tempus porttitor. Maecenas sed diam eget risus variusla ndit 
-    sit amet non magna. Curabitur blandit tempus porttitorumiis empus 
+    Copper and tempus porttitor. Maecenas sed diam eget risus variusla ndit
+    sit amet non magna. Curabitur blandit tempus porttitorumiis empus
     porttito  sit amet non ma  sitmet non marumiis.
   </p>
 </section>
@@ -49,15 +49,58 @@
       <a href="#author">Status</a>
     </nav>
   </header>
-  
+
   <aside>
-    
+    <figure>
+      <figcaption itemprop="amount_in_cents">75</figcaption>
+      <img src="/tips/12356/image" alt="tip image">
+    </figure>
+
+    <dl>
+      <dt>Author</dt>
+      <dd>Johny Appleseed</dd>
+      <dt>source</dt>
+      <dd>flickr.com</dd>
+      <dt>status</dt>
+      <dd>pending</dd>
+    </dl>
+    <nav>
+      <a href="#more">More by author</a>
+      <a href="#original">Go to original</a>
+      <a href="#delete">Cancel tip</a>
+    </nav>
+
+    <footer>
+      <nav>
+        <a href="#twitter_share"><img src="/providers/twitter/logo.png" alt="share on twitter"></a>
+        <a href="#facebook_share"><img src="/providers/facebook/logo.png" alt="share on facebook"></a>
+        <a href="#tumbler_share"><img src="/providers/tumblr/logo.png" alt="share on facebook"></a>
+      </nav>
+      <time datetime="2012-07-15T18:16:56-07:00">2012-07-15</time>
+    </footer>
   </aside>
-  
+
   <ul id="grid">
     <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
   </ul>
-  
+
   <footer>
     <a href="/users/me/edit">Edit your settings</a>
   </footer>
