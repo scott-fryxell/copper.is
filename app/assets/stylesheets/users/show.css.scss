@@ -129,9 +129,6 @@
     padding:grid-width(1);
     background-color:$offset_color;
   }
-  #tips > aside * {
-//    outline:1px solid red;
-  }
   #tips > aside > figure {
     display:inline-block;
     position:relative;
@@ -217,6 +214,32 @@
     float:right;
   }
   #tips > ol {
+    padding:0;
     min-height:20em;
+    margin-top:1.5em;
+  }
+  #tips > ol > li {
+    display:inline-block;
+    width:8.6em;
+    margin: 0 .5em .75em 0;
+    min-height:5.5em;
+    background-color:#aca79a;
+  }
+  #tips > ol > li:nth-child(6n) {
+    margin-right:0;
+  }
+
+  #tips > ol * {
+    outline:1px solid silver;
+  }
+  #tips > footer {
+    padding:5em;
+  }
+  #tips > footer > a {
+    font-size:.85em;
+    display:block;
+    margin: 0 auto 0 auto;
+    width: 12em;
+    @include settings_pointer;
   }
 }
