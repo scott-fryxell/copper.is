@@ -45,6 +45,7 @@ $text:rgba(102,102,102,0.8);
   color:$title;
   font-family: 'Bree Serif', serif;
   font-weight:normal;
+  text-transform:capitalize;
 }
 @mixin help_text {
   font-family: 'Nothing You Could Do', cursive;
@@ -65,6 +66,7 @@ $text:rgba(102,102,102,0.8);
 }
 
 @mixin settings_pointer {
+  text-transform:uppercase;
   text-decoration:none;
   &:after{
     content:"";

@@ -100,12 +100,11 @@
   #stats > footer > a {
     display:inline-block;
     margin: 1.75em 3em;
-    width:10em;
+    width:12em;
     font-family: 'Doppio One', sans-serif;
     font-size:.75em;
     @include settings_pointer
   }
-
   #tips {}
   #tips > header > h1 {
     font-size:1.5em;
