@@ -48,7 +48,7 @@ describe "home page experience" do
     page.should have_no_css('#join', visible:true)
     page.should have_css('#congrats', visible:true)
     page.should have_css('#facebook', visible:true)
-    page.should have_css('.settings', count:2, visible:true)
+    page.should have_css('#settings', visible:true)
   end
 
   it "should carosel the sample images"
