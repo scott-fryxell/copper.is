@@ -48,6 +48,7 @@
 
   #stats {
     padding-bottom:1em;
+    margin-bottom:3em;
   }
   #stats > header {}
   #stats > header > h1 {
@@ -75,18 +76,28 @@
     @include header_text;
   }
   #stats > div > p > span {
-    padding:0 1em 0 0;
+    padding:0 .5em 0 0;
     line-height:1em;
   }
   #stats > div > p > span:before {
     content:"$";
   }
   #stats > div > p > button {
-    @include copper_button;
+    padding-right:.75em;
+    font-family: 'Doppio One', sans-serif;
+    background-color:$button_color;
+    color:white;
     font-size:.75em;
-    padding:0 .25em;
-    vertical-align:top;
-    border:none;
+    display:inline-block;
+    width:1em;
+    height:1em;
+    line-height:.5em;
+    border:1px solid darken($button_color, 5%);
+    -webkit-appearance: none;
+    @include box-shadow(1px 1px 1px 0em rgba(0, 0, 0, .5));
+  }
+  #stats > div > p > button:active {
+    @include box-shadow(0px 0px 0px 0em rgba(0, 0, 0, .5));
   }
   #stats > div:nth-child(2) {
     padding-left:0;
@@ -136,6 +147,8 @@
     margin-right:grid-width(1);
   }
   #tips > aside > figure > img {
+    margin-left:.5em;
+    margin-top:.5em;
     width:grid-width(8);
     height:grid-width(5);
   }
@@ -179,7 +192,7 @@
     border-radius:.15em;
     font-size:0.85em;
     font-family: 'Cantarell', sans-serif;
-    @include background-image( linear-gradient(#d5d1c8 25%, darken(#d5d1c8, 15%) 100%));
+    @include background-image( linear-gradient(#d5d1c8 0%, darken(#d5d1c8, 15%) 100%));
   }
   #tips > aside > nav > a:after {
     content: ">>";
@@ -187,11 +200,20 @@
     padding-left:.5em;
     vertical-align:middle;
   }
+  #tips > aside > nav > a:nth-child(3) {
+    @include background-image( linear-gradient(#d5d1c8 0%, lighten(#d5d1c8, 2%) 100%));
+  }
+  #tips > aside > nav > a:nth-child(3):hover{
+    color:red;
+  }
+  #tips > aside > nav > a:nth-child(3):after {
+    content:"";
+  }
   #tips > aside > figure > figcaption {
     text-align:center;
     vertical-align:middle;
     position:absolute;
-    top:0;
+    top:.25em;
     right:0.25em;
     @include ribbon;
     min-width:1em;
@@ -209,6 +231,23 @@
   }
   #tips > aside > footer > nav {
     display:inline-block;
+  }
+  #tips > aside > footer * {
+//    outline:1px solid silver;
+  }
+  #tips > aside > footer > nav > h2 {
+    display:inline-block;
+    @include text;
+    font-size:0.7em;
+    padding-top:.25em;
+    margin-left:.5em;
+    vertical-align:top;
+  }
+  #tips > aside > footer > nav > a {
+    margin-right:.25em;
+  }
+  #tips > aside > footer > nav > a > img {
+    width:1.25em;
   }
   #tips > aside > footer > time {
     float:right;
