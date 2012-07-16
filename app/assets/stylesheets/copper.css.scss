@@ -13,10 +13,7 @@ html {
   min-width: 60em;
   min-height:30em;
   background-image: image-url('shared/texture_light.png');
-  font-family: 'Cantarell', sans-serif;
-  font-weight:normal;
-  line-height:1.25em;
-  color:$text;
+  @include text;
   &:after {
     content:"";
     position:absolute;
@@ -33,15 +30,16 @@ body {
   width:grid-width(26);
   margin: 0 auto 0 auto;
   h1, h2, h3, h4, h5, h6 {
-    color:$title;
-    font-family: 'Bree Serif', serif;
-    font-weight:normal;
+    @include header_text;
   }
   h2 {
     font-size:1.34em;
   }
   p {
     font-size:0.85em;
+  }
+  a {
+    text-decoration:none;
   }
   ul, ol, dl {
     list-style: none;

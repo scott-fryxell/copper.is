@@ -34,6 +34,18 @@ $text:rgba(102,102,102,0.8);
   @include background-size(cover);
 }
 
+@mixin text {
+  font-size:1em;
+  font-family: 'Cantarell', sans-serif;
+  font-weight:normal;
+  color:$text;
+  line-height:1.25em;
+}
+@mixin header_text {
+  color:$title;
+  font-family: 'Bree Serif', serif;
+  font-weight:normal;
+}
 @mixin help_text {
   font-family: 'Nothing You Could Do', cursive;
   position:relative;
@@ -52,12 +64,7 @@ $text:rgba(102,102,102,0.8);
   }
 }
 
-@mixin section {
-  border:0.10em solid darken($offset_color, 1%);
-  background-color: $offset_color;
-}
-
-@mixin settings_pointer{
+@mixin settings_pointer {
   text-decoration:none;
   &:after{
     content:"";
@@ -71,6 +78,7 @@ $text:rgba(102,102,102,0.8);
     background-size: .75em;
   }
 }
+
 @mixin triangle_down($color) {
   position:relative;
   &:after {
