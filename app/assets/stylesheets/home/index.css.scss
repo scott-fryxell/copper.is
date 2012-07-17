@@ -22,12 +22,16 @@
     @include copper_button;
   }
   #banner {
-    background: image-url('home/banner.png') no-repeat center top;
+    background: image-url('home/katie.jpg') no-repeat center top;
     height: 26.8em;
+    width:auto;
     @include background-size(cover);
     @include full_width(black)
   }
-  #banner > header {}
+  #banner > header {
+    margin:0 auto 0 auto;
+    width:grid-width(22);
+  }
   #banner > header > h1 {
     display:inline-block;
     width:grid-width(4);
