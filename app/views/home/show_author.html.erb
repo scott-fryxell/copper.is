@@ -4,7 +4,7 @@
   </header>
   <hgroup>
     <h1>Your Profile</h1>
-    <p><%=@user.name%><a href="/signout">not you?</a></p>
+    <p><%=@current_user.name%><a href="/signout">not you?</a></p>
   </hgroup>
   <p>
     Copper and tempus porttitor. Maecenas sed diam eget risus variusla ndit
@@ -18,29 +18,34 @@
     <h1>Your stats</h1>
   </header>
   <div>
-    <h2>Authors tipped</h2>
+    <h2>Tip count</h2>
     <p>24</p>
   </div>
   <div>
-    <h2>Average tip</h2>
+    <h2>Tips sent</h2>
     <p>75</p>
   </div>
   <div>
-    <h2>Default tip</h2>
-    <p>
-      <span itemprop="tip_preference_in_cents">0.<%=current_user.tip_preference_in_cents%></span>
-      <button>+</button>
-      <button>-</button>
-    </p>
+    <h2>Tips pending</h2>
+    <p>5</p>
   </div>
-  <footer>
-    <a href="/users/me/edit">Edit your settings</a>
-  </footer>
+  <div>
+    <h2>highest tip</h2>
+    <p>$10.25</p>
+  </div>
+  <div>
+    <h2>Average tip</h2>
+    <p>$0.75</p>
+  </div>
+  <div>
+    <h2>Total tips</h2>
+    <p>$6.12</p>
+  </div>
 </section>
 
 <section id="tips">
   <header>
-    <h1>What you've tipped</h1>
+    <h1>What's been tipped</h1>
     <nav>
       <h2>Filter by</h2>
       <a href="#recent" class="selected">Most recent</a>
@@ -49,37 +54,6 @@
       <a href="#status">Status</a>
     </nav>
   </header>
-
-  <aside>
-    <figure>
-      <img src="/tips/12356/image" alt="tip image">
-      <figcaption itemprop="amount_in_cents">0.75</figcaption>
-    </figure>
-
-    <dl>
-      <dt>Author</dt>
-      <dd>Johny Appleseed</dd>
-      <dt>source</dt>
-      <dd>flickr.com</dd>
-      <dt>status</dt>
-      <dd>pending</dd>
-    </dl>
-    <nav>
-      <a href="#more">More by author</a>
-      <a href="#original">Go to original</a>
-      <a href="#delete">Cancel tip</a>
-    </nav>
-
-    <footer>
-      <nav>
-        <a href="#twitter_share"><%= image_tag "providers/twitter/logo.png", :title => "logo" %></a>
-        <a href="#facebook_share"><%= image_tag "providers/facebook/logo.png", :title => "logo" %></a>
-        <a href="#tumbler_share"><%= image_tag "providers/tumblr/logo_small.png", :title => "logo" %></a>
-        <h2>Share with friends</h2>
-      </nav>
-      <time datetime="2012-07-15T18:16:56-07:00">2012-07-15</time>
-    </footer>
-  </aside>
 
   <ol>
     <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
@@ -102,7 +76,40 @@
     <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
   </ol>
 
-  <footer>
-    <a href="/users/me/edit">Edit your settings</a>
-  </footer>
 </section>
+
+<section id="settings">
+  <div>
+    <header>
+      <h3>Get the badge</h3>
+      <p>
+        Place this on your site to drive tips to your work! Select a size.
+      </p>
+      <select name="size" id="size" size="1">
+        <option value="" disabled>Select Size</option>
+        <option value="100">Small</option>
+        <option value="145">Medium</option>
+        <option value="175">large</option>
+      </select>
+
+    </header>
+    <figure></figure>
+  </div>
+  <div>
+    <header>
+      <h3>Embed code</h3>
+      <a>Copy to clipboard</a>
+    </header>
+    <textarea name=""></textarea>
+  </div>
+</section>
+
+<section id="call_to_action">
+  <a href="/users/me/edit">Edit your settings</a>
+</section>
+
+<script id="badge_template" type="text/x-jquery-tmpl">
+  <img class="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/icons/button.png"
+       style="cursor:pointer; width:${size}px;" title="Tip this content"
+       onclick="<%= render :partial=>'home/wrapped_launcher', :formats=>[:js] %>">
+</script>
