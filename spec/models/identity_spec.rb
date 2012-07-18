@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AuthSource, :broken do
+describe Identity, :broken do
   before do
     DatabaseCleaner.clean
     @user = User.create!
