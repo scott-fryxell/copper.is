@@ -32,14 +32,14 @@
   </form>
   <p>So we can tell you when you’ve been tipped</p>
 </section>
-
 <section id="address" class="form">
   <header>
     <h2>Step 3: Get Check</h2>
   </header>
   <form method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
     <input itemprop="name" name='user[name]' type="text" placeholder="Your Name/Company Name" required>
-    <input itemprop="street" name='user[street]' type="text" placeholder="Street Address" required>
+    <input itemprop="street1" name='user[street1]' type="text" placeholder="Street Address" required>
+    <input itemprop="street2" name='user[street2]' type="text" placeholder="Street Address" required>
     <input itemprop="city" name='user[city]' type="text" placeholder="City/Town" required>
     <select name="user[state]" itemprop='state'>
       <option value="" disabled>State</option>
@@ -50,7 +50,6 @@
   </form>
   <p>So we can pay you</p>
 </section>
-
-<section id="submit">
-  <a>Submit!</a>
-</section>
+<nav>
+  <button>Submit!</button>
+</nav>

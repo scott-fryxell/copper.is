@@ -1,7 +1,4 @@
-#users_show, #home_show_author {
-  #signed_in > nav > a[href='/users/me'] > img {
-    opacity:1;
-  }
+#users_show, #home_show_author, #home_edit_author {
   #banner {
     margin-top:2em;
     margin-bottom:4em;
@@ -9,6 +6,10 @@
   #banner > header {
     display:inline-block;
     width:grid-width(3);
+  }
+  #banner > header > img {
+    vertical-align:bottom;
+    width:5em;
   }
   #banner > hgroup {
     vertical-align:top;
@@ -40,12 +41,9 @@
     display:inline-block;
     width:grid-width(13);
   }
-  #banner > header > img {
-    vertical-align:bottom;
-    width:5em;
+}
 
-  }
-
+#users_show, #home_show_author {
   #stats {
     padding-bottom:1em;
     margin-bottom:3em;
@@ -180,7 +178,6 @@
   }
   #tips > aside > dl > dt {}
   #tips > aside > dl > dd {
-    -webkit-margin-start: 0;
     @include header_text;
     font-size:1.2em;
     margin-bottom:1.5em;
@@ -223,7 +220,7 @@
   #tips > aside > nav > a:nth-child(3) {
     @include background-image( linear-gradient(#d5d1c8 0%, lighten(#d5d1c8, 2%) 100%));
   }
-  #tips > aside > nav > a:nth-child(3):hover{
+  #tips > aside > nav > a:nth-child(3):hover {
     color:red;
   }
   #tips > aside > nav > a:nth-child(3):after {
@@ -269,26 +266,15 @@
   #tips > ol > li:nth-child(6n) {
     margin-right:0;
   }
+}
 
-  #tips > footer, #call_to_action {
-    padding:5em;
-  }
-  #tips > footer > a, #call_to_action > a {
-    font-size:.85em;
-    display:block;
-    margin: 0 auto 0 auto;
-    width: 12em;
-    @include settings_pointer;
+#users_show {
+  #signed_in > nav > a[href='/users/me'] > img {
+    opacity:1;
   }
 }
 
 #home_show_author {
-  #signed_in > nav > a[href='/users/me'] > img {
-    opacity:.3;
-  }
-  & * {
-//    outline:1px solid silver;
-  }
   #stats > div {
     width:7.25em;
     padding-left:1.25em;
@@ -312,7 +298,6 @@
     display:inline-block;
     background-color:$offset_color;
   }
-
   #settings > div:first-child {
     width:27em;
     margin-right:.5em;
@@ -365,5 +350,28 @@
     width:grid-width(8.25);
     height:4em;
     background-color: #CCCCCC;
+  }
+}
+
+#home_edit_author {
+  #identities > ul {
+    width:grid-width(7);
+    display:inline-block;
+    margin-right:grid-width(1);
+  }
+  #identities h2 {
+    margin-bottom:.5em;
+    @include text
+  }
+  #identities > nav {
+    display:inline-block;
+  }
+  #identities > nav > a {
+    display:inline-block;
+    margin-right:.5em;
+  }
+  #address {
+    min-height:grid-width(4);
+    margin-bottom:grid-width(3);
   }
 }

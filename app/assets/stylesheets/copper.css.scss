@@ -44,6 +44,7 @@ body {
   }
   a {
     text-decoration:none;
+    cursor:pointer;
   }
   ul, ol, dl {
     list-style: none;
@@ -216,6 +217,21 @@ body > footer > nav > a {
     text-decoration:none !important;
   }
 
+}
+
+body > nav {
+  padding:5em;
+}
+body > nav > a,
+body > nav > button  {
+  font-size:.85em;
+  display:block;
+  margin: 0 auto 0 auto;
+  width: 13em;
+  color:$text;
+}
+body > nav > a {
+  @include settings_pointer;
 }
 
 .working {
