@@ -10,7 +10,6 @@ class Identities::Youtube < Identity
 
   def inform_non_user_of_promised_tips
     super do
-
     end
   end
 
@@ -43,7 +42,6 @@ class Identities::Youtube < Identity
   end
 
   def channel_id
-
   end
 
   def comment(message)

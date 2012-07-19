@@ -1,7 +1,7 @@
 class Identities::Twitter < Identity
   include Enqueueable
   include TwitterMessages
-  
+
   # validates :username, presence: true
 
   def self.discover_uid_and_username_from_url url
@@ -19,7 +19,7 @@ class Identities::Twitter < Identity
     end
   end
 
-  def populate_username_from_uid! 
+  def populate_username_from_uid!
     super do
       self.username = ::Twitter.user(self.uid.to_i).screen_name
     end
