@@ -4,11 +4,23 @@ module TwitterMessages
   end
 end
 
+
+
+module PhonyMessages
+  def _send_wanted_message
+    logger.info "#{self.inspect} has been messaged!!!!"
+  end
+end
+
+
+
 module YoutubeMessages
   def _send_wanted_message
     comment('foobar').post
   end
 end
+
+
 
 module FacebookMessages
   def _send_wanted_message

@@ -1,7 +1,7 @@
 class Identities::Vimeo < Identity
   def self.discover_uid_and_username_from_url url
   end
-
+  
   def discover_uid_and_username_from_url
   end
 
@@ -15,7 +15,7 @@ class Identities::Vimeo < Identity
     super do
     end
   end
-
+  
   def populate_username_from_uid!
     super do
     end
