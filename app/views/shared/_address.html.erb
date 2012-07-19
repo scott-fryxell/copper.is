@@ -1,0 +1,13 @@
+<form method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
+  <input itemprop="name" name='user[name]' type="text" placeholder="Your Name/Company Name" required>
+  <input itemprop="street1" name='user[street1]' type="text" placeholder="Street Address" required>
+  <input itemprop="street2" name='user[street2]' type="text" placeholder="Street Address" required>
+  <input itemprop="city" name='user[city]' type="text" placeholder="City/Town" required>
+  <input itemprop="zip" name='user[zip]' type="text" placeholder="Zip Code" required>
+  <select name="user[state]" itemprop='state'>
+    <option value="" disabled>State</option>
+  </select>
+  <select name="user[Country]" itemprop='country'>
+    <option value="" disabled>Country</option>
+  </select>
+</form>

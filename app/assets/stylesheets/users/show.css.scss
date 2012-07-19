@@ -1,4 +1,4 @@
-#users_show, #home_show_author, #home_edit_author {
+#users_show, #home_show_author, #home_invite, #home_edit_author {
   #banner {
     margin-top:2em;
     margin-bottom:4em;
@@ -40,6 +40,56 @@
     margin-top:0;
     display:inline-block;
     width:grid-width(13);
+  }
+
+  #address {
+    padding-bottom:3em;
+    position:relative;
+    &:after {
+      margin-left:-2em;
+      position:absolute;
+      bottom:-1.5em;
+      left:50%;
+      content:"";
+      width: 0;
+      height: 0;
+      border-left: 2em solid transparent;
+      border-right: 2em solid transparent;
+      border-top: 1.5em solid $offset_color;
+    }
+  }
+  #address > p {
+    padding-bottom:3em;
+    float:right;
+    vertical-align:top;
+    padding-left:0;
+    width:10em;
+    &:before {
+      @include transform(rotate(140deg));
+      background-image: image-url('arrows/swoop_down.svg');
+      background-repeat: no-repeat;
+      background-position-x: 90%;
+      background-position-y: 100%;
+    }
+
+  }
+  #address > form > input {
+    width:grid-width(13);
+  }
+  #address > form > input[itemprop=city] {
+    width:13em;
+  }
+  #address > form > select[itemprop=state] {
+    width:grid-width(2.5);
+  }
+  #address > form > select[itemprop=country] {
+    width:grid-width(4.5);
+  }
+  #address > form > input[itemprop=street2] {
+    width:16.5em;
+  }
+  #address > form > input[itemprop=zip] {
+    width:grid-width(2);
   }
 }
 
