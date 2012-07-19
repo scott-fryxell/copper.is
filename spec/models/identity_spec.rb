@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Identity, :broken do
+describe Identity do
   before do
     DatabaseCleaner.clean
     @user = User.create!
@@ -12,39 +12,39 @@ describe Identity, :broken do
     @user.should be_valid
   end
 
-  it 'user has #auth_sources' do
-    @user.auth_sources.should be_empty
+  it 'user has #identities' do
+    @user.identities.should be_empty
   end
 
-  it '#auth_sources can add_facebook' do
-    @user.auth_sources.create!(facebook:'mgarriss')
+  it '#identities can add_facebook' do
+    @user.identities.create!(provider:'facebook', username:'mgarriss')
   end
 
-  it '#auth_sources can add google!' do
-    @user.auth_sources.create!(google:'mgarriss@gmail.com')
+  it '#identities can add google!' do
+    @user.identities.create!(provider:'google', username:'mgarriss@gmail.com')
   end
 
   describe 'add_twitter!' do
-    it 'is method on auth_sources relation' do
-      @user.auth_sources.add_twitter!(username:'_ugly')
+    it 'is method on identities relation' do
+      @user.identities.create!(provider:'twitter', username:'_ugly')
     end
 
-    it 'steals auth from another user if it exists' do
-      twitter = @user.auth_sources.create!(twitter:'_ugly')
+    it 'steals auth from another user if it exists' do pending
+      twitter = @user.identities.create!(provider:'twitter', username:'_ugly')
       @new_user = User.create!
       twitter.reload
-      @new_user.create!(twitter:'_ugly').should eq(twitter)
-      @user.auth_sources.should be_empty
-      @new_user.auth_sources.size.should eq(1)
+      @new_user.identities.create!(provider:'twitter', username:'_ugly').should eq(twitter)
+      @user.identities.should be_empty
+      @new_user.identities.size.should eq(1)
     end
   end
 
-  it 'a user can had many auth sources of same type' do
-    @user.auth_sources.create!(twitter:'_ugly')
-    @user.auth_sources.create!(twitter:'dude')
+  it 'a user can add many identities of same type' do
+    @user.identities.create!(provider:'twitter', username:'_ugly')
+    @user.identities.create!(provider:'twitter', username:'dude')
   end
 
-  it 'a user can exist without an auth_source, aka an author' do
+  it 'a user can exist without an identity, aka an author' do
     # before and after check this
   end
 end
