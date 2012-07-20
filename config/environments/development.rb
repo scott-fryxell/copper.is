@@ -8,10 +8,10 @@ Copper::Application.configure do
   config.assets.compress = false
   config.assets.debug = true
   config.hostname = "http://copper.dev"
-  config.log_level = :info
+  config.log_level = :debug
   config.active_record.mass_assignment_sanitizer = :strict
   config.active_record.auto_explain_threshold_in_seconds = 0.5
-
+  ActiveRecord::Base.logger.level = 1 if defined? ActiveRecord::Base
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",

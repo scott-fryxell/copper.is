@@ -31,6 +31,7 @@ gem 'youtube_it'
 gem 'rails_admin'
 gem 'paper_trail', '~> 2'
 gem 'bourbon'
+gem 'base32-crockford'
 
 group :production do
   gem "pg"
@@ -38,7 +39,6 @@ end
 
 group :development, :production do
  gem 'newrelic_rpm'
-
 end
 
 group :development, :test do
@@ -59,6 +59,7 @@ group :development, :test do
   gem 'launchy'
   gem 'ruby-graphviz', '~> 0.9.17'
   gem 'rails-erd'
+  gem 'quiet_assets'
 end
 
 group :test do
@@ -78,7 +79,6 @@ group :assets do
 end
 
 group :development do
-  gem 'quiet_assets'
   gem 'guard-rake'
   gem 'redcarpet'
   gem 'yard'

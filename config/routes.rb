@@ -18,6 +18,7 @@ Copper::Application.routes.draw do
 
   get 'show_author', to:'home#show_author'
   get 'edit_author', to:'home#edit_author'
+  get 'invite',  :to => 'home#invite'
   
   get 'about',   :to => 'home#about'
   get 'how',     :to => 'home#how'
@@ -26,22 +27,18 @@ Copper::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
   get 'faq',     :to => 'home#faq'
   get 'button',  :to => 'home#button'
-  get 'invite',  :to => 'home#invite'
 
   if Rails.env.test? || Rails.env.development?
     get 'test',    :to => 'home#test'
   end
 
-  get 'badge',   :to => 'home#badge', :as => :badge
   get 'embed_iframe.js', :to => 'home#iframe', :as => :iframe
-  get 'buckingthesystem', :to => 'home#index'
-
   match "/auth/:provider/callback" => "sessions#create", :as => :provider_callback
   match '/auth/failure'  => 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
 
-  mount Resque::Server.new, :at => "/resque"
+  mount Resque::Server.new, :at => "/admin/resque"
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root :to => 'home#index'
 end
