@@ -1,6 +1,6 @@
 module TwitterMessages
   def _send_wanted_message
-    send_tweet ("Someone loves you.  http://127.0.0.1:5000/i/#{self.id} #{Time.now.to_i.to_s[6..-1]}")
+    send_tweet ("Someone loves you. #{Copper::Application.config.hostname}/i/#{self.id} #{Time.now.to_i.to_s[6..-1]}")
   end
 end
 

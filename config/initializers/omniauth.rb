@@ -1,3 +1,5 @@
+OmniAuth.config.logger = Rails.logger
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   # provider :developer unless Rails.env.production?
   provider :twitter, Copper::Application.config.twitter_key, Copper::Application.config.twitter_secret
