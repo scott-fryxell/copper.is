@@ -19,6 +19,7 @@ authorization do
       if_attribute :user => is { user }
     end
 
+
     has_permission_on :checks,     :to => [:read]
     has_permission_on :orders,     :to => [:read,:update]
     has_permission_on :identities, :to => [:edit]
@@ -28,9 +29,11 @@ authorization do
 
   role :guest do
     has_permission_on :tips,       :to => [:read]
+    has_permission_on :identities, :to => [:show]
     has_permission_on :pages,      :to => [:read]
   end
 end
+
 
 privileges do
   privilege :manage, :includes => [:create, :read, :update, :delete]

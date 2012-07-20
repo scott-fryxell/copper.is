@@ -11,14 +11,14 @@ Copper::Application.routes.draw do
   resources :users do
     resources :tips
   end
-
-  get    'cards', :to => 'cards#show',   :as => :show_card
-  post   'cards', :to => 'cards#create', :as => :create_card
-  put    'cards', :to => 'cards#update', :as => :update_card
+  get    'cards', :to => 'cards#show',  :as => :show_card
+  post   'cards', :to => 'cards#create',:as => :create_card
+  put    'cards', :to => 'cards#update',:as => :update_card
   delete 'cards', :to => 'cards#delete', :as => :delete_card
 
   get 'show_author', to:'home#show_author'
   get 'edit_author', to:'home#edit_author'
+  
   get 'about',   :to => 'home#about'
   get 'how',     :to => 'home#how'
   get 'contact', :to => 'home#contact'
