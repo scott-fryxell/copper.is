@@ -7,8 +7,10 @@ class Identities::Twitter < Identity
   def self.discover_uid_and_username_from_url url
     if url =~ /\/status\//
       screen_name = URI.parse(url).fragment.split('!/').last.split('/').first
-    else
+    elsif url =~ /\/#!\//
       screen_name = URI.parse(url).fragment.split('!/').last
+    else
+      screen_name = URI.parse(url).split('/').last
     end
     { :uid => ::Twitter.user(screen_name).id.to_s, :username => screen_name }
   end
