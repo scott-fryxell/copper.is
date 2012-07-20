@@ -11,7 +11,7 @@ var copper = {
     for(identity in copper.me.identities){
       switch(copper.me.identities[identity].provider){
       case 'facebook':
-        return 'http://graph.facebook.com/' + copper.me.identities[identity].uid + '/picture?type=square'
+        return 'https://graph.facebook.com/' + copper.me.identities[identity].uid + '/picture?type=square'
       case 'twitter':
         return 'https://api.twitter.com/1/users/profile_image?id=' + copper.me.identities[identity].uid + '&size=bigger'
       case 'google_oauth2':
