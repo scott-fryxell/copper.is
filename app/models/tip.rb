@@ -1,6 +1,5 @@
 class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
-
 class Tip < ActiveRecord::Base
   belongs_to :page
   belongs_to :order

@@ -18,7 +18,8 @@ class TipsController < ApplicationController
   end
 
   def create
-
+    @tip = current_user.tip(params[:tip])
+    @tip.save
   rescue ActiveRecord::RecordInvalid
     render nothing:true, status:403
   end
@@ -53,6 +54,6 @@ class TipsController < ApplicationController
     @tip = Tip.find(params[:id])
   end
   def new_tip
-     @tip = tip.new(params[:tip])
+    @tip = Tip.new(params[:tip])
   end
 end

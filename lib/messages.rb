@@ -1,6 +1,6 @@
 module TwitterMessages
   def _send_wanted_message
-    send_tweet ("A fan of your has tipped you! Here's a link that will explain what this is all about. #{Copper::Application.config.hostname}/i/#{self.id} #{Time.now.to_i.to_s[6..-1]}")
+    send_tweet ("A fan of your has tipped you! click the lind and we'll explain what hell is going on here. #{Copper::Application.config.hostname}/i/#{self.id} #{Time.now.to_i.to_s[6..-1]}")
   end
 end
 
