@@ -1,18 +1,18 @@
 module TwitterMessages
   def _send_wanted_message
-    send_tweet ("A fan of your has tipped you! click the lind and we'll explain what hell is going on here. #{Copper::Application.config.hostname}/i/#{self.id} #{Time.now.to_i.to_s[6..-1]}")
+    send_tweet ("A fan of yours has tipped you! click the link and we'll explain what the hell is going on here. #{Copper::Application.config.hostname}/identities/#{self.id}")
   end
 end
 
 module PhonyMessages
   def _send_wanted_message
-    logger.info "#{self.inspect} URL=#{Copper::Application.config.hostname}/i/#{self.id} "
+    logger.info "#{self.inspect} URL=#{Copper::Application.config.hostname}/i/#{self.id}"
   end
 end
 
 module YoutubeMessages
   def _send_wanted_message
-    comment('foobar').post
+    comment("A fan of yours has tipped you! click the link and we'll explain what the hell is going on here. #{Copper::Application.config.hostname}/identities/#{self.id}").post
   end
 end
 

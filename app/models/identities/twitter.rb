@@ -5,13 +5,7 @@ class Identities::Twitter < Identity
   # validates :username, presence: true
 
   def self.discover_uid_and_username_from_url url
-    if url =~ /\/status\//
-      screen_name = URI.parse(url).fragment.split('!/').last.split('/').first
-    elsif url =~ /\/#!\//
-      screen_name = URI.parse(url).fragment.split('!/').last
-    else
-      screen_name = URI.parse(url).split('/').last
-    end
+    screen_name = URI.parse(url).path.split('/')[1]
     { :uid => ::Twitter.user(screen_name).id.to_s, :username => screen_name }
   end
 
