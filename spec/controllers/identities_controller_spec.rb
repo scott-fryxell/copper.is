@@ -34,7 +34,7 @@ describe IdentitiesController do
         end
       end
     end
-    describe 'edit', :focus do
+    describe 'edit' do
       describe '/identities/:id/edit' do
         it '302' do
           get :new
