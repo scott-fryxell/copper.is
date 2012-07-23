@@ -40,13 +40,12 @@ describe IdentitiesController do
           get :new
           response.status.should == 401
         end
-        
+
         it 'should let a guest see an identity that\'s wanted' do
           twitter = FactoryGirl.create(:identities_twitter,identity_state: :wanted)
           get :edit, id:twitter.id
           response.status.should == 200
         end
-        
       end
     end
     describe 'update' do
