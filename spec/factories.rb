@@ -25,11 +25,12 @@ FactoryGirl.define do
     provider 'phony'
     username { FactoryGirl.generate(:username) }
     uid { FactoryGirl.generate(:username) }
-   end
+  end
 
   factory :identities_twitter, class: 'Identities::Twitter' do
     provider 'twitter'
     username '_ugly'
+    identity_state 'wanted'
     uid '26368397'
   end
 

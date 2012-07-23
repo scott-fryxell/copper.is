@@ -39,13 +39,12 @@ class Identity < ActiveRecord::Base
       validate :validate_user_id_is_nil
     end
 
-    state :stranger do
+    state :wanted do
       def send_wanted_message
         raise "this identity has a user" if self.user_id
         _send_wanted_message
         self.message = Time.now
         save!
-        publicize!
       end
     end
     
@@ -65,7 +64,7 @@ class Identity < ActiveRecord::Base
   end
 
   after_create do
-    if self.stranger?
+    if self.wanted?
       Resque.enqueue self.class, self.id, :send_wanted_message
     end
   end

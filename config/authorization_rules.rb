@@ -1,11 +1,7 @@
 authorization do
 
   role :admin do
-    includes :fan
-    has_permission_on :rails_admin_history, :to => [:list, :slider, :for_model, :for_object, :history_show]
-    has_permission_on :rails_admin_main, :to => [:index, :show, :new, :edit, :create, :update, :destroy, :list, :delete, :bulk_delete, :bulk_destroy, :get_pages, :history_show, :history_index, :dashboard, :show_in_app]
-    has_permission_on :authorization_rules, :to => :read
-    has_permission_on :authorization_usages, :to => :read
+    has_omnipotence
   end
 
   role :fan do
@@ -19,7 +15,6 @@ authorization do
       if_attribute :user => is { user }
     end
 
-
     has_permission_on :checks,     :to => [:read]
     has_permission_on :orders,     :to => [:read,:update]
     has_permission_on :identities, :to => [:edit]
@@ -29,7 +24,9 @@ authorization do
 
   role :guest do
     has_permission_on :tips,       :to => [:read]
-    has_permission_on :identities, :to => [:show]
+    has_permission_on :identities, :to => [:edit] do
+      if_attribute :identity_state => 'wanted'
+    end
     has_permission_on :pages,      :to => [:read]
   end
 end

@@ -47,4 +47,8 @@ describe Identity do
   it 'a user can exist without an identity, aka an author' do
     # before and after check this
   end
+
+  it 'only messages an identity that doesn\'t have an author associated with it'
+
+  
 end

@@ -28,18 +28,25 @@ describe IdentitiesController do
     end
     describe 'show' do
       describe '/identities/:id' do
-        it '302' do
+        it '401 for random identities' do
           get :new
           response.status.should == 401
         end
       end
     end
-    describe 'edit' do
+    describe 'edit', :focus do
       describe '/identities/:id/edit' do
         it '302' do
           get :new
           response.status.should == 401
         end
+        
+        it 'should let a guest see an identity that\'s wanted', :focus do
+          twitter = FactoryGirl.create(:identities_twitter,identity_state: :wanted)
+          get :edit, id:twitter.id
+          response.status.should == 200
+        end
+        
       end
     end
     describe 'update' do
