@@ -41,7 +41,7 @@ describe IdentitiesController do
           response.status.should == 401
         end
         
-        it 'should let a guest see an identity that\'s wanted', :focus do
+        it 'should let a guest see an identity that\'s wanted' do
           twitter = FactoryGirl.create(:identities_twitter,identity_state: :wanted)
           get :edit, id:twitter.id
           response.status.should == 200
