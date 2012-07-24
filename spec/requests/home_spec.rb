@@ -23,7 +23,6 @@ describe "home page experience" do
   end
 
   it "should show the welcome message after user signs in" do
-    page.execute_script("jQuery.fx.off = true")
     page.should have_css('#join', visible:true)
     page.should have_css('figure.step_one', visible:true)
     page.should have_no_css('figure.step_two', visible:true)

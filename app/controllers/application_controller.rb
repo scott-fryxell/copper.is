@@ -1,3 +1,6 @@
+require 'carmen'
+include Carmen
+
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery
@@ -31,5 +34,6 @@ class ApplicationController < ActionController::Base
     end
     "itemscoped itemtype='#{type}' #{item_id}"
   end
+
 
 end

@@ -31,7 +31,7 @@ gem 'youtube_it'
 gem 'rails_admin'
 gem 'paper_trail', '~> 2'
 gem 'bourbon'
-gem 'base32-crockford'
+gem 'carmen-rails'
 
 group :production do
   gem "pg"

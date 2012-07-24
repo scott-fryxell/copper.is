@@ -1,13 +1,16 @@
-<form method="put" action="<%=user_path(current_user)%>" accept-charset="UTF-8">
-  <input itemprop="name" name='user[name]' type="text" placeholder="Your Name/Company Name" required>
-  <input itemprop="street1" name='user[street1]' type="text" placeholder="Street Address" required>
-  <input itemprop="street2" name='user[street2]' type="text" placeholder="Street Address" required>
+<%-cache do-%>
+<form method="put" action="" accept-charset="UTF-8">
+  <input itemprop="payable_to" name='user[payable_to]' type="text" placeholder="Your Name/Company Name" required>
+  <input itemprop="line1" name='user[line1]' type="text" placeholder="Street Address" required>
+  <input itemprop="line2" name='user[line2]' type="text" placeholder="Street Address" required>
   <input itemprop="city" name='user[city]' type="text" placeholder="City/Town" required>
-  <input itemprop="zip" name='user[zip]' type="text" placeholder="Zip Code" required>
-  <select name="user[state]" itemprop='state'>
-    <option value="" disabled>State</option>
-  </select>
-  <select name="user[Country]" itemprop='country'>
+  <input itemprop="postal_code" name='user[postal_code]' type="text" placeholder="Zip Code" required>
+  <select itemprop='country_code' name="user[country_code]">
     <option value="" disabled>Country</option>
+    <option value="<%=Country.named('United States').code%>"><%=Country.named('United States').name%></option>
+    <%-Country.all.each do |country|-%>
+      <option value="<%=country.code%>"><%=country.name%></option>
+    <%-end-%>
   </select>
 </form>
+<%-end-%>

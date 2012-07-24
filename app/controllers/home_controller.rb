@@ -6,7 +6,16 @@ class HomeController < ApplicationController
   end
 
   def test
-    render :action => 'test', :layout => false
+
+  end
+
+  def states
+    @country = Country.coded(params['country_code'])
+    if @country.subregions?
+      render :action => 'states', :layout => false
+    else
+      render nothing:true, status:200
+    end
   end
 
 end

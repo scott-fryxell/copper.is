@@ -11,6 +11,7 @@ Copper::Application.routes.draw do
   resources :users do
     resources :tips
   end
+
   get    'cards', :to => 'cards#show',  :as => :show_card
   post   'cards', :to => 'cards#create',:as => :create_card
   put    'cards', :to => 'cards#update',:as => :update_card
@@ -18,8 +19,7 @@ Copper::Application.routes.draw do
 
   get 'show_author', to:'home#show_author'
   get 'edit_author', to:'home#edit_author'
-  get 'invite',  :to => 'home#invite'
-  
+
   get 'about',   :to => 'home#about'
   get 'how',     :to => 'home#how'
   get 'contact', :to => 'home#contact'
@@ -27,6 +27,7 @@ Copper::Application.routes.draw do
   get 'privacy', :to => 'home#privacy'
   get 'faq',     :to => 'home#faq'
   get 'button',  :to => 'home#button'
+  get 'states',  :to => 'home#states'
 
   if Rails.env.test? || Rails.env.development?
     get 'test',    :to => 'home#test'
