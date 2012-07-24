@@ -86,9 +86,8 @@
   #address > form > select[itemprop=subregion_code] {
     max-width:grid-width(6);
   }
-  
   #address > form > input[itemprop=postal_code] {
-    width:grid-width(2);
+    width:grid-width(3);
   }
 }
 
