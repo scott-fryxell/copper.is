@@ -50,19 +50,11 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
-
+  DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
   RSpec.configure do |config|
-
-    # Request specs cannot use a transaction because Capybara runs in a
-    # separate thread with a different database connection.
-    config.before type: :request do
-      DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
-    end
     config.before :suite do
       ResqueSpec.reset!
       ResqueSpec.inline = true
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with(:truncation, {:except => %w[roles]})
       class Stripe::Customer
         def self.create(*args)
           OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
