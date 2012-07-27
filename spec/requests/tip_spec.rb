@@ -2,7 +2,6 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "tipping a page" do
   before(:each) do
-    DatabaseCleaner.clean
     visit "/"
     click_link 'facebook_sign_in'
     visit "/test"

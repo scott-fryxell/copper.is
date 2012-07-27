@@ -49,11 +49,18 @@ class SessionsController < ApplicationController
         current_user = user
 
         @identity.user = current_user
-        @identity.join!
-        @identity.save()
 
-        redirect_to root_url + '#join', :notice => "Welcome aboard!"
-
+        if @identity.wanted?
+          logger.info "*** this shit is wanted ***"
+          @identity.join!
+          @identity.save()
+          redirect_to edit_identity_url(@identity)
+        else
+          logger.info "*** nothing punk ***"
+          @identity.join!
+          @identity.save()
+          redirect_to root_url + '#join', :notice => "Welcome aboard!"
+        end
       end
     end
   end

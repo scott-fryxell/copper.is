@@ -70,6 +70,9 @@ class Page < ActiveRecord::Base
           if author_link = author_tag.attr('href').value                   
             self.identity = Identity.find_or_create_from_url(author_link)
             adopt!
+            if self.identity.stranger?
+              self.identity.publicize!
+            end
           else
             reject!
           end

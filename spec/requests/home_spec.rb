@@ -2,7 +2,6 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "home page experience" do
   before(:each) do
-    DatabaseCleaner.clean
     visit "/"
     page.execute_script("jQuery.fx.off = true")
   end

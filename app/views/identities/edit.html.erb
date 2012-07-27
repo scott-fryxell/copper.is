@@ -5,13 +5,15 @@
   </figure>
   <h1>
     <span>Hey there!</span> Looks like you’ve
-    just received some tips from a fan...
+    just received some tips from a fan
   </h1>
   <p>
-    Copper and tempus porttitor. Maecenas sed diam eget
-    risus variusla ndit sit amet non magna. Curabitur blandit
-    tempus porttitorumiis natoque spenatibus et magnis dis
-    parturient montes, nascetur ridiculus mus.
+    Welcome to Copper! We’re a new online tipping service that 
+    connects fans to the people who make content they love (that’s you!)
+    and allows them to send a tip to show their appreciation.
+    <a href="/how">See how it works</a>.
+    <br><br>
+    We just need a few things to make sure your tips wind up at your door.
   </p>
 </section>
 <section id="login" class="form">
@@ -19,15 +21,20 @@
     <h2>Step 1: Login</h2>
   </header>
   <figure>
-    <%= link_to image_tag("providers/twitter/authorize.png"), '/users/me', :title => "Authorize Twitter" %>
-    <figcaption>So we can make sure it’s really you</figcaption>
+    <%-if current_user -%>
+    <h1>Complete!</h1>
+    <%-else-%>
+      <%= link_to image_tag("providers/#{@identity.provider}/authorize.png"), "/auth/#{@identity.provider}", :title => "Authorize #{@identity.provider}" %>
+      <figcaption>So we can make sure it’s really you</figcaption>
+    <%-end-%>
+
   </figure>
 </section>
 <section id="email" class="form">
   <header>
     <h2>Step 2: Email</h2>
   </header>
-  <form method="put" accept-charset="UTF-8">
+  <form method="put" action='/users/me' accept-charset="UTF-8">
     <input itemprop="email" name='user[email]' type="email" placeholder="Your Email Address" required value="">
   </form>
   <p>So we can tell you when you’ve been tipped</p>

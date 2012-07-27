@@ -18,8 +18,8 @@ Copper::Application.configure do
   config.static_cache_control = "public, max-age=31536000"
   config.action_controller.asset_host = "dxs9q85fcnuty.cloudfront.net"
 
-  config.hostadderess = "https://copper.is/"
-
+  # config.hostadderess = "https://copper.is/"
+  config.hostname = "https://copper.is"
   config.action_dispatch.rack_cache = {
     :metastore    => Dalli::Client.new,
     :entitystore  => 'file:tmp/cache/rack/body',

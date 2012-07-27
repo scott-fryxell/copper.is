@@ -29,9 +29,8 @@ FactoryGirl.define do
 
   factory :identities_twitter, class: 'Identities::Twitter' do
     provider 'twitter'
-    username '_ugly'
-    identity_state 'wanted'
-    uid '26368397'
+    username 'copper_is'
+    uid '123545'
   end
 
   factory :identities_google, class: 'Identities::Google' do
@@ -79,9 +78,6 @@ FactoryGirl.define do
   factory :role do
     name "Fan"
   end
-
-  # factory :unaccepted_user, :class => 'User' do
-  # end
 
   factory :user do
     name 'Joe'

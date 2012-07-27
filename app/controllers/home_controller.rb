@@ -35,7 +35,7 @@ class HomeController < ApplicationController
   end
 
   def test
-
+      render :action => 'test', :layout => false
   end
 
   def states

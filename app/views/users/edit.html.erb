@@ -1,14 +1,20 @@
-<section id="banner" class="form">
+<section id="banner">
   <header>
     <%= image_tag "icons/silhouette.svg", class:"identity", alt:'me' %>
   </header>
-  <div>
+  <hgroup>
     <h1>Your Settings</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-    </p>
-  </div>
+    <p><%=current_user.name%><a href="/signout">not you?</a></p>
+  </hgroup>
+  <p>
+    Hey, cool. You’ve found some great stuff to tip with Copper.
+    Let’s get your tips to the creators...
+    <br><br>
+    Please add your payment info so we can start getting your 
+    tips to the people whose content you’ve liked. Once we have 
+    your info we’ll charge you monthly whenever you have over 
+    $10 of tips pledged.
+  </p>
 </section>
 
 <section id="email" class="form">

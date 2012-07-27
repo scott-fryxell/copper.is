@@ -11,18 +11,18 @@ Copper::Application.configure do
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :yui
   config.assets.compile = true
-  config.assets.debug = false
-  config.assets.digest = true
+  config.assets.debug = true
+  config.assets.digest = false
   config.log_level = :info
-  config.hostaddress = "http://127.0.0.1:8080"
-
+  config.hostname = "https://copper.is"
   OmniAuth.config.test_mode = true
 
   OmniAuth.config.mock_auth[:twitter] = {
     'provider' => 'twitter',
     'uid' => '123545',
+    'username' => 'copper_is',
     'info' => {
-      'name' => 'twitter user',
+      'name' => 'copper_is',
       'email' => 'user@twitter.com',
       'image' => 'http://image.com/me.png',
       'location' => 'earth',

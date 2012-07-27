@@ -82,7 +82,6 @@ $(document).ready(function (){
     if($(this).find("*[itemprop]").length == 0){
       return true
     }
-
     var item_element = $(this).parents("*[itemscoped]")
     var id = $(item_element).attr('itemid')
     var type = $(item_element).attr('itemtype')

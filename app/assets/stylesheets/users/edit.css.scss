@@ -2,36 +2,13 @@
   #signed_in > nav > a[href='/users/me/edit'] > img {
     opacity:1;
   }
-  
+
   & > nav {
     margin-bottom:3em;
     text-align:center;
   }
   & > nav > a {
     @include settings_pointer
-  }
-  #banner {
-    position:inherit;
-    background-color: transparent;
-    border-color:transparent;
-  }
-  #banner > header {
-    vertical-align:top;
-  }
-  #banner > header > img {
-    min-width:5em;
-    max-width:9em;
-  }
-  #banner > div {
-    width:grid-width(11);
-    display: inline-block;
-  }
-  #banner > div > h1 {
-    opacity:0.85;
-  }
-  #banner > div > p {
-    font-size: 0.85em;
-    opacity:0.65;
   }
 
   #rate > div > p:before{

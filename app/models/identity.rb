@@ -63,8 +63,8 @@ class Identity < ActiveRecord::Base
     end
   end
 
-  after_create do
-    if self.wanted?
+  after_save do
+    if self.wanted? and !self.message
       Resque.enqueue self.class, self.id, :send_wanted_message
     end
   end

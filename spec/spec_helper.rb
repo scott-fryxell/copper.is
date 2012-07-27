@@ -21,7 +21,6 @@ Spork.prefork do
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'declarative_authorization/maintenance'
-  require 'rack/test'
   require 'omniauth'
   require 'omniauth/test'
   require 'support'
@@ -36,36 +35,30 @@ Spork.prefork do
   RSpec.configure do |config|
     config.filter_run_excluding :broken => true
     config.fail_fast = true
-    # config.include Rack::Test::Methods
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
     config.profile_examples = true
-    config.use_transactional_fixtures = false
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
     config.run_all_when_everything_filtered = true
+    config.use_transactional_fixtures = false
     # REDIS_PID = "#{Rails.root}/tmp/pids/redis-test.pid"
     # REDIS_CACHE_PATH = "#{Rails.root}/tmp/cache/"
   end
+
 end
 
 Spork.each_run do
   FactoryGirl.reload
-
+  DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
   RSpec.configure do |config|
-    config.before(:suite) do
-      DatabaseCleaner.start
-      DatabaseCleaner.clean
-      DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
-
+    config.before :suite do
       ResqueSpec.reset!
-      # ResqueSpec.inline = true
+      ResqueSpec.inline = true
       class Stripe::Customer
-
         def self.create(*args)
           OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
         end
-
         def self.retrieve(*args)
           OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
         end
@@ -77,8 +70,9 @@ Spork.each_run do
         end
       end
     end
-
-    config.before(:all) do
+    config.before :each do
+      Twitter.stub(:update)
+      DatabaseCleaner.start
       @stranger = create!(:identities_phony)
       @wanted = create!(:identities_phony,identity_state:'wanted')
 
@@ -98,19 +92,8 @@ Spork.each_run do
       @her_tip1 = @her.tip(url:@page1.url)
       @her_tip2 = @her.tip(url:@page2.url)
     end
-
-    config.before(:suite) do
-      DatabaseCleaner.start
+    config.after :each do
       DatabaseCleaner.clean
-    end
-
-    config.after(:suite) do
-      DatabaseCleaner.clean
-
-    end
-
-    config.before(:each) do
-      Twitter.stub(:update)
     end
   end
 end

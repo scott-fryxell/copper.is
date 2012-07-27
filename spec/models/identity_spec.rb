@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Identity do
   before do
-    DatabaseCleaner.clean
     @user = User.create!
   end
 
