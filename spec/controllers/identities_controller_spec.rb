@@ -12,7 +12,7 @@ describe IdentitiesController do
     end
     describe 'new' do
       describe '/identities/new' do
-        it '302' do
+        it '401' do
           get :new
           response.status.should == 401
         end
@@ -21,8 +21,8 @@ describe IdentitiesController do
     describe 'create' do
       describe 'POST /identities' do
         it 'does something' do
-          pending
           post :create
+          response.status.should == 401
         end
       end
     end
@@ -36,7 +36,7 @@ describe IdentitiesController do
     end
     describe 'edit' do
       describe '/identities/:id/edit' do
-        it '302' do
+        it '401' do
           get :new
           response.status.should == 401
         end
@@ -50,7 +50,7 @@ describe IdentitiesController do
     end
     describe 'update' do
       describe 'PUT /identities/:id' do
-        it '302' do
+        it '401' do
           get :new
           response.status.should == 401
         end
@@ -58,7 +58,7 @@ describe IdentitiesController do
     end
     describe 'destroy' do
       describe 'DELETE /identities/:id' do
-        it '302' do
+        it '401' do
           get :new
           response.status.should == 401
         end
@@ -67,6 +67,9 @@ describe IdentitiesController do
   end
 
   describe 'as Fan' do
+    before :each do
+      @me = create!(:user)
+    end
 
     describe 'index' do
       describe '/identities' do

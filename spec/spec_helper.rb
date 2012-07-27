@@ -81,24 +81,6 @@ Spork.each_run do
     config.before :each do
       Twitter.stub(:update)
       DatabaseCleaner.start
-      @stranger = create!(:identities_phony)
-      @wanted = create!(:identities_phony,identity_state:'wanted')
-
-      @page1 = create!(:page,author_state:'adopted')
-      @page2 = create!(:page,author_state:'adopted')
-
-      @wanted.pages << @page1
-      @wanted.pages << @page2
-
-      @me = create!(:user)
-      @her = create!(:user_phony)
-      @my_identity = @me.identities.first
-      @her_identity = @her.identities.first
-
-      @my_tip = @me.tip(url:@page1.url)
-
-      @her_tip1 = @her.tip(url:@page1.url)
-      @her_tip2 = @her.tip(url:@page2.url)
     end
     config.after :each do
       DatabaseCleaner.clean

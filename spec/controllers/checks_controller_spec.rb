@@ -87,6 +87,8 @@ describe ChecksController do
 
   describe 'as Fan' do
     before :each do
+      me_setup
+      her_setup
       @check = FactoryGirl.create(:check,user:@me)
       @check_paid = FactoryGirl.create(:check_paid,user:@me)
       @check_cashed = FactoryGirl.create(:check_cashed,user:@me)

@@ -7,6 +7,8 @@ describe TipsController do
       describe '/tips' do
 
         it 'assigns all tips' do
+          her_setup
+          me_setup
           get :index, format: :json
           tips = assigns(:tips)
           tips.include?(@her_tip2).should be_true
@@ -39,6 +41,7 @@ describe TipsController do
     describe 'show' do
       describe '/tips/:id' do
         it 'should display a tip' do pending
+          me_setup
           # currently there is no use case for this in the UI
           get :show, id:@my_tip.id, format: :json
           assigns(:tip).should eq(@my_tip)
@@ -51,6 +54,7 @@ describe TipsController do
     describe 'edit' do
       describe '/tips/:id/edit' do
         it 'respond with not authorized' do
+          me_setup
           get :edit, id:@my_tip.id, format: :json
           response.status.should == 401
         end
@@ -60,6 +64,7 @@ describe TipsController do
     describe 'update' do
       describe 'PUT /tips/:id' do
         it 'respond with not authorized' do
+          me_setup
           put :update, id:@my_tip.id, tip:{url:'laskdjf'}
           response.status.should == 401
         end
@@ -69,6 +74,7 @@ describe TipsController do
     describe 'destroy' do
       describe 'DELETE /tips/:id' do
         it 'should respond with not authorized' do
+          me_setup
           proc do
             delete :destroy, id:@my_tip.id
             response.status.should == 401

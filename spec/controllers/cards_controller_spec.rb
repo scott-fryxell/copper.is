@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe CardsController do
+  before :each do
+    me_setup
+  end
 
   describe 'show' do
     it 'responds to .json' do

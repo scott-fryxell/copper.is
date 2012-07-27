@@ -3,6 +3,7 @@ require 'spec_helper'
 describe TipsController do
   describe 'high level' do
     before :each do
+      @me = create!(:user)
       raise '@me not set' unless @me
       user = @me
       controller.instance_eval do

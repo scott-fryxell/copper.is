@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe User do
+  before :each do
+    @me = create!(:user)
+  end
   describe 'identities' do
     describe 'at least one' do
       it 'doesn\'t allow removal of last' do pending

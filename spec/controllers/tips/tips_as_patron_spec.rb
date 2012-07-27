@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe TipsController do
+  before :all do
+    me_setup
+    her_setup
+  end
   describe 'as Fan' do
 
     describe 'index' do

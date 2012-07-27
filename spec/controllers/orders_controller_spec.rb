@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe OrdersController  do
   before :each do
+    @me = create!(:user)
     @me.current_order.rotate!
     @me.orders.unpaid.first.charge!
     @my_paid_order = @me.orders.paid.first
@@ -82,6 +83,7 @@ describe OrdersController  do
 
   describe 'as Fan' do
     before :each do
+      @her = create!(:user_phony)
       @her.current_order.rotate!
       @her.orders.unpaid.first.charge!
       @her_paid_order = @her.orders.paid.first
@@ -210,7 +212,8 @@ describe OrdersController  do
 
       describe 'PUT /orders/:id' do
         before do
-          @my_new_tip = @me.tip(url:@page1.url)
+          @page = create!(:page,author_state:'adopted')
+          @my_new_tip = @me.tip(url:@page.url)
           @order_id = @me.current_order.id
           @my_new_tip.promised?.should be_true
         end

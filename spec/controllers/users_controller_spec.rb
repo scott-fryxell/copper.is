@@ -63,7 +63,9 @@ describe UsersController do
   end
 
   describe 'as Fan' do
-
+    before :each do
+      @me = create!(:user)
+    end
     describe 'index' do
       describe '/users' do
         it 'responds with status 403' do
@@ -86,6 +88,7 @@ describe UsersController do
         end
 
         it 'responds with a 403 for an id that is not current user' do
+          @her = create!(:user_phony)
           get_with @me, :edit, id:@her.id
           response.status.should == 403
         end
@@ -167,6 +170,9 @@ describe UsersController do
         end
 
         describe 'her' do
+          before :each do
+            @her = create!(:user_phony)
+          end
           it 'does not update email' do
             put_with @me, :update, id:@her.id, user:{email:'dude@place.com'}
             @her.reload
@@ -207,6 +213,7 @@ describe UsersController do
         end
 
         it 'cannot delete another user' do
+          @her = create!(:user_phony)
           delete_with @me, :destroy, id:@her.id
           response.status.should == 403
         end

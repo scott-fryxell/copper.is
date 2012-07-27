@@ -1,6 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Tip do
+  before :each do
+    me_setup
+  end
   context do
     it "should always be associated with a tip order" do
       @my_tip.order = nil

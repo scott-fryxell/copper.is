@@ -41,6 +41,7 @@ describe PagesController do
 
       describe '/pages/:id' do
         it 'should assign a given page' do
+          @page1 = create!(:page,author_state:'adopted')
           get :show, id:@page1.id, format: :json
           assigns(:page).id.should == @page1.id
           response.status.should == 200
@@ -78,9 +79,14 @@ describe PagesController do
 
   describe 'as Fan' do
 
+    before :each do
+      @me = create!(:user)
+    end
     describe 'index' do
       describe '/pages' do
         it 'assigns pages in created order' do pending
+          @page1 = create!(:page,author_state:'adopted')
+          @page2 = create!(:page,author_state:'adopted')
           get_with @me, :index, format: :json
           response.status.should == 200
           assigns(:pages).include?(@page1).should be_true
@@ -110,6 +116,7 @@ describe PagesController do
     describe 'show' do
       describe '/pages/:id' do
         it 'assigns a given page' do
+          @page1 = create!(:page,author_state:'adopted')
           get_with @me, :show, id:@page1.id, format: :json
           assigns(:page).id.should == @page1.id
           response.status.should == 200
