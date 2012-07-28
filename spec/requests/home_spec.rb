@@ -49,6 +49,11 @@ describe "home page experience" do
     page.should have_css('#settings', visible:true)
   end
 
-  it "should carosel the sample images"
+
+  it 'should be able to sign out and back in' do
+    click_link 'facebook_sign_in'
+    click_link 'Sign Out'
+    click_link 'facebook_sign_in'
+  end
 
 end
