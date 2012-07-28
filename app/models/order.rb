@@ -5,12 +5,12 @@ class Order < ActiveRecord::Base
   validates :user, presence:true
   validates_associated :user
 
-  scope :current, where('state = ?', 'current')
-  scope :unpaid, where('state = ?', 'unpaid')
-  scope :denied, where('state = ?', 'denied')
-  scope :paid, where('state = ?', 'paid')
+  scope :current, where('order_state = ?', 'current')
+  scope :unpaid, where('order_state = ?', 'unpaid')
+  scope :denied, where('order_state = ?', 'denied')
+  scope :paid, where('order_state = ?', 'paid')
 
-  state_machine :state, :initial => :current do
+  state_machine :order_state, :initial => :current do
     event :process do
       transition :current => :unpaid,
                  [:unpaid,:denied] => :paid,
@@ -24,7 +24,7 @@ class Order < ActiveRecord::Base
 
     state :current do
       def time_to_pay?
-        if ( self.tiped_enough_to_pay? && !self.user.automatic_rebill )
+        if ( self.tiped_enough_to_pay? )
           return true
         else
           return false

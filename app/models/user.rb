@@ -7,7 +7,6 @@ class User < ActiveRecord::Base
   has_many :checks
   has_and_belongs_to_many :roles
   has_paper_trail
-  # has_many :royalties, :through => :identities, :class => 'Tip'
 
   attr_accessible :name, :email, :tip_preference_in_cents, :accept_terms
 

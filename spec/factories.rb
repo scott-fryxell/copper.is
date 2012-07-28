@@ -97,22 +97,22 @@ FactoryGirl.define do
 
   factory :order_current, :class => 'Order' do
     association :user
-    state 'current'
+    order_state 'current'
   end
 
   factory :order_unpaid, :class => 'Order' do
     association :user
-    state 'unpaid'
+    order_state 'unpaid'
   end
 
   factory :order_paid, :class => 'Order' do
     association :user
-    state 'paid'
+    order_state 'paid'
   end
 
   factory :order_denied, :class => 'Order' do
     association :user
-    state 'denied'
+    order_state 'denied'
   end
 
   factory :authored_page, :class => 'Page' do
