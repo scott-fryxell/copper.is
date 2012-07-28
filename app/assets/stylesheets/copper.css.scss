@@ -1,10 +1,6 @@
 @import "shared/mixins";
 @import "shared/forms";
 @import "shared/ie";
-@import "home/index";
-@import "users/edit";
-@import "users/show";
-@import "home/invite";
 html {
   //set width with pseudo selectors without horizontal scrollbars
   overflow-x: hidden;
@@ -339,3 +335,7 @@ a[href='/signout'] {
     width:grid-width(3);
   }
 }
+@import "home/index";
+@import "users/edit";
+@import "users/show";
+@import "home/invite";
