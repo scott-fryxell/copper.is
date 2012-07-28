@@ -68,7 +68,7 @@ describe IdentitiesController do
 
   describe 'as Fan' do
     before :each do
-      @me = create!(:user)
+      me_setup
     end
 
     describe 'index' do
@@ -101,6 +101,7 @@ describe IdentitiesController do
         end
 
         it '401 for another user\'s identity' do pending
+          her_setup
           get_with @me, :show, id:@her_identity.id, format: :json
           response.status.should == 401
         end
@@ -110,6 +111,7 @@ describe IdentitiesController do
     describe 'edit' do
       describe '/identities/:id/edit' do
         it '403' do pending
+          @my_identity = @me.identities.first
           get_with @me, :edit, id:@my_identity.id, format: :json
           response.status.should == 403
         end
@@ -119,6 +121,7 @@ describe IdentitiesController do
     describe 'update' do
       describe 'PUT /identities/:id' do
         it '403' do pending
+          @my_identity = @me.identities.first
           get_with @me, :edit, id:@my_identity.id
           response.status.should == 403
         end

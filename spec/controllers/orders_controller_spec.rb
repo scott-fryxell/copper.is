@@ -21,7 +21,6 @@ describe OrdersController  do
         it '302' do
           get :index
           response.status.should == 401
-          response.status.should == 401
         end
       end
     end
@@ -91,11 +90,6 @@ describe OrdersController  do
     end
 
     describe 'index' do
-      it 'responds to .json' do
-        get_with @me, :index, format: :json
-        response.should be_success
-      end
-
       describe '/orders' do
         it 'assigns orders for current user: current, unpaid, paid and denied' do
           get_with @me, :index, format: :json
@@ -151,19 +145,6 @@ describe OrdersController  do
     end
 
     describe 'show' do
-      describe '/orders/current' do
-        it 'responds to .json' do pending
-          get_with @me, :show, id:'current', format: :json
-          response.should be_success
-          response.body.should include(@my_paid_order.to_json)
-        end
-
-        it 'assigns the current open order of current user' do pending
-          get_with @me, :show, id:'current', format: :json
-          assigns(:order).id.should == @me.current_order.id
-          response.status.should == 200
-        end
-      end
 
       describe '/orders/:id' do
         it 'assigns given order when owned by current user' do
@@ -198,6 +179,7 @@ describe OrdersController  do
       end
 
       it '401 if order is not owned by current user' do pending
+        her_setup
         get_with @me, :edit, id:@her_denied_order.id, format: :json
         assigns(:order).should be_nil
         response.status.should == 401
@@ -205,10 +187,6 @@ describe OrdersController  do
     end
 
     describe 'update' do
-      describe 'PUT /orders/current' do
-        it 'prepares! the current order for the current user'
-        it "doesn't allow any column updates to the order"
-      end
 
       describe 'PUT /orders/:id' do
         before do

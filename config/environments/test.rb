@@ -13,7 +13,7 @@ Copper::Application.configure do
   config.assets.compile = true
   config.assets.debug = true
   config.assets.digest = false
-  config.log_level = :info
+  config.log_level = :warn
   config.hostname = "https://copper.is"
   OmniAuth.config.test_mode = true
 

@@ -35,25 +35,25 @@ describe TipsController do
 
     describe 'create' do
       describe 'POST /tips' do
-        it 'creates a tip to given url with default amount' do pending
-          post_with @me, :create, tip:{url:'http://twitter.com/#!/_ugly'}, format: :json
-          Tip.first.page.url.should == 'http://twitter.com/#!/_ugly'
+        it 'creates a tip to given url with default amount' do
+          post_with @me, :create, tip:{url:'http://twitter.com/_ugly'}, format: :json
+          Tip.first.page.url.should == 'http://twitter.com/_ugly'
           Tip.first.order.user_id.should == @me.id
         end
 
-        it 'creates a tip to given url with given amount' do pending
-          post_with @me, :create, tip:{url:'http://twitter.com/#!/_ugly', amount_in_cents:100}, format: :json
-          Tip.first.page.url.should == 'http://twitter.com/#!/_ugly'
+        it 'creates a tip to given url with given amount' do
+          post_with @me, :create, tip:{url:'http://twitter.com/_ugly', amount_in_cents:100}, format: :json
+          Tip.first.page.url.should == 'http://twitter.com/_ugly'
           Tip.first.amount_in_cents.should == 100
         end
 
-        it 'creates a tip to given url with given title' do pending
-          post_with @me, :create, tip:{url:'http://twitter.com/#!/_ugly', title:'dude'}, format: :json
-          Tip.first.url.should == 'http://twitter.com/#!/_ugly'
+        it 'creates a tip to given url with given title' do
+          post_with @me, :create, tip:{url:'http://twitter.com/_ugly', title:'dude'}, format: :json
+          Tip.first.url.should == 'http://twitter.com/_ugly'
           Tip.first.title.should == 'dude'
         end
 
-        it 'requires a url' do pending
+        it 'requires a url' do
           post_with @me, :create, tip:{title:'asldkjf'}, format: :json
           response.status.should == 403
         end
@@ -62,8 +62,7 @@ describe TipsController do
 
     describe 'show' do
       describe '/tips/:id' do
-        it 'loads my tip' do  pending
-          # ui is currently not supportingthis
+        it 'loads my tip' do
           get_with @me, :show, id:@my_tip.id, format: :json
           assigns(:tip).id.should == @my_tip.id
           response.should be_success
@@ -120,14 +119,17 @@ describe TipsController do
           end.should change(Tip, :count)
         end
 
-        it '403 a :charged tip' do pending
+        it '403 a :charged tip' do 
+          me_setup
+          @my_tip.pay!
           proc do
             delete_with @me, :destroy, id:@my_tip.id, format: :json
             Tip.find(@my_tip.id).should_not be_nil
           end.should_not change(Tip, :count)
         end
 
-        it '403 a :kinged tip' do pending
+        it '403 a :kinged tip' do 
+          me_setup
           proc do
             order = @me.current_order
             @me.current_order.rotate!

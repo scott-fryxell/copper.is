@@ -91,7 +91,7 @@ FactoryGirl.define do
     name 'dude'
     accept_terms true
     tip_preference_in_cents 50
-    identities [FactoryGirl.create(:identities_phony,identity_state: :known)]
+    identities [FactoryGirl.create(:identities_phony,identity_state: :known, username:'her')]
     roles [Role.find_or_create_by_name('Fan')]
   end
 

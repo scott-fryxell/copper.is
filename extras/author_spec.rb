@@ -5,28 +5,13 @@ describe "An Author" do
     visit "/"
     click_link 'twitter_sign_in'
   end
-  
+
   # after do
   #   User.last.identities.each do |i|
   #     i.destroy
   #   end
   #   User.last.destroy
   # end
-  
-  it "should have a settings section",:broken do
-    click_link 'author'
-    page.should have_content 'Author Settings'
-    page.should have_content 'Identities'
-    page.should have_content 'Royalties'
-    page.should have_content 'Badge'
-  end
-
-  it "should have a link to the badge page", :broken do
-    click_link 'author'
-    within("section#badge > a") do
-      page.should have_content 'badge'
-    end
-  end
 
   it "should have a badge page" do
     click_link 'author'
@@ -53,7 +38,7 @@ describe "An Author" do
         click_link 'edit'
       end
     end
-    
+
     it "should only link an account once" do
       page.should have_content 'twitter user'
       # page.should have_content 'Welcome aboard!'

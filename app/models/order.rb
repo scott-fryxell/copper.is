@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   validates_associated :user
 
   scope :current, where('state = ?', 'current')
-  scope :unpaid, where('state = ?', 'unpaid').order('created_at DESC')
+  scope :unpaid, where('state = ?', 'unpaid')
   scope :denied, where('state = ?', 'denied')
   scope :paid, where('state = ?', 'paid')
 

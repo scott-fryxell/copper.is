@@ -40,9 +40,8 @@ describe TipsController do
 
     describe 'show' do
       describe '/tips/:id' do
-        it 'should display a tip' do pending
+        it 'should display a tip' do 
           me_setup
-          # currently there is no use case for this in the UI
           get :show, id:@my_tip.id, format: :json
           assigns(:tip).should eq(@my_tip)
           tip = assigns(:tip)

@@ -12,9 +12,12 @@ describe PagesController do
 
       describe '/pages' do
         it 'assigns pages in created order' do pending
+          @page1 = create!(:page,author_state:'adopted')
+          @page2 = create!(:page,author_state:'adopted')
+          
           get :index, format: :json
-          assigns(:pages).include?(@page1).should be_true
-          assigns(:pages).include?(@page2).should be_true
+          assigns(:pages).should_not be_nil
+          assigns(:pages).should eq([@page1, @page2])
         end
       end
     end
@@ -89,8 +92,8 @@ describe PagesController do
           @page2 = create!(:page,author_state:'adopted')
           get_with @me, :index, format: :json
           response.status.should == 200
-          assigns(:pages).include?(@page1).should be_true
-          assigns(:pages).include?(@page2).should be_true
+          assigns(:pages).should_not be_nil
+          assigns(:pages).should eq([@page1, @page2])
         end
       end
     end

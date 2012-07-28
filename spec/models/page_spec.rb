@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Page, :broken do
-  context do
+describe Page do
+  describe "url" do
     before(:each) do
       @page = Page.new
       @page.url = 'http://example.com/path1'
@@ -34,10 +34,10 @@ describe Page, :broken do
       end
       
       it "finds user on twitter.com" do
-        @page.url = "https://twitter.com/#!/ChloesThinking"
+        @page.url = "https://twitter.com/ChloesThinking"
       end
       
-      context '' do
+      describe 'providers not implemented', :broken do
         it "finds user on flickr.com" do
           @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
         end
@@ -75,7 +75,7 @@ describe Page, :broken do
     end
   end
   
-  describe "transitions from :orphaned to :manual", :broken do
+  describe "transitions from :orphaned to :manual" do
     before do
       @page = FactoryGirl.build(:page)
     end
@@ -95,7 +95,7 @@ describe Page, :broken do
     end
   end
   
-  describe "transitions from :orphaned to :fostered" do
+  describe "transitions from :orphaned to :fostered", :broken do
     before do
       @page = FactoryGirl.build(:page)
     end
@@ -106,7 +106,7 @@ describe Page, :broken do
       @page.fostered?.should be_true
     end
     
-    it 'for a site that can\'t be reached' do pending
+    it 'for a site that can\'t be reached' do
       @page.url = "http://test.com/"
     end
   end

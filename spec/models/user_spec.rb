@@ -5,22 +5,13 @@ describe User do
     @me = create!(:user)
   end
   describe 'identities' do
-    describe 'at least one' do
-      it 'doesn\'t allow removal of last' do pending
-        @me.identities.count.should == 1
-        @me.identities.first.destroy
-        @me.identities.count.should > 0
-        @her.identities.count.should > 0
-      end
-      
-      it 'doesn\'t allow removal of last' do pending
-        @me.identities.count.should == 1
-        identity = @me.identities.first
-        @her.identities << identity
-        proc { identity.save! }.should raise_error
-        @me.identities.count.should > 0
-        @her.identities.count.should > 0
-      end
+    it 'doesn\'t allow removal of last' do pending
+      @me.identities.count.should == 1
+      identity = @me.identities.first
+      @her.identities << identity
+      proc { identity.save! }.should raise_error
+      @me.identities.count.should > 0
+      @her.identities.count.should > 0
     end
   end
   
