@@ -29,6 +29,8 @@
     @include header_text;
   }
   #stats > div > p > span {
+    display:inline-block;
+    width:2em;
     padding:0 .5em 0 0;
     line-height:1em;
   }

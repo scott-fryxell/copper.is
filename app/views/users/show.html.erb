@@ -19,7 +19,7 @@
   </header>
   <div>
     <h2>Authors tipped</h2>
-    <p><%=current_user.tips.size%></p>
+    <p><%=current_user.tips.count%></p>
   </div>
   <div>
     <h2>Average tip</h2>
@@ -49,7 +49,7 @@
     </nav>
   </header>
 
-  <aside>
+  <aside itemscoped itemtype='/tips' itemid=''>
     <figure>
       <img src="/tips/12356/image" alt="tip image">
       <figcaption itemprop="amount_in_cents">0.75</figcaption>

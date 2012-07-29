@@ -10,6 +10,7 @@ var copper = {
     }
     return dollars
   },
+  tip_amount_options: ['5','10','25','50','75','100','200','300','500','1000','1500','2000'],
   get_identity_image: function (){
     for(identity in copper.me.identities){
       switch(copper.me.identities[identity].provider){
