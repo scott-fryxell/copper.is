@@ -292,6 +292,7 @@ ul {
 
 dd {
     margin: 0 0 0 3em;
+    -webkit-margin-start: 0;
 }
 
 /*

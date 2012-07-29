@@ -32,7 +32,8 @@
     padding:0 .5em 0 0;
     line-height:1em;
   }
-  #stats > div > p > span:before {
+  #stats > div > p > span:before,
+  #stats > div:nth-child(3) > p:before  {
     content:"$";
   }
   #stats > div > p > button {

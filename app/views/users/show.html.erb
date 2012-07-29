@@ -19,16 +19,16 @@
   </header>
   <div>
     <h2>Authors tipped</h2>
-    <p>24</p>
+    <p><%=current_user.tips.size%></p>
   </div>
   <div>
     <h2>Average tip</h2>
-    <p>75</p>
+    <p><%=current_user.tips.average(:amount_in_cents)%></p>
   </div>
   <div>
     <h2>Default tip</h2>
     <p>
-      <span itemprop="tip_preference_in_cents">0.<%=current_user.tip_preference_in_cents%></span>
+      <span itemprop="tip_preference_in_cents"><%=current_user.tip_preference_in_cents%></span>
       <button>+</button>
       <button>-</button>
     </p>

@@ -14,7 +14,7 @@ describe TipsController do
           response.should be_success
         end
 
-        it 'a list of the most recent tips of all users and current user' do
+        it 'a list of the most recent tips of all users and current user' do pending
           get_with @me, :index, format: :json
           assigns(:tips).include?(@her_tip2).should be_true
           assigns(:tips).include?(@her_tip1).should be_true

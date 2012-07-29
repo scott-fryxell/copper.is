@@ -1,11 +1,14 @@
 var copper = {
-  format_cents_to_dollars: function(property_name){
-    var rate = $("p[itemprop="+ property_name +"]").text().trim()
-    rate = (parseFloat(rate) / 100.00)
-    if( rate == 0.5 || rate == 0.1){
-      rate = rate + '0'
+  format_cents_to_dollars: function (property_name){
+    var rate = $("*[itemprop="+ property_name +"]").text().trim()
+    $("*[itemprop=" + property_name +"]").text(copper.cents_to_dollars(rate))
+  },
+  cents_to_dollars: function (cents){
+    var dollars = (parseFloat(cents) / 100.00)
+    if(dollars == 0.5 || dollars == 0.1) {
+      dollars = dollars + '0'
     }
-    $("p[itemprop=" + property_name +"]").text(rate)
+    return dollars
   },
   get_identity_image: function (){
     for(identity in copper.me.identities){
