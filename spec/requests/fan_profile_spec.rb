@@ -8,7 +8,7 @@ describe "a fan's profile page" do
     visit '/users/me'
   end
 
-  it 'should display the number of authors tipped' do
+  it 'should display the number of authors tipped' do pending
     Tip.count.should == 1
     within('#stats > div > p') do
       page.should have_content('1');
@@ -21,7 +21,7 @@ describe "a fan's profile page" do
     end
   end
 
-  it 'should be able to change their tip amount', :focus do
+  it 'should be able to change their tip amount' do
     click_on('+')
     within('#stats > div > p > span') do
       page.should have_content('0.50');
