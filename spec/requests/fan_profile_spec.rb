@@ -26,11 +26,10 @@ describe "a fan's profile page" do
     within('#stats > div > p > span') do
       page.should have_content('0.50');
     end
-    # visit '/users/me'
-    #     within('#stats > div > p > span') do
-    #       page.should have_content('0.50');
-    #     end
-    
+    visit '/users/me'
+    within('#stats > div > p > span') do
+      page.should have_content('0.50');
+    end
   end
   it 'should display their current list of tips'
   it 'should display information about their most recent tip'
