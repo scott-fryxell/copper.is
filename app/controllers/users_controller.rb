@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @recent_tip = current_user.tips.first
   end
 
   def destroy

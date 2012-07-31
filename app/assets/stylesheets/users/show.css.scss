@@ -140,6 +140,9 @@
     font-size:1.2em;
     margin-bottom:1.5em;
   }
+  #tips > aside > dl > dd {
+    text-transform:none;
+  }
   #tips > aside > dl > dd:nth-child(6) {
     margin-bottom:0;
     color:$button_color;
@@ -218,8 +221,12 @@
     display:inline-block;
     width:8.6em;
     margin: 0 .5em .75em 0;
-    min-height:5.5em;
+    min-height:5em;
     background-color:#aca79a;
+  }
+  #tips > ol > li > img {
+    width:8.6em;
+    padding:0;
   }
   #tips > ol > li:nth-child(6n) {
     margin-right:0;
@@ -227,6 +234,14 @@
 }
 
 #users_show {
+  //todo figure out how to display author info and links
+  #tips > header > nav,
+  #tips > aside > nav > a:first-child,
+  #tips > aside > dl > dt:first-child,
+  #tips > aside > dl > dd:nth-child(2),
+  #tips > aside > footer > nav{
+    display:none;
+  }
   #signed_in > nav > a[href='/users/me'] > img {
     opacity:1;
   }

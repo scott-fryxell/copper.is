@@ -42,9 +42,9 @@ $(document).on("copper:identities_edit", function (){
         type: 'put',
         data: $('form').serialize(),
         error: function(data, textStatus, jqXHR) {
+          alert('There was a problem. Please verify your address and email then try again.')
           $('#email > form > input').addClass("invalid");
           $('body > nav > button').removeClass('working')
-          console.debug('success');
         },
         success: function(data, textStatus, jqXHR) {
           console.debug('success')

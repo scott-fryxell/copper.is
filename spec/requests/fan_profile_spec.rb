@@ -31,8 +31,13 @@ describe "a fan's profile page" do
       page.should have_content('0.50');
     end
   end
+  it 'should display information about their most recent tip' do
+    within('#tips > aside > figure > figcaption') do
+      page.should have_content('0.25');
+    end
+
+  end
   it 'should display their current list of tips'
-  it 'should display information about their most recent tip'
   it 'should be able to click on a tip and see info about it'
   it 'should be able to cancel pending tips'
   it 'should show more content from the author they\'ve tiped'

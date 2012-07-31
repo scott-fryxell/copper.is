@@ -23,7 +23,7 @@
   </div>
   <div>
     <h2>Average tip</h2>
-    <p><%=current_user.tips.average(:amount_in_cents)%></p>
+    <p><%=current_user.tips.average(:amount_in_cents).round() if current_user.tips%></p>
   </div>
   <div>
     <h2>Default tip</h2>
@@ -37,6 +37,8 @@
     <a href="/users/me/edit">Edit your settings</a>
   </footer>
 </section>
+
+<%-if @recent_tip -%>
 <section id="tips">
   <header>
     <h1>What you've tipped</h1>
@@ -49,58 +51,46 @@
     </nav>
   </header>
 
-  <aside itemscoped itemtype='/tips' itemid=''>
+  <aside itemscoped itemtype='/tips' itemid='/tips/<%=@recent_tip.id%>'>
     <figure>
-      <img src="/tips/12356/image" alt="tip image">
-      <figcaption itemprop="amount_in_cents">0.75</figcaption>
+      <img src="http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=<%=@recent_tip.page.url%>" alt="tip image">
+      <figcaption itemprop="amount_in_cents"><%=@recent_tip.amount_in_cents%></figcaption>
     </figure>
 
     <dl>
       <dt>Author</dt>
       <dd>Johny Appleseed</dd>
       <dt>source</dt>
-      <dd>flickr.com</dd>
+      <dd><%=URI(@recent_tip.page.url).host%></dd>
       <dt>status</dt>
-      <dd>pending</dd>
+      <dd itemprop='tip_state'><%=@recent_tip.paid_state%></dd>
     </dl>
     <nav>
       <a href="#more">More by author</a>
-      <a href="#original">Go to original</a>
-      <a href="#delete">Cancel tip</a>
+      <a target="_blank" href="<%=@recent_tip.page.url%>">Go to original</a>
+      <%-if @recent_tip.promised?-%>
+      <a>Cancel tip</a>
+      <%-end-%>
     </nav>
 
     <footer>
       <nav>
-        <a href="#twitter_share"><%= image_tag "providers/twitter/logo.png", :title => "logo" %></a>
-        <a href="#facebook_share"><%= image_tag "providers/facebook/logo.png", :title => "logo" %></a>
-        <a href="#tumbler_share"><%= image_tag "providers/tumblr/logo_small.png", :title => "logo" %></a>
+        <a href="#twitter_share"><%= image_tag "providers/twitter/logo.png", :title => "tweet this tip" %></a>
+        <a href="#facebook_share"><%= image_tag "providers/facebook/logo.png", :title => "share this on facebook" %></a>
+        <a href="#tumbler_share"><%= image_tag "providers/tumblr/logo_small.png", :title => "post this on tumblr" %></a>
         <h2>Share with friends</h2>
       </nav>
-      <time datetime="2012-07-15T18:16:56-07:00">2012-07-15</time>
+      <time datetime="<%=@recent_tip.created_at.getutc.iso8601 %>"/>
     </footer>
   </aside>
 
   <ol>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
-    <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
+    <%-current_user.tips.each do |tip| -%>
+      <li itemscoped itemtype='/tips' itemid='/tips/<%=tip.id%>'><img src="http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=<%=tip.page.url%>" alt="flickr.com"></li>
+    <%-end-%>
   </ol>
 </section>
+<%-end-%>
 <nav>
   <a href="/users/me/edit">Edit your settings</a>
 </nav>
