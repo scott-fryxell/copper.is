@@ -31,7 +31,7 @@ $(document).bind({
     $(document).trigger("tip_display")
   },
   "tip_display": function (event){
-    
+
     $("body > form").submit()
     document.postMessage(JSON.stringify({type:'show'}))
     $("body > section").addClass("show")

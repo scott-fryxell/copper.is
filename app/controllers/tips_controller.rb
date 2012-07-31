@@ -20,6 +20,7 @@ class TipsController < ApplicationController
   def create
     @tip = current_user.tip(params[:tip])
     @tip.save
+    render nothing:true, status:200
   rescue ActiveRecord::RecordInvalid
     render nothing:true, status:403
   end

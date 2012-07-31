@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan's" do
+describe "A Fan" do
   before(:each) do
     visit "/"
     click_link 'facebook_sign_in'

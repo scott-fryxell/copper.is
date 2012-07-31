@@ -4,14 +4,17 @@ describe "a fan's profile page" do
   before(:each) do
     visit "/"
     click_link 'facebook_sign_in'
-    visit "/test"
+    User.count.should == 1
+    User.first.tip({url:'http://www.nytimes.com', title:'nytimes homepage', amount_in_cents:'25'})
+    User.first.tip({url:'http://www.fasterlighterbetter.com', title:'nytimes homepage', amount_in_cents:'25'})
     visit '/users/me'
   end
 
-  it 'should display the number of authors tipped', :focus do
-    Tip.count.should == 1
-    within('#stats > div > p') do
-      page.should have_content('1');
+  it 'should display the number of authors tipped' do
+    # save_and_open_page
+    User.first.tips.count.should == 2
+    within('#stats > div:nth-child(2) > p') do
+      page.should have_content('2');
     end
   end
 
