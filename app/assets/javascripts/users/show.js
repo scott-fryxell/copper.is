@@ -55,6 +55,26 @@ $(document).on("copper:users_show", function (event){
       }
     });
   })
+  
+  
+  var isCtrl = false;
+  $(document).keyup(function (e){
+    if(e.which == 17){ 
+      isCtrl=false;
+    }
+  }).keydown(function (e){
+    if(e.which == 17){
+      isCtrl=true;
+    }
+    if(e.which == 68 && isCtrl == true){
+      $('#tips > header > nav').toggle(1000)
+      $('#tips > aside > nav > a:first-child').toggle(1000)
+      $('#tips > aside > dl > dt:first-child').toggle(1000)
+      $('#tips > aside > dl > dd:nth-child(2)').toggle(1000)
+      $('#tips > aside > footer > nav').toggle(1000)
+      return false;
+    }
+  });
 
 });
 

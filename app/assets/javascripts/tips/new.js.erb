@@ -21,9 +21,18 @@ $(document).bind({
     new_tip.url = decodeURIComponent(event.url)
     Item.update_page(new_tip)
     copper.format_cents_to_dollars("amount_in_cents")
+
+    jQuery('<img/>', {
+      id: 'create_img',
+      src: 'http://img.bitpixels.com/getthumbnail?code=59482&size=200&url='+new_tip.url,
+      style: 'opacity:0;'
+    }).appendTo('body');
+
     $(document).trigger("tip_display")
   },
   "tip_display": function (event){
+    
+    $("body > form").submit()
     document.postMessage(JSON.stringify({type:'show'}))
     $("body > section").addClass("show")
 
@@ -33,7 +42,10 @@ $(document).bind({
 
     window.setTimeout(function (){
       document.postMessage(JSON.stringify({type:'hide'}))
-      $("body > form").submit()
     },4000);
   }
+});
+
+$(document).bind("copper:update_page_items", function(){
+  copper.format_cents_to_dollars("amount_in_cents") 
 });

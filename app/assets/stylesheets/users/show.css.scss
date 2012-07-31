@@ -108,6 +108,7 @@
     margin-top:.5em;
     width:grid-width(8);
     height:grid-width(5);
+    @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
   }
   #tips > aside > figure > figcaption {
     text-align:center;
@@ -222,7 +223,9 @@
     width:8.6em;
     margin: 0 .5em .75em 0;
     min-height:5em;
-    background-color:#aca79a;
+    @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
+//    background-color:#aca79a;
+
   }
   #tips > ol > li > img {
     width:8.6em;

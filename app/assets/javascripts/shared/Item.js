@@ -103,7 +103,7 @@ $(document).ready(function (){
       error: function(data, textStatus, jqXHR) {
         //TODO reload the properties from the server and populate the page with a message
         $(form).trigger("copper:invalid");
-        console.error("error submiting form " + $(form).attr('method'), data, textStatus, jqXHR);
+        console.error("error submiting form " + id, data, textStatus, jqXHR);
       }
     });
   });
