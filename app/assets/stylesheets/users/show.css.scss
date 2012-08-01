@@ -219,13 +219,16 @@
     margin-top:1.5em;
   }
   #tips > ol > li {
+    cursor:pointer;
     display:inline-block;
     width:8.6em;
     margin: 0 .5em .75em 0;
     min-height:5em;
     @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
-//    background-color:#aca79a;
-
+  }
+  #tips > ol > li.selected {
+    outline:2px solid rgba(0,0,0,0.4);
+    @include user-select(none);
   }
   #tips > ol > li > img {
     width:8.6em;
@@ -303,7 +306,7 @@
   #settings > div:nth-child(2) {
     padding:2em;
     padding-left:4em;
-    
+
     float:right;
     width:21.25em;
   }

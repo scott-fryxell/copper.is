@@ -2,7 +2,6 @@ $(document).on("copper:users_show", function (event){
   copper.format_cents_to_dollars("tip_preference_in_cents")
   copper.format_cents_to_dollars("amount_in_cents")
   if( '' == $('#stats > div:nth-child(3) > p').text().trim()){
-    
     $('#stats > div:nth-child(3)').hide()
   }else{
     var dollars = copper.cents_to_dollars($('#stats > div:nth-child(3) > p').text().trim());
@@ -40,26 +39,18 @@ $(document).on("copper:users_show", function (event){
   });
 
   $("#tips > aside > nav > a:nth-child(3)").click(function(){
-    console.debug($(this).parent().parent().attr('itemid'))
+    $('#tips > aside').trigger("copper.delete_current_tip");
+  });
 
-    jQuery.ajax({
-      url: $(this).parent().parent().attr('itemid'),
-      type: 'delete',
-      success: function (data, textStatus, jqXHR){
-        console.debug('current tip deleted')
-        $('#tips > aside').trigger("copper.cancel_current_tip");
-        window.location.reload();
-      },
-      error: function (data, textStatus, jqXHR) {
-        alert('There was a problem canceling this tip, please try again later')
-      }
-    });
-  })
-  
-  
+  $('#tips > ol > li').click(function (event){
+    $(this).trigger('copper.focus_tip')
+  });
+});
+
+$(document).on("copper:users_show", function (event){
   var isCtrl = false;
   $(document).keyup(function (e){
-    if(e.which == 17){ 
+    if(e.which == 17){
       isCtrl=false;
     }
   }).keydown(function (e){
@@ -75,9 +66,50 @@ $(document).on("copper:users_show", function (event){
       return false;
     }
   });
-
 });
 
-$(document).bind('copper.cancel_current_tip', function(event){
-  console.debug('delete current tip')
+$(document).on("copper:users_show", function(){
+  $('#tips > ol > li').bind('copper.focus_tip', function(){
+    var li = this;
+    $('li.selected').removeClass('selected');
+    $(li).addClass('selected');
+    $('#tips > aside').animate({opacity:0}, 500, function(){
+      $("#tips > aside > figure > img").attr("src", $(li).find('img').attr('src'))
+      $("#tips > aside > figure > figcaption").text($(li).attr('data-amount'))
+      $("#tips > aside > nav > a[target=_blank]").attr('href', $(li).attr('data-url'))
+      $('#tips > aside > dl > dd:nth-child(4)').text($(li).attr('data-site'))
+      $('#tips > aside > dl > dd:nth-child(6)').text($(li).attr('data-paid_state'))
+      $("#tips > aside > footer > time").remove()
+      $('#tips > aside').attr('itemid', $(li).attr('itemid'))
+      $('<time/>', {
+        datetime: $(li).attr('data-created_at')
+      }).appendTo("#tips > aside > footer")
+      
+      $("#tips > aside > footer > time").timeago();
+      copper.format_cents_to_dollars("amount_in_cents")
+      $(this).animate({opacity:1},400)
+    });
+  });
 });
+$(document).bind('copper.delete_current_tip', function(event){
+  var deleted_tip = $('#tips > aside').attr('itemid');
+  li = $('li[itemid="' + deleted_tip + '"]').fadeOut(1000, function(){
+    $(this).remove()
+  });
+  next_tip = $('#tips ol').next();
+  jQuery.ajax({
+    url: deleted_tip,
+    type: 'delete',
+    success: function (data, textStatus, jqXHR){
+      if(next_tip.size() == 0){
+        $('#tips > ol > li:first-child').click()
+      }else{
+        $(next_tip).click();
+      }
+    },
+    error: function (data, textStatus, jqXHR) {
+      alert('There was a problem canceling this tip, please try again later')
+    }
+  });
+});
+

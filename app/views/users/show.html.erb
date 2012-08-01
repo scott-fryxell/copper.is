@@ -50,13 +50,11 @@
       <a href="#status">Status</a>
     </nav>
   </header>
-
   <aside itemscoped itemtype='/tips' itemid='/tips/<%=@recent_tip.id%>'>
     <figure>
       <img src="http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=<%=@recent_tip.page.url%>" alt="tip image">
       <figcaption itemprop="amount_in_cents"><%=@recent_tip.amount_in_cents%></figcaption>
     </figure>
-
     <dl>
       <dt>Author</dt>
       <dd>Johny Appleseed</dd>
@@ -68,11 +66,8 @@
     <nav>
       <a href="#more">More by author</a>
       <a target="_blank" href="<%=@recent_tip.page.url%>">Go to original</a>
-      <%-if @recent_tip.promised?-%>
       <a>Cancel tip</a>
-      <%-end-%>
     </nav>
-
     <footer>
       <nav>
         <a href="#twitter_share"><%= image_tag "providers/twitter/logo.png", :title => "tweet this tip" %></a>
@@ -83,10 +78,16 @@
       <time datetime="<%=@recent_tip.created_at.getutc.iso8601 %>"/>
     </footer>
   </aside>
-
   <ol>
     <%-current_user.tips.each do |tip| -%>
-      <li itemscoped itemtype='/tips' itemid='/tips/<%=tip.id%>'><img src="http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=<%=tip.page.url%>" alt="flickr.com"></li>
+      <li itemscoped itemtype='/tips' itemid='/tips/<%=tip.id%>'
+        data-amount="<%=tip.amount_in_cents%>"
+        data-url="<%=tip.page.url%>"
+        data-site="<%=URI(tip.page.url).host%>"
+        data-paid_state="<%=tip.paid_state%>"
+        data-created_at="<%=tip.created_at.getutc.iso8601 %>">
+        <img src="http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=<%=tip.page.url%>">
+      </li>
     <%-end-%>
   </ol>
 </section>
