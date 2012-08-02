@@ -2,7 +2,7 @@
   height:133em;
   width:auto;
   margin:auto;
-  & > section{
+  & > section {
     width:grid-width(22);
     margin: 0 auto 0 auto;
   }
@@ -21,6 +21,7 @@
   a.button {
     @include copper_button;
   }
+
   #banner {
     background: image-url('home/katie.jpg') no-repeat center top;
     height: 24em;
@@ -125,7 +126,6 @@
     top:8.5em;
     left:5em;
   }
-  
   #how > figure > img {
     position:absolute;
     top:50%;
@@ -147,6 +147,7 @@
     font-family: 'Nothing You Could Do', cursive;
     font-size:1.75em;
   }
+
   #samples {
     @include box-shadow(inset 0 .75em 1.5em -0.75em rgba(0, 0, 0, .1), inset 0 -0.5em 1.5em -1em rgba(0, 0, 0, .3));
     padding:0;
