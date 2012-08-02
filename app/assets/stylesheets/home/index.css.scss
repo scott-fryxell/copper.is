@@ -23,7 +23,7 @@
   }
   #banner {
     background: image-url('home/katie.jpg') no-repeat center top;
-    height: 26.8em;
+    height: 24em;
     width:auto;
     @include background-size(cover);
     @include full_width(black)
