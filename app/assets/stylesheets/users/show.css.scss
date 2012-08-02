@@ -135,7 +135,10 @@
     margin-right:grid-width(1);
     height:grid-width(5);
   }
-  #tips > aside > dl > dt {}
+  #tips > aside > dl > dt {
+    margin-bottom:.25em;
+  
+  }
   #tips > aside > dl > dd {
     @include header_text;
     font-size:1.2em;
@@ -145,6 +148,7 @@
     text-transform:none;
   }
   #tips > aside > dl > dd:nth-child(6) {
+    text-transform:capitalize;
     margin-bottom:0;
     color:$button_color;
   }

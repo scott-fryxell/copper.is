@@ -245,8 +245,8 @@ a[href='/signout'] {
 #home_edit_author,
 #users_edit {
   #banner {
-    margin-top:2em;
-    margin-bottom:4em;
+    margin-top:3.5em;
+    margin-bottom:3.5em;
   }
   #banner > header {
     display:inline-block;
@@ -272,7 +272,7 @@ a[href='/signout'] {
     color: $darkness;
     font-family: 'Doppio One', sans-serif;
     font-size:1.25em;
-    margin-top:0;
+    margin-top:.25em;
   }
   #banner > hgroup > p > a {
     padding-left:1em;
@@ -284,7 +284,7 @@ a[href='/signout'] {
     vertical-align:top;
     margin-top:0;
     display:inline-block;
-    width:grid-width(13);
+    width:grid-width(12.5);
   }
 
   #address {

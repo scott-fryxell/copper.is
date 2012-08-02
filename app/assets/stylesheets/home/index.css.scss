@@ -78,14 +78,12 @@
   }
 
   #how {
-    background: image-url('home/look_at_me_logo.svg') no-repeat 100% 60%;
-    background-size: 50%;
-    padding-top:3em;
+    padding-top:6em;
     padding-bottom:2em;
   }
   #how > header {
     vertical-align:top;
-    width: grid-width(13);
+    width: grid-width(14);
     display:inline-block;
     margin-bottom:2em;
   }
@@ -96,20 +94,59 @@
     vertical-align:top;
   }
   #how > header > h1 {
-    font-size:30px;
+    font-size:2em;
     line-height:1.25em;
     margin-bottom:.5em;
   }
   #how > header > p {
-    font-size:14px;
+    font-size:1em;
     width: grid-width(12);
   }
   #how > figure {
-    vertical-align:baseline;
+    width:grid-width(8);
+    height:grid-width(8);
+    position:relative;
+    vertical-align:top;
     display:inline-block;
-    margin-right:-15em;
+    margin-top:-6em;
   }
-
+  #how > figure > figcaption {
+    position:absolute;
+    line-height:1.25em;
+    width:3em;
+    top:2em;
+    left:1em;
+  }
+  #how > figure > figcaption:nth-child(2) {
+    top:3.5em;
+    left:8.5em;
+  }
+  #how > figure > figcaption:nth-child(3) {
+    top:8.5em;
+    left:5em;
+  }
+  
+  #how > figure > img {
+    position:absolute;
+    top:50%;
+    left:50%;
+    margin-left:-4em;
+    margin-top:-4em;
+    width:8em;
+    height:8em;
+    opacity:0.3;
+  }
+  #how > figure > img:nth-child(4){
+    width:16em;
+    height:16em;
+    margin-left:-8em;
+    margin-top:-8em;
+    opacity:0.1;
+  }
+  #how > figure > figcaption {
+    font-family: 'Nothing You Could Do', cursive;
+    font-size:1.75em;
+  }
   #samples {
     @include box-shadow(inset 0 .75em 1.5em -0.75em rgba(0, 0, 0, .1), inset 0 -0.5em 1.5em -1em rgba(0, 0, 0, .3));
     padding:0;
@@ -182,10 +219,11 @@
     padding-top:2em;
   }
   #samples > figure > img {
+    float:left;
     margin-left: grid-width(1);
     width:grid-width(22);
     display:inline-block;
-    overflow:hidden;
+
     @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
   }
 
