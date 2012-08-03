@@ -26,6 +26,9 @@ $(document).on("copper:home_index", function (){
 });
 $(document).on("copper:home_index", function (){
   $("a.install").click(function (event){
+    $(document).trigger('copper.button_installed')
+  })
+  $(document).on('copper.button_installed', function (){
     $('#join').delay(0).fadeOut(800);
     $('#congrats').delay(800).fadeIn(800);
     $('#facebook').delay(800).fadeIn(800);
