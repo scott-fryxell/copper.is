@@ -13,7 +13,7 @@ $(document).on("copper:home_index", function (){
       var params = {
         "Foo": { URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?",
                  IconURL: "/assets/icons/logo.svg",
-                 Hash: "sha1:4c11f4e81522d6ef0403d61c5eadc578c91a0c1f",
+                 Hash: "sha1:52655c2f918f98f9df29ca082e65ead87d9c24cb",
                  toString: function () { return "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"; }
         }
       };
