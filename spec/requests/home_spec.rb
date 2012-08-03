@@ -37,13 +37,13 @@ describe "home page experience" do
     page.should have_no_css('#congrats', visible:true)
   end
 
-  it "should show the congrats message after the user installs the button" do
+  it "should show the congrats message after the user installs the button", :focus do
     click_on('connect with facebook')
     page.execute_script("jQuery.fx.off = true")
     page.should have_css('#join', visible:true)
     # simulating the event the extension will trigger when installed
     page.execute_script('$(document).trigger("copper:button_installed")')
-    page.should have_no_css('#join', visible:true)
+    page.should have_css('#join', visible:false)
     page.should have_css('#congrats', visible:true)
     page.should have_css('#facebook', visible:true)
     page.should have_css('#settings', visible:true)

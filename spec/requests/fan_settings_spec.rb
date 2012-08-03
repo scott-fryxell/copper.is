@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan" do
+describe "A Fan's settings page" do
   before(:each) do
     visit "/"
     click_link 'facebook_sign_in'
@@ -14,7 +14,7 @@ describe "A Fan" do
 
   describe 'Item.js' do
     it "should be able to query items on the page" do
-      page.evaluate_script("document.getItems().users").should_not be_nil
+      page.evaluate_script("document.getItems().fans").should_not be_nil
     end
 
     it "should be able to query for user email" do

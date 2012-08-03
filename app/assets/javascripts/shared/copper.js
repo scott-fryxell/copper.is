@@ -28,7 +28,7 @@ var copper = {
 $(document).bind('copper.save_me', function(){
   jQuery.ajax({
     dataType:'json',
-    url: '/users/me',
+    url: '/fans/me',
     type: 'put',
     data: jQuery.param(copper.me),
     error: function(data, textStatus, jqXHR) {

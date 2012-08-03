@@ -27,7 +27,7 @@ $(document).ready(function() {
     $(this).addClass("working");
   });
 
-  jQuery.ajax({url:'/users/me',
+  jQuery.ajax({url:'/fans/me',
     dataType:'json',
     success:function(data) {
       copper.me = data;

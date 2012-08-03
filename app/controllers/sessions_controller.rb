@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
 
         session[:user_id] = @identity.user.id
 
-        redirect_to user_path(current_user.id), notice: "Signed in!"
+        redirect_to '/fans/me', notice: "Signed in!"
       else
         # No user associated with the identity so we need to create a new one
         user = User.create_with_omniauth(auth)

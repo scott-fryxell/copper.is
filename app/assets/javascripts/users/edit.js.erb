@@ -107,7 +107,7 @@ $(document).on("copper:users_edit:items", function (){
     $(this).find('input[itemprop=email]').addClass('invalid');
   });
 
-  user = document.getItems()['users'][((window.location.pathname).replace('/edit', ''))]
+  user = document.getItems()['fans'][((window.location.pathname).replace('/edit', ''))]
   if (!user.email){
     $("#email > header > a").click();
   }

@@ -38,7 +38,7 @@ $(document).on("copper:identities_edit", function (){
     if($('input.invalid').size() == 0 ||  $('select.invalid').size() == 0 ) {
       $(this).addClass('working');
       jQuery.ajax({
-        url: '/users/me',
+        url: '/fans/me',
         type: 'put',
         data: $('form').serialize(),
         error: function(data, textStatus, jqXHR) {

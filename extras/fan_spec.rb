@@ -85,11 +85,11 @@ describe "A Fan" do
     slow_test do
       it "should be able to delete a tip " do
         tip_twitter
-        visit "/users/current/tips"
+        visit "/fans/current/tips"
         page.should have_content 'copper_dev'
         click_on('x')
         sleep 2
-        visit "/users/current/tips"
+        visit "/fans/current/tips"
       end
     end
 
@@ -134,8 +134,7 @@ describe "A Fan" do
           page.should have_content "Processing your order..."
           sleep 5
           page.should have_content "Success! We've emailed you a reciept"
-
-          visit('/users/current')
+          visit('/fans/me')
           click_on('tips')
           click_on('All')
         end
@@ -155,7 +154,6 @@ describe "A Fan" do
         end
 
         it "should charge a user twice." do
-
           sleep 2
           fill_in('email', :with => 'google_user@email.com')
           fill_in('number', :with => '4242424242424242')
