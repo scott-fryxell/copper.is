@@ -28,21 +28,14 @@ $(document).on("copper:home_index", function (){
 $(document).on("copper:home_index", function (){
 
   $("a.install").click(function (event){
-    event.preventDefault();
-    // this is temporariy until we can get the extensions to trigger the event.
-    $(document).trigger("copper:button_installed")
 
-  })
-
-  $(document).on("copper:button_installed",  function(event){
-    // hide the welcome screen and show congrats
     $('#join').delay(0).fadeOut(800);
     $('#congrats').delay(800).fadeIn(800);
     $('#facebook').delay(800).fadeIn(800);
     $('#settings').delay(800).fadeIn(800, function (){
       $('#settings').delay(800).css("display",'block');
     });
-  });
+  })
 
   $("#samples > nav > a").click(function (event){
     if('nope' != $(this).attr('data-distance')){
@@ -71,7 +64,6 @@ $(document).on("copper:home_index:me", function (){
     var me_url = 'https://graph.facebook.com/me?&access_token=' + copper.me.identities[0].token;
     $.getJSON(me_url).success(function(me) {
       $('figure.step_two > h5 > p').append('Welcome, ' + me.first_name + '!')
-      console.debug(me.first_name)
     });
   }
 });
