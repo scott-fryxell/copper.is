@@ -12,8 +12,8 @@ $(document).on("copper:home_index", function (){
     $("a.install").click(function(){
       var params = {
         "Foo": { URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?",
-                 IconURL: "assets/icons/logo.svg",
-                 Hash: "sha1:5f1bd48be013e968d7744d2d44300ea6246dafbb",
+                 IconURL: "/assets/icons/logo.svg",
+                 Hash: "sha1:4c11f4e81522d6ef0403d61c5eadc578c91a0c1f",
                  toString: function () { return "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"; }
         }
       };
