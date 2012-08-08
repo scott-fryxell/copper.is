@@ -58,19 +58,32 @@ begin
     class Tip < ActiveRecord::Base
       establish_connection OLD_PRODUCTION
     end
+    
+    class Page < ActiveRecord::Base
+      establish_connection OLD_PRODUCTION
+    end
   end
 
   Old::User.find_each do |user|
-    User.create(user.attributes)
+    new_user = User.create(user.attributes)
+    new_user.roles << Role.find_by_name('Fan')
+    new_user.save!(validate:false)
   end
   
   Old::Identity.find_each do |ident|
-    Identity.create!(ident.attributes)
+    i = Identity.create!(ident.attributes)
+    i.identity_state = 'known'
+    i.save!
   end
   
   loc_page_map = {}
   Old::Locator.find_each do |loc|
-    page = Page.create!(url:loc.url,author_state:'manual')
+    old_page =  Old::Page.find(loc.page_id)
+    page = Page.create!(url:loc.url,author_state:'orphaned',
+                        title:old_page.description,
+                        created_at:old_page.created_at,
+                        updated_at:old_page.updated_at
+                        )
     loc_page_map[loc.id] = page.id
   end
   
@@ -80,14 +93,17 @@ begin
                       updated_at:tip_order.updated_at,
                       charge_token:tip_order.charge_token)
     if tip_order.is_active?
-      order.state = 'current'
+      order.order_state = 'current'
     else
-      order.state = 'paid'
-      User.find(tip_order.fan_id).create_current_order!
+      order.order_state = 'paid'
     end
-    order.save!
+    order.save!(validate:false)
   end
-  
+
+  # User.find_each do |user|
+  #   user.current_order
+  # end
+
   Old::Tip.find_each do |tip|
     t = Tip.new(id:tip.id,amount_in_cents:tip.amount_in_cents,
                 created_at:tip.created_at,

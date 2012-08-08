@@ -38,11 +38,11 @@ RailsAdmin.config do |config|
 
   #  ==> Included models
   # Add all excluded models here:
-  # config.excluded_models = [Address, Check, Identities::Facebook, Identities::Flickr, Identities::Github, Identities::Google, Identities::Soundcloud, Identities::Tumblr, Identities::Twitter, Identities::Vimeo, Identities::Youtube, Identity, Order, Page, Role, Tip, User]
+  # config.excluded_models = [Check, Identities::Facebook, Identities::Flickr, Identities::Github, Identities::Google, Identities::Soundcloud, Identities::Tumblr, Identities::Twitter, Identities::Vimeo, Identities::Youtube, Identity, Order, Page, Role, Tip, User]
 
 
   # Add models here if you want to go 'whitelist mode':
-  # config.included_models = [Address, Check, Identities::Facebook, Identities::Flickr, Identities::Github, Identities::Google, Identities::Soundcloud, Identities::Tumblr, Identities::Twitter, Identities::Vimeo, Identities::Youtube, Identity, Order, Page, Role, Tip, User]
+  # config.included_models = [Check, Identities::Facebook, Identities::Flickr, Identities::Github, Identities::Google, Identities::Soundcloud, Identities::Tumblr, Identities::Twitter, Identities::Vimeo, Identities::Youtube, Identity, Order, Page, Role, Tip, User]
   config.included_models = [Check, Identity, Order, Page, Tip, User]
 
   config.models do
@@ -99,27 +99,6 @@ RailsAdmin.config do |config|
 
   # All fields marked as 'hidden' won't be shown anywhere in the rails_admin unless you mark them as visible. (visible(true))
 
-  # config.model Address do
-  #   # Found associations:
-  #     configure :user, :belongs_to_association   #   # Found columns:
-  #     configure :id, :integer
-  #     configure :line1, :string
-  #     configure :line2, :string
-  #     configure :postal_code, :string
-  #     configure :country, :string
-  #     configure :state, :string
-  #     configure :territory, :string
-  #     configure :city, :string
-  #     configure :user_id, :integer         # Hidden
-  #     configure :created_at, :datetime
-  #     configure :updated_at, :datetime   #   # Sections:
-  #   list do; end
-  #   export do; end
-  #   show do; end
-  #   edit do; end
-  #   create do; end
-  #   update do; end
-  # end
   # config.model Check do
   #   # Found associations:
   #     configure :user, :belongs_to_association
