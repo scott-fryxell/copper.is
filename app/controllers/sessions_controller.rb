@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
 
     @identity.token = auth['credentials']['token']
     @identity.secret = auth['credentials']['secret']
+    @identity.username = auth['info']['nickname']
     @identity.save
 
     if current_user
