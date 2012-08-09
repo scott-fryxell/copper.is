@@ -32,14 +32,14 @@ gem 'rails_admin'
 gem 'paper_trail', '~> 2'
 gem 'bourbon'
 gem 'carmen-rails'
-
+gem 'rack-mini-profiler'
 group :production do
   gem "pg"
   gem 'newrelic_rpm'
 end
 
-group :development, :production do
- 
+group :development do
+
 end
 
 group :development, :test do
