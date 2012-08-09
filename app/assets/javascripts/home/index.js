@@ -47,16 +47,13 @@ $(document).on("copper:home_index", function (){
 $(document).on("copper:home_index:me", function (){
   $('#join figure.step_one').hide();
   $('#join figure.step_two').show();
-  
+
   var facebook = -1
   for (i in copper.me.identities){
-    console.debug(i)
     if(copper.me.identities[i].provider == 'facebook'){
-      console.debug('foundit')
       facebook = copper.me.identities[i]
     }
   }
-  console.debug(facebook, 'bastard')
 
   if(facebook){
     var likes_url = 'https://graph.facebook.com/' + facebook.username + '/likes?limit=7&access_token=' + copper.me.identities[0].token;
