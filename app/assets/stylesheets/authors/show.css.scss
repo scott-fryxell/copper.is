@@ -1,0 +1,78 @@
+#authors_show {
+  #stats > div {
+    width:7.25em;
+    padding-left:1.25em;
+  }
+  #stats > div:nth-child(7){
+    @include left_width($offset_color)
+  }
+
+  #settings {
+    width:55em;
+    padding:0;
+    @include full_width($offset_color);
+    margin: 4em auto 2em auto;
+    background-color:transparent;
+  }
+  #settings > div {
+    min-height:8em;
+
+    margin-right:0;
+    position:relative;
+    display:inline-block;
+    background-color:$offset_color;
+  }
+  #settings > div:first-child {
+    width:27em;
+    margin-right:.5em;
+  }
+  #settings > div:first-child > header {
+    margin:2em 0;
+    vertical-align:top;
+    display:inline-block;
+    width:grid-width(6);
+  }
+  #settings > div:first-child > header > select {
+    width:grid-width(4);
+  }
+  #settings > div:first-child > figure {
+    vertical-align:middle;
+    text-align:center;
+    width:12em;
+    height:12em;
+    line-height:12em;
+    display:inline-block;
+  }
+  #settings > div:first-child > figure > img {
+    display:inline;
+    vertical-align:middle;
+    text-align:center;
+  }
+  #settings > div:nth-child(2) {
+    padding:2em;
+    padding-left:4em;
+
+    float:right;
+    width:21.25em;
+  }
+  #settings > div:nth-child(2) > header {
+    height:2em;
+    margin-bottom:1em;
+  }
+  #settings > div:nth-child(2) > header > h3 {
+    margin-top:.4em;
+    vertical-align:middle;
+    display:inline-block;
+  }
+  #settings > div:nth-child(2) > header > a {
+    float:right;
+    color:white;
+    padding: .5em 1em;
+    background-color:rgba(0,0,0, .5);
+  }
+  #settings > div:nth-child(2) > textarea {
+    width:grid-width(8.25);
+    height:4em;
+    background-color: #CCCCCC;
+  }
+}

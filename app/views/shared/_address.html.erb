@@ -6,7 +6,7 @@
   <input itemprop="city" name='user[city]' type="text" placeholder="City/Town" required>
   <input itemprop="postal_code" name='user[postal_code]' type="text" placeholder="Postal Code" required>
   <select itemprop='country_code' name="user[country_code]">
-    <option value="">Country</option>
+    <option value="" disabled selected>Select Country</option>
     <option value="<%=Country.named('United States').code%>"><%=Country.named('United States').name%></option>
     <%-Country.all.each do |country|-%>
       <option value="<%=country.code%>"><%=country.name%></option>

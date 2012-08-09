@@ -1,0 +1,21 @@
+#authors_edit {
+  #identities > ul {
+    width:grid-width(7);
+    display:inline-block;
+    margin-right:grid-width(1);
+  }
+  #identities h2 {
+    margin-bottom:.5em;
+    @include text
+  }
+  #identities > nav {
+    display:inline-block;
+  }
+  #identities > nav > a {
+    display:inline-block;
+    margin-right:.5em;
+  }
+  #address {
+    min-height:grid-width(4);
+  }
+}

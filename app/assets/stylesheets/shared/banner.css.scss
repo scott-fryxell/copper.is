@@ -1,0 +1,48 @@
+#users_show,
+#users_edit,
+#authors_show,
+#authors_edit,
+#identities_edit {
+  #banner {
+    margin-top:3.5em;
+    margin-bottom:3.5em;
+  }
+  #banner > header {
+    display:inline-block;
+    width:grid-width(3);
+  }
+  #banner > header > img {
+    vertical-align:bottom;
+    width:5em;
+  }
+  #banner > hgroup {
+    vertical-align:top;
+    display:inline-block;
+    width:grid-width(8);
+  }
+  #banner > hgroup > h1 {
+    vertical-align:top;
+    font-size:2.5em;
+    margin-bottom:0;
+    margin-top:0;
+    line-height:1em;
+  }
+  #banner > hgroup > p {
+    color: $darkness;
+    font-family: 'Doppio One', sans-serif;
+    font-size:1.25em;
+    margin-top:.25em;
+  }
+  #banner > hgroup > p > a {
+    padding-left:1em;
+    font-size:.6em;
+    font-family: 'Cantarell', sans-serif;
+    opacity:.5;
+  }
+  #banner > p {
+    vertical-align:top;
+    margin-top:0;
+    display:inline-block;
+    width:grid-width(12.5);
+  }
+}

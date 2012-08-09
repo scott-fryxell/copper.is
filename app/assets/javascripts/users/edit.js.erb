@@ -5,9 +5,6 @@ $(document).on("copper:users_edit", function (){
   $('#rate > form > select > option[value=' + rate +']').attr('selected', true)
   copper.format_cents_to_dollars("tip_preference_in_cents")
 });
-$(document).on("copper:users_edit:update_page_items", function (){
-  copper.format_cents_to_dollars("tip_preference_in_cents")
-})
 $(document).on("copper:users_edit", function (){
   $("#card > form").submit(function(event) {
     event.preventDefault();
@@ -129,3 +126,6 @@ $(document).on("copper:users_edit:items", function (){
     $("#card > header > a").click();
   }
 });
+$(document).on("copper:users_edit:update_page_items", function (){
+  copper.format_cents_to_dollars("tip_preference_in_cents")
+})
