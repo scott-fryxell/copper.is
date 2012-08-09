@@ -47,8 +47,19 @@ $(document).on("copper:home_index", function (){
 $(document).on("copper:home_index:me", function (){
   $('#join figure.step_one').hide();
   $('#join figure.step_two').show();
-  if('facebook' == copper.me.identities[0].provider){
-    var likes_url = 'https://graph.facebook.com/' + copper.me.identities[0].uid + '/likes?limit=7&access_token=' + copper.me.identities[0].token;
+  
+  var facebook = -1
+  for (i in copper.me.identities){
+    console.debug(i)
+    if(copper.me.identities[i].provider == 'facebook'){
+      console.debug('foundit')
+      facebook = copper.me.identities[i]
+    }
+  }
+  console.debug(facebook, 'bastard')
+
+  if(facebook){
+    var likes_url = 'https://graph.facebook.com/' + facebook.username + '/likes?limit=7&access_token=' + copper.me.identities[0].token;
     $.getJSON(likes_url).success(function(facebook) {
       $.each(facebook.data,function(i, a_like){
         $.getJSON("http://graph.facebook.com/" + a_like.id).success(function(like){
@@ -57,7 +68,8 @@ $(document).on("copper:home_index:me", function (){
         })
       })
     });
-    var me_url = 'https://graph.facebook.com/me?&access_token=' + copper.me.identities[0].token;
+
+    var me_url = 'https://graph.facebook.com/me?&access_token=' + facebook.token;
     $.getJSON(me_url).success(function(me) {
       $('figure.step_two > h5 > p').append('Welcome, ' + me.first_name + '!')
     });
