@@ -79,7 +79,7 @@
     </footer>
   </aside>
   <ol>
-    <%-current_user.tips.each do |tip| -%>
+    <%-current_user.current_order.tips.each do |tip| -%>
       <li itemscoped itemtype='/tips' itemid='/tips/<%=tip.id%>'
         data-amount="<%=tip.amount_in_cents%>"
         data-url="<%=tip.page.url%>"

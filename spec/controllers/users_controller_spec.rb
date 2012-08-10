@@ -109,8 +109,6 @@ describe UsersController do
         it 'assigns user with id me' do
           get_with @me, :show, id:'me'
           response.status.should == 200
-          p assigns(:user)
-          p @me
           assigns(:user).id.should == @me.id
         end
       end

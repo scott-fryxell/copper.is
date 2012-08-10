@@ -1,26 +1,17 @@
 #identities_edit {
-  section.form > header {height:100%}
-  section.form > header > h2 {
-    text-align:left;
-  }
-  section.form > form {
-    max-width: grid-width(14);
-  }
-  section.form > form > input {
-    width:grid-width(8);
-    margin-bottom:1em;
-  }
-  section.form > p {
-    margin:0;
-    display:inline-block;
-    width:grid-width(5);
-    @include help_text
-  }
   section.form form {
     display:inline-block;
     opacity:1;
   }
-
+  section.form > div {
+    display:inline-block;
+  }
+  section.form > form > input {
+    width:grid-width(8);
+  }
+  #address > form > input[type=submit] {
+    display:none;
+  }
   #banner {
     padding-top:4em;
     position:inherit;

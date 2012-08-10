@@ -1,20 +1,5 @@
 #authors_edit,
 #identities_edit {
-  #address > p {
-    padding-bottom:3em;
-    float:right;
-    vertical-align:top;
-    padding-left:0;
-    width:10em;
-    &:before {
-      @include transform(rotate(140deg));
-      background-image: image-url('arrows/swoop_down.svg');
-      background-repeat: no-repeat;
-      background-position-x: 90%;
-      background-position-y: 100%;
-    }
-
-  }
   #address > form > input {
     width:grid-width(13);
   }
@@ -32,7 +17,6 @@
     width:grid-width(3);
   }
 }
-
 #identities_edit {
   #address {
     padding-bottom:3em;
@@ -50,5 +34,18 @@
       border-top: 1.5em solid $offset_color;
     }
   }
-
+  #address > p {
+    padding-bottom:3em;
+    float:right;
+    vertical-align:top;
+    padding-left:0;
+    width:10em;
+    &:before {
+      @include transform(rotate(140deg));
+      background-image: image-url('arrows/swoop_down.svg');
+      background-repeat: no-repeat;
+      background-position-x: 90%;
+      background-position-y: 100%;
+    }
+  }
 }

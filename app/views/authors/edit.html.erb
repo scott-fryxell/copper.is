@@ -14,7 +14,6 @@
     how we use your information.
   </p>
 </section>
-
 <section id="identities" class="form">
   <header>
     <h2>Your login identities</h2>
@@ -54,11 +53,10 @@
     </a>
   </nav>
 </section>
-
 <section id="email" class="form">
   <header>
     <h2>Your Email</h2>
-    <a href="#change_email">Change</a>
+    <a>Change</a>
   </header>
   <div item="user">
     <h4>Email Address</h4>
@@ -69,20 +67,23 @@
     <input type="submit" value="Save"/>
   </form>
 </section>
-
 <section id="address" class="form">
   <header>
     <h2>Your address</h2>
-    <a href="#change_address">Change</a>
+    <a>Change</a>
   </header>
   <div>
     <p itemprop="name">kitty kardashean</p>
-    <p itemprop="street1">123 Main St</p>
-    <p><span itemprop='city'>Mainville</span><span itemprop="State">CA</span> <span itemprop="zip">94110</span></p>
+    <p itemprop="line1">123 Main St</p>
+    <p itemprop="line2">apt 4</p>
+    <p>
+      <span itemprop='city'>Mainville</span>
+      <span itemprop="State">CA</span> 
+      <span itemprop="zip">94110</span>
+    </p>
   </div>
   <%= render :partial => 'shared/address' %>
 </section>
-
 <nav>
   <a href="/authors/me">Return to profile</a>
 </nav>

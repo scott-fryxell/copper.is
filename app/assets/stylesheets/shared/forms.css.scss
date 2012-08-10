@@ -145,10 +145,11 @@ section.form > header {
   display:inline-block;
   width: grid-width(4);
   margin-right:grid-width(1);
-
+  height:100%
 }
 section.form > header > h2 {
   margin-bottom:.5em;
+  text-align:left;
 }
 section.form > header > a {
   font-size:.75em;
@@ -158,6 +159,16 @@ section.form > form {
   display:none;
   opacity:0;
   vertical-align:top;
+  max-width: grid-width(14);
+}
+section.form > form > input {
+  margin-bottom:1em;
+}
+section.form > p {
+  margin:0;
+  display:inline-block;
+  width:grid-width(5);
+  @include help_text
 }
 section.form > div {
   display:inline-block;
@@ -175,3 +186,4 @@ section.form > div p {
   opacity:.8;
   margin:0;
 }
+

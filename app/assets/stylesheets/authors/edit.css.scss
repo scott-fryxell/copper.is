@@ -18,4 +18,8 @@
   #address {
     min-height:grid-width(4);
   }
+  
+  #address > form > input[type=submit] {
+    width:4em;
+  }
 }

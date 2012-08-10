@@ -2,7 +2,6 @@
   #signed_in > nav > a[href='/fans/me/edit'] > img {
     opacity:1;
   }
-
   & > nav {
     margin-bottom:3em;
     text-align:center;
@@ -10,11 +9,9 @@
   & > nav > a {
     @include settings_pointer
   }
-
   #rate > div > p:before{
     content: "$";
   }
-
   #card {
     height: grid-width(5);
     margin-bottom:3em;
@@ -57,5 +54,3 @@
     font-size:1.2em;
   }
 }
-
-
