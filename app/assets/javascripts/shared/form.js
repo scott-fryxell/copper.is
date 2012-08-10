@@ -1,5 +1,4 @@
 $(document).on("copper:users_edit:items copper:authors_edit:items", function (){
-  console.debug('binding form display');
   $("section > header > a").click(function(event){
     event.preventDefault();
     var div = $(this).parents("section").find("div");
