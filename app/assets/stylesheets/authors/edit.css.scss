@@ -4,7 +4,8 @@
     display:inline-block;
     margin-right:grid-width(1);
   }
-  #identities h2 {
+  #identities > ul h2,
+  #identities > nav h2 {
     margin-bottom:.5em;
     @include text
   }

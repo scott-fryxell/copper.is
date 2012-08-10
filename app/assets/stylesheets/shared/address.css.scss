@@ -6,11 +6,11 @@
   #address > form > input[itemprop=city] {
     width:13em;
   }
-  #address > form > select[itemprop=country_code] {
+  #address > form > fieldset > select[itemprop=country_code] {
     width:grid-width(6);
     margin-bottom:1em;
   }
-  #address > form > select[itemprop=subregion_code] {
+  #address > form > fieldset > select[itemprop=subregion_code] {
     max-width:grid-width(6);
   }
   #address > form > input[itemprop=postal_code] {

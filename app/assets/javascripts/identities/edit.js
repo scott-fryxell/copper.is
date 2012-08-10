@@ -2,14 +2,6 @@ $(document).on("copper:identities_edit", function (){
   $('#sign_in').hide();
   $('#signed_in').hide();
 
-  $('#address > form > select').change(function (event){
-    $("select[itemprop='subregion_code']").remove();
-
-    $.get('/states?country_code=' + $(this).val(), function (data){
-      $('#address > form').append(data);
-    });
-  });
-
   $('body > nav > button').click(function(event){
     $('input').removeClass("invalid");
     $('select').removeClass("invalid");

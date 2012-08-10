@@ -26,4 +26,13 @@ $(document).on("copper:users_edit:items copper:authors_edit:items", function (){
     $('#email > header > a').click();
     $(this).find('input[itemprop=email]').addClass('invalid');
   });
+
+  $('#address > form > fieldset > select').change(function (event){
+    $("select[itemprop='subregion_code']").remove();
+
+    $.get('/states?country_code=' + $(this).val(), function (data){
+      $('#address > form > fieldset').append(data);
+    });
+  });
+  
 });
