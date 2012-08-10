@@ -3,9 +3,8 @@ id:  985d29b0-91a0-012f-99d4-12313d18c09a
 setup:
   commands:
   - bundle install --without development production
-  - bundle exec rake db:drop --trace
-  - bundle exec rake db:migrate --trace
-  - bundle exec rake db:seed --trace
+  - bundle exec rake db:migrate
+  - bundle exec rake db:seed
 test:
   commands:
   - bundle exec rake --trace
