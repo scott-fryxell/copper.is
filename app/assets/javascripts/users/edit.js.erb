@@ -1,12 +1,12 @@
-$(document).on("copper:users_edit", function (){
+$(document).on("items.users_edit", function (){
+  var user = document.getItems()['fans']['/fans/me']
+  $('#rate > form > select > option[value=' + user.tip_preference_in_cents +']').attr('selected', true)
+  
   Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
-  var rate = $("p[itemprop=tip_preference_in_cents]").text().trim()
   $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
-  $('#rate > form > select > option[value=' + rate +']').attr('selected', true)
-  copper.format_cents_to_dollars("tip_preference_in_cents")
-});
-$(document).on("copper:users_edit", function (){
+
   $("#card > form").submit(function(event) {
+    console.debug('submit card')
     event.preventDefault();
     if( !Stripe.validateCardNumber($('#number').val())){
       console.error("invalid credit card number");
@@ -57,7 +57,6 @@ $(document).on("copper:users_edit", function (){
         $("#card p.type").text(response.card.type)
         $("#card p.number").text(response.card.last4)
         $("#card p.expiration").text(response.card.exp_month + '/' + response.card.exp_year )
-
         // post the tip to create if the user hasn't created a stripe id
         var method = 'post'
         if(user.stripe_id){
@@ -76,9 +75,8 @@ $(document).on("copper:users_edit", function (){
     return false;
   });
 });
-$(document).on("copper:users_edit:items", function (){
-
-  user = document.getItems()['fans'][((window.location.pathname).replace('/edit', ''))]
+$(document).on("items.updated.users_edit", function (){
+  var user = document.getItems()['fans']['/fans/me']
   if (!user.email){
     $("#email > header > a").click();
   }
@@ -100,6 +98,6 @@ $(document).on("copper:users_edit:items", function (){
     $("#card > header > a").click();
   }
 });
-$(document).on("copper:users_edit:update_page_items", function (){
+$(document).on("items.updated.users_edit", function (){
   copper.format_cents_to_dollars("tip_preference_in_cents")
 })
