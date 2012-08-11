@@ -1,7 +1,9 @@
 function Item(element){
   var me = this
   $(element).find("*[itemprop]").each(function (){
-    me[$(this).attr("itemprop")] = Item.get_value(this);
+    if(Item.get_value(this)){
+      me[$(this).attr("itemprop")] = Item.get_value(this);
+    }
   });
 }
 Item.discover_items = function (){
@@ -12,16 +14,16 @@ Item.discover_items = function (){
   });
   Item.items = items;
   if(Item.items){
-    $(document).trigger("copper:items");
-    $(document).trigger("copper:" + $('body').attr('id')+ ":items");
+    $(document).trigger("items." + $('body').attr('id'));
   }
   return Item.items;
 }
 Item.get_value      = function (element){
-  if($(element).is("input") || $(element).is("select") || $(element).is("textarea") ){
-    if($(element).val()){
-      return $(element).val().trim();
-    }
+  if($(element).is("input") || $(element).is("textarea") ){
+    return "" + $(element).val().trim();
+  }
+  else if($(element).is("select")){
+    return false;
   }
   else if( $(element).is("a") || $(element).is("link")){
     return $(element).attr('href');
@@ -54,8 +56,7 @@ Item.update_page    = function (item){
       });
     }
   });
-  $(document).trigger("copper:update_page_items");
-  $(document).trigger("copper:" + $('body').attr('id')+ ":update_page_items");
+  $(document).trigger('items.updated.' + $('body').attr('id'));
 }
 Item.prototype.update_page = function (){
   Item.update_page(this);
@@ -64,7 +65,7 @@ Item.CSRFProtection =  function(xhr) {
   var token = $('meta[name="csrf-token"]').attr('content');
   if (token) xhr.setRequestHeader('X-CSRF-Token', token);
 },
-document.getItems   = function (type){
+document.getItems = function (type){
   if(type){
     return Item.items[type]
   }
@@ -73,10 +74,11 @@ document.getItems   = function (type){
   }
 }
 $(document).ready(function (){
-
   $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
+
   Item.discover_items()
-  $("*[itemscoped] form").submit(function(event){
+
+  $("*[itemscoped] > form").submit(function(event){
     event.preventDefault()
 
     if($(this).find("*[itemprop]").length == 0){
@@ -90,11 +92,13 @@ $(document).ready(function (){
     $(this).find('input.invalid').removeClass('invalid');
 
     $(this).find('*[itemprop]').each(function (){
-      Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
+      if(Item.get_value(this)){
+        Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
+      }
     });
     Item.update_page(Item.items[type][id]);
     if(id =='new'){
-      id="/tips"
+      id="/" + type
     }
     jQuery.ajax({
       url: id,
@@ -102,8 +106,8 @@ $(document).ready(function (){
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
         //TODO reload the properties from the server and populate the page with a message
-        $(form).trigger("copper:invalid");
-        console.error("error submiting form " + id, data, textStatus, jqXHR);
+        $(form).trigger('items.error' + $(this).attr('method'));
+        console.error("error submiting item form " + id, data, textStatus, jqXHR);
       }
     });
   });

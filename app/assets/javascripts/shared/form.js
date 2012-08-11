@@ -1,4 +1,4 @@
-$(document).on("copper:users_edit:items copper:authors_edit:items", function (){
+$(document).on("items.users_edit items.authors_edit", function (){
   $("section > header > a").click(function(event){
     event.preventDefault();
     var div = $(this).parents("section").find("div");
@@ -21,7 +21,7 @@ $(document).on("copper:users_edit:items copper:authors_edit:items", function (){
     });
   });
 
-  $('#email form').bind('copper:invalid', function (){
+  $('#email form').bind('copper.invalid', function (){
     $('#email > header > a').click();
     $(this).find('input[itemprop=email]').addClass('invalid');
   });

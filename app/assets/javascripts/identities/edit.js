@@ -1,4 +1,4 @@
-$(document).on("copper:identities_edit", function (){
+$(document).on("load.identities_edit", function (){
   $('#sign_in').hide();
   $('#signed_in').hide();
 
@@ -39,7 +39,7 @@ $(document).on("copper:identities_edit", function (){
           $('body > nav > button').removeClass('working')
         },
         success: function(data, textStatus, jqXHR) {
-          console.debug('success')
+          console.debug('updated user address')
           window.location.pathname = '/authors/me'
         }
       });

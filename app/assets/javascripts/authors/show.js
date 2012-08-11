@@ -1,4 +1,4 @@
-$(document).on("copper:authors_show", function (){
+$(document).on("load.authors_show", function (){
   var badge = {
     type: "name",
     size: "175",

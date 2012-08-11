@@ -1,4 +1,4 @@
-$(document).on("copper:users_show", function (event){
+$(document).on("load.users_show", function (event){
   copper.format_cents_to_dollars("tip_preference_in_cents")
   copper.format_cents_to_dollars("amount_in_cents")
   if( '' == $('#stats > div:nth-child(3) > p').text().trim()){
@@ -46,8 +46,7 @@ $(document).on("copper:users_show", function (event){
     $(this).trigger('copper.focus_tip')
   });
 });
-
-$(document).on("copper:users_show", function (event){
+$(document).on("load.users_show", function (event){
   var isCtrl = false;
   $(document).keyup(function (e){
     if(e.which == 17){
@@ -67,8 +66,7 @@ $(document).on("copper:users_show", function (event){
     }
   });
 });
-
-$(document).on("copper:users_show", function(){
+$(document).on("load.users_show", function (event){
   $('#tips > ol > li').bind('copper.focus_tip', function(){
     var li = this;
     $('li.selected').removeClass('selected');
@@ -91,25 +89,26 @@ $(document).on("copper:users_show", function(){
     });
   });
 });
-$(document).bind('copper.delete_current_tip', function(event){
-  var deleted_tip = $('#tips > aside').attr('itemid');
-  li = $('li[itemid="' + deleted_tip + '"]').fadeOut(1000, function(){
-    $(this).remove()
-  });
-  next_tip = $('#tips ol').next();
-  jQuery.ajax({
-    url: deleted_tip,
-    type: 'delete',
-    success: function (data, textStatus, jqXHR){
-      if(next_tip.size() == 0){
-        $('#tips > ol > li:first-child').click()
-      }else{
-        $(next_tip).click();
+$(document).on("load.users_show", function (event){
+  $(document).bind('copper.delete_current_tip', function(event){
+    var deleted_tip = $('#tips > aside').attr('itemid');
+    li = $('li[itemid="' + deleted_tip + '"]').fadeOut(1000, function(){
+      $(this).remove()
+    });
+    next_tip = $('#tips ol').next();
+    jQuery.ajax({
+      url: deleted_tip,
+      type: 'delete',
+      success: function (data, textStatus, jqXHR){
+        if(next_tip.size() == 0){
+          $('#tips > ol > li:first-child').click()
+        }else{
+          $(next_tip).click();
+        }
+      },
+      error: function (data, textStatus, jqXHR) {
+        alert('There was a problem canceling this tip, please try again later')
       }
-    },
-    error: function (data, textStatus, jqXHR) {
-      alert('There was a problem canceling this tip, please try again later')
-    }
+    });
   });
 });
-

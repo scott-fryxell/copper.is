@@ -1,4 +1,4 @@
-$(document).on("copper:home_index", function (){
+$(document).on("load.home_index", function (){
   var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
   if(is_chrome){
     $("a.install").click(function(){
@@ -24,7 +24,7 @@ $(document).on("copper:home_index", function (){
     $("a.install").hide();
   }
 });
-$(document).on("copper:home_index", function (){
+$(document).on("load.home_index", function (){
   $("a.install").click(function (event){
     $(document).trigger('copper.button_installed')
   })
@@ -44,7 +44,7 @@ $(document).on("copper:home_index", function (){
     }
   });
 });
-$(document).on("copper:home_index:me", function (){
+$(document).on("me.home_index", function (){
   $('#join figure.step_one').hide();
   $('#join figure.step_two').show();
 

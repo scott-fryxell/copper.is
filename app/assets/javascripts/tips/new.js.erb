@@ -4,12 +4,6 @@
 //= require jquery.tmpl
 //= require shared/Item
 //= require shared/copper
-window.addEventListener('message', function(event) {
-  $(document).trigger(JSON.parse(event.data))
-});
-document.postMessage = function (message){
-  window.parent.postMessage(message, "*");
-}
 $(document).ready(function (){
   document.postMessage(JSON.stringify({type:'tip_info'}))
 });
@@ -43,9 +37,14 @@ $(document).bind({
     window.setTimeout(function (){
       document.postMessage(JSON.stringify({type:'hide'}))
     },4000);
+  },
+  "updated.items":function(){
+    copper.format_cents_to_dollars("amount_in_cents")
   }
 });
-
-$(document).bind("copper:update_page_items", function(){
-  copper.format_cents_to_dollars("amount_in_cents") 
+window.addEventListener('message', function(event) {
+  $(document).trigger(JSON.parse(event.data))
 });
+document.postMessage = function (message){
+  window.parent.postMessage(message, "*");
+}

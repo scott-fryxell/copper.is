@@ -1,2 +1,32 @@
 # to start app.
 forman start
+
+
+All javascript and css files are collected into a single js/css file that each
+page loads.
+
+javascript and css is namespaced to the page via the id tag of the body
+element. the id is determined from the controller name and action. 
+
+as an example to change the users edit page backgroun black you would write the 
+following
+#users_edit {
+  background-color: red
+}
+
+Each page can bind javascript to the page by useing the following code: 
+
+$(document).on('ready.controller_action',function (event){})
+
+ie:
+$(document).on('ready.users_edit',function (event){})
+
+
+# using microdata to build highly interactive pages
+
+We are useing Item.js to bind the html to javascript objects that represent
+all the object states on the page. see the w3c's spec on microdata for more
+info.
+
+It is hoped that it will evolve into a utility as powerfull as metoeor or
+backbone.js
