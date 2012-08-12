@@ -61,11 +61,11 @@ Item.update_page    = function (item){
 Item.prototype.update_page = function (){
   Item.update_page(this);
 }
-Item.CSRFProtection =  function(xhr) {
+Item.CSRFProtection =  function (xhr){
   var token = $('meta[name="csrf-token"]').attr('content');
   if (token) xhr.setRequestHeader('X-CSRF-Token', token);
 },
-document.getItems = function (type){
+document.getItems   = function (type){
   if(type){
     return Item.items[type]
   }
@@ -84,7 +84,7 @@ $(document).ready(function (){
     if($(this).find("*[itemprop]").length == 0){
       return true
     }
-    var item_element = $(this).parents("*[itemscoped]")
+    var item_element = $(this).parents('*[itemscoped]')
     var id = $(item_element).attr('itemid')
     var type = $(item_element).attr('itemtype')
     var form = this
