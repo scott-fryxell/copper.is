@@ -24,7 +24,7 @@ describe "a fan's profile page" do
     end
   end
 
-  it 'should be able to change their tip amount' do
+  it 'should be able to increase their default tip amount' do
     click_on('+')
     within '#stats > div > p > span' do
       page.should have_content('0.50');
@@ -34,6 +34,19 @@ describe "a fan's profile page" do
       page.should have_content('0.50');
     end
   end
+  
+  it 'should be able to reduce their default tip amount' do
+    click_on('-')
+    within '#stats > div > p > span' do
+      page.should have_content('0.10');
+    end
+    visit '/fans/me'
+    within '#stats > div > p > span' do
+      page.should have_content('0.10');
+    end
+  end
+  
+  
   it 'should display information about their most recent tip' do
     within '#tips > aside > figure > figcaption' do
       page.should have_content('0.25');

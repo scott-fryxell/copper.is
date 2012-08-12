@@ -17,7 +17,7 @@ $(document).on("load.users_show", function (event){
         var new_tip = copper.tip_amount_options[i+1]
         copper.me.tip_preference_in_cents = new_tip
         $('#stats > div > p > span').text(copper.cents_to_dollars(new_tip))
-        $(document).trigger('copper.save_me')
+        $(document).trigger('save.me')
         return
       }
     }
@@ -32,7 +32,7 @@ $(document).on("load.users_show", function (event){
         var new_tip = copper.tip_amount_options[i-1]
         copper.me.tip_preference_in_cents = new_tip
         $('#stats > div > p > span').text(copper.cents_to_dollars(new_tip))
-        $(document).trigger('copper.save_me')
+        $(document).trigger('save.me')
         return
       }
     }
@@ -47,6 +47,7 @@ $(document).on("load.users_show", function (event){
   });
 });
 $(document).on("load.users_show", function (event){
+  // todo remove when features are limited.
   var isCtrl = false;
   $(document).keyup(function (e){
     if(e.which == 17){
