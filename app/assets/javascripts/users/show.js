@@ -39,11 +39,11 @@ $(document).on("load.users_show", function (event){
   });
 
   $("#tips > aside > nav > a:nth-child(3)").click(function(){
-    $('#tips > aside').trigger("copper.delete_current_tip");
+    $('#tips > aside').trigger("delete.current_tip");
   });
 
   $('#tips > ol > li').click(function (event){
-    $(this).trigger('copper.focus_tip')
+    $(this).trigger('focus.tip')
   });
 });
 $(document).on("load.users_show", function (event){
@@ -68,7 +68,7 @@ $(document).on("load.users_show", function (event){
   });
 });
 $(document).on("load.users_show", function (event){
-  $('#tips > ol > li').bind('copper.focus_tip', function(){
+  $('#tips > ol > li').bind('focus.tip', function(){
     var li = this;
     $('li.selected').removeClass('selected');
     $(li).addClass('selected');
@@ -91,12 +91,12 @@ $(document).on("load.users_show", function (event){
   });
 });
 $(document).on("load.users_show", function (event){
-  $(document).bind('copper.delete_current_tip', function(event){
+  $(document).bind('delete.current_tip', function(event){
     var deleted_tip = $('#tips > aside').attr('itemid');
     li = $('li[itemid="' + deleted_tip + '"]').fadeOut(1000, function(){
       $(this).remove()
     });
-    next_tip = $('#tips ol').next();
+    next_tip = $(li).next();
     jQuery.ajax({
       url: deleted_tip,
       type: 'delete',
