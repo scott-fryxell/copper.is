@@ -14,7 +14,6 @@ Item.discover_items = function (){
   });
   Item.items = items;
   if(Item.items){
-    console.debug("items." + $('body').attr('id'))
     $(document).trigger("items." + $('body').attr('id'));
   }
   return Item.items;
@@ -54,7 +53,6 @@ Item.update_page    = function (item){
       });
     }
   });
-  console.debug('items.updated.' + $('body').attr('id'))
   $(document).trigger('items.updated.' + $('body').attr('id'));
 }
 Item.prototype.update_page = function (){
