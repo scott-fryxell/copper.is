@@ -14,16 +14,14 @@ Item.discover_items = function (){
   });
   Item.items = items;
   if(Item.items){
+    console.debug("items." + $('body').attr('id'))
     $(document).trigger("items." + $('body').attr('id'));
   }
   return Item.items;
 }
 Item.get_value      = function (element){
-  if($(element).is("input") || $(element).is("textarea") ){
-    return "" + $(element).val().trim();
-  }
-  else if($(element).is("select")){
-    return false;
+  if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
+    return $(element).val().trim();
   }
   else if( $(element).is("a") || $(element).is("link")){
     return $(element).attr('href');
@@ -56,6 +54,7 @@ Item.update_page    = function (item){
       });
     }
   });
+  console.debug('items.updated.' + $('body').attr('id'))
   $(document).trigger('items.updated.' + $('body').attr('id'));
 }
 Item.prototype.update_page = function (){
@@ -73,12 +72,12 @@ document.getItems   = function (type){
     return Item.items
   }
 }
-$(document).ready(function (){
+$(document).ready(function (event){
   $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
 
   Item.discover_items()
 
-  $("*[itemscoped] > form").submit(function(event){
+  $("*[itemscoped] form").submit(function(event){
     event.preventDefault()
 
     if($(this).find("*[itemprop]").length == 0){
