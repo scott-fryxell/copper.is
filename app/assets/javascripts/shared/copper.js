@@ -19,9 +19,10 @@ var copper = {
       case 'twitter':
         return 'https://api.twitter.com/1/users/profile_image?id=' + copper.me.identities[identity].uid + '&size=bigger'
       case 'google_oauth2':
-        return 'https://plus.google.com/s2/photos/profile/' + copper.me.identities[identity].uid
+        if(copper.me.identities.size == 1){
+          return 'https://plus.google.com/s2/photos/profile/' + copper.me.identities[identity].uid  
+        }
       }
     }
   }
 };
-
