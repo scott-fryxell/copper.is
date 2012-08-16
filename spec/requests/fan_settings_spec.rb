@@ -1,11 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "A Fan's settings page", :focus do
+describe "A Fan's settings page" do
   before(:each) do
     visit "/"
     click_link 'facebook_sign_in'
     click_link 'Account settings'
-    page.execute_script("jQuery.fx.off = true")
   end
 
   after(:each) do
@@ -14,18 +13,18 @@ describe "A Fan's settings page", :focus do
 
   describe 'Item.js' do
     it "should be able to query items on the page" do
-      page.evaluate_script("document.getItems().fans").should_not be_nil
+      page.evaluate_script("document.getItems('fans')").should_not be_nil
     end
 
     it "should be able to query for user email" do
-      page.evaluate_script("user.email").should == "user@facebook.com"
+      page.evaluate_script("copper.me.email").should == "user@facebook.com"
     end
 
     it "should be able to change email from the command line" do
       within("section#email") do
         find("div > p").should have_content("user@facebook.com")
-        page.execute_script("user.email = 'change@email.com'")
-        page.execute_script("Item.update_page(user)")
+        page.execute_script("copper.me.email = 'change@email.com'")
+        page.execute_script("Item.update_page(copper.me)")
         find("div > p").should have_content("change@email.com")
         click_link "Change"
         find_field('user[email]').value.should == 'change@email.com'
@@ -86,7 +85,6 @@ describe "A Fan's settings page", :focus do
   end
 
   it "should be able to save their credit card information" do
-
     within("#card") do
       page.should have_css('form', :visible => true)
       page.should have_css('div', :visible => false)

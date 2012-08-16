@@ -22,6 +22,7 @@
     f.height='0';
     f.style.zIndex='9999999999999999';
     window.addEventListener('message', function(event) {
+
       var data = JSON.parse(event.data)
       if (data.type == 'show'){
         f.width='350px'

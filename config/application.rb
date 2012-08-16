@@ -61,7 +61,6 @@ module Copper
       flickr_key
       flickr_secret
 
-      google_code_developer_key
       resque_overview_password
 
       redistogo_url

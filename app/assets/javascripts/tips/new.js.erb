@@ -4,13 +4,14 @@
 //= require jquery.tmpl
 //= require shared/Item
 //= require shared/copper
+
 $(document).ready(function (){
   document.postMessage(JSON.stringify({type:'tip_info'}))
 });
 $(document).bind({
   "tip_info": function (event){
     title = decodeURIComponent(event.title)
-    new_tip = document.getItems('tips').new
+    new_tip = document.getItems('tips')['/tips/new']
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
     Item.update_page(new_tip)
@@ -25,7 +26,6 @@ $(document).bind({
     $(document).trigger("tip_display")
   },
   "tip_display": function (event){
-
     $("body > form").submit()
     document.postMessage(JSON.stringify({type:'show'}))
     $("body > section").addClass("show")
@@ -38,7 +38,8 @@ $(document).bind({
       document.postMessage(JSON.stringify({type:'hide'}))
     },4000);
   },
-  "updated.items":function(){
+  "items.updated.tips_new": function(event){
+    console.debug("run you bitch")
     copper.format_cents_to_dollars("amount_in_cents")
   }
 });

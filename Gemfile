@@ -72,8 +72,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails'
-  gem "sass", "~> 3.2.0.alpha.244"
+  gem "sass", "~> 3.2.0"
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'yui-compressor'
@@ -84,3 +83,6 @@ group :development do
   gem 'redcarpet'
   gem 'yard'
 end
+
+
+gem "devise"

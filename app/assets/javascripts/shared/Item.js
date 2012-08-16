@@ -1,68 +1,63 @@
-function Item(element){
-  var me = this
-  $(element).find("*[itemprop]").each(function (){
-    if(Item.get_value(this)){
-      me[$(this).attr("itemprop")] = Item.get_value(this);
-    }
-  });
-}
-Item.discover_items = function (){
-  var items = {}
-  $("*[itemscoped]").each(function (index){
-    items[$(this).attr("itemtype")] = {}
-    items[$(this).attr("itemtype")][$(this).attr('itemid')] = new Item(this);
-  });
-  Item.items = items;
-  if(Item.items){
-    $(document).trigger("items." + $('body').attr('id'));
-  }
-  return Item.items;
-}
-Item.get_value      = function (element){
-  if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
-    return $(element).val().trim();
-  }
-  else if( $(element).is("a") || $(element).is("link")){
-    return $(element).attr('href');
-  }
-  else if( $(element).is("img") || $(element).is("object") || $(element).is("embed")){
-    return $(element).attr('src');
-  }
-  else {
-    if($(element).text()){
-      return $(element).text().trim();
-    }
-  }
-}
-Item.update_page    = function (item){
-  $.each(item, function(key, value){
-    if(value != null){
-      $('*[itemprop=' + key + ']').each(function(){
-        if($(this).is("input") || $(this).is("select") || $(this).is("textarea") ){
-          $(this).val(value);
-        }
-        else if( $(this).is("a") || $(this).is("link")){
-          $(this).attr('href', value);
-        }
-        else if( $(this).is("img") ||  $(this).is("object") ||  $(this).is("embed")){
-          $(this).attr('src', value);
-        }
-        else {
-          $(this).text(value);
+Item = {
+  items: {},
+  discover_items: function(){
+    $("*[itemscoped]").each(function (index){
+      Item.items[$(this).attr("itemtype")] = {}
+      var i = Item.items[$(this).attr("itemtype")][$(this).attr('itemid')] = {}
+      $(this).find("*[itemprop]").each(function (){
+        if(Item.get_value(this)){
+          i[$(this).attr('itemprop')] = Item.get_value(this);
         }
       });
+    });
+    if(Item.items){
+      $(document).trigger("items." + $('body').attr('id'));
     }
-  });
-  $(document).trigger('items.updated.' + $('body').attr('id'));
+    return Item.items;
+  },
+  get_value: function (element){
+    if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
+      return $(element).val().trim();
+    }
+    else if( $(element).is("a") || $(element).is("link")){
+      return $(element).attr('href');
+    }
+    else if( $(element).is("img") || $(element).is("object") || $(element).is("embed")){
+      return $(element).attr('src');
+    }
+    else {
+      if($(element).text()){
+        return $(element).text().trim();
+      }
+    }
+  },
+  update_page: function(item){
+    $.each(item, function(key, value){
+      if(value != null){
+        $('*[itemprop=' + key + ']').each(function(){
+          if($(this).is("input") || $(this).is("select") || $(this).is("textarea") ){
+            $(this).val(value);
+          }
+          else if( $(this).is("a") || $(this).is("link")){
+            $(this).attr('href', value);
+          }
+          else if( $(this).is("img") ||  $(this).is("object") ||  $(this).is("embed")){
+            $(this).attr('src', value);
+          }
+          else {
+            $(this).text(value);
+          }
+        });
+      }
+    });
+    $(document).trigger('items.updated.' + $('body').attr('id'));
+  },
+  CSRFProtection: function (xhr){
+    var token = $('meta[name="csrf-token"]').attr('content');
+    if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+  }
 }
-Item.prototype.update_page = function (){
-  Item.update_page(this);
-}
-Item.CSRFProtection =  function (xhr){
-  var token = $('meta[name="csrf-token"]').attr('content');
-  if (token) xhr.setRequestHeader('X-CSRF-Token', token);
-},
-document.getItems   = function (type){
+document.getItems = function (type){
   if(type){
     return Item.items[type]
   }
@@ -94,9 +89,7 @@ $(document).ready(function (event){
       }
     });
     Item.update_page(Item.items[type][id]);
-    if(id =='new'){
-      id="/" + type
-    }
+    id = id.replace('/new', '')
     jQuery.ajax({
       url: id,
       type: $(this).attr('method'),

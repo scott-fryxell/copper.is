@@ -1,1 +1,1 @@
-<%-cache do-%><%= Bookmarklet::escape(render(:partial=>'home/launcher', :formats=>[:js])) %><%-end-%>
+<%= raw Bookmarklet::escape(render(:partial=>'home/launcher', :formats=>[:js])) %>

@@ -1,10 +1,8 @@
 $(document).on("items.users_edit", function (){
   var user = document.getItems()['fans']['/fans/me']
   $('#rate > form > select > option[value=' + user.tip_preference_in_cents +']').attr('selected', true)
-
   Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
   $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
-
   $("#card > form").submit(function(event) {
     event.preventDefault();
     if( !Stripe.validateCardNumber($('#number').val())){

@@ -7,7 +7,8 @@
     <%= javascript_include_tag "tips/new" %>
     <%= javascript_include_tag "shared/analytics" if Rails.env.production?%>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%> itemid="new">
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" 
+        <%=item_scope%> itemid="/tips/new">
     <section>
       <header>
         <h1>You're Tipping</h1>
@@ -18,7 +19,8 @@
     <form  method="post" accept-charset="utf-8">
       <input itemprop="url" name="tip[url]" type="hidden"/>
       <input itemprop="title" name="tip[title]" type="hidden" />
-      <input itemprop="amount_in_cents" name="tip[amount_in_cents]" type="hidden" value="<%= current_user.tip_preference_in_cents%>"/>
+      <input itemprop="amount_in_cents" name="tip[amount_in_cents]" 
+             type="hidden" value="<%= current_user.tip_preference_in_cents%>"/>
     </form>
   </body>
 </html>

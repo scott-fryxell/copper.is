@@ -40,6 +40,5 @@ Copper::Application.routes.draw do
   match "/signin" => "sessions#new", :as => :signin
 
   mount Resque::Server.new, :at => "/admin/resque"
-  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   root :to => 'home#index'
 end
