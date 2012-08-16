@@ -59,9 +59,9 @@ $(document).on("me.home_index", function (){
     var likes_url = 'https://graph.facebook.com/' + facebook.username + '/likes?limit=10&access_token=' + facebook.token;
         $.getJSON(likes_url).success(function(facebook) {
       $.each(facebook.data,function(i, a_like){
-        $.getJSON("http://graph.facebook.com/" + a_like.id).success(function(like){
+        $.getJSON("https://graph.facebook.com/" + a_like.id).success(function(like){
           console.debug(like.link)
-          var image = $('<img/>', {src:"http://graph.facebook.com/" + like.id + "/picture"})
+          var image = $('<img/>', {src:"https://graph.facebook.com/" + like.id + "/picture"})
           $('<a/>', {href:like.link, html:image}).appendTo('#facebook > nav')
         })
       })
