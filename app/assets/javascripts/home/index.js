@@ -56,11 +56,12 @@ $(document).on("me.home_index", function (){
   }
 
   if(facebook){
-    var likes_url = 'https://graph.facebook.com/' + facebook.username + '/likes?limit=7&access_token=' + copper.me.identities[0].token;
-    $.getJSON(likes_url).success(function(facebook) {
+    var likes_url = 'https://graph.facebook.com/' + facebook.username + '/likes?limit=10&access_token=' + facebook.token;
+        $.getJSON(likes_url).success(function(facebook) {
       $.each(facebook.data,function(i, a_like){
         $.getJSON("http://graph.facebook.com/" + a_like.id).success(function(like){
-          var image = $('<img/>', {src:like.picture})
+          console.debug(like.link)
+          var image = $('<img/>', {src:"http://graph.facebook.com/" + like.id + "/picture"})
           $('<a/>', {href:like.link, html:image}).appendTo('#facebook > nav')
         })
       })
