@@ -7,7 +7,7 @@ $(document).on("load.home_index", function (){
        $(document).trigger('copper.button_installed')
       }, function (event){
         console.debug('not working', event)
-        alert("unable to install the copper extension.", event)
+        alert(event)
       })
 
     });
