@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= params[:action].parameterize%> - copper.is</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="/assets/shared/favicon.ico?2=2"/>
     <link rel="author" href="https://twitter.com/copper_is">
-    <meta name="google-site-verification" content="ajqm1UZuvVaocEm3g_dULtZtRdPxR5KVf6odfYyYQkQ" />
-    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
     <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "analytics" if Rails.env.production?%>
