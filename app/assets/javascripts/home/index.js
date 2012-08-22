@@ -2,11 +2,19 @@ $(document).on("load.home_index", function (){
   var is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
   if(is_chrome){
     $("a.install").click(function(){
-      $(this).attr("href", "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.crx")
+      var url = "https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb"
+      chrome.webstore.install(url, function(){
+       $(document).trigger('copper.button_installed')
+      }, function (event){
+        console.debug('not working', event)
+        alert("unable to install the copper extension.", event)
+      })
+
     });
   }else if($.browser.safari){
     $("a.install").click(function(){
       $(this).attr("href", "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.safariextz")
+      $(document).trigger('copper.button_installed')
     });
   }else if($.browser.mozilla){
     $("a.install").click(function(){
@@ -18,6 +26,7 @@ $(document).on("load.home_index", function (){
         }
       };
       InstallTrigger.install(params);
+      $(document).trigger('copper.button_installed')
       return false;
     });
   }else{
@@ -25,9 +34,6 @@ $(document).on("load.home_index", function (){
   }
 });
 $(document).on("load.home_index", function (){
-  $("a.install").click(function (event){
-    $(document).trigger('copper.button_installed')
-  })
   $(document).on('copper.button_installed', function (){
     $('#join').delay(0).fadeOut(800);
     $('#congrats').delay(800).fadeIn(800);
