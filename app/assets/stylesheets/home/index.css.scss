@@ -25,7 +25,10 @@
   }
 
   #banner {
-    background: image-url('home/katie.jpg') no-repeat center top;
+    background-image: image-url('home/katie.jpg');
+    background-position:center top;
+    background-repeat:no-repeat;
+    background-color:transparent;
     height: 24em;
     width:auto;
     @include background-size(cover);
@@ -440,6 +443,7 @@
   }
 
   #settings {
+    position:relative;
     display:none;
     padding:0;
     @include full_width($offset_color);
@@ -452,8 +456,10 @@
     width:27em;
     background-color:$offset_color;
   }
-  #settings > div:first-child{
-    margin-right:0.25em;
+  #settings > div:nth-child(2){
+    position:absolute;
+    top:0;
+    right:0;
   }
   #settings > div > header {
     margin-left:1em;
