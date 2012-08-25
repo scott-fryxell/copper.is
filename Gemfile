@@ -83,6 +83,3 @@ group :development do
   gem 'redcarpet'
   gem 'yard'
 end
-
-
-gem "devise"
