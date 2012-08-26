@@ -3,76 +3,67 @@ $(document).on("items.users_edit", function (){
   $('#rate > form > select > option[value=' + user.tip_preference_in_cents +']').attr('selected', true)
   Stripe.setPublishableKey('<%=Copper::Application.config.stripe_key%>');
   $('#month > option[value='+ new String(new Date().getMonth() + 1) +']').attr('selected', 'selected')
-  $("#card > form").submit(function(event) {
+  $("#card > form").submit(function(event){
     event.preventDefault();
-    if( !Stripe.validateCardNumber($('#number').val())){
+    $('input').removeClass("invalid");
+    $('select').removeClass("invalid");
+
+    if( !Stripe.validateCardNumber($('#number').val()) ){
       console.error("invalid credit card number");
       $('#number').addClass("invalid");
-    } else {
-      $('#number').removeClass("invalid");
     }
     if( !Stripe.validateCVC($('#cvc').val() ) ){
       console.error("invalid cvc");
       $('#cvc').addClass("invalid");
-    } else {
-      $('#cvc').removeClass("invalid");
     }
     if( !Stripe.validateExpiry($('#month').val(), $('#year').val()) ) {
       console.error("invalid expiration")
       $('#month').addClass("invalid");
       $('#year').addClass("invalid");
-    } else {
-      $('#month').removeClass("invalid");
-      $('#year').removeClass("invalid");
     }
-    if( $("#site_terms:checked").length == 1 ){
-      $('#site_terms').removeClass("invalid");
-    }else{
-      console.error("must agree to terms");
-      $('#site_terms').addClass("invalid");
+    if( !$("#site_terms:checked").length == 1 ){
+      // console.error("must agree to terms");
+      $('#site_terms').addClass("invalid"); 
     }
     if($('#card .invalid').length > 0){
+      console.debug('card is invalid')
       $('#card > header > a').click();
-      return false;
-    }
-    Stripe.createToken(
-      {
+    }else{
+      Stripe.createToken({
         number:$('#number').val(),
         cvc:$('#cvc').val(),
         exp_month:$('#month').val(),
         exp_year:$('#year').val(),
         email:$('#email').val()
       },
-      function (status, response) {
+      function (status, response){
         // console.debug(status, response);
         if (response.error) {
+          console.debug('error')
           $("#card > form > h1").text(response.error.message)
           $("#card > form > h1").addClass("message")
-          return
+        }else {
+          $("#card > form > h1").removeClass("message")
+          $("#card p.type").text(response.card.type)
+          $("#card p.number").text(response.card.last4)
+          $("#card p.expiration").text(response.card.exp_month + '/' + response.card.exp_year )
+          var method = 'post'
+          if(user.stripe_id){method = 'put'}
+          jQuery.ajax({
+            url: '/cards',
+            type: method,
+            data: 'card_token=' + response.id,
+            error: function(data, textStatus, jqXHR) {
+              console.error("error creating stripe user " + method, data, textStatus, jqXHR);
+            }
+          });          
         }
-        $("#card > form > h1").removeClass("message")
-        $("#card p.type").text(response.card.type)
-        $("#card p.number").text(response.card.last4)
-        $("#card p.expiration").text(response.card.exp_month + '/' + response.card.exp_year )
-        // post the tip to create if the user hasn't created a stripe id
-        var method = 'post'
-        if(user.stripe_id){
-          method = 'put'
-        }
-        jQuery.ajax({
-          url: '/cards',
-          type: method,
-          data: 'card_token=' + response.id,
-          error: function(data, textStatus, jqXHR) {
-            console.error("error creating stripe user " + method, data, textStatus, jqXHR);
-          }
-        });
-      }
-    );
+      });
+    }
     return false;
   });
 });
-$(document).on("items.updated.users_edit", function (){
+$(document).on("load.users_edit", function (){
   copper.format_cents_to_dollars("tip_preference_in_cents")
   var user = document.getItems()['fans']['/fans/me']
   if (!user.email){

@@ -67,12 +67,12 @@ document.getItems = function (type){
 }
 $(document).ready(function (event){
   $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
-
   Item.discover_items()
+
+  $(this).find("*[itemprop]")
 
   $("*[itemscoped] form").submit(function(event){
     event.preventDefault()
-
     if($(this).find("*[itemprop]").length == 0){
       return true
     }
@@ -80,8 +80,6 @@ $(document).ready(function (event){
     var id = $(item_element).attr('itemid')
     var type = $(item_element).attr('itemtype')
     var form = this
-
-    $(this).find('input.invalid').removeClass('invalid');
 
     $(this).find('*[itemprop]').each(function (){
       if(Item.get_value(this)){
@@ -95,9 +93,12 @@ $(document).ready(function (event){
       type: $(this).attr('method'),
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
-        //TODO reload the properties from the server and populate the page with a message
-        $(form).trigger('items.error' + $(this).attr('method'));
+        $(form).trigger('items.error');
         console.error("error submiting item form " + id, data, textStatus, jqXHR);
+      },
+      success: function(){
+        $('input[itemprop]').removeClass("invalid");
+        $('select[itemprop]cons').removeClass("invalid");
       }
     });
   });

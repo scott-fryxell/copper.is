@@ -72,11 +72,9 @@ describe "A Fan's settings page" do
       click_on "Save"
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
-
       find("div > p").should have_content("1")
     end
     click_link 'Account settings'
-
     within("section#rate") do
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
@@ -88,7 +86,6 @@ describe "A Fan's settings page" do
     within("#card") do
       page.should have_css('form', :visible => true)
       page.should have_css('div', :visible => false)
-
       fill_in('number', :with => '4242424242424242')
       fill_in('cvc', :with => '666')
       select('April', :from => 'month')
@@ -106,7 +103,6 @@ describe "A Fan's settings page" do
     within("#card") do
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
-
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
@@ -117,7 +113,6 @@ describe "A Fan's settings page" do
     within("#card") do
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
-
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
