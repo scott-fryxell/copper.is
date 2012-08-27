@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TipsController do
-  before :all do
+  before :each do
     me_setup
     her_setup
   end

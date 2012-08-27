@@ -1,2 +1,4 @@
 --colour
 --tag focus
+--seed 23514
+--order rand
