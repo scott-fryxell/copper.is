@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "a authors profile page" do
+describe "a authors profile page", :slow do
   it 'should tell the author how many tips they\'s made'
   it 'should tell the author how many tips have been paid'
   it 'should tell the author how many tips are pending'

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "a author being invited to the service" do
+describe "a author being invited to the service", :slow do
   before(:each) do
     twitter = FactoryGirl.create(:identities_twitter, identity_state:'wanted')
     visit"/identities/#{twitter.id}/edit"
