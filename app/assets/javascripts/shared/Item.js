@@ -98,7 +98,7 @@ $(document).ready(function (event){
       },
       success: function(){
         $('input[itemprop]').removeClass("invalid");
-        $('select[itemprop]cons').removeClass("invalid");
+        $('select[itemprop]').removeClass("invalid");
       }
     });
   });
