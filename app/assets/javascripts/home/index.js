@@ -9,7 +9,6 @@ $(document).on("load.home_index", function (){
         console.debug('not working', event)
         alert(event)
       })
-
     });
   }else if($.browser.safari){
     $("a.install").click(function(){
@@ -34,6 +33,14 @@ $(document).on("load.home_index", function (){
   }
 });
 $(document).on("load.home_index", function (){
+  function show_sample(element){
+    if('nope' != $(element).attr('data-distance')){
+      $("#samples > nav > a").removeClass("selected")
+      $(element).addClass("selected")
+      $('#samples > figure').animate({marginLeft: $(element).attr('data-distance')})
+    }      
+  }
+
   $(document).on('copper.button_installed', function (){
     $('#join').delay(0).fadeOut(800);
     $('#congrats').delay(800).fadeIn(800);
@@ -43,12 +50,19 @@ $(document).on("load.home_index", function (){
     });
   })
   $("#samples > nav > a").click(function (event){
-    if('nope' != $(this).attr('data-distance')){
-      $("#samples > nav > a").removeClass("selected")
-      $(this).addClass("selected")
-      $('#samples > figure').animate({marginLeft: $(this).attr('data-distance')})
-    }
+    event.preventDefault();
+    clearInterval(carousel);
+    show_sample(this);
   });
+
+  var carousel = setInterval(function(){
+    if("more" ==$("#samples > nav > a.selected").next().attr('id')){
+      show_sample($("#samples > nav > a:first-child"))
+    }else {
+      show_sample($("#samples > nav > a.selected").next())
+    }
+  },5000);
+
 });
 $(document).on("me.home_index", function (){
   $('#join figure.step_one').hide();
@@ -66,7 +80,6 @@ $(document).on("me.home_index", function (){
         $.getJSON(likes_url).success(function(facebook) {
       $.each(facebook.data,function(i, a_like){
         $.getJSON("https://graph.facebook.com/" + a_like.id).success(function(like){
-          console.debug(like.link)
           var image = $('<img/>', {src:"https://graph.facebook.com/" + like.id + "/picture"})
           $('<a/>', {href:like.link, html:image}).appendTo('#facebook > nav')
         })
