@@ -22,7 +22,7 @@ $(document).on("items.users_edit", function (){
       $('#year').addClass("invalid");
     }
     if( !$("#site_terms:checked").length == 1 ){
-      // console.error("must agree to terms");
+      console.error("must agree to terms");
       $('#site_terms').addClass("invalid"); 
     }
     if($('#card .invalid').length > 0){
@@ -64,7 +64,6 @@ $(document).on("items.users_edit", function (){
   });
 });
 $(document).on("load.users_edit", function (){
-  copper.format_cents_to_dollars("tip_preference_in_cents")
   var user = document.getItems()['fans']['/fans/me']
   if (!user.email){
     $("#email > header > a").click();
@@ -86,4 +85,8 @@ $(document).on("load.users_edit", function (){
   else{
     $("#card > header > a").click();
   }
+});
+
+$(document).on("items.updated.users_edit", function (){
+  copper.format_cents_to_dollars("tip_preference_in_cents")
 });

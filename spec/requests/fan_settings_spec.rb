@@ -82,6 +82,17 @@ describe "A Fan's settings page", :slow do
     end
   end
 
+  it 'should add a zero for any tip amount less then a dollar' do
+    within("section#rate") do
+      find("div > p").should have_content("0.25")
+      click_link "Change"
+      find_field('user[tip_preference_in_cents]').value.should == '25'
+      page.select '$0.75', :from => 'user[tip_preference_in_cents]'
+      click_on "Save"
+      find("div > p").should have_content("0.75")
+    end
+  end
+
   it "should be able to save their credit card information" do
     within("#card") do
       page.should have_css('form', :visible => true)
