@@ -5,8 +5,6 @@
     <link rel="shortcut icon" href="/assets/shared/favicon.ico?2=2"/>
     <link rel="author" href="https://twitter.com/copper_is">
     <%= stylesheet_link_tag "application" %>
-    <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "analytics" if Rails.env.production?%>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
@@ -52,5 +50,7 @@
       </nav>
       <h4>Copyright © 2012 Copper Inc. All rights reserved</h4>
     </footer>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "analytics" if Rails.env.production? %>
   </body>
 </html>
