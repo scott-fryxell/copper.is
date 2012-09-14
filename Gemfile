@@ -38,10 +38,6 @@ group :production do
   gem 'newrelic_rpm'
 end
 
-group :development do
-
-end
-
 group :development, :test do
   gem 'simplecov', :require => false
   gem 'sqlite3', :require => 'sqlite3'
