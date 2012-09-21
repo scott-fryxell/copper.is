@@ -22,14 +22,17 @@
     <h2>Your identities</h2>
     <a href="#change_identities">Add/Remove</a>
   </header>
-  <ul>
-    <h2>Currently authorized</h2>
-    <li>
-      <%= image_tag "providers/facebook/sign_in.png"%>
-    </li>
-  </ul>
-  <nav>
+  <div>
+    <%-current_user.identities.each do |identity|-%>
+      <%= render :partial => "identities/providers/#{identity.provider}", object:identity %>
+    <%-end-%>
+  </div>
+</section>
+<section id="services" class="form">
+  <header>
     <h2>Authorize other identities</h2>
+  </header>
+  <nav>
     <a href="/auth/facebook" title="Authorize facebook">
       <%= image_tag "providers/facebook/sign_in.png"%>
     </a>
@@ -56,6 +59,7 @@
     </a>
   </nav>
 </section>
+
 <section id="email" class="form">
   <header>
     <h2>Your Email</h2>

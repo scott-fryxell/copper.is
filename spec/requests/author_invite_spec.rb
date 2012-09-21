@@ -6,6 +6,10 @@ describe "a author being invited to the service", :slow do
     visit"/identities/#{twitter.id}/edit"
   end
 
+  after(:each) do
+    page.driver.error_messages.should be_empty
+  end
+
   it 'should not see the other sign in options' do
     page.should have_css('#sign_in', visible:false)
   end

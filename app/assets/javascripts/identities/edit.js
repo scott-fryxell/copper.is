@@ -39,7 +39,6 @@ $(document).on("load.identities_edit", function (){
           $('body > nav > button').removeClass('working')
         },
         success: function(data, textStatus, jqXHR) {
-          console.debug('updated user address')
           window.location.pathname = '/authors/me'
         }
       });

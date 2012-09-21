@@ -1,6 +1,16 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "a authors profile page", :slow do
+  before :each  do
+    visit "/authors/me/edit"
+    click_link 'facebook_sign_in'
+  end
+
+  after(:each) do
+    page.driver.error_messages.should be_empty
+  end
+
+
   it 'should tell the author how many tips they\'s made'
   it 'should tell the author how many tips have been paid'
   it 'should tell the author how many tips are pending'

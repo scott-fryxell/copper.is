@@ -9,6 +9,10 @@ describe "a fan's profile page", :slow do
     User.first.tip({url:'http://www.fasterlighterbetter.com', title:'nytimes homepage', amount_in_cents:'25'})
     visit '/fans/me'
   end
+  after(:each) do
+    page.driver.error_messages.should be_empty
+  end
+
 
   it 'should display the number of authors tipped' do
     # save_and_open_page

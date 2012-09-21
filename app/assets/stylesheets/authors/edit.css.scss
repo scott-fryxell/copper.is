@@ -1,26 +1,71 @@
 #authors_edit {
-  #identities > ul {
-    width:grid-width(7);
+  #identities {
     display:inline-block;
-    margin-right:grid-width(1);
+    width:grid-width(10.5);
+    margin-right:.25em;
+    padding-right:1em;
   }
-  #identities > ul h2,
-  #identities > nav h2 {
-    margin-bottom:.5em;
-    @include text
+  #identities > div {
+    display:inline-block;
+    width:12em
   }
-  #identities > nav {
+  #identities > div > h2 {
+    margin-bottom:1em
+  }
+  #identities > div > figure {
+    position:relative;
+    vertical-align:middle;
+    margin-bottom:1em;
+  }
+  #identities > div > figure > img,
+  #identities > div > figure > figcaption {    
     display:inline-block;
   }
-  #identities > nav > a {
-    display:inline-block;
-    margin-right:.5em;
+  #identities > div > figure > figcaption {
+    padding:.5em .2em; 
+    vertical-align:top;
+    white-space: nowrap;
+    width: 7em;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
+  #identities > div > figure > form {
+    position:absolute;
+    right:0;
+    top:.5em;
+    display:inline-block;   
+    vertical-align:top; 
+  }
+
+  #identities > div > figure > form > input {
+    padding:0 .2em ;
+    font-size:1em;
+  }
+  #services {
+    margin-left:0em;
+    background-color: $offset_color;
+    display:inline-block; 
+    height:100%;
+    vertical-align:top;
+    overflow:hidden;
+  }
+
+  #services > header {
+    height:1em;
+    width:100%;
+    margin-bottom:1.5em
+  }
+  #services > nav {}
+  #services > nav a {
+    margin-right:.65em
+  }
+
   #address {
     min-height:grid-width(4);
   }
-  
   #address > form > input[type=submit] {
     width:4em;
   }
+  
 }

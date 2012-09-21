@@ -1,7 +1,26 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "a authors's settings page", :slow do
-  it 'should be able to authorize services'
+describe "a authors's settings page", :slow, :focus do
+  before :each  do
+  visit '/'
+  click_link 'facebook_sign_in'
+  visit "/authors/me/edit"
+  end
+
+  after(:each) do
+    page.driver.error_messages.should be_empty
+  end
+
+  it 'should be able to authorize facebook' do
+    within '#identities figcaption' do
+      page.should have_content('facebook user');
+    end
+  end
+
+  it "should be able to authorize multible services"
+  it "should be able to deauthorize services"
+  
+  it "should always have at least one service authorized"
   it 'should be able to change their email'
   it 'should be able to change their address'
 end

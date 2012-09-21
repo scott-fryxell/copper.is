@@ -20,155 +20,90 @@ Copper::Application.configure do
   OmniAuth.config.mock_auth[:twitter] = {
     'provider' => 'twitter',
     'uid' => '123545',
-    'username' => 'copper_is',
     'info' => {
-      'name' => 'copper_is',
-      'email' => 'user@twitter.com',
-      'image' => 'http://image.com/me.png',
-      'location' => 'earth',
-      'phone' => '415.666.1234',
-      'urls' => 'http://dot.com'
+      'nickname' => 'copper_is',
     },
     'credentials' => {
       'token' => '666_777_666',
       'secret' => 'its_a_secret'
     },
-    'extra' => {
-      'user_hash' => 'twitter magic'
-    }
   }
   OmniAuth.config.mock_auth[:facebook] = {
     'provider' => 'facebook',
     'uid' => '234567',
     'info' => {
-      'name' => 'facebook user',
-      'email' => 'user@facebook.com',
-      'image' => 'http://image.com/me.png',
-      'location' => 'earth',
-      'phone' => '415.666.1234',
-      'urls' => 'http://dot.com'
+      'nickname' => 'facebook user',
     },
     'credentials' => {
       'token' => '666_777_666',
       'secret' => 'its_a_secret'
     },
-    'extra' => {
-      'user_hash' => 'facebook magic'
-    }
   }
   OmniAuth.config.mock_auth[:google_oauth2] = {
     'provider' => 'google_oauth2',
     'uid' => '234567',
     'info' => {
-      'name' => 'google user',
-      'email' => 'user@google.com',
-      'image' => 'http://image.com/me.png',
-      'location' => 'earth',
-      'phone' => '415.666.1234',
-      'urls' => 'http://dot.com'
+      'nickname' => 'google user',
     },
     'credentials' => {
       'token' => '666_777_666',
       'secret' => 'its_a_secret'
     },
-    'extra' => {
-      'user_hash' => 'google magic'
-    }
   }
   OmniAuth.config.mock_auth[:tumblr] = {
     'provider' => 'tumblr',
     'uid' => '234567',
     'info' => {
-      'name' => 'tumblr user',
-      'email' => 'user@tumblr.com',
-      'image' => 'http://image.com/me.png',
-      'location' => 'earth',
-      'phone' => '415.666.1234',
-      'urls' => 'http://dot.com'
+      'nickname' => 'tumblr user',
     },
     'credentials' => {
       'token' => '666_777_666',
       'secret' => 'its_a_secret'
     },
-    'extra' => {
-      'user_hash' => 'tumblr magic'
-    }
   }
   OmniAuth.config.mock_auth[:github] = {
     'provider' => 'github',
     'uid' => '3456789',
     'info' => {
-      'name' => 'github user',
-      'email' => 'user@github.com',
-      'image' => 'http://image.com/me.png',
-      'location' => 'earth',
-      'phone' => '415.666.1234',
-      'urls' => 'http://dot.com'
+      'nickname' => 'github user',
     },
     'credentials' => {
       'token' => '666_777_666',
       'secret' => 'its_a_secret'
     },
-    'extra' => {
-      'user_hash' => 'github magic'
-    }
   }
   OmniAuth.config.mock_auth[:vimeo] = {
     'provider' => 'vimeo',
     'uid' => '3456789',
     'info' => {
-      'name' => 'vimeo user',
-      'email' => 'user@vimeo.com',
-      'image' => 'http://image.com/me.png',
-      'location' => 'earth',
-      'phone' => '415.666.1234',
-      'urls' => 'http://dot.com'
+      'nickname' => 'vimeo user',
     },
     'credentials' => {
       'token' => '666_777_666',
       'secret' => 'its_a_secret'
     },
-    'extra' => {
-      'user_hash' => 'vimeo magic'
-    }
   }
   OmniAuth.config.mock_auth[:soundcloud] = {
     'provider' => 'soundcloud',
     'uid' => '3456789',
     'info' => {
-      'name' => 'soundcloud user',
-      'email' => 'user@soundcloud.com',
-      'image' => 'http://image.com/me.png',
-      'location' => 'earth',
-      'phone' => '415.666.1234',
-      'urls' => 'http://dot.com'
+      'nickname' => 'soundcloud user',
     },
     'credentials' => {
       'token' => '666_777_666',
       'secret' => 'its_a_secret'
     },
-    'extra' => {
-      'user_hash' => 'soundcloud magic'
-    }
   }
   OmniAuth.config.mock_auth[:flickr] = {
     'provider' => 'flickr',
     'uid' => '3456789',
     'info' => {
-      'name' => 'flickr user',
-      'email' => 'user@flickr.com',
-      'image' => 'http://image.com/me.png',
-      'location' => 'earth',
-      'phone' => '415.666.1234',
-      'urls' => 'http://dot.com'
+      'nickname' => 'flickr user',
     },
     'credentials' => {
       'token' => '666_777_666',
       'secret' => 'its_a_secret'
     },
-    'extra' => {
-      'user_hash' => 'flickr magic'
-    }
   }
 
   # Raise exception on mass assignment protection for Active Record models
