@@ -13,7 +13,11 @@
   figure:nth-child(3){
     margin-right:0;
   }
+  figure:nth-child(2) > img{
+    opacity:.9;
+  }
   figure > img {
+    opacity:.8;
     vertical-align:top;
     width: 10em;
     height:10em;
@@ -23,7 +27,6 @@
     font-size:2em;
     margin-top:1em;
   }
-
   footer {
     position:fixed;
     bottom:0;
