@@ -1,0 +1,26 @@
+#home_statistics {
+  section {
+    width:44em;
+    min-height: 35em;
+    margin: 10em auto 1em auto;
+  }
+  figure {
+    margin-right:5em;
+    vertical-align:top;
+    height:15em;
+    display:inline-block
+  }
+  figure:nth-child(3){
+    margin-right:0;
+  }
+  figure > img {
+    vertical-align:top;
+    width: 10em;
+    height:10em;
+  }
+  figure > figcaption {
+    text-align:center;
+    font-size:2em;
+    margin-top:1em;
+  }
+}

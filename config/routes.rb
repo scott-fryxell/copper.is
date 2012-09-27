@@ -28,6 +28,7 @@ Copper::Application.routes.draw do
   get 'faq',     :to => 'home#faq'
   get 'button',  :to => 'home#button'
   get 'states',  :to => 'home#states'
+  get 'statistics',  :to => 'home#statistics'
 
   if Rails.env.test? || Rails.env.development?
     get 'test',    :to => 'home#test'
