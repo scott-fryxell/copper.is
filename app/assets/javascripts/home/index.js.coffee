@@ -54,7 +54,7 @@ $(document).on "load.home_index", ->
       show_sample $("#samples > nav > a:first-child")
     else 
       show_sample $("#samples > nav > a.selected").next()
-  , 5000
+  , 10000
 
 # if logged in display the the second step in the sign up process.
 $(document).on "me.home_index", ->
