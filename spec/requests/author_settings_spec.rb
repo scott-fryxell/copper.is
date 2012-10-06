@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "a authors's settings page", :slow, :focus do
+describe "a authors's settings page", :slow do
   before :each  do
   visit '/'
   click_link 'facebook_sign_in'
