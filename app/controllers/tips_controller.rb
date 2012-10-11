@@ -5,7 +5,7 @@ class TipsController < ApplicationController
     if params[:user_id]
       @tips = current_user.current_tips
     else
-      @tips = Tip.all
+      @tips = Tip.trending
     end
   end
 

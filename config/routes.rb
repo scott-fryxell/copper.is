@@ -30,6 +30,8 @@ Copper::Application.routes.draw do
   get 'states',  :to => 'home#states'
   get 'statistics',  :to => 'home#statistics'
 
+  get 'trending',  :to => 'home#trending'
+
   if Rails.env.test? || Rails.env.development?
     get 'test',    :to => 'home#test'
   end

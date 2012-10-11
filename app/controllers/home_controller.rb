@@ -35,7 +35,7 @@ class HomeController < ApplicationController
   end
 
   def test
-      render :action => 'test', :layout => false
+    render :action => 'test', :layout => false
   end
 
   def states
@@ -45,6 +45,10 @@ class HomeController < ApplicationController
     else
       render nothing:true, status:200
     end
+  end
+
+  def trending
+    @trending = Page.trending
   end
 
 end

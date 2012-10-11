@@ -4,8 +4,10 @@ class Page < ActiveRecord::Base
   belongs_to :identity
   has_many :tips
   has_many :checks, :through => :tips
-
+ 
   attr_accessible :title, :url
+
+  scope :trending, order("Date(updated_at), tips_count ASC")
 
   validates :url, :presence => true
 
