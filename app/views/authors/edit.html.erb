@@ -25,7 +25,7 @@
   <div>
     <%-current_user.identities.each do |identity|-%>
     <figure class="<%=identity.provider%>">
-      <%= image_tag "providers/#{identity.provider}/sign_in.png"%>
+      <%= image_tag "providers/#{identity.provider}/sign_in.png", title:identity.username%>
       <figcaption><%=identity.username%></figcaption>
       <%-if current_user.identities.count > 1-%>
       <form action='<%=identity_path(identity)%>' method="post">

@@ -1,27 +1,40 @@
 #authors_edit {
   #identities {
+    display:block;
+  }
+  #identities > div > figure {
+    display:inline-block;
+    margin-right:.5em;
+  }
+
+  #identities > div > figure > figcaption, 
+  #identities > div > figure > form {
+    display:none
+  }
+
+  #identieies.edit {
     display:inline-block;
     width:grid-width(10.5);
     margin-right:.25em;
-    padding-right:1em;
+    padding-right:1em;    
   }
-  #identities > div {
+  #identities.edit > div {
     display:inline-block;
     width:12em
   }
-  #identities > div > h2 {
+  #identities.edit > div > h2 {
     margin-bottom:1em
   }
-  #identities > div > figure {
+  #identities.edit > div > figure {
     position:relative;
     vertical-align:middle;
     margin-bottom:.5em;
   }
-  #identities > div > figure > img,
-  #identities > div > figure > figcaption {    
+  #identities.edit > div > figure > img,
+  #identities.edit > div > figure > figcaption {    
     display:inline-block;
   }
-  #identities > div > figure > figcaption {
+  #identities.edit > div > figure > figcaption {
     padding:.5em .2em; 
     vertical-align:top;
     white-space: nowrap;
@@ -30,7 +43,7 @@
     text-overflow: ellipsis;
   }
 
-  #identities > div > figure > form {
+  #identities.edit > div > figure > form {
     position:absolute;
     right:0;
     top:.5em;
@@ -45,7 +58,7 @@
   #services {
     margin-left:0em;
     background-color: $offset_color;
-    display:inline-block; 
+    display:none; 
     height:100%;
     vertical-align:top;
     overflow:hidden;
