@@ -6,7 +6,6 @@
   #stats > div:nth-child(7){
     @include left_width($offset_color)
   }
-
   #settings {
     width:55em;
     padding:0;
@@ -16,8 +15,8 @@
   }
   #settings > div {
     min-height:8em;
-
     margin-right:0;
+    vertical-align:top;
     position:relative;
     display:inline-block;
     background-color:$offset_color;
@@ -49,11 +48,9 @@
     text-align:center;
   }
   #settings > div:nth-child(2) {
+    width:21.20em;
     padding:2em;
     padding-left:4em;
-
-    float:right;
-    width:21.25em;
   }
   #settings > div:nth-child(2) > header {
     height:2em;
@@ -71,7 +68,7 @@
     background-color:rgba(0,0,0, .5);
   }
   #settings > div:nth-child(2) > textarea {
-    width:grid-width(8.25);
+    width:19em;
     height:4em;
     background-color: #CCCCCC;
   }
