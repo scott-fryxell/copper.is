@@ -33,6 +33,7 @@ Copper::Application.configure do
     'uid' => '234567',
     'info' => {
       'nickname' => 'facebook user',
+      'email' => 'user@facebook.com'
     },
     'credentials' => {
       'token' => '666_777_666',
