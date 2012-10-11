@@ -21,7 +21,7 @@ describe "tipping a page", :slow do
     within_frame('copper') do
       page.execute_script("jQuery.fx.off = true")
       page.should have_content("copper-test page")
-      page.should have_content("0.25")
+      page.should have_content("0.50")
     end
     User.first.tips.count.should == 1
   end

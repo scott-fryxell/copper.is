@@ -62,12 +62,12 @@ describe "A Fan's settings page", :slow do
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
 
-      find("div > p").should have_content("0.25")
+      find("div > p").should have_content("0.50")
       click_link "Change"
       page.should have_css('form', :visible => true)
       page.should have_css('div', :visible => false)
 
-      find_field('user[tip_preference_in_cents]').value.should == '25'
+      find_field('user[tip_preference_in_cents]').value.should == '50'
       page.select '$1.00', :from => 'user[tip_preference_in_cents]'
       click_on "Save"
       page.should have_css('form', :visible => false)
@@ -84,9 +84,9 @@ describe "A Fan's settings page", :slow do
 
   it 'should add a zero for any tip amount less then a dollar' do
     within("section#rate") do
-      find("div > p").should have_content("0.25")
+      find("div > p").should have_content("0.50")
       click_link "Change"
-      find_field('user[tip_preference_in_cents]').value.should == '25'
+      find_field('user[tip_preference_in_cents]').value.should == '50'
       page.select '$0.75', :from => 'user[tip_preference_in_cents]'
       click_on "Save"
       find("div > p").should have_content("0.75")
