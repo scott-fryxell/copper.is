@@ -1,7 +1,7 @@
 class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 class Tip < ActiveRecord::Base
-  belongs_to :page
+  belongs_to :page, :counter_cache => true
   belongs_to :order
   belongs_to :check
   has_one :user, :through => :order
@@ -11,7 +11,7 @@ class Tip < ActiveRecord::Base
   attr_accessor :url,:title
 
   attr_accessible :amount_in_cents,:url,:title
-
+  scope :trending, order("Date(updated_at)")
   scope :promised, where("paid_state = ?", 'promised')
   scope :charged, where("paid_state = ?", 'charged')
   scope :kinged, where("paid_state = ?", 'kinged').readonly
