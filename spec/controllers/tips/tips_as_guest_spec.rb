@@ -20,9 +20,9 @@ describe TipsController do
 
     describe 'new' do
       describe '/tips/new' do
-        it 'should respond with 401' do
-          get :new, format: :json
-          response.status.should == 401
+        it 'should respond with 200' do
+          get :new
+          response.status.should == 200
         end
       end
     end

@@ -27,7 +27,7 @@ authorization do
   end
 
   role :guest do
-    has_permission_on :tips,       :to => [:read]
+    has_permission_on :tips,       :to => [:read, :new]
     has_permission_on :identities, :to => [:edit] do
       if_attribute :identity_state => 'wanted'
     end
