@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "tipping a page", :slow, :focus do
+describe "tipping a page", :slow do
   after(:each) do
     page.driver.error_messages.size.should == 0
   end
@@ -43,7 +43,7 @@ describe "tipping a page", :slow, :focus do
       within_frame('copper') do
         page.execute_script("jQuery.fx.off = true")
         page.should have_content("copper-test page")
-        page.should have_content("You can support")
+        page.should have_content("You Can Tip")
         page.should have_content("Learn more")
         page.should have_content("X")
       end
