@@ -7,6 +7,10 @@
 
 $(document).ready(function (){
   document.postMessage(JSON.stringify({type:'tip_info'}))
+
+  $("section.sign_in a").click(function(event){
+    $(document).trigger("tip_hide")
+  });
 });
 $(document).bind({
   "tip_info": function (event){
@@ -30,16 +34,21 @@ $(document).bind({
     document.postMessage(JSON.stringify({type:'show'}))
     $("body > section").addClass("show")
 
-    window.setTimeout(function (){
-      $("body > section").removeClass('show')
-    },3000);
+    if(!$("section").hasClass('sign_in')){
+      window.setTimeout(function (){
+        $(document).trigger("tip_hide")
+      },3000);
 
-    window.setTimeout(function (){
-      document.postMessage(JSON.stringify({type:'hide'}))
-    },4000);
+      window.setTimeout(function (){
+        document.postMessage(JSON.stringify({type:'hide'}))
+      },4000);      
+    }
   },
   "items.updated.tips_new": function(event){
     copper.format_cents_to_dollars("amount_in_cents")
+  },
+  "tip_hide": function(event){
+    $("body > section").removeClass('show')
   }
 });
 window.addEventListener('message', function(event) {

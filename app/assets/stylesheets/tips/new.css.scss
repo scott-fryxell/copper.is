@@ -5,6 +5,7 @@ $background_color: #313130;
   width:300px;
   font-size:16px;
   section {
+    position:relative;
     font-family: 'Cantarell', sans-serif;
     background-color: $background_color;
     color:white;
@@ -24,10 +25,10 @@ $background_color: #313130;
     @include box-shadow(0 0 5px 3px hsla(0, 0%, 0%, 0.65));
     @include transition(height 1.4s, padding 1.4s, opacity 1s);
     opacity:1;
-    height:75px;
+    height:8em;
     header {
       @include transition(height 1.4s);
-      height:3em;
+      height:4em;
     }
     p,h1 {
       @include transition(height 1.4s);
@@ -75,5 +76,19 @@ $background_color: #313130;
   }
   section > form {
     display:none
+  }
+  section > header > button {
+    color:#CCCCCC;
+    background-color:$background_color;
+  }
+  section a {
+    cursor:pointer;
+    color:#CCCCCC;
+  }
+  section > a {
+    text-decoration: none;
+    position: absolute;
+    top:1em;
+    right:2em;
   }
 }

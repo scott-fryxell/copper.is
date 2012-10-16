@@ -1,3 +1,20 @@
-<script>
-  window.open("<%=request.scheme%>://<%=request.host%>")
-</script>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <%= csrf_meta_tag %>
+    <%= stylesheet_link_tag "tips/new" %>
+    <%= javascript_include_tag "tips/new" %>
+    <%= javascript_include_tag "analytics" if Rails.env.production?%>
+  </head>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%> itemid="/tips/new">
+    <section class="sign_in">
+      <a href="#close">X</a>
+      <header>
+        <h1>You can support</h1>
+        <p itemprop="title"></p>
+        <a href="http://www.copper.is" target="new">Learn more</a>
+      </header>
+    </section>
+  </body>
+</html>
