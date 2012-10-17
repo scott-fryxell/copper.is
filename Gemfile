@@ -43,7 +43,6 @@ group :development, :test do
   gem 'sqlite3', :require => 'sqlite3'
   gem 'pry'
   gem 'ruby_parser'
-  gem 'heroku'
   gem 'rspec-rails'
   gem "capybara-webkit"
   gem 'database_cleaner', '~> 0.6.7'
