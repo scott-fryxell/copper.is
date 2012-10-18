@@ -4,6 +4,7 @@ html {
   min-width: 60em;
   min-height:30em;
   background-image: image-url('shared/texture_light.png');
+  @include user-select(none);
   @include text;
   &:after {
     content:"";
