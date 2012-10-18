@@ -58,6 +58,7 @@ $(document).on "load.home_index", ->
 
 # if logged in display the the second step in the sign up process.
 $(document).on "me.home_index", ->
+  $("#banner > header > figure").hide()
   $('#join figure.step_one').hide()
   $('#join figure.step_two').show()
 
