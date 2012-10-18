@@ -14,7 +14,7 @@ class TipsController < ApplicationController
   end
 
   def new
-    logger.info "––– referer:#{request.referer}  –––" 
+    logger.info "referer: #{request.referer}"
     
     if current_user 
       render action:'new', layout:false
