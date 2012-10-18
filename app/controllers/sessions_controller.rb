@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
 
         session[:user_id] = @identity.user.id
 
-        redirect_to '/fans/me', notice: "Signed in!"
+        redirect_to '/fans/me/#winner'
       else
         # No user associated with the identity so we need to create a new one
         user = User.create_with_omniauth(auth)
@@ -52,15 +52,13 @@ class SessionsController < ApplicationController
         @identity.user = current_user
 
         if @identity.wanted?
-          logger.info "*** this shit is wanted ***"
           @identity.join!
           @identity.save()
           redirect_to edit_identity_url(@identity)
         else
-          logger.info "*** nothing punk ***"
           @identity.join!
           @identity.save()
-          redirect_to root_url + '#join', :notice => "Welcome aboard!"
+          redirect_to "#{root_url}#join"
         end
       end
     end
