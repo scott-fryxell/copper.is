@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 12) do
 
   create_table "checks", :force => true do |t|
     t.integer  "user_id"
@@ -50,12 +50,13 @@ ActiveRecord::Schema.define(:version => 11) do
 
   create_table "pages", :force => true do |t|
     t.string   "title"
-    t.string   "url",                         :null => false
+    t.string   "url",                          :null => false
     t.string   "author_state"
     t.integer  "identity_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.integer  "tips_count",   :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "tips_count",    :default => 0
+    t.string   "thumbnail_url"
   end
 
   add_index "pages", ["url"], :name => "index_pages_on_url"

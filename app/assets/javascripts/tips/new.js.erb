@@ -18,12 +18,13 @@ $(document).bind({
     new_tip = document.getItems('tips')['/tips/new']
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
+    new_tip.thumbnail_url = decodeURIComponent(event.thumbnail_url)
     Item.update_page(new_tip)
     copper.format_cents_to_dollars("amount_in_cents")
 
     jQuery('<img/>', {
       id: 'create_img',
-      src: 'http://img.bitpixels.com/getthumbnail?code=59482&size=200&url='+new_tip.url,
+      src: decodeURIComponent(event.thumbnail_url),
       style: 'opacity:0;'
     }).appendTo('body');
 

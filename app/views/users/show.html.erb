@@ -51,7 +51,7 @@
   </header>
   <aside itemscoped itemtype='/tips' itemid='/tips/<%=@recent_tip.id%>'>
     <figure>
-      <img src="http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=<%=@recent_tip.page.url%>" alt="tip image">
+      <img src="<%=@recent_tip.page.thumbnail_url%>" alt="tip image">
       <figcaption itemprop="amount_in_cents"><%=@recent_tip.amount_in_cents%></figcaption>
     </figure>
     <dl>
@@ -81,11 +81,11 @@
     <%-current_user.current_order.tips.each do |tip| -%>
       <li itemscoped itemtype='/tips' itemid='/tips/<%=tip.id%>'
         data-amount="<%=tip.amount_in_cents%>"
-        data-url="<%=tip.page.url%>"
-        data-site="<%=URI(tip.page.url).host%>"
+        data-url="<%=tip.url.to_s%>"
+        data-site="<%=tip.url.host%>"
         data-paid_state="<%=tip.paid_state%>"
         data-created_at="<%=tip.created_at.getutc.iso8601 %>">
-        <img src="http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=<%=tip.page.url%>">
+        <img src="<%=tip.page.thumbnail_url%>" />    
       </li>
     <%-end-%>
   </ol>

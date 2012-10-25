@@ -25,8 +25,14 @@ class TipsController < ApplicationController
   end
 
   def create
+    logger.info params[:thumbnail_url]
+
     @tip = current_user.tip(params[:tip])
     @tip.save
+
+    @tip.page.thumbnail_url = params[:thumbnail_url]
+    @tip.page.save
+    
     render nothing:true, status:200
   rescue ActiveRecord::RecordInvalid
     render nothing:true, status:403

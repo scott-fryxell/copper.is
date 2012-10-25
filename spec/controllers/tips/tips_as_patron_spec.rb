@@ -53,7 +53,7 @@ describe TipsController do
 
         it 'creates a tip to given url with given title' do
           post_with @me, :create, tip:{url:'http://twitter.com/_ugly', title:'dude'}, format: :json
-          Tip.first.url.should == 'http://twitter.com/_ugly'
+          Tip.first.url.to_s.should == 'http://twitter.com/_ugly'
           Tip.first.title.should == 'dude'
         end
 

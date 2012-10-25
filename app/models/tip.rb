@@ -69,7 +69,7 @@ class Tip < ActiveRecord::Base
   end
 
   def url
-    page.url
+    URI page.url
   end
 
   def title

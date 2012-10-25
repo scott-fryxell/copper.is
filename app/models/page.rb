@@ -20,6 +20,24 @@ class Page < ActiveRecord::Base
     scope state, where("author_state = ?", state)
   end
 
+  def discover_thumbnail
+    begin
+      thumbnail_tag = Nokogiri::HTML(open(self.url)).css('link[itemprop="thumbnailUrl"]')
+      unless thumbnail_tag.blank?
+        self.thumbnail_url = thumbnail_tag.attr('href').value
+        save!
+      end
+    rescue
+      p "error trying to load url #{url}" 
+    end
+  end
+
+  def self.discover_thumbnails
+    Page.all.each do |page|
+      page.discover_thumbnail
+    end
+  end
+
   after_create do |page|
     if page.orphaned?
       Resque.enqueue Page, page.id, :discover_identity!
