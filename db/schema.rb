@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 12) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.integer  "tips_count",    :default => 0
-    t.string   "thumbnail_url"
+    t.text     "thumbnail_url"
   end
 
   add_index "pages", ["url"], :name => "index_pages_on_url"

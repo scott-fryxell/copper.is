@@ -1,6 +1,6 @@
 class AddPageTumbnailUrl < ActiveRecord::Migration
 def up
-    add_column :pages, :thumbnail_url, :string
+    add_column :pages, :thumbnail_url, :text
 
     Page.all.each do |page|
       page.thumbnail_url = "http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=#{page.url}"
