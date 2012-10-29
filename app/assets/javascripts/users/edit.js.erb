@@ -69,6 +69,7 @@ $(document).on("load.users_edit", function (){
     $("#email > header > a").click();
   }
   if (user.stripe_id){
+
     jQuery.ajax({
       url: '/cards',
       type: 'get',
@@ -76,6 +77,8 @@ $(document).on("load.users_edit", function (){
         $("#card p.type").text(data.active_card.type)
         $("#card p.number").text(data.active_card.last4)
         $("#card p.expiration").text(data.active_card.exp_month + '/' + data.active_card.exp_year )
+
+        $("#card > div").css('display', 'inline-block');
       },
       error: function (data, textStatus, jqXHR) {
         console.error("error getting stripe info", data, textStatus, jqXHR);

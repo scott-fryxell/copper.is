@@ -23,6 +23,7 @@
     }
   }
   #card > div {
+    display:none;
     width:40em;
     @include column-count(3);
     @include column-gap(2em);
