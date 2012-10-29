@@ -66,7 +66,7 @@ module Copper
       redistogo_url
 
     ].each do |env|
-      # raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?
+      raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?
       config.send(env.to_s + '=', ENV[env.to_s.upcase])
     end
   end
