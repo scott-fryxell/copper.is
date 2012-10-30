@@ -102,7 +102,7 @@
   <a href="/fans/me/edit">Edit your settings</a>
 </nav>
 <script id="badge_template" type="text/x-jquery-tmpl">
-  <img class="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/icons/button.png"
-       style="cursor:pointer; width:${size}px;" title="Tip this content"
+  <img id="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/icons/button.png"
+       style="cursor:pointer; width:${size}px;" title="Tip This Page"
        onclick="<%= render :partial=>'home/wrapped_launcher', :formats=>[:js] %>">
 </script>
