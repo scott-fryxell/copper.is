@@ -68,7 +68,7 @@ $text:rgba(102,102,102,0.8);
 @mixin settings_pointer {
   text-transform:uppercase;
   text-decoration:none;
-  &:after{
+  &:after {
     content:"";
     width:.75em;
     height:.75em;
@@ -118,7 +118,6 @@ $text:rgba(102,102,102,0.8);
     position:absolute;
     bottom:0;
     left:0;
-
     width: 0;
     height: 0;
     border-left: 3em solid transparent;

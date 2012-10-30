@@ -1,7 +1,5 @@
 html {
-  overflow-x: hidden;
-  position:relative;
-  min-width: 60em;
+  overflow-x:hidden;
   min-height:30em;
   background-image: image-url('shared/texture_light.png');
   @include user-select(none);
@@ -14,20 +12,20 @@ html {
     bottom:0;
     left:0;
     right:0;
+    width:100%;
     opacity:.2;
     @include background-image(linear-gradient(rgba(0,0,0,.5) 0em, lighten(rgba(0,0,0,.5), 100%) grid-width(17)));
   }
 }
 body {
-  width:grid-width(26);
-  margin: 0 auto 0 auto;
+  position:relative;
+  overflow:hidden;
   h1, h2, h3, h4, h5, h6 {
     @include header_text;
   }
   nav > a {
     text-transform:capitalize;
   }
-
   h2 {
     font-size:1.34em;
   }
@@ -42,9 +40,9 @@ body {
     list-style: none;
   }
 }
+
 body > header { 
   @include full_width($header);
-  width:grid-width(26);
   height:3.4em;
   hgroup {
     display:none;
@@ -157,15 +155,21 @@ body > header > nav > a {
   text-transform:uppercase;
   margin-right:2em;
 }
-body > section, body > footer {
-  padding-left:75px;
-  padding-right:75px;
-}
 
+body > section {
+  width:grid-width(22);
+  margin: 0 auto 0 auto;
+}
 body > section a {
   font-family: 'Doppio One', sans-serif;
   color:$text;
 }
+body > section, 
+body > footer {
+  padding-left:75px;
+  padding-right:75px;
+}
+
 body > footer {
   padding-top:1em;
   padding-bottom:0.75em;
@@ -213,7 +217,7 @@ body > nav {
   padding:5em;
 }
 body > nav > a,
-body > nav > button  {
+body > nav > button {
   font-size:.85em;
   display:block;
   margin: 0 auto 0 auto;

@@ -1,13 +1,5 @@
 #home_index {
   min-height:120em;
-  width:auto;
-  position:relative;
-  overflow:hidden;
-  margin:auto;
-  & > section {
-    width:grid-width(22);
-    margin: 0 auto 0 auto;
-  }
   & > header {
     width:100%;
     position:absolute;
@@ -323,8 +315,8 @@
     @include triangle_down_small(#e5e9ef)
   }
   #join > figure.step_two > h5 > figure > img {
-     width:2em;
-     height:2em;
+    width:2em;
+    height:2em;
   }
   #join > figure.step_two > h5 > p {
     border-radius: 0 .5em .5em 0;
@@ -346,7 +338,7 @@
   #join > figure.step_two > figcaption {
     width:grid-width(13);
   }
-
+  
   #congrats {
     display:none;
     position:relative;
@@ -418,7 +410,7 @@
   #congrats > div > p:before{
     content: "$";
   }
-
+  
   #facebook {
     display:none;
   }
@@ -452,7 +444,7 @@
     vertical-align:top;
     width:50px;
   }
-
+  
   #settings {
     position:relative;
     display:none;
@@ -494,5 +486,4 @@
     width:2.5em;
     height:2.5em;
   }
-
 }
