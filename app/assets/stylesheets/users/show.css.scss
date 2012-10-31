@@ -97,6 +97,13 @@
     padding:grid-width(1);
     background-color:$offset_color;
   }
+  #tips > aside > h2 {
+    width:grid-width(15);
+    height:1em;
+    margin-bottom:0.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   #tips > aside > figure {
     display:inline-block;
     position:relative;
@@ -104,7 +111,6 @@
     margin-right:grid-width(1);
   }
   #tips > aside > figure > img {
-    margin-left:.5em;
     margin-top:.5em;
     width:grid-width(8);
     height:grid-width(5);
@@ -218,7 +224,6 @@
 
   #tips > ol {
     padding:0;
-    min-height:20em;
     margin-top:1.5em;
   }
   #tips > ol > li {

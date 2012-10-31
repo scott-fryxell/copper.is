@@ -73,6 +73,7 @@ $(document).on("load.users_show", function (event){
     $('li.selected').removeClass('selected');
     $(li).addClass('selected');
     $('#tips > aside').animate({opacity:0}, 500, function(){
+      $('#tips > aside > h2').text($(li).attr('data-title'))
       $("#tips > aside > figure > img").attr("src", $(li).find('img').attr('src'))
       $("#tips > aside > figure > figcaption").text($(li).attr('data-amount'))
       $("#tips > aside > nav > a[target=_blank]").attr('href', $(li).attr('data-url'))
