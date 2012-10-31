@@ -1,10 +1,13 @@
 html {
   overflow-x:hidden;
-  min-height:30em;
+  min-height:60em;
   background-image: image-url('shared/texture_light.png');
   @include user-select(none);
   @include text;
-  &:after {
+}
+body {
+  overflow-x:hidden;
+    &:after {
     content:"";
     position:absolute;
     z-index:-1;
@@ -12,14 +15,10 @@ html {
     bottom:0;
     left:0;
     right:0;
-    width:100%;
     opacity:.2;
-    @include background-image(linear-gradient(rgba(0,0,0,.5) 0em, lighten(rgba(0,0,0,.5), 100%) grid-width(17)));
+    @include background-image(linear-gradient(rgba(0,0,0,.5) 0em, lighten(rgba(0,0,0,.5), 100%) 100%));
   }
-}
-body {
-  position:relative;
-  overflow:hidden;
+
   h1, h2, h3, h4, h5, h6 {
     @include header_text;
   }
