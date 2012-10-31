@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
   has_many :tips
   has_many :checks, :through => :tips
  
-  attr_accessible :title, :url
+  attr_accessible :title, :url, :thumbnail_url
 
   scope :trending, order("Date(updated_at), tips_count ASC")
 

@@ -54,11 +54,12 @@ class User < ActiveRecord::Base
   def tip(args = {})
     url    = args[:url]
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
-    title  = args[:title]
-
+    title  = CGI.unescapeHTML(args[:title])  if args[:title]
+    thumbnail_url = args[:thumbnail_url]
+    
     tip = current_order.tips.build(amount_in_cents:amount_in_cents)
     unless tip.page = Page.where('url = ?', url).first
-      tip.page = Page.create(url:url,title:title)
+      tip.page = Page.create(url:url,title:title,thumbnail_url:thumbnail_url)
     end
     tip.save!
     tip

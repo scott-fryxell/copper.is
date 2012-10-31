@@ -8,9 +8,9 @@ class Tip < ActiveRecord::Base
   has_paper_trail
   default_scope :order => 'created_at DESC'
 
-  attr_accessor :url,:title
+  attr_accessor :url,:title,:thumbnail_url
 
-  attr_accessible :amount_in_cents,:url,:title
+  attr_accessible :amount_in_cents,:url,:title,:thumbnail_url
   scope :trending, order("Date(updated_at)")
   scope :promised, where("paid_state = ?", 'promised')
   scope :charged, where("paid_state = ?", 'charged')
@@ -66,6 +66,10 @@ class Tip < ActiveRecord::Base
     unless self.check_id
       errors.add(:check_id, "check_id must not be null for :kinged tips")
     end
+  end
+
+  def thumbnail_url
+    page.thumbnail_url
   end
 
   def url
