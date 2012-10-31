@@ -54,7 +54,7 @@
     </nav>
   </header>
   <aside itemscoped itemtype='/tips' itemid='/tips/<%=@recent_tip.id%>'>
-    <h2><%= @recent_tip.title%></h2>
+    <h2><%=h @recent_tip.title%></h2>
     <figure>
       <img src="<%=@recent_tip.page.thumbnail_url%>" alt="tip image">
       <figcaption itemprop="amount_in_cents"><%=@recent_tip.amount_in_cents%></figcaption>
@@ -88,7 +88,7 @@
         data-amount="<%=tip.amount_in_cents%>"
         data-url="<%=tip.url.to_s%>"
         data-site="<%=tip.url.host%>"
-        data-title="<%=tip.title%>"
+        data-title="<%=h tip.title%>"
         data-paid_state="<%=tip.paid_state%>"
         data-created_at="<%=tip.created_at.getutc.iso8601 %>">
         <img src="<%=tip.page.thumbnail_url%>" />    
