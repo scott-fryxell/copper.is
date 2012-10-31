@@ -58,7 +58,6 @@ $(document).on "load.home_index", ->
 
 # if logged in display the the second step in the sign up process.
 $(document).on "me.home_index", ->
-  $("#banner > header > figure").hide()
   $('#join figure.step_one').hide()
   $('#join figure.step_two').show()
 
@@ -78,3 +77,6 @@ $(document).on "me.home_index", ->
           $('<a/>', {href:like.link, html:image}).appendTo('#facebook > nav')
 
     $.getJSON(me_url).success (me) -> $('figure.step_two > h5 > p').append "Welcome, #{me.first_name}!"
+
+$(document).on "guest.home_index", ->
+    $("#banner > header > figure").css('display','inline-block')

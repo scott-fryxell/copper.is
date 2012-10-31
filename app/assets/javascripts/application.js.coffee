@@ -40,6 +40,7 @@ $(document).ready ->
       401:->
         $("#sign_in").addClass 'show'
         $("#sign_in > nav > a > img").click -> $(@).addClass "working"
+        $(document).trigger "guest." + $('body').attr('id')
     
   $(document).bind 'save.me', ->
     jQuery.ajax
