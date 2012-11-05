@@ -44,7 +44,7 @@ $(document).on "load.home_index", ->
     $('#settings').delay(800).fadeIn 800, ->
       $('#settings').delay(800).css "display",'block'
   
-  $("#samples > nav > a").click ->
+  $("#samples > nav > a").click (event) ->
     event.preventDefault()
     clearInterval carousel
     show_sample @
