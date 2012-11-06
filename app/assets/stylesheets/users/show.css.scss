@@ -137,8 +137,7 @@
   #tips > aside > dl {
     vertical-align:top;
     display:inline-block;
-    width:17em;
-    margin-right:grid-width(1);
+
     height:grid-width(5);
   }
   #tips > aside > dl > dt {
@@ -148,9 +147,10 @@
     @include header_text;
     font-size:1.2em;
     margin-bottom:1.5em;
-  }
-  #tips > aside > dl > dd {
     text-transform:none;
+    width:15.5em;
+    overflow:hidden;
+    text-overflow: ellipsis;
   }
   #tips > aside > dl > dd:nth-child(6) {
     text-transform:capitalize;
@@ -170,7 +170,6 @@
   #tips > aside > nav > a {
     float:right;
     display:block;
-
     color:#f1f1f1;
     background-color:#d5d1c8;
     padding: 0.25em 0.5em;
