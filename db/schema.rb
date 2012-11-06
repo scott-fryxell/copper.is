@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 12) do
+ActiveRecord::Schema.define(:version => 13) do
 
   create_table "checks", :force => true do |t|
     t.integer  "user_id"
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(:version => 12) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.integer  "tip_preference_in_cents", :default => 50,    :null => false
+    t.integer  "tip_preference_in_cents", :default => 75,    :null => false
     t.string   "email"
     t.string   "stripe_id"
     t.boolean  "accept_terms",            :default => false
