@@ -13,6 +13,10 @@ describe "a fan's profile page", :slow do
     page.driver.error_messages.should be_empty
   end
 
+  it "should have the fan's name in the title" do
+    find("head > title").should have_content("facebook user")
+  end
+
   it 'should display the number of authors tipped' do
     User.first.tips.count.should == 2
     within '#stats > div:nth-child(2) > p' do

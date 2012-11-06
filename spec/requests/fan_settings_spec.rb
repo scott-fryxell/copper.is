@@ -33,6 +33,10 @@ describe "A Fan's settings page", :slow do
 
   end
 
+  it "should have the fan's name in the title" do
+    find("head > title").should have_content("facebook user")
+  end
+
   it "should be able to change email" do
     within("#email") do
       page.should have_css('form', :visible => false)

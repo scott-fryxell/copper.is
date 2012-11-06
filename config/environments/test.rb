@@ -21,7 +21,7 @@ Copper::Application.configure do
     'provider' => 'twitter',
     'uid' => '123545',
     'info' => {
-      'nickname' => 'copper_is',
+      'name' => 'copper_is',
     },
     'credentials' => {
       'token' => '666_777_666',
@@ -32,7 +32,7 @@ Copper::Application.configure do
     'provider' => 'facebook',
     'uid' => '234567',
     'info' => {
-      'nickname' => 'facebook user',
+      'name' => 'facebook user',
       'email' => 'user@facebook.com'
     },
     'credentials' => {
@@ -44,7 +44,7 @@ Copper::Application.configure do
     'provider' => 'google_oauth2',
     'uid' => '234567',
     'info' => {
-      'nickname' => 'google user',
+      'name' => 'google user',
     },
     'credentials' => {
       'token' => '666_777_666',
@@ -55,7 +55,7 @@ Copper::Application.configure do
     'provider' => 'tumblr',
     'uid' => '234567',
     'info' => {
-      'nickname' => 'tumblr user',
+      'name' => 'tumblr user',
     },
     'credentials' => {
       'token' => '666_777_666',
@@ -66,7 +66,7 @@ Copper::Application.configure do
     'provider' => 'github',
     'uid' => '3456789',
     'info' => {
-      'nickname' => 'github user',
+      'name' => 'github user',
     },
     'credentials' => {
       'token' => '666_777_666',
@@ -77,7 +77,7 @@ Copper::Application.configure do
     'provider' => 'vimeo',
     'uid' => '3456789',
     'info' => {
-      'nickname' => 'vimeo user',
+      'name' => 'vimeo user',
     },
     'credentials' => {
       'token' => '666_777_666',
@@ -88,7 +88,7 @@ Copper::Application.configure do
     'provider' => 'soundcloud',
     'uid' => '3456789',
     'info' => {
-      'nickname' => 'soundcloud user',
+      'name' => 'soundcloud user',
     },
     'credentials' => {
       'token' => '666_777_666',
@@ -99,7 +99,7 @@ Copper::Application.configure do
     'provider' => 'flickr',
     'uid' => '3456789',
     'info' => {
-      'nickname' => 'flickr user',
+      'name' => 'flickr user',
     },
     'credentials' => {
       'token' => '666_777_666',
