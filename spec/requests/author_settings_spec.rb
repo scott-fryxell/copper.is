@@ -13,7 +13,7 @@ describe "a authors's settings page", :slow do
 
   it 'should be able to authorize facebook' do
     within '#identities figcaption' do
-      page.should have_content('facebook user');
+      page.should have_content('facebook.user');
     end
   end
 
