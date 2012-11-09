@@ -26,7 +26,7 @@ describe "a fan's profile page", :slow do
 
   it 'should display their average tip amount' do
     within '#stats > div > p > span' do
-      page.should have_content('0.50');
+      page.should have_content('0.75');
     end
   end
 
@@ -35,30 +35,30 @@ describe "a fan's profile page", :slow do
     click_on('+')
 
     within 'span[itemprop="tip_preference_in_cents"]' do
-      page.should have_content('0.75');
+      page.should have_content('1');
     end
 
     visit '/fans/me'
 
     within 'span[itemprop="tip_preference_in_cents"]' do
-      page.should have_content('0.75');
+      page.should have_content('1');
     end
   end
 
   it 'should be able to reduce their default tip amount' do
     within 'span[itemprop="tip_preference_in_cents"]' do
-      page.should have_content('0.50');
+      page.should have_content('0.75');
     end
 
     within '#stats' do
       click_on('-')
     end
     within 'span[itemprop="tip_preference_in_cents"]' do
-      page.should have_content('0.25');
+      page.should have_content('0.50');
     end
     visit '/fans/me'
     within 'span[itemprop="tip_preference_in_cents"]' do
-      page.should have_content('0.25');
+      page.should have_content('0.50');
     end
   end
 

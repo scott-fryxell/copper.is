@@ -21,7 +21,8 @@ Copper::Application.configure do
     'provider' => 'twitter',
     'uid' => '123545',
     'info' => {
-      'name' => 'copper_is',
+      'name' => 'copper',
+      'nickname'=> 'copper_is',
     },
     'credentials' => {
       'token' => '666_777_666',
@@ -33,6 +34,7 @@ Copper::Application.configure do
     'uid' => '234567',
     'info' => {
       'name' => 'facebook user',
+      'nickname'=> 'facebook.user',
       'email' => 'user@facebook.com'
     },
     'credentials' => {
