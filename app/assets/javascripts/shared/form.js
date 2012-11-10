@@ -1,5 +1,5 @@
 $(document).on("items.users_edit items.authors_edit", function (){
-  $("section > header > a").click(function(event){
+  $("section.setting > header > a").click(function(event){
     event.preventDefault();
     var div = $(this).parents("section").find("div");
     var form = $(this).parents("section").find("form")
@@ -10,7 +10,7 @@ $(document).on("items.users_edit items.authors_edit", function (){
       form.animate({opacity:1},500);
     });
   });
-  $("section > form").submit(function(event){
+  $("section.setting > form").submit(function(event){
     event.preventDefault();
     div = $(this).parents("section").find("div")
     $(this).animate({opacity:0},500, function (){

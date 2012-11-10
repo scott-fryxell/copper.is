@@ -133,57 +133,60 @@ input:disabled + label {
   -webkit-user-select: none;
 }
 
-section.form {
+section.setting,
+#authors_edit #identities {
   margin-bottom: 0.5em;
   padding-top:2em;
   padding-bottom:2em;
   border-radius:.10em;
   background-color: $offset_color;
-}
-section.form > header {
-  vertical-align:top;
-  display:inline-block;
-  width: grid-width(4);
-  margin-right:grid-width(1);
-  height:100%
-}
-section.form > header > h2 {
-  margin-bottom:.5em;
-  text-align:left;
-}
-section.form > header > a {
-  font-size:.75em;
-  color: #999999;
-}
-section.form > form {
-  display:none;
-  opacity:0;
-  vertical-align:top;
-  max-width: grid-width(14);
-}
-section.form > form  input {
-  margin-bottom:1em;
-}
-section.form > p {
-  margin:0;
-  display:inline-block;
-  width:grid-width(5);
-  @include help_text
-}
-section.form > div {
-  display:inline-block;
-}
-section.form > div h4 {
-  font-family: 'Cantarell', sans-serif;
-  margin:0;
-  margin-bottom:0.5em;
-  font-size:0.85em;
-}
-section.form > div p {
-  font-family: 'Doppio One', sans-serif;
-  color:$darkness;
-  font-size: 1.1em;
-  opacity:.8;
-  margin:0;
+
+  & > header {
+    vertical-align:top;
+    display:inline-block;
+    width: grid-width(4);
+    margin-right:grid-width(1);
+    height:100%
+  }
+  & > header > h2 {
+    margin-bottom:.5em;
+    text-align:left;
+  }
+  & > header > a {
+    font-size:.75em;
+    color: #999999;
+  }
+  & > form {
+    display:none;
+    opacity:0;
+    vertical-align:top;
+    max-width: grid-width(14);
+  }
+  & > form  input {
+    margin-bottom:1em;
+  }
+  & > p {
+    margin:0;
+    display:inline-block;
+    width:grid-width(5);
+    @include help_text
+  }
+  & > div {
+    display:inline-block;
+  }
+  & > div h4 {
+    font-family: 'Cantarell', sans-serif;
+    margin:0;
+    margin-bottom:0.5em;
+    font-size:0.85em;
+  }
+  & > div p {
+    font-family: 'Doppio One', sans-serif;
+    color:$darkness;
+    font-size: 1.1em;
+    opacity:.8;
+    margin:0;
+  }
+
 }
 
