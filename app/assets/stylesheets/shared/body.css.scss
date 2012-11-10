@@ -1,6 +1,5 @@
 html {
   overflow-x:hidden;
-  min-height:60em;
   background-image: image-url('shared/texture_light.png');
   @include user-select(none);
   @include text;
@@ -155,7 +154,8 @@ body > header > nav > a {
   margin-right:2em;
 }
 
-body > section {
+body > section,
+body > article {
   width:grid-width(22);
   margin: 0 auto 0 auto;
 }
@@ -164,6 +164,7 @@ body > section a {
   color:$text;
 }
 body > section, 
+body > article,
 body > footer {
   padding-left:75px;
   padding-right:75px;

@@ -41,8 +41,9 @@
     <a href="/fans/me/edit">Edit your settings</a>
   </footer>
 </section>
-<%-if @recent_tip -%>
+
 <section id="tips">
+  <%-if @recent_tip -%>
   <header>
     <h1>What you've tipped</h1>
     <nav>
@@ -95,8 +96,13 @@
       </li>
     <%-end-%>
   </ol>
+  <%-else-%>
+  <aside>
+    <h2 style="text-align:center">Get out there and tip some pages!</h2>
+  </aside> 
+  <%-end-%>
 </section>
-<%-end-%>
+
 <nav>
   <a href="/fans/me/edit">Edit your settings</a>
 </nav>

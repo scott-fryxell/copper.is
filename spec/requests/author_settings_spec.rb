@@ -11,9 +11,14 @@ describe "a authors's settings page", :slow do
     page.driver.error_messages.should be_empty
   end
 
-  it 'should be able to authorize facebook' do
-    within '#identities figcaption' do
+  it 'should be able to authorize facebook', :focus do
+    within '#identities figure.facebook > figcaption' do
       page.should have_content('facebook.user');
+    end
+
+    within '#identities' do
+      click_link 'Add/Remove'
+      page.should have_css('figure.facebook figcaption', visible:true)
     end
   end
 
