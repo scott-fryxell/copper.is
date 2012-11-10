@@ -11,66 +11,23 @@
   #identities > div > figure > form {
     display:none
   }
-
-  #identieies.edit {
-    display:inline-block;
-    width:grid-width(10.5);
-    margin-right:.25em;
-    padding-right:1em;    
-  }
-  #identities.edit > div {
-    display:inline-block;
-    width:12em
-  }
-  #identities.edit > div > h2 {
-    margin-bottom:1em
-  }
-  #identities.edit > div > figure {
-    position:relative;
-    vertical-align:middle;
-    margin-bottom:.5em;
-  }
-  #identities.edit > div > figure > img,
-  #identities.edit > div > figure > figcaption {
-    display:inline-block;
-  }
-  #identities.edit > div > figure > figcaption {
-    padding:.5em .2em; 
-    vertical-align:top;
-    white-space: nowrap;
-    width: 7em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  #identities.edit > div > figure > form {
-    position:absolute;
-    right:0;
-    top:.5em;
-    display:inline-block;   
-    vertical-align:top; 
-  }
-
+ 
   #identities > div > figure > form > input {
     padding:0 .2em ;
     font-size:1em;
   }
-  #services {
-    margin-left:0em;
-    background-color: $offset_color;
-    
-    height:100%;
+  #identities > aside {
+    opacity:0;
+    display:none; 
     vertical-align:top;
-    overflow:hidden;
   }
 
-  #services > header {
+  #identities > aside > header {
     height:1em;
-    width:100%;
     margin-bottom:1.5em
   }
-  #services > nav {}
-  #services > nav a {
+  #identities > aside > nav {}
+  #identities > aside  > nav a {
     margin-right:.65em
   }
 
@@ -79,6 +36,48 @@
   }
   #address > form > input[type=submit] {
     width:4em;
+  }
+
+ #identities.edit {
+
+    & > div {
+      display:inline-block;
+      width:18em
+    }
+    & > div > h2 {
+      margin-bottom:1em
+    }
+    & > div > figure {
+      position:relative;
+      vertical-align:middle;
+      margin-bottom:.5em;
+    }
+    & > div > figure > img,
+    & > div > figure > figcaption {
+      display:inline-block;
+    }
+    & > div > figure > figcaption {
+      padding:.5em .2em; 
+      vertical-align:top;
+      white-space: nowrap;
+      width: 6em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & > div > figure > form {
+      position:absolute;
+      right:-2em;
+      top:.5em;
+      display:inline-block;   
+      vertical-align:top; 
+    }
+
+    & > aside {
+      display:inline-block;
+      opacity:1;
+    }
+
   }
   
 }

@@ -1,3 +1,8 @@
 $(document).on("load.authors_edit", function (){
- $("#services").height($("#identities").height());
+
+  $("section#identities > header > a").click(function(event){
+    event.preventDefault();
+    $('section#identities').addClass('edit')
+  });
+
 });

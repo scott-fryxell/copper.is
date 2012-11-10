@@ -19,6 +19,7 @@ describe "a authors's settings page", :slow do
     within '#identities' do
       click_link 'Add/Remove'
       page.should have_css('figure.facebook figcaption', visible:true)
+      page.should have_css('aside', visible:true)
     end
   end
 

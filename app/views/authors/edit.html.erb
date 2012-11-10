@@ -17,7 +17,7 @@
     how we use your information.
   </p>
 </section>
-<section id="identities" class="form">
+<section id="identities" >
   <header>
     <h2>Your identities</h2>
     <a href="#change_identities">Add/Remove</a>
@@ -36,40 +36,40 @@
     </figure>
     <%-end-%>
   </div>
-</section>
-<section id="services" class="form">
-  <header>
-    <h2>Authorize other identities</h2>
-  </header>
-  <nav>
-    <a href="/auth/facebook" title="Authorize facebook">
-      <%= image_tag "providers/facebook/sign_in.png"%>
-    </a>
-    <a href="/auth/twitter" title="Authorize twitter">
-      <%= image_tag "providers/twitter/sign_in.png"%>
-    </a>
-    <a href="/auth/google_oauth2" title="Authorize google">
-      <%= image_tag "providers/google/sign_in.png"%>
-    </a>
-    <a href="/auth/soundcloud" title="Authorize soundcloud">
-      <%= image_tag "providers/soundcloud/sign_in.png"%>
-    </a>
-    <a href="/auth/vimeio" title="Authorize vimeo">
-      <%= image_tag "providers/vimeo/sign_in.png"%>
-    </a>
-    <a href="/auth/tumblr" title="Authorize tumblr">
-      <%= image_tag "providers/tumblr/sign_in.png"%>
-    </a>
-    <a href="/auth/github" title="Authorize github">
-      <%= image_tag "providers/github/sign_in.png"%>
-    </a>
-    <a href="/auth/flickr" title="Authorize flickr">
-      <%= image_tag "providers/flickr/sign_in.png"%>
-    </a>
-  </nav>
+  <aside>
+    <header>
+      <h2>Authorize other identities</h2>
+    </header>
+    <nav>
+      <a href="/auth/facebook" title="Authorize facebook">
+        <%= image_tag "providers/facebook/sign_in.png"%>
+      </a>
+      <a href="/auth/twitter" title="Authorize twitter">
+        <%= image_tag "providers/twitter/sign_in.png"%>
+      </a>
+      <a href="/auth/google_oauth2" title="Authorize google">
+        <%= image_tag "providers/google/sign_in.png"%>
+      </a>
+      <a href="/auth/soundcloud" title="Authorize soundcloud">
+        <%= image_tag "providers/soundcloud/sign_in.png"%>
+      </a>
+      <a href="/auth/vimeio" title="Authorize vimeo">
+        <%= image_tag "providers/vimeo/sign_in.png"%>
+      </a>
+      <a href="/auth/tumblr" title="Authorize tumblr">
+        <%= image_tag "providers/tumblr/sign_in.png"%>
+      </a>
+      <a href="/auth/github" title="Authorize github">
+        <%= image_tag "providers/github/sign_in.png"%>
+      </a>
+      <a href="/auth/flickr" title="Authorize flickr">
+        <%= image_tag "providers/flickr/sign_in.png"%>
+      </a>
+    </nav>
+  </aside>
 </section>
 
-<section id="email" class="form">
+<section id="email" class="setting">
   <header>
     <h2>Your Email</h2>
     <a>Change</a>
@@ -83,7 +83,7 @@
     <input type="submit" value="Save"/>
   </form>
 </section>
-<section id="address" class="form">
+<section id="address" class="setting">
   <header>
     <h2>Your address</h2>
     <a>Change</a>
