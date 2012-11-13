@@ -81,7 +81,7 @@
   #banner > header > figure > figcaption {
     font-size:2em;
     font-family: 'Bree Serif', serif;
-    color:white;
+    color:#FBFAF8;
     text-align:center;
   }
   #banner > header > figure img {
@@ -182,7 +182,7 @@
       height: 0;
       border-left: 1.5em solid transparent;
       border-right: 1.5em solid transparent;
-      border-top: 1em solid rgba(255, 255, 255, .7);
+      border-top: 1em solid rgba(251, 250, 248, 0.7);
     }
   }
   #samples > nav {
@@ -374,7 +374,7 @@
     top:0;
     right:0;
     display:inline-block;
-    color:white;
+    color:#FBFAF8;
     padding:.75em;
     height: grid-width(1);
   }

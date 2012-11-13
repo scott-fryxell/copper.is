@@ -18,7 +18,7 @@ $text:rgba(102,102,102,0.8);
   padding:.5em .75em;
   background-color:$button_color;
   @include background-image(linear-gradient($button_color 40%, shade($button_color, 25%) 100%, transparent 50%));
-  color:white !important;
+  color:#FBFAF8 !important;
   border-radius:.25em;
   border:0.10em solid darken($button_color, 10%);
   &:hover {

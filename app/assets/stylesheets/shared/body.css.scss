@@ -1,10 +1,12 @@
 html {
   overflow-x:hidden;
+  background-color: #FBFAF8;
   background-image: image-url('shared/texture_light.png');
   @include user-select(none);
   @include text;
 }
 body {
+
   overflow-x:hidden;
     &:after {
     content:"";
@@ -64,7 +66,7 @@ body > header {
       margin-right:.5em;
       font-weight:normal;
       opacity:.6;
-      color:white;
+      color:#FBFAF8;
       display:inline;
       font-size:.85em;
     }
@@ -127,7 +129,7 @@ body > header {
     margin-left:grid-width(10);
     @include box-shadow(2px 0 16px -4px hsla(0, 0%, 0%, 0.65));
     display:none;
-    color:white;
+    color:#FBFAF8;
   }
 }
 body > header > a {
@@ -136,7 +138,7 @@ body > header > a {
   left:1em;
   vertical-align:top;
   text-decoration:none;
-  color:white;
+  color:#FBFAF8;
   padding:.75em 1em;
 }
 body > header > nav {
@@ -146,7 +148,7 @@ body > header > nav {
 }
 body > header > nav > a {
   font-family: 'Doppio One', sans-serif;
-  color:white;
+  color:#FBFAF8;
   opacity:.5;
   font-size:.77em;
   text-decoration:none;
@@ -179,14 +181,14 @@ body > footer > h3 {
   font-size:.85em;
   display:inline-block;
   font-family: 'Patua One', cursive;
-  color:white;
+  color:#FBFAF8;
   opacity:.5;
 }
 body > footer > h4 {
   font-family: 'Cantarell', sans-serif;
   display:inline-block;
   font-size:.75em;
-  color:white;
+  color:#FBFAF8;
   opacity:.5;
   &:before {
     display:inline-block;

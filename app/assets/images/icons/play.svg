@@ -3,7 +3,7 @@
    overflow="visible"
    enable-background="new 0 0 16 16"
    xml:space="preserve">
-   <style>path{fill:white}</style>
+   <style>path{fill:#FBFAF8}</style>
    <g id="play">
      <path d="M8,0C3.6,0,0,3.6,0,8c0,4.4,3.6,8,8,8c4.4,0,8-3.6,8-8C16,3.6,12.4,0,8,0z M4.9,12.1V3.9L13.1,8L4.9,12.1z"/>
    </g>

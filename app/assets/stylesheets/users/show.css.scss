@@ -42,7 +42,7 @@
     padding-right:.75em;
     font-family: 'Doppio One', sans-serif;
     background-color:$button_color;
-    color:white;
+    color:#FBFAF8;
     font-size:.75em;
     display:inline-block;
     width:1em;
@@ -127,7 +127,7 @@
     min-height:1em;
     padding:0.5em 0.5em 0.75em 0.5em;
     @include header_text;
-    color:white;
+    color:#FBFAF8;
     font-size:2em;
   }
   #tips > aside > figure > figcaption:before {
