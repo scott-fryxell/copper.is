@@ -6,6 +6,7 @@ $darkness:#333333;
 $header:rgba(42,41,41,0.75);
 $title:rgba(102,102,102,1);
 $text:rgba(102,102,102,0.8);
+$light-text:#FBFAF8;
 
 @import "normalize";
 @import "bourbon";
@@ -18,7 +19,7 @@ $text:rgba(102,102,102,0.8);
   padding:.5em .75em;
   background-color:$button_color;
   @include background-image(linear-gradient($button_color 40%, shade($button_color, 25%) 100%, transparent 50%));
-  color:#FBFAF8 !important;
+  color:$light-text !important;
   border-radius:.25em;
   border:0.10em solid darken($button_color, 10%);
   &:hover {

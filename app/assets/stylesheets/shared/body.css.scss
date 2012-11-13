@@ -1,6 +1,6 @@
 html {
   overflow-x:hidden;
-  background-color: #FBFAF8;
+  background-color: $light-text;
   background-image: image-url('shared/texture_light.png');
   @include user-select(none);
   @include text;
@@ -66,7 +66,7 @@ body > header {
       margin-right:.5em;
       font-weight:normal;
       opacity:.6;
-      color:#FBFAF8;
+      color:$light-text;
       display:inline;
       font-size:.85em;
     }
@@ -129,7 +129,7 @@ body > header {
     margin-left:grid-width(10);
     @include box-shadow(2px 0 16px -4px hsla(0, 0%, 0%, 0.65));
     display:none;
-    color:#FBFAF8;
+    color:$light-text;
   }
 }
 body > header > a {
@@ -138,7 +138,7 @@ body > header > a {
   left:1em;
   vertical-align:top;
   text-decoration:none;
-  color:#FBFAF8;
+  color:$light-text;
   padding:.75em 1em;
 }
 body > header > nav {
@@ -148,7 +148,7 @@ body > header > nav {
 }
 body > header > nav > a {
   font-family: 'Doppio One', sans-serif;
-  color:#FBFAF8;
+  color:$light-text;
   opacity:.5;
   font-size:.77em;
   text-decoration:none;
@@ -181,14 +181,14 @@ body > footer > h3 {
   font-size:.85em;
   display:inline-block;
   font-family: 'Patua One', cursive;
-  color:#FBFAF8;
+  color:$light-text;
   opacity:.5;
 }
 body > footer > h4 {
   font-family: 'Cantarell', sans-serif;
   display:inline-block;
   font-size:.75em;
-  color:#FBFAF8;
+  color:$light-text;
   opacity:.5;
   &:before {
     display:inline-block;
