@@ -170,3 +170,23 @@ $light-text:#FBFAF8;
     width: 9999px;   /* some huge width */
   }
 }
+
+// animation mixins
+@mixin hidden(){
+  opacity:0;
+  @include transition (opacity 0.2s ease-out 0s);
+}
+
+@mixin active(){
+  opacity:1;
+  @include transition (opacity 0.5s ease-in 0s);
+}
+
+
+// // animation mixins
+// @mixin hidden(){
+// }
+
+// @mixin active(){
+//   @include transition (width 0.1s ease-in 0s);
+// }
