@@ -1,5 +1,21 @@
+
+// Item.js is a library for utilizing the w3c's <a href="" >microdata</a>
+// spec for html5 to support state changes  and dynamic object updates
+// on a web page (similar to backbone.js). 
+// It can discover and dynamically manage actions on a page based on their markup.
+// the goal is to determine and convert the elements on a page into javascript objects
+// and to manage them via a RESTfull api. The spec conforms pretty decent to this approach
+// Item.js goal is to reduce the amount of scaffolding javascript that are required to manage 
+// data on an html page. 
+// At it's cour Item.js supports the View that their is a natural MVC on user agents. 
+// M=html, V=CSS, C=javascript
+// while data can travel back and forth via JSON, all pages are loaded and what the data 
+// is determined by the initial load of the html. 
+
 Item = {
   items: {},
+
+  // Determine what elements on the page are available to be managed. 
   discover_items: function(){
     $("*[itemscoped]").each(function (index){
       Item.items[$(this).attr("itemtype")] = {}
@@ -15,6 +31,7 @@ Item = {
     }
     return Item.items;
   },
+
   get_value: function (element){
     if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
       return $(element).val().trim();
@@ -31,6 +48,8 @@ Item = {
       }
     }
   },
+
+  // update exsisting items on the page
   update_page: function(item){
     $.each(item, function(key, value){
       if(value != null){
@@ -67,6 +86,7 @@ document.getItems = function (type){
 }
 $(document).ready(function (event){
   $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
+
   Item.discover_items()
 
   $(this).find("*[itemprop]")
