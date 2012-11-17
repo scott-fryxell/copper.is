@@ -1,24 +1,31 @@
 
-// Item.js is a library for utilizing the w3c's <a href="" >microdata</a>
-// spec for html5 to support state changes  and dynamic object updates
-// on a web page (similar to backbone.js). 
-// It can discover and dynamically manage actions on a page based on their markup.
-// the goal is to determine and convert the elements on a page into javascript objects
-// and to manage them via a RESTfull api. The spec conforms pretty decent to this approach
-// Item.js goal is to reduce the amount of scaffolding javascript that are required to manage 
-// data on an html page. 
-// At it's cour Item.js supports the View that their is a natural MVC on user agents. 
-// M=html, V=CSS, C=javascript
-// while data can travel back and forth via JSON, all pages are loaded and what the data 
-// is determined by the initial load of the html. 
-
+// Item.js is a library for utilizing the w3c's
+// <a href="" >microdata</a> spec for html5 to support state
+// changes  and dynamic object updates on a web page (similar 
+// to backbone.js).  It can discover and dynamically manage 
+// actions on a page based on their markup. the goal is to 
+// determine and convert the elements on a page into 
+// javascript objects and to manage them via a RESTfull api.
+// The spec conforms pretty decent to this approach Item.js 
+// goal is to reduce the amount of scaffolding javascript 
+// that are required to manage data on an html page. At it's 
+// core Item.js supports the View that their is a natural 
+// MVC on user agents. M=html, V=CSS, C=javascript. While 
+// data can travel back and forth via JSON, all pages are 
+// loaded and what the data is, the object model, is 
+// determined by the initial load of the html. 
 Item = {
   items: {},
 
   // Determine what elements on the page are available to be managed. 
   discover_items: function(){
     $("*[itemscoped]").each(function (index){
-      Item.items[$(this).attr("itemtype")] = {}
+      if(!Item.items[$(this).attr("itemtype")]){
+        Item.items[$(this).attr("itemtype")] = {}        
+      }
+
+
+      // each item must populate itemtype and itemId
       var i = Item.items[$(this).attr("itemtype")][$(this).attr('itemid')] = {}
       $(this).find("*[itemprop]").each(function (){
         if(Item.get_value(this)){
@@ -89,10 +96,17 @@ $(document).ready(function (event){
 
   Item.discover_items()
 
-  $(this).find("*[itemprop]")
+  $(this).find("*[itemprop]") // why is this here?
 
+  // disable form submissions for items. determine
+  // their values and submit the data via ajax. 
+  // this means forms are submited with CSRF protection. 
   $("*[itemscoped] form").submit(function(event){
     event.preventDefault()
+
+    // if their are no Items in the form just end the submit. 
+    // this assumes that some other actor is going to be taking 
+    // care of business 
     if($(this).find("*[itemprop]").length == 0){
       return true
     }
@@ -101,7 +115,7 @@ $(document).ready(function (event){
     var type = $(item_element).attr('itemtype')
     var form = this
 
-    $(this).find('*[itemprop]').each(function (){
+    $(form).find('*[itemprop]').each(function (){
       if(Item.get_value(this)){
         Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
       }
@@ -113,10 +127,17 @@ $(document).ready(function (event){
       type: $(this).attr('method'),
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
-        $(form).trigger('items.error');
+        $(form).trigger('item.error');
         console.error("error submiting item form " + id, data, textStatus, jqXHR);
       },
       success: function(){
+        $(form).trigger('item.' + form.attr('method'));
+        // remove all instances of the Item on the page
+        if( 'delete' == $(form).attr('method')){          
+          $(item_element).remove();
+          //Refresh the items for the page. This is inefficent.
+          document.discover_items();
+        }
         $('input[itemprop]').removeClass("invalid");
         $('select[itemprop]').removeClass("invalid");
       }
