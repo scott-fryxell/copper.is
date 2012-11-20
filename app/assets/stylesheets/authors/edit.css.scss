@@ -65,6 +65,11 @@
       opacity:1;
       @include transition (opacity 0.3s ease-in 0.5s);
     }
+    & > div > figure > form.hide {
+      opacity:0;
+      @include transition (opacity 0.3s ease-in 0.25s);
+    }
+
   }
 
   #address {

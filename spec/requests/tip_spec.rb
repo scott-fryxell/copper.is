@@ -57,7 +57,7 @@ describe "tipping a page", :slow do
       end
     end
 
-    it "should be able to leanr more about the service" do
+    it "should be able to learn more about the service" do
       within_frame('copper') do
         click_on("Learn more")
         page.should have_css('section.sign_in', visible:false)

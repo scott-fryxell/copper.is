@@ -28,7 +28,6 @@ gem 'state_machine'
 gem 'nokogiri'
 gem 'twitter'
 gem 'youtube_it'
-gem 'rails_admin'
 gem 'paper_trail', '~> 2'
 gem 'bourbon'
 gem 'carmen-rails'
@@ -65,8 +64,8 @@ group :test do
 end
 
 group :assets do
-  gem "sass"
-  gem 'coffee-rails'
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier'
   gem 'yui-compressor'
 end

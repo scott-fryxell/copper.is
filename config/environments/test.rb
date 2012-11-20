@@ -14,7 +14,7 @@ Copper::Application.configure do
   config.assets.debug = true
   config.assets.digest = false
   config.log_level = :debug
-  config.hostname = "https://copper.is"
+  config.hostname = "http://127.0.0.1:8080"
   OmniAuth.config.test_mode = true
 
   OmniAuth.config.mock_auth[:twitter] = {

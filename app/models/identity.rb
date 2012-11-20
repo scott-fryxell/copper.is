@@ -34,7 +34,12 @@ class Identity < ActiveRecord::Base
     event :join do
       transition any => :known
     end
-    
+
+    #end relationship with user
+    event :remove_user do
+      transition any => :stranger
+    end
+
     state :stranger, :wanted do
       validate :validate_user_id_is_nil
     end
@@ -52,7 +57,7 @@ class Identity < ActiveRecord::Base
       validates :user_id, presence:true
     end
     
-    after_transition any => :stranger do |author,transition|
+    after_transition any => :wanted do |author,transition|
       Resque.enqueue author.class, author.id, :send_wanted_message
     end
   end
@@ -70,6 +75,12 @@ class Identity < ActiveRecord::Base
   end
   
   before_save do
+
+    if self.stranger?
+      self.user = nil
+    end
+
+
     self.type = Identity.subclass_from_provider(self.provider).to_s unless self.type
   end
 

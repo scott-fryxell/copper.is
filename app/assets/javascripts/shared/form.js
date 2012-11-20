@@ -20,8 +20,7 @@ $(document).on("items.users_edit items.authors_edit", function (){
       div.animate({opacity:1}, 500)
     });
   });
-
-  $('#email form').bind('items.error', function (){
+  $('#email form').bind('item.error', function (){
     $('#email > header > a').click();
     $(this).find('input[itemprop=email]').addClass('invalid');
   });

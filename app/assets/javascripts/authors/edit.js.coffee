@@ -1,8 +1,20 @@
 $(document).on "load.authors_edit", ->
 
-  $("section#identities > header > a").click (event) -> 
+  $("#identities > header > a").click (event) -> 
     event.preventDefault();
-    $('section#identities').toggleClass 'edit'
+    $('#identities').toggleClass 'edit'
+
+    if $('#identities').hasClass 'edit'
+      $('#identities > header > a').text 'Done'
+    else
+      $('#identities > header > a').text 'Add/Remove'
   
-  $("section#identities > aside > nav > a > img").click ->
+  $('#identities > aside > nav > a > img,
+     #identities > div > figure > form > input').click ->
     $(this).addClass 'working'
+
+  $("#identities form").on 'item.delete', ->
+    $(this).parent().addClass('deleted').remove()
+    console.debug($("#identities form").size())
+    if 2 > $("#identities form").size()
+      $('#identities figure > form').addClass('hide')

@@ -21,15 +21,16 @@ class SessionsController < ApplicationController
         # account. But we found the identity and the user associated with it
         # is the current user. So the identity is already associated with
         # this user. So let's display an error message.
-
-        redirect_to identities_path(current_user.id), notice: "Already linked that account!"
+        
+       redirect_to '/authors/me/edit'
 
       else
         # The identity is not associated with the current_user so lets
         # associate the identity
         @identity.user = current_user
+        @identity.join!
         @identity.save()
-        redirect_to identities_path(current_user.id), notice: "Successfully linked that account"
+        redirect_to '/authors/me/edit'
       end
     else
       if @identity.user
@@ -37,7 +38,7 @@ class SessionsController < ApplicationController
         # The identity we found had a user associated with it so let's
         # just log them in
         current_user = @identity.user
-
+        @identity.join!
         session[:user_id] = @identity.user.id
 
         redirect_to '/fans/me/#winner'

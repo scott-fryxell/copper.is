@@ -23,8 +23,6 @@ Item = {
       if(!Item.items[$(this).attr("itemtype")]){
         Item.items[$(this).attr("itemtype")] = {}        
       }
-
-
       // each item must populate itemtype and itemId
       var i = Item.items[$(this).attr("itemtype")][$(this).attr('itemid')] = {}
       $(this).find("*[itemprop]").each(function (){
@@ -107,7 +105,7 @@ $(document).ready(function (event){
     // if their are no Items in the form just end the submit. 
     // this assumes that some other actor is going to be taking 
     // care of business 
-    if($(this).find("*[itemprop]").length == 0){
+    if($(this).find("*[itemprop]").length == 0 && 'delete' != $(this).attr('method')){
       return true
     }
     var item_element = $(this).parents('*[itemscoped]')
@@ -123,7 +121,7 @@ $(document).ready(function (event){
     Item.update_page(Item.items[type][id]);
     id = id.replace('/new', '')
     jQuery.ajax({
-      url: id,
+      url: $(this).attr('action'),
       type: $(this).attr('method'),
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
@@ -131,12 +129,11 @@ $(document).ready(function (event){
         console.error("error submiting item form " + id, data, textStatus, jqXHR);
       },
       success: function(){
-        $(form).trigger('item.' + form.attr('method'));
+        $(form).trigger('item.' + $(form).attr('method'));
         // remove all instances of the Item on the page
-        if( 'delete' == $(form).attr('method')){          
-          $(item_element).remove();
+        if( 'delete' == $(form).attr('method')){
           //Refresh the items for the page. This is inefficent.
-          document.discover_items();
+          Item.discover_items();
         }
         $('input[itemprop]').removeClass("invalid");
         $('select[itemprop]').removeClass("invalid");
