@@ -216,12 +216,12 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     redcarpet (2.2.2)
-    redis (2.2.2)
-    redis-namespace (1.0.3)
-      redis (< 3.0.0)
-    resque (1.20.0)
+    redis (3.0.2)
+    redis-namespace (1.2.1)
+      redis (~> 3.0.0)
+    resque (1.22.0)
       multi_json (~> 1.0)
-      redis-namespace (~> 1.0.2)
+      redis-namespace (~> 1.0)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
     resque_spec (0.12.5)
@@ -358,7 +358,7 @@ DEPENDENCIES
   rb-fsevent
   redcarpet
   redis
-  resque (= 1.20.0)
+  resque (~> 1.22.0)
   resque_spec
   rspec-rails
   ruby-graphviz (~> 0.9.17)

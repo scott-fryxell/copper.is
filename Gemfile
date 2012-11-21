@@ -21,7 +21,7 @@ gem "foreman"
 gem 'unicorn'
 
 gem 'redis'
-gem 'resque', '1.20.0'
+gem 'resque', "~> 1.22.0"
 # gem 'resque-scheduler', :require => 'resque_scheduler'
 # gem 'resque-heroku-scaling-canary'
 gem 'state_machine'
