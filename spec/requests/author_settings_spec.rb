@@ -67,6 +67,24 @@ describe "a authors's settings page", :slow do
   end
   
 
-  it 'should be able to change their email'
+  it 'should be able to change their email', :focus do
+    find('#email > div > p').should have_content('user@facebook.com')
+    find_field('user[email]').value.should have_content('user@facebook.com')
+
+    within '#email' do
+      click_link 'Change'
+      fill_in 'user[email]', with:'test@example.com'
+      click_on 'Save'
+    end
+
+    within '#email > div' do
+      page.should have_content('test@example.com')
+    end
+    
+    visit "/authors/me/edit"
+    find('#email > div > p').should have_content('test@example.com')
+    find_field('user[email]').value.should have_content('test@example.com')
+  end
+
   it 'should be able to change their address'
 end

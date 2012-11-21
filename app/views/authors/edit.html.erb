@@ -20,7 +20,7 @@
 <section id="identities">
   <header>
     <h2>Your identities</h2>
-    <a href="#change_identities">Add/Remove</a>
+    <a href="#identities">Add/Remove</a>
   </header>
   <div>
     <%-current_user.identities.each do |identity|-%>
@@ -71,13 +71,13 @@
 <section id="email" class="setting">
   <header>
     <h2>Your Email</h2>
-    <a>Change</a>
+    <a href="#email">Change</a>
   </header>
-  <div item="user">
+  <div>
     <h4>Email Address</h4>
     <p itemprop="email"><%=current_user.email%></p>
   </div>
-  <form method="put" action="" accept-charset="UTF-8">
+  <form method="put" action="/fans/me" accept-charset="UTF-8">
     <input itemprop="email" name='user[email]' type="email" required value="<%=current_user.email%>">
     <input type="submit" value="Save"/>
   </form>
@@ -85,7 +85,7 @@
 <section id="address" class="setting">
   <header>
     <h2>Your address</h2>
-    <a>Change</a>
+    <a href="#address">Change</a>
   </header>
   <div>
     <p itemprop="payable_to">kitty kardashean</p>

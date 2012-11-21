@@ -28,14 +28,21 @@ class ApplicationController < ActionController::Base
 
   def item_scope
     type = params[:controller].parameterize
-    if type == 'users'
-      type = 'fans'
-    end
 
     id = params['id']
-    if id
-      item_id= "itemid=/#{type}/#{id}"
+
+    if type == 'authors'
+      type = 'users'
     end
+
+    if type == 'users' 
+      id = current_user.id
+    end
+
+    if id
+      item_id= "itemid=#{id}"
+    end
+
     "itemscoped itemtype=#{type} #{item_id}"
   end
 end

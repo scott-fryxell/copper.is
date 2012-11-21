@@ -119,7 +119,6 @@ $(document).ready(function (event){
       }
     });
     Item.update_page(Item.items[type][id]);
-    id = id.replace('/new', '')
     jQuery.ajax({
       url: $(this).attr('action'),
       type: $(this).attr('method'),
