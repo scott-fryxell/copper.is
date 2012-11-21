@@ -29,8 +29,8 @@ gem 'nokogiri'
 gem 'twitter'
 gem 'youtube_it'
 gem 'paper_trail', '~> 2'
-gem 'bourbon'
 gem 'carmen-rails'
+
 # gem 'rack-mini-profiler'
 group :production do
   gem "pg"
@@ -68,6 +68,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier'
   gem 'yui-compressor'
+  gem 'bourbon'
 end
 
 group :development do
