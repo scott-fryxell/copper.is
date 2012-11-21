@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 gem 'declarative_authorization'
 gem 'jquery-rails'
 
@@ -22,8 +22,6 @@ gem 'unicorn'
 
 gem 'redis'
 gem 'resque', "~> 1.22.0"
-# gem 'resque-scheduler', :require => 'resque_scheduler'
-# gem 'resque-heroku-scaling-canary'
 gem 'state_machine'
 gem 'nokogiri'
 gem 'twitter'
@@ -32,6 +30,9 @@ gem 'paper_trail', '~> 2'
 gem 'carmen-rails'
 
 # gem 'rack-mini-profiler'
+# gem 'resque-scheduler', :require => 'resque_scheduler'
+# gem 'resque-heroku-scaling-canary'
+
 group :production do
   gem "pg"
   gem 'newrelic_rpm'
