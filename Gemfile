@@ -65,12 +65,11 @@ group :test do
 end
 
 gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
-
+gem 'bourbon'
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier'
   gem 'yui-compressor'
-  gem 'bourbon'
 end
 
 group :development do
