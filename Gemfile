@@ -64,8 +64,9 @@ group :test do
   gem 'hashugar'
 end
 
+gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
+
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier'
   gem 'yui-compressor'
