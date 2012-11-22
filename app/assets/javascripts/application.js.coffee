@@ -32,20 +32,21 @@ $(document).ready ->
     dataType:'json',
     success: (data) ->
       copper.me = data;
+      Item.update_page copper.me
       $('img.identity').attr 'src', copper.get_identity_image()
       $("#signed_in").addClass 'show'
       $('a[href="/signout"]').css 'display','inline-block'
-      $(document).trigger "me." + $('body').attr('id')
+      $(document).trigger "me." + $('body').attr 'id'
     statusCode:
       401:->
         $("#sign_in").addClass 'show'
         $("#sign_in > nav > a > img").click -> $(@).addClass "working"
-        $(document).trigger "guest." + $('body').attr('id')
+        $(document).trigger "guest." + $('body').attr 'id'
     
   $(document).bind 'save.me', ->
     jQuery.ajax
       dataType:'json'
       url: '/fans/me.json'
       type: 'put'
-      data: jQuery.param(copper.me)
-      error: -> $(document).trigger("error.me")
+      data: jQuery.param copper.me 
+      error: -> $(document).trigger "error.me"
