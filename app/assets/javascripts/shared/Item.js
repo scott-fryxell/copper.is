@@ -14,6 +14,9 @@
 // data can travel back and forth via JSON, all pages are 
 // loaded and what the data is, the object model, is 
 // determined by the initial load of the html. 
+// events are triggered when items are discoverd on the page
+// when they are updated. and when there are erros on form submission, 
+// and also when forms are submited succefully. 
 Item = {
   items: {},
 
@@ -32,6 +35,7 @@ Item = {
       });
     });
     if(Item.items){
+      // let any listeners know that their are items on the page
       $(document).trigger("items." + $('body').attr('id'));
     }
     return Item.items;
@@ -74,6 +78,7 @@ Item = {
         });
       }
     });
+    // let any listeners know that the items on the page have been updated
     $(document).trigger('items.updated.' + $('body').attr('id'));
   },
   CSRFProtection: function (xhr){
@@ -118,16 +123,18 @@ $(document).ready(function (event){
         Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
       }
     });
-    Item.update_page(Item.items[type][id]);
+    Item.update_page(Item.items[type][id]); 
     jQuery.ajax({
       url: $(this).attr('action'),
       type: $(this).attr('method'),
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
+        // let any listeners know that there was a problem with the form submit
         $(form).trigger('item.error');
         console.error("error submiting item form " + id, data, textStatus, jqXHR);
       },
       success: function(){
+        // let any listeners know that any the form submited succesfully update.
         $(form).trigger('item.' + $(form).attr('method'));
         // remove all instances of the Item on the page
         if( 'delete' == $(form).attr('method')){
