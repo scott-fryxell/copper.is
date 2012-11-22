@@ -67,7 +67,7 @@ describe "a authors's settings page", :slow do
   end
   
 
-  it 'should be able to change their email', :focus do
+  it 'should be able to change their email' do
     find('#email > div > p').should have_content('user@facebook.com')
     find_field('user[email]').value.should have_content('user@facebook.com')
 
