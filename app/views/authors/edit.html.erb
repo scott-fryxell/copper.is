@@ -75,7 +75,7 @@
   </header>
   <div>
     <h4>Email Address</h4>
-    <p itemprop="email"><%=current_user.email%></p>
+    <p itemprop="email"></p>
   </div>
   <form method="put" action="/fans/me" accept-charset="UTF-8">
     <input itemprop="email" name='user[email]' type="email" required value="<%=current_user.email%>">
@@ -88,13 +88,13 @@
     <a href="#address">Change</a>
   </header>
   <div>
-    <p itemprop="payable_to">kitty kardashean</p>
-    <p itemprop="line1">123 Main St</p>
-    <p itemprop="line2">apt 4</p>
+    <p itemprop="payable_to"></p>
+    <p itemprop="line1"></p>
+    <p itemprop="line2"></p>
     <p>
-      <span itemprop='city'>Mainville</span>
-      <span itemprop="subregion_code">CA</span> 
-      <span itemprop="postal_code">94110</span>
+      <span itemprop='city'></span>
+      <span itemprop="subregion_code"></span> 
+      <span itemprop="postal_code"></span>
     </p>
   </div>
   <%= render :partial => 'shared/address' %>
