@@ -1,3 +1,4 @@
 --colour
 --order rand
 --tag focus
+--fail-fast
