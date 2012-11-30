@@ -19,17 +19,5 @@ $(document).on("items.users_edit items.authors_edit", function (){
       div.css("display","inline-block")
       div.animate({opacity:1}, 500)
     });
-  });
-  $('#email form').bind('item.error', function (){
-    $('#email > header > a').click();
-    $(this).find('input[itemprop=email]').addClass('invalid');
-  });
-
-  $('#address > form > fieldset > select').change(function (event){
-    $("select[itemprop='subregion_code']").remove();
-    $.get('/states?country_code=' + $(this).val(), function (data){
-      $('#address > form > fieldset').append(data);
-    });
-  });
-  
+  });  
 });

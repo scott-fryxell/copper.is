@@ -3,29 +3,8 @@ $(document).on("load.identities_edit", function (){
   $('#signed_in').hide();
 
   $('body > nav > button').click(function(event){
-    $('input').removeClass("invalid");
-    $('select').removeClass("invalid");
-    
-    // validate email
-    email = $('input[itemprop=email]').val();
-    if( email.search(/\./) == -1 || email.search('@') == -1 || email.indexOf('@') < 2  ){
-      $('input[itemprop=email]').addClass('invalid')
-    }
-    if( 4 > $('input[itemprop=payable_to]').val().length){
-      $('input[itemprop=payable_to]').addClass('invalid')
-    }
-    if( 4 > $('input[itemprop=line1]').val().length){
-      $('input[itemprop=line1]').addClass('invalid')
-    }
-    if( 4 > $('input[itemprop=city]').val().length){
-      $('input[itemprop=city]').addClass('invalid')
-    }
-    if( 4 > $('input[itemprop=postal_code]').val().length){
-      $('input[itemprop=postal_code]').addClass('invalid')
-    }
-    if( 1 > $('select[itemprop=country_code]').val().length){
-      $('select[itemprop=country_code]').addClass('invalid')
-    }
+
+    $(document).trigger('form.validate_address')
 
     if($('input.invalid').size() == 0 ||  $('select.invalid').size() == 0 ) {
       $(this).addClass('working');
