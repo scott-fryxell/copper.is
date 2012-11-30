@@ -4,6 +4,8 @@
 #= require jquery.tmpl
 #= require shared/Item
 #= require shared/form
+#= require shared/email
+#= require shared/address
 #= require shared/copper
 #= require home/index
 #= require users/edit
