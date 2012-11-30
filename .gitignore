@@ -2,6 +2,7 @@ db/*.sqlite3
 db/test.sqlite3-journal
 log/*.log
 tmp/**/*
+tmp/**
 coverage
 config/database.yml
 TAGS
@@ -10,3 +11,4 @@ TAGS
 .bundle
 .DS_Store
 public/favicon.ico
+
