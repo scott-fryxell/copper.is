@@ -38,9 +38,7 @@ describe "a authors's settings page", :slow do
       page.should have_css('figure > figcaption', visible:false)
       # page.should have_css('figure > form', visible:false) #WTF
       page.should have_css('aside', visible:false)
-
     end
-
   end
 
   it "should be able to authorize multible identities" do
@@ -86,5 +84,47 @@ describe "a authors's settings page", :slow do
     find_field('user[email]').value.should have_content('test@example.com')
   end
 
-  it 'should be able to change their address'
+  it 'should be able to change their address' do
+    page.should have_css('#address form', visible:true)
+
+    within '#address' do
+      click_on 'Save'
+      page.should have_css('form', visible:true)
+
+      page.should have_css("input[itemprop=payable_to].invalid")
+      page.should have_css("input[itemprop=line1].invalid")
+      page.should have_css("input[itemprop=city].invalid")
+      page.should have_css("input[itemprop=postal_code].invalid")
+      page.should have_css("select[itemprop=country_code].invalid")
+
+      fill_in 'user[payable_to]', with:'joe strummer'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=payable_to].invalid", visible:true)
+
+      fill_in 'user[line1]', with:'643 big ass street'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=payable_to].invalid", visible:true)
+
+      fill_in 'user[city]', with:'san francisco'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=city].invalid", visible:true)
+
+      fill_in 'user[postal_code]', with:'94110'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=postal_code].invalid", visible:true)
+
+      fill_in 'user[postal_code]', with:'94110'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=postal_code].invalid", visible:true)
+
+      select('United States', :from => 'user[country_code]')
+      click_on 'Save'
+      page.should have_no_css("select[itemprop=country_code].invalid", visible:true)
+
+      page.should have_css('form', visible:false)      
+
+
+    end
+    
+  end
 end

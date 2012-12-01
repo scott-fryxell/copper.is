@@ -13,7 +13,7 @@ $(document).on "load.authors_edit", ->
     $(this).addClass 'working'
 
   $("#identities form").on 'item.delete', ->
-    $(this).parent().addClass('deleted').remove()
+    $(this).parent().remove()
     if 2 > $("#identities form").size()
       $('#identities figure > form').addClass 'hide'
 
@@ -23,5 +23,3 @@ $(document).on 'me.authors_edit', ->
   else
     $("#address > header > a").click()
 
-$(document).on "form.states", ->
-  $("option[value=#{copper.me.subregion_code}]").attr('selected','selected')

@@ -24,15 +24,18 @@ Item = {
   discover_items: function(){
     $("*[itemscoped]").each(function (index){
       if(!Item.items[$(this).attr("itemtype")]){
-        Item.items[$(this).attr("itemtype")] = {}        
+        Item.items[$(this).attr("itemtype")] = []        
       }
       // each item must populate itemtype and itemId
-      var i = Item.items[$(this).attr("itemtype")][$(this).attr('itemid')] = {}
+      var i = {}
+      i['id'] = $(this).attr('itemid'); 
       $(this).find("*[itemprop]").each(function (){
         if(Item.get_value(this)){
           i[$(this).attr('itemprop')] = Item.get_value(this);
         }
       });
+      Item.items[$(this).attr("itemtype")].push(i);
+
     });
     if(Item.items){
       // let any listeners know that their are items on the page
@@ -43,7 +46,10 @@ Item = {
 
   get_value: function (element){
     if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
-      return $(element).val().trim();
+      if ($(element).val())
+        return $(element).val().trim();
+      else
+        return 
     }
     else if( $(element).is("a") || $(element).is("link")){
       return $(element).attr('href');
@@ -97,13 +103,14 @@ document.getItems = function (type){
 $(document).ready(function (event){
   $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
 
-  Item.discover_items()
+  Item.discover_items() //map all the items on the page into a javascript equivalent
 
-  $(this).find("*[itemprop]") // why is this here?
+  $(this).find("*[itemprop]") //todo why is this here?
 
-  // disable form submissions for items. determine
+  // capture form submissions for items. Determine
   // their values and submit the data via ajax. 
-  // this means forms are submited with CSRF protection. 
+  // this means forms are submited with CSRF protection 
+  // without requireing the forms themselves to know the token
   $("*[itemscoped] form").submit(function(event){
     event.preventDefault()
 
@@ -115,15 +122,25 @@ $(document).ready(function (event){
     }
     var item_element = $(this).parents('*[itemscoped]')
     var id = $(item_element).attr('itemid')
+    var item_index = 0; // TODO get the index based on itemId
     var type = $(item_element).attr('itemtype')
     var form = this
+    var item_rolback = Item.items[type][item_index] //if form fails we can rollback to the original state
 
+    if ($(this).find('.invalid').size() > 0){
+      //Do not submit the form if there are any invalid input fields
+      return false;
+    }
+
+    // Update items on the page related to this form
+    // Makes an optimistic assumption about form submission
     $(form).find('*[itemprop]').each(function (){
       if(Item.get_value(this)){
-        Item.items[type][id][$(this).attr('itemprop')] = Item.get_value(this);
+        Item.items[type][item_index][$(this).attr('itemprop')] = Item.get_value(this);
       }
     });
-    Item.update_page(Item.items[type][id]); 
+    Item.update_page(Item.items[type][item_index]);
+
     jQuery.ajax({
       url: $(this).attr('action'),
       type: $(this).attr('method'),
@@ -131,18 +148,21 @@ $(document).ready(function (event){
       error: function(data, textStatus, jqXHR) {
         // let any listeners know that there was a problem with the form submit
         $(form).trigger('item.error');
+        Item.items[type][item_index] = item_rolback;
+        Item.update_page(Item.items[type][item_index]);
+     
         console.error("error submiting item form " + id, data, textStatus, jqXHR);
       },
-      success: function(){
-        // let any listeners know that any the form submited succesfully update.
+      success: function(data, textStatus, jqXHR){
+        console.debug("successful item submission", data)
+        //let any listeners know that any the form submited succesfully update.
         $(form).trigger('item.' + $(form).attr('method'));
-        // remove all instances of the Item on the page
+
         if( 'delete' == $(form).attr('method')){
-          //Refresh the items for the page. This is inefficent.
+          // TODO remove all instances of the Item on the page
+          // Refresh the items for the page. This is inefficent
           Item.discover_items();
         }
-        $('input[itemprop]').removeClass("invalid");
-        $('select[itemprop]').removeClass("invalid");
       }
     });
   });

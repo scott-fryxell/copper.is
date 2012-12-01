@@ -116,7 +116,6 @@ describe TipsController do
         it 'destroys a promised tip' do
           proc do
             @my_tip.promised?.should be_true
-            p @my_tip
             Tip.find(@my_tip.id).should_not be_nil
             delete_with @me, :destroy, id:@my_tip.id
             # proc{Tip.find(@my_tip.id).should be_nil}.should raise_error(ActiveRecord::RecordNotFound)

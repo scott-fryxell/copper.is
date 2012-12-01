@@ -13,7 +13,7 @@ describe "A Fan's settings page", :slow do
 
   describe 'Item.js' do
     it "should be able to query items on the page" do
-      page.evaluate_script("document.getItems('fans')").should_not be_nil
+      page.evaluate_script("document.getItems('users')").should_not be_nil
     end
 
     it "should be able to query for user email" do

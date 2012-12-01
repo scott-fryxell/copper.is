@@ -5,6 +5,7 @@ $(document).on("load.identities_edit", function (){
   $('body > nav > button').click(function(event){
 
     $(document).trigger('form.validate_address')
+    $(document).trigger('form.validate_email')
 
     if($('input.invalid').size() == 0 ||  $('select.invalid').size() == 0 ) {
       $(this).addClass('working');
@@ -14,7 +15,6 @@ $(document).on("load.identities_edit", function (){
         data: $('form').serialize(),
         error: function(data, textStatus, jqXHR) {
           alert('There was a problem. Please verify your address and email then try again.')
-          $('#email > form > input').addClass("invalid");
           $('body > nav > button').removeClass('working')
         },
         success: function(data, textStatus, jqXHR) {

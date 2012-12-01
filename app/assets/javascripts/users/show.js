@@ -1,13 +1,16 @@
-$(document).on("load.users_show", function (event){
+$(document).on("items.updated.users_show", function (event){
   copper.format_cents_to_dollars("tip_preference_in_cents")
-  copper.format_cents_to_dollars("amount_in_cents")
+
   if( '' == $('#stats > div:nth-child(3) > p').text().trim()){
     $('#stats > div:nth-child(3)').hide()
   }else{
     var dollars = copper.cents_to_dollars($('#stats > div:nth-child(3) > p').text().trim());
     $('#stats > div:nth-child(3) > p').text(dollars)
   }
+});
 
+$(document).on("load.users_show", function (event){
+  copper.format_cents_to_dollars("amount_in_cents")
   $('#stats > div > p > button:nth-child(2)').click(function (){
     for (var i=0; i < copper.tip_amount_options.length; i++) {
       if('2000' == copper.me.tip_preference_in_cents){
@@ -46,8 +49,9 @@ $(document).on("load.users_show", function (event){
     $(this).trigger('focus.tip')
   });
 });
+// key commands for showing unimplemented features
 $(document).on("load.users_show", function (event){
-  // todo remove when features are limited.
+  // todo remove when features are completed.
   var isCtrl = false;
   $(document).keyup(function (e){
     if(e.which == 17){
@@ -67,6 +71,7 @@ $(document).on("load.users_show", function (event){
     }
   });
 });
+// show tip in main area when tip is clicked
 $(document).on("load.users_show", function (event){
   $('#tips > ol > li').bind('focus.tip', function(){
     var li = this;
@@ -91,6 +96,8 @@ $(document).on("load.users_show", function (event){
     });
   });
 });
+
+// remove items when tip is cancelled
 $(document).on("load.users_show", function (event){
   $(document).bind('delete.current_tip', function(event){
     var deleted_tip = $('#tips > aside').attr('itemid');

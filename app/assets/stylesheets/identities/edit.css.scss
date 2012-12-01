@@ -3,10 +3,10 @@
     display:inline-block;
     opacity:1;
   }
-  section.form > div {
+  section.setting > div {
     display:inline-block;
   }
-  section.form > form > input {
+  section.setting > form > input {
     width:grid-width(8);
   }
   #address > form > input[type=submit] {
@@ -75,15 +75,55 @@
     display:inline-block;
     margin-right:3em;
   }
-  #login > figure > a > img {}
+  #login > figure > a > img {
+    height:2.5em;
+  }
   #login > figure > figcaption{
     position:relative;
     padding-left:grid-width(3);
     line-height:1.25em;
     width:grid-width(4);
     display:inline-block;
+    vertical-align:top;
     font-family: 'Nothing You Could Do', cursive;
-    @include help_text
+    @include help_text;
+  }
+
+  #address {
+    padding-bottom:3em;
+    position:relative;
+    &:after {
+      margin-left:-2em;
+      position:absolute;
+      bottom:-1.5em;
+      left:50%;
+      content:"";
+      width: 0;
+      height: 0;
+      border-left: 2em solid transparent;
+      border-right: 2em solid transparent;
+      border-top: 1.5em solid $offset_color;
+    }
+  }
+  #address > p {
+    position:absolute;
+    top:5em;
+    right:4em;
+    padding-bottom:3em;
+    padding-left:0;
+    width:10em;
+    &:before {
+      @include transform(rotate(140deg));
+      background-image: image-url('arrows/swoop_down.svg');
+      background-repeat: no-repeat;
+      background-position-x: 90%;
+      background-position-y: 100%;
+    }
+  }
+
+  #address > form, #email > form {
+    display: inline-block;
+    opacity:1;
   }
 
   & > nav {

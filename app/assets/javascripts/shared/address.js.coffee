@@ -23,6 +23,6 @@ $(document).on "form.validate_address", ->
     $('input[itemprop=city]').addClass('invalid')
   if( 4 > $('input[itemprop=postal_code]').val().length)
     $('input[itemprop=postal_code]').addClass('invalid')
-  if( 1 > $('select[itemprop=country_code]').val().length)
+  if( !$('select[itemprop=country_code]').val())
     $('select[itemprop=country_code]').addClass('invalid')
 
