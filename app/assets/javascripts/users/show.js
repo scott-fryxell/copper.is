@@ -1,16 +1,18 @@
 $(document).on("items.updated.users_show", function (event){
   copper.format_cents_to_dollars("tip_preference_in_cents")
 
+});
+
+$(document).on("load.users_show", function (event){
+  copper.format_cents_to_dollars("amount_in_cents")
+
   if( '' == $('#stats > div:nth-child(3) > p').text().trim()){
     $('#stats > div:nth-child(3)').hide()
   }else{
     var dollars = copper.cents_to_dollars($('#stats > div:nth-child(3) > p').text().trim());
     $('#stats > div:nth-child(3) > p').text(dollars)
   }
-});
 
-$(document).on("load.users_show", function (event){
-  copper.format_cents_to_dollars("amount_in_cents")
   $('#stats > div > p > button:nth-child(2)').click(function (){
     for (var i=0; i < copper.tip_amount_options.length; i++) {
       if('2000' == copper.me.tip_preference_in_cents){
