@@ -10,7 +10,6 @@ class Page < ActiveRecord::Base
   scope :trending, order("Date(updated_at), tips_count ASC")
 
   validates :url, :presence => true
-
   validate :url_points_to_real_site
   def url_points_to_real_site
     errors.add(:url, "must point to a real site") unless self.url =~ /\./
@@ -45,6 +44,7 @@ class Page < ActiveRecord::Base
   end
 
   state_machine :author_state, initial: :orphaned do
+
     event :adopt do
       transition any => :adopted
     end
@@ -102,4 +102,5 @@ class Page < ActiveRecord::Base
       end
     end
   end
+
 end

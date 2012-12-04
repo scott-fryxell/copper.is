@@ -93,158 +93,187 @@
     color:$darkness;
   }
 
-  #tips > aside {
-    padding:grid-width(1);
-    background-color:$offset_color;
-  }
-  #tips > aside > h2 {
-    width:grid-width(15);
-    height:1em;
-    margin-bottom:0.5em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  #tips > aside > figure {
-    display:inline-block;
-    position:relative;
-    width:grid-width(8);
-    margin-right:grid-width(1);
-  }
-  #tips > aside > figure > img {
-    margin-top:.5em;
-    width:grid-width(8);
-    height:grid-width(5);
-    @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
-  }
-  #tips > aside > figure > figcaption {
-    text-align:center;
-    vertical-align:middle;
-    position:absolute;
-    top:.25em;
-    right:0.25em;
-    @include ribbon;
-    min-width:1em;
-    min-height:1em;
-    padding:0.5em 0.5em 0.75em 0.5em;
-    @include header_text;
-    color:$light-text;
-    font-size:2em;
-  }
-  #tips > aside > figure > figcaption:before {
-    content: "$";
-  }
-
-  #tips > aside > dl {
-    vertical-align:top;
-    display:inline-block;
-
-    height:grid-width(5);
-  }
-  #tips > aside > dl > dt {
-    margin-bottom:.25em;
-  }
-  #tips > aside > dl > dd {
-    @include header_text;
-    font-size:1.2em;
-    margin-bottom:1.5em;
-    text-transform:none;
-    width:15.5em;
-    overflow:hidden;
-    text-overflow: ellipsis;
-  }
-  #tips > aside > dl > dd:nth-child(6) {
-    text-transform:capitalize;
-    margin-bottom:0;
-    color:$button_color;
-  }
-
-  #tips > aside > nav {
-    @include box-sizing(border-box);
-    padding-top:1em;
-    height:grid-width(5);
-    vertical-align:top;
+  #tips > details {
     display:inline-block;
     width:grid-width(4);
-    height:grid-width(5);
+    margin: 0 1em 1em 0;
+    & > summary {
+      cursor:pointer;
+      outline:none;
+    }
+    & > summary > h2 {    
+      @include text;
+      font-size:.75em;
+      display:inline-block;
+      width:grid-width(4.5);
+      height:1em;
+      line-height:1em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    & > summary > figure {
+      margin-top:.5em;
+      position:relative; 
+    }
+    & > summary > figure > img {
+      width:grid-width(4);
+      height:grid-width(3);
+      overflow:hidden;
+      @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
+    }
+    & > summary > figure > figcaption {
+      text-align:center;
+      vertical-align:middle;
+      position:absolute;
+      top:0;
+      right:0;
+      @include ribbon;
+      min-width:1em;
+      min-height:1em;
+      padding:0.5em 0.5em 0.75em 0.5em;
+      @include header_text;
+      color:$light-text;
+      font-size:1em;
+    }
+    & > summary > figure > figcaption:before {
+      content: "$";
+    }
   }
-  #tips > aside > nav > a {
-    float:right;
-    display:block;
-    color:#f1f1f1;
-    background-color:#d5d1c8;
-    padding: 0.25em 0.5em;
-    margin-bottom:3em;
+  #tips > details[open] {
+    position:relative;
+    width:100%;
+    height:auto;
+    padding-left:1em;
+    padding-bottom:1em;
+    background-color:$offset_color;
 
-    border: 1px solid darken(#d5d1c8, 2%);
-    border-radius:.15em;
-    font-size:0.85em;
-    font-family: 'Cantarell', sans-serif;
-    @include background-image( linear-gradient(#d5d1c8 0%, darken(#d5d1c8, 15%) 100%));
-  }
-  #tips > aside > nav > a:after {
-    content: ">>";
-    font-size:0.75em;
-    padding-left:.5em;
-    vertical-align:middle;
-  }
-  #tips > aside > nav > a:nth-child(3) {
-    @include background-image( linear-gradient(#d5d1c8 0%, lighten(#d5d1c8, 2%) 100%));
-  }
-  #tips > aside > nav > a:nth-child(3):hover {
-    color:red;
-  }
-  #tips > aside > nav > a:nth-child(3):after {
-    content:"";
+    & > summary {
+      outline:none;
+      padding-top:1em;
+      margin-right:1em;
+      display:inline-block;
+    }
+
+    & > summary  > h2 {
+      position:absolute;
+      top:0.25em;
+      left:1.5em;
+      width:auto;
+      margin-top:.5em;
+      vertical-align:middle;
+      font-size: 1.34em;
+      @include header_text;
+    }
+    & > summary > figure {
+      width:grid-width(8);
+      height:grid-width(5);
+      margin-top:1em;
+      margin-left:1.25em;
+      @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
+    }
+    & > summary > figure > figcaption {
+      font-size:2em;
+    }
+    & > summary > figure > img {
+      width:grid-width(8);
+      height:grid-width(5);
+    }
+    & nav {
+      display:none;
+    }
+    & > dl {
+      clear:right;
+      margin-top:3em;
+      display:inline-block;
+      vertical-align:top;
+
+      dt {
+        font-weight:bold;
+      }
+      dd {
+        @include header_text;
+        text-transform:lowercase;
+        margin-bottom:1em;
+      }
+      dt > details {
+        vertical-align:top;
+        display:block;
+      }
+      dt > details > summary {
+        outline:none;
+        line-height:1.5em;
+        margin-bottom:1em;
+      }
+      dt > details[open] > summary {
+        outline:auto;
+      }
+
+      dt > details > table {
+        width:grid-width(12);
+      }
+      dt > details > table > thead {
+        margin-bottom:1em;
+      }
+      dt > details > table > thead th {
+        @include header_text;
+        text-align:center;
+      }
+
+      dt > details > table > thead th:first-child {
+        text-align:left;
+      }
+      dt > details > table tbody tr td:first-child {
+        text-align:left;
+        text-transform:capitalize;
+      }
+
+      dt > details > table tbody tr span[itemprop=amount_in_cents]:before {
+        content:"$"
+      }
+
+      dt > details > table tbody tr td {
+        text-align:center;
+        margin-bottom:1em;
+        padding-bottom:.5em;
+      }
+      dt > details > table tbody tr td:nth-child(2) input {
+        padding:.25em;
+        width:3em;
+      }
+      dt > details > table tbody tr td:nth-child(2) form:before {
+        content:"$";
+      }
+
+      dt > details > table tbody tr td:nth-child(3) form input[type=submit] {
+        font-size:0.5em;
+      }
+
+    }
+
+    & > a {
+      position:absolute;
+      top:4em;
+      right:3em;
+      display:block;
+      color:#f1f1f1;
+      background-color:#d5d1c8;
+      padding: 0.25em 0.5em;
+      margin-bottom:3em;
+
+      border: 1px solid darken(#d5d1c8, 2%);
+      border-radius:.15em;
+      font-size:0.85em;
+      font-family: 'Cantarell', sans-serif;
+      @include background-image( linear-gradient(#d5d1c8 0%, darken(#d5d1c8, 15%) 100%));
+    }
+    & > a:after {
+      content: ">>";
+      font-size:0.75em;
+      padding-left:.5em;
+      vertical-align:middle;
+    }
   }
 
-  #tips > aside > footer {
-    margin-top:2em;
-  }
-  #tips > aside > footer > nav {
-    display:inline-block;
-  }
-  #tips > aside > footer > nav > h2 {
-    display:inline-block;
-    @include text;
-    font-size:0.7em;
-    padding-top:.25em;
-    margin-left:.5em;
-    vertical-align:top;
-  }
-  #tips > aside > footer > nav > a {
-    margin-right:.25em;
-  }
-  #tips > aside > footer > nav > a > img {
-    width:1.25em;
-  }
-  #tips > aside > footer > time {
-    float:right;
-  }
-
-  #tips > ol {
-    padding:0;
-    margin-top:1.5em;
-  }
-  #tips > ol > li {
-    cursor:pointer;
-    display:inline-block;
-    width:8.4em;
-    margin: 0 .5em .75em 0;
-
-    height:6.45em;
-    @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
-  }
-  #tips > ol > li.selected img {
-    outline:2px solid rgba(0,0,0,0.4);
-  }
-  #tips > ol > li > img {
-    vertical-align:top;
-    width:8.6em;
-    padding:0;
-  }
-  #tips > ol > li:nth-child(6n) {
-    margin-right:0;
-  }
 }
 
 #users_show {
@@ -260,3 +289,8 @@
     opacity:1;
   }
 }
+
+
+
+
+

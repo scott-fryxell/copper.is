@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :identities
   has_many :orders
   has_many :tips, :through => :orders
+  has_many :pages, :through => :tips, :order => "tips.created_at DESC"
   has_many :checks
   has_and_belongs_to_many :roles
   has_paper_trail
@@ -23,7 +24,7 @@ class User < ActiveRecord::Base
   def validate_one_current_order
     errors.add(:orders, "there must be only one") unless self.orders.current.size == 1
   end
-
+  
   after_create :create_current_order!
 
   def create_current_order!

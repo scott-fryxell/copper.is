@@ -80,7 +80,6 @@ class Identity < ActiveRecord::Base
       self.user = nil
     end
 
-
     self.type = Identity.subclass_from_provider(self.provider).to_s unless self.type
   end
 

@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  has_many :tips, :order => 'created_at', :dependent => :destroy
+  has_many :tips, :dependent => :destroy
   belongs_to :user
   has_paper_trail
   validates :user, presence:true

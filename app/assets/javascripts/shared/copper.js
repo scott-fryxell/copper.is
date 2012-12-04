@@ -1,7 +1,10 @@
 var copper = {
   format_cents_to_dollars: function (property_name){
-    var cents = $("*[itemprop="+ property_name +"]").not('input').not('select').text().trim()
-    $("*[itemprop=" + property_name +"]").not('input').not('select').text(copper.cents_to_dollars(cents));
+
+    $("*[itemprop="+ property_name +"]").not('input').not('select').each( function (){
+       var cents = $(this).text().trim();
+       $(this).text(copper.cents_to_dollars(cents));
+    })
   },
   cents_to_dollars: function (cents){
     var dollars = (parseFloat(cents) / 100.00)

@@ -22,8 +22,8 @@
     <h1>Your stats</h1>
   </header>
   <div>
-    <h2>Authors tipped</h2>
-    <p><%=current_user.tips.count%></p>
+    <h2>Number of tips</h2>
+    <p><%=current_user.pages.count%></p>
   </div>
   <div>
     <h2>Average tip</h2>
@@ -44,58 +44,73 @@
 
 <section id="tips">
   <%-if @recent_tip -%>
-  <header>
-    <h1>What you've tipped</h1>
-    <nav>
-      <h2>Filter by</h2>
-      <a href="#recent" class="selected">Most recent</a>
-      <a href="#author">Alphabetical by author</a>
-      <a href="#site">Alphabetical by site</a>
-      <a href="#status">Status</a>
-    </nav>
-  </header>
-  <aside itemscoped itemtype='/tips' itemid='/tips/<%=@recent_tip.id%>'>
-    <h2><%=h @recent_tip.title%></h2>
-    <figure>
-      <img src="<%=@recent_tip.page.thumbnail_url%>" alt="tip image">
-      <figcaption itemprop="amount_in_cents"><%=@recent_tip.amount_in_cents%></figcaption>
-    </figure>
-    <dl>
-      <dt>Author</dt>
-      <dd>Johny Appleseed</dd>
-      <dt>Source</dt>
-      <dd><%=URI(@recent_tip.page.url).host%></dd>
-      <dt>Status</dt>
-      <dd itemprop='tip_state'><%=@recent_tip.paid_state%></dd>
-    </dl>
-    <nav>
-      <a href="#more">More by author</a>
-      <a target="_blank" href="<%=@recent_tip.page.url%>">Go to original</a>
-      <a>Cancel tip</a>
-    </nav>
-    <footer>
-    <nav>
-        <a href="#twitter_share"><%= image_tag "providers/twitter/logo.png", :title => "tweet this tip" %></a>
-        <a href="#facebook_share"><%= image_tag "providers/facebook/logo.png", :title => "share this on facebook" %></a>
-        <a href="#tumbler_share"><%= image_tag "providers/tumblr/logo_small.png", :title => "post this on tumblr" %></a>
-        <h2>Share with friends</h2>
+    <header>
+      <h1>What you've tipped</h1>
+      <nav>
+        <h2>Filter by</h2>
+        <a href="#recent" class="selected">Most recent</a>
+        <a href="#author">Alphabetical by author</a>
+        <a href="#site">Alphabetical by site</a>
+        <a href="#status">Status</a>
       </nav>
-      <time datetime="<%=@recent_tip.created_at.getutc.iso8601 %>"/>
-    </footer>
-  </aside>
-  <ol>
-    <%-current_user.current_order.tips.each do |tip| -%>
-      <li itemscoped itemtype='/tips' itemid='/tips/<%=tip.id%>'
-        data-amount="<%=tip.amount_in_cents%>"
-        data-url="<%=tip.url.to_s%>"
-        data-site="<%=tip.url.host%>"
-        data-title="<%=h tip.title%>"
-        data-paid_state="<%=tip.paid_state%>"
-        data-created_at="<%=tip.created_at.getutc.iso8601 %>">
-        <img src="<%=tip.page.thumbnail_url%>" />    
-      </li>
+    </header>
+    <%-current_user.pages.except(:order).group(:id).order('tips.created_at DESC').each do |page| -%>
+      <details itemscoped itemtype='/pages' itemid='<%=page.id%>'>
+        <summary>
+          <h2 itemprop="title"><%=page.title%></h2>
+          <figure>
+            <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>" alt="tip image" /> 
+            <figcaption itemprop="amount_in_cents"><%=page.tips.sum(:amount_in_cents)%></figcaption>
+          </figure>
+        </summary>
+
+        <dl>
+          <dt>Source</dt>
+          <dd><%=URI(page.url).host%></dd>
+          <dt>
+            <details>
+              <summary><%=pluralize(page.tips.count, 'tip')%></summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>when</th>
+                    <th>amount</th>
+                    <th>status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%-page.tips.each do |tip| -%>
+                  <tr itemscoped itemtype='/tips' itemid='<%=tip.id%>'>
+                    <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
+                    <td>
+                      <%-if tip.paid_state == 'promised' -%>
+                        <form method="post"><input type="text" itemprop="amount_in_cents" value="<%=tip.amount_in_cents%>"/></form>
+                      <%-else-%>
+                        <span itemprop='amount_in_cents'><%=tip.amount_in_cents%></span>
+                      <%-end-%>
+                    </td>
+                    <td>
+                      <%-if tip.paid_state == 'promised' -%>
+                        <form method="delete"><input type="submit" value="X"/></form>
+                      <%-end-%>
+                    </td>
+                  </tr>
+                <%-end-%>
+                </tbody>
+              </table>
+            </details>          
+          </dt>
+        </dl>
+        
+        <a itemprop="url" target="_blank" href="<%=page.url%>">Visit</a>
+        <nav>
+          <h3>Share</h3>
+          <a href="#twitter_share"><%= image_tag "providers/twitter/logo.png", :title => "tweet this tip" %></a>
+          <a href="#facebook_share"><%= image_tag "providers/facebook/logo.png", :title => "share this on facebook" %></a>
+          <a href="#tumbler_share"><%= image_tag "providers/tumblr/logo_small.png", :title => "post this on tumblr" %></a>
+        </nav>       
+      </details>
     <%-end-%>
-  </ol>
   <%-else-%>
   <aside>
     <h2 style="text-align:center">Get out there and tip some pages!</h2>

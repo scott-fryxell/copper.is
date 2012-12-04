@@ -12,3 +12,5 @@ TAGS
 .DS_Store
 public/favicon.ico
 
+
+app/models/order.rb
