@@ -7,7 +7,6 @@ $(document).on("load.users_show", function (event){
   copper.format_cents_to_dollars("amount_in_cents")
 
   $("input[itemprop=amount_in_cents]").each(function (){
-    console.debug(this);
     var formated_amount = copper.cents_to_dollars($(this).val());
     $(this).val(formated_amount);
   });

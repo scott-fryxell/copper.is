@@ -80,7 +80,7 @@
                 </thead>
                 <tbody>
                   <%-page.tips.each do |tip| -%>
-                  <tr itemscoped itemtype='/tips' itemid='<%=tip.id%>'>
+                  <tr itemscoped itemtype='tips' itemid='<%=tip.id%>'>
                     <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
                     <td>
                       <%-if tip.paid_state == 'promised' -%>

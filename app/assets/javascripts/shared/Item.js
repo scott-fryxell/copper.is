@@ -126,7 +126,14 @@ $(document).ready(function (event){
     var type = $(item_element).attr('itemtype')
     var form = this
     var item_rolback = Item.items[type][item_index] //if form fails we can rollback to the original state
+    var action = $(this).attr('action');
 
+    if(!action){
+      action = "/" + $(item_element).attr('itemtype') + "/" + $(item_element).attr('itemId');
+      console.debug(action);
+      // determine the action from the itemscope
+    }
+    var method = $(this).attr('method').toLowerCase();
     if ($(this).find('.invalid').size() > 0){
       //Do not submit the form if there are any invalid input fields
       return false;
@@ -142,8 +149,8 @@ $(document).ready(function (event){
     Item.update_page(Item.items[type][item_index]);
 
     jQuery.ajax({
-      url: $(this).attr('action'),
-      type: $(this).attr('method'),
+      url: action,
+      type: method,
       data: $(this).serialize(),
       error: function(data, textStatus, jqXHR) {
         // let any listeners know that there was a problem with the form submit
@@ -156,9 +163,9 @@ $(document).ready(function (event){
       success: function(data, textStatus, jqXHR){
         console.debug("successful item submission", data)
         //let any listeners know that any the form submited succesfully update.
-        $(form).trigger('item.' + $(form).attr('method'));
+        $(form).trigger('item.' + method);
 
-        if( 'delete' == $(form).attr('method')){
+        if( 'delete' == method){
           // TODO remove all instances of the Item on the page
           // Refresh the items for the page. This is inefficent
           Item.discover_items();
