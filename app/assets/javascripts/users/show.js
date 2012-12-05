@@ -48,13 +48,6 @@ $(document).on("load.users_show", function (event){
     }
   });
 
-  $("#tips > aside > nav > a:nth-child(3)").click(function(){
-    $('#tips > aside').trigger("delete.current_tip");
-  });
-
-  $('#tips > ol > li').click(function (event){
-    $(this).trigger('focus.tip')
-  });
 });
 // key commands for showing unimplemented features
 $(document).on("load.users_show", function (event){
@@ -78,53 +71,29 @@ $(document).on("load.users_show", function (event){
     }
   });
 });
-// show tip in main area when tip is clicked
-$(document).on("load.users_show", function (event){
-  $('#tips > ol > li').bind('focus.tip', function(){
-    var li = this;
-    $('li.selected').removeClass('selected');
-    $(li).addClass('selected');
-    $('#tips > aside').animate({opacity:0}, 500, function(){
-      $('#tips > aside > h2').text($(li).attr('data-title'))
-      $("#tips > aside > figure > img").attr("src", $(li).find('img').attr('src'))
-      $("#tips > aside > figure > figcaption").text($(li).attr('data-amount'))
-      $("#tips > aside > nav > a[target=_blank]").attr('href', $(li).attr('data-url'))
-      $('#tips > aside > dl > dd:nth-child(4)').text($(li).attr('data-site'))
-      $('#tips > aside > dl > dd:nth-child(6)').text($(li).attr('data-paid_state'))
-      $("#tips > aside > footer > time").remove()
-      $('#tips > aside').attr('itemid', $(li).attr('itemid'))
-      $('<time/>', {
-        datetime: $(li).attr('data-created_at')
-      }).appendTo("#tips > aside > footer")
-      
-      $("#tips > aside > footer > time").timeago();
-      copper.format_cents_to_dollars("amount_in_cents")
-      $(this).animate({opacity:1},400)
-    });
-  });
-});
+
 
 // remove items when tip is cancelled
 $(document).on("load.users_show", function (event){
-  $(document).bind('delete.current_tip', function(event){
-    var deleted_tip = $('#tips > aside').attr('itemid');
-    li = $('li[itemid="' + deleted_tip + '"]').fadeOut(1000, function(){
-      $(this).remove()
-    });
-    next_tip = $(li).next();
-    jQuery.ajax({
-      url: deleted_tip,
-      type: 'delete',
-      success: function (data, textStatus, jqXHR){
-        if(next_tip.size() == 0){
-          $('#tips > ol > li:first-child').click()
-        }else{
-          $(next_tip).click();
-        }
-      },
-      error: function (data, textStatus, jqXHR) {
-        alert('There was a problem canceling this tip, please try again later')
-      }
-    });
+  $('*[itemtype=tips]  form[method=delete]').on('item.delete', function(){
+    var tip = $(this).parents('*[itemscoped]')[0]
+    var page = $(this).parents('*[itemscoped]')[1]
+    console.debug(page)
+    $(tip).remove()
+
+    tip_count = $(page).find('tbody > tr').size() 
+
+    if (0 == tip_count){
+      // this page doesn't belong here if it's not tipped.
+      $(page).remove();
+    }
+    else if(1 == tip_count){
+      $(page).find('dl > dt > details > summary').text('1 Tip')
+    }
+    else{
+      $(page).find('dl > dt > details > summary').text(tip_count + ' Tips')
+    }
+    // update the pages tip totals
+
   });
 });

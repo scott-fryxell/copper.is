@@ -105,8 +105,6 @@ $(document).ready(function (event){
 
   Item.discover_items() //map all the items on the page into a javascript equivalent
 
-  $(this).find("*[itemprop]") //todo why is this here?
-
   // capture form submissions for items. Determine
   // their values and submit the data via ajax. 
   // this means forms are submited with CSRF protection 
@@ -157,19 +155,13 @@ $(document).ready(function (event){
         $(form).trigger('item.error');
         Item.items[type][item_index] = item_rolback;
         Item.update_page(Item.items[type][item_index]);
-     
-        console.error("error submiting item form " + id, data, textStatus, jqXHR);
+        // console.error("error submiting item form " + id, data, textStatus, jqXHR);
       },
       success: function(data, textStatus, jqXHR){
-        console.debug("successful item submission", data)
-        //let any listeners know that any the form submited succesfully update.
+        // console.debug("successful item submission", data)
+        // let any listeners know that any the form submited succesfully update.
+        // TODO we leave updating the items to the listener of this method. this is risky
         $(form).trigger('item.' + method);
-
-        if( 'delete' == method){
-          // TODO remove all instances of the Item on the page
-          // Refresh the items for the page. This is inefficent
-          Item.discover_items();
-        }
       }
     });
   });
