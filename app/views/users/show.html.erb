@@ -54,7 +54,7 @@
         <a href="#status">Status</a>
       </nav>
     </header>
-    <%-current_user.pages.except(:order).group('page.id').order('tips.created_at DESC').each do |page| -%>
+    <%-current_user.pages.except(:order).group(:page_id).order('tips.created_at DESC').each do |page| -%>
       <details itemscoped itemtype='/pages' itemid='<%=page.id%>'>
         <summary>
           <h2 itemprop="title"><%=page.title%></h2>
