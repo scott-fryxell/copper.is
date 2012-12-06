@@ -2,6 +2,7 @@
 #= require jquery.cookie
 #= require jquery.timeago
 #= require jquery.tmpl
+#= require jquery.details
 #= require shared/Item
 #= require shared/form
 #= require shared/email

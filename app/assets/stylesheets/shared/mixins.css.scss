@@ -10,6 +10,8 @@ $light-text:#FBFAF8;
 
 @import "normalize";
 @import "bourbon";
+@import "details";
+
 @mixin copper_button {
   cursor:pointer;
   font-size:1.15em;
