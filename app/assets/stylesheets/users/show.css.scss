@@ -195,6 +195,10 @@
         text-transform:lowercase;
         margin-bottom:1em;
       }
+      dd > a {
+        display:inline-block; 
+        border-bottom: 2px solid rgba(102, 102, 102, 0.15);
+      }
       dt > details {
         vertical-align:top;
         display:block;
