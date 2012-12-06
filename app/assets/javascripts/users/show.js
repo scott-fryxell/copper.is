@@ -1,9 +1,10 @@
 $(document).on("items.updated.users_show", function (event){
-  copper.format_cents_to_dollars("tip_preference_in_cents")
-
+  // console.debug("items.updated.users_show");
+  copper.format_cents_to_dollars("tip_preference_in_cents");
 });
 
 $(document).on("load.users_show", function (event){
+  // console.debug("load.users_show")
   copper.format_cents_to_dollars("amount_in_cents")
 
   $("input[itemprop=amount_in_cents]").each(function (){
@@ -72,19 +73,16 @@ $(document).on("load.users_show", function (event){
   });
 });
 
-
 // remove items when tip is cancelled
 $(document).on("load.users_show", function (event){
   $('*[itemtype=tips]  form[method=delete]').on('item.delete', function(){
     var tip = $(this).parents('*[itemscoped]')[0]
     var page = $(this).parents('*[itemscoped]')[1]
-    console.debug(page)
     $(tip).remove()
 
     tip_count = $(page).find('tbody > tr').size() 
 
     if (0 == tip_count){
-      // this page doesn't belong here if it's not tipped.
       $(page).remove();
     }
     else if(1 == tip_count){
@@ -93,7 +91,12 @@ $(document).on("load.users_show", function (event){
     else{
       $(page).find('dl > dt > details > summary').text(tip_count + ' Tips')
     }
-    // update the pages tip totals
+    // TODO update the pages tip totals
+    var new_total = 0;
+    $(page).find('input[itemprop=amount_in_cents]').each(function(){
+      new_total = new_total + Number($(this).val());
+    });
 
+    $(page).find('figcaption[itemprop=amount_in_cents]').text(new_total);
   });
 });

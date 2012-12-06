@@ -66,6 +66,7 @@ Item = {
 
   // update exsisting items on the page
   update_page: function(item){
+    // console.debug('update page')
     $.each(item, function(key, value){
       if(value != null){
         $('*[itemprop=' + key + ']').each(function(){
@@ -127,9 +128,8 @@ $(document).ready(function (event){
     var action = $(this).attr('action');
 
     if(!action){
-      action = "/" + $(item_element).attr('itemtype') + "/" + $(item_element).attr('itemId');
-      console.debug(action);
       // determine the action from the itemscope
+      action = "/" + $(item_element).attr('itemtype') + "/" + $(item_element).attr('itemId');
     }
     var method = $(this).attr('method').toLowerCase();
     if ($(this).find('.invalid').size() > 0){
@@ -144,8 +144,10 @@ $(document).ready(function (event){
         Item.items[type][item_index][$(this).attr('itemprop')] = Item.get_value(this);
       }
     });
-    Item.update_page(Item.items[type][item_index]);
-
+    // console.debug("item being updated", Item.items[type][item_index])
+    if ('delete' != method){
+      Item.update_page(Item.items[type][item_index]);  
+    }
     jQuery.ajax({
       url: action,
       type: method,
