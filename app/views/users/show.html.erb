@@ -63,10 +63,9 @@
             <figcaption itemprop="amount_in_cents"><%=page.tips.sum(:amount_in_cents)%></figcaption>
           </figure>
         </summary>
-
         <dl>
           <dt>Source</dt>
-          <dd><%=URI(page.url).host%></dd>
+          <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(page.url).host%></a></dd>
           <dt>
             <details>
               <summary><%=pluralize(page.tips.count, 'tip')%></summary>
@@ -102,7 +101,7 @@
           </dt>
         </dl>
         
-        <a itemprop="url" target="_blank" href="<%=page.url%>">Visit</a>
+    
         <nav>
           <h3>Share</h3>
           <a href="#twitter_share"><%= image_tag "providers/twitter/logo.png", :title => "tweet this tip" %></a>
