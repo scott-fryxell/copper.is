@@ -236,12 +236,24 @@
   }
 
   #join {
-    background: image-url('home/watermark.svg') no-repeat 50% 300%;
-    background-size: 50%;
+    position:relative;
+
     min-height:30em;
     vertical-align:top;
     padding-top:3em;
     padding-bottom:6em;
+    overflow:hidden;
+    &:after {
+      content: "";
+      opacity: 0.05;
+      top: 22em;
+      left: 0;
+      bottom: -22em;
+      right: 0;
+      position: absolute;
+      z-index: -1; 
+      background: image-url('home/watermark.svg') no-repeat 50% 100%;
+    }
   }
   #join > header {
     width: grid-width(11);
