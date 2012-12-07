@@ -8,13 +8,14 @@
     <meta name="description" content="Copper – the currency of appreceation . With width the copper extension installed you can tip any URL on the web. Fans can connect directly with Artists, authors, and musicians. check out our blog at blog.copper.is">
     <%= stylesheet_link_tag "application", media:"all" %>
     <link href='https://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One' rel='stylesheet' type='text/css'>
-    <link rel="apple-touch-icon" itemprop="thumbnailUrl" href="https://www.copper.is/assets/icons/watermark.svg">   
+    <link rel="apple-touch-icon" type="image/svg" itemprop="thumbnailUrl" href="https://www.copper.is/assets/icons/watermark.svg">
+    <link rel="logo" type="image/svg" href="https://www.copper.is/assets/icons/logo.svg"/>
     <%= csrf_meta_tag %>
     <%= yield(:head) %>
   </head>
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
     <header>
-      <a href="/"><%= image_tag "icons/logo.svg", :title => "logo" %></a>
+      <a href="/"><%= image_tag "icons/logo_light.svg", :title => "logo" %></a>
       <nav>
         <a href="http://blog.copper.is">our blog</a>
         <a href="/contact">contact</a>
