@@ -155,7 +155,7 @@
       display:inline-block;
     }
 
-    & > summary  > h2 {
+    & > summary > h2 {
       position:absolute;
       top:0.25em;
       left:1.5em;
@@ -216,11 +216,11 @@
         width:grid-width(12);
       }
       dt > details > table > thead {
-        margin-bottom:1em;
       }
       dt > details > table > thead th {
         @include header_text;
         text-align:center;
+        padding-bottom:0.5em;
       }
       dt > details > table > thead th:first-child {
         text-align:left;
@@ -230,7 +230,7 @@
         text-transform:capitalize;
       }
       dt > details > table tbody tr span[itemprop=amount_in_cents]:before {
-        content:"$"
+        content:"$";
       }
       dt > details > table tbody tr td {
         text-align:center;
@@ -238,14 +238,17 @@
         padding-bottom:.5em;
       }
       dt > details > table tbody tr td:nth-child(2) input {
-        padding:.25em;
+        padding:0 0 0 .25em;
         width:3em;
+        color:$button_color;
+        font-weight:bold;
       }
       dt > details > table tbody tr td:nth-child(2) form:before {
         content:"$";
+        font-size:1.15em;
       }
       dt > details > table tbody tr td:nth-child(3) form input[type=submit] {
-        font-size:0.5em;
+        font-size:0.65em;
       }
     }
   }
