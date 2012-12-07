@@ -2,97 +2,97 @@
   #stats {
     padding-bottom:1em;
     margin-bottom:3em;
-  }
-  #stats > header {}
-  #stats > header > h1 {
-    font-size:1.5em;
-  }
-  #stats > div,
-  #stats > footer {
-    vertical-align:middle;
-    height:grid-width(2);
-    display:inline-block;
-  }
-  #stats > div {
-    padding:1em 0 0 2em;
-    background-color:$offset_color;
-    margin-right:.5em;
-    width:grid-width(4);
-  }
-  #stats > div > h2 {
-    font-size:.85em;
-    @include text;
-  }
-  #stats > div > p {
-    margin:.4em 0 0 0;
-    font-size:1.5em;
-    @include header_text;
-  }
-  #stats > div > p > span {
-    display:inline-block;
-    width:2em;
-    padding:0 .5em 0 0;
-    line-height:1em;
-  }
-  #stats > div > p > span:before,
-  #stats > div:nth-child(3) > p:before  {
-    content:"$";
-  }
-  #stats > div > p > button {
-    padding-right:.75em;
-    font-family: 'Doppio One', sans-serif;
-    background-color:$button_color;
-    color:$light-text;
-    font-size:.75em;
-    display:inline-block;
-    width:1em;
-    height:1em;
-    line-height:.5em;
-    border:1px solid darken($button_color, 5%);
-    -webkit-appearance: none;
-    @include box-shadow(1px 1px 1px 0em rgba(0, 0, 0, .5));
-  }
-  #stats > div > p > button:active {
-    @include box-shadow(0px 0px 0px 0em rgba(0, 0, 0, .5));
-  }
-  #stats > div:nth-child(2) {
-    padding-left:0;
-    @include right_width($offset_color)
-  }
-  #stats > footer {
-    padding-top:1em;
-    background-color: $offset_color;
-    @include left_width($offset_color)
-  }
-  #stats > footer > a {
-    display:inline-block;
-    margin: 1.75em 3em;
-    width:12em;
-    font-family: 'Doppio One', sans-serif;
-    font-size:.75em;
-    @include settings_pointer
-  }
 
-  #tips {}
-  #tips > header > h1 {
-    font-size:1.5em;
+    & > header {}
+    & > header > h1 {
+      font-size:1.5em;
+    }
+    & > div,
+    & > footer {
+      vertical-align:middle;
+      height:grid-width(2);
+      display:inline-block;
+    }
+    & > div {
+      padding:1em 0 0 2em;
+      background-color:$offset_color;
+      margin-right:.5em;
+      width:grid-width(4);
+    }
+    & > div > h2 {
+      font-size:.85em;
+      @include text;
+    }
+    & > div > p {
+      margin:.4em 0 0 0;
+      font-size:1.5em;
+      @include header_text;
+    }
+    & > div > p > span {
+      display:inline-block;
+      width:2em;
+      padding:0 .5em 0 0;
+      line-height:1em;
+    }
+    & > div > p > span:before,
+    & > div:nth-child(3) > p:before  {
+      content:"$";
+    }
+    & > div > p > button {
+      padding-right:.75em;
+      font-family: 'Doppio One', sans-serif;
+      background-color:$button_color;
+      color:$light-text;
+      font-size:.75em;
+      display:inline-block;
+      width:1em;
+      height:1em;
+      line-height:.5em;
+      border:1px solid darken($button_color, 5%);
+      -webkit-appearance: none;
+      @include box-shadow(1px 1px 1px 0em rgba(0, 0, 0, .5));
+    }
+    & > div > p > button:active {
+      @include box-shadow(0px 0px 0px 0em rgba(0, 0, 0, .5));
+    }
+    & > div:nth-child(2) {
+      padding-left:0;
+      @include right_width($offset_color)
+    }
+    & > footer {
+      padding-top:1em;
+      background-color: $offset_color;
+      @include left_width($offset_color)
+    }
+    & > footer > a {
+      display:inline-block;
+      margin: 1.75em 3em;
+      width:12em;
+      font-family: 'Doppio One', sans-serif;
+      font-size:.75em;
+      @include settings_pointer
+    }
   }
-  #tips > header > nav {
-    margin-bottom:grid-width(1);
+  #tips > header {
+    & > h1 {
+      font-size:1.5em;
+    }
+    & > nav {
+      margin-bottom:grid-width(1);
+    }
+    & > nav > h2,
+    & > nav > a {
+      display:inline-block;
+      margin-right:1em;
+      @include text;
+    }
+    & > nav > h2:after{
+      content: ":";
+    }
+    & > nav > a.selected {
+      color:$darkness;
+    }
   }
-  #tips > header > nav > h2,
-  #tips > header > nav > a {
-    display:inline-block;
-    margin-right:1em;
-    @include text;
-  }
-  #tips > header > nav > h2:after{
-    content: ":";
-  }
-  #tips > header > nav > a.selected {
-    color:$darkness;
-  }
-
   #tips > details {
     display:inline-block;
     width:grid-width(4);
@@ -212,7 +212,6 @@
       dt > details[open] > summary {
         outline:auto;
       }
-
       dt > details > table {
         width:grid-width(12);
       }
@@ -223,7 +222,6 @@
         @include header_text;
         text-align:center;
       }
-
       dt > details > table > thead th:first-child {
         text-align:left;
       }
@@ -231,11 +229,9 @@
         text-align:left;
         text-transform:capitalize;
       }
-
       dt > details > table tbody tr span[itemprop=amount_in_cents]:before {
         content:"$"
       }
-
       dt > details > table tbody tr td {
         text-align:center;
         margin-bottom:1em;
@@ -248,54 +244,19 @@
       dt > details > table tbody tr td:nth-child(2) form:before {
         content:"$";
       }
-
       dt > details > table tbody tr td:nth-child(3) form input[type=submit] {
         font-size:0.5em;
       }
-
-    }
-
-    & > a {
-      position:absolute;
-      top:4em;
-      right:3em;
-      display:block;
-      color:#f1f1f1;
-      background-color:#d5d1c8;
-      padding: 0.25em 0.5em;
-      margin-bottom:3em;
-
-      border: 1px solid darken(#d5d1c8, 2%);
-      border-radius:.15em;
-      font-size:0.85em;
-      font-family: 'Cantarell', sans-serif;
-      @include background-image( linear-gradient(#d5d1c8 0%, darken(#d5d1c8, 15%) 100%));
-    }
-    & > a:after {
-      content: ">>";
-      font-size:0.75em;
-      padding-left:.5em;
-      vertical-align:middle;
     }
   }
-
 }
 
 #users_show {
   //todo figure out how to display author info and links
-  #tips > header > nav,
-  #tips > aside > nav > a:first-child,
-  #tips > aside > dl > dt:first-child,
-  #tips > aside > dl > dd:nth-child(2),
-  #tips > aside > footer > nav{
+  #tips > header > nav {
     display:none;
   }
   #signed_in > nav > a[href='/fans/me'] > img {
     opacity:1;
   }
 }
-
-
-
-
-
