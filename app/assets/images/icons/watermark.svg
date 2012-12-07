@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1"
    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-   x="0" y="0" viewBox="0 0 16 16" overflow="visible"
+   x="0" y="0" viewBox="0 0 16 16" overflow="visible" width="1em" height="1em"
    enable-background="new 0 0 16 16" xml:space="preserve">
 <path id="watermark" style="opacity:1; fill:#2A2929" d="M8,0C3.582,0,0,3.582,0,8c0,4.419,3.582,8,8,8c4.419,0,8-3.581,8-8C16,3.582,12.419,0,8,0z M9.882,11.868
   C9.768,11.9,9.656,11.915,9.543,11.94l0.048,1.535c-0.534,0.334-1.397,0.36-1.876,0.258C7.238,13.628,7,13.449,7,13.449v-1.444
