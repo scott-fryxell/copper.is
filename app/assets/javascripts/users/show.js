@@ -51,6 +51,7 @@ $(document).on("load.users_show", function (event){
   });
 
 });
+
 // key commands for showing unimplemented features
 $(document).on("load.users_show", function (event){
   // todo remove when features are completed.
@@ -65,10 +66,6 @@ $(document).on("load.users_show", function (event){
     }
     if(e.which == 68 && isCtrl == true){
       $('#tips > header > nav').toggle(1000)
-      $('#tips > aside > nav > a:first-child').toggle(1000)
-      $('#tips > aside > dl > dt:first-child').toggle(1000)
-      $('#tips > aside > dl > dd:nth-child(2)').toggle(1000)
-      $('#tips > aside > footer > nav').toggle(1000)
       return false;
     }
   });
@@ -100,4 +97,16 @@ $(document).on("load.users_show", function (event){
 
     $(page).find('figcaption[itemprop=amount_in_cents]').text(new_total);
   });
+
+  $('*[itemtype=tips]  form[method=post]').on('item.post', function(){
+    var page = $(this).parents('*[itemscoped]')[1]
+    // TODO update the pages tip totals
+    var new_total = 0;
+    $(page).find('input[itemprop=amount_in_cents]').each(function(){
+      new_total = new_total + Number($(this).val());
+    });
+
+    $(page).find('figcaption[itemprop=amount_in_cents]').text(new_total);
+  });
+
 });

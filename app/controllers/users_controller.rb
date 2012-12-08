@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @recent_tip = current_user.tips.first
+    @pages = current_user.pages.group('pages.id').except(:order).order('MAX(tips.created_at) DESC')
   end
 
   def destroy

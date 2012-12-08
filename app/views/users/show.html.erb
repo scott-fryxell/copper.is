@@ -43,7 +43,7 @@
 </section>
 
 <section id="tips">
-  <%-if @recent_tip -%>
+  <%-if @pages -%>
     <header>
       <h1>What you've tipped</h1>
       <nav>
@@ -54,7 +54,7 @@
         <a href="#status">Status</a>
       </nav>
     </header>
-    <%-current_user.pages.group('pages.id').except(:order).order('MAX(tips.created_at) DESC').each do |page| -%>
+    <%-@pages.each do |page| -%>
       <details itemscoped itemtype='/pages' itemid='<%=page.id%>'>
         <summary>
           <h2 itemprop="title"><%=page.title%></h2>
@@ -74,7 +74,7 @@
                   <tr>
                     <th>when</th>
                     <th>amount</th>
-                    <th>manage</th>
+                    <th>delete</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -83,7 +83,10 @@
                     <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
                     <td>
                       <%-if tip.paid_state == 'promised' -%>
-                        <form method="post"><input type="text" itemprop="amount_in_cents" value="<%=tip.amount_in_cents%>"/></form>
+                        <form method="put">
+                          <input type="text" itemprop="amount_in_cents" value="<%=tip.amount_in_cents%>"/>
+                          <input type="submit" value="Save"/>
+                        </form>
                       <%-else-%>
                         <span itemprop='amount_in_cents'><%=tip.amount_in_cents%></span>
                       <%-end-%>
