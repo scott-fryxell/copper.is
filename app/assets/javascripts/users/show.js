@@ -4,7 +4,7 @@ $(document).on("items.updated.users_show", function (event){
 });
 
 $(document).on("load.users_show", function (event){
-  $('#tips details').first().attr('open','open')
+  $('#tips details').first().find('summary').click();
   // console.debug("load.users_show")
   copper.format_cents_to_dollars("amount_in_cents")
 
