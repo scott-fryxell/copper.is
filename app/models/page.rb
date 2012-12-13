@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   include Enqueueable
   has_paper_trail
-  belongs_to :identity
+  belongs_to :identity, :touch => true
   has_many :tips
   has_many :checks, :through => :tips
  
@@ -17,6 +17,10 @@ class Page < ActiveRecord::Base
 
   [:orphaned, :spiderable, :manual, :fostered, :adopted].each do |state|
     scope state, where("author_state = ?", state)
+  end
+
+  def fan_tips(fan)
+   self.tips.joins(:order).where('orders.user_id=?', fan.id)
   end
 
   def discover_thumbnail
