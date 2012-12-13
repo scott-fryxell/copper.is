@@ -38,8 +38,6 @@ describe "a fan's profile page", :slow do
       page.should have_content('1');
     end
 
-    visit '/fans/me'
-
     within 'span[itemprop="tip_preference_in_cents"]' do
       page.should have_content('1');
     end
@@ -63,24 +61,44 @@ describe "a fan's profile page", :slow do
   end
 
   it 'should display information about their most recent tip' do
-    within '#tips > aside > figure > figcaption' do
+    within '#tips > details > summary > figure > figcaption' do
       page.should have_content('0.50');
     end
   end
 
   it 'should display their current list of tips' do
-    within '#tips > ol' do
-      page.should have_css('li', visible:true, count:2)
-    end
+    page.should have_css('#tips > details', visible:true, count:2)
   end
-  it 'should be able to click on a tip and see info about it'
 
-  it 'should be able to cancel pending tips' do pending
-    click_on('Cancel tip')
-    within '# > ol' do
-      page.should have_css('li', visible:true, count:1)
+  it 'should be able to cancel pending tips' do 
+    within ('#tips > details') do
+      click_on('X') 
     end
+    page.should have_css('#tips > details', visible:true, count:1)
   end
+
+  it 'should be able to change the tip amount', :focus do
+   within ('#tips > details') do
+      within ('summary') do
+        page.should have_content('0.50')
+      end
+      fill_in 'tip[amount_in_cents]', with:'2'
+      click_button('Save')
+
+      within ('summary') do
+        page.should have_content('2')
+      end
+    end
+
+    visit '/fans/me'
+
+    within ('#tips > details > summary') do
+      page.should have_content('2')
+    end
+
+  end
+
+  it 'should be able to click on a tip and see info about it'
   it 'should show more content from the author they\'ve tiped'
   it 'should have a screen shot of each page that\'s been tipped'
 end
