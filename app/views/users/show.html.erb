@@ -8,7 +8,7 @@
   </header>
   <hgroup>
     <h1>Your Profile</h1>
-    <p><%=@user.name%><a href="/signout">not you?</a></p>
+    <p><%=current_user.name%><a href="/signout">not you?</a></p>
   </hgroup>
   <p>
     This is your home on Copper. On this page, you can keep track of what
@@ -60,7 +60,7 @@
           <h2 itemprop="title"><%=page.title%></h2>
           <figure>
             <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>" alt="tip image" /> 
-            <figcaption itemprop="amount_in_cents"><%=page.tips.sum(:amount_in_cents)%></figcaption>
+            <figcaption><%=page.fan_tips(current_user).sum(:amount_in_cents)%></figcaption>
           </figure>
         </summary>
         <dl>
@@ -68,7 +68,7 @@
           <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(page.url).host%></a></dd>
           <dt>
             <details>
-              <summary><%=pluralize(page.tips.count, 'tip')%></summary>
+              <summary><%=pluralize(page.fan_tips(current_user).count, 'tip')%></summary>
               <table>
                 <thead>
                   <tr>
@@ -78,13 +78,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <%-page.tips.each do |tip| -%>
+                  <%-page.fan_tips(current_user).each do |tip| -%>
                   <tr itemscoped itemtype='tips' itemid='<%=tip.id%>'>
                     <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
                     <td>
                       <%-if tip.paid_state == 'promised' -%>
                         <form method="put">
-                          <input type="text" itemprop="amount_in_cents" value="<%=tip.amount_in_cents%>"/>
+                          <input type="text" name="tip[amount_in_cents]" itemprop="amount_in_cents" value="<%=tip.amount_in_cents%>"/>
                           <input type="submit" value="Save"/>
                         </form>
                       <%-else-%>
@@ -107,7 +107,7 @@
     <%-end-%>
   <%-else-%>
   <aside>
-    <h2 style="text-align:center">Get out there and tip some pages!</h2>
+    <h2 style="text-align:center">Aww. You're like a fresh little baby.</h2>
   </aside> 
   <%-end-%>
 </section>
