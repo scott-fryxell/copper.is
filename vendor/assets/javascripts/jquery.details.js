@@ -155,7 +155,7 @@ $(document).ready(function(){
 		$('html').addClass($.fn.details.support ? 'details' : 'no-details');
 
 		// Show a message based on support
-		console.log($.fn.details.support ? 'Native support detected; the plugin will only add ARIA annotations and fire custom open/close events.' : 'Emulation active; you are watching the plugin in action!');
+		// console.log($.fn.details.support ? 'Native support detected; the plugin will only add ARIA annotations and fire custom open/close events.' : 'Emulation active; you are watching the plugin in action!');
 
 		// Emulate <details> where necessary and enable open/close event handlers
 		$('html.no-details details').details();
@@ -163,11 +163,11 @@ $(document).ready(function(){
 		// Bind some example event handlers
 		$('html.no-details details').on({
 			'open.details': function() {
-				console.log('opened');
+				// console.log('opened');
 				$(this).attr('open', "");
 			},
 			'close.details': function() {
-				console.log('closed', this);
+				// console.log('closed', this);
 				$(this).removeAttr('open', "");
 			}
 		});
