@@ -2,8 +2,8 @@ class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 class Tip < ActiveRecord::Base
   belongs_to :page, :counter_cache => true
-  belongs_to :order
-  belongs_to :check
+  belongs_to :order, :touch => true
+  belongs_to :check, :touch => true
   has_one :user, :through => :order
   has_paper_trail
   default_scope :order => 'created_at DESC'
@@ -11,6 +11,7 @@ class Tip < ActiveRecord::Base
   attr_accessor :url,:title,:thumbnail_url
 
   attr_accessible :amount_in_cents,:url,:title,:thumbnail_url
+
   scope :trending, order("Date(updated_at)")
   scope :promised, where("paid_state = ?", 'promised')
   scope :charged, where("paid_state = ?", 'charged')
