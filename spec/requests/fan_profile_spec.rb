@@ -77,12 +77,12 @@ describe "a fan's profile page", :slow do
     page.should have_css('#tips > details', visible:true, count:1)
   end
 
-  it 'should be able to change the tip amount', :focus do
+  it 'should be able to change the tip amount' do
    within ('#tips > details') do
       within ('summary') do
         page.should have_content('0.50')
       end
-      fill_in 'tip[amount_in_cents]', with:'2'
+      fill_in 'amount_in_dollars', with:'2'
       click_button('Save')
 
       within ('summary') do

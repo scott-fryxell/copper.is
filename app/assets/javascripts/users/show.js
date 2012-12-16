@@ -1,21 +1,14 @@
 $(document).on("items.updated.users_show", function (event){
-  // console.debug("items.updated.users_show");
-  copper.format_cents_to_dollars("tip_preference_in_cents");
+  var tip_preference = $("span[itemprop=tip_preference_in_cents]").attr('data-value');
+  $("span[itemprop=tip_preference_in_cents]").text(copper.cents_to_dollars(tip_preference));
 });
 
+// manage the stats for this fan
 $(document).on("load.users_show", function (event){
-  $('#tips details').first().find('summary').click();
-  // console.debug("load.users_show")
-  copper.format_cents_to_dollars("amount_in_cents")
 
-  $("input[itemprop=amount_in_cents]").each(function (){
-    var formated_amount = copper.cents_to_dollars($(this).val());
-    $(this).val(formated_amount);
-  });
-
-  if( '' == $('#stats > div:nth-child(3) > p').text().trim()){
+  if( '' == $('#stats > div:nth-child(3) > p').text().trim() ){
     $('#stats > div:nth-child(3)').hide()
-  }else{
+  } else {
     var dollars = copper.cents_to_dollars($('#stats > div:nth-child(3) > p').text().trim());
     $('#stats > div:nth-child(3) > p').text(dollars)
   }
@@ -52,28 +45,27 @@ $(document).on("load.users_show", function (event){
 
 });
 
-// key commands for showing unimplemented features
+// Manage all the users pages
 $(document).on("load.users_show", function (event){
-  // todo remove when features are completed.
-  var isCtrl = false;
-  $(document).keyup(function (e){
-    if(e.which == 17){
-      isCtrl=false;
-    }
-  }).keydown(function (e){
-    if(e.which == 17){
-      isCtrl=true;
-    }
-    if(e.which == 68 && isCtrl == true){
-      $('#tips > header > nav').toggle(1000)
-      return false;
-    }
-  });
-});
 
-// remove items when tip is cancelled
-$(document).on("load.users_show", function (event){
-  $('*[itemtype=tips]  form[method=delete]').on('item.delete', function(){
+  $('#tips > details:first summary').click();
+  
+  $('#tips details[itemtype=tips] form[method=put] input[type=text]').focus();
+  // format the page tip totals into dollars
+  $('details[itemscoped] > summary > figure > figcaption').each(function(){
+    $(this).text(copper.cents_to_dollars($(this).text()));
+  });
+
+  // format tips into dollars
+  $("input[type=text]").each(function (){
+    $(this).val(copper.cents_to_dollars($(this).val()));
+  });
+
+  $("*[itemtype=tips] span[itemprop=amount_in_cents]").each(function (){
+    $(this).text(copper.cents_to_dollars($(this).text()));
+  });
+
+  $('*[itemtype=tips] form[method=delete]').on('item.delete', function(){
     var tip = $(this).parents('*[itemscoped]')[0]
     var page = $(this).parents('*[itemscoped]')[1]
     $(tip).remove()
@@ -98,15 +90,22 @@ $(document).on("load.users_show", function (event){
     $(page).find('figcaption[itemprop=amount_in_cents]').text(new_total);
   });
 
-  $('*[itemtype=tips]  form[method=post]').on('item.post', function(){
+  $('*[itemtype=tips] form[method=put]').on('item.validate', function(){
+    var tip_amount_in_cents = (parseFloat($(this).find('input[type=text]').val()) * 100);
+    $(this).find('input[itemprop=amount_in_cents]').val(tip_amount_in_cents);
+  });
+
+  $('*[itemtype=tips] form[method=put]').on('item.put', function(){
     var page = $(this).parents('*[itemscoped]')[1]
     // TODO update the pages tip totals
     var new_total = 0;
-    $(page).find('input[itemprop=amount_in_cents]').each(function(){
+    $(page).find('input[type=text]').each(function(){
       new_total = new_total + Number($(this).val());
     });
 
-    $(page).find('figcaption[itemprop=amount_in_cents]').text(new_total);
+    $(page).find('span[itemprop=amount_in_cents]').each(function(){
+      new_total = new_total + Number($(this).text());
+    });
+    $(page).find('figcaption').text(new_total);
   });
-
 });

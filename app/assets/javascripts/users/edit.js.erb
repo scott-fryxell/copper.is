@@ -90,6 +90,13 @@ $(document).on("me.users_edit", function (){
   }
 });
 
+$(document).on("load.users_edit", function (){
+  $("#rate form").on('item.validate', function(){
+    var rate = copper.cents_to_dollars($('select[itemprop=tip_preference_in_cents]').val())
+    $('#rate p[itemprop=tip_preference_in_cents]').text(rate);
+  })
+});
+
 $(document).on("items.updated.users_edit", function (){
   copper.format_cents_to_dollars("tip_preference_in_cents")
 });

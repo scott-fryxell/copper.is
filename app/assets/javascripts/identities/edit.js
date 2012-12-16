@@ -4,8 +4,8 @@ $(document).on("load.identities_edit", function (){
 
   $('body > nav > button').click(function(event){
 
-    $(document).trigger('form.validate_address')
-    $(document).trigger('form.validate_email')
+    $('#email form').trigger('item.validate')
+    $('#address form').trigger('item.validate')
 
     if($('input.invalid').size() == 0 ||  $('select.invalid').size() == 0 ) {
       $(this).addClass('working');

@@ -32,7 +32,7 @@
   <div>
     <h2>Default tip</h2>
     <p>
-      <span itemprop="tip_preference_in_cents"><%=current_user.tip_preference_in_cents%></span>
+      <span itemprop="tip_preference_in_cents" data-value="<%=current_user.tip_preference_in_cents%>"></span>
       <button>+</button>
       <button>-</button>
     </p>
@@ -84,11 +84,12 @@
                     <td>
                       <%-if tip.paid_state == 'promised' -%>
                         <form method="put">
-                          <input type="text" name="tip[amount_in_cents]" itemprop="amount_in_cents" value="<%=tip.amount_in_cents%>"/>
+                          <input type="text" name='amount_in_dollars' value="<%=tip.amount_in_cents%>"/>
                           <input type="submit" value="Save"/>
+                          <input type="hidden" itemprop="amount_in_cents" name="tip[amount_in_cents]" value="<%=tip.amount_in_cents%>"/>
                         </form>
                       <%-else-%>
-                        <span itemprop='amount_in_cents'><%=tip.amount_in_cents%></span>
+                        <span itemprop='amount_in_cents' data-amount_in_cents='<%=tip.amount_in_cents%>'><%=tip.amount_in_cents%></span>
                       <%-end-%>
                     </td>
                     <td>

@@ -17,6 +17,12 @@
 // events are triggered when items are discoverd on the page
 // when they are updated. and when there are erros on form submission, 
 // and also when forms are submited succefully. 
+
+// The Item data is defined by what's on the page, in the dom 
+// not what's being maintained in a seperate javascript object. 
+// every time you access the items on the page this state is re-created
+// from the dom. 
+
 Item = {
   items: {},
 
@@ -37,10 +43,6 @@ Item = {
       Item.items[$(this).attr("itemtype")].push(i);
 
     });
-    if(Item.items){
-      // let any listeners know that their are items on the page
-      $(document).trigger("items." + $('body').attr('id'));
-    }
     return Item.items;
   },
 
@@ -66,6 +68,8 @@ Item = {
 
   // update exsisting items on the page
   update_page: function(item){
+    // Make sure your only updating the item for a single type and id. 
+    // console.debug('item to be updated', item);
     // console.debug('update page')
     $.each(item, function(key, value){
       if(value != null){
@@ -104,67 +108,66 @@ document.getItems = function (type){
 $(document).ready(function (event){
   $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
 
-  Item.discover_items() //map all the items on the page into a javascript equivalent
-
-  // capture form submissions for items. Determine
-  // their values and submit the data via ajax. 
-  // this means forms are submited with CSRF protection 
-  // without requireing the forms themselves to know the token
-  $("*[itemscoped] form").submit(function(event){
-    event.preventDefault()
-
-    // if their are no Items in the form just end the submit. 
-    // this assumes that some other actor is going to be taking 
-    // care of business 
-    if($(this).find("*[itemprop]").length == 0 && 'delete' != $(this).attr('method')){
-      return true
-    }
-    var item_element = $(this).parents('*[itemscoped]')
-    var id = $(item_element).attr('itemid')
-    var item_index = 0; // TODO get the index based on itemId
-    var type = $(item_element).attr('itemtype')
-    var form = this
-    var item_rolback = Item.items[type][item_index] //if form fails we can rollback to the original state
-    var action = $(this).attr('action');
-
-    if(!action){
-      // determine the action from the itemscope
-      action = "/" + $(item_element).attr('itemtype') + "/" + $(item_element).attr('itemId');
-    }
-    var method = $(this).attr('method').toLowerCase();
-    if ($(this).find('.invalid').size() > 0){
-      //Do not submit the form if there are any invalid input fields
-      return false;
-    }
-
-    // Update items on the page related to this form
-    // Makes an optimistic assumption about form submission
-    $(form).find('*[itemprop]').each(function (){
-      if(Item.get_value(this)){
-        Item.items[type][item_index][$(this).attr('itemprop')] = Item.get_value(this);
-      }
-    });
-    // console.debug("item being updated", Item.items[type][item_index])
-    if ('delete' != method){
-      Item.update_page(Item.items[type][item_index]);  
-    }
-    jQuery.ajax({
-      url: action,
-      type: method,
-      data: $(this).serialize(),
-      error: function(data, textStatus, jqXHR) {
-        // let any listeners know that there was a problem with the form submit
-        $(form).trigger('item.error');
-        Item.items[type][item_index] = item_rolback;
-        Item.update_page(Item.items[type][item_index]);
-        // console.error("error submiting item form " + id, data, textStatus, jqXHR);
-      },
-      success: function(data, textStatus, jqXHR){
-        // console.debug("successful item submission", data)
-        // let any listeners know that any the form submited succesfully update.
-        // TODO we leave updating the items to the listener of this method. this is risky
-        $(form).trigger('item.' + method);
-      }
-    });
-  });
+  if(Item.discover_items()){
+    // let any listeners know that their are items on the page
+    $(document).trigger("items." + $('body').attr('id'));
+  }
 });
+
+// capture form submissions for items. Determine
+// their values and submit the data via ajax. 
+// this means forms are submited with CSRF protection 
+// without requireing the forms themselves to know the token
+$("*[itemscoped] form").submit(function(event){
+  event.preventDefault()
+
+  // if their are no Items in the form just end the submit. 
+  // this assumes that some other actor is going to be taking 
+  // care of business 
+  if($(this).find("*[itemprop]").length == 0 && 'delete' != $(this).attr('method')){
+    return true
+  }
+  var item_element = $(this).parents('*[itemscoped]')
+  var id = $(item_element).attr('itemid')
+  var item_index = 0; // TODO get the index based on itemId
+  var type = $(item_element).attr('itemtype')
+  var form = this
+  var item_rolback = Item.items[type][item_index] //if form fails we can rollback to the original state
+  var action = $(this).attr('action');
+
+  if(!action){
+    // determine the action from the itemscope
+    action = "/" + $(item_element).attr('itemtype') + "/" + $(item_element).attr('itemId');
+  }
+  var method = $(this).attr('method').toLowerCase();
+
+  $(form).trigger('item.validate');
+
+  if ($(form).find('.invalid').size() > 0){
+    //Do not submit the form if there are any invalid input fields
+    return false;
+  }
+  
+  jQuery.ajax({
+    url: action,
+    type: method,
+    data: $(this).serialize(),
+    error: function(data, textStatus, jqXHR) {
+      // let any listeners know that there was a problem with the form submit
+      $(form).trigger('item.error');
+      Item.items[type][item_index] = item_rolback;
+      Item.update_page(Item.items[type][item_index]);
+      // console.error("error submiting item form " + id, data, textStatus, jqXHR);
+    },
+    success: function(data, textStatus, jqXHR){
+      // console.debug("successful item submission", data)
+      // let any listeners know that any the form submited succesfully update.
+      // TODO we leave updating the items to the listener of this method. this is risky
+      $(form).trigger('item.' + method);
+    }
+  });
+
+  //don't submit the form so that the page redraws
+  return false;
+});
+
