@@ -31,7 +31,7 @@ $(document).ready ->
   $("img[alt=Gear]").click -> $(@).addClass "working"
 
   jQuery.ajax
-    url:'/fans/me',
+    url:'/fans/me.json',
     dataType:'json',
     success: (data) ->
       copper.me = data;
