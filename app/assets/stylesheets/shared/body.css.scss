@@ -6,9 +6,8 @@ html {
   @include text;
 }
 body {
-
   overflow-x:hidden;
-    &:after {
+  &:after {
     content:"";
     position:absolute;
     z-index:-1;
@@ -50,6 +49,31 @@ body > header {
       display:inline-block;
     }
   }
+
+  & > a {
+    position:absolute;
+    top:0;
+    left:1em;
+    vertical-align:top;
+    text-decoration:none;
+    color:$light-text;
+    padding:.75em 1em;
+  }
+  & > nav {
+    margin-top:1em;
+    margin-left:9.5em;
+    display:inline-block;
+  }
+  & > nav > a {
+    font-family: 'Doppio One', sans-serif;
+    color:$light-text;
+    opacity:.5;
+    font-size:.77em;
+    text-decoration:none;
+    text-transform:uppercase;
+    margin-right:2em;
+  }
+
   #sign_in {
     float:right;
     vertical-align:middle;
@@ -132,29 +156,6 @@ body > header {
     color:$light-text;
   }
 }
-body > header > a {
-  position:absolute;
-  top:0;
-  left:1em;
-  vertical-align:top;
-  text-decoration:none;
-  color:$light-text;
-  padding:.75em 1em;
-}
-body > header > nav {
-  margin-top:1em;
-  margin-left:9.5em;
-  display:inline-block;
-}
-body > header > nav > a {
-  font-family: 'Doppio One', sans-serif;
-  color:$light-text;
-  opacity:.5;
-  font-size:.77em;
-  text-decoration:none;
-  text-transform:uppercase;
-  margin-right:2em;
-}
 
 body > section,
 body > article {
@@ -165,6 +166,7 @@ body > section a {
   font-family: 'Doppio One', sans-serif;
   color:$text;
 }
+
 body > section, 
 body > article,
 body > footer {
