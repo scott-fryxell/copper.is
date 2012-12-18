@@ -21,10 +21,6 @@ class HomeController < ApplicationController
     response.headers['Cache-Control'] = 'public, max-age=300'
   end
 
-  def how
-    response.headers['Cache-Control'] = 'public, max-age=300'
-  end
-
   def contact
     response.headers['Cache-Control'] = 'public, max-age=300'
   end
@@ -45,10 +41,6 @@ class HomeController < ApplicationController
     else
       render nothing:true, status:200
     end
-  end
-
-  def trending
-    @trending = Page.trending
   end
 
 end

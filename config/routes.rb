@@ -21,7 +21,6 @@ Copper::Application.routes.draw do
   get 'authors/me/edit', to:'authors#edit'
 
   get 'about',   :to => 'home#about'
-  get 'how',     :to => 'home#how'
   get 'contact', :to => 'home#contact'
   get 'terms',   :to => 'home#terms'
   get 'privacy', :to => 'home#privacy'
@@ -29,8 +28,6 @@ Copper::Application.routes.draw do
   get 'button',  :to => 'home#button'
   get 'states',  :to => 'home#states'
   get 'statistics',  :to => 'home#statistics'
-
-  get 'trending',  :to => 'home#trending'
 
   if Rails.env.test? || Rails.env.development?
     get 'test',    :to => 'home#test'
