@@ -15,7 +15,6 @@ $(document).bind({
   "tip_info": function (event){
     title = decodeURIComponent(event.title)
     new_tip = document.getItems('tips')[0]
-    console.debug(new_tip)
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
     new_tip.thumbnail_url = decodeURIComponent(event.thumbnail_url)

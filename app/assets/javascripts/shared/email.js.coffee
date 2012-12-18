@@ -1,11 +1,10 @@
 $(document).on "load.identities_edit load.users_edit load.authors_edit", ->
 
   $('#email form').bind 'item.error', ->
-    $('#ema`il > header > a').click();
+    $('#email > header > a').click();
     $(this).find('input[itemprop=email]').addClass 'invalid';
 
   $('#email form').on "item.validate", ->
-    console.debug('validate email')    
     $('#email input').removeClass "invalid"
     email = $('input[itemprop=email]').val()
     if ( email.search(/\./) == -1 || email.search('@') == -1 || email.indexOf('@') < 2  )
