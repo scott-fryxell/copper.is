@@ -30,7 +30,6 @@ describe "A Fan's settings page", :slow do
         find_field('user[email]').value.should == 'change@email.com'
       end
     end
-
   end
 
   it "should have the fan's name in the title" do
@@ -132,7 +131,8 @@ describe "A Fan's settings page", :slow do
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
     end
-
   end
+
+  it "should be able to add the extension to their browser"
 
 end
