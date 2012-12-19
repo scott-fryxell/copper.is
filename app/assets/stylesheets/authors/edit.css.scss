@@ -47,7 +47,7 @@
     }
   }
 
- #identities.edit {
+  #identities.edit {
   
     & > aside {
       @include active;
@@ -69,7 +69,6 @@
       opacity:0;
       @include transition (opacity 0.3s ease-in 0.25s);
     }
-
   }
 
   #address {
@@ -78,5 +77,4 @@
   #address > form > input[type=submit] {
     width:4em;
   }
-  
 }
