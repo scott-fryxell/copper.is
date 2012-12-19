@@ -10,11 +10,6 @@ describe HomeController do
         get :about
       end
     end
-    describe '/how' do
-      it '200' do
-        get :how
-      end
-    end
     describe '/contact' do
       it '200' do
         get :contact
