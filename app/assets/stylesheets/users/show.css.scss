@@ -117,7 +117,7 @@
     }
     & > summary > figure > img {
       width:grid-width(4);
-      max-height:grid-width(3);
+      height:grid-width(3);
       overflow:hidden;
       @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
     }
@@ -179,7 +179,7 @@
       }
       & > figure > img {
         width:grid-width(8);
-        max-height:grid-width(5);
+        height:grid-width(5);
       }
     }
     & > dl {
@@ -275,6 +275,31 @@
         }
       }
     }
+  }
+
+  #tips details[data-author_state=orphaned] > summary > figure > img {
+    //red
+    @include box-shadow(1px 1px 5px 2px rgba(255, 0, 0, 0.7));
+  }
+
+  #tips details[data-author_state=triaged] > summary > figure > img {
+    //yellow
+    @include box-shadow(1px 1px 5px 2px rgba(255, 255, 0, 0.7)); 
+  }
+
+  #tips details[data-author_state=fostered] > summary > figure > img {
+    //blue
+    @include box-shadow(1px 1px 5px 2px rgba(0, 0, 255, 0.7)); 
+  }
+
+  #tips details[data-author_state=adopted] > summary > figure > img {
+    //green
+    @include box-shadow(1px 1px 5px 2px rgba(0, 128, 0, 0.7)); 
+  }
+
+  #tips details[data-author_state=manual] > summary > figure > img {
+    //brown
+    @include box-shadow(1px 1px 5px 2px rgba(165, 42, 42, 0.7)); 
   }
 }
 
