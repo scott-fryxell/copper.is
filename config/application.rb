@@ -42,6 +42,7 @@ module Copper
 
       google_key
       google_secret
+      google_code_developer_key
 
       facebook_key
       facebook_secret
@@ -64,6 +65,7 @@ module Copper
       resque_overview_password
 
       redistogo_url
+
 
     ].each do |env|
       raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?
