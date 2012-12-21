@@ -3,9 +3,11 @@ class Identities::Youtube < Identity
   include YoutubeMessages
 
   def self.discover_uid_and_username_from_url url
-  end
-
-  def discover_uid_and_username_from_url
+    if '/watch' == URI.parse(url).path
+      discover_uid_and_username_from_video url
+    else 
+      raise "unable to find a user for this url"
+    end
   end
 
   def inform_non_user_of_promised_tips
@@ -26,14 +28,28 @@ class Identities::Youtube < Identity
 
   private
 
+  def self.discover_uid_and_username_from_video url
+    video = connect_to_api.video_by(URI.parse(url).query.split('v=')[1])
+    author_id = URI.parse(video.author.uri).path.split('/')[4]
+    { :uid => author_id, :username => video.author.name }
+  end
+
+  def self.connect_to_api
+    YouTubeIt::Client.new(dev_key:Copper::Application.config.google_code_developer_key)
+  end
+
   def youtube_it_client
-    @client ||= YouTubeIt::Client.new(:dev_key =>
-                  Copper::Application.config.google_code_developer_key)
+    @client ||= Identity.connect_to_api
   end
 
   def author_uri
-    youtube_it_client.video_by("9Z8Z9bGBe_M").author.uri
+    youtube_it_client.video_by(@video_id).author.uri
   end
+
+  def author_name
+    youtube_it_client.video_by(@video_id).author.name
+  end
+
 
   def channel_uri
     doc = Nokogiri::Document.new(open(author_uri))
