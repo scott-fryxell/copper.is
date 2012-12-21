@@ -105,7 +105,11 @@ GEM
     hashie (1.2.0)
     hashugar (0.0.6)
     hike (1.2.1)
+    httparty (0.9.0)
+      multi_json (~> 1.0)
+      multi_xml
     httpauth (0.2.0)
+    httpclient (2.3.0.1)
     i18n (0.6.1)
     jbuilder (0.9.0)
       activesupport (>= 3.0.0)
@@ -131,6 +135,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.5.0)
+    multi_xml (0.5.1)
     multipart-post (1.1.5)
     newrelic_rpm (3.5.4.33)
     nokogiri (1.5.5)
@@ -302,6 +307,12 @@ GEM
       raindrops (~> 0.7)
     vegas (0.1.11)
       rack (>= 1.0.0)
+    vimeo (1.5.3)
+      httparty (>= 0.4.5)
+      httpclient (>= 2.1.5.2)
+      json (>= 1.1.9)
+      multipart-post (>= 1.0.1)
+      oauth (>= 0.4.3)
     websocket (1.0.4)
     xpath (0.1.4)
       nokogiri (~> 1.3)
@@ -372,6 +383,7 @@ DEPENDENCIES
   twitter
   uglifier
   unicorn
+  vimeo
   yard
   youtube_it
   yui-compressor
