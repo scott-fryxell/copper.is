@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Identities::Youtube, :broken do
+describe Identities::Youtube do
   before do
     @identity = FactoryGirl.create(:identities_youtube, username:"_ugly")
   end
