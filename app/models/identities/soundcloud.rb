@@ -1,9 +1,8 @@
 class Identities::Soundcloud < Identity
 
   def self.discover_uid_and_username_from_url url
-  end
-
-  def discover_uid_and_username_from_url
+    username = URI.parse(url).path.split('/')[1]
+    {:username => username }  
   end
 
   def inform_non_user_of_promised_tips

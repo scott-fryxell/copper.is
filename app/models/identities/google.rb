@@ -3,9 +3,6 @@ class Identities::Google < Identity
   
   def self.discover_uid_and_username_from_url url
   end
-  
-  def discover_uid_and_username_from_url
-  end
 
   def inform_non_user_of_promised_tips
     super do

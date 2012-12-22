@@ -26,7 +26,28 @@ class Identity < ActiveRecord::Base
   scope :wanted, where('identity_state = ?', 'wanted')
   scope :known, where('identity_state = ?', 'known')
 
+  def self.lookups
+    @lookups
+  end
+
+  @lookups = [
+    {
+      type:'Identities::Github',
+      matcher:proc{|a| a =~ %r{github\.com\/[^/]+}},
+      extract:proc{|a| %r{github\.com\/([^/]+)}.match(a)[1] rescue nil}
+    },{
+      type:'Identities::Soundcloud',
+      matcher:proc{|a| a =~ /soundcloud\.com/},
+      extract:proc{|a| /soundcloud\.com\/([^\/]+)/.match(a)[1] rescue nil}
+    },{
+      type:'Identities::Twitter',
+      matcher:proc{|a| a =~ /twitter\.com/},
+      extract:proc{|a| /twitter\.com\/([^\/]+)/.match(a)[1] rescue nil}
+    }
+  ]
+
   state_machine :identity_state, initial: :stranger do
+
     event :publicize do
       transition :stranger => :wanted
     end
@@ -107,7 +128,7 @@ class Identity < ActiveRecord::Base
     when /facebook\.com$/ then 'facebook'
     when /tumblr\.com$/ then 'tumblr'
     when /twitter\.com$/ then 'twitter'
-    when /google\.com$/ then 'google'
+    when /plus\.google\.com$/ then 'google'
     when /vimeo\.com$/ then 'vimeo'
     when /flickr\.com$/ then 'flickr'
     when /github\.com$/ then 'github'
