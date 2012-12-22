@@ -42,17 +42,29 @@
   </footer>
 </section>
 
-<section id="tips">
+<section id="tips" class="adopted">
   <%-if @pages -%>
     <header>
       <h1>What you've tipped</h1>
-      <nav>
+      <hgroup>
+        <h2>Page states</h2>
+        <nav>
+          <a href="javascript:$(document).trigger("toggle_page_state")">show</a>
+          <a href="javascript:$(document).trigger("toggle_adopted")">adopted</a>
+          <a href="javascript:$(document).trigger("toggle_triaged")">triaged</a>
+          <a href="javascript:$(document).trigger("toggle_fostered")">fostered</a>
+          <a href="javascript:$(document).trigger("toggle_manual")">manual</a>
+        </nav>
+      </hgroup>
+      <hgroup>
         <h2>Filter by</h2>
-        <a href="#recent" class="selected">Most recent</a>
-        <a href="#author">Alphabetical by author</a>
-        <a href="#site">Alphabetical by site</a>
-        <a href="#status">Status</a>
-      </nav>
+        <nav>
+          <a href="#recent" class="selected">Most recent</a>
+          <a href="#author">Alphabetical by author</a>
+          <a href="#site">Alphabetical by site</a>
+          <a href="#status">Status</a>
+        </nav>
+      </hgroup>
     </header>
     <%-@pages.each do |page| -%>
       <details itemscoped itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>">
