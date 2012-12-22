@@ -87,7 +87,9 @@ class Page < ActiveRecord::Base
 
     state :orphaned do
       def discover_identity!
-        if Identity.provider_from_url(self.url) and
+        if URI.parse(self.url).path.size <= 1
+          reject!
+        elsif Identity.provider_from_url(self.url) and
             self.identity = Identity.find_or_create_from_url(self.url)
           adopt!
         else
