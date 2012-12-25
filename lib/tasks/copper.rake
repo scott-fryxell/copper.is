@@ -14,7 +14,7 @@ end
 
 
 task :work_pages_over => :environment do
-  puts "processing triaged pages"
+  puts "processing orphaned pages"
   Page.orphaned.each do |page|
     puts "id=#{page.id}, #{page.url}"
     page.discover_identity!    
@@ -22,15 +22,15 @@ task :work_pages_over => :environment do
 
   # puts "processing triaged pages"
   # Page.triaged.each do |page|
-  #   puts page.url
+  #   puts "id=#{page.id}, #{page.url}"
   #   page.find_identity_from_author_link!
   # end
 
-  # puts "processing fostered pages"
-  # Page.fostered.each do |page|
-  #   puts page.url
-  #   page.find_identity_from_page_links!
-  # end
+  puts "processing fostered pages"
+  Page.fostered.each do |page|
+    puts "id=#{page.id}, #{page.url}"
+    page.find_identity_from_page_links!
+  end
 end
 
 
