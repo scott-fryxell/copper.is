@@ -142,6 +142,7 @@ class Identity < ActiveRecord::Base
   
   def self.find_or_create_from_url(url)
     provider = provider_from_url(url)
+    
     i = subclass_from_provider(provider).discover_uid_and_username_from_url url
     ident = Identity.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid],i[:username]).first
     unless ident

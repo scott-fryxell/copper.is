@@ -102,42 +102,78 @@
       //blue
       //@include box-shadow(1px 1px 5px 2px rgba(0, 0, 255, 0.7)); 
     }
-
   }
 
   #tips.adopted {
-    & > details[data-author_state=orphaned],
-    & > details[data-author_state=triaged],
-    & > details[data-author_state=fostered],
-    & > details[data-author_state=manual] {
+    & > details[data-author_state]{
       display:none;
     }
 
-    & > details[data-author_state=adopted] > summary > figure > img {
-      //green
-      @include box-shadow(1px 1px 5px 2px rgba(0, 128, 0, 0.7)); 
+    & > details[data-author_state=adopted]{
+      display:inline-block;
     }
   }
 
+  #tips.triage {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=triage]{
+      display:inline-block;
+    }
+  }
+
+  #tips.fostered {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=fostered]{
+      display:inline-block;
+    }
+  }
+
+  #tips.manual {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=manual]{
+      display:inline-block;
+    }
+  }
 
   #tips > header {
     & > h1 {
       font-size:1.5em;
     }
-    & > nav {
-      margin-bottom:grid-width(1);
+    & > hgroup {
+
+      & > nav {
+        margin-bottom:grid-width(1);
+      }
+      & h2,
+      & > nav > a {
+        display:inline-block;
+        margin-right:1em;
+        @include text;
+      }
+      & > nav > a span {
+        font-weight:bold;
+      }
+      & > h2 {
+        margin-bottom:0.5em;
+      }
+      & > h2:after{
+        content: ":";
+      }
+      & > nav > a.selected {
+        color:$darkness;
+      }
     }
-    & > nav > h2,
-    & > nav > a {
-      display:inline-block;
-      margin-right:1em;
-      @include text;
-    }
-    & > nav > h2:after{
-      content: ":";
-    }
-    & > nav > a.selected {
-      color:$darkness;
+    & > hgroup:nth-child(3) {
+      display:none;
     }
   }
   #tips > details {

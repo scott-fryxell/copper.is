@@ -6,6 +6,7 @@ class Identities::Twitter < Identity
 
   def self.discover_uid_and_username_from_url url
     screen_name = URI.parse(url).path.split('/')[1]
+    puts screen_name, url
     { :uid => ::Twitter.user(screen_name).id.to_s, :username => screen_name }
   end
 

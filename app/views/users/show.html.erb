@@ -42,27 +42,20 @@
   </footer>
 </section>
 
-<section id="tips" class="">
+<section id="tips" class="fostered">
   <%-if @pages -%>
     <header>
-      <h1>What you've tipped</h1>
-      <hgroup>
-        <h2>Page states</h2>
-        <nav>
-          <a href="javascript:$(document).trigger("toggle_page_state")">show</a>
-          <a href="javascript:$(document).trigger("toggle_adopted")">adopted</a>
-          <a href="javascript:$(document).trigger("toggle_triaged")">triaged</a>
-          <a href="javascript:$(document).trigger("toggle_fostered")">fostered</a>
-          <a href="javascript:$(document).trigger("toggle_manual")">manual</a>
-        </nav>
-      </hgroup>
+      <h1>What you've tipped</h1> 
       <hgroup>
         <h2>Filter by</h2>
         <nav>
-          <a href="#recent" class="selected">Most recent</a>
-          <a href="#author">Alphabetical by author</a>
-          <a href="#site">Alphabetical by site</a>
-          <a href="#status">Status</a>
+          <a href="#pages/recent" class="selected">recent</a>
+          <a href="#pages/adopted">adopted <span><%=Page.adopted.count%></span></a>
+          <a href="#pages/triaged">triaged <span><%=Page.triaged.count%></span></a>
+          <a href="#pages/fostered">fostered <span><%=Page.fostered.count%></span></a>
+          <a href="#pages/manual">manual <span><%=Page.manual.count%></span></a>
+          <a href="#pages/author">author</a>
+          <a href="#pages/site">site</a>
         </nav>
       </hgroup>
     </header>
