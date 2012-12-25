@@ -74,7 +74,7 @@
     }
   }
 
-  #tips {
+  #pages {
     & > details[data-author_state=orphaned] > summary > figure > img {
       //red
       @include box-shadow(1px 1px 5px 2px rgba(255, 0, 0, 0.7));
@@ -104,7 +104,7 @@
     }
   }
 
-  #tips.adopted {
+  #pages.adopted {
     & > details[data-author_state]{
       display:none;
     }
@@ -114,7 +114,7 @@
     }
   }
 
-  #tips.triage {
+  #pages.triage {
     & > details[data-author_state]{
       display:none;
     }
@@ -124,7 +124,7 @@
     }
   }
 
-  #tips.fostered {
+  #pages.fostered {
     & > details[data-author_state]{
       display:none;
     }
@@ -134,7 +134,7 @@
     }
   }
 
-  #tips.manual {
+  #pages.manual {
     & > details[data-author_state]{
       display:none;
     }
@@ -144,7 +144,7 @@
     }
   }
 
-  #tips > header {
+  #pages > header {
     & > h1 {
       font-size:1.5em;
     }
@@ -176,7 +176,7 @@
       display:none;
     }
   }
-  #tips > details {
+  #pages > details {
     display:inline-block;
     width:grid-width(4);
     margin: 0 1em 1em 0;
@@ -223,7 +223,7 @@
       content: "$";
     }
   }
-  #tips > details[open] {
+  #pages > details[open] {
     position:relative;
     width:grid-width(21);
     margin:1em 0;
