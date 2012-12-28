@@ -24,7 +24,7 @@
   </header>
   <div>
     <%-current_user.identities.each do |identity|-%>
-    <figure class="<%=identity.provider%>" itemscoped itemtype="identities"  itemid="<%=identity.id%>">
+    <figure class="<%=identity.provider%>" itemscope itemtype="identities"  itemid="<%=identity.id%>">
       <%= image_tag "providers/#{identity.provider}/sign_in.png", title:identity.username%>
       <figcaption itemprop='username'><%=identity.username%></figcaption>
       <%-if current_user.identities.count > 1-%>

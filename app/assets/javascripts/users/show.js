@@ -52,7 +52,7 @@ $(document).on("load.users_show", function (event){
   
   $('#tips details[itemtype=tips] form[method=put] input[type=text]').focus();
   // format the page tip totals into dollars
-  $('details[itemscoped] > summary > figure > figcaption').each(function(){
+  $('details[itemscope] > summary > figure > figcaption').each(function(){
     $(this).text(copper.cents_to_dollars($(this).text()));
   });
 
@@ -66,8 +66,8 @@ $(document).on("load.users_show", function (event){
   });
 
   $('*[itemtype=tips] form[method=delete]').on('item.delete', function(){
-    var tip = $(this).parents('*[itemscoped]')[0]
-    var page = $(this).parents('*[itemscoped]')[1]
+    var tip = $(this).parents('*[itemscope]')[0]
+    var page = $(this).parents('*[itemscope]')[1]
     $(tip).remove()
 
     tip_count = $(page).find('tbody > tr').size() 
@@ -96,7 +96,7 @@ $(document).on("load.users_show", function (event){
   });
 
   $('*[itemtype=tips] form[method=put]').on('item.put', function(){
-    var page = $(this).parents('*[itemscoped]')[1]
+    var page = $(this).parents('*[itemscope]')[1]
     // TODO update the pages tip totals
     var new_total = 0;
     $(page).find('input[type=text]').each(function(){

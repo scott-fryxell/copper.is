@@ -6,7 +6,7 @@ class Identity < ActiveRecord::Base
   has_many :pages
   has_many :tips, :through => :pages
   has_many :checks, :through => :pages
-
+  
   attr_accessible :provider, :uid, :username
 
   # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
@@ -25,26 +25,6 @@ class Identity < ActiveRecord::Base
   scope :stranger, where('identity_state = ?', 'stranger')
   scope :wanted, where('identity_state = ?', 'wanted')
   scope :known, where('identity_state = ?', 'known')
-
-  def self.lookups
-    @lookups
-  end
-
-  @lookups = [
-    {
-      type:'Identities::Github',
-      matcher:proc{|a| a =~ %r{github\.com\/[^/]+}},
-      extract:proc{|a| %r{github\.com\/([^/]+)}.match(a)[1] rescue nil}
-    },{
-      type:'Identities::Soundcloud',
-      matcher:proc{|a| a =~ /soundcloud\.com/},
-      extract:proc{|a| /soundcloud\.com\/([^\/]+)/.match(a)[1] rescue nil}
-    },{
-      type:'Identities::Twitter',
-      matcher:proc{|a| a =~ /twitter\.com/},
-      extract:proc{|a| /twitter\.com\/([^\/]+)/.match(a)[1] rescue nil}
-    }
-  ]
 
   state_machine :identity_state, initial: :stranger do
 
@@ -123,8 +103,23 @@ class Identity < ActiveRecord::Base
     Identity.subclass_from_provider(opts[:provider]).create(opts)
   end
 
+
+
   def self.provider_from_url(url)
-    case URI.parse(url).host
+    begin  
+      uri = URI.parse(url)
+      return nil unless /tumblr\.com$/.match(uri.host) or uri.path.size > 1 or uri.query or uri.fragment
+    rescue => e
+      puts "#{e}"
+      return nil
+    end
+
+    # url's that arent providerable
+    if %r{twitter.com/share|twitter.com/home|plus.google.com/share|facebook.com/sharer.php|facebook.com/login.php|
+          soundcloud.com/dashboard|code.flickr.com}.match(url)
+      return nil
+    end
+    case uri.host
     when /facebook\.com$/ then 'facebook'
     when /tumblr\.com$/ then 'tumblr'
     when /twitter\.com$/ then 'twitter'
@@ -138,17 +133,21 @@ class Identity < ActiveRecord::Base
     else
       nil
     end
+  rescue URI::InvalidURIError => e
+    return nil
   end
   
   def self.find_or_create_from_url(url)
-    provider = provider_from_url(url)
-    
-    i = subclass_from_provider(provider).discover_uid_and_username_from_url url
-    ident = Identity.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid],i[:username]).first
-    unless ident
-      ident = factory(provider:provider,username:i[:username],uid:i[:uid])
+    if provider = provider_from_url(url)
+      i = subclass_from_provider(provider).discover_uid_and_username_from_url url
+      ident = Identity.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid],i[:username]).first
+      unless ident
+        ident = factory(provider:provider,username:i[:username],uid:i[:uid])
+      end
+      ident
+    else
+      nil
     end
-    ident
   end
   
   # --------------------------------------------------------------------

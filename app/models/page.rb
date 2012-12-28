@@ -4,7 +4,6 @@ class Page < ActiveRecord::Base
   belongs_to :identity, :touch => true
   has_many :tips
   has_many :checks, :through => :tips
- 
   attr_accessible :title, :url, :thumbnail_url
 
   validates :url, :presence => true
@@ -38,13 +37,22 @@ class Page < ActiveRecord::Base
       page.discover_thumbnail
     end
   end
+  
+  after_initialize do
+    @agent = Mechanize.new do |a|
+      a.post_connect_hooks << lambda do |_,_,response,_|
+        if response.content_type.nil? || response.content_type.empty?
+          response.content_type = 'text/html'
+        end
+      end
+    end
+   end
 
   after_create do |page|
     if page.orphaned?
       Resque.enqueue Page, page.id, :discover_identity!
     end
   end
-
 
   state_machine :author_state, initial: :orphaned do
 
@@ -62,11 +70,12 @@ class Page < ActiveRecord::Base
     # page is put into manual mode where a person is going to
     # get involved to figure it out. If at any point in this 
     # chain a page is adopted it has reached it's final state. 
+    # a page is dead when we try to spider it and get a 404
     event :reject do
       transition :orphaned   => :triaged,
                  :triaged    => :fostered,
                  :fostered   => :manual,
-                 :manual     => :orphaned
+                 :manual     => :dead
     end
 
     after_transition any => :orphaned do |page,transition|
@@ -82,15 +91,30 @@ class Page < ActiveRecord::Base
     end
 
     after_transition any => :manual do |page,transition|
-      Resque.enqueue Page, page.id, :message_admin_to_find_page_author!
+      Resque.enqueue Page, page.id, :notify_admin_to_find_page_author!
+    end
+
+    after_transition any => :dead do |page,transition|
+      Resque.enqueue Page, page.id, :clean_up_dead_page!
     end
 
     state :orphaned do
-      def discover_identity!
-        if URI.parse(self.url).path.size <= 1
-          reject!
-        elsif Identity.provider_from_url(self.url) and
+      def discover_identity
+        begin
+          discover_identity!
+        rescue => e
+          logger.warn "Page#discover_identity: on: #{self.url}"
+          logger.error "#{e.class}: #{e.message}"
+          self.reject!
+          return nil
+        end
+      end
+
+      def discover_identity! 
+        logger.info("discover_identity for: id=#{self.id}, #{self.url}")
+        if Identity.provider_from_url(self.url) and
             self.identity = Identity.find_or_create_from_url(self.url)
+            log_adopted
           adopt!
         else
           reject!
@@ -99,56 +123,108 @@ class Page < ActiveRecord::Base
     end
 
     state :triaged do
+      def find_identity_from_author_link
+        begin
+          find_identity_from_author_link!
+        rescue => e
+          logger.warn "Page#find_identity_from_author_link: on: #{self.url}"
+          logger.error ":    #{e.class}: #{e.message}"
+          self.reject!
+          return nil
+        end
+      end
+
       def find_identity_from_author_link!
-        author_tag = Nokogiri::HTML(open(self.url)).css('link[rel=author]')
-        unless author_tag.blank?
-          if author_link = author_tag.attr('href').value
-            self.identity = Identity.find_or_create_from_url(author_link)
-            adopt!
-            if self.identity.stranger?
-              self.identity.publicize!
+        logger.info("author_link for: id=#{self.id}, #{self.url}")
+        @agent.get(self.url) do |doc|
+          if author_link = doc.at('link[rel=author]')
+            href = author_link.attributes['href'].value
+            logger.info ":    author: #{href}"
+            puts ":    author: #{href}"
+            if Identity.provider_from_url(href) and 
+              self.identity = Identity.find_or_create_from_url(href)
+              log_adopted
+              adopt!
+            else
+              reject!
+              return nil
             end
           else
             reject!
+            return nil
           end
-        else
-          reject!
         end
       end
     end
 
     state :fostered do
+      def find_identity_from_page_links
+        begin
+          find_identity_from_page_links!
+        rescue => e    
+          logger.warn "Page#find_identity_from_page_links: on: #{self.url}"
+          logger.error ":    #{e.class}: #{e.message}"
+          self.reject!
+          return nil
+        end
+      end
       def find_identity_from_page_links!
-        doc = Nokogiri.parse(open(self.url))
-        self.title = doc.title
-        doc.css('a').each do |link|
-          href = link.attr(:href)
-          Identity.lookups.each do |query|
-            type, matcher, extract = query[:type], query[:matcher]
-            if href && matcher.call(href)
-              self.identity = Identity.find_or_create_from_url(href)
+        logger.info "page_links for: id=#{self.id}, #{self.url}"
+        @agent.get(self.url) do |doc|
+          self.url = doc.uri.to_s
+          if doc.title
+            self.title = doc.title
+          end
+
+          # if author_link = doc.at('link[rel=author]')
+          #   href = author_link.attributes['href'].value
+          #   logger.info ":    author: #{href}"
+          #   puts ":    author: #{href}"
+          #   if Identity.provider_from_url(href) and 
+          #     self.identity = Identity.find_or_create_from_url(href)
+          #     log_adopted
+          #     return adopt!
+          #   else
+          # end
+
+          doc.links_with(:href => %r{twitter.com|facebook.com|tumblr.com|plus.google.com}).each do |link|
+            output = ":    link: #{link.href}"
+            logger.info output
+            puts output
+            if Identity.provider_from_url(link.href)
+              unless %r{/status/|/events/|/post/sharer|/dialog/}.match(URI.parse(link.href).path)
+                if self.identity = Identity.find_or_create_from_url(link.href) 
+                  log_adopted
+                  return adopt!                
+                end
+              end
             end
           end
+          reject! unless self.identity
         end
-        if self.identity
-          adopt!
-        else
-          reject!
-        end
-        save!
-      rescue OpenURI::HTTPError, SocketError
-        logger.warn("Page#scrape_for_channels got 404, page still orphaned: #{self.url}")
-      rescue RuntimeError => e
-        logger.error("Page#scrape_for_channels: #{e.class}: #{e.message}")
-      rescue URI::InvalidURIError => e
-        logger.warn("Page#scrape_for_channels: #{e.class}: #{e.message}")
       end
     end
 
     state :manual do
-      def message_admin_to_find_page_author!
+      def notify_admin_to_find_page_author!
         # update a list for admin's to look at of pages that need authors
       end
     end
+
+     state :dead do
+      def clean_up_dead_page!
+        # refund unpaid tips. 
+        # remove page from the app
+      end
+    end
   end
+
+  private
+
+  def log_adopted
+    output = ":    adopted: username=#{self.identity.username}, uid=#{self.identity.uid}, id=#{self.identity.id}"
+    logger.info output
+    puts output
+  end
+
 end

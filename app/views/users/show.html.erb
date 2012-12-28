@@ -42,7 +42,7 @@
   </footer>
 </section>
 
-<section id="pages" class="fostered">
+<section id="pages" class="adopted">
   <%-if @pages -%>
     <header>
       <h1>What you've tipped</h1> 
@@ -50,17 +50,18 @@
         <h2>Filter by</h2>
         <nav>
           <a href="#pages/recent" class="selected">recent</a>
-          <a href="#pages/adopted">adopted <span><%=Page.adopted.count%></span></a>
-          <a href="#pages/triaged">triaged <span><%=Page.triaged.count%></span></a>
-          <a href="#pages/fostered">fostered <span><%=Page.fostered.count%></span></a>
-          <a href="#pages/manual">manual <span><%=Page.manual.count%></span></a>
+          <a href="#pages/adopted">adopted <span><%=current_user.pages.adopted.count%></span></a>
+          <a href="#pages/triaged">triaged <span><%=current_user.pages.triaged.count%></span></a>
+          <a href="#pages/fostered">fostered <span><%=current_user.pages.fostered.count%></span></a>
+          <a href="#pages/manual">manual <span><%=current_user.pages.manual.count%></span></a>
+          <a href="#pages/orphaned">orphaned <span><%=current_user.pages.orphaned.count%></span></a>
           <a href="#pages/author">author</a>
           <a href="#pages/site">site</a>
         </nav>
       </hgroup>
     </header>
     <%-@pages.each do |page| -%>
-      <details itemscoped itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>">
+      <details itemscope itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>">
         <summary>
           <h2 itemprop="title"><%=page.title%></h2>
           <figure>
@@ -84,7 +85,7 @@
                 </thead>
                 <tbody>
                   <%-page.fan_tips(current_user).each do |tip| -%>
-                  <tr itemscoped itemtype='tips' itemid='<%=tip.id%>'>
+                  <tr itemscope itemtype='tips' itemid='<%=tip.id%>'>
                     <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
                     <td>
                       <%-if tip.paid_state == 'promised' -%>

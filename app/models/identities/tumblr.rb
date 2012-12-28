@@ -1,12 +1,16 @@
 class Identities::Tumblr < Identity
 
   def self.discover_uid_and_username_from_url url
-    host = URI.parse('http://janebook.tumblr.com/').host
-    username = %r{.tumblr.com}.match(host).pre_match
+    uri = URI.parse(url)
+    if %r{/follow/}.match(uri.path)
+      username = %r{/follow/}.match(uri.path).post_match
+    else
+      username = %r{.tumblr.com}.match(uri.host).pre_match
+    end
     { :uid => username, :username => username}
   end
 
-  def inform_non_user_of_promised_tips
+  def inform_non_user_of_paid_tips
     super do
 
     end

@@ -14,22 +14,24 @@ end
 
 
 task :work_pages_over => :environment do
+  logger_output = lambda {|p| puts "id=#{p.id}, #{p.url[0...120]}"}
+
   puts "processing orphaned pages"
   Page.orphaned.each do |page|
-    puts "id=#{page.id}, #{page.url}"
-    page.discover_identity!    
+    logger_output.call page
+    page.discover_identity
   end
 
-  # puts "processing triaged pages"
-  # Page.triaged.each do |page|
-  #   puts "id=#{page.id}, #{page.url}"
-  #   page.find_identity_from_author_link!
-  # end
+  puts "processing triaged pages"
+  Page.triaged.each do |page|
+    logger_output.call page
+    page.find_identity_from_author_link
+  end
 
   puts "processing fostered pages"
-  Page.fostered.each do |page|
-    puts "id=#{page.id}, #{page.url}"
-    page.find_identity_from_page_links!
+  Page.fostered.limit(20).each do |page|
+    logger_output.call page
+    page.find_identity_from_page_links
   end
 end
 
@@ -39,14 +41,6 @@ task :reset_page_state => :environment do
     page.author_state = 'orphaned'
     page.save!
   end
-
-  # Page.triaged.each |page| do
-  #   page.find_identity_from_author_link!
-  # end
-
-  # Page.fostered.each |page| do
-  #   page.find_identity_from_page_links!
-  # end
 end
 
 

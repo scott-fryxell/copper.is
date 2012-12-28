@@ -1,12 +1,14 @@
 class Identities::Twitter < Identity
   include Enqueueable
   include TwitterMessages
-  
   # validates :username, presence: true
-
   def self.discover_uid_and_username_from_url url
-    screen_name = URI.parse(url).path.split('/')[1]
-    puts screen_name, url
+    uri = URI.parse(url)
+    if %r{!/}.match(uri.fragment)
+      screen_name = %r{!/}.match(uri.fragment).post_match
+    else
+      screen_name = uri.path.split('/')[1]
+    end
     { :uid => ::Twitter.user(screen_name).id.to_s, :username => screen_name }
   end
 

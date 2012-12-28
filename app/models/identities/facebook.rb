@@ -10,10 +10,14 @@ class Identities::Facebook < Identity
       fb_photo = graph.get_object(match.post_match.split('&')[0])
       username = fb_photo['from']['name']
       id = fb_photo['from']['id']
+    elsif match = %r{/profile.php}.match(url.path)
+      id = URI.parse(url).query.split('id=')[1]
+      fb_object = graph.get_object(id)
+      username = fb_object["username"]
     else
       fb_object = graph.get_object(url.path.split('/').last)
-      username = fb_object[:username]
-      id = fb_object[:id]
+      username = fb_object['username']
+      id = fb_object['id']
     end
     { :uid => id, :username => username}
   end
