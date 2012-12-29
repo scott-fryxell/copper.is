@@ -37,6 +37,10 @@ describe Page do
         @page.url = "https://www.facebook.com/photo.php?fbid=415648305162300&set=a.304808032912995.69593.286232048103927&type=1&theater"
       end
 
+      it "finds user on facebook.com via their photo" do
+        @page.url = "https://www.facebook.com/photo.php?fbid=4198406752067&set=a.2719363096900.2127501.1041690079&type=1&theater"
+      end
+      
       it "finds user on facebook.com old style id" do
         @page.url = "www.facebook.com/profile.php?id=1340075098"
       end

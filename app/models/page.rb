@@ -96,7 +96,7 @@ class Page < ActiveRecord::Base
         begin
           discover_identity!
         rescue => e
-          logger.warn "Page#discover_identity: on: #{self.url[0...120]}"
+          logger.warn "Page#discover_identity: on: #{self.url}"
           logger.error "#{e.class}: #{e.message}"
           self.reject!
           return nil
@@ -120,7 +120,7 @@ class Page < ActiveRecord::Base
         begin
           find_identity_from_page_links!
         rescue => e    
-          logger.warn "Page#find_identity_from_page_links: on: #{self.url[0...120]}"
+          logger.warn "Page#find_identity_from_page_links: on: #{self.url}"
           logger.error ":    #{e.class}: #{e.message}"
           self.reject!
           return nil
@@ -138,7 +138,7 @@ class Page < ActiveRecord::Base
             href = author_link.attributes['href'].value
             output = ":    author: #{href[0...120]}"
             logger.info output
-            puts output
+            # puts output
             if Identity.provider_from_url(href) and 
               self.identity = Identity.find_or_create_from_url(href)
               log_adopted
@@ -149,9 +149,9 @@ class Page < ActiveRecord::Base
           doc.links_with(:href => %r{twitter.com|facebook.com|tumblr.com|plus.google.com}).each do |link|
             output = ":    link: #{link.href[0...120]}"
             logger.info output
-            puts output
+            # puts output
             if Identity.provider_from_url(link.href)
-              unless %r{/status/|/events/|/post/|/sharer|/dialog/|/signup|2012.twitter.com}.match(URI.parse(link.href).path)
+              unless %r{/status/|/events/|/post/|/sharer|/dialog/|/signup|twitter.com/en/|bandcampstatus}.match(URI.parse(link.href).path)
                 if self.identity = Identity.find_or_create_from_url(link.href) 
                   log_adopted
                   return adopt!                
@@ -183,7 +183,7 @@ class Page < ActiveRecord::Base
   def log_adopted
     output = ":    adopted: username=#{self.identity.username}, uid=#{self.identity.uid}, id=#{self.identity.id}"
     logger.info output
-    puts output
+    # puts output
   end
 
 end
