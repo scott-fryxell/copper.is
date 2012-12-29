@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
     errors.add(:url, "must point to a real site") unless self.url =~ /\./
   end
 
-  [:adopted, :orphaned, :triaged, :fostered, :manual].each do |state|
+  [:adopted, :orphaned, :fostered, :manual].each do |state|
     scope state, where("author_state = ?", state)
   end
 
@@ -62,28 +62,21 @@ class Page < ActiveRecord::Base
     
     # Pages are initially orphaned. An attempt is made to 
     # deternime the author based on the url, failure means 
-    # the page is transfered to social_services where there is an 
-    # atempt to find the author via the author link if none
-    # is found then the page is put in foster care where all the 
-    # links on the page are spidered and a list of possible
+    # page is put in foster care where all the links on
+    # the page are spidered and a list of possible
     # identities are determined. If none are found then the 
     # page is put into manual mode where a person is going to
     # get involved to figure it out. If at any point in this 
     # chain a page is adopted it has reached it's final state. 
     # a page is dead when we try to spider it and get a 404
     event :reject do
-      transition :orphaned   => :triaged,
-                 :triaged    => :fostered,
+      transition :orphaned   => :fostered,
                  :fostered   => :manual,
                  :manual     => :dead
     end
 
     after_transition any => :orphaned do |page,transition|
       Resque.enqueue Page, page.id, :discover_identity!
-    end
-
-    after_transition any => :triaged do |page,transition|
-      Resque.enqueue Page, page.id, :find_identity_from_author_link!
     end
 
     after_transition any => :fostered do |page,transition|
@@ -103,7 +96,7 @@ class Page < ActiveRecord::Base
         begin
           discover_identity!
         rescue => e
-          logger.warn "Page#discover_identity: on: #{self.url}"
+          logger.warn "Page#discover_identity: on: #{self.url[0...120]}"
           logger.error "#{e.class}: #{e.message}"
           self.reject!
           return nil
@@ -111,7 +104,7 @@ class Page < ActiveRecord::Base
       end
 
       def discover_identity! 
-        logger.info("discover_identity for: id=#{self.id}, #{self.url}")
+        logger.info("discover_identity for: id=#{self.id}, #{self.url[0...120]}")
         if Identity.provider_from_url(self.url) and
             self.identity = Identity.find_or_create_from_url(self.url)
             log_adopted
@@ -122,77 +115,43 @@ class Page < ActiveRecord::Base
       end
     end
 
-    state :triaged do
-      def find_identity_from_author_link
-        begin
-          find_identity_from_author_link!
-        rescue => e
-          logger.warn "Page#find_identity_from_author_link: on: #{self.url}"
-          logger.error ":    #{e.class}: #{e.message}"
-          self.reject!
-          return nil
-        end
-      end
-
-      def find_identity_from_author_link!
-        logger.info("author_link for: id=#{self.id}, #{self.url}")
-        @agent.get(self.url) do |doc|
-          if author_link = doc.at('link[rel=author]')
-            href = author_link.attributes['href'].value
-            logger.info ":    author: #{href}"
-            puts ":    author: #{href}"
-            if Identity.provider_from_url(href) and 
-              self.identity = Identity.find_or_create_from_url(href)
-              log_adopted
-              adopt!
-            else
-              reject!
-              return nil
-            end
-          else
-            reject!
-            return nil
-          end
-        end
-      end
-    end
-
     state :fostered do
       def find_identity_from_page_links
         begin
           find_identity_from_page_links!
         rescue => e    
-          logger.warn "Page#find_identity_from_page_links: on: #{self.url}"
+          logger.warn "Page#find_identity_from_page_links: on: #{self.url[0...120]}"
           logger.error ":    #{e.class}: #{e.message}"
           self.reject!
           return nil
         end
       end
       def find_identity_from_page_links!
-        logger.info "page_links for: id=#{self.id}, #{self.url}"
+        logger.info "page_links for: id=#{self.id}, #{self.url[0...120]}"
         @agent.get(self.url) do |doc|
           self.url = doc.uri.to_s
           if doc.title
             self.title = doc.title
           end
 
-          # if author_link = doc.at('link[rel=author]')
-          #   href = author_link.attributes['href'].value
-          #   logger.info ":    author: #{href}"
-          #   puts ":    author: #{href}"
-          #   if Identity.provider_from_url(href) and 
-          #     self.identity = Identity.find_or_create_from_url(href)
-          #     log_adopted
-          #     return adopt!
-          #   else
-          # end
+          if author_link = doc.at('link[rel=author]')
+            href = author_link.attributes['href'].value
+            output = ":    author: #{href[0...120]}"
+            logger.info output
+            puts output
+            if Identity.provider_from_url(href) and 
+              self.identity = Identity.find_or_create_from_url(href)
+              log_adopted
+              return adopt!
+            end
+          end
 
           doc.links_with(:href => %r{twitter.com|facebook.com|tumblr.com|plus.google.com}).each do |link|
-            output = ":    link: #{link.href}"
+            output = ":    link: #{link.href[0...120]}"
             logger.info output
             puts output
             if Identity.provider_from_url(link.href)
-              unless %r{/status/|/events/|/post/sharer|/dialog/}.match(URI.parse(link.href).path)
+              unless %r{/status/|/events/|/post/|/sharer|/dialog/|/signup|2012.twitter.com}.match(URI.parse(link.href).path)
                 if self.identity = Identity.find_or_create_from_url(link.href) 
                   log_adopted
                   return adopt!                

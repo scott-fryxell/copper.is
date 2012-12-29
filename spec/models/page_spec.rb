@@ -33,8 +33,12 @@ describe Page do
         @page.url = "http://www.facebook.com/scott.fryxell"
       end
       
-      it "finds user on facebook.com" do
+      it "finds user on facebook.com via their photo" do
         @page.url = "https://www.facebook.com/photo.php?fbid=415648305162300&set=a.304808032912995.69593.286232048103927&type=1&theater"
+      end
+
+      it "finds user on facebook.com old style id" do
+        @page.url = "www.facebook.com/profile.php?id=1340075098"
       end
       
       it "finds user on twitter.com" do
@@ -121,6 +125,11 @@ describe Page do
     it "shouldn't try to find an identity for twitter.com" do
       @page.url = "http://twitter.com/"
     end
+
+    it "shouldn't try to find an identity for twitter.com" do
+      @page.url = "http://twitter.com/"
+    end
+
 
     it "shouldn't try to find an identity for facebook.com/home.php" do
       @page.url = "https://www.facebook.com/home.php"
