@@ -103,20 +103,16 @@ class Identity < ActiveRecord::Base
     Identity.subclass_from_provider(opts[:provider]).create(opts)
   end
 
-
-
   def self.provider_from_url(url)
     begin  
       uri = URI.parse(url)
       return nil unless /tumblr\.com$/.match(uri.host) or uri.path.size > 1 or uri.query or uri.fragment
     rescue => e
-      puts "#{e}"
       return nil
     end
 
     # url's that arent providerable
-    if %r{twitter.com/share|twitter.com/home|plus.google.com/share|facebook.com/sharer.php|facebook.com/login.php|
-          soundcloud.com/dashboard|code.flickr.com}.match(url)
+    if %r{/share|/home|/login|/dashboard|/status/|/events/|/post/|/sharer|/search|/dialog/|/signup|/en/}.match(url)
       return nil
     end
     case uri.host
