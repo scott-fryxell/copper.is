@@ -127,39 +127,52 @@ class Page < ActiveRecord::Base
         end
       end
       def find_identity_from_page_links!
-        logger.info "page_links for: id=#{self.id}, #{self.url[0...120]}"
-        @agent.get(self.url) do |doc|
-          self.url = doc.uri.to_s
-          if doc.title
-            self.title = doc.title
-          end
-
-          if author_link = doc.at('link[rel=author]')
-            href = author_link.attributes['href'].value
-            output = ":    author: #{href[0...120]}"
-            logger.info output
-            # puts output
-            if Identity.provider_from_url(href) and 
-              self.identity = Identity.find_or_create_from_url(href)
-              log_adopted
-              return adopt!
+        begin
+          logger.info "page_links for: id=#{self.id}, #{self.url[0...120]}"
+          @agent.get(self.url) do |doc|
+            self.url = doc.uri.to_s
+            if doc.title
+              self.title = doc.title
             end
-          end
 
-          doc.links_with(:href => %r{twitter.com|facebook.com|tumblr.com|plus.google.com}).each do |link|
-            output = ":    link: #{link.href[0...120]}"
-            logger.info output
-            # puts output
-            if Identity.provider_from_url(link.href)
-              unless %r{/status/|/events/|/post/|/sharer|/dialog/|/signup|twitter.com/en/|bandcampstatus}.match(URI.parse(link.href).path)
-                if self.identity = Identity.find_or_create_from_url(link.href) 
-                  log_adopted
-                  return adopt!                
+            if author_link = doc.at('link[rel=author]')
+              href = author_link.attributes['href'].value
+              output = ":    author: #{href[0...120]}"
+              logger.info output
+              # puts output
+              if Identity.provider_from_url(href) and 
+                self.identity = Identity.find_or_create_from_url(href)
+                log_adopted
+                return adopt!
+              end
+            end
+
+            doc.links_with(:href => %r{twitter.com|facebook.com|tumblr.com|plus.google.com}).each do |link|
+              output = ":    link: #{link.href[0...120]}"
+              logger.info output
+              # puts output
+              if Identity.provider_from_url(link.href)
+                unless %r{/status/|/events/|/post/|/sharer|/search|/dialog/|/signup|twitter.com/en/}.match(link.href)
+                  if self.identity = Identity.find_or_create_from_url(link.href) 
+                    log_adopted
+                    return adopt!
+                  end
                 end
               end
             end
+            if self.identity
+              adopt!
+            else
+              reject!  
+            end
           end
-          reject! unless self.identity
+        rescue Mechanize::ResponseCodeError => e
+          logger.info ":    ResponseCodeError: #{e.response_code}"
+          if '404' == e.response_code
+            logger.info ":    dead: #{self.url}"
+            self.author_state == 'dead'
+            save!
+          end  
         end
       end
     end
