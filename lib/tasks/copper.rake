@@ -15,13 +15,13 @@ end
 task :work_pages_over => :environment do
   # logger_output = lambda {|p| puts "id=#{p.id}, #{p.url[7...120]}"}
 
-  # puts "processing orphaned pages"
+  puts "processing orphaned pages"
   Page.orphaned.each do |page|
     # logger_output.call page
     page.discover_identity
   end
 
-  # puts "processing fostered pages"
+  puts "processing fostered pages"
   Page.fostered.each do |page|
     # logger_output.call page
     page.find_identity_from_page_links
