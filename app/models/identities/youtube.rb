@@ -7,7 +7,10 @@ class Identities::Youtube < Identity
     
     if %r{/watch}.match(path) 
       discover_uid_and_username_from_video url
-    elsif user = %r{/users?/}.match(path).post_match
+    elsif %r{/user/}.match(path)
+      user = %r{/user/}.match(path).post_match
+      { :username => user }  
+    elsif user = %r{/}.match(path).post_match
       { :username => user }  
     else 
       raise "unable to find a user for this url"

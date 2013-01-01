@@ -111,14 +111,25 @@ class Identity < ActiveRecord::Base
       return nil
     end
 
-    # url's that arent providerable
-    if %r{/share|/home|/login|/dashboard|/status/|/events/|/post/|/sharer|/search|/dialog/|/signup|/en/}.match(url)
-      return nil
-    end
     case uri.host
-    when /facebook\.com$/ then 'facebook'
-    when /tumblr\.com$/ then 'tumblr'
-    when /twitter\.com$/ then 'twitter'
+    when /facebook\.com$/ then 
+      if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter}.match(uri.path)
+        nil
+      else
+        'facebook'
+      end
+    when /tumblr\.com$/ then 
+      if %r{/dashboard|www.tumblr.com}.match(url)
+        nil
+      else
+        'tumblr'
+      end
+    when /twitter\.com$/ then
+      if %r{/login|/share|business.twitter|2012.twitter.com}.match(url)
+        nil
+      else
+        'twitter'
+      end
     when /plus\.google\.com$/ then 'google'
     when /vimeo\.com$/ then 'vimeo'
     when /flickr\.com$/ then 'flickr'

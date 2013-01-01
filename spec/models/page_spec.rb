@@ -23,6 +23,7 @@ describe Page do
     end
     
     after do
+      puts @page.url
       @page.save!
       @page.reload
       @page.adopted?.should be_true
@@ -42,7 +43,7 @@ describe Page do
       end
       
       it "finds user on facebook.com old style id" do
-        @page.url = "www.facebook.com/profile.php?id=1340075098"
+        @page.url = "https://www.facebook.com/profile.php?id=1340075098"
       end
       
       it "finds user on twitter.com" do
@@ -81,6 +82,10 @@ describe Page do
         @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
       end
       
+      it "finds an identity for facebook.com/home.php" do
+        @page.url = "https://www.facebook.com/home.php"
+      end
+
       it "finds user on tumblr.com" do
         @page.url = "http://staff.tumblr.com/"
       end
@@ -91,65 +96,6 @@ describe Page do
         @page.url = 'http://prettypennyrecords.com/woodsboro/pocket_comb'
       end
     end
-  end
-
-  describe "shouldn't try to find an identity for root level pages " do
-    before do
-      @page = FactoryGirl.build(:page)
-    end
-
-    it "shouldn't try to find an identity for tumblr.com" do
-      @page.url = "http://tumblr.com/"
-    end
-    
-    it "shouldn't try to find an identity for google.com" do
-      @page.url = "http://google.com/"
-    end
-
-    it "shouldn't try to find an identity for github.com" do
-      @page.url = "http://github.com/"
-    end
-
-    it "shouldn't try to find an identity for youtube.com" do
-      @page.url = "http://youtube.com/"
-    end
-
-    it "shouldn't try to find an identity for vimeo.com" do
-      @page.url = "http://vimeo.com/"
-    end
-
-    it "shouldn't try to find an identity for soundcloud.com" do
-      @page.url = "http://soundcloud.com/"
-    end
-
-    it "shouldn't try to find an identity for flickr.com" do
-      @page.url = "http://flickr.com/"
-    end
-
-    it "shouldn't try to find an identity for twitter.com" do
-      @page.url = "http://twitter.com/"
-    end
-
-    it "shouldn't try to find an identity for twitter.com" do
-      @page.url = "http://twitter.com/"
-    end
-
-
-    it "shouldn't try to find an identity for facebook.com/home.php" do
-      @page.url = "https://www.facebook.com/home.php"
-    end
-
-    it "shouldn't try to find an identity for plus.google.com" do
-      @page.url = "http://plus.google.com/"
-    end
-
-    after do
-      @page.save!
-      @page.reload
-      @page.manual?.should be_true
-    end
-
-
   end
 
   
@@ -163,7 +109,10 @@ describe Page do
       @page.reload
       @page.manual?.should be_true
     end
-    
+
+    # TODO how do I test that a page doesn't adopt arount status links? 
+    # https://twitter.com/fredwilson/status/285625645285908481
+
     it 'http://ruby-doc.org/' do
       @page.url = "http://ruby-doc.org/"
     end
@@ -173,7 +122,7 @@ describe Page do
     end
   end
   
-  describe "transitions from :orphaned to :fostered" do
+  describe "transitions from :orphaned to :manual" do
     before do
       @page = FactoryGirl.build(:page)
     end
@@ -181,7 +130,7 @@ describe Page do
     after do
       @page.save!
       @page.reload
-      @page.fostered?.should be_true
+      @page.manual?.should be_true
     end
     
     it 'for a site that can\'t be reached' do

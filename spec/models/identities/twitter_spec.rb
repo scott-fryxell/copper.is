@@ -25,4 +25,13 @@ describe Identities::Twitter do
       @identity.uid.should == '26368397'
     end
   end
+
+  describe "Should return nil for url's that don't provide user information" do
+    it "https://www.twitter.com/" do
+      Identity.provider_from_url("https://www.twitter.com/").should be_false
+    end
+
+    it "http://twitter.com/share" do
+      Identity.provider_from_url("http://twitter.com/share").should be_false
+    end
 end

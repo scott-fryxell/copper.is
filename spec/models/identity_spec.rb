@@ -47,4 +47,44 @@ describe Identity do
 
   it 'only messages an identity that doesn\'t have an author associated with it'
 
+
+  describe "Root level url's" do
+
+    it "shouldn't try to find an identity for tumblr.com" do
+      Identity.provider_from_url("http://www.tumblr.com/").should be_false
+    end
+    
+    it "shouldn't try to find an identity for google.com" do
+      Identity.provider_from_url("http://google.com/").should be_false
+    end
+
+    it "shouldn't try to find an identity for github.com" do
+      Identity.provider_from_url("http://github.com/").should be_false
+    end
+
+    it "shouldn't try to find an identity for youtube.com" do
+      Identity.provider_from_url("http://youtube.com/").should be_false
+    end
+
+    it "shouldn't try to find an identity for vimeo.com" do
+      Identity.provider_from_url("http://vimeo.com/").should be_false
+    end
+
+    it "shouldn't try to find an identity for soundcloud.com" do
+      Identity.provider_from_url("http://soundcloud.com/").should be_false
+    end
+
+    it "shouldn't try to find an identity for flickr.com" do
+      Identity.provider_from_url("http://flickr.com/").should be_false
+    end
+
+    it "shouldn't try to find an identity for twitter.com" do
+      Identity.provider_from_url("http://twitter.com/").should
+    end
+
+    it "shouldn't try to find an identity for plus.google.com" do
+      Identity.provider_from_url("http://plus.google.com/").should be_false
+    end
+  end
+
 end

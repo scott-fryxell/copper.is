@@ -9,7 +9,7 @@ class Identities::Twitter < Identity
     else
       screen_name = uri.path.split('/')[1]
     end
-    { :uid => ::Twitter.user(screen_name).id.to_s, :username => screen_name }
+    { :username => screen_name }
   end
 
   def populate_uid_from_username!

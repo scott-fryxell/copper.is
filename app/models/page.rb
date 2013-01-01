@@ -97,7 +97,7 @@ class Page < ActiveRecord::Base
           discover_identity!
         rescue => e
           logger.warn "Page#discover_identity: on: #{self.url}"
-          logger.error "#{e.class}: #{e.message}"
+          logger.error ":    #{e.class}: #{e.message}"
           self.reject!
           return nil
         end
@@ -105,9 +105,8 @@ class Page < ActiveRecord::Base
 
       def discover_identity! 
         logger.info("discover_identity for: id=#{self.id}, #{self.url[0...120]}")
-        if Identity.provider_from_url(self.url) and
-            self.identity = Identity.find_or_create_from_url(self.url)
-            log_adopted
+        if self.identity = Identity.find_or_create_from_url(self.url)
+          log_adopted
           adopt!
         else
           reject!
@@ -130,7 +129,6 @@ class Page < ActiveRecord::Base
         begin
           logger.info "page_links for: id=#{self.id}, #{self.url[0...120]}"
           @agent.get(self.url) do |doc|
-            self.url = doc.uri.to_s
             if doc.title
               self.title = doc.title
             end
@@ -140,37 +138,58 @@ class Page < ActiveRecord::Base
               output = ":    author: #{href[0...120]}"
               logger.info output
               # puts output
-              if Identity.provider_from_url(href) and 
-                self.identity = Identity.find_or_create_from_url(href)
+              if self.identity = Identity.find_or_create_from_url(href)
                 log_adopted
                 return adopt!
               end
             end
 
-            doc.links_with(:href => %r{twitter.com|facebook.com|tumblr.com|plus.google.com}).each do |link|
-              output = ":    link: #{link.href[0...120]}"
-              logger.info output
-              # puts output
-              if Identity.provider_from_url(link.href)
-                unless %r{/status/|/events/|/post/|/sharer|/search|/dialog/|/signup|twitter.com/en/}.match(link.href)
-                  if self.identity = Identity.find_or_create_from_url(link.href) 
-                    log_adopted
-                    return adopt!
-                  end
+            output = lambda { |link| logger.info ":    adopted: #{link.href[0...120]}"}
+
+            doc.links_with(:href => %r{facebook.com}).each do |link|
+              unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
+                if self.identity = Identity.find_or_create_from_url(link.href) 
+                  output.call link
+                  return adopt!
                 end
               end
             end
-            if self.identity
-              adopt!
-            else
-              reject!  
+
+            doc.links_with(:href => %r{twitter.com}).each do |link|
+              # filter for known twitter links that are providerable but not good for spidering links 
+              unless %r{/status/|/intent/|/home|/share|/statuses/|/search/|/search|/bandcampstatus|/signup}.match(URI.parse(link.href).path)
+                if self.identity = Identity.find_or_create_from_url(link.href) 
+                  output.call link
+                  return adopt!
+                end
+              end
             end
+
+            doc.links_with(:href => %r{tumblr.com}).each do |link|
+              unless %r{/post/|/liked/|/share}.match(URI.parse(link.href).path)
+                if self.identity = Identity.find_or_create_from_url(link.href) 
+                  output.call link
+                  return adopt!
+                end
+              end
+            end
+
+            doc.links_with(:href => %r{plus.google.com}).each do |link|
+              unless %r{/share/}.match(URI.parse(link.href).path)
+                if self.identity = Identity.find_or_create_from_url(link.href) 
+                  output.call link
+                  return adopt!
+                end
+              end
+            end
+
+            reject! unless self.identity
           end
         rescue Mechanize::ResponseCodeError => e
           logger.info ":    ResponseCodeError: #{e.response_code}"
-          if '404' == e.response_code
+          if '404' == e.response_code or '410' == e.response_code
             logger.info ":    dead: #{self.url}"
-            self.author_state == 'dead'
+            self.author_state = 'dead'
             save!
           end  
         end
