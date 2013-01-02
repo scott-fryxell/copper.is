@@ -61,24 +61,24 @@ describe "a fan's profile page", :slow do
   end
 
   it 'should display information about their most recent tip' do
-    within '#tips > details > summary > figure > figcaption' do
+    within '#pages > details > summary > figure > figcaption' do
       page.should have_content('0.50');
     end
   end
 
   it 'should display their current list of tips' do
-    page.should have_css('#tips > details', visible:true, count:2)
+    page.should have_css('#pages > details', visible:true, count:2)
   end
 
   it 'should be able to cancel pending tips' do 
-    within ('#tips > details') do
+    within ('#pages > details') do
       click_on('X') 
     end
-    page.should have_css('#tips > details', visible:true, count:1)
+    page.should have_css('#pages > details', visible:true, count:1)
   end
 
   it 'should be able to change the tip amount' do
-   within ('#tips > details') do
+   within ('#pages > details') do
       within ('summary') do
         page.should have_content('0.50')
       end
@@ -92,7 +92,7 @@ describe "a fan's profile page", :slow do
 
     visit '/fans/me'
 
-    within ('#tips > details > summary') do
+    within ('#pages > details > summary') do
       page.should have_content('2')
     end
 

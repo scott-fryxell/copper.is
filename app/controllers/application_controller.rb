@@ -43,6 +43,6 @@ class ApplicationController < ActionController::Base
       item_id= "itemid=#{id}"
     end
 
-    "itemscoped itemtype=#{type} #{item_id}"
+    "itemscope itemtype=#{type} #{item_id}"
   end
 end

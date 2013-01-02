@@ -28,6 +28,9 @@ gem 'twitter'
 gem 'youtube_it'
 gem 'paper_trail', '~> 2'
 gem 'carmen-rails'
+gem "vimeo"
+gem 'koala'
+gem 'mechanize'
 
 # gem 'rack-mini-profiler'
 # gem 'resque-scheduler', :require => 'resque_scheduler'

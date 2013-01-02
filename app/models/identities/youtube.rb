@@ -3,36 +3,43 @@ class Identities::Youtube < Identity
   include YoutubeMessages
 
   def self.discover_uid_and_username_from_url url
-  end
-
-  def discover_uid_and_username_from_url
-  end
-
-  def inform_non_user_of_promised_tips
-    super do
-
+    path = URI.parse(url).path
+    
+    if %r{/watch}.match(path) 
+      discover_uid_and_username_from_video url
+    elsif %r{/user/}.match(path)
+      user = %r{/user/}.match(path).post_match
+      { :username => user }  
+    elsif user = %r{/}.match(path).post_match
+      { :username => user }  
+    else 
+      raise "unable to find a user for this url"
     end
   end
-
-  def populate_uid_from_username!
-    super do
-    end
-  end
-
-  def populate_username_from_uid!
-    super do
-    end
-  end
-
+  
   private
 
+  def self.discover_uid_and_username_from_video url
+    video = connect_to_api.video_by(url)
+    author_id = URI.parse(video.author.uri).path.split('/')[4]
+    { :uid => author_id, :username => video.author.name }
+  end
+
+  def self.connect_to_api
+    YouTubeIt::Client.new(dev_key:Copper::Application.config.google_code_developer_key)
+    # YouTubeIt::OAuth2Client.new(client_access_token: "access_token", client_refresh_token: "refresh_token", client_id: "client_id", client_secret: "client_secret", dev_key: "dev_key", expires_at: "expiration time")
+  end
+
   def youtube_it_client
-    @client ||= YouTubeIt::Client.new(:dev_key =>
-                  Copper::Application.config.google_code_developer_key)
+    @client ||= Identity.connect_to_api
   end
 
   def author_uri
-    youtube_it_client.video_by("9Z8Z9bGBe_M").author.uri
+    youtube_it_client.video_by(@video_id).author.uri
+  end
+
+  def author_name
+    youtube_it_client.video_by(@video_id).author.name
   end
 
   def channel_uri

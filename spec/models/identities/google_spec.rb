@@ -1,12 +1,12 @@
 require 'spec_helper'
-
-describe Identities::Youtube do
+# http://plus.google.com/110547857076579322423/
+describe Identities::Google do
+  before do
+    @identity = FactoryGirl.create(:identities_google, username:"_ugly")
+    # http://plus.google.com/110547857076579322423/
+  end
 
   describe '#populate_uid_and_username!' do
-    before do
-      @identity = FactoryGirl.create(:identities_youtube, username:"_ugly")
-    end
-
     it 'finds the uid if username is set' # do
     #   @identity.uid = nil
     #   @identity.username = '_ugly'
@@ -26,3 +26,4 @@ describe Identities::Youtube do
     end
   end
 end
+

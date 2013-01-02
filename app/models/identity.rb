@@ -6,7 +6,7 @@ class Identity < ActiveRecord::Base
   has_many :pages
   has_many :tips, :through => :pages
   has_many :checks, :through => :pages
-
+  
   attr_accessible :provider, :uid, :username
 
   # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
@@ -27,6 +27,7 @@ class Identity < ActiveRecord::Base
   scope :known, where('identity_state = ?', 'known')
 
   state_machine :identity_state, initial: :stranger do
+
     event :publicize do
       transition :stranger => :wanted
     end
@@ -103,11 +104,37 @@ class Identity < ActiveRecord::Base
   end
 
   def self.provider_from_url(url)
-    case URI.parse(url).host
-    when /facebook\.com$/ then 'facebook'
-    when /tumblr\.com$/ then 'tumblr'
-    when /twitter\.com$/ then 'twitter'
-    when /google\.com$/ then 'google'
+    begin  
+      uri = URI.parse(url)
+      return nil unless /tumblr\.com$/.match(uri.host) or uri.path.size > 1 or uri.query or uri.fragment
+    rescue => e
+      return nil
+    end
+
+    case uri.host
+    when /facebook\.com$/ then 
+      if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter}.match(uri.path)
+        nil
+      else
+        'facebook'
+      end
+    when /tumblr\.com$/ then 
+      if %r{www.tumblr.com}.match(uri.host) and uri.path.size < 3
+        nil
+      elsif  %r{/dashboard}.match(uri.path)
+        nil
+      else
+        'tumblr'
+      end
+    when /twitter\.com$/ then
+      if %r{/login|/share}.match(uri.path)
+        nil
+      elsif %r{2012.twitter.com|business.twitter.com}.match(uri.host)
+        nil
+      else
+        'twitter'
+      end
+    when /plus\.google\.com$/ then 'google'
     when /vimeo\.com$/ then 'vimeo'
     when /flickr\.com$/ then 'flickr'
     when /github\.com$/ then 'github'
@@ -117,17 +144,21 @@ class Identity < ActiveRecord::Base
     else
       nil
     end
+  rescue URI::InvalidURIError => e
+    return nil
   end
   
   def self.find_or_create_from_url(url)
-    provider = provider_from_url(url)
-    i = subclass_from_provider(provider).discover_uid_and_username_from_url url
-    ident = Identity.where('provider = ? and (uid = ? OR username = ?)',
-                           provider,i[:uid],i[:username]).first
-    unless ident
-      ident = factory(provider:provider,username:i[:username],uid:i[:uid])
+    if provider = provider_from_url(url)
+      i = subclass_from_provider(provider).discover_uid_and_username_from_url url
+      ident = Identity.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid],i[:username]).first
+      unless ident
+        ident = factory(provider:provider,username:i[:username],uid:i[:uid])
+      end
+      ident
+    else
+      nil
     end
-    ident
   end
   
   # --------------------------------------------------------------------

@@ -12,7 +12,7 @@ FactoryGirl.define do
   end
 
   sequence 'twitter_url_with_path' do |n|
-    "http://twitter.com/#!/1#{n}"
+    "https://twitter.com/1#{n}"
   end
 
   factory :identities_facebook, class: 'Identities::Facebook' do

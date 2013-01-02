@@ -18,8 +18,8 @@ describe TipsController do
     end
 
     it 'finds authors of tipped pages' do
-      post_with @me, :create, tip:{url:'http://twitter.com/ableton'}, format: :json
-      @page = Page.find_by_url('http://twitter.com/ableton')
+      post_with @me, :create, tip:{url:'https://twitter.com/ableton'}, format: :json
+      @page = Page.find_by_url('https://twitter.com/ableton')
       @page.identity.should_not be_nil
       @page.identity.username.should eq('ableton')
     end

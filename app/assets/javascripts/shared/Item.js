@@ -28,7 +28,7 @@ Item = {
 
   // Determine what elements on the page are available to be managed. 
   discover_items: function(){
-    $("*[itemscoped]").each(function (index){
+    $("*[itemscope]").each(function (index){
       if(!Item.items[$(this).attr("itemtype")]){
         Item.items[$(this).attr("itemtype")] = []        
       }
@@ -118,7 +118,7 @@ $(document).ready(function (event){
 // their values and submit the data via ajax. 
 // this means forms are submited with CSRF protection 
 // without requireing the forms themselves to know the token
-$("*[itemscoped] form").submit(function(event){
+$("*[itemscope] form").submit(function(event){
   event.preventDefault()
 
   // if their are no Items in the form just end the submit. 
@@ -127,7 +127,7 @@ $("*[itemscoped] form").submit(function(event){
   if($(this).find("*[itemprop]").length == 0 && 'delete' != $(this).attr('method')){
     return true
   }
-  var item_element = $(this).parents('*[itemscoped]')
+  var item_element = $(this).parents('*[itemscope]')
   var id = $(item_element).attr('itemid')
   var item_index = 0; // TODO get the index based on itemId
   var type = $(item_element).attr('itemtype')
