@@ -48,9 +48,9 @@ $(document).on("load.users_show", function (event){
 // Manage all the users pages
 $(document).on("load.users_show", function (event){
 
-  $('#tips > details:first summary').click();
+  $('#pages > details:first summary').click();
   
-  $('#tips details[itemtype=tips] form[method=put] input[type=text]').focus();
+  $('#pages details[itemtype=tips] form[method=put] input[type=text]').focus();
   // format the page tip totals into dollars
   $('details[itemscope] > summary > figure > figcaption').each(function(){
     $(this).text(copper.cents_to_dollars($(this).text()));

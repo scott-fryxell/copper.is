@@ -25,8 +25,8 @@ class Identities::Twitter < Identity
 
   # private
 
-  # def send_tweet(tweet)
-  #   raise 'tweet to long' if tweet.length + self.username.length + 2 > 140
-  #   Twitter.update('@' + self.username + ' ' + tweet )
-  # end
+  def send_tweet(tweet)
+    raise 'tweet to long' if tweet.length + self.username.length + 2 > 140
+    Twitter.update('@' + self.username + ' ' + tweet )
+  end
 end
