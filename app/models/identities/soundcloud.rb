@@ -5,20 +5,4 @@ class Identities::Soundcloud < Identity
     {:username => username }  
   end
 
-  def inform_non_user_of_promised_tips
-    super do
-
-    end
-  end
-
-  def populate_uid_from_username!
-    super do
-    end
-  end
-
-  def populate_username_from_uid!
-    super do
-    end
-  end
-
 end

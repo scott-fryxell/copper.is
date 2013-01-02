@@ -119,13 +119,17 @@ class Identity < ActiveRecord::Base
         'facebook'
       end
     when /tumblr\.com$/ then 
-      if %r{/dashboard|www.tumblr.com}.match(url)
+      if %r{www.tumblr.com}.match(uri.host) and uri.path.size < 3
+        nil
+      elsif  %r{/dashboard}.match(uri.path)
         nil
       else
         'tumblr'
       end
     when /twitter\.com$/ then
-      if %r{/login|/share|business.twitter|2012.twitter.com}.match(url)
+      if %r{/login|/share}.match(uri.path)
+        nil
+      elsif %r{2012.twitter.com|business.twitter.com}.match(uri.host)
         nil
       else
         'twitter'

@@ -5,21 +5,5 @@ class Identities::Vimeo < Identity
     user_id   = Vimeo::Simple::Video.info(video_id)[0]['user_id']
     { uid:user_id, username:user_name }
   end
-  
-  def inform_non_user_of_promised_tips
-    super do
-
-    end
-  end
-
-  def populate_uid_from_username!
-    super do
-    end
-  end
-  
-  def populate_username_from_uid!
-    super do
-    end
-  end
 
 end

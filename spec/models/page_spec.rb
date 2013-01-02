@@ -23,7 +23,6 @@ describe Page do
     end
     
     after do
-      puts @page.url
       @page.save!
       @page.reload
       @page.adopted?.should be_true

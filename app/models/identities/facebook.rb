@@ -37,19 +37,4 @@ class Identities::Facebook < Identity
     { :uid => id, :username => username}
   end
 
-  def inform_non_user_of_promised_tips
-    super do
-      # send_exmail("Somebody loves you. You have money waiting for you go to copper.is/p/7657658675 to see")
-    end
-  end
-
-  def populate_uid_from_username!
-    super do
-    end
-  end
-
-  def populate_username_from_uid!
-    super do
-    end
-  end
 end

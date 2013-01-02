@@ -5,14 +5,4 @@ class Identities::Google < Identity
     # http://plus.google.com/110547857076579322423/
     { uid: URI.parse(url).path().split('/').last}
   end
-
-  def populate_uid_from_username!
-    super do
-    end
-  end
-  
-  def populate_username_from_uid!
-    super do
-    end
-  end  
 end

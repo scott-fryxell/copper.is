@@ -9,21 +9,4 @@ class Identities::Tumblr < Identity
     end
     { :uid => username, :username => username}
   end
-
-  def inform_non_user_of_paid_tips
-    super do
-
-    end
-  end
-
-  def populate_uid_from_username!
-    super do
-    end
-  end
-
-  def populate_username_from_uid!
-    super do
-    end
-  end
-
 end

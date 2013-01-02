@@ -12,7 +12,7 @@ class Page < ActiveRecord::Base
     errors.add(:url, "must point to a real site") unless self.url =~ /\./
   end
 
-  [:adopted, :orphaned, :fostered, :manual].each do |state|
+  [:adopted, :orphaned, :fostered, :dead, :manual].each do |state|
     scope state, where("author_state = ?", state)
   end
 
