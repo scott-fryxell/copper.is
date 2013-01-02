@@ -88,6 +88,15 @@ describe Page do
       it "finds user on tumblr.com" do
         @page.url = "http://staff.tumblr.com/"
       end
+
+      it "finds author for https://www.copper.is" do
+        @page.url = "https://www.copper.is"
+      end
+
+      it "finds author for http://www.missionmission.org/" do
+        @page.url = "http://www.missionmission.org/"
+      end
+
     end
     
     describe "transitions from :orphaned to :adopted if from a page that's fostered" do
