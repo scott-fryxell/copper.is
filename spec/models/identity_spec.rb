@@ -87,4 +87,30 @@ describe Identity do
     end
   end
 
+  describe "url's that shouldn't result in identities being created" do
+    it "https://soundcloud.com/dashboard" do
+      Identity.provider_from_url("https://soundcloud.com/dashboard").should be_false
+    end 
+
+    it "http://www.tumblr.com/customize?redirect_to=http://brokenbydawn.tumblr.com/" do
+      Identity.provider_from_url("http://www.tumblr.com/customize?redirect_to=http://brokenbydawn.tumblr.com/").should be_false
+    end 
+
+    it "http://code.flickr.net/2008/10/27/counting-timing/" do
+      Identity.provider_from_url("http://code.flickr.net/2008/10/27/counting-timing/").should be_false
+    end
+
+    it "https://gist.github.com/1367918" do
+      Identity.provider_from_url("https://gist.github.com/1367918").should be_false
+    end 
+
+    it "https://github.com/blog/1252-how-we-keep-github-fast?mkt_tok=3RkMMJWWfF9wsRoluqTIZKXonjHpfsX87essULHr08Yy0EZ5VunJEUWy2Yo" do
+      Identity.provider_from_url("https://github.com/blog/1252-how-we-keep-github-fast?mkt_tok=3RkMMJWWfF9wsRoluqTIZKXonjHpfsX87essULHr08Yy0EZ5VunJEUWy2Yo").should be_false
+    end 
+
+    it "http://vimeo.com/groups/waza2012/videos/49720072" do
+      Identity.provider_from_url("http://vimeo.com/groups/waza2012/videos/49720072").should be_false
+    end
+  end
+
 end

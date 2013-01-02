@@ -20,6 +20,10 @@ class Page < ActiveRecord::Base
    self.tips.joins(:order).where('orders.user_id=?', fan.id)
   end
 
+  def self.adoption_rate
+    (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round
+  end
+
   def discover_thumbnail
     begin
       thumbnail_tag = Nokogiri::HTML(open(self.url)).css('link[itemprop="thumbnailUrl"]')
@@ -27,19 +31,14 @@ class Page < ActiveRecord::Base
         self.thumbnail_url = thumbnail_tag.attr('href').value
         save!
       end
-    rescue
-      p "error trying to load url #{url}" 
-    end
-  end
-
-  def self.discover_thumbnails
-    Page.all.each do |page|
-      page.discover_thumbnail
+    rescue => e
+      logger.error "error trying to discover thumbnail for: #{self.url}" 
+      logger.error ":    #{e.class}: #{e.message}"
     end
   end
   
-  after_initialize do
-    @agent = Mechanize.new do |a|
+  def agent
+    return Mechanize.new do |a|
       a.post_connect_hooks << lambda do |_,_,response,_|
         if response.content_type.nil? || response.content_type.empty?
           response.content_type = 'text/html'
@@ -92,17 +91,6 @@ class Page < ActiveRecord::Base
     end
 
     state :orphaned do
-      def discover_identity
-        begin
-          discover_identity!
-        rescue => e
-          logger.warn "Page#discover_identity: on: #{self.url}"
-          logger.error ":    #{e.class}: #{e.message}"
-          self.reject!
-          return nil
-        end
-      end
-
       def discover_identity! 
         logger.info("discover_identity for: id=#{self.id}, #{self.url[0...120]}")
         if self.identity = Identity.find_or_create_from_url(self.url)
@@ -115,20 +103,10 @@ class Page < ActiveRecord::Base
     end
 
     state :fostered do
-      def find_identity_from_page_links
-        begin
-          find_identity_from_page_links!
-        rescue => e    
-          logger.warn "Page#find_identity_from_page_links: on: #{self.url}"
-          logger.error ":    #{e.class}: #{e.message}"
-          self.reject!
-          return nil
-        end
-      end
       def find_identity_from_page_links!
         begin
-          logger.info "page_links for: id=#{self.id}, #{self.url[0...120]}"
-          @agent.get(self.url) do |doc|
+          logger.info "Page links for: id=#{self.id}, #{self.url[0...120]}"
+          self.agent.get(self.url) do |doc|
             if doc.title
               self.title = doc.title
             end
@@ -191,8 +169,12 @@ class Page < ActiveRecord::Base
             logger.info ":    dead: #{self.url}"
             self.author_state = 'dead'
             save!
-          end  
-        end
+          end
+        rescue Net::HTTP::Persistent::Error => e
+          logger.info ":    dead: #{self.url}"
+          self.author_state = 'dead'
+          save!
+        end  
       end
     end
 

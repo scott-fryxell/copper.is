@@ -47,9 +47,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def fan?
-    roles.find{|e| e.name == 'Fan'}
-  end
+  # def fan?
+  #   roles.find{|e| e.name == 'Fan'}
+  # end
 
   def tip(args = {})
     url    = args[:url]
@@ -65,36 +65,36 @@ class User < ActiveRecord::Base
     tip
   end
 
-  def charge_info?
-    !!self.stripe_id
-  end
+  # def charge_info?
+  #   !!self.stripe_id
+  # end
 
   def current_order
     self.orders.current.first or self.orders.create
   end
 
-  def current_tips
-    current_order.tips
-  end
+  # def current_tips
+  #   current_order.tips
+  # end
 
-  def try_to_create_check!
-    the_tips = []
-    self.identities.each do |ident|
-      the_tips += ident.tips.charged.all
-    end
-    unless the_tips.empty?
-      if check = self.checks.create
-        the_tips.each do |tip|
-          check.tips << tip
-          tip.claim!
-          tip.save!
-        end
-        check.save!
-      end
-    end
-  end
+  # def try_to_create_check!
+  #   the_tips = []
+  #   self.identities.each do |ident|
+  #     the_tips += ident.tips.charged.all
+  #   end
+  #   unless the_tips.empty?
+  #     if check = self.checks.create
+  #       the_tips.each do |tip|
+  #         check.tips << tip
+  #         tip.claim!
+  #         tip.save!
+  #       end
+  #       check.save!
+  #     end
+  #   end
+  # end
 
-  def message_about_check(check_id)
-    CheckMailer.check(Check.find(check_id)).deliver
-  end
+  # def message_about_check(check_id)
+  #   CheckMailer.check(Check.find(check_id)).deliver
+  # end
 end

@@ -10,26 +10,60 @@ namespace :copper do
       Resque.enqueue SpiderablePagesJob
     end
   end
+
+  namespace :page do
+    task :adopt => :environment do
+      adoption_rate = Page.adoption_rate
+      puts "processing #{Page.orphaned.count} orphaned pages"
+      Page.orphaned.each do |page|
+        begin
+          page.discover_identity!
+        rescue => e
+          # puts "Page#discover_identity: on: #{page.url}"
+          # puts ":    #{e.class}: #{e.message}"
+          page.reject!
+        end
+        if adoption_rate != Page.adoption_rate
+          adoption_rate = Page.adoption_rate
+          puts ":    #{Page.adoption_rate}% adopted"
+        end
+      end
+      puts "Complete. #{Page.adopted.count} pages adopted."
+
+      puts "Processing #{Page.fostered.count} fostered pages"
+      Page.fostered.each do |page|
+        begin
+          page.find_identity_from_page_links!
+        rescue => e    
+          # puts "Page#find_identity_from_page_links: on: #{page.url}"
+          # puts ":    #{e.class}: #{e.message}"
+          page.reject!
+        end
+        if adoption_rate != Page.adoption_rate
+          adoption_rate = Page.adoption_rate
+          puts ":    #{Page.adoption_rate}% adopted"
+        end
+      end
+
+      puts "Complete."
+      puts ":    #{Page.adopted.count} adopted pages."
+      puts ":    #{Page.manual.count} manual pages"
+      puts ":    #{Page.dead.count} dead pages"
+    end
+
+    task :learn => :environment do
+      puts "learninhg about pages"
+      # create a thumbnail
+      # TODO: categorize, determine id it's NSFW
+      Page.all.each do |page|
+        page.discover_thumbnail
+      end    
+    end
+  end
 end
 
-task :work_pages_over => :environment do
-  # logger_output = lambda {|p| puts "id=#{p.id}, #{p.url[7...120]}"}
 
-  puts "processing orphaned pages"
-  Page.orphaned.each do |page|
-    # logger_output.call page
-    page.discover_identity
-  end
-
-  puts "processing fostered pages"
-  Page.fostered.each do |page|
-    # logger_output.call page
-    page.find_identity_from_page_links
-  end
-end
-
-
-task :reset_page_state => :environment do
+task :reset_page_adoption => :environment do
   Identity.all.each do |identity|
     identity.destroy
   end

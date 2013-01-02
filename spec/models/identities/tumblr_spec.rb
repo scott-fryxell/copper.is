@@ -8,15 +8,14 @@ describe Identities::Tumblr do
     end
   end
 
-  describe "Should discover identity from url's " do
+  describe "Should create identity from url " do
     it "http://www.tumblr.com/follow/copper-is" do
-     Identity.provider_from_url("http://www.tumblr.com/follow/copper-is").should == 'tumblr'
+      Identity.find_or_create_from_url("http://www.tumblr.com/follow/copper-is").should be_true
     end
 
     it "http://janebook.tumblr.com" do
-     Identity.provider_from_url("http://janebook.tumblr.com").should == 'tumblr'
+      Identity.find_or_create_from_url("http://janebook.tumblr.com").should be_true
     end
-
   end
 
 

@@ -2,8 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "a authors profile page", :slow do
   before :each  do
-    visit "/authors/me/edit"
+    visit "/"
     click_link 'facebook_sign_in'
+    visit "/authors/me/edit"
+
   end
 
   after(:each) do

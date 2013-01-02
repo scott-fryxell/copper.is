@@ -33,7 +33,7 @@ describe "tipping a page", :slow do
     it "should be able to update a tip"
   end
 
-  describe "as a guest" do
+  describe "as a guest", :broken do
     before(:each) do
       visit "/test"
     end

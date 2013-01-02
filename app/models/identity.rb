@@ -121,7 +121,7 @@ class Identity < ActiveRecord::Base
     when /tumblr\.com$/ then 
       if %r{www.tumblr.com}.match(uri.host) and uri.path.size < 3
         nil
-      elsif  %r{/dashboard}.match(uri.path)
+      elsif  %r{/dashboard|/customize}.match(uri.path)
         nil
       else
         'tumblr'
@@ -135,11 +135,28 @@ class Identity < ActiveRecord::Base
         'twitter'
       end
     when /plus\.google\.com$/ then 'google'
-    when /vimeo\.com$/ then 'vimeo'
+    when /vimeo\.com$/ then 
+      if %r{/groups/}.match(uri.path)
+        nil
+      else
+        'vimeo'
+      end
     when /flickr\.com$/ then 'flickr'
-    when /github\.com$/ then 'github'
+    when /github\.com$/ then 
+      if %r{gist.github.com}.match(uri.host)
+        nil
+      elsif %r{/blog}.match(uri.path)
+        nil
+      else
+        'github'
+      end
     when /youtube\.com$/ then 'youtube'
-    when /soundcloud\.com$/ then 'soundcloud'
+    when /soundcloud\.com$/ then 
+      if  %r{/dashboard}.match(uri.path)
+        nil
+      else
+        'soundcloud'
+      end
     when /example\.com$/ then 'phony'
     else
       nil
