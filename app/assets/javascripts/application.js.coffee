@@ -4,15 +4,13 @@
 #= require jquery.tmpl
 #= require jquery.details
 #= require shared/Item
-#= require shared/form
-#= require shared/email
 #= require shared/address
 #= require shared/copper
+#= require shared/email
 #= require home/index
-#= require users/edit
-#= require users/show
-#= require authors/show
-#= require authors/edit
+#= require home/author
+#= require home/settings
+#= require home/welcome
 #= require identities/edit
 
 $(document).ready ->
@@ -34,9 +32,9 @@ $(document).ready ->
     url:'/fans/me.json',
     dataType:'json',
     success: (data) ->
-      copper.me = data;
-      Item.update_page copper.me
-      $('img.identity').attr 'src', copper.get_identity_image()
+      document.copper.me = data;
+      Item.update_page document.copper.me
+      $('img.identity').attr 'src', document.copper.get_identity_image()
       $("#signed_in").addClass 'show'
       $('a[href="/signout"]').css 'display','inline-block'
       $(document).trigger "me." + $('body').attr 'id'

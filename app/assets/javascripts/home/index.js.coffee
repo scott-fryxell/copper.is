@@ -1,3 +1,7 @@
+$(document).on "items.updated.home_index", ->
+  tip_preference = $("span[itemprop=tip_preference_in_cents]").attr('data-value')
+  $("span[itemprop=tip_preference_in_cents]").text document.copper.cents_to_dollars(tip_preference)
+
 $(document).on "load.home_index", ->
 
   # set appropriate extension based on browswer type
@@ -8,75 +12,94 @@ $(document).on "load.home_index", ->
       chrome.webstore.install url, ->
        $(document).trigger 'copper.button_installed'
       , (event) ->
-        console.debug 'not working', event 
+        console.error 'not working', event 
         alert event
 
   else if $.browser.safari 
     $("a.install").click ->
-      $(this).attr "href", "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.safariextz"
+      $(@).attr "href", "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.safariextz"
       $(document).trigger 'copper.button_installed'
 
   else if $.browser.mozilla
     $("a.install").click ->
       params = 
         "Foo": 
-          URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?",
-          IconURL: "/assets/icons/logo.svg",
-          Hash: "sha1:8e169c7ec8d5c2f21e5c6e2d1d173bedc001fe35",
+          URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?"
+          IconURL: "/assets/icons/logo.svg"
+          Hash: "sha1:8e169c7ec8d5c2f21e5c6e2d1d173bedc001fe35"
           toString: -> "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"
       InstallTrigger.install params
       $(document).trigger 'copper.button_installed'
       false;
   else
     $("a.install").hide();
+
+  if '' is $('#stats > div:nth-child(3) > p').text().trim() 
+    $('#stats > div:nth-child(3)').hide()
+  else
+    dollars = document.copper.cents_to_dollars($('#stats > div:nth-child(3) > p').text().trim())
+    $('#stats > div:nth-child(3) > p').text dollars
+
+  $('#stats > div > p > button:nth-child(2)').click ->
+    for amount in document.copper.tip_amount_options
+      unless '2000' is document.copper.me.tip_preference_in_cents  
+        if amount is document.copper.me.tip_preference_in_cents
+          copper.me.tip_preference_in_cents = amount
+          $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
+          $(document).trigger 'save.me'
+          return
+
+  $('#stats > div > p > button:nth-child(3)').click ->
+    for amount in document.copper.tip_amount_options
+      unless '5' is document.copper.me.tip_preference_in_cents
+        if amount is document.copper.me.tip_preference_in_cents
+          document.copper.me.tip_preference_in_cents = amount
+          $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
+          $(document).trigger 'save.me'
+          return
+
+  $('#pages > details:first summary').click()
+  $('#pages details[itemtype=tips] form[method=put] input[type=text]').focus()
   
-  # carousel the samples
-  show_sample = (element) ->
-    if 'nope' isnt $(element).attr 'data-distance' 
-      $("#samples > nav > a").removeClass "selected"
-      $(element).addClass "selected"
-      $('#samples > figure').animate marginLeft: $(element).attr 'data-distance'
-  
-  $(document).on 'copper.button_installed', ->
-    $('#join').delay(0).fadeOut 800 
-    $('#congrats').delay(800).fadeIn 800
-    $('#facebook').delay(800).fadeIn 800
-    $('#settings').delay(800).fadeIn 800, ->
-      $('#settings').delay(800).css "display",'block'
-  
-  $("#samples > nav > a").click (event) ->
-    event.preventDefault()
-    clearInterval carousel
-    show_sample @
+  # format the page tip totals into dollars
+  $('details[itemscope] > summary > figure > figcaption').each ->
+    $(@).text document.copper.cents_to_dollars( $(@).text() )
 
-  carousel = setInterval ->
-    if "more" is $("#samples > nav > a.selected").next().attr('id')
-      show_sample $("#samples > nav > a:first-child")
-    else 
-      show_sample $("#samples > nav > a.selected").next()
-  , 10000
+  # format tips into dollars
+  $("input[type=text]").each -> 
+    $(@).val document.copper.cents_to_dollars($(@).val())
 
-# if logged in display the the second step in the sign up process.
-$(document).on "me.home_index", ->
-  $('#join figure.step_one').hide()
-  $('#join figure.step_two').show()
+  $("*[itemtype=tips] span[itemprop=amount_in_cents]").each -> 
+    $(@).text document.copper.cents_to_dollars($(@).text())
 
-  facebook = -1
-  for i of copper.me.identities 
-    if copper.me.identities[i].provider == 'facebook'
-      facebook = copper.me.identities[i]
+  $('*[itemtype=tips] form[method=delete]').on 'item.delete', ->
+    tip = $(@).parents('*[itemscope]')[0]
+    page = $(@).parents('*[itemscope]')[1]
+    $(tip).remove()
 
-  if facebook
-    likes_url = "https://graph.facebook.com/#{facebook.username}/likes?limit=10&access_token=#{facebook.token}"
-    me_url = "https://graph.facebook.com/me?&access_token=#{facebook.token}"
+    tip_count = $(page).find('tbody > tr').size() 
 
-    $.getJSON(likes_url).success (facebook) ->
-      $.each facebook.data, (i, a_like) ->
-        $.getJSON("https://graph.facebook.com/#{a_like.id}").success (like) ->
-          image = $('<img/>', src:"https://graph.facebook.com/#{like.id}/picture")
-          $('<a/>', {href:like.link, html:image}).appendTo('#facebook > nav')
+    if 0 is tip_count
+      $(page).remove()
+    else if 1 is tip_count
+      $(page).find('dl > dt > details > summary').text '1 Tip'
+    else
+      $(page).find('dl > dt > details > summary').text "#{tip_count} Tips"
+    
+    # TODO update the pages tip totals
+    new_total = 0;
+    $(page).find('input[itemprop=amount_in_cents]').each ->
+      new_total = new_total + Number($(@).val())
+    $(page).find('figcaption[itemprop=amount_in_cents]').text new_total 
 
-    $.getJSON(me_url).success (me) -> $('figure.step_two > h5 > p').append "Welcome, #{me.first_name}!"
+  $('*[itemtype=tips] form[method=put]').on 'item.validate', ->
+    tip_amount_in_cents = (parseFloat($(@).find('input[type=text]').val()) * 100);
+    $(@).find('input[itemprop=amount_in_cents]').val tip_amount_in_cents
 
-$(document).on "guest.home_index", ->
-    $("#banner > header > figure").css('display','inline-block')
+  # TODO update the pages tip totals
+  $('*[itemtype=tips] form[method=put]').on 'item.put', ->
+    page = $(@).parents('*[itemscope]')[1]
+    new_total = 0
+    $(page).find('input[type=text]').each -> new_total += Number($(@).val())
+    $(page).find('span[itemprop=amount_in_cents]').each -> new_total +=  Number($(@).text())
+    $(page).find('figcaption').text new_total
