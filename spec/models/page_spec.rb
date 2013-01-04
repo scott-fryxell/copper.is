@@ -1,4 +1,4 @@
-require 'spec_helper'
+ require 'spec_helper'
 
 describe Page do
   describe "url" do
@@ -118,15 +118,8 @@ describe Page do
       @page.manual?.should be_true
     end
 
-    # TODO how do I test that a page doesn't adopt arount status links? 
-    # https://twitter.com/fredwilson/status/285625645285908481
-
     it 'http://ruby-doc.org/' do
       @page.url = "http://ruby-doc.org/"
-    end
-    
-    it 'http://api.jquery.com' do
-      @page.url = "http://api.jquery.com"
     end
   end
   

@@ -1,506 +1,374 @@
-#home_index {
-  min-height:120em;
-  & > header {
-    width:100%;
-    z-index:300;
-    background-color: transparent;
-    @include transition(background-color 1.4s);
-    &:hover {
-      background-color: $header;
-      @include transition(background-color .7s $ease-in-sine);
-    }
-  }
-  a.button {
-    @include copper_button;
-  }
+#home_index, #home_author {
+  #stats {
+    padding-bottom:1em;
+    margin-bottom:3em;
 
-  #banner {
-    margin-top:-4em;
-    background-image: image-url('home/katie.jpg');
-    background-position:center top;
-    background-repeat:no-repeat;
-    background-color:transparent;
-    height: 24em;
-    width:auto;
-    @include background-size(cover);
-    @include full_width(black);
-
-    & > header {
-      margin:0 auto 0 auto;
-      width:grid-width(22);
-    }
+    & > header {}
     & > header > h1 {
-      display:inline-block;
-      width:grid-width(4);
-      display:inline-block;
-      margin-top: grid-width(1.25);
-      opacity:.8;
-      line-height:1em;
-      color:$light-text;
-      font-size:2.5em;
+      font-size:1.5em;
     }
-    & > header > h1 > a {
+    & > div,
+    & > footer {
       vertical-align:middle;
-      font-family: 'Doppio One', sans-serif;
-      color:#999999;
-      text-decoration:none;
-      font-size:.30em;
-      line-height:3.5em;
-      display:none;
-    }
-    & > header > a#play_video {
-      margin-top:3em;
-      text-decoration:none;
-      cursor:pointer;
-      vertical-align:baseline;
-      margin-left:.5em;
-      display:inline-block;
-      display:none;
-      opacity:.5;
-      font-size:3em;
-      color:#000000;
-      @include transition(all 1s);
-      &:hover {
-        opacity:.7;
-        @include transition(all 1s);
-        @include transform(scale(1.05,1.05));
-      }
-    }
-    & > header > a > img {
-      height:2em;
-      width:2em;
-    }
-    & > header > figure {
-      margin-top: grid-width(1.25);
-      line-height:1em;
-      opacity:.8;
-      display:none;
-      margin-left:12em;
-    }
-    & > header > figure > figcaption {
-      font-size:2em;
-      font-family: 'Bree Serif', serif;
-      color:$light-text;
-      text-align:center;
-    }
-    & > header > figure img {
-      padding-left:0.5em;
-    }
-  }
-
-  #how {
-    padding-top:6em;
-    padding-bottom:2em;
-
-    & > header {
-      vertical-align:top;
-      width: grid-width(14);
-      display:inline-block;
-      margin-bottom:2em;
-    }
-    & > header > h1,
-    & > header > p {
-      margin:0;
-      display:inline-block;
-      vertical-align:top;
-    }
-    & > header > h1 {
-      font-size:2em;
-      line-height:1.25em;
-      margin-bottom:.5em;
-    }
-    & > header > p {
-      font-size:1em;
-      width: grid-width(12);
-    }
-    & > figure {
-      width:grid-width(8);
-      height:grid-width(8);
-      position:relative;
-      vertical-align:top;
-      display:inline-block;
-      margin-top:-6em;
-    }
-    & > figure > figcaption {
-      position:absolute;
-      line-height:1.25em;
-      width:3em;
-      top:2em;
-      left:1em;
-    }
-    & > figure > figcaption:nth-child(2) {
-      top:3.5em;
-      left:8.5em;
-    }
-    & > figure > figcaption:nth-child(3) {
-      top:8.5em;
-      left:5em;
-    }
-    & > figure > img {
-      position:absolute;
-      top:50%;
-      left:50%;
-      margin-left:-4em;
-      margin-top:-4em;
-      width:8em;
-      height:8em;
-      opacity:0.3;
-    }
-    & > figure > img:nth-child(4){
-      width:16em;
-      height:16em;
-      margin-left:-8em;
-      margin-top:-8em;
-      opacity:0.1;
-    }
-    & > figure > figcaption {
-      font-family: 'Nothing You Could Do', cursive;
-      font-size:1.75em;
-    }
-  }
-
-  #samples {
-    @include box-shadow(inset 0 .75em 1.5em -0.75em rgba(0, 0, 0, .1), inset 0 -0.5em 1.5em -1em rgba(0, 0, 0, .3));
-    padding:0;
-    position:relative;
-    overflow:hidden;
-    width:100%;
-    padding-bottom:5em;
-    background-color:rgba(230,232,233, .5);
-
-    & > nav > a.selected {
-      position:relative;
-      & > img {
-        opacity:1;
-      }
-      &:after {
-        margin-left:-1.5em;
-        position:absolute;
-        top:-1em;
-        left:50%;
-        content:"";
-        width: 0;
-        height: 0;
-        border-left: 1.5em solid transparent;
-        border-right: 1.5em solid transparent;
-        border-top: 1em solid rgba(251, 250, 248, 0.7);
-      }
-    }
-    & > nav {
-      width:grid-width(24);
-      margin: 1em auto 0 auto;
-      display:block;
-    }
-    & > nav > a {
-      cursor:pointer;
-      color:darken($offset_color, 30%);;
-      display:inline-block;
-      width:grid-width(3);
-      height:4em;
-      padding:.25em;
-      padding-top:.5em;
-      line-height:2.5em;
-      border-radius:.5em .5em 0 0 ;
-      vertical-align:middle;
-      text-align:center;
-      text-decoration:none;
-    }
-    & > nav > a[data-distance='nope']{
-      cursor:auto;
-    }
-    & > nav > a > img {
-      position:relative;
-      z-index:200;
-      opacity:.7;
-      width:5em;
-      display:inline-block;
-      vertical-align:bottom;
-    }
-    & > nav > a.selected > img.logo {
-      display:inline;
-    }
-    & > nav > a.selected > img.mask {
-      display:none;
-    }
-    & > nav > a > img.logo {
-      display:none;
-    }
-    & > figure {
-      margin-left: 14em;
-      width:700%;
-      padding-top:2em;
-    }
-    & > figure > img {
-      margin-left: grid-width(1);
-      display:inline-block;
-      @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
-    }
-  }
-
-  #join {
-    position:relative;
-    min-height:30em;
-    vertical-align:top;
-    padding-top:3em;
-    padding-bottom:6em;
-    overflow:hidden;
-    &:after {
-      content: "";
-      opacity: 0.05;
-      top: 22em;
-      left: 0;
-      bottom: -22em;
-      right: 0;
-      position: absolute;
-      z-index: -1; 
-      background: image-url('icons/watermark.svg') no-repeat 50% 100%;
-    }
-
-    & > header {
-      width: grid-width(11);
-      margin-bottom:2em;
-    }
-    & > header > h1 {
-      line-height:1.25em;
-      font-size: 2em;
-      margin:0;
-    }
-    & > figure {
-      vertical-align:top;
-      display: inline-block;
-    }
-    & > figure > figcaption {
-      font-size:.70em;
-      display:block;
-      margin-top:.5em;
-      width:grid-width(13);
-    }
-    & > figure > a {
-      position:relative;
-      vertical-align:top;
+      height:grid-width(2);
       display:inline-block;
     }
-    & > figure > a.button {
-      opacity:0.5;
-    }
-    & > figure > a.get {
-      padding-left: 3em;
-    }
-    & > figure > a.get > img {
-      position:absolute;
-      top:0;
-      left:0;
-      padding:.5em;
-      width:1.15em;
-      height:1.15em;
-      border-right:1px solid darken(#907744, 10%);
-    }
-    & > figure > img {
-      display:inline-block;
-      vertical-align:middle;
-      width:2em;
-      height:2em;
-      margin:.25em;
-      opacity:.21;
-    }
-    & > figure.step_one {
-      display:block;
-    }
-    & > figure.step_two {
-      display:none;
-    }
-    & > figure.step_two > a.get {
-      cursor:pointer;
-      opacity:1;
-    }
-    & > figure.step_two > h5 {
-      margin-top:-0.25em;
-      vertical-align:middle;
-      width:grid-width(8);
-      display:inline-block;
-    }
-    & > figure.step_two > h5 > figure {
-      vertical-align:middle;
-      display:inline-block;
-      background-color:#e5e9ef;
-      padding:0.65em;
-      border-radius: .5em 0 0 .5em;
-      @include triangle_down_small(#e5e9ef)
-    }
-    & > figure.step_two > h5 > figure > img {
-      width:2em;
-      height:2em;
-    }
-    & > figure.step_two > h5 > p {
-      border-radius: 0 .5em .5em 0;
-      width:13em;
-      font-family: 'Cantarell', sans-serif;
-      font-size:1em;
-      background-color:#e5e9ef;
-      color:#30436C;
-      vertical-align:top;
-      margin:0 0 0 .5em;
-      padding:0.8em;
-      display:inline-block;
-    }
-    & > figure.step_two > h5 > p > img {
-      display:inline-block;
-      width:1.75em;
+    & > div {
+      padding:1em 0 0 2em;
+      background-color:$offset_color;
       margin-right:.5em;
+      width:grid-width(4);
     }
-    & > figure.step_two > figcaption {
-      width:grid-width(13);
+    & > div > h2 {
+      font-size:.85em;
+      @include text;
+    }
+    & > div > p {
+      margin:.4em 0 0 0;
+      font-size:1.5em;
+      @include header_text;
+    }
+    & > div > p > span {
+      display:inline-block;
+      width:2em;
+      padding:0 .5em 0 0;
+      line-height:1em;
+    }
+    & > div > p > span:before,
+    & > div:nth-child(3) > p:before  {
+      content:"$";
+    }
+    & > div > p > button {
+      padding-right:.75em;
+      font-family: 'Doppio One', sans-serif;
+      background-color:$button_color;
+      color:$light-text;
+      font-size:.75em;
+      display:inline-block;
+      width:1em;
+      height:1em;
+      line-height:.5em;
+      border:1px solid darken($button_color, 5%);
+      -webkit-appearance: none;
+      @include box-shadow(1px 1px 1px 0em rgba(0, 0, 0, .5));
+    }
+    & > div > p > button:active {
+      @include box-shadow(0px 0px 0px 0em rgba(0, 0, 0, .5));
+    }
+    & > div:nth-child(2) {
+      padding-left:0;
+      @include right_width($offset_color)
+    }
+    & > footer {
+      padding-top:1em;
+      background-color: $offset_color;
+      @include left_width($offset_color)
+    }
+    & > footer > a {
+      display:inline-block;
+      margin: 1.75em 3em;
+      width:12em;
+      font-family: 'Doppio One', sans-serif;
+      font-size:.75em;
+      @include settings_pointer
     }
   }
-  
-  #congrats {
-    display:none;
-    position:relative;
-    & > p {
-      margin-top:0;
-      display:inline-block;
-      width:grid-width(9.5);
-      font-size:.85em;
-      margin-right:1em;
-    }
-    & > p.sub {
-      width:grid-width(10);
-      vertical-align:top;
-      font-size:.75em;
-      color:#999999;
-    }
 
-    & > header {
-      vertical-align:bottom;
-      position:relative;
-      height: grid-width(3.5);
-      line-height:grid-width(3.5);
-      margin-bottom:1em;
+
+  #pages > header {
+    & > h1 {
+      font-size:1.5em;
     }
-    & > header > h3 {
-      @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
-      background-repeat: no-repeat;
-      background-position:center;
-      @include background-size(cover);
-      font-size:2em;
+    & > hgroup {
+      display:none;
+      & > nav {
+        margin-bottom:grid-width(1);
+      }
+      & h2,
+      & > nav > a {
+        display:inline-block;
+        margin-right:1em;
+        @include text;
+      }
+      & > nav > a span {
+        font-weight:bold;
+      }
+      & > h2 {
+        margin-bottom:0.5em;
+      }
+      & > h2:after{
+        content: ":";
+      }
+      & > nav > a.selected {
+        color:$darkness;
+      }
+    }
+    & > hgroup:nth-child(3) {
+      display:none;
+    }
+  }
+  #pages > details {
+    display:inline-block;
+    width:grid-width(4);
+    margin: 0 1em 1em 0;
+    & > summary {
+      cursor:pointer;
+      outline:none;
+    }
+    & > summary > h2 {    
+      @include text;
+      font-size:.75em;
+      display:inline-block;
+      width:grid-width(4.5);
+      height:1em;
       line-height:1em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    & > summary > figure {
+      margin-top:.5em;
+      position:relative; 
+    }
+    & > summary > figure > img {
+      width:grid-width(4);
+      height:grid-width(3);
+      overflow:hidden;
+      @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
+    }
+    & > summary > figure > figcaption {
+      opacity:0.8;
+      text-align:center;
+      vertical-align:middle;
       position:absolute;
       top:0;
       right:0;
-      display:inline-block;
+      @include ribbon;
+      min-width:1em;
+      min-height:1em;
+      padding:0.5em 0.5em 0.75em 0.5em;
+      @include header_text;
       color:$light-text;
-      padding:.75em;
-      height: grid-width(1);
+      font-size:1em;
     }
-    & > header > h1 {
-      padding:0;
-      margin:0;
-      font-size:2em;
-      width:grid-width(6);
-      display:inline-block;
-      vertical-align:bottom;
-      line-height:1.25em;
-    }
-    & > div {
-      vertical-align:top;
-      display:inline-block;
-      text-align:left;
-      width: grid-width(3);
-    }
-    & > div > h3 {
-      font-family: 'Cantarell', sans-serif;
-      font-size:.85em;
-      color:#999999;
-      margin-bottom:0.5em;
-    }
-    & > div > p {
-      opacity:1;
-      color:$darkness;
-      margin:0;
-      line-height:1em;
-      font-family: 'Bree Serif', serif;
-      font-size:2em;
-    }
-    & > div > p:before{
+    & > summary > figure > figcaption:before {
       content: "$";
     }
   }
-  
-  #facebook {
-    display:none;
-    & > h4 {
-      display:inline-block;
-      width:grid-width(2);
-      margin-top:.5em;
-      margin-right: 1.5em;
-    }
-    & > nav {
-      display:inline-block;
-      vertical-align:top;
-      padding:0;
-      margin-left:0;
-    }
-    & h4 > img {
-      display:inline-block;
-      width:3em;
-      margin:.5em;
-      vertical-align:middle;
-    }
-    & > nav {
-      padding:1em;
-    }
-    & > nav > a {
-      display:inline-block;
-      margin-right:1em;
-      margin-bottom:1em;
-    }
-    & > nav > a > img {
-      vertical-align:top;
-      width:50px;
-    }
-  }
-  
-  #settings {
+  #pages > details[open] {
     position:relative;
-    display:none;
-    padding:0;
-    @include full_width($offset_color);
-    background-color:transparent;
+    width:grid-width(21);
+    margin:1em 0;
+    height:auto;
 
-    & > div {
-      position:relative;
-      padding-top:2em;
+    padding:0 .5em 1em .5em;
+    background-color:$offset_color;
+
+    & > summary {
+      outline:none;
+      padding-top:1em;
+      margin-right:1em;
       display:inline-block;
-      width:27em;
-      background-color:$offset_color;
+      & > h2 {
+        position:absolute;
+        top:0.25em;
+        left:1.5em;
+        width:auto;
+        margin-top:.5em;
+        vertical-align:middle;
+        font-size: 1.34em;
+        height:1.34em;
+        line-height:1.34em;
+
+        @include header_text;
+      }
+      & > figure {
+        width:grid-width(8);
+        height:grid-width(5);
+        margin-top:1em;
+        margin-left:1.25em;
+        @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
+      }
+      & > figure > figcaption {
+        font-size:2em;
+      }
+      & > figure > img {
+        width:grid-width(8);
+        height:grid-width(5);
+      }
     }
-    & > div:nth-child(2){
-      position:absolute;
-      top:0;
-      right:0;
-    }
-    & > div > header {
-      margin-left:1em;
+    & > dl {
+      clear:right;
+      margin-top:3em;
       display:inline-block;
-      width:grid-width(7.5);
-    }
-    & > div:first-child > header {
-      margin-left:0;
-    }
-    & > div > img {
-      position:absolute;
-      top:2em;
-      right:6em;
-      opacity:.3;
-    }
-    & > div > a > img {
       vertical-align:top;
-      margin-left:4em;
-      opacity:.5;
-      color:black;
-      width:2.5em;
-      height:2.5em;
-    }    
+
+      dt {
+        font-weight:bold;
+      }
+      dd {
+        @include header_text;
+        text-transform:lowercase;
+        margin-bottom:1em;
+      }
+      dd > a {
+        display:inline-block; 
+        border-bottom: 2px solid rgba(102, 102, 102, 0.15);
+      }
+      dt > details {
+        vertical-align:top;
+        display:block;
+        & > summary {
+          outline:none;
+          line-height:1.5em;
+          margin-bottom:1em;
+        }
+        &[open] > summary {
+          outline:auto;
+        }
+        & > table {
+          width:grid-width(12);
+          & > thead > tr > th {
+            @include header_text;
+            text-align:center;
+            padding-bottom:0.5em;
+            &:nth-child(2){
+              text-align:left;
+            }
+          }
+          & > thead > tr > th:first-child {
+            text-align:left;
+          }
+          & > tbody tr td:first-child {
+            text-align:left;
+            text-transform:capitalize;
+          }
+          & > tbody > tr > td > span[itemprop=amount_in_cents]:before {
+            content:"$";
+          }
+          & > tbody > tr > td {
+            text-align:center;
+            margin-bottom:1em;
+            padding-bottom:.5em;
+            &:nth-child(2){
+              text-align:left;
+            }
+          }
+          & > tbody > tr > td:first-child {
+            width:15em ;
+          }
+          & > tbody > tr > td:nth-child(2) > form {
+
+            & input[type=text] {
+              padding:0 0 0 .25em;
+              width:2.5em;
+              color:$button_color;
+              font-weight:bold;
+              background-color:transparent;
+              box-shadow:none;
+            }
+            &:before {
+              content:"$";
+              font-size:1.15em;
+            }
+            & > input[type=submit] {
+              @include transition (opacity 0.3s ease-in 0.25s);
+              opacity:0;
+              font-size:0.75em;
+            }
+            & > input:focus + input[type=submit] {
+              @include transition (opacity 0.3s ease-out 0.25s);
+              opacity:1;
+            }
+            & > input[type=submit]:focus {
+              opacity:1;
+            }
+          }
+          & > tbody tr td:nth-child(3) form input[type=submit] {
+            font-size:0.65em;
+          }
+        }
+      }
+    }
   }
 
+}
+
+#users_show.admin {
+  #pages {
+    & > header > hgroup {
+      display:block;
+    }
+    & > details[data-author_state=orphaned] > summary > figure > img {
+      //red
+      @include box-shadow(1px 1px 5px 2px rgba(255, 0, 0, 0.7));
+    }
+
+    & > details[data-author_state=fostered] > summary > figure > img {
+      //yellow
+      @include box-shadow(1px 1px 5px 2px rgba(255, 255, 0, 0.7)); 
+    }
+
+    & > details[data-author_state=adopted] > summary > figure > img {
+      //green
+      @include box-shadow(1px 1px 5px 2px rgba(0, 128, 0, 0.7)); 
+    }
+
+    & > details[data-author_state=manual] > summary > figure > img {
+      //brown
+      @include box-shadow(1px 1px 5px 2px rgba(165, 42, 42, 0.7)); 
+
+      //blue
+      //@include box-shadow(1px 1px 5px 2px rgba(0, 0, 255, 0.7)); 
+    }
+  }
+
+  #pages.adopted {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=adopted]{
+      display:inline-block;
+    }
+  }
+
+  #pages.triage {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=triage]{
+      display:inline-block;
+    }
+  }
+
+  #pages.fostered {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=fostered]{
+      display:inline-block;
+    }
+  }
+
+  #pages.manual {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=manual]{
+      display:inline-block;
+    }
+  }
+}
+
+#home_index {
+  //todo figure out how to display author info and links
+  #pages > header > nav {
+    display:none;
+  }
+  #signed_in > nav > a[href='/fans/me'] > img {
+    opacity:1;
+  }
 }

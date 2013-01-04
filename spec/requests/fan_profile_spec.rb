@@ -7,7 +7,6 @@ describe "a fan's profile page", :slow do
     User.count.should == 1
     User.first.tip({url:'http://www.nytimes.com', title:'nytimes homepage', amount_in_cents:'50'})
     User.first.tip({url:'http://www.fasterlighterbetter.com', title:'faster lighter better', amount_in_cents:'50'})
-    visit '/fans/me'
   end
   after(:each) do
     page.driver.error_messages.should be_empty

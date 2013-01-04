@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
 
     id = params['id']
 
-    if type == 'authors'
+    if type == 'home'
       type = 'users'
     end
 

@@ -9,9 +9,7 @@ describe "home page experience", :slow do
     page.driver.error_messages.should be_empty
   end
 
-  it "should display fan profile for logged in users" do
-    
-  end
+  it "should display fan profile for logged in users"
 
   it "should display the signin ui" do
     page.should have_css('#sign_in', visible:true)

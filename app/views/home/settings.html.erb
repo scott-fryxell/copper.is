@@ -1,4 +1,4 @@
-<%-content_for :head do-%>
+k<%-content_for :head do-%>
   <title><%=current_user.name%>'s Settings - Copper.</title>
 <%-end-%>
 <section id="banner">
@@ -123,6 +123,77 @@
     <input type="submit" value="Save" />
   </form>
 </section>
+
+<section id="address" class="setting">
+  <header>
+    <h2>Your address</h2>
+    <a href="#address">Change</a>
+  </header>
+  <div>
+    <p itemprop="payable_to"></p>
+    <p itemprop="line1"></p>
+    <p itemprop="line2"></p>
+    <p>
+      <span itemprop='city'></span>
+      <span itemprop="subregion_code"></span> 
+      <span itemprop="postal_code"></span>
+    </p>
+  </div>
+  <%= render :partial => 'shared/address' %>
+</section>
+
+<section id="identities">
+  <header>
+    <h2>Your identities</h2>
+    <a href="#identities">Add/Remove</a>
+  </header>
+  <div>
+    <%-current_user.identities.each do |identity|-%>
+    <figure class="<%=identity.provider%>" itemscope itemtype="identities"  itemid="<%=identity.id%>">
+      <%= image_tag "providers/#{identity.provider}/sign_in.png", title:identity.username%>
+      <figcaption itemprop='username'><%=identity.username%></figcaption>
+      <%-if current_user.identities.count > 1-%>
+      <form action='<%=identity_path(identity)%>' method="delete">
+        <input type="submit" name="submit" value="X">
+      </form>
+      <%-end-%>
+    </figure>
+    <%-end-%>
+  </div>
+  <aside>
+    <header>
+      <h2>Authorize other identities</h2>
+    </header>
+    <nav>
+      <a href="/auth/facebook" title="Authorize facebook">
+        <%= image_tag "providers/facebook/sign_in.png"%>
+      </a>
+      <a href="/auth/twitter" title="Authorize twitter">
+        <%= image_tag "providers/twitter/sign_in.png"%>
+      </a>
+      <a href="/auth/google_oauth2" title="Authorize google">
+        <%= image_tag "providers/google/sign_in.png"%>
+      </a>
+      <a href="/auth/soundcloud" title="Authorize soundcloud">
+        <%= image_tag "providers/soundcloud/sign_in.png"%>
+      </a>
+      <a href="/auth/vimeo" title="Authorize vimeo">
+        <%= image_tag "providers/vimeo/sign_in.png"%>
+      </a>
+      <a href="/auth/tumblr" title="Authorize tumblr">
+        <%= image_tag "providers/tumblr/sign_in.png"%>
+      </a>
+      <a href="/auth/github" title="Authorize github">
+        <%= image_tag "providers/github/sign_in.png"%>
+      </a>
+      <a href="/auth/flickr" title="Authorize flickr">
+        <%= image_tag "providers/flickr/sign_in.png"%>
+      </a>
+    </nav>
+  </aside>
+</section>
+
 <nav>
   <a href="/fans/me">return to profile</a>
 </nav>
+

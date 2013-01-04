@@ -2,6 +2,21 @@ class HomeController < ApplicationController
   respond_to :html
 
   def index
+    if current_user
+      @pages = current_user.pages.group('pages.id').except(:order).order('MAX(tips.created_at) DESC')
+    else
+      redirect_to :action => 'welcome', :status => 302
+    end
+  end
+
+  def author
+    @pages = current_user.pages.group('pages.id').except(:order).order('MAX(tips.created_at) DESC')
+  end
+
+  def settings
+  end
+
+  def welcome
     response.headers['Cache-Control'] = 'public, max-age=300'
   end
 

@@ -10,31 +10,55 @@ describe HomeController do
         get :about
       end
     end
+
+    describe '/welcome' do
+      it '200' do
+        get :welcome
+      end
+    end
+
+    describe '/author' do
+      it '200' do
+        get :welcome
+      end
+    end
+
+    describe '/settings' do
+      it '200' do
+        get :settings
+      end
+    end
+
     describe '/contact' do
       it '200' do
         get :contact
       end
     end
+
     describe '/terms' do
       it '200' do
         get :terms
       end
     end
+
     describe '/privacy' do
       it '200' do
         get :privacy
       end
     end
+
     describe '/faq' do
       it '200' do
         get :faq
       end
     end
+
     describe '/button' do
       it '200' do
         get :button
       end
     end
+    
     describe "/buckingthesystem" do
       it '200' do
         get :index

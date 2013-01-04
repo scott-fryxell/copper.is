@@ -1,5 +1,4 @@
-#authors_edit {
-
+#home_settings {
   #identities {
     display:block;
 
@@ -76,5 +75,66 @@
   }
   #address > form > input[type=submit] {
     width:4em;
+  }
+
+
+  #signed_in > nav > a[href='/settings'] > img {
+    opacity:1;
+  }
+  & > nav {
+    margin-bottom:3em;
+    text-align:center;
+  }
+  & > nav > a {
+    @include settings_pointer
+  }
+  #rate > div > p:before{
+    content: "$";
+  }
+  #card {
+    height: grid-width(6);
+    margin-bottom:3em;
+    #number {
+      width:10em;
+    }
+    #cvc {
+      width:grid-width(1);
+    }
+  }
+  #card > div {
+    display:none;
+    width:40em;
+    @include column-count(3);
+    @include column-gap(2em);
+  }
+  #card > div > section {
+    height:5em;
+    margin:0;
+  }
+  #card > div > section > p {
+    margin:0
+  }
+  #card > form a {
+    font-weight:bold;
+  }
+  #card p.number:before {
+   content: "**** **** **** ";
+  }
+  #card > form > h1 {
+    display:none;
+    opacity:0;
+    @include transition (opacity 3.0s ease-in-out);
+  }
+  #card > form > h1.message {
+    @include transition (opacity 3.0s ease-in-out);
+    display:block;
+    opacity:1;
+    margin:0 0 .5em 0;
+    color:red;
+    font-size:1.2em;
+  }
+
+  a[href="/terms"] {
+    text-decoration: underline;
   }
 }

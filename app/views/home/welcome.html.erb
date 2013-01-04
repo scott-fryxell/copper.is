@@ -1,0 +1,160 @@
+<%-content_for :head do-%>
+  <title>Copper.is – The currency of appreciation</title>
+  <meta name="google-site-verification" content="ajqm1UZuvVaocEm3g_dULtZtRdPxR5KVf6odfYyYQkQ" />
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
+<%-end-%>
+<section id="banner">
+  <header>
+    <h1>
+      The new tipping service for creators &amp; fans.
+      <a href="#">WATCH OUR VIDEO &gt;</a>
+    </h1>
+    <a href="#" id="play_video">
+      <%= image_tag "icons/play.svg" %>
+    </a>
+    <figure>
+      <a href="#join"><%= image_tag "noun_project/5506.svg", alt:'Sign Up' %></a>
+      <figcaption>Sign Up</figcaption>
+    </figure>
+  </header>
+</section>
+<section id="how">
+  <header>
+    <h1>Copper connects you with the people creating the content you like online.</h1>
+    <p>
+      You find something cool anywhere online. You click a button to
+      tip the content. We find the person who made it and pass along
+      your appreciation. They keep on doing what they do!
+    </p>
+  </header>
+  <figure>
+    <figcaption>They create</figcaption>
+    <figcaption>You enjoy</figcaption>
+    <figcaption>You tip</figcaption>
+    <%= image_tag "arrows/circle.svg" %>
+    <%= image_tag "icons/letter_logo.svg" %>
+  </figure>
+</section>
+<section id="samples">
+  <nav>
+    <a id="tumblr" data-distance="14em" class="selected">
+      <%= image_tag "providers/tumblr/mask.png", class:'mask' %>
+      <%= image_tag "providers/tumblr/logo.png", class:'logo' %>
+    </a>
+    <a id="vimeo" data-distance="-38em">
+      <%= image_tag "providers/vimeo/mask.png", class:'mask' %>
+      <%= image_tag "providers/vimeo/logo.png", class:'logo' %>
+    </a>
+    <a id="soundcloud" data-distance="-89em">
+      <%= image_tag "providers/soundcloud/mask.png", class:'mask' %>
+      <%= image_tag "providers/soundcloud/logo.png", class:'logo' %>
+    </a>
+    <a id="github" data-distance="-141em">
+      <%= image_tag "providers/github/mask.png", class:'mask' %>
+      <%= image_tag "providers/github/logo.png", class:'logo' %>
+    </a>
+    <a id="youtube" data-distance="-192em" >
+      <%= image_tag "providers/youtube/mask.png", class:'mask' %>
+      <%= image_tag "providers/youtube/logo.png", class:'logo' %>
+    </a>
+    <a id="xkcd" data-distance="-244em">
+      <%= image_tag "providers/xkcd/mask.png", class:'mask' %>
+      <%= image_tag "providers/xkcd/logo.png", class:'logo' %>
+    </a>
+    <a id="more" data-distance="nope">...and more!</a>
+  </nav>
+  <figure>
+    <%= image_tag "providers/tumblr/sample.jpg" %>
+    <%= image_tag "providers/vimeo/sample.jpg" %>
+    <%= image_tag "providers/soundcloud/sample.jpg" %>
+    <%= image_tag "providers/github/sample.jpg" %>
+    <%= image_tag "providers/youtube/sample.jpg" %>
+    <%= image_tag "providers/xkcd/sample.jpg" %>
+  </figure>
+</section>
+<section id="join">
+  <header>
+    <h1>So, how do I get this Button?</h1>
+    <p>
+      Download the Copper button right here. It will live
+      on your browser’s tool bar, ready and waiting for when
+      you find something tip-worthy. Then all you have to
+      do is click it...
+    </p>
+  </header>
+  <figure class="step_one">
+    <a href="/auth/facebook" title="connect with facebook">
+      <%= image_tag "providers/facebook/connect.png"%>
+    </a>
+    <%= image_tag "arrows/right.svg"%>
+    <a class="button get install"><%= image_tag "icons/letter_logo_white.svg" %> Get The Button</a>
+    <%= image_tag "arrows/right_two.svg"%>
+    <a class="button">Start Tipping</a>
+    <figcaption>We'll never post to your timeline without your permission.</figcaption>
+  </figure>
+  <figure class="step_two">
+    <h5>
+      <figure>
+        <%= image_tag "icons/silhouette.svg", class:"identity", alt:"me" %>
+      </figure>
+      <p><%= image_tag "providers/facebook/logo.png" %></p>
+    </h5>
+    <%= image_tag "arrows/right.svg"%>
+    <a class="button install get"><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
+    <%= image_tag "arrows/right_two.svg"%>
+    <a class="button">Start Tipping</a>
+    <figcaption>You’re now officially a fan on Copper. As soon as you
+    have the button, you can start tipping! You also now
+    have a Copper profile, where you can keep track of
+    your tipping and your favorite content.
+    </figcaption>
+  </figure>
+</section>
+<section id="congrats">
+  <header>
+    <h3>Congrats!</h3>
+    <h1>Your button is now installed! Take it for a test drive...</h1>
+  </header>
+  <div>
+    <h3>Default Tip</h3>
+    <p>0.75</p>
+  </div>
+  <p>
+    Below are some things we have transferred from your News Feed
+    that you might want to tip! But of course, the tip button
+    works anywhere.
+  </p>
+  <p class="sub">
+    Note: We won’t ask for any payment info until you've been using
+    the service for a bit, but if you want to get that squared away now,
+    you can do that <a href="/fans/me/edit">here</a>.
+  </p>
+</section>
+<section id="facebook">
+  <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
+  <nav></nav>
+</section>
+<section id="settings">
+  <div>
+    <header>
+      <h3>Check out Your Profile</h3>
+      <p>
+        We’ve made a profile page for you where you
+        can keep track of your generosity.
+      </p>
+    </header>
+    <%= image_tag "arrows/swoop_down.svg"%>
+    <%= link_to image_tag("icons/silhouette.svg"), '/fans/me', :title => "View profile" %>
+  </div>
+  <div>
+    <header>
+      <h3>Customize Your Settings</h3>
+      <p>
+        We’ve also made a settings page for you where
+        you can adjust and personalize tips.
+      </p>
+    </header>
+    <%= image_tag "arrows/swoop_down.svg"%>
+    <%= link_to image_tag("icons/gear.svg"), '/fans/me/edit', :title => "Account settings"%>
+  </div>
+</section>

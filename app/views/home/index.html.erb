@@ -1,143 +1,161 @@
 <%-content_for :head do-%>
-  <title>Copper.is – The currency of appreciation</title>
-  <meta name="google-site-verification" content="ajqm1UZuvVaocEm3g_dULtZtRdPxR5KVf6odfYyYQkQ" />
-  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
+  <title><%=current_user.name%> - Copper.</title>
 <%-end-%>
+
 <section id="banner">
   <header>
-    <h1>
-      The new tipping service for creators &amp; fans.
-      <a href="#">WATCH OUR VIDEO &gt;</a>
-    </h1>
-    <a href="#" id="play_video">
-      <%= image_tag "icons/play.svg" %>
-    </a>
-    <figure>
-      <a href="#join"><%= image_tag "noun_project/5506.svg", alt:'Sign Up' %></a>
-      <figcaption>Sign Up</figcaption>
-    </figure>
+    <%= image_tag "icons/silhouette.svg", class:"identity", alt:'me' %>
   </header>
+  <hgroup>
+    <h1>Your Profile</h1>
+    <p><%=current_user.name%><a href="/signout">not you?</a></p>
+  </hgroup>
+  <p>
+    This is your home on Copper. On this page, you can keep track of what
+    you’ve tipped, change or cancel pending tips, and explore content made
+    by your favorite creators. We also save the things you’ve tipped so you
+    can find them later to enjoy or share with your friends.
+  </p>
 </section>
-<section id="how">
+<section id="stats">
   <header>
-    <h1>Copper connects you with the people creating the content you like online.</h1>
-    <p>
-      You find something cool anywhere online. You click a button to
-      tip the content. We find the person who made it and pass along
-      your appreciation. They keep on doing what they do!
-    </p>
-  </header>
-  <figure>
-    <figcaption>They create</figcaption>
-    <figcaption>You enjoy</figcaption>
-    <figcaption>You tip</figcaption>
-    <%= image_tag "arrows/circle.svg" %>
-    <%= image_tag "icons/letter_logo.svg" %>
-  </figure>
-</section>
-<section id="samples">
-  <nav>
-    <a id="tumblr" data-distance="14em" class="selected">
-      <%= image_tag "providers/tumblr/mask.png", class:'mask' %>
-      <%= image_tag "providers/tumblr/logo.png", class:'logo' %>
-    </a>
-    <a id="vimeo" data-distance="-38em">
-      <%= image_tag "providers/vimeo/mask.png", class:'mask' %>
-      <%= image_tag "providers/vimeo/logo.png", class:'logo' %>
-    </a>
-    <a id="soundcloud" data-distance="-89em">
-      <%= image_tag "providers/soundcloud/mask.png", class:'mask' %>
-      <%= image_tag "providers/soundcloud/logo.png", class:'logo' %>
-    </a>
-    <a id="github" data-distance="-141em">
-      <%= image_tag "providers/github/mask.png", class:'mask' %>
-      <%= image_tag "providers/github/logo.png", class:'logo' %>
-    </a>
-    <a id="youtube" data-distance="-192em" >
-      <%= image_tag "providers/youtube/mask.png", class:'mask' %>
-      <%= image_tag "providers/youtube/logo.png", class:'logo' %>
-    </a>
-    <a id="xkcd" data-distance="-244em">
-      <%= image_tag "providers/xkcd/mask.png", class:'mask' %>
-      <%= image_tag "providers/xkcd/logo.png", class:'logo' %>
-    </a>
-    <a id="more" data-distance="nope">...and more!</a>
-  </nav>
-  <figure>
-    <%= image_tag "providers/tumblr/sample.jpg" %>
-    <%= image_tag "providers/vimeo/sample.jpg" %>
-    <%= image_tag "providers/soundcloud/sample.jpg" %>
-    <%= image_tag "providers/github/sample.jpg" %>
-    <%= image_tag "providers/youtube/sample.jpg" %>
-    <%= image_tag "providers/xkcd/sample.jpg" %>
-  </figure>
-</section>
-<section id="join">
-  <header>
-    <h1>So, how do I get this Button?</h1>
-    <p>
-      Download the Copper button right here. It will live
-      on your browser’s tool bar, ready and waiting for when
-      you find something tip-worthy. Then all you have to
-      do is click it...
-    </p>
-  </header>
-  <figure class="step_one">
-    <a href="/auth/facebook" title="connect with facebook">
-      <%= image_tag "providers/facebook/connect.png"%>
-    </a>
-    <%= image_tag "arrows/right.svg"%>
-    <a class="button get install"><%= image_tag "icons/letter_logo_white.svg" %> Get The Button</a>
-    <%= image_tag "arrows/right_two.svg"%>
-    <a class="button">Start Tipping</a>
-    <figcaption>We'll never post to your timeline without your permission.</figcaption>
-  </figure>
-  <figure class="step_two">
-    <h5>
-      <figure>
-        <%= image_tag "icons/silhouette.svg", class:"identity", alt:"me" %>
-      </figure>
-      <p><%= image_tag "providers/facebook/logo.png" %></p>
-    </h5>
-    <%= image_tag "arrows/right.svg"%>
-    <a class="button install get"><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
-    <%= image_tag "arrows/right_two.svg"%>
-    <a class="button">Start Tipping</a>
-    <figcaption>You’re now officially a fan on Copper. As soon as you
-    have the button, you can start tipping! You also now
-    have a Copper profile, where you can keep track of
-    your tipping and your favorite content.
-    </figcaption>
-  </figure>
-</section>
-<section id="congrats">
-  <header>
-    <h3>Congrats!</h3>
-    <h1>Your button is now installed! Take it for a test drive...</h1>
+    <h1>Your stats</h1>
   </header>
   <div>
-    <h3>Default Tip</h3>
-    <p>0.75</p>
+    <h2>Number of tips</h2>
+    <p><%=current_user.pages.count%></p>
   </div>
-  <p>
-    Below are some things we have transferred from your News Feed
-    that you might want to tip! But of course, the tip button
-    works anywhere.
-  </p>
-  <p class="sub">
-    Note: We won’t ask for any payment info until you've been using
-    the service for a bit, but if you want to get that squared away now,
-    you can do that <a href="/fans/me/edit">here</a>.
-  </p>
+  <div>
+    <h2>Average tip</h2>
+    <p><%=current_user.tips.average(:amount_in_cents).round() if current_user.tips.size > 0%></p>
+  </div>
+  <div>
+    <h2>Default tip</h2>
+    <p>
+      <span itemprop="tip_preference_in_cents" data-value="<%=current_user.tip_preference_in_cents%>"></span>
+      <button>+</button>
+      <button>-</button>
+    </p>
+  </div>
+  <footer>
+    <a href="/fans/me/edit">Edit your settings</a>
+  </footer>
 </section>
-<section id="facebook">
-  <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
-  <nav></nav>
-</section>
+<%-if @pages -%>
+  <section id="pages" class="">
+    <header>
+      <h1>What you've tipped</h1> 
+      <hgroup>
+        <h2>Filter by</h2>
+        <nav>
+          <a href="#pages/recent" class="selected">recent</a>
+          <a href="#pages/adopted">adopted <span><%=current_user.pages.adopted.count%></span></a>
+          <a href="#pages/fostered">fostered <span><%=current_user.pages.fostered.count%></span></a>
+          <a href="#pages/manual">manual <span><%=current_user.pages.manual.count%></span></a>
+          <a href="#pages/orphaned">orphaned <span><%=current_user.pages.orphaned.count%></span></a>
+          <a href="#pages/author">author</a>
+          <a href="#pages/site">site</a>
+        </nav>
+      </hgroup>
+    </header>
+    <%-@pages.each do |page| -%>
+      <details itemscope itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>">
+        <summary>
+          <h2 itemprop="title"><%=page.title%></h2>
+          <figure>
+            <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>" alt="tip image" title="<%=page.author_state%>"/> 
+            <figcaption><%=page.fan_tips(current_user).sum(:amount_in_cents)%></figcaption>
+          </figure>
+        </summary>
+        <dl>
+          <dt>Source</dt>
+          <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(page.url).host%></a></dd>
+          <dt>
+            <details>
+              <summary><%=pluralize(page.fan_tips(current_user).count, 'tip')%></summary>
+              <table>
+                <thead>
+                  <tr>
+                    <th>when</th>
+                    <th>amount</th>
+                    <th>delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <%-page.fan_tips(current_user).each do |tip| -%>
+                  <tr itemscope itemtype='tips' itemid='<%=tip.id%>'>
+                    <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
+                    <td>
+                      <%-if tip.paid_state == 'promised' -%>
+                        <form method="put">
+                          <input type="text" name='amount_in_dollars' value="<%=tip.amount_in_cents%>"/>
+                          <input type="submit" value="Save"/>
+                          <input type="hidden" itemprop="amount_in_cents" name="tip[amount_in_cents]" value="<%=tip.amount_in_cents%>"/>
+                        </form>
+                      <%-else-%>
+                        <span itemprop='amount_in_cents' data-amount_in_cents='<%=tip.amount_in_cents%>'><%=tip.amount_in_cents%></span>
+                      <%-end-%>
+                    </td>
+                    <td>
+                      <%-if tip.paid_state == 'promised' -%>
+                        <form method="delete"><input type="submit" value="X"/></form>
+                      <%-end-%>
+                    </td>
+                  </tr>
+                <%-end-%>
+                </tbody>
+              </table>
+            </details>          
+          </dt>
+        </dl>        
+      </details>
+    <%-end-%>
+  </section>
+<%-else-%>
+
+  <section id="join">
+    <header>
+      <h1>Now give creators money. Let's see what happens.</h1>
+      <p>
+        Download the Copper button right here. It will live
+        on your browser’s tool bar, ready and waiting for when
+        you find something tip-worthy. Then all you have to
+        do is click it...
+      </p>
+    </header>
+    <figure class="step_one">
+      <%= image_tag "arrows/right.svg"%>
+      <a class="button get install"><%= image_tag "icons/letter_logo_white.svg" %> Get The Button</a>
+      <%= image_tag "arrows/right_two.svg"%>
+      <a class="button">Start Tipping</a>
+      <figcaption>We'll never post to your timeline without your permission.</figcaption>
+    </figure>
+    <figure class="step_two">
+      <h5>
+        <figure>
+          <%= image_tag "icons/silhouette.svg", class:"identity", alt:"me" %>
+        </figure>
+        <p><%= image_tag "providers/facebook/logo.png" %></p>
+      </h5>
+      <%= image_tag "arrows/right.svg"%>
+      <a class="button install get"><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
+      <%= image_tag "arrows/right_two.svg"%>
+      <a class="button">Start Tipping</a>
+      <figcaption>You’re now officially a fan on Copper. As soon as you
+      have the button, you can start tipping! You also now
+      have a Copper profile, where you can keep track of
+      your tipping and your favorite content.
+      </figcaption>
+    </figure>
+  </section>
+<%-end-%>
+<nav>
+  <a href="/fans/1">Wanna see what it looks like?</a>
+</nav>
 <section id="settings">
   <div>
     <header>
-      <h3>Check out Your Profile</h3>
+      <h3>Check out what authors see</h3>
       <p>
         We’ve made a profile page for you where you
         can keep track of your generosity.

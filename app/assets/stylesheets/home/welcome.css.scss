@@ -1,0 +1,506 @@
+#home_welcome {
+  min-height:120em;
+  & > header {
+    width:100%;
+    z-index:300;
+    background-color: transparent;
+    @include transition(background-color 1.4s);
+    &:hover {
+      background-color: $header;
+      @include transition(background-color .7s $ease-in-sine);
+    }
+  }
+  a.button {
+    @include copper_button;
+  }
+
+  #banner {
+    margin-top:-4em;
+    background-image: image-url('home/katie.jpg');
+    background-position:center top;
+    background-repeat:no-repeat;
+    background-color:transparent;
+    height: 24em;
+    width:auto;
+    @include background-size(cover);
+    @include full_width(black);
+
+    & > header {
+      margin:0 auto 0 auto;
+      width:grid-width(22);
+    }
+    & > header > h1 {
+      display:inline-block;
+      width:grid-width(4);
+      display:inline-block;
+      margin-top: grid-width(1.25);
+      opacity:.8;
+      line-height:1em;
+      color:$light-text;
+      font-size:2.5em;
+    }
+    & > header > h1 > a {
+      vertical-align:middle;
+      font-family: 'Doppio One', sans-serif;
+      color:#999999;
+      text-decoration:none;
+      font-size:.30em;
+      line-height:3.5em;
+      display:none;
+    }
+    & > header > a#play_video {
+      margin-top:3em;
+      text-decoration:none;
+      cursor:pointer;
+      vertical-align:baseline;
+      margin-left:.5em;
+      display:inline-block;
+      display:none;
+      opacity:.5;
+      font-size:3em;
+      color:#000000;
+      @include transition(all 1s);
+      &:hover {
+        opacity:.7;
+        @include transition(all 1s);
+        @include transform(scale(1.05,1.05));
+      }
+    }
+    & > header > a > img {
+      height:2em;
+      width:2em;
+    }
+    & > header > figure {
+      margin-top: grid-width(1.25);
+      line-height:1em;
+      opacity:.8;
+      display:none;
+      margin-left:12em;
+    }
+    & > header > figure > figcaption {
+      font-size:2em;
+      font-family: 'Bree Serif', serif;
+      color:$light-text;
+      text-align:center;
+    }
+    & > header > figure img {
+      padding-left:0.5em;
+    }
+  }
+
+  #how {
+    padding-top:6em;
+    padding-bottom:2em;
+
+    & > header {
+      vertical-align:top;
+      width: grid-width(14);
+      display:inline-block;
+      margin-bottom:2em;
+    }
+    & > header > h1,
+    & > header > p {
+      margin:0;
+      display:inline-block;
+      vertical-align:top;
+    }
+    & > header > h1 {
+      font-size:2em;
+      line-height:1.25em;
+      margin-bottom:.5em;
+    }
+    & > header > p {
+      font-size:1em;
+      width: grid-width(12);
+    }
+    & > figure {
+      width:grid-width(8);
+      height:grid-width(8);
+      position:relative;
+      vertical-align:top;
+      display:inline-block;
+      margin-top:-6em;
+    }
+    & > figure > figcaption {
+      position:absolute;
+      line-height:1.25em;
+      width:3em;
+      top:2em;
+      left:1em;
+    }
+    & > figure > figcaption:nth-child(2) {
+      top:3.5em;
+      left:8.5em;
+    }
+    & > figure > figcaption:nth-child(3) {
+      top:8.5em;
+      left:5em;
+    }
+    & > figure > img {
+      position:absolute;
+      top:50%;
+      left:50%;
+      margin-left:-4em;
+      margin-top:-4em;
+      width:8em;
+      height:8em;
+      opacity:0.3;
+    }
+    & > figure > img:nth-child(4){
+      width:16em;
+      height:16em;
+      margin-left:-8em;
+      margin-top:-8em;
+      opacity:0.1;
+    }
+    & > figure > figcaption {
+      font-family: 'Nothing You Could Do', cursive;
+      font-size:1.75em;
+    }
+  }
+
+  #samples {
+    @include box-shadow(inset 0 .75em 1.5em -0.75em rgba(0, 0, 0, .1), inset 0 -0.5em 1.5em -1em rgba(0, 0, 0, .3));
+    padding:0;
+    position:relative;
+    overflow:hidden;
+    width:100%;
+    padding-bottom:5em;
+    background-color:rgba(230,232,233, .5);
+
+    & > nav > a.selected {
+      position:relative;
+      & > img {
+        opacity:1;
+      }
+      &:after {
+        margin-left:-1.5em;
+        position:absolute;
+        top:-1em;
+        left:50%;
+        content:"";
+        width: 0;
+        height: 0;
+        border-left: 1.5em solid transparent;
+        border-right: 1.5em solid transparent;
+        border-top: 1em solid rgba(251, 250, 248, 0.7);
+      }
+    }
+    & > nav {
+      width:grid-width(24);
+      margin: 1em auto 0 auto;
+      display:block;
+    }
+    & > nav > a {
+      cursor:pointer;
+      color:darken($offset_color, 30%);;
+      display:inline-block;
+      width:grid-width(3);
+      height:4em;
+      padding:.25em;
+      padding-top:.5em;
+      line-height:2.5em;
+      border-radius:.5em .5em 0 0 ;
+      vertical-align:middle;
+      text-align:center;
+      text-decoration:none;
+    }
+    & > nav > a[data-distance='nope']{
+      cursor:auto;
+    }
+    & > nav > a > img {
+      position:relative;
+      z-index:200;
+      opacity:.7;
+      width:5em;
+      display:inline-block;
+      vertical-align:bottom;
+    }
+    & > nav > a.selected > img.logo {
+      display:inline;
+    }
+    & > nav > a.selected > img.mask {
+      display:none;
+    }
+    & > nav > a > img.logo {
+      display:none;
+    }
+    & > figure {
+      margin-left: 14em;
+      width:700%;
+      padding-top:2em;
+    }
+    & > figure > img {
+      margin-left: grid-width(1);
+      display:inline-block;
+      @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
+    }
+  }
+
+  #join {
+    position:relative;
+    min-height:30em;
+    vertical-align:top;
+    padding-top:3em;
+    padding-bottom:6em;
+    overflow:hidden;
+    &:after {
+      content: "";
+      opacity: 0.05;
+      top: 22em;
+      left: 0;
+      bottom: -22em;
+      right: 0;
+      position: absolute;
+      z-index: -1; 
+      background: image-url('icons/watermark.svg') no-repeat 50% 100%;
+    }
+
+    & > header {
+      width: grid-width(11);
+      margin-bottom:2em;
+    }
+    & > header > h1 {
+      line-height:1.25em;
+      font-size: 2em;
+      margin:0;
+    }
+    & > figure {
+      vertical-align:top;
+      display: inline-block;
+    }
+    & > figure > figcaption {
+      font-size:.70em;
+      display:block;
+      margin-top:.5em;
+      width:grid-width(13);
+    }
+    & > figure > a {
+      position:relative;
+      vertical-align:top;
+      display:inline-block;
+    }
+    & > figure > a.button {
+      opacity:0.5;
+    }
+    & > figure > a.get {
+      padding-left: 3em;
+    }
+    & > figure > a.get > img {
+      position:absolute;
+      top:0;
+      left:0;
+      padding:.5em;
+      width:1.15em;
+      height:1.15em;
+      border-right:1px solid darken(#907744, 10%);
+    }
+    & > figure > img {
+      display:inline-block;
+      vertical-align:middle;
+      width:2em;
+      height:2em;
+      margin:.25em;
+      opacity:.21;
+    }
+    & > figure.step_one {
+      display:block;
+    }
+    & > figure.step_two {
+      display:none;
+    }
+    & > figure.step_two > a.get {
+      cursor:pointer;
+      opacity:1;
+    }
+    & > figure.step_two > h5 {
+      margin-top:-0.25em;
+      vertical-align:middle;
+      width:grid-width(8);
+      display:inline-block;
+    }
+    & > figure.step_two > h5 > figure {
+      vertical-align:middle;
+      display:inline-block;
+      background-color:#e5e9ef;
+      padding:0.65em;
+      border-radius: .5em 0 0 .5em;
+      @include triangle_down_small(#e5e9ef)
+    }
+    & > figure.step_two > h5 > figure > img {
+      width:2em;
+      height:2em;
+    }
+    & > figure.step_two > h5 > p {
+      border-radius: 0 .5em .5em 0;
+      width:13em;
+      font-family: 'Cantarell', sans-serif;
+      font-size:1em;
+      background-color:#e5e9ef;
+      color:#30436C;
+      vertical-align:top;
+      margin:0 0 0 .5em;
+      padding:0.8em;
+      display:inline-block;
+    }
+    & > figure.step_two > h5 > p > img {
+      display:inline-block;
+      width:1.75em;
+      margin-right:.5em;
+    }
+    & > figure.step_two > figcaption {
+      width:grid-width(13);
+    }
+  }
+  
+  #congrats {
+    display:none;
+    position:relative;
+    & > p {
+      margin-top:0;
+      display:inline-block;
+      width:grid-width(9.5);
+      font-size:.85em;
+      margin-right:1em;
+    }
+    & > p.sub {
+      width:grid-width(10);
+      vertical-align:top;
+      font-size:.75em;
+      color:#999999;
+    }
+
+    & > header {
+      vertical-align:bottom;
+      position:relative;
+      height: grid-width(3.5);
+      line-height:grid-width(3.5);
+      margin-bottom:1em;
+    }
+    & > header > h3 {
+      @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+      background-repeat: no-repeat;
+      background-position:center;
+      @include background-size(cover);
+      font-size:2em;
+      line-height:1em;
+      position:absolute;
+      top:0;
+      right:0;
+      display:inline-block;
+      color:$light-text;
+      padding:.75em;
+      height: grid-width(1);
+    }
+    & > header > h1 {
+      padding:0;
+      margin:0;
+      font-size:2em;
+      width:grid-width(6);
+      display:inline-block;
+      vertical-align:bottom;
+      line-height:1.25em;
+    }
+    & > div {
+      vertical-align:top;
+      display:inline-block;
+      text-align:left;
+      width: grid-width(3);
+    }
+    & > div > h3 {
+      font-family: 'Cantarell', sans-serif;
+      font-size:.85em;
+      color:#999999;
+      margin-bottom:0.5em;
+    }
+    & > div > p {
+      opacity:1;
+      color:$darkness;
+      margin:0;
+      line-height:1em;
+      font-family: 'Bree Serif', serif;
+      font-size:2em;
+    }
+    & > div > p:before{
+      content: "$";
+    }
+  }
+  
+  #facebook {
+    display:none;
+    & > h4 {
+      display:inline-block;
+      width:grid-width(2);
+      margin-top:.5em;
+      margin-right: 1.5em;
+    }
+    & > nav {
+      display:inline-block;
+      vertical-align:top;
+      padding:0;
+      margin-left:0;
+    }
+    & h4 > img {
+      display:inline-block;
+      width:3em;
+      margin:.5em;
+      vertical-align:middle;
+    }
+    & > nav {
+      padding:1em;
+    }
+    & > nav > a {
+      display:inline-block;
+      margin-right:1em;
+      margin-bottom:1em;
+    }
+    & > nav > a > img {
+      vertical-align:top;
+      width:50px;
+    }
+  }
+  
+  #settings {
+    position:relative;
+    display:none;
+    padding:0;
+    @include full_width($offset_color);
+    background-color:transparent;
+
+    & > div {
+      position:relative;
+      padding-top:2em;
+      display:inline-block;
+      width:27em;
+      background-color:$offset_color;
+    }
+    & > div:nth-child(2){
+      position:absolute;
+      top:0;
+      right:0;
+    }
+    & > div > header {
+      margin-left:1em;
+      display:inline-block;
+      width:grid-width(7.5);
+    }
+    & > div:first-child > header {
+      margin-left:0;
+    }
+    & > div > img {
+      position:absolute;
+      top:2em;
+      right:6em;
+      opacity:.3;
+    }
+    & > div > a > img {
+      vertical-align:top;
+      margin-left:4em;
+      opacity:.5;
+      color:black;
+      width:2.5em;
+      height:2.5em;
+    }    
+  }
+
+}

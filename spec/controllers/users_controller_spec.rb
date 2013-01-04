@@ -78,12 +78,11 @@ describe UsersController do
     describe 'create' do
       describe 'POST /fans'
     end
-    
 
     describe 'edit' do
       describe '/fans/:id/edit' do
-        it 'assigns user for current user only' do
-          get_with @me, :edit, id:@me.id
+        it 'assigns fan for current user only' do
+          get_with @me, :edit, id:@me.id, format: :json
           response.status.should == 200
           assigns(:user).id.should == @me.id
         end
@@ -97,7 +96,7 @@ describe UsersController do
 
       describe '/fans/me/edit' do
         it 'assigns user for current user only' do
-          get_with @me, :edit, id:'me'
+          get_with @me, :edit, id:'me', format: :json
           response.status.should == 200
           assigns(:user).id.should == @me.id
         end
@@ -107,14 +106,14 @@ describe UsersController do
     describe 'show' do
       describe '/fans/me' do
         it 'assigns user with id me' do
-          get_with @me, :show, id:'me'
+          get_with @me, :show, id:'me', format: :json
           response.status.should == 200
           assigns(:user).id.should == @me.id
         end
       end
       describe '/fans/:id' do
         it 'assigns user with id current' do
-          get_with @me, :show, id:'me'
+          get_with @me, :show, id:'me', format: :json
           response.status.should == 200
           assigns(:user).id.should == @me.id
         end
