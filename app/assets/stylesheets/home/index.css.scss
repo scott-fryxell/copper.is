@@ -1,8 +1,7 @@
 #home_index, #home_author {
   #stats {
     padding-bottom:1em;
-    margin-bottom:3em;
-
+    margin-bottom:1em;
     & > header {}
     & > header > h1 {
       font-size:1.5em;
@@ -364,11 +363,116 @@
 }
 
 #home_index {
-  //todo figure out how to display author info and links
   #pages > header > nav {
     display:none;
   }
   #signed_in > nav > a[href='/fans/me'] > img {
     opacity:1;
+  }
+
+  #congrats {
+    display:none;
+    position:relative;
+    & > p {
+      margin-top:0;
+      display:inline-block;
+      width:grid-width(9.5);
+      font-size:.85em;
+      margin-right:1em;
+    }
+    & > p.sub {
+      width:grid-width(10);
+      vertical-align:top;
+      font-size:.75em;
+      color:#999999;
+    }
+
+    & > header {
+      vertical-align:top;
+      position:relative;
+      margin-bottom:1em;
+    }
+    & > header > h3 {
+      @include background-image( linear-gradient(#2A2929  0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+      background-repeat: no-repeat;
+      background-position:center;
+      @include background-size(cover);
+      font-size:2em;
+      line-height:1em;
+      position:absolute;
+      top:-1em;
+      right:0;
+      display:inline-block;
+      color:$light-text;
+      padding:.75em;
+      height: grid-width(1);
+    }
+    & > header > h1 {
+      padding:0;
+      margin:0;
+      font-size:2em;
+      width:grid-width(6);
+      display:inline-block;
+      vertical-align:bottom;
+      line-height:1.25em;
+    }
+    & > div {
+      vertical-align:top;
+      display:inline-block;
+      text-align:left;
+      width: grid-width(3);
+    }
+    & > div > h3 {
+      font-family: 'Cantarell', sans-serif;
+      font-size:.85em;
+      color:#999999;
+      margin-bottom:0.5em;
+    }
+    & > div > p {
+      opacity:1;
+      color:$darkness;
+      margin:0;
+      line-height:1em;
+      font-family: 'Bree Serif', serif;
+      font-size:2em;
+    }
+    & > div > p:before{
+      content: "$";
+    }
+  }
+  
+  #facebook {
+    display:none;
+    margin-bottom:3em;
+    & > h4 {
+      display:inline-block;
+      width:grid-width(2);
+      margin-top:.5em;
+      margin-right: 1.5em;
+    }
+    & > nav {
+      display:inline-block;
+      vertical-align:top;
+      padding:0;
+      margin-left:0;
+    }
+    & h4 > img {
+      display:inline-block;
+      width:3em;
+      margin:.5em;
+      vertical-align:middle;
+    }
+    & > nav {
+      padding:1em;
+    }
+    & > nav > a {
+      display:inline-block;
+      margin-right:1em;
+      margin-bottom:1em;
+    }
+    & > nav > a > img {
+      vertical-align:top;
+      width:50px;
+    }
   }
 }

@@ -10,9 +10,6 @@
       @include transition(background-color .7s $ease-in-sine);
     }
   }
-  a.button {
-    @include copper_button;
-  }
 
   #banner {
     margin-top:-4em;
@@ -236,24 +233,29 @@
       @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
     }
   }
+}
+
+#home_welcome, #home_index {
+  a.button {
+    @include copper_button;
+  }
 
   #join {
     position:relative;
-    min-height:30em;
+    min-height:20em;
     vertical-align:top;
-    padding-top:3em;
     padding-bottom:6em;
     overflow:hidden;
     &:after {
       content: "";
       opacity: 0.05;
-      top: 22em;
+      top: 12em;
       left: 0;
       bottom: -22em;
       right: 0;
       position: absolute;
       z-index: -1; 
-      background: image-url('icons/watermark.svg') no-repeat 50% 100%;
+      background: image-url('icons/watermark.svg') no-repeat 75% 100%;
     }
 
     & > header {
@@ -307,7 +309,7 @@
       display:block;
     }
     & > figure.step_two {
-      display:none;
+
     }
     & > figure.step_two > a.get {
       cursor:pointer;
@@ -353,154 +355,6 @@
     }
   }
   
-  #congrats {
-    display:none;
-    position:relative;
-    & > p {
-      margin-top:0;
-      display:inline-block;
-      width:grid-width(9.5);
-      font-size:.85em;
-      margin-right:1em;
-    }
-    & > p.sub {
-      width:grid-width(10);
-      vertical-align:top;
-      font-size:.75em;
-      color:#999999;
-    }
 
-    & > header {
-      vertical-align:bottom;
-      position:relative;
-      height: grid-width(3.5);
-      line-height:grid-width(3.5);
-      margin-bottom:1em;
-    }
-    & > header > h3 {
-      @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
-      background-repeat: no-repeat;
-      background-position:center;
-      @include background-size(cover);
-      font-size:2em;
-      line-height:1em;
-      position:absolute;
-      top:0;
-      right:0;
-      display:inline-block;
-      color:$light-text;
-      padding:.75em;
-      height: grid-width(1);
-    }
-    & > header > h1 {
-      padding:0;
-      margin:0;
-      font-size:2em;
-      width:grid-width(6);
-      display:inline-block;
-      vertical-align:bottom;
-      line-height:1.25em;
-    }
-    & > div {
-      vertical-align:top;
-      display:inline-block;
-      text-align:left;
-      width: grid-width(3);
-    }
-    & > div > h3 {
-      font-family: 'Cantarell', sans-serif;
-      font-size:.85em;
-      color:#999999;
-      margin-bottom:0.5em;
-    }
-    & > div > p {
-      opacity:1;
-      color:$darkness;
-      margin:0;
-      line-height:1em;
-      font-family: 'Bree Serif', serif;
-      font-size:2em;
-    }
-    & > div > p:before{
-      content: "$";
-    }
-  }
-  
-  #facebook {
-    display:none;
-    & > h4 {
-      display:inline-block;
-      width:grid-width(2);
-      margin-top:.5em;
-      margin-right: 1.5em;
-    }
-    & > nav {
-      display:inline-block;
-      vertical-align:top;
-      padding:0;
-      margin-left:0;
-    }
-    & h4 > img {
-      display:inline-block;
-      width:3em;
-      margin:.5em;
-      vertical-align:middle;
-    }
-    & > nav {
-      padding:1em;
-    }
-    & > nav > a {
-      display:inline-block;
-      margin-right:1em;
-      margin-bottom:1em;
-    }
-    & > nav > a > img {
-      vertical-align:top;
-      width:50px;
-    }
-  }
-  
-  #settings {
-    position:relative;
-    display:none;
-    padding:0;
-    @include full_width($offset_color);
-    background-color:transparent;
-
-    & > div {
-      position:relative;
-      padding-top:2em;
-      display:inline-block;
-      width:27em;
-      background-color:$offset_color;
-    }
-    & > div:nth-child(2){
-      position:absolute;
-      top:0;
-      right:0;
-    }
-    & > div > header {
-      margin-left:1em;
-      display:inline-block;
-      width:grid-width(7.5);
-    }
-    & > div:first-child > header {
-      margin-left:0;
-    }
-    & > div > img {
-      position:absolute;
-      top:2em;
-      right:6em;
-      opacity:.3;
-    }
-    & > div > a > img {
-      vertical-align:top;
-      margin-left:4em;
-      opacity:.5;
-      color:black;
-      width:2.5em;
-      height:2.5em;
-    }    
-  }
 
 }

@@ -1,5 +1,7 @@
 <%-content_for :head do-%>
   <title><%=current_user.name%> - Copper.</title>
+
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
 <%-end-%>
 
 <section id="banner">
@@ -22,7 +24,7 @@
     <h1>Your stats</h1>
   </header>
   <div>
-    <h2>Number of tips</h2>
+    <h2>Pages tipped</h2>
     <p><%=current_user.pages.count%></p>
   </div>
   <div>
@@ -38,13 +40,13 @@
     </p>
   </div>
   <footer>
-    <a href="/fans/me/edit">Edit your settings</a>
+    <a href="/settings">Edit your settings</a>
   </footer>
 </section>
-<%-if @pages -%>
+<%-if @pages.length > 0 -%>
   <section id="pages" class="">
     <header>
-      <h1>What you've tipped</h1> 
+      <h1>What you've tipped</h1>
       <hgroup>
         <h2>Filter by</h2>
         <nav>
@@ -112,67 +114,37 @@
     <%-end-%>
   </section>
 <%-else-%>
-
   <section id="join">
     <header>
-      <h1>Now give creators money. Let's see what happens.</h1>
       <p>
-        Download the Copper button right here. It will live
-        on your browser’s tool bar, ready and waiting for when
-        you find something tip-worthy. Then all you have to
-        do is click it...
+        You’re now officially a fan on Copper. As soon as you
+        have the button, you can start tipping!
       </p>
     </header>
-    <figure class="step_one">
-      <%= image_tag "arrows/right.svg"%>
-      <a class="button get install"><%= image_tag "icons/letter_logo_white.svg" %> Get The Button</a>
-      <%= image_tag "arrows/right_two.svg"%>
-      <a class="button">Start Tipping</a>
-      <figcaption>We'll never post to your timeline without your permission.</figcaption>
-    </figure>
     <figure class="step_two">
-      <h5>
-        <figure>
-          <%= image_tag "icons/silhouette.svg", class:"identity", alt:"me" %>
-        </figure>
-        <p><%= image_tag "providers/facebook/logo.png" %></p>
-      </h5>
-      <%= image_tag "arrows/right.svg"%>
       <a class="button install get"><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
       <%= image_tag "arrows/right_two.svg"%>
       <a class="button">Start Tipping</a>
-      <figcaption>You’re now officially a fan on Copper. As soon as you
-      have the button, you can start tipping! You also now
-      have a Copper profile, where you can keep track of
-      your tipping and your favorite content.
-      </figcaption>
     </figure>
   </section>
+  <section id="congrats">
+    <header>
+      <h3>Congrats!</h3>
+      <h1>Your button is now installed! Take it for a test drive...</h1>
+    </header>
+    <p>
+      Below are some things we have transferred from your News Feed
+      that you might want to tip! But of course, the tip button
+      works anywhere.
+    </p>
+    <p class="sub">
+      Note: We won’t ask for any payment info until you've been using
+      the service for a bit, but if you want to get that squared away now,
+      you can do that <a href="/fans/me/edit">here</a>.
+    </p>
+  </section>
+  <section id="facebook">
+    <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
+    <nav></nav>
+  </section>
 <%-end-%>
-<nav>
-  <a href="/fans/1">Wanna see what it looks like?</a>
-</nav>
-<section id="settings">
-  <div>
-    <header>
-      <h3>Check out what authors see</h3>
-      <p>
-        We’ve made a profile page for you where you
-        can keep track of your generosity.
-      </p>
-    </header>
-    <%= image_tag "arrows/swoop_down.svg"%>
-    <%= link_to image_tag("icons/silhouette.svg"), '/fans/me', :title => "View profile" %>
-  </div>
-  <div>
-    <header>
-      <h3>Customize Your Settings</h3>
-      <p>
-        We’ve also made a settings page for you where
-        you can adjust and personalize tips.
-      </p>
-    </header>
-    <%= image_tag "arrows/swoop_down.svg"%>
-    <%= link_to image_tag("icons/gear.svg"), '/fans/me/edit', :title => "Account settings"%>
-  </div>
-</section>

@@ -49,5 +49,5 @@ $(document).ready ->
       dataType:'json'
       url: '/fans/me.json'
       type: 'put'
-      data: jQuery.param copper.me 
+      data: jQuery.param document.copper.me 
       error: -> $(document).trigger "error.me"

@@ -20,9 +20,9 @@ class SessionsController < ApplicationController
         # User is signed in so they are trying to link an identity with their
         # account. But we found the identity and the user associated with it
         # is the current user. So the identity is already associated with
-        # this user. So let's display an error message.
+        # this user. We take them back to their settings page
         
-       redirect_to '/authors/me/edit'
+       redirect_to '/settings'
 
       else
         # The identity is not associated with the current_user so lets
@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
         @identity.user = current_user
         @identity.join!
         @identity.save()
-        redirect_to '/authors/me/edit'
+        redirect_to '/settings'
       end
     else
       if @identity.user
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
         @identity.join!
         session[:user_id] = @identity.user.id
 
-        redirect_to '/fans/me/#winner'
+        redirect_to root_url
       else
         # No user associated with the identity so we need to create a new one
         user = User.create_with_omniauth(auth)

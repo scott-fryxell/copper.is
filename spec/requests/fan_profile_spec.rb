@@ -7,6 +7,7 @@ describe "a fan's profile page", :slow do
     User.count.should == 1
     User.first.tip({url:'http://www.nytimes.com', title:'nytimes homepage', amount_in_cents:'50'})
     User.first.tip({url:'http://www.fasterlighterbetter.com', title:'faster lighter better', amount_in_cents:'50'})
+    visit "/"
   end
   after(:each) do
     page.driver.error_messages.should be_empty
@@ -17,7 +18,8 @@ describe "a fan's profile page", :slow do
   end
 
   it 'should display the number of authors tipped' do
-    User.first.tips.count.should == 2
+    User.first.pages.count.should == 2
+    # print page.html
     within '#stats > div:nth-child(2) > p' do
       page.should have_content('2');
     end
@@ -40,6 +42,12 @@ describe "a fan's profile page", :slow do
     within 'span[itemprop="tip_preference_in_cents"]' do
       page.should have_content('1');
     end
+
+    visit '/'
+    within 'span[itemprop="tip_preference_in_cents"]' do
+      page.should have_content('1');
+    end
+
   end
 
   it 'should be able to reduce their default tip amount' do
@@ -53,7 +61,7 @@ describe "a fan's profile page", :slow do
     within 'span[itemprop="tip_preference_in_cents"]' do
       page.should have_content('0.50');
     end
-    visit '/fans/me'
+    visit '/'
     within 'span[itemprop="tip_preference_in_cents"]' do
       page.should have_content('0.50');
     end
@@ -89,7 +97,7 @@ describe "a fan's profile page", :slow do
       end
     end
 
-    visit '/fans/me'
+    visit '/'
 
     within ('#pages > details > summary') do
       page.should have_content('2')

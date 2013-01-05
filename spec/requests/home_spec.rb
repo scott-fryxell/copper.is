@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "home page experience", :slow do
+describe "home page experience", :slow, :focus do
   before(:each) do
     visit "/"
     page.execute_script("jQuery.fx.off = true")

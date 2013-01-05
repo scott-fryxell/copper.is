@@ -27,22 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def item_scope
-    type = params[:controller].parameterize
-
-    id = params['id']
-
-    if type == 'home'
-      type = 'users'
-    end
-
-    if type == 'users' 
-      id = current_user.id
-    end
-
-    if id
-      item_id= "itemid=#{id}"
-    end
-
-    "itemscope itemtype=#{type} #{item_id}"
+    return nil unless current_user
+    "itemscope itemtype='user' itemid=#{current_user.id}"
   end
 end
