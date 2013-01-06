@@ -58,6 +58,10 @@ body > header {
     text-decoration:none;
     color:$light-text;
     padding:.75em 1em;
+
+    & > img {
+      width:5em;
+    }
   }
   & > nav {
     margin-top:1em;

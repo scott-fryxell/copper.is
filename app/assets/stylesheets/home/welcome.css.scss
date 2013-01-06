@@ -1,5 +1,5 @@
 #home_welcome {
-  min-height:120em;
+  
   & > header {
     width:100%;
     z-index:300;
@@ -21,138 +21,81 @@
     width:auto;
     @include background-size(cover);
     @include full_width(black);
-
+    @include box-shadow(0 -0.5em 1.75em 1em rgba(0, 0, 0, .3));
     & > header {
       margin:0 auto 0 auto;
       width:grid-width(22);
-    }
-    & > header > h1 {
-      display:inline-block;
-      width:grid-width(4);
-      display:inline-block;
-      margin-top: grid-width(1.25);
-      opacity:.8;
-      line-height:1em;
-      color:$light-text;
-      font-size:2.5em;
-    }
-    & > header > h1 > a {
-      vertical-align:middle;
-      font-family: 'Doppio One', sans-serif;
-      color:#999999;
-      text-decoration:none;
-      font-size:.30em;
-      line-height:3.5em;
-      display:none;
-    }
-    & > header > a#play_video {
-      margin-top:3em;
-      text-decoration:none;
-      cursor:pointer;
-      vertical-align:baseline;
-      margin-left:.5em;
-      display:inline-block;
-      display:none;
-      opacity:.5;
-      font-size:3em;
-      color:#000000;
-      @include transition(all 1s);
-      &:hover {
-        opacity:.7;
-        @include transition(all 1s);
-        @include transform(scale(1.05,1.05));
+
+      & > hgroup {
+        display:inline-block;
+        width:grid-width(10);
+        display:inline-block;
+        margin-top: grid-width(1.5);
+        
+        line-height:1.35em;
+        & > h1 {
+          text-shadow: 3px 3px $darkness;
+          font-size:2.4em;
+          line-height:1.3em;
+          color:$light-text;
+          opacity:.8;
+        }
+        & > p {
+          font-size:1em;
+          text-shadow: 3px 3px $darkness;
+          color:$light-text;
+          opacity:.9;
+        }
       }
-    }
-    & > header > a > img {
-      height:2em;
-      width:2em;
-    }
-    & > header > figure {
-      margin-top: grid-width(1.25);
-      line-height:1em;
-      opacity:.8;
-      display:none;
-      margin-left:12em;
-    }
-    & > header > figure > figcaption {
-      font-size:2em;
-      font-family: 'Bree Serif', serif;
-      color:$light-text;
-      text-align:center;
-    }
-    & > header > figure img {
-      padding-left:0.5em;
-    }
-  }
 
-  #how {
-    padding-top:6em;
-    padding-bottom:2em;
-
-    & > header {
-      vertical-align:top;
-      width: grid-width(14);
-      display:inline-block;
-      margin-bottom:2em;
-    }
-    & > header > h1,
-    & > header > p {
-      margin:0;
-      display:inline-block;
-      vertical-align:top;
-    }
-    & > header > h1 {
-      font-size:2em;
-      line-height:1.25em;
-      margin-bottom:.5em;
-    }
-    & > header > p {
-      font-size:1em;
-      width: grid-width(12);
-    }
-    & > figure {
-      width:grid-width(8);
-      height:grid-width(8);
-      position:relative;
-      vertical-align:top;
-      display:inline-block;
-      margin-top:-6em;
-    }
-    & > figure > figcaption {
-      position:absolute;
-      line-height:1.25em;
-      width:3em;
-      top:2em;
-      left:1em;
-    }
-    & > figure > figcaption:nth-child(2) {
-      top:3.5em;
-      left:8.5em;
-    }
-    & > figure > figcaption:nth-child(3) {
-      top:8.5em;
-      left:5em;
-    }
-    & > figure > img {
-      position:absolute;
-      top:50%;
-      left:50%;
-      margin-left:-4em;
-      margin-top:-4em;
-      width:8em;
-      height:8em;
-      opacity:0.3;
-    }
-    & > figure > img:nth-child(4){
-      width:16em;
-      height:16em;
-      margin-left:-8em;
-      margin-top:-8em;
-      opacity:0.1;
-    }
-    & > figure > figcaption {
-      font-family: 'Nothing You Could Do', cursive;
-      font-size:1.75em;
+      & > figure {
+        width:grid-width(8);
+        height:grid-width(8);
+        position:relative;
+        vertical-align:top;
+        display:inline-block;
+        margin-top:1em;
+        margin-left:4em;
+      }
+      & > figure > figcaption {
+        opacity:.7;
+        color:$light-text;
+        position:absolute;
+        line-height:1.25em;
+        width:3em;
+        top:2em;
+        left:1em;
+      }
+      & > figure > figcaption:nth-child(2) {
+        top:3.5em;
+        left:8.5em;
+      }
+      & > figure > figcaption:nth-child(3) {
+        top:8.5em;
+        left:5em;
+      }
+      & > figure > img {
+        position:absolute;
+        top:50%;
+        left:50%;
+        margin-left:-4em;
+        margin-top:-4em;
+        width:8em;
+        height:8em;
+        opacity:0.6;
+      }
+      & > figure > img:nth-child(4){
+        width:16em;
+        height:16em;
+        margin-left:-8em;
+        margin-top:-8em;
+        opacity:0.3;
+      }
+      & > figure > figcaption {
+        text-shadow: 2px 3px $darkness;
+        font-family: 'Nothing You Could Do', cursive;
+        font-size:1.75em;
+      }
     }
   }
 
@@ -223,9 +166,11 @@
       display:none;
     }
     & > figure {
-      margin-left: 14em;
       width:700%;
       padding-top:2em;
+    }
+    & > figure > img:first-child {
+      margin-left:1em;
     }
     & > figure > img {
       margin-left: grid-width(1);
@@ -241,30 +186,20 @@
   }
 
   #join {
+    padding-top:3em;
+    padding-bottom:2em;
     position:relative;
     min-height:20em;
     vertical-align:top;
-    padding-bottom:6em;
-    overflow:hidden;
-    &:after {
-      content: "";
-      opacity: 0.05;
-      top: 12em;
-      left: 0;
-      bottom: -22em;
-      right: 0;
-      position: absolute;
-      z-index: -1; 
-      background: image-url('icons/watermark.svg') no-repeat 75% 100%;
-    }
 
     & > header {
       width: grid-width(11);
       margin-bottom:2em;
     }
     & > header > h1 {
+      text-shadow: 3px -3px $light-text;
       line-height:1.25em;
-      font-size: 2em;
+      font-size: 2.5em;
       margin:0;
     }
     & > figure {
@@ -354,7 +289,4 @@
       width:grid-width(13);
     }
   }
-  
-
-
 }

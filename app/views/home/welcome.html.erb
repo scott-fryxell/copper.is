@@ -4,78 +4,28 @@
 <%-end-%>
 <section id="banner">
   <header>
-    <h1>
-      The new tipping service for creators &amp; fans.
-      <a href="#">WATCH OUR VIDEO &gt;</a>
-    </h1>
-    <a href="#" id="play_video">
-      <%= image_tag "icons/play.svg" %>
-    </a>
+    <hgroup>
+      <h1>Copper connects fans with creators</h1>
+      <p>
+        You find something cool anywhere online. You click a button to
+        tip the content. We find the person who made it and pass along
+        your appreciation. They keep on doing what they do!
+      </p>
+    </hgroup>
     <figure>
-      <a href="#join"><%= image_tag "noun_project/5506.svg", alt:'Sign Up' %></a>
-      <figcaption>Sign Up</figcaption>
+      <figcaption>They create</figcaption>
+      <figcaption>You enjoy</figcaption>
+      <figcaption>You tip</figcaption>
+      <%= image_tag "arrows/circle.svg" %>
+      <%= image_tag "icons/letter_logo_white.svg" %>
     </figure>
   </header>
 </section>
-<section id="how">
-  <header>
-    <h1>Copper connects you with the people creating the content you like online.</h1>
-    <p>
-      You find something cool anywhere online. You click a button to
-      tip the content. We find the person who made it and pass along
-      your appreciation. They keep on doing what they do!
-    </p>
-  </header>
-  <figure>
-    <figcaption>They create</figcaption>
-    <figcaption>You enjoy</figcaption>
-    <figcaption>You tip</figcaption>
-    <%= image_tag "arrows/circle.svg" %>
-    <%= image_tag "icons/letter_logo.svg" %>
-  </figure>
-</section>
-<section id="samples">
-  <nav>
-    <a id="tumblr" data-distance="14em" class="selected">
-      <%= image_tag "providers/tumblr/mask.png", class:'mask' %>
-      <%= image_tag "providers/tumblr/logo.png", class:'logo' %>
-    </a>
-    <a id="vimeo" data-distance="-38em">
-      <%= image_tag "providers/vimeo/mask.png", class:'mask' %>
-      <%= image_tag "providers/vimeo/logo.png", class:'logo' %>
-    </a>
-    <a id="soundcloud" data-distance="-89em">
-      <%= image_tag "providers/soundcloud/mask.png", class:'mask' %>
-      <%= image_tag "providers/soundcloud/logo.png", class:'logo' %>
-    </a>
-    <a id="github" data-distance="-141em">
-      <%= image_tag "providers/github/mask.png", class:'mask' %>
-      <%= image_tag "providers/github/logo.png", class:'logo' %>
-    </a>
-    <a id="youtube" data-distance="-192em" >
-      <%= image_tag "providers/youtube/mask.png", class:'mask' %>
-      <%= image_tag "providers/youtube/logo.png", class:'logo' %>
-    </a>
-    <a id="xkcd" data-distance="-244em">
-      <%= image_tag "providers/xkcd/mask.png", class:'mask' %>
-      <%= image_tag "providers/xkcd/logo.png", class:'logo' %>
-    </a>
-    <a id="more" data-distance="nope">...and more!</a>
-  </nav>
-  <figure>
-    <%= image_tag "providers/tumblr/sample.jpg" %>
-    <%= image_tag "providers/vimeo/sample.jpg" %>
-    <%= image_tag "providers/soundcloud/sample.jpg" %>
-    <%= image_tag "providers/github/sample.jpg" %>
-    <%= image_tag "providers/youtube/sample.jpg" %>
-    <%= image_tag "providers/xkcd/sample.jpg" %>
-  </figure>
-</section>
 <section id="join">
   <header>
-    <h1>So, how do I get this Button?</h1>
+    <h1>Sign up!</h1>
     <p>
-      Install the Copper button right here. It will live
+      Sign up and Install the Copper button. It will live
       on your browser’s tool bar, ready and waiting for when
       you find something tip-worthy. Then all you have to
       do is click it...
@@ -90,5 +40,43 @@
     <%= image_tag "arrows/right_two.svg"%>
     <a class="button">Start Tipping</a>
     <figcaption>We'll never post to your timeline without your permission.</figcaption>
+  </figure>
+</section>
+
+<section id="samples">
+  <nav>
+    <a id="tumblr" data-distance="0" class="selected">
+      <%= image_tag "providers/tumblr/mask.png", class:'mask' %>
+      <%= image_tag "providers/tumblr/logo.png", class:'logo' %>
+    </a>
+    <a id="vimeo" data-distance="1">
+      <%= image_tag "providers/vimeo/mask.png", class:'mask' %>
+      <%= image_tag "providers/vimeo/logo.png", class:'logo' %>
+    </a>
+    <a id="soundcloud" data-distance="2">
+      <%= image_tag "providers/soundcloud/mask.png", class:'mask' %>
+      <%= image_tag "providers/soundcloud/logo.png", class:'logo' %>
+    </a>
+    <a id="github" data-distance="3">
+      <%= image_tag "providers/github/mask.png", class:'mask' %>
+      <%= image_tag "providers/github/logo.png", class:'logo' %>
+    </a>
+    <a id="youtube" data-distance="4" >
+      <%= image_tag "providers/youtube/mask.png", class:'mask' %>
+      <%= image_tag "providers/youtube/logo.png", class:'logo' %>
+    </a>
+    <a id="xkcd" data-distance="5">
+      <%= image_tag "providers/xkcd/mask.png", class:'mask' %>
+      <%= image_tag "providers/xkcd/logo.png", class:'logo' %>
+    </a>
+    <a id="more" data-distance="nope">...and more!</a>
+  </nav>
+  <figure>
+    <%= image_tag "providers/tumblr/sample.jpg", class:'selected' %>
+    <%= image_tag "providers/vimeo/sample.jpg" %>
+    <%= image_tag "providers/soundcloud/sample.jpg" %>
+    <%= image_tag "providers/github/sample.jpg" %>
+    <%= image_tag "providers/youtube/sample.jpg" %>
+    <%= image_tag "providers/xkcd/sample.jpg" %>
   </figure>
 </section>
