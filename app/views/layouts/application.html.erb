@@ -28,26 +28,9 @@
           <%= link_to image_tag("icons/silhouette_white.svg"), '/author', :title => "Who's tipping you" %>
           <%= link_to image_tag("icons/gear_white.svg"), '/settings', :title => "Account settings"%>
         </nav>
-
+        <%= image_tag "icons/silhouette.svg", class:"identity", alt:"me" %>
       </hgroup>
-      <hgroup id='sign_in'>
-        <nav>
-          <h1>SIGN IN</h1>
-          <a id="facebook_sign_in" href="/auth/facebook" title="sign in with facebook">
-            <%= image_tag "providers/facebook/sign_in_mask.png" %>
-            <%= image_tag "providers/facebook/sign_in.png", class:"hover" %>
-          </a>
-          <a id="twitter_sign_in" href="/auth/twitter" title="sign in with twitter">
-            <%= image_tag "providers/twitter/sign_in_mask.png" %>
-            <%= image_tag "providers/twitter/sign_in.png", class:"hover" %>
-          </a>
-          <a id="google_sign_in" href="/auth/google_oauth2" title="sign in with google">
-            <%= image_tag "providers/google/sign_in_mask.png" %>
-            <%= image_tag "providers/google/sign_in.png", class:"hover" %>
-          </a>
-        </nav>
-      </hgroup>
-    </header>
+     </header>
     <%= yield %>
     <footer>
       <h3>Copper, Inc</h3>

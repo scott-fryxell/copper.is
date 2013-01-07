@@ -241,8 +241,13 @@ body > nav > a {
   @include animation-timing-function(ease);
   @include animation-iteration-count(infinite);
 }
+
 a[href='/signout'] {
   display:none;
+}
+
+a.button {
+  @include copper_button;
 }
 
 .hide {

@@ -1,298 +1,4 @@
-#home_index, #home_author {
-  #stats {
-    padding-bottom:1em;
-    margin-bottom:1em;
-    & > header {}
-    & > header > h1 {
-      font-size:1.5em;
-    }
-    & > div,
-    & > footer {
-      vertical-align:middle;
-      height:grid-width(2);
-      display:inline-block;
-    }
-    & > div {
-      padding:1em 0 0 2em;
-      background-color:$offset_color;
-      margin-right:.5em;
-      width:grid-width(4);
-    }
-    & > div > h2 {
-      font-size:.85em;
-      @include text;
-    }
-    & > div > p {
-      margin:.4em 0 0 0;
-      font-size:1.5em;
-      @include header_text;
-    }
-    & > div > p > span {
-      display:inline-block;
-      width:2em;
-      padding:0 .5em 0 0;
-      line-height:1em;
-    }
-    & > div > p > span:before,
-    & > div:nth-child(3) > p:before  {
-      content:"$";
-    }
-    & > div > p > button {
-      padding-right:.75em;
-      font-family: 'Doppio One', sans-serif;
-      background-color:$button_color;
-      color:$light-text;
-      font-size:.75em;
-      display:inline-block;
-      width:1em;
-      height:1em;
-      line-height:.5em;
-      border:1px solid darken($button_color, 5%);
-      -webkit-appearance: none;
-      @include box-shadow(1px 1px 1px 0em rgba(0, 0, 0, .5));
-    }
-    & > div > p > button:active {
-      @include box-shadow(0px 0px 0px 0em rgba(0, 0, 0, .5));
-    }
-    & > div:nth-child(2) {
-      padding-left:0;
-      @include right_width($offset_color)
-    }
-    & > footer {
-      padding-top:1em;
-      background-color: $offset_color;
-      @include left_width($offset_color)
-    }
-    & > footer > a {
-      display:inline-block;
-      margin: 1.75em 3em;
-      width:12em;
-      font-family: 'Doppio One', sans-serif;
-      font-size:.75em;
-      @include settings_pointer
-    }
-  }
-
-
-  #pages > header {
-    & > h1 {
-      font-size:1.5em;
-    }
-    & > hgroup {
-      display:none;
-      & > nav {
-        margin-bottom:grid-width(1);
-      }
-      & h2,
-      & > nav > a {
-        display:inline-block;
-        margin-right:1em;
-        @include text;
-      }
-      & > nav > a span {
-        font-weight:bold;
-      }
-      & > h2 {
-        margin-bottom:0.5em;
-      }
-      & > h2:after{
-        content: ":";
-      }
-      & > nav > a.selected {
-        color:$darkness;
-      }
-    }
-    & > hgroup:nth-child(3) {
-      display:none;
-    }
-  }
-  #pages > details {
-    display:inline-block;
-    width:grid-width(4);
-    margin: 0 1em 1em 0;
-    & > summary {
-      cursor:pointer;
-      outline:none;
-    }
-    & > summary > h2 {    
-      @include text;
-      font-size:.75em;
-      display:inline-block;
-      width:grid-width(4.5);
-      height:1em;
-      line-height:1em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    & > summary > figure {
-      margin-top:.5em;
-      position:relative; 
-    }
-    & > summary > figure > img {
-      width:grid-width(4);
-      height:grid-width(3);
-      overflow:hidden;
-      @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
-    }
-    & > summary > figure > figcaption {
-      opacity:0.8;
-      text-align:center;
-      vertical-align:middle;
-      position:absolute;
-      top:0;
-      right:0;
-      @include ribbon;
-      min-width:1em;
-      min-height:1em;
-      padding:0.5em 0.5em 0.75em 0.5em;
-      @include header_text;
-      color:$light-text;
-      font-size:1em;
-    }
-    & > summary > figure > figcaption:before {
-      content: "$";
-    }
-  }
-  #pages > details[open] {
-    position:relative;
-    width:grid-width(21);
-    margin:1em 0;
-    height:auto;
-
-    padding:0 .5em 1em .5em;
-    background-color:$offset_color;
-
-    & > summary {
-      outline:none;
-      padding-top:1em;
-      margin-right:1em;
-      display:inline-block;
-      & > h2 {
-        position:absolute;
-        top:0.25em;
-        left:1.5em;
-        width:auto;
-        margin-top:.5em;
-        vertical-align:middle;
-        font-size: 1.34em;
-        height:1.34em;
-        line-height:1.34em;
-
-        @include header_text;
-      }
-      & > figure {
-        width:grid-width(8);
-        height:grid-width(5);
-        margin-top:1em;
-        margin-left:1.25em;
-        @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
-      }
-      & > figure > figcaption {
-        font-size:2em;
-      }
-      & > figure > img {
-        width:grid-width(8);
-        height:grid-width(5);
-      }
-    }
-    & > dl {
-      clear:right;
-      margin-top:3em;
-      display:inline-block;
-      vertical-align:top;
-
-      dt {
-        font-weight:bold;
-      }
-      dd {
-        @include header_text;
-        text-transform:lowercase;
-        margin-bottom:1em;
-      }
-      dd > a {
-        display:inline-block; 
-        border-bottom: 2px solid rgba(102, 102, 102, 0.15);
-      }
-      dt > details {
-        vertical-align:top;
-        display:block;
-        & > summary {
-          outline:none;
-          line-height:1.5em;
-          margin-bottom:1em;
-        }
-        &[open] > summary {
-          outline:auto;
-        }
-        & > table {
-          width:grid-width(12);
-          & > thead > tr > th {
-            @include header_text;
-            text-align:center;
-            padding-bottom:0.5em;
-            &:nth-child(2){
-              text-align:left;
-            }
-          }
-          & > thead > tr > th:first-child {
-            text-align:left;
-          }
-          & > tbody tr td:first-child {
-            text-align:left;
-            text-transform:capitalize;
-          }
-          & > tbody > tr > td > span[itemprop=amount_in_cents]:before {
-            content:"$";
-          }
-          & > tbody > tr > td {
-            text-align:center;
-            margin-bottom:1em;
-            padding-bottom:.5em;
-            &:nth-child(2){
-              text-align:left;
-            }
-          }
-          & > tbody > tr > td:first-child {
-            width:15em ;
-          }
-          & > tbody > tr > td:nth-child(2) > form {
-
-            & input[type=text] {
-              padding:0 0 0 .25em;
-              width:2.5em;
-              color:$button_color;
-              font-weight:bold;
-              background-color:transparent;
-              box-shadow:none;
-            }
-            &:before {
-              content:"$";
-              font-size:1.15em;
-            }
-            & > input[type=submit] {
-              @include transition (opacity 0.3s ease-in 0.25s);
-              opacity:0;
-              font-size:0.75em;
-            }
-            & > input:focus + input[type=submit] {
-              @include transition (opacity 0.3s ease-out 0.25s);
-              opacity:1;
-            }
-            & > input[type=submit]:focus {
-              opacity:1;
-            }
-          }
-          & > tbody tr td:nth-child(3) form input[type=submit] {
-            font-size:0.65em;
-          }
-        }
-      }
-    }
-  }
-
-}
-
-#users_show.admin {
+#home_index.admin {
   #pages {
     & > header > hgroup {
       display:block;
@@ -363,12 +69,6 @@
 }
 
 #home_index {
-  #pages > header > nav {
-    display:none;
-  }
-  #signed_in > nav > a[href='/fans/me'] > img {
-    opacity:1;
-  }
 
   #congrats {
     display:none;
@@ -475,4 +175,110 @@
       width:50px;
     }
   }
+
+  #join {
+    padding-top:3em;
+    padding-bottom:2em;
+    position:relative;
+    min-height:20em;
+    vertical-align:top;
+
+    & > header {
+      width: grid-width(11);
+      margin-bottom:2em;
+    }
+    & > header > h1 {
+      text-shadow: 3px -3px $light-text;
+      line-height:1.25em;
+      font-size: 2.5em;
+      margin:0;
+    }
+    & > figure {
+      vertical-align:top;
+      display: inline-block;
+    }
+    & > figure > figcaption {
+      font-size:.70em;
+      display:block;
+      margin-top:.5em;
+      width:grid-width(13);
+    }
+    & > figure > a {
+      position:relative;
+      vertical-align:top;
+      display:inline-block;
+    }
+    & > figure > a.button {
+      opacity:0.5;
+    }
+    & > figure > a.get {
+      padding-left: 3em;
+    }
+    & > figure > a.get > img {
+      position:absolute;
+      top:0;
+      left:0;
+      padding:.5em;
+      width:1.15em;
+      height:1.15em;
+      border-right:1px solid darken(#907744, 10%);
+    }
+    & > figure > img {
+      display:inline-block;
+      vertical-align:middle;
+      width:2em;
+      height:2em;
+      margin:.25em;
+      opacity:.21;
+    }
+    & > figure.step_one {
+      display:block;
+    }
+    & > figure.step_two {
+
+    }
+    & > figure.step_two > a.get {
+      cursor:pointer;
+      opacity:1;
+    }
+    & > figure.step_two > h5 {
+      margin-top:-0.25em;
+      vertical-align:middle;
+      width:grid-width(8);
+      display:inline-block;
+    }
+    & > figure.step_two > h5 > figure {
+      vertical-align:middle;
+      display:inline-block;
+      background-color:#e5e9ef;
+      padding:0.65em;
+      border-radius: .5em 0 0 .5em;
+      @include triangle_down_small(#e5e9ef)
+    }
+    & > figure.step_two > h5 > figure > img {
+      width:2em;
+      height:2em;
+    }
+    & > figure.step_two > h5 > p {
+      border-radius: 0 .5em .5em 0;
+      width:13em;
+      font-family: 'Cantarell', sans-serif;
+      font-size:1em;
+      background-color:#e5e9ef;
+      color:#30436C;
+      vertical-align:top;
+      margin:0 0 0 .5em;
+      padding:0.8em;
+      display:inline-block;
+    }
+    & > figure.step_two > h5 > p > img {
+      display:inline-block;
+      width:1.75em;
+      margin-right:.5em;
+    }
+    & > figure.step_two > figcaption {
+      width:grid-width(13);
+    }
+  }
+
 }

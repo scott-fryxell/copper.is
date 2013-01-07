@@ -1,5 +1,4 @@
 #home_welcome {
-  
   & > header {
     width:100%;
     z-index:300;
@@ -42,7 +41,7 @@
         }
         & > p {
           font-size:1em;
-          text-shadow: 3px 3px $darkness;
+          text-shadow: 2px 2px $darkness;
           color:$light-text;
           opacity:.9;
         }
@@ -85,11 +84,20 @@
         opacity:0.6;
       }
       & > figure > img:nth-child(4){
+        @include animation-name(spinning);
+        @include animation-duration(5s);
+        @include animation-timing-function(linear);
+        @include animation-iteration-count(infinite);
+        @include animation-play-state(paused);
         width:16em;
         height:16em;
         margin-left:-8em;
         margin-top:-8em;
         opacity:0.3;
+
+        &.spinning {
+          @include animation-play-state(running);
+        }
       }
       & > figure > figcaption {
         text-shadow: 2px 3px $darkness;
@@ -132,7 +140,7 @@
       display:block;
     }
     & > nav > a {
-      cursor:pointer;
+      cursor:default;
       color:darken($offset_color, 30%);;
       display:inline-block;
       width:grid-width(3);
@@ -177,12 +185,6 @@
       display:inline-block;
       @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
     }
-  }
-}
-
-#home_welcome, #home_index {
-  a.button {
-    @include copper_button;
   }
 
   #join {
