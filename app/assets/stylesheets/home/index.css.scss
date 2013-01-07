@@ -131,11 +131,17 @@
     & > p {
       margin-top:0;
       display:inline-block;
-      width:grid-width(9.5);
+      width:grid-width(17);
       font-size:.85em;
       margin-right:1em;
+
+      & > span {
+        font-size:1.2em;
+        font-weight:bold;
+      }
     }
     & > p.sub {
+      display:none;
       width:grid-width(10);
       vertical-align:top;
       font-size:.75em;
@@ -166,7 +172,7 @@
       padding:0;
       margin:0;
       font-size:2em;
-      width:grid-width(6);
+      width:grid-width(7);
       display:inline-block;
       vertical-align:bottom;
       line-height:1.25em;
@@ -198,12 +204,10 @@
   
   #facebook {
     display:none;
-    margin-bottom:3em;
     & > h4 {
       display:inline-block;
       width:grid-width(2);
       margin-top:.5em;
-      margin-right: 1.5em;
     }
     & > nav {
       display:inline-block;
@@ -214,20 +218,50 @@
     & h4 > img {
       display:inline-block;
       width:3em;
-      margin:.5em;
+      margin:.5em 0;
       vertical-align:middle;
     }
     & > nav {
-      padding:1em;
+      padding:1em 0;
     }
     & > nav > a {
       display:inline-block;
-      margin-right:1em;
       margin-bottom:1em;
+      margin-right:1em;
     }
     & > nav > a > img {
       vertical-align:top;
       width:50px;
     }
   }
+
+  #card {
+
+    display:none; 
+    margin-bottom:2em;
+
+    & > header, & > form {
+      display:inline-block;
+    }
+    & > header {
+      vertical-align:top;
+      width: grid-width(7);
+      margin-right:2.5em;
+
+      & > h3 {
+        line-height:1.5em;
+        vertical-align:top;
+      }
+    }
+
+    & > form {
+      vertical-align:top;
+      position:relative;
+
+      & > h1 {
+        display:none;
+      }
+    } 
+  }
+
 }

@@ -38,7 +38,7 @@ $(document).on "load.home_index", ->
     $(@).text document.copper.cents_to_dollars( $(@).text() )
 
   # format tips into dollars
-  $("input[type=text]").each -> 
+  $("*[itemtype=tips] input[type=text]").each -> 
     $(@).val document.copper.cents_to_dollars($(@).val())
 
   $("*[itemtype=tips] span[itemprop=amount_in_cents]").each -> 
@@ -48,7 +48,7 @@ $(document).on "load.home_index", ->
     page = $(@).parents('*[itemscope]')[1]
     $(tip).remove()
 
-    tip_count = $(page).find('tbody > tr').size() 
+    tip_count = $(page).find('tbody > tr').size() c
 
     if 0 is tip_count
       $(page).remove()
@@ -75,22 +75,16 @@ $(document).on "load.home_index", ->
     $(page).find('span[itemprop=amount_in_cents]').each -> new_total +=  Number($(@).text())
     $(page).find('figcaption').text new_total
 
-$(document).on "load.home_index", ->
-  $(document).on 'copper.button_installed', ->
-    $('#install').delay(0).fadeOut 800 
-    $('#congrats').delay(800).fadeIn 800
-    $('#facebook').delay(800).fadeIn 800
-
 # if logged in display the the second step in the sign up process.
 $(document).on "me.home_index", ->
-  if $('#facebook').size > 0
+  if $('#facebook').size() > 0
     facebook = -1
     for identity in document.copper.me.identities 
       if identity.provider is 'facebook'
         facebook = identity
 
     if facebook
-      likes_url = "https://graph.facebook.com/#{facebook.username}/likes?limit=10&access_token=#{facebook.token}"
+      likes_url = "https://graph.facebook.com/#{facebook.username}/likes?limit=9&access_token=#{facebook.token}"
       me_url = "https://graph.facebook.com/me?&access_token=#{facebook.token}"
 
       $.getJSON(likes_url).success (facebook) ->
