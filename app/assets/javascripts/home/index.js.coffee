@@ -109,15 +109,13 @@ $(document).on "load.home_index", ->
 
 $(document).on "load.home_index", ->
   $(document).on 'copper.button_installed', ->
-    $('#join').delay(0).fadeOut 800 
+    $('#install').delay(0).fadeOut 800 
     $('#congrats').delay(800).fadeIn 800
     $('#facebook').delay(800).fadeIn 800
 
-
 # if logged in display the the second step in the sign up process.
 $(document).on "me.home_index", ->
-  if $('#facebook') 
-
+  if $('#facebook').size > 0
     facebook = -1
     for identity in document.copper.me.identities 
       if identity.provider is 'facebook'

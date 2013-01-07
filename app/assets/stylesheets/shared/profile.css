@@ -1,4 +1,5 @@
 #home_index, #home_author {
+
   #signed_in > img {
     display:none;
   }
@@ -77,6 +78,7 @@
   }
 
   #pages {
+    margin-bottom:3em;
     & > header {
       & > h1 {
         font-size:1.5em;

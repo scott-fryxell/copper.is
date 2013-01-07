@@ -5,7 +5,7 @@
     <%= csrf_meta_tag %>
     <%= stylesheet_link_tag "tips/new" %>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%> itemid="new">
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" itemscope itemtype='tips' itemid="new">
     <section>
       <header>
         <h1>You're Tipping</h1>

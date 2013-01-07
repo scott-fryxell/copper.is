@@ -19,7 +19,7 @@ $(document).bind({
     new_tip.url = decodeURIComponent(event.url)
     new_tip.thumbnail_url = decodeURIComponent(event.thumbnail_url)
     Item.update_page(new_tip)
-    copper.format_cents_to_dollars("amount_in_cents")
+    document.copper.format_cents_to_dollars("amount_in_cents")
 
     jQuery('<img/>', {
       id: 'create_img',
