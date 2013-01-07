@@ -123,7 +123,7 @@
     <figure>
       <a class="button install" ><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
       <%= image_tag "arrows/right_two.svg"%>
-      <a class="button" onclick="$(document).trigger('copper.button_installed')">Start Tipping</a>
+      <a class="button" onclick="$(document).trigger('copper_button_installed')">Start Tipping</a>
     </figure>
   </section>
   <section id="congrats">
@@ -140,7 +140,7 @@
     <p class="sub">
       Note: We won’t ask for any payment info until you've been using
       the service for a bit, but if you want to get that squared away now,
-      you can do that <a href="/fans/me/edit">here</a>.
+      you can do that <a href="/settings">here</a>.
     </p>
   </section>
   <section id="facebook">
@@ -157,5 +157,8 @@
       </p>
     </header>
     <%= render partial:'shared/card' %>
+    <figure>
+      <%=image_tag "noun_project/3879.svg"%>
+    </figure>
   </section>
 <%-end-%>

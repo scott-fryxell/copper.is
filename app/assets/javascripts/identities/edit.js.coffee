@@ -9,7 +9,7 @@ $(document).on "load.identities_edit", ->
     if $('input.invalid').size() is 0 or  $('select.invalid').size() is 0  
       $(@).addClass 'working'
       jQuery.ajax
-        url: '/fans/me'
+        url: '/users/me'
         type: 'put'
         data: $('form').serialize()
         error: ->

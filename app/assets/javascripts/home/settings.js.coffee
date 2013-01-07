@@ -24,7 +24,6 @@ $(document).on "items.home_settings", ->
       div.css "display","inline-block"
       div.animate {opacity:1}, 500
 
-
 $(document).on "me.home_settings", ->
 
   if document.copper.me.country_code

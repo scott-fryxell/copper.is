@@ -32,7 +32,6 @@ authorization do
   end
 end
 
-
 privileges do
   privilege :manage, :includes => [:create, :read, :update, :delete]
   privilege :create, :includes => :new

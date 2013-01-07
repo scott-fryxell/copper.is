@@ -8,7 +8,7 @@ Copper::Application.routes.draw do
   resources :pages do
     resources :tips
   end
-  resources :fans, :controller => "users", :as => :fans do 
+  resources :users do 
     resources :tips
   end
 

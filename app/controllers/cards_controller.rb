@@ -16,6 +16,8 @@ class CardsController < ApplicationController
     customer.card = params[:card_token] # obtained with Stripe.js
     customer.save
     render nothing:true, status:200
+  rescue Stripe::CardError => e
+    render text:e.message, status:500
   end
 
   def create

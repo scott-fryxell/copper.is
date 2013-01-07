@@ -1,9 +1,9 @@
 $(document).on "items.home_settings items.home_index", ->
-
+  user = document.getItems()['users'][0]
   $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'selected'
 
   $(document).on "load.home_index", ->
-    $(document).on 'copper.button_installed', ->
+    $(document).on 'copper_button_installed', ->
       $('#install').delay(0).fadeOut 800 
       $('#congrats').delay(800).fadeIn 800
       $('#facebook').delay(800).fadeIn 800
@@ -38,6 +38,7 @@ $(document).on "items.home_settings items.home_index", ->
       $('#card > header > a').click()
     
     else
+      $(@).find('input[type=submit]').addClass('working')
       Stripe.createToken {
         number: $('#number').val()
         cvc: $('#cvc').val()
@@ -48,7 +49,7 @@ $(document).on "items.home_settings items.home_index", ->
       (status, response) ->
         # console.debug(status, response);
         if response.error
-          console.debug 'error' 
+          $("#card > form input[type=submit]").removeClass('working')
           $("#card > form > h1").text response.error.message
           $("#card > form > h1").addClass "message"
         else 
@@ -62,6 +63,13 @@ $(document).on "items.home_settings items.home_index", ->
             url: '/cards'
             type: method
             data: "card_token=#{response.id}"
+            success: ->
+              $("#card > form input[type=submit]").removeClass('working')
+              $("#card").addClass 'approved'
             error: (data, textStatus, jqXHR) ->
+              $("#card > form input[type=submit]").removeClass('working')
               console.error "error creating stripe user " + method, data, textStatus, jqXHR
+              $("#card > form > h1").text data.responseText
+              $("#card > form > h1").addClass "message"
+
     false

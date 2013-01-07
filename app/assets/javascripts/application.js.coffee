@@ -20,7 +20,7 @@ $(document).ready ->
   $(document).trigger "load." + $('body').attr 'id'
 
   jQuery.ajax
-    url:'/fans/me.json',
+    url:'/users/me.json',
     dataType:'json',
     success: (data) ->
       document.copper.me = data;
@@ -36,7 +36,7 @@ $(document).ready ->
   $(document).bind 'save.me', ->
     jQuery.ajax
       dataType:'json'
-      url: '/fans/me.json'
+      url: '/users/me.json'
       type: 'put'
       data: jQuery.param document.copper.me 
       error: -> $(document).trigger "error.me"

@@ -44,7 +44,7 @@ describe "home page experience", :slow, :focus do
     page.execute_script("jQuery.fx.off = true")
     page.should have_css('#join', visible:true)
     # simulating the event the extension will trigger when installed
-    page.execute_script('$(document).trigger("copper.button_installed")')
+    page.execute_script('$(document).trigger("copper_button_installed")')
     page.should have_css('#join', visible:false)
     page.should have_css('#congrats', visible:true)
     page.should have_css('#facebook', visible:true)

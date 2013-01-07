@@ -9,7 +9,7 @@ describe UsersController do
     end
 
     describe 'index' do
-      describe '/fans' do
+      describe '/users' do
         it 'responds with status 401' do
           get :index
           response.status.should == 401
@@ -18,7 +18,7 @@ describe UsersController do
     end
 
     describe 'new' do
-      describe '/fans/new' do
+      describe '/users/new' do
         it 'responds with status 401' do
           get :new
           response.status.should == 401
@@ -27,7 +27,7 @@ describe UsersController do
     end
 
     describe 'create'do
-      describe 'POST /fans' do
+      describe 'POST /users' do
         it 'responds with status 401' do
           post :create
           response.status.should == 401
@@ -36,26 +36,26 @@ describe UsersController do
     end
 
     describe 'show' do
-      describe '/fans/1'
-      describe '/fans/1'
+      describe '/users/1'
+      describe '/users/1'
     end
 
     describe 'edit' do
-      it '/fans/1/edit'  do
+      it '/users/1/edit'  do
         get :new
         response.status.should == 401
       end
     end
 
     describe 'update' do
-      it 'PUT /fans/1'  do
+      it 'PUT /users/1'  do
         get :new
         response.status.should == 401
       end
     end
 
     describe 'destroy' do
-      it 'DELETE /fans/1'  do
+      it 'DELETE /users/1'  do
         get :new
         response.status.should == 401
       end
@@ -67,7 +67,7 @@ describe UsersController do
       @me = create!(:user)
     end
     describe 'index' do
-      describe '/fans' do
+      describe '/users' do
         it 'responds with status 403' do
           get_with @me, :index
           response.status.should == 403
@@ -76,11 +76,11 @@ describe UsersController do
     end
 
     describe 'create' do
-      describe 'POST /fans'
+      describe 'POST /users'
     end
 
     describe 'edit' do
-      describe '/fans/:id/edit' do
+      describe '/users/:id/edit' do
         it 'assigns fan for current user only' do
           get_with @me, :edit, id:@me.id, format: :json
           response.status.should == 200
@@ -94,7 +94,7 @@ describe UsersController do
         end
       end
 
-      describe '/fans/me/edit' do
+      describe '/users/me/edit' do
         it 'assigns user for current user only' do
           get_with @me, :edit, id:'me', format: :json
           response.status.should == 200
@@ -104,14 +104,14 @@ describe UsersController do
     end
 
     describe 'show' do
-      describe '/fans/me' do
+      describe '/users/me' do
         it 'assigns user with id me' do
           get_with @me, :show, id:'me', format: :json
           response.status.should == 200
           assigns(:user).id.should == @me.id
         end
       end
-      describe '/fans/:id' do
+      describe '/users/:id' do
         it 'assigns user with id current' do
           get_with @me, :show, id:'me', format: :json
           response.status.should == 200
@@ -121,7 +121,7 @@ describe UsersController do
     end
 
     describe 'update' do
-      describe 'PUT /fans/me' do
+      describe 'PUT /users/me' do
         it 'updates email' do
           put_with @me, :update, id:'me', user:{email:'dude@place.com'}
           @me.reload
@@ -141,7 +141,7 @@ describe UsersController do
         end
       end
 
-      describe 'PUT /fans/1' do
+      describe 'PUT /users/1' do
         describe 'me' do
           it 'updates email' do
             put_with @me, :update, id:@me.id, user:{email:'dude@place.com'}
@@ -197,14 +197,14 @@ describe UsersController do
     end
 
     describe 'destroy' do
-      describe 'DELETE /fans/me' do
+      describe 'DELETE /users/me' do
         it 'responds with 403' do
           delete_with @me, :destroy, id:'me'
           response.status.should == 403
         end
       end
 
-      describe 'DELETE /fans/:id' do
+      describe 'DELETE /users/:id' do
         it 'can not delete your self' do
           delete_with @me, :destroy, id:@me.id
           response.status.should == 403

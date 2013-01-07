@@ -236,7 +236,25 @@
   }
 
   #card {
+    &.approved {
+      & > form {
+        display:none;
+      }
+      & > figure {
+        display:inline-block;
+      }
+    }
 
+    & > figure {
+      display:none;
+      vertical-align:baseline;
+      text-align: center;
+      margin-left: 3em;
+      width:7em;
+      & > img {
+        width:7em;
+      }
+    }
     display:none; 
     margin-bottom:2em;
 
