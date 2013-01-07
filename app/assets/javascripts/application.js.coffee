@@ -25,7 +25,7 @@ $(document).ready ->
       document.copper.me = data;
       Item.update_page document.copper.me
       $('img.identity').attr 'src', document.copper.get_identity_image()
-      $("#signed_in").addClass 'show'
+      $("#user_nav").addClass 'show'
       $('a[href="/signout"]').css 'display','inline-block'
       $(document).trigger "me." + $('body').attr 'id'
     statusCode:

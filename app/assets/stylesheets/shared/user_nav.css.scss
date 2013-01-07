@@ -1,0 +1,50 @@
+#user_nav {
+  float:right;
+  margin-top:.5em;
+  margin-right:1em;
+  text-align:right;
+  & > img {
+    border:0.18em solid $text;
+    display:inline-block;
+    width:2em;
+  }
+  nav {
+    height:2.5em;
+    display:inline-block;
+    vertical-align:top;
+    text-align:right;
+  }
+  nav > a {
+    padding-top:.5em;
+    vertical-align:middle;
+    display:inline-block;
+    margin-right:1.5em;
+    line-height:1.25em;
+  }
+  nav > a > img {
+    width:1.5em;
+    height:1.5em;
+    opacity:0.3;
+    vertical-align:middle;
+    @include transition(opacity 1s);
+    &:hover{
+      @include transition(opacity 1s);
+      opacity:0.9;
+    }
+  }
+}
+
+#home_settings, #home_author, #home_index {
+  #user_nav > img {
+    display:none;
+  }
+}
+
+#home_author #user_nav > nav > a[href='/author'] > img {
+  opacity:1;
+}
+
+#home_settings #user_nav > nav > a[href='/settings'] > img {
+  opacity:1;
+}
+

@@ -1,6 +1,5 @@
 $(document).on "load.identities_edit", ->
-  $('#sign_in').hide();
-  $('#signed_in').hide();
+  $('#user_nav').hide();
 
   $('body > nav > button').click ->
 
