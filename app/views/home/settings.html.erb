@@ -1,5 +1,6 @@
 <%-content_for :head do-%>
   <title><%=current_user.name%>'s Settings - Copper.</title>
+  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
 <%-end-%>
 <section id="banner">
   <header>
@@ -19,6 +20,7 @@
     $10 of tips pledged.
   </p>
 </section>
+
 <section id="email" class="setting">
   <header>
     <h2>Contact Info</h2>
@@ -33,6 +35,7 @@
     <input type="submit" value="Save"/>
   </form>
 </section>
+
 <section id="rate" class="setting">
   <header>
     <h2>Default Tip</h2>
@@ -59,6 +62,7 @@
     <input type="submit" value="Save"/>
   </form>
 </section>
+
 <section id="card" class="setting">
   <header>
     <h2>Payment Info</h2>
@@ -124,23 +128,19 @@
   </form>
 </section>
 
-<section id="address" class="setting">
+<section id="install" class=setting>
   <header>
-    <h2>Your address</h2>
-    <a href="#address">Change</a>
+    <h2>The button</h2>
   </header>
   <div>
-    <p itemprop="payable_to"></p>
-    <p itemprop="line1"></p>
-    <p itemprop="line2"></p>
-    <p>
-      <span itemprop='city'></span>
-      <span itemprop="subregion_code"></span> 
-      <span itemprop="postal_code"></span>
-    </p>
-  </div>
-  <%= render :partial => 'shared/address' %>
+    <a class="button install"><%= image_tag "icons/letter_logo_white.svg"%>Install The Tip Button</a>
+   </div>
 </section>
+
+<nav>
+  <a href="/">return to profile</a>
+  <a id="author" href="#author">Author settings</a>
+</nav>
 
 <section id="identities">
   <header>
@@ -192,10 +192,51 @@
     </nav>
   </aside>
 </section>
-<section id="button">
-  
+
+<section id="address" class="setting">
+  <header>
+    <h2>Your address</h2>
+    <a href="#address">Change</a>
+  </header>
+  <div>
+    <p itemprop="payable_to"></p>
+    <p itemprop="line1"></p>
+    <p itemprop="line2"></p>
+    <p>
+      <span itemprop='city'></span>
+      <span itemprop="subregion_code"></span> 
+      <span itemprop="postal_code"></span>
+    </p>
+  </div>
+  <%= render :partial => 'shared/address' %>
 </section>
-<nav>
-  <a href="/">return to profile</a>
-</nav>
+
+<section id="badge">
+  <div>
+    <header>
+      <h3>Get the badge</h3>
+      <p>
+        Place this on your site to drive tips to your work! Select a size.
+      </p>
+      <select name="size" id="size" size="1">
+        <option value="" disabled selected>Select Size</option>
+        <option value="100">Small</option>
+        <option value="145">Medium</option>
+        <option value="175">large</option>
+      </select>
+    </header>
+    <figure></figure>
+  </div>
+  <div>
+    <header>
+      <h3>Embed code</h3>
+    </header>
+    <textarea name=""></textarea>
+  </div>
+  <script id="badge_template" type="text/x-jquery-tmpl">
+    <img id="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/icons/button.png"
+         style="cursor:pointer; width:${size}px;" title="Tip This Page"
+         onclick="<%= render :partial=>'home/wrapped_launcher', :formats=>[:js] %>">
+  </script>
+</section>
 

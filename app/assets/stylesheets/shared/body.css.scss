@@ -120,7 +120,6 @@ body > header {
       border:0.18em solid $text;
       display:inline-block;
       width:2em;
-      @include triangle_down($text)
     }
     nav {
       height:2.5em;

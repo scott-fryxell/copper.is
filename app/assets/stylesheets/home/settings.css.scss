@@ -1,7 +1,42 @@
 #home_settings {
-  #identities {
-    display:block;
 
+  #signed_in {
+    & > nav > a[href='/settings'] > img {
+      opacity:1;
+    }
+  }
+
+  #rate > div > p:before{
+    content: "$";
+  }
+  
+
+  #identities, #address, #badge {
+    height:0;
+    padding-top:0;
+    padding-bottom:0;
+    overflow:hidden;
+    @include hidden
+  }
+ 
+}
+
+#home_settings.author {
+  & > nav > a:nth-child(2) {
+    @include settings_pointer_down;
+  }  
+
+  #identities, #address, #badge {
+    height:auto;
+    padding:auto;
+    overflow:auto;
+    @include active
+  }
+
+  #identities {
+    padding-top:2em;
+    padding-bottom:2em;
+    display:block;
     & > div {
       vertical-align:top;
       display:inline-block;
@@ -44,97 +79,111 @@
     & > aside  > nav a {
       margin-right:.65em
     }
-  }
 
-  #identities.edit {
-  
-    & > aside {
-      @include active;
-    }
-    & > div > figure > figcaption {
-      opacity:1;
-      @include transition (width 0.5s ease-in 0s);
-      margin-left:0.5em; 
-      white-space: nowrap;
-      width: 6em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    & > div > figure > form {
-      opacity:1;
-      @include transition (opacity 0.3s ease-in 0.5s);
-    }
-    & > div > figure > form.hide {
-      opacity:0;
-      @include transition (opacity 0.3s ease-in 0.25s);
+    &.edit {
+    
+      & > aside {
+        @include active;
+      }
+      & > div > figure > figcaption {
+        opacity:1;
+        @include transition (width 0.5s ease-in 0s);
+        margin-left:0.5em; 
+        white-space: nowrap;
+        width: 6em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      & > div > figure > form {
+        opacity:1;
+        @include transition (opacity 0.3s ease-in 0.5s);
+      }
+      & > div > figure > form.hide {
+        opacity:0;
+        @include transition (opacity 0.3s ease-in 0.25s);
+      }
     }
   }
 
   #address {
+    padding-top:2em;
+    padding-bottom:2em;
+
     min-height:grid-width(4);
-  }
-  #address > form > input[type=submit] {
-    width:4em;
-  }
-
-
-  #signed_in > nav > a[href='/settings'] > img {
-    opacity:1;
-  }
-  & > nav {
-    margin-bottom:3em;
-    text-align:center;
-  }
-  & > nav > a {
-    @include settings_pointer
-  }
-  #rate > div > p:before{
-    content: "$";
-  }
-  #card {
-    height: grid-width(6);
-    margin-bottom:3em;
-    #number {
-      width:10em;
-    }
-    #cvc {
-      width:grid-width(1);
+    & > form > input[type=submit] {
+      width:4em;
     }
   }
-  #card > div {
-    display:none;
-    width:40em;
-    @include column-count(3);
-    @include column-gap(2em);
-  }
-  #card > div > section {
-    height:5em;
-    margin:0;
-  }
-  #card > div > section > p {
-    margin:0
-  }
-  #card > form a {
-    font-weight:bold;
-  }
-  #card p.number:before {
-   content: "**** **** **** ";
-  }
-  #card > form > h1 {
-    display:none;
-    opacity:0;
-    @include transition (opacity 3.0s ease-in-out);
-  }
-  #card > form > h1.message {
-    @include transition (opacity 3.0s ease-in-out);
-    display:block;
-    opacity:1;
-    margin:0 0 .5em 0;
-    color:red;
-    font-size:1.2em;
+
+  #badge {
+    width:55em;
+    padding:0;
+    @include full_width($offset_color);
+    margin: 4em auto 0 auto;
+    background-color:transparent;
+
+    & > div {
+      min-height:8em;
+      margin-right:0;
+      vertical-align:top;
+      position:relative;
+      display:inline-block;
+      background-color:$offset_color;
+    }
+    & > div:first-child {
+      width:27em;
+      margin-right:.5em;
+    }
+    & > div:first-child > header {
+      margin:2em 0;
+      vertical-align:top;
+      display:inline-block;
+      width:grid-width(6);
+    }
+    & > div:first-child > header > select {
+      width:grid-width(4);
+    }
+    & > div:first-child > figure {
+      vertical-align:middle;
+      text-align:center;
+      width:12em;
+      height:12em;
+      line-height:12em;
+      display:inline-block;
+    }
+    & > div:first-child > figure > img {
+      display:inline;
+      vertical-align:middle;
+      text-align:center;
+    }
+    & > div:nth-child(2) {
+      width:21.20em;
+      padding:2em;
+      padding-left:4em;
+    }
+    & > div:nth-child(2) > header {
+      height:2em;
+      margin-bottom:1em;
+    }
+    & > div:nth-child(2) > header > h3 {
+      margin-top:.4em;
+      vertical-align:middle;
+      display:inline-block;
+    }
+    & > div:nth-child(2) > header > a {
+      float:right;
+      color:$light-text;
+      padding: .5em 1em;
+      background-color:rgba(0,0,0, .5);
+    }
+    & > div:nth-child(2) > textarea {
+      width:19em;
+      height:4em;
+      background-color: #CCCCCC;
+    }
   }
 
-  a[href="/terms"] {
-    text-decoration: underline;
+  & > footer {
+    margin-top:0;
   }
 }

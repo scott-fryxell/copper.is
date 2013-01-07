@@ -44,7 +44,7 @@
     <p>$6.12</p>
   </div>
 </section>
-<section id="tips">
+<section id="pages">
   <header>
     <h1>What's been tipped</h1>
     <nav>
@@ -75,34 +75,6 @@
     <li><img src="/tips/12345/page_img.png" alt="flickr.com"></li>
   </ol>
 </section>
-<section id="settings">
-  <div>
-    <header>
-      <h3>Get the badge</h3>
-      <p>
-        Place this on your site to drive tips to your work! Select a size.
-      </p>
-      <select name="size" id="size" size="1">
-        <option value="" disabled selected>Select Size</option>
-        <option value="100">Small</option>
-        <option value="145">Medium</option>
-        <option value="175">large</option>
-      </select>
-    </header>
-    <figure></figure>
-  </div>
-  <div>
-    <header>
-      <h3>Embed code</h3>
-    </header>
-    <textarea name=""></textarea>
-  </div>
-</section>
 <nav>
-  <a href="/fans/me/edit">Edit your settings</a>
+  <a href="/settings">Edit your settings</a>
 </nav>
-<script id="badge_template" type="text/x-jquery-tmpl">
-  <img id="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/icons/button.png"
-       style="cursor:pointer; width:${size}px;" title="Tip This Page"
-       onclick="<%= render :partial=>'home/wrapped_launcher', :formats=>[:js] %>">
-</script>

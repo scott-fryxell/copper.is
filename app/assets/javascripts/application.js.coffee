@@ -4,8 +4,9 @@
 #= require jquery.tmpl
 #= require jquery.details
 #= require shared/Item
-#= require shared/address
 #= require shared/copper
+#= require shared/install
+#= require shared/address
 #= require shared/email
 #= require home/index
 #= require home/author
@@ -16,17 +17,6 @@
 $(document).ready ->
   jQuery('time').timeago();
   $(document).trigger "load." + $('body').attr 'id'
-
-  $("#sign_in > nav > a").hover(
-    ->
-      $(@).find("img").hide()
-      $(@).find("img.hover").show()
-    ->
-      $(@).find("img").show()
-      $(@).find("img.hover").hide()
-  )
-
-  $("img[alt=Gear]").click -> $(@).addClass "working"
 
   jQuery.ajax
     url:'/fans/me.json',

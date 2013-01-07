@@ -1,11 +1,14 @@
 #home_index,
-#users_edit,
-#authors_show,
-#authors_edit,
+#home_settings,
+#home_authors,
 #identities_edit {
+  #signed_in > img {
+    display:none;
+  }
   #banner {
     margin-top:3.5em;
     margin-bottom:3.5em;
+    
   }
   #banner > header {
     display:inline-block;

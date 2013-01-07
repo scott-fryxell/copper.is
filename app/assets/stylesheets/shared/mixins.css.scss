@@ -24,9 +24,10 @@ $light-text:#FBFAF8;
   color:$light-text !important;
   border-radius:.25em;
   border:0.10em solid darken($button_color, 10%);
+  @include transition (box-shadow 0.5s ease-out 0s);
   &:hover {
-    border-radius:.4em;
-    @include transition (border-radius 0.100s ease-in-out);
+    @include box-shadow(1px 1px 5px 2px rgba(255, 0, 0, 0.7));
+    @include transition (box-shadow 0.25s ease-in 0s);
   }
 }
 @mixin ribbon {
@@ -70,6 +71,7 @@ $light-text:#FBFAF8;
 @mixin settings_pointer {
   text-transform:uppercase;
   text-decoration:none;
+  text-align:center;
   &:after {
     content:"";
     width:.75em;
@@ -83,50 +85,24 @@ $light-text:#FBFAF8;
   }
 }
 
-@mixin triangle_down($color) {
-  position:relative;
-  &:after {
-    margin-left:-2em;
-    position:absolute;
-    bottom:-1.5em;
-    left:50%;
-    content:"";
-    width: 0;
-    height: 0;
-    border-left: 1em solid transparent;
-    border-right: 1em solid transparent;
-    border-top: 1em solid $color;
-  }
-}
-@mixin triangle_down_small($color) {
-  position:relative;
-  &:after {
-    margin-left:-0.5em;
-    position:absolute;
-    bottom:-0.5em;
-    left:50%;
-    content:"";
-    width: 0;
-    height: 0;
-    border-left: 0.5em solid transparent;
-    border-right: 0.5em solid transparent;
-    border-top: 0.5em solid $color;
-  }
-}
-@mixin triangle_up($color){
-  position:relative;
+@mixin settings_pointer_down {
+  text-transform:uppercase;
+  text-decoration:none;
+  text-align:center;
   &:after {
     content:"";
-    position:absolute;
-    bottom:0;
-    left:0;
-    width: 0;
-    height: 0;
-    border-left: 3em solid transparent;
-    border-right: 3em solid transparent;
-    border-bottom: 1em solid $color;
+    width:.75em;
+    height:.75em;
+    width:3em;
+    margin:0 auto 0 auto;
+    display:block;
+    opacity:.5;
+    @include transform(rotate(0deg));
+    background: image-url('shared/triangles/isosceles.svg') no-repeat 50% 100%;
+    background-size: .75em;
   }
 }
+
 
 @mixin keyframes($name) {
   @-moz-keyframes #{$name} { @content; }
@@ -158,6 +134,7 @@ $light-text:#FBFAF8;
 @mixin left_width($color){
   background-color:$color;
   position:relative;
+  overflow:visible;
   &:before {
     content:"";
     position:absolute;
@@ -171,6 +148,7 @@ $light-text:#FBFAF8;
 @mixin right_width($color){
   background-color:$color;
   position:relative;
+  overflow:visible;
   &:after{
     content:"";
     position:absolute;
@@ -192,12 +170,3 @@ $light-text:#FBFAF8;
   opacity:1;
   @include transition (opacity 0.5s ease-in 0s);
 }
-
-
-// // animation mixins
-// @mixin hidden(){
-// }
-
-// @mixin active(){
-//   @include transition (width 0.1s ease-in 0s);
-// }

@@ -4,7 +4,7 @@ $(document).on "items.updated.home_settings", ->
 $(document).on "items.home_settings", ->
   user = document.getItems()['users'][0]
   Stripe.setPublishableKey '<%=Copper::Application.config.stripe_key%>'
-  $("#rate > form > select > option[value=#{user.tip_preference_in_cents}").attr 'selected', true
+  $("#rate > form > select > option[value=#{user.tip_preference_in_cents}]").attr 'selected', true
   $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'selected'
 
   $("section.setting > header > a").click (event) ->
@@ -105,6 +105,10 @@ $(document).on "me.home_settings", ->
     $("#card > header > a").click();
 
 $(document).on "load.home_settings", ->
+
+  $("#home_settings > nav > a:nth-child(2)").click  (event) ->
+    # event.preventDefault()
+    $("#home_settings").toggleClass('author');
 
   $("#rate form").on 'item.validate', ->
     rate = document.copper.cents_to_dollars $('select[itemprop=tip_preference_in_cents]').val()

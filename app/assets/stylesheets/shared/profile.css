@@ -1,8 +1,4 @@
 #home_index, #home_author {
-
-  #signed_in > img {
-    display:none;
-  }
   #stats {
     padding-bottom:1em;
     margin-bottom:1em;

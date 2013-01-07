@@ -212,7 +212,7 @@
       width:grid-width(13);
     }
     & > figure > a {
-      position:relative;
+
       vertical-align:top;
       display:inline-block;
     }
@@ -220,6 +220,7 @@
       opacity:0.5;
     }
     & > figure > a:nth-child(3) {
+      position:relative;
       padding-left: 3em;
     }
     & > figure > a:nth-child(3) > img {

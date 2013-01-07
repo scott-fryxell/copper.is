@@ -1,0 +1,47 @@
+#card {
+    height: grid-width(6);
+    margin-bottom:3em;
+    #number {
+      width:10em;
+    }
+    #cvc {
+      width:grid-width(1);
+    }
+
+    & > div {
+      display:none;
+      width:40em;
+      @include column-count(3);
+      @include column-gap(2em);
+    }
+    & > div > section {
+      height:5em;
+      margin:0;
+    }
+    & > div > section > p {
+      margin:0
+    }
+    & > form a {
+      font-weight:bold;
+    }
+    & p.number:before {
+     content: "**** **** **** ";
+    }
+    & > form > h1 {
+      display:none;
+      opacity:0;
+      @include transition (opacity 3.0s ease-in-out);
+    }
+    & > form > h1.message {
+      @include transition (opacity 3.0s ease-in-out);
+      display:block;
+      opacity:1;
+      margin:0 0 .5em 0;
+      color:red;
+      font-size:1.2em;
+    }
+
+    a[href="/terms"] {
+      text-decoration: underline;
+    }
+  }
