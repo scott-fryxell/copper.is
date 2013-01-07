@@ -121,17 +121,18 @@
       </p>
     </header>
     <figure>
-      <a class="button install"><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
+      <a class="button install" ><%= image_tag "icons/letter_logo_white.svg"%> Get The Button</a>
       <%= image_tag "arrows/right_two.svg"%>
-      <a class="button">Start Tipping</a>
+      <a class="button" onclick="$(document).trigger('copper.button_installed')">Start Tipping</a>
     </figure>
   </section>
   <section id="congrats">
     <header>
       <h3>Congrats!</h3>
-      <h1>Your button is now installed! Take it for a test drive...</h1>
+      <h1>Your button is installed!</h1>
     </header>
     <p>
+      <span>It's time to Take it for a test drive.</span>
       Below are some things we have transferred from your News Feed
       that you might want to tip! But of course, the tip button
       works anywhere.
@@ -145,5 +146,16 @@
   <section id="facebook">
     <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
     <nav></nav>
+  </section>
+  <section id="card">
+    <header>
+      <h3>All the cool kids are tipping with real money</h3>
+      <p>
+        We won’t ask for any payment info until you've been using
+        the service for a bit, but if you want to get that squared away now,
+        we won't complain.
+      </p>
+    </header>
+    <%= render partial:'shared/card' %>
   </section>
 <%-end-%>

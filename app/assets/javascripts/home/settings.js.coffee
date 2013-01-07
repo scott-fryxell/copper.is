@@ -3,9 +3,7 @@ $(document).on "items.updated.home_settings", ->
 
 $(document).on "items.home_settings", ->
   user = document.getItems()['users'][0]
-  Stripe.setPublishableKey '<%=Copper::Application.config.stripe_key%>'
   $("#rate > form > select > option[value=#{user.tip_preference_in_cents}]").attr 'selected', true
-  $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'selected'
 
   $("section.setting > header > a").click (event) ->
     event.preventDefault();
@@ -26,60 +24,6 @@ $(document).on "items.home_settings", ->
       div.css "display","inline-block"
       div.animate {opacity:1}, 500
 
-  $("#card > form").submit (event) ->
-    event.preventDefault();
-    $('input').removeClass "invalid"
-    $('select').removeClass "invalid"
-
-    unless Stripe.validateCardNumber $('#number').val()
-      console.error "invalid credit card number"
-      $('#number').addClass "invalid"
-
-    unless Stripe.validateCVC $('#cvc').val()  
-      console.error "invalid cvc"
-      $('#cvc').addClass "invalid"
-
-    unless Stripe.validateExpiry $('#month').val(), $('#year').val()
-      console.error "invalid expiration"
-      $('#month').addClass("invalid");
-      $('#year').addClass("invalid");
-
-    unless $("#site_terms:checked").length is 1 
-      console.error "must agree to terms"
-      $('#site_terms').addClass "invalid"
-
-    if $('#card .invalid').length > 0
-      console.debug 'card is invalid'
-      $('#card > header > a').click()
-    
-    else
-      Stripe.createToken {
-        number: $('#number').val()
-        cvc: $('#cvc').val()
-        exp_month: $('#month').val()
-        exp_year: $('#year').val()
-        email: $('#email').val()
-      },
-      (status, response) ->
-        # console.debug(status, response);
-        if response.error
-          console.debug 'error' 
-          $("#card > form > h1").text response.error.message
-          $("#card > form > h1").addClass "message"
-        else 
-          $("#card > form > h1").removeClass "message"
-          $("#card p.type").text response.card.type
-          $("#card p.number").text response.card.last4
-          $("#card p.expiration").text "#{response.card.exp_month}/#{response.card.exp_year}"
-          method = 'post'
-          method = 'put' if user.stripe_id
-          jQuery.ajax
-            url: '/cards'
-            type: method
-            data: "card_token=#{response.id}"
-            error: (data, textStatus, jqXHR) ->
-              console.error "error creating stripe user " + method, data, textStatus, jqXHR
-    false
 
 $(document).on "me.home_settings", ->
 

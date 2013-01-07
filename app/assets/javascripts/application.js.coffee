@@ -7,6 +7,7 @@
 #= require shared/copper
 #= require shared/install
 #= require shared/address
+#= require shared/card
 #= require shared/email
 #= require home/index
 #= require home/author
