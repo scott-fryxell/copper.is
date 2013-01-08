@@ -3,6 +3,7 @@ class HomeController < ApplicationController
 
   def index
     if current_user
+      response.headers['Cache-Control'] = 'public, max-age=300'
       @pages = current_user.pages.group('pages.id').except(:order).order('MAX(tips.created_at) DESC')
     else
       redirect_to :action => 'welcome', :status => 302
