@@ -30,6 +30,9 @@ $(document).on "load.home_index", ->
 
 $(document).on "load.home_index", ->
 
+
+
+
   $('#pages > details:first summary').click()
   $('#pages details[itemtype=tips] form[method=put] input[type=text]').focus()
   
@@ -44,11 +47,12 @@ $(document).on "load.home_index", ->
   $("*[itemtype=tips] span[itemprop=amount_in_cents]").each -> 
     $(@).text document.copper.cents_to_dollars($(@).text())
 
+  $("*[itemtype=tips] form[method=delete]").on 'item.delete', ->
     tip = $(@).parents('*[itemscope]')[0]
     page = $(@).parents('*[itemscope]')[1]
     $(tip).remove()
 
-    tip_count = $(page).find('tbody > tr').size() c
+    tip_count = $(page).find('tbody > tr').size()
 
     if 0 is tip_count
       $(page).remove()
