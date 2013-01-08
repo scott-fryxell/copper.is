@@ -7,8 +7,8 @@ class Identities::Youtube < Identity
     
     if %r{/watch}.match(path) 
       video = connect_to_api.video_by(url)
-      author_id = URI.parse(video.author.uri).path.split('/')[4]
-      { :uid => author_id }
+      author_name = URI.parse(video.author.uri).path.split('/')[4]
+      { :username => author_name }
     elsif %r{/user/}.match(path)
       user = %r{/user/}.match(path).post_match
       { :username => user }  
