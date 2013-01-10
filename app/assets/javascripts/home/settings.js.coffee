@@ -57,22 +57,22 @@ $(document).on "load.home_settings", ->
     rate = document.copper.cents_to_dollars $('select[itemprop=tip_preference_in_cents]').val()
     $('#rate p[itemprop=tip_preference_in_cents]').text rate
 
-  $("#identities > header > a").click (event) -> 
+  $("#authors > header > a").click (event) -> 
     event.preventDefault();
-    $('#identities').toggleClass 'edit'
+    $('#authors').toggleClass 'edit'
 
-    if $('#identities').hasClass 'edit'
-      $('#identities > header > a').text 'Done'
+    if $('#authors').hasClass 'edit'
+      $('#authors > header > a').text 'Done'
     else
-      $('#identities > header > a').text 'Add/Remove'
+      $('#authors > header > a').text 'Add/Remove'
   
-  $('#identities > aside > nav > a > img, #identities form > input').click ->
+  $('#authors > aside > nav > a > img, #authors form > input').click ->
     $(@).addClass 'working'
 
-  $("#identities form").on 'item.delete', ->
+  $("#authors form").on 'item.delete', ->
     $(@).parent().remove()
-    if 2 > $("#identities form").size()
-      $('#identities figure > form').addClass 'hide'
+    if 2 > $("#authors form").size()
+      $('#authors figure > form').addClass 'hide'
 
   $("#address form").on 'item.validate', ->
     unless $('#address form .invalid').size == 0

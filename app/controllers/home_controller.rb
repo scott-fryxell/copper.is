@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   end
 
   def author
-    @pages = Page.where(identity_id: current_user.identity_ids)
+    @pages = Page.where(author_id: current_user.author_ids)
   end
 
   def settings

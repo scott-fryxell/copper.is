@@ -13,14 +13,14 @@ document.copper =
     dollars = (parseFloat(cents) / 100.00)
     dollars += '0' if dollars is 0.5 or dollars is 0.1
     return dollars
-  get_identity_image: ->
+  get_author_image: ->
     pic
-    for identity in document.copper.me.identities
-      if identity.provider is 'facebook'
-        pic = "https://graph.facebook.com/#{identity.uid}/picture?type=square"
-      if identity.provider is 'twitter'
-        pic = "https://api.twitter.com/1/users/profile_image?id=#{identity.uid}&size=bigger"
-      if identity.provider is 'google'
-        pic = "https://plus.google.com/s2/photos/profile/#{identity.uid}"
+    for author in document.copper.me.authors
+      if author.provider is 'facebook'
+        pic = "https://graph.facebook.com/#{author.uid}/picture?type=square"
+      if author.provider is 'twitter'
+        pic = "https://api.twitter.com/1/users/profile_image?id=#{author.uid}&size=bigger"
+      if author.provider is 'google'
+        pic = "https://plus.google.com/s2/photos/profile/#{author.uid}"
     pic
     

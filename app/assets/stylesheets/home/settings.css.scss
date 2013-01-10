@@ -4,7 +4,7 @@
     content: "$";
   }
   
-  #identities, #address, #badge {
+  #authors, #address, #badge {
     height:0;
     padding-top:0;
     padding-bottom:0;
@@ -19,14 +19,14 @@
     @include settings_pointer_down;
   }  
 
-  #identities, #address, #badge {
+  #authors, #address, #badge {
     height:auto;
     padding:auto;
     overflow:auto;
     @include active
   }
 
-  #identities {
+  #authors {
     padding-top:2em;
     padding-bottom:2em;
     display:block;

@@ -17,10 +17,10 @@ namespace :copper do
       puts "processing #{Page.orphaned.count} orphaned pages"
       Page.orphaned.each do |page|
         begin
-          page.discover_identity!
+          page.discover_author!
         rescue => e
-          # puts "Page#discover_identity: on: #{page.url}"
-          # puts ":    #{e.class}: #{e.message}"
+          puts "Page#discover_author: on: #{page.url}"
+          puts ":    #{e.class}: #{e.message}"
           page.reject!
         end
         if adoption_rate != Page.adoption_rate
@@ -33,10 +33,10 @@ namespace :copper do
       puts "Processing #{Page.fostered.count} fostered pages"
       Page.fostered.each do |page|
         begin
-          page.find_identity_from_page_links!
+          page.find_author_from_page_links!
         rescue => e    
-          # puts "Page#find_identity_from_page_links: on: #{page.url}"
-          # puts ":    #{e.class}: #{e.message}"
+          puts "Page#find_author_from_page_links: on: #{page.url}"
+          puts ":    #{e.class}: #{e.message}"
           page.reject!
         end
         if adoption_rate != Page.adoption_rate
@@ -64,13 +64,13 @@ end
 
 
 task :reset_page_adoption => :environment do
-  Identity.all.each do |identity|
-    identity.destroy
+  Author.all.each do |author|
+    author.destroy
   end
 
   Page.all.each do |page|
     page.author_state = 'orphaned'
-    page.identity = nil
+    page.author = nil
     page.save!
   end
 end

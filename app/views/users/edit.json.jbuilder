@@ -11,4 +11,4 @@ json.(@user,
   :subregion_code,
   :postal_code
 )
-json.identities @user.identities, :provider, :username, :uid, :token
+json.authors @user.authors, :provider, :username, :uid, :token

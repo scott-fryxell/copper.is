@@ -4,7 +4,7 @@
 <%-end-%>
 <section id="banner">
   <header>
-    <%= image_tag "icons/silhouette.svg", class:"identity", alt:'me' %>
+    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
   </header>
   <hgroup>
     <h1>Your Settings</h1>
@@ -99,18 +99,18 @@
   <a id="author" href="#author">Author settings</a>
 </nav>
 
-<section id="identities">
+<section id="authors">
   <header>
-    <h2>Your identities</h2>
-    <a href="#identities">Add/Remove</a>
+    <h2>Your authors</h2>
+    <a href="#authors">Add/Remove</a>
   </header>
   <div>
-    <%-current_user.identities.each do |identity|-%>
-    <figure class="<%=identity.provider%>" itemscope itemtype="identities"  itemid="<%=identity.id%>">
-      <%= image_tag "providers/#{identity.provider}/sign_in.png", title:identity.username%>
-      <figcaption itemprop='username'><%=identity.username%></figcaption>
-      <%-if current_user.identities.count > 1-%>
-      <form action='<%=identity_path(identity)%>' method="delete">
+    <%-current_user.authors.each do |author|-%>
+    <figure class="<%=author.provider%>" itemscope itemtype="authors"  itemid="<%=author.id%>">
+      <%= image_tag "providers/#{author.provider}/sign_in.png", title:author.username%>
+      <figcaption itemprop='username'><%=author.username%></figcaption>
+      <%-if current_user.authors.count > 1-%>
+      <form action='<%=author_path(author)%>' method="delete">
         <input type="submit" name="submit" value="X">
       </form>
       <%-end-%>
@@ -119,7 +119,7 @@
   </div>
   <aside>
     <header>
-      <h2>Authorize other identities</h2>
+      <h2>Authorize other authors</h2>
     </header>
     <nav>
       <a href="/auth/facebook" title="Authorize facebook">
