@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   end
 
   def author
-    @pages = current_user.pages.group('pages.id').except(:order).order('MAX(tips.created_at) DESC')
+    @pages = Page.where(identity_id: current_user.identity_ids)
   end
 
   def settings

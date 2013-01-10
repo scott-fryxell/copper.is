@@ -18,14 +18,14 @@ authorization do
 
     has_permission_on :checks,     :to => [:read]
     has_permission_on :orders,     :to => [:read,:update]
-    has_permission_on :identities, :to => [:edit, :destroy]
+    has_permission_on :authors,    :to => [:edit, :destroy]
     has_permission_on :pages,      :to => [:read]
     has_permission_on :cards,      :to => [:manage]
   end
 
   role :guest do
     has_permission_on :tips,       :to => [:read, :new]
-    has_permission_on :identities, :to => [:edit] do
+    has_permission_on :authors,    :to => [:edit] do
       if_attribute :identity_state => 'wanted'
     end
     has_permission_on :pages,      :to => [:read]

@@ -1,4 +1,4 @@
-class Identity < ActiveRecord::Base
+class Author < ActiveRecord::Base
   include Enqueueable
   has_paper_trail
   
@@ -47,7 +47,7 @@ class Identity < ActiveRecord::Base
 
     state :wanted do
       def send_wanted_message
-        raise "this identity has a user" if self.user_id
+        raise "this author has a user" if self.user_id
         _send_wanted_message
         self.message = Time.now
         save!
@@ -81,7 +81,7 @@ class Identity < ActiveRecord::Base
       self.user = nil
     end
 
-    self.type = Identity.subclass_from_provider(self.provider).to_s unless self.type
+    self.type = Author.subclass_from_provider(self.provider).to_s unless self.type
   end
 
   # --------------------------------------------------------------------
@@ -91,16 +91,16 @@ class Identity < ActiveRecord::Base
   end
 
   def self.create_with_omniauth(auth)
-    Identity.create(uid: auth['uid'].to_s, provider: auth['provider'])
+    Author.create(uid: auth['uid'].to_s, provider: auth['provider'])
   end
 
   def self.subclass_from_provider(provider)
     provider = 'google' if provider == 'google_oauth2'
-    ("Identities::" + provider.to_s.capitalize).constantize
+    ("Authors::" + provider.to_s.capitalize).constantize
   end
 
   def self.factory(opts = {})
-    Identity.subclass_from_provider(opts[:provider]).create(opts)
+    Author.subclass_from_provider(opts[:provider]).create(opts)
   end
 
   def self.provider_from_url(url)
@@ -168,7 +168,7 @@ class Identity < ActiveRecord::Base
   def self.find_or_create_from_url(url)
     if provider = provider_from_url(url)
       i = subclass_from_provider(provider).discover_uid_and_username_from_url url
-      ident = Identity.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid],i[:username]).first
+      ident = Author.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid],i[:username]).first
       unless ident
         ident = factory(provider:provider,username:i[:username],uid:i[:uid])
       end

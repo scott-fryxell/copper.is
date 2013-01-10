@@ -18,19 +18,19 @@ class EarnedChecksJob
   end
 end
     
-class WantedIdentitiesJob
+class WantedAuthorsJob
   @queue = :high
   def self.perform
-    Identity.wanted.select(:id).find_each do |wanted|
+    Author.wanted.select(:id).find_each do |wanted|
       Resque.enqueue Identity, wanted.id, :message_wanted!
     end
   end
 end
 
-class StrangerIdentitiesJob
+class StrangerAuthorsJob
   @queue = :high
   def self.perform
-    Identity.strangers.select(:id).find_each do |non_user|
+    Author.strangers.select(:id).find_each do |non_user|
       Resque.enqueue Identity, non_user.id, :try_to_add_to_wanted_list!
     end
   end

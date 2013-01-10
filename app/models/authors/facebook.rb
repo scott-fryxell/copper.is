@@ -1,4 +1,4 @@
-class Identities::Facebook < Identity
+class Authors::Facebook < Author
   include Enqueueable
   include FacebookMessages
   # validates :username, presence: true

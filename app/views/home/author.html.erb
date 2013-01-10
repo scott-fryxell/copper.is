@@ -10,7 +10,12 @@
     <p><%=@current_user.name%><a href="/signout">not you?</a></p>
   </hgroup>
   <p>
-    Here you can track all the pages that you've created. 
+    Hi <%=@current_user.name%>! On this page, 
+    you can see what content your fans are connecting with
+    and the tips they’ve sent to show their appreciation.
+    Also look at other cool metrics on this page -- 
+    like which types of content people are responding 
+    to the most.
   </p>
 </section>
 <section id="stats">
@@ -20,7 +25,7 @@
   </header>
   <div>
     <h2>Tip count</h2>
-    <p>24</p>
+    <p><%=@pages.sum(:tips_count)%></p>
   </div>
   <div>
     <h2>Tips sent</h2>

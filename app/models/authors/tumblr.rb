@@ -1,4 +1,4 @@
-class Identities::Tumblr < Identity
+class Authors::Tumblr < Author
 
   def self.discover_uid_and_username_from_url url
     uri = URI.parse(url)

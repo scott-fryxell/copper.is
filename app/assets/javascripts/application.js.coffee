@@ -13,7 +13,7 @@
 #= require home/author
 #= require home/settings
 #= require home/welcome
-#= require identities/edit
+#= require authors/edit
 
 $(document).ready ->
   jQuery('time').timeago();
@@ -25,7 +25,7 @@ $(document).ready ->
     success: (data) ->
       document.copper.me = data;
       Item.update_page document.copper.me
-      $('img.identity').attr 'src', document.copper.get_identity_image()
+      $('img.author').attr 'src', document.copper.get_author_image()
       $("#user_nav").addClass 'show'
       $('a[href="/signout"]').css 'display','inline-block'
       $(document).trigger "me." + $('body').attr 'id'

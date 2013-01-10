@@ -15,61 +15,61 @@ FactoryGirl.define do
     "https://twitter.com/1#{n}"
   end
 
-  factory :identities_facebook, class: 'Identities::Facebook' do
+  factory :authors_facebook, class: 'Authors::Facebook' do
     provider 'facebook'
     username 'scott.fryxell'
     uid '580281278'
   end
 
-  factory :identities_phony, class: 'Identities::Phony' do
+  factory :authors_phony, class: 'Authors::Phony' do
     provider 'phony'
     username { FactoryGirl.generate(:username) }
-    uid { FactoryGirl.generate(:username) }
+    uid { FactoryGirl.generate(:uid) }
   end
 
-  factory :identities_twitter, class: 'Identities::Twitter' do
+  factory :authors_twitter, class: 'Authors::Twitter' do
     provider 'twitter'
     username 'copper_is'
     uid '123545'
   end
 
-  factory :identities_google, class: 'Identities::Google' do
+  factory :authors_google, class: 'Authors::Google' do
     provider 'google'
     uid
     username
   end
 
-  factory :identities_vimeo, class: 'Identities::Vimeo' do
+  factory :authors_vimeo, class: 'Authors::Vimeo' do
     provider 'vimeo'
     uid '1'
     username 'foo'
   end
 
-  factory :identities_flickr, class: 'Identities::Flickr' do
+  factory :authors_flickr, class: 'Authors::Flickr' do
     provider 'flickr'
     uid
     username
   end
 
-  factory :identities_tumblr, class: 'Identities::Tumblr' do
+  factory :authors_tumblr, class: 'Authors::Tumblr' do
     provider 'tumblr'
     uid
     username
   end
 
-  factory :identities_github, class: 'Identities::Github' do
+  factory :authors_github, class: 'Authors::Github' do
     provider 'github'
     uid
     username
   end
 
-  factory :identities_soundcloud, class: 'Identities::Soundcloud' do
+  factory :authors_soundcloud, class: 'Authors::Soundcloud' do
     provider 'soundcloud'
     uid '2'
     username 'bar'
   end
 
-  factory :identities_youtube, class: 'Identities::Youtube' do
+  factory :authors_youtube, class: 'Authors::Youtube' do
     provider 'youtube'
     uid
     username
@@ -83,7 +83,7 @@ FactoryGirl.define do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
-    identities [FactoryGirl.create(:identities_phony,identity_state: :known)]
+    authors [FactoryGirl.create(:authors_phony,identity_state: :known)]
     roles [Role.find_or_create_by_name('Fan')]
   end
 
@@ -91,7 +91,7 @@ FactoryGirl.define do
     name 'dude'
     accept_terms true
     tip_preference_in_cents 50
-    identities [FactoryGirl.create(:identities_phony,identity_state: :known, username:'her')]
+    authors [FactoryGirl.create(:authors_phony,identity_state: :known, username:'her')]
     roles [Role.find_or_create_by_name('Fan')]
   end
 
@@ -117,8 +117,8 @@ FactoryGirl.define do
 
   factory :authored_page, :class => 'Page' do
     url { FactoryGirl.generate(:twitter_url_with_path) }
-    author_state 'adopted'
-    association :identity, factory: :identities_google
+    identity_state 'adopted'
+    association :author, factory: :authors_google
   end
 
   factory :page do

@@ -1,4 +1,4 @@
-class Identities::Google < Identity
+class Authors::Google < Author
   include Enqueueable
   
   def self.discover_uid_and_username_from_url url

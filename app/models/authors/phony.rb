@@ -1,4 +1,4 @@
-class Identities::Phony < Identity
+class Authors::Phony < Author
   include Enqueueable
   include PhonyMessages
   

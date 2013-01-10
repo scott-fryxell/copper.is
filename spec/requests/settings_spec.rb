@@ -146,23 +146,23 @@ describe "Author settings", :slow do
   end
 
   it 'should be able to authorize facebook' do
-    within '#identities figure.facebook > figcaption' do
+    within '#authors figure.facebook > figcaption' do
       page.should have_content('facebook.user');
     end
 
-    within '#identities' do
+    within '#authors' do
       click_link 'Add/Remove'
       page.should have_css('figure.facebook figcaption', visible:true)
       page.should have_css('aside', visible:true)
     end
   end
 
-  it "should always have at least one identity authorized" do
-    page.should have_no_css('#identities figure form')
+  it "should always have at least one author authorized" do
+    page.should have_no_css('#authors figure form')
   end
 
   it "should be able to show and hide identies that can be added" do
-    within '#identities' do
+    within '#authors' do
       click_link 'Add/Remove'
       page.should have_css('figure > figcaption', visible:true)
       # page.should have_css('figure > form', visible:true) #WTF
@@ -175,8 +175,8 @@ describe "Author settings", :slow do
     end
   end
 
-  it "should be able to authorize multible identities" do
-    within '#identities' do
+  it "should be able to authorize multible authors" do
+    within '#authors' do
       page.should have_css('figure', count:1)
       click_link 'Add/Remove'
       click_link 'Authorize twitter'
@@ -184,18 +184,18 @@ describe "Author settings", :slow do
     end
   end
 
-  it "should be able to deauthorize identities" do
-    within '#identities' do
+  it "should be able to deauthorize authors" do
+    within '#authors' do
       click_link 'Add/Remove'
       click_link 'Authorize twitter'
       click_link 'Add/Remove'
     end
-    page.should have_css('#identities')
+    page.should have_css('#authors')
     within 'figure.twitter' do
       click_on 'X'
     end
-    page.should have_css('#identities figure', count:1)
-    page.should have_css('#identities figure form', visible:false)
+    page.should have_css('#authors figure', count:1)
+    page.should have_css('#authors figure form', visible:false)
   end
   
   it 'should be able to change their address' do

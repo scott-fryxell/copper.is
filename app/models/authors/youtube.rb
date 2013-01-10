@@ -1,4 +1,4 @@
-class Identities::Youtube < Identity
+class Authors::Youtube < Author
   include Enqueueable
   include YoutubeMessages
 

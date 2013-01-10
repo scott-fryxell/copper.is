@@ -3,7 +3,7 @@ Copper::Application.routes.draw do
   resources :tips
   resources :orders
   resources :checks
-  resources :identities
+  resources :authors
 
   resources :pages do
     resources :tips

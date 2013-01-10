@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
   include Enqueueable
   has_paper_trail
-  belongs_to :identity, :touch => true
+  belongs_to :author
   has_many :tips
   has_many :checks, :through => :tips
   attr_accessible :title, :url, :thumbnail_url
@@ -49,7 +49,7 @@ class Page < ActiveRecord::Base
 
   after_create do |page|
     if page.orphaned?
-      Resque.enqueue Page, page.id, :discover_identity!
+      Resque.enqueue Page, page.id, :discover_author!
     end
   end
 
@@ -63,7 +63,7 @@ class Page < ActiveRecord::Base
     # deternime the author based on the url, failure means 
     # page is put in foster care where all the links on
     # the page are spidered and a list of possible
-    # identities are determined. If none are found then the 
+    # authors are determined. If none are found then the 
     # page is put into manual mode where a person is going to
     # get involved to figure it out. If at any point in this 
     # chain a page is adopted it has reached it's final state. 
@@ -75,11 +75,11 @@ class Page < ActiveRecord::Base
     end
 
     after_transition any => :orphaned do |page,transition|
-      Resque.enqueue Page, page.id, :discover_identity!
+      Resque.enqueue Page, page.id, :discover_author!
     end
 
     after_transition any => :fostered do |page,transition|
-      Resque.enqueue Page, page.id, :find_identity_from_page_links!
+      Resque.enqueue Page, page.id, :find_author_from_page_links!
     end
 
     after_transition any => :manual do |page,transition|
@@ -91,9 +91,9 @@ class Page < ActiveRecord::Base
     end
 
     state :orphaned do
-      def discover_identity! 
-        logger.info("discover_identity for: id=#{self.id}, #{self.url[0...120]}")
-        if self.identity = Identity.find_or_create_from_url(self.url)
+      def discover_author! 
+        logger.info("discover_author for: id=#{self.id}, #{self.url[0...120]}")
+        if self.author = Author.find_or_create_from_url(self.url)
           log_adopted
           adopt!
         else
@@ -103,7 +103,7 @@ class Page < ActiveRecord::Base
     end
 
     state :fostered do
-      def find_identity_from_page_links!
+      def find_author_from_page_links!
         begin
           logger.info "Page links for: id=#{self.id}, #{self.url[0...120]}"
           self.agent.get(self.url) do |doc|
@@ -116,7 +116,7 @@ class Page < ActiveRecord::Base
               output = ":    author: #{href[0...120]}"
               logger.info output
               # puts output
-              if self.identity = Identity.find_or_create_from_url(href)
+              if self.author = Author.find_or_create_from_url(href)
                 log_adopted
                 return adopt!
               end
@@ -126,7 +126,7 @@ class Page < ActiveRecord::Base
 
             doc.links_with(:href => %r{facebook.com}).each do |link|
               unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
-                if self.identity = Identity.find_or_create_from_url(link.href) 
+                if self.author = Author.find_or_create_from_url(link.href) 
                   output.call link
                   return adopt!
                 end
@@ -136,7 +136,7 @@ class Page < ActiveRecord::Base
             doc.links_with(:href => %r{twitter.com}).each do |link|
               # filter for known twitter links that are providerable but not good for spidering links 
               unless %r{/status/|/intent/|/home|/share|/statuses/|/search/|/search|/bandcampstatus|/signup}.match(URI.parse(link.href).path)
-                if self.identity = Identity.find_or_create_from_url(link.href) 
+                if self.author = Author.find_or_create_from_url(link.href) 
                   output.call link
                   return adopt!
                 end
@@ -145,7 +145,7 @@ class Page < ActiveRecord::Base
 
             doc.links_with(:href => %r{tumblr.com}).each do |link|
               unless %r{/post/|/liked/|/share}.match(URI.parse(link.href).path)
-                if self.identity = Identity.find_or_create_from_url(link.href) 
+                if self.author = Author.find_or_create_from_url(link.href) 
                   output.call link
                   return adopt!
                 end
@@ -154,14 +154,14 @@ class Page < ActiveRecord::Base
 
             doc.links_with(:href => %r{plus.google.com}).each do |link|
               unless %r{/share/}.match(URI.parse(link.href).path)
-                if self.identity = Identity.find_or_create_from_url(link.href) 
+                if self.author = Author.find_or_create_from_url(link.href) 
                   output.call link
                   return adopt!
                 end
               end
             end
 
-            reject! unless self.identity
+            reject! unless self.author
           end
         rescue Mechanize::ResponseCodeError => e
           logger.info ":    ResponseCodeError: #{e.response_code}"
@@ -195,7 +195,7 @@ class Page < ActiveRecord::Base
   private
 
   def log_adopted
-    output = ":    adopted: username=#{self.identity.username}, uid=#{self.identity.uid}, id=#{self.identity.id}"
+    output = ":    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
     logger.info output
     # puts output
   end

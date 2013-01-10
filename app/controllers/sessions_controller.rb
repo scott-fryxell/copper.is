@@ -2,64 +2,64 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    # Find an identity here
-    @identity = Identity.find_with_omniauth(auth)
+    # Find an author here
+    @author = Author.find_with_omniauth(auth)
 
-    if @identity.nil?
-      # If no identity was found, create a brand new one here
-      @identity = Identity.create_with_omniauth(auth)
+    if @author.nil?
+      # If no author was found, create a brand new one here
+      @author = Author.create_with_omniauth(auth)
     end
 
-    @identity.token = auth['credentials']['token']
-    @identity.secret = auth['credentials']['secret']
-    @identity.username = auth['info']['nickname']
-    @identity.save
+    @author.token = auth['credentials']['token']
+    @author.secret = auth['credentials']['secret']
+    @author.username = auth['info']['nickname']
+    @author.save
 
     if current_user
-      if @identity.user == current_user
-        # User is signed in so they are trying to link an identity with their
-        # account. But we found the identity and the user associated with it
-        # is the current user. So the identity is already associated with
+      if @author.user == current_user
+        # User is signed in so they are trying to link an author with their
+        # account. But we found the author and the user associated with it
+        # is the current user. So the author is already associated with
         # this user. We take them back to their settings page
         
        redirect_to '/settings'
 
       else
-        # The identity is not associated with the current_user so lets
-        # associate the identity
-        @identity.user = current_user
-        @identity.join!
-        @identity.save()
+        # The author is not associated with the current_user so lets
+        # associate the author
+        @author.user = current_user
+        @author.join!
+        @author.save()
         redirect_to '/settings'
       end
     else
-      if @identity.user
-        @identity.join!
-        # The identity we found had a user associated with it so let's
+      if @author.user
+        @author.join!
+        # The author we found had a user associated with it so let's
         # just log them in
-        current_user = @identity.user
-        @identity.join!
-        session[:user_id] = @identity.user.id
+        current_user = @author.user
+        @author.join!
+        session[:user_id] = @author.user.id
 
-        redirect_to root_url
+        redirect_to "#{root_url}#me"
       else
-        # No user associated with the identity so we need to create a new one
+        # No user associated with the author so we need to create a new one
         user = User.create_with_omniauth(auth)
 
-        session[:user_id] = user.id #was identity.user.id
+        session[:user_id] = user.id #was author.user.id
 
         current_user = user
 
-        @identity.user = current_user
+        @author.user = current_user
 
-        if @identity.wanted?
-          @identity.join!
-          @identity.save()
-          redirect_to edit_identity_url(@identity)
+        if @author.wanted?
+          @author.join!
+          @author.save()
+          redirect_to edit_author_url(@author)
         else
-          @identity.join!
-          @identity.save()
-          redirect_to "#{root_url}#join"
+          @author.join!
+          @author.save()
+          redirect_to "#{root_url}#me"
         end
       end
     end

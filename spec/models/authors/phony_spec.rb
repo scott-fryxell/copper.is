@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Identities::Phony do
+describe Authors::Phony do
   before do
-    @identity = FactoryGirl.create(:identities_phony)
+    @identity = FactoryGirl.create(:authors_phony)
   end
 
   describe '#populate_uid_and_username!' do

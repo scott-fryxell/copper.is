@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   include Enqueueable
-  has_many :identities
+  has_many :authors
   has_many :orders
   has_many :tips, :through => :orders
   has_many :pages, :through => :tips, :order => "tips.created_at DESC"
@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
 
   # def try_to_create_check!
   #   the_tips = []
-  #   self.identities.each do |ident|
+  #   self.authors.each do |ident|
   #     the_tips += ident.tips.charged.all
   #   end
   #   unless the_tips.empty?
