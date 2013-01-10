@@ -28,25 +28,39 @@
     <p><%=@pages.sum(:tips_count)%></p>
   </div>
   <div>
-    <h2>Tips sent</h2>
-    <p>75</p>
+    <h2>Tips Paid</h2>
+    <p><%=Tip.kinged.where(page_id:@pages.pluck(:id)).sum(:amount_in_cents)%></p>
   </div>
   <div>
     <h2>Tips pending</h2>
-    <p>5</p>
+    <p><%=Tip.charged.where(page_id:@pages.pluck(:id)).count%></p>
   </div>
   <div>
     <h2>highest tip</h2>
-    <p>$10.25</p>
+    <p><%=Tip.where(page_id:@pages.pluck(:id)).maximum(:amount_in_cents)%></p>
   </div>
   <div>
     <h2>Average tip</h2>
-    <p>$0.75</p>
+    <p><%=Tip.where(page_id:@pages.pluck(:id)).average(:amount_in_cents)%></p>
   </div>
   <div>
     <h2>Total tips</h2>
-    <p>$6.12</p>
+    <p><%=Tip.where(page_id:@pages.pluck(:id)).sum(:amount_in_cents)%></p>
   </div>
+</section>
+
+<section id="pages" >
+  <header>
+    <h1>Pages You own</h1>
+    <hgroup>
+      <h2>Filter by</h2>
+      <nav>
+        <a href="#pages/recent" class="selected">recent</a>
+        <a href="#pages/site">site</a>
+      </nav>
+    </hgroup>
+  </header>
+  <%= render partial:"pages/author_page", collection:@pages, as: :page %>
 </section>
 <nav>
   <a href="/settings">Edit your settings</a>

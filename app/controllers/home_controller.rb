@@ -3,14 +3,14 @@ class HomeController < ApplicationController
 
   def index
     if current_user
-      @pages = current_user.pages.group('pages.id').except(:order).order('MAX(tips.created_at) DESC')
+      @pages = current_user.pages.group('pages.id').includes(:tips).except(:order).order('MAX(tips.created_at) DESC')
     else
       redirect_to :action => 'welcome', :status => 302
     end
   end
 
   def author
-    @pages = Page.where(author_id: current_user.author_ids)
+    @pages = Page.where(author_id: current_user.author_ids).includes(:tips)
   end
 
   def settings

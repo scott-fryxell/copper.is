@@ -1,7 +1,6 @@
 class Author < ActiveRecord::Base
   include Enqueueable
-  has_paper_trail
-  
+  has_paper_trail 
   belongs_to :user
   has_many :pages
   has_many :tips, :through => :pages
