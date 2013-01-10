@@ -5,5 +5,9 @@
     &:nth-child(7){
       @include left_width($offset_color)
     }
+
+    p[data-cents]:before {
+      content: "$";
+    }
   }
 }

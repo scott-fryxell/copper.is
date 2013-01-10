@@ -25,27 +25,27 @@
   </header>
   <div>
     <h2>Tip count</h2>
-    <p><%=@pages.sum(:tips_count)%></p>
+    <p><%=Tip.for_author.where(page_id:@pages.pluck(:id)).count%></p>
   </div>
   <div>
     <h2>Tips Paid</h2>
-    <p><%=Tip.kinged.where(page_id:@pages.pluck(:id)).sum(:amount_in_cents)%></p>
+    <p data-cents="<%=Tip.kinged.where(page_id:@pages.pluck(:id)).sum(:amount_in_cents)%>"></p>
   </div>
   <div>
     <h2>Tips pending</h2>
-    <p><%=Tip.charged.where(page_id:@pages.pluck(:id)).count%></p>
+    <p ><%=Tip.charged.where(page_id:@pages.pluck(:id)).count%></p>
   </div>
   <div>
     <h2>highest tip</h2>
-    <p><%=Tip.where(page_id:@pages.pluck(:id)).maximum(:amount_in_cents)%></p>
+    <p data-cents="<%=Tip.for_author.where(page_id:@pages.pluck(:id)).maximum(:amount_in_cents)%>"></p>
   </div>
   <div>
     <h2>Average tip</h2>
-    <p><%=Tip.where(page_id:@pages.pluck(:id)).average(:amount_in_cents)%></p>
+    <p data-cents="<%=Tip.for_author.where(page_id:@pages.pluck(:id)).average(:amount_in_cents).round%>"></p>
   </div>
   <div>
     <h2>Total tips</h2>
-    <p><%=Tip.where(page_id:@pages.pluck(:id)).sum(:amount_in_cents)%></p>
+    <p data-cents="<%=Tip.for_author.where(page_id:@pages.pluck(:id)).sum(:amount_in_cents)%>"></p>
   </div>
 </section>
 

@@ -3,7 +3,7 @@
     <h2 itemprop="title"><%=page.title%></h2>
     <figure>
       <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>" alt="tip image" title="<%=page.title%>"/> 
-      <figcaption><%=page.tips.sum(:amount_in_cents)%></figcaption>
+      <figcaption data-cents="<%=page.tips.for_author.sum(:amount_in_cents)%>"></figcaption>
     </figure>
   </summary>
   <dl>
@@ -11,21 +11,27 @@
     <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(page.url).host%></a></dd>
     <dt>
       <details>
-        <summary><%=pluralize(page.tips_count, 'tip')%></summary>
+        <summary><%=pluralize(page.tips.for_author.count, 'tip')%></summary>
         <table>
           <thead>
             <tr>
               <th>when</th>
               <th>amount</th>
+              <th>paid?</th>
             </tr>
           </thead>
           <tbody>
-            <%-page.tips.each do |tip| -%>
+            <%-page.tips.for_author.each do |tip| -%>
             <tr itemscope itemtype='tips' itemid='<%=tip.id%>'>
               <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
               <td>
-                <span itemprop='amount_in_cents' data-amount_in_cents='<%=tip.amount_in_cents%>'><%=tip.amount_in_cents%></span>
+                <span itemprop='amount_in_cents' data-cents='<%=tip.amount_in_cents%>'></span>
               </td>
+              <%-if tip.kinged?-%>
+                <td>paid</td>
+              <%-elsif tip.charged?-%>
+                <td>pending</td>
+              <%-end-%>
             </tr>
           <%-end-%>
           </tbody>
