@@ -24,7 +24,7 @@ def other_setup
   @stranger = create!(:authors_phony)
   @page1 = create!(:page,author_state:'adopted')
   @page2 = create!(:page,author_state:'adopted')
-  @wanted = create!(:authors_phony,identity_state:'wanted')
+  @wanted = create!(:authors_phony,author_state:'wanted')
   @wanted.pages << @page1
   @wanted.pages << @page2
 end

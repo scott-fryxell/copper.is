@@ -8,7 +8,7 @@ describe Authors::Tumblr do
     end
   end
 
-  describe "Should create identity from url " do
+  describe "Should create author from url " do
     it "http://www.tumblr.com/follow/copper-is" do
       Author.find_or_create_from_url("http://www.tumblr.com/follow/copper-is").should be_true
     end

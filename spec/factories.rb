@@ -117,7 +117,7 @@ FactoryGirl.define do
 
   factory :authored_page, :class => 'Page' do
     url { FactoryGirl.generate(:twitter_url_with_path) }
-    identity_state 'adopted'
+    author_state 'adopted'
     association :author, factory: :authors_google
   end
 

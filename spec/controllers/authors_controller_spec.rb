@@ -41,7 +41,7 @@ describe AuthorsController do
           response.status.should == 401
         end
 
-        it 'should let a guest see an identity that\'s wanted' do
+        it 'should let a guest see an author that\'s wanted' do
           twitter = FactoryGirl.create(:authors_twitter,identity_state: :wanted)
           get :edit, id:twitter.id
           response.status.should == 200
@@ -94,15 +94,15 @@ describe AuthorsController do
     describe 'show' do
       describe '/authors/:id' do
 
-        it 'assigns the identity' do pending
-          get_with @me, :show, id:@my_identity.id, format: :json
+        it 'assigns the author' do pending
+          get_with @me, :show, id:@my_author.id, format: :json
           response.should be_success
-          assigns(:identity).id.should == @my_identity.id
+          assigns(:author).id.should == @my_author.id
         end
 
-        it '401 for another user\'s identity' do pending
+        it '401 for another user\'s author' do pending
           her_setup
-          get_with @me, :show, id:@her_identity.id, format: :json
+          get_with @me, :show, id:@her_author.id, format: :json
           response.status.should == 401
         end
       end
@@ -111,8 +111,8 @@ describe AuthorsController do
     describe 'edit' do
       describe '/authors/:id/edit' do
         it '403' do pending
-          @my_identity = @me.authors.first
-          get_with @me, :edit, id:@my_identity.id, format: :json
+          @my_author = @me.authors.first
+          get_with @me, :edit, id:@my_author.id, format: :json
           response.status.should == 403
         end
       end
@@ -121,8 +121,8 @@ describe AuthorsController do
     describe 'update' do
       describe 'PUT /authors/:id' do
         it '403' do pending
-          @my_identity = @me.authors.first
-          get_with @me, :edit, id:@my_identity.id
+          @my_author = @me.authors.first
+          get_with @me, :edit, id:@my_author.id
           response.status.should == 403
         end
       end
@@ -130,9 +130,9 @@ describe AuthorsController do
 
     describe 'destroy' do
       describe 'DELETE /authors/:id' do
-        it 'destroys the given identity' do pending
+        it 'destroys the given author' do pending
           proc do
-            delete :destroy, id:@my_identity.id
+            delete :destroy, id:@my_author.id
           end.should change(Author, :count)
         end
       end

@@ -1,4 +1,4 @@
-$(document).on "load.identities_edit", ->
+$(document).on "load.authors_edit", ->
   $('#user_nav').hide();
 
   $('body > nav > button').click ->
