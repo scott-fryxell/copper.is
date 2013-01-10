@@ -23,7 +23,7 @@ guard 'spork', :wait => 50 do
   watch(%r{^config/environments/.+\.rb})
   watch(%r{^config/initializers/.+\.rb})
   watch('spec/spec_helper.rb')
-  watch('app/models/identity.rb')
+  watch('app/models/author.rb')
 end
 
 guard 'rspec', :version => 2, :cli => '--color --format doc --drb',

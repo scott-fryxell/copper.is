@@ -3,8 +3,8 @@
 <%-end-%>
 <section id="banner">
   <figure>
-    <%= image_tag "icons/silhouette.svg", class:"identity", alt:'me' %>
-    <figcaption><%=cents_to_dollars(@identity.tips.sum(:amount_in_cents))%></figcaption>
+    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+    <figcaption><%=cents_to_dollars(@author.tips.sum(:amount_in_cents))%></figcaption>
   </figure>
   <h1>
     <span>Hey there!</span> Looks like you’ve
@@ -27,7 +27,7 @@
     <%-if current_user -%>
     <h1>Complete!</h1>
     <%-else-%>
-      <%= link_to image_tag("providers/#{@identity.provider}/authorize.png"), "/auth/#{@identity.provider}", :title => "Authorize #{@identity.provider}" %>
+      <%= link_to image_tag("providers/#{@author.provider}/authorize.png"), "/auth/#{@author.provider}", :title => "Authorize #{@author.provider}" %>
       <figcaption>So we can make sure it’s really you</figcaption>
     <%-end-%>
 

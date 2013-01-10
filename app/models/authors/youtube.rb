@@ -28,7 +28,7 @@ class Authors::Youtube < Author
   end
 
 #   def youtube_it_client
-#     @client ||= Identity.connect_to_api
+#     @client ||= Author.connect_to_api
 #   end
 
 #   def author_uri

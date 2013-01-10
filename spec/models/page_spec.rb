@@ -81,7 +81,7 @@ describe Page do
         @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
       end
       
-      it "finds an identity for facebook.com/home.php" do
+      it "finds an author for facebook.com/home.php" do
         @page.url = "https://www.facebook.com/home.php"
       end
 

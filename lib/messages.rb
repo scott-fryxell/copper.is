@@ -1,6 +1,6 @@
 module TwitterMessages
   def _send_wanted_message
-    send_tweet ("A fan of yours has tipped you! The link explains it all. #{Copper::Application.config.hostname}/identities/#{self.id}/edit")
+    send_tweet ("A fan of yours has tipped you! The link explains it all. #{Copper::Application.config.hostname}/authors/#{self.id}/edit")
   end
 end
 
@@ -12,7 +12,7 @@ end
 
 module YoutubeMessages
   def _send_wanted_message
-    # comment("A fan of yours has tipped you! The link explains it all. #{Copper::Application.config.hostname}/identities/#{self.id}").post
+    # comment("A fan of yours has tipped you! The link explains it all. #{Copper::Application.config.hostname}/authors/#{self.id}").post
   end
 end
 

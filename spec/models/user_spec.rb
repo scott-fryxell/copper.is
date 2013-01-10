@@ -4,14 +4,14 @@ describe User do
   before :each do
     @me = create!(:user)
   end
-  describe 'identities' do
+  describe 'authors' do
     it 'doesn\'t allow removal of last' do pending
-      @me.identities.count.should == 1
-      identity = @me.identities.first
-      @her.identities << identity
-      proc { identity.save! }.should raise_error
-      @me.identities.count.should > 0
-      @her.identities.count.should > 0
+      @me.authors.count.should == 1
+      author = @me.authors.first
+      @her.authors << author
+      proc { author.save! }.should raise_error
+      @me.authors.count.should > 0
+      @her.authors.count.should > 0
     end
   end
   
@@ -34,4 +34,5 @@ describe User do
       @me.should respond_to(:city=)
     end
   end
+
 end

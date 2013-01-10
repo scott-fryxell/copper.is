@@ -83,9 +83,9 @@ $(document).on "load.home_index", ->
 $(document).on "me.home_index", ->
   if $('#facebook').size() > 0
     facebook = -1
-    for identity in document.copper.me.identities 
-      if identity.provider is 'facebook'
-        facebook = identity
+    for author in document.copper.me.authors 
+      if author.provider is 'facebook'
+        facebook = author
 
     if facebook
       likes_url = "https://graph.facebook.com/#{facebook.username}/likes?limit=9&access_token=#{facebook.token}"

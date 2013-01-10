@@ -22,7 +22,7 @@ class WantedAuthorsJob
   @queue = :high
   def self.perform
     Author.wanted.select(:id).find_each do |wanted|
-      Resque.enqueue Identity, wanted.id, :message_wanted!
+      Resque.enqueue Author, wanted.id, :message_wanted!
     end
   end
 end
@@ -31,7 +31,7 @@ class StrangerAuthorsJob
   @queue = :high
   def self.perform
     Author.strangers.select(:id).find_each do |non_user|
-      Resque.enqueue Identity, non_user.id, :try_to_add_to_wanted_list!
+      Resque.enqueue Author, non_user.id, :try_to_add_to_wanted_list!
     end
   end
 end

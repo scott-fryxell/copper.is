@@ -1,4 +1,4 @@
-$(document).on "load.identities_edit load.home_settings", ->
+$(document).on "load.authors_edit load.home_settings", ->
   $('#address > form > fieldset > select').change ->
     $("select[itemprop='subregion_code']").remove()
 

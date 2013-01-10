@@ -1,4 +1,4 @@
-$(document).on "load.identities_edit load.home_settings", ->
+$(document).on "load.authors_edit load.home_settings", ->
 
   $('#email form').bind 'item.error', ->
     $('#email > header > a').click();
