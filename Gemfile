@@ -19,7 +19,6 @@ gem 'stripe'
 gem 'dalli'
 gem "foreman"
 gem 'unicorn'
-
 gem 'redis'
 gem 'resque', "~> 1.22.0"
 gem 'state_machine'
@@ -42,6 +41,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'awesome_print'
   gem 'simplecov', :require => false
   gem 'sqlite3', :require => 'sqlite3'
   gem 'pry'
@@ -53,6 +53,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-spork'
+  gem 'guard-pow'
   gem 'rb-fsevent'
   gem 'spork-rails'
   gem 'launchy'
