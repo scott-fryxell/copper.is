@@ -13,9 +13,10 @@ class Tip < ActiveRecord::Base
   attr_accessible :amount_in_cents,:url,:title,:thumbnail_url
 
   scope :trending, order("Date(updated_at)")
-  scope :promised, where("paid_state = ?", 'promised')
-  scope :charged, where("paid_state = ?", 'charged')
-  scope :kinged, where("paid_state = ?", 'kinged').readonly
+  scope :promised, where(paid_state:'promised')
+  scope :charged, where(paid_state:'charged')
+  scope :kinged, where(paid_state:'kinged').readonly
+  scope :for_author, where(paid_state:['kinged','charged']).readonly
 
   MINIMUM_TIP_VALUE = 1
   MAXIMUM_TIP_VALUE = 2000
