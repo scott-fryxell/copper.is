@@ -16,3 +16,5 @@ public/favicon.ico
 app/models/order.rb
 
 config/database.yml
+
+.powder
