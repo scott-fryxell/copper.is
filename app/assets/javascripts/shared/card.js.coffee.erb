@@ -68,8 +68,8 @@ $(document).on "items.home_settings items.home_index", ->
               $("#card").addClass 'approved'
             error: (data, textStatus, jqXHR) ->
               $("#card > form input[type=submit]").removeClass('working')
-              console.error "error creating stripe user " + method, data, textStatus, jqXHR
               $("#card > form > h1").text data.responseText
               $("#card > form > h1").addClass "message"
+              $("#card").trigger "bad_credit_card"
 
     false

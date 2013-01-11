@@ -4,12 +4,11 @@ describe "tipping a page", :slow do
   after(:each) do
     page.driver.error_messages.size.should == 0
   end
-
-
+  
   describe "as a fan" do
     before(:each) do
       visit "/"
-      click_link 'facebook_sign_in'
+      click_link 'connect with facebook'
       visit "/test"
       ResqueSpec.reset!
       ResqueSpec.inline = false
@@ -33,7 +32,7 @@ describe "tipping a page", :slow do
     it "should be able to update a tip"
   end
 
-  describe "as a guest" do
+  describe "as a guest", :broken do
     before(:each) do
       visit "/test"
     end

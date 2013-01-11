@@ -49,6 +49,9 @@ $(document).on "me.home_settings", ->
 
 $(document).on "load.home_settings", ->
 
+  $("#card").on "bad_credit_card", ->
+    $("#card > header > a").click();
+
   $("#home_settings > nav > a:nth-child(2)").click  (event) ->
     # event.preventDefault()
     $("#home_settings").toggleClass('author');

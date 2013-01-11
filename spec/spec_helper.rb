@@ -64,16 +64,19 @@ Spork.each_run do
       DatabaseCleaner.strategy = :transaction
       DatabaseCleaner.clean_with(:truncation, {:except => %w[roles]})
       class Stripe::Customer
-        def self.create(*args)
-          OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
-        end
+        # def self.create(*args)
+        #   puts "create #{args}"
+        #   OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
+        # end
         def self.retrieve(*args)
+          # puts "retrieve #{args}"
           OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
         end
       end
 
       class Stripe::Charge
         def self.create(*args)
+          # puts "charge #{args}"
           OpenStruct.new(id:'1')
         end
       end

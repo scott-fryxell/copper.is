@@ -10,13 +10,9 @@ describe "a author being invited to the service", :slow do
     page.driver.error_messages.should be_empty
   end
 
-  it 'should not see the other sign in options' do
-    page.should have_css('#sign_in', visible:false)
-  end
-
-  it 'should not see the signed_in ' do
+  it 'should not see the user nav ' do
     click_link('Authorize twitter');
-    page.should have_css('#signed_in', visible:false)
+    page.should have_css('#user_nav', visible:false)
   end
 
   it 'should be able to authorize with the service' do
@@ -93,6 +89,6 @@ describe "a author being invited to the service", :slow do
     fill_in 'user[postal_code]', with:'94110'
     select('United States', :from => 'user[country_code]')
     click_on 'Submit!'
-    page.should have_content 'Your Profile'
+    page.should have_content 'Your pages'
   end
 end

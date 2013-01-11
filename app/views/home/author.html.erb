@@ -41,7 +41,7 @@
   </div>
   <div>
     <h2>Average tip</h2>
-    <p data-cents="<%=Tip.for_author.where(page_id:@pages.pluck(:id)).average(:amount_in_cents).round%>"></p>
+    <p data-cents="<%=Tip.for_author.where(page_id:@pages.pluck(:id)).average(:amount_in_cents)%>"></p>
   </div>
   <div>
     <h2>Total tips</h2>

@@ -1,9 +1,10 @@
+
 document.copper = 
   tip_amount_options: [
-                       '5','10','25'
-                       '50','75','100'
-                       '200','300','500'
-                       '1000','1500','2000'
+                       5,10,25
+                       50,75,100
+                       200,300,500
+                       1000,1500,2000
                       ]
   format_cents_to_dollars:  (property_name) ->
     $("*[itemprop=#{property_name}]").not('input').not('select').each ->

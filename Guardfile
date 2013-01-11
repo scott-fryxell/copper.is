@@ -24,6 +24,7 @@ guard 'spork', :wait => 50 do
   watch(%r{^config/initializers/.+\.rb})
   watch('spec/spec_helper.rb')
   watch('app/models/author.rb')
+  watch('.rspec')
 end
 
 guard 'rspec', :version => 2, :cli => '--color --format doc --drb',
@@ -32,7 +33,7 @@ guard 'rspec', :version => 2, :cli => '--color --format doc --drb',
   watch(/^app\/.+\.rb$/) { 'spec' }
   watch(/^lib\/.+\.rb$/) { 'spec' }
   watch(/^config\/.+\.rb$/) { 'spec' }
-  watch(%r{(public/|app/assets).+\.(js|html)}) {'spec/requests'}
+  watch(%r{(public/|app/assets).+\.(js|html|coffee|erb|json)}) {'spec/requests'}
 end
 
 guard 'livereload' do

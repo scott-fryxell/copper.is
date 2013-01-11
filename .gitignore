@@ -11,10 +11,4 @@ TAGS
 .bundle
 .DS_Store
 public/favicon.ico
-
-
-app/models/order.rb
-
-config/database.yml
-
 .powder

@@ -3,8 +3,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe "Fan's settings", :slow do
   before(:each) do
     visit "/"
-    click_link 'facebook_sign_in'
+    click_link 'connect with facebook'
     click_link 'Account settings'
+    page.execute_script("jQuery.fx.off = true")
   end
 
   after(:each) do
@@ -17,14 +18,14 @@ describe "Fan's settings", :slow do
     end
 
     it "should be able to query for user email" do
-      page.evaluate_script("copper.me.email").should == "user@facebook.com"
+      page.evaluate_script("document.copper.me.email").should == "user@facebook.com"
     end
 
     it "should be able to change email from the command line" do
       within("section#email") do
         find("div > p").should have_content("user@facebook.com")
-        page.execute_script("copper.me.email = 'change@email.com'")
-        page.execute_script("Item.update_page(copper.me)")
+        page.execute_script("document.copper.me.email = 'change@email.com'")
+        page.execute_script("Item.update_page(document.copper.me)")
         find("div > p").should have_content("change@email.com")
         click_link "Change"
         find_field('user[email]').value.should == 'change@email.com'
@@ -132,13 +133,32 @@ describe "Fan's settings", :slow do
       find("div p.expiration").should have_content("4/2015")
     end
   end
+
+  it "should be told if their credit card info is bad" do
+    within("#card") do
+      page.should have_css('form', :visible => true)
+      fill_in('number', :with => '4000000000000002')
+      fill_in('cvc', :with => '666')
+      select('April', :from => 'month')
+      select('2015', :from => 'year')
+      check('terms')
+      click_on('Save')
+      sleep 3
+      page.should have_css('form', :visible => true)
+      page.should have_css('form > h1', :visible => true)
+      page.should have_content('Your card was declined');
+    end
+  end
+
+
 end
 
 describe "Author settings", :slow do
   before :each  do
     visit '/'
-    click_link 'facebook_sign_in'
-    visit "/author"
+    click_link 'connect with facebook'
+    visit "/settings"
+    click_link 'Author settings'
   end
 
   after(:each) do
@@ -146,7 +166,7 @@ describe "Author settings", :slow do
   end
 
   it 'should be able to authorize facebook' do
-    within '#authors figure.facebook > figcaption' do
+    within '#authors > div > figure.facebook > figcaption' do
       page.should have_content('facebook.user');
     end
 

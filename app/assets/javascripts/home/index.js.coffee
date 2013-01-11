@@ -11,7 +11,7 @@ $(document).on "load.home_index", ->
 
   $('#stats > div > p > button:nth-child(2)').click ->
     for amount in document.copper.tip_amount_options
-      unless '2000' is document.copper.me.tip_preference_in_cents  
+      unless 2000 is document.copper.me.tip_preference_in_cents  
         if amount > document.copper.me.tip_preference_in_cents
           document.copper.me.tip_preference_in_cents = amount
           $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
@@ -19,9 +19,9 @@ $(document).on "load.home_index", ->
           return
 
   $('#stats > div > p > button:nth-child(3)').click ->
-    reversed =  document.copper.tip_amount_options.reverse()
+    reversed = document.copper.tip_amount_options.slice(0).reverse()
     for amount in reversed
-      unless '5' is document.copper.me.tip_preference_in_cents
+      unless 5 is document.copper.me.tip_preference_in_cents
         if amount < document.copper.me.tip_preference_in_cents
           document.copper.me.tip_preference_in_cents = amount
           $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
@@ -29,9 +29,6 @@ $(document).on "load.home_index", ->
           return
 
 $(document).on "load.home_index", ->
-
-
-
 
   $('#pages > details:first summary').click()
   $('#pages details[itemtype=tips] form[method=put] input[type=text]').focus()

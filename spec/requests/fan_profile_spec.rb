@@ -1,9 +1,69 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
+describe "A fan's first experience with their profile page", :slow do
+
+  before(:each) do
+    visit "/"
+    click_link 'connect with facebook'
+    User.count.should == 1
+    page.execute_script("jQuery.fx.off = true")
+  end
+  after(:each) do
+    page.driver.error_messages.should be_empty
+  end
+
+  it "should show the welcome message after user signs in" do
+    page.should have_css('#install', visible:true)
+    page.should have_css('#congrats', visible:false)
+    page.should have_css('#facebook', visible:false)
+    page.should have_css('#card', visible:false)
+    page.should have_no_css('section.settings', visible:true)
+    page.execute_script('$(document).trigger("copper_button_installed")')
+    page.should have_css('#install', visible:false)
+    page.should have_css('#congrats', visible:true)
+    page.should have_css('#facebook', visible:true)
+    page.should have_css('#card', visible:true)
+  end
+
+  it "should be able to fill out their credit card info" do
+    page.execute_script('$(document).trigger("copper_button_installed")')
+    within("#card") do
+      page.should have_css('form', :visible => true)
+      fill_in('number', :with => '4242424242424242')
+      fill_in('cvc', :with => '666')
+      select('April', :from => 'month')
+      select('2015', :from => 'year')
+      check('terms')
+      click_on('Save')
+      sleep 3
+      page.should have_css('form', :visible => false)
+      page.should have_css('figure', :visible => true)
+    end
+
+  end
+  it "should be told if their credit card info is bad" do
+    page.execute_script('$(document).trigger("copper_button_installed")')
+    within("#card") do
+      page.should have_css('form', :visible => true)
+      fill_in('number', :with => '4000000000000002')
+      fill_in('cvc', :with => '666')
+      select('April', :from => 'month')
+      select('2015', :from => 'year')
+      check('terms')
+      click_on('Save')
+      sleep 3
+      page.should have_css('form', :visible => true)
+      page.should have_css('figure', :visible => false)
+      page.should have_css('form > h1', :visible => true)
+      page.should have_content('Your card was declined');
+    end
+  end
+end
+
 describe "a fan's profile page", :slow do
   before(:each) do
     visit "/"
-    click_link 'facebook_sign_in'
+    click_link 'connect with facebook'
     User.count.should == 1
     User.first.tip({url:'http://www.nytimes.com', title:'nytimes homepage', amount_in_cents:'50'})
     User.first.tip({url:'http://www.fasterlighterbetter.com', title:'faster lighter better', amount_in_cents:'50'})
@@ -48,6 +108,22 @@ describe "a fan's profile page", :slow do
       page.should have_content('1');
     end
 
+    click_on('+')
+    click_on('+')
+    within 'span[itemprop="tip_preference_in_cents"]' do
+      page.should have_content('3');
+    end
+
+    click_on('-')
+    within 'span[itemprop="tip_preference_in_cents"]' do
+      page.should have_content('2');
+    end   
+
+    click_on('+')
+    within 'span[itemprop="tip_preference_in_cents"]' do
+      page.should have_content('3');
+    end   
+
   end
 
   it 'should be able to reduce their default tip amount' do
@@ -65,6 +141,21 @@ describe "a fan's profile page", :slow do
     within 'span[itemprop="tip_preference_in_cents"]' do
       page.should have_content('0.50');
     end
+
+    click_on('-')
+    click_on('-')
+    within 'span[itemprop="tip_preference_in_cents"]' do
+      page.should have_content('0.10');
+    end   
+    click_on('+')
+    within 'span[itemprop="tip_preference_in_cents"]' do
+      page.should have_content('0.25');
+    end
+    click_on('-')
+    within 'span[itemprop="tip_preference_in_cents"]' do
+      page.should have_content('0.10');
+    end
+
   end
 
   it 'should display information about their most recent tip' do

@@ -1,4 +1,3 @@
-
 // Item.js is a library for utilizing the w3c's
 // <a href="" >microdata</a> spec for html5 to support state
 // changes  and dynamic object updates on a web page (similar 
