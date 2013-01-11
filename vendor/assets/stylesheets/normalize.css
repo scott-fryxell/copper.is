@@ -26,6 +26,13 @@ display: block;
 * Corrects inline-block display not defined in IE6/7/8/9 & FF3
 */
 
+figure{
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  -webkit-margin-end: 0;
+}
+
 audio,
 canvas,
 video {
