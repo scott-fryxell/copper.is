@@ -110,6 +110,9 @@ GEM
     hashie (1.2.0)
     hashugar (0.0.6)
     hike (1.2.1)
+    honeybadger (1.4.0)
+      activesupport
+      json
     httparty (0.10.0)
       multi_json (~> 1.0)
       multi_xml
@@ -372,6 +375,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   hashugar
+  honeybadger
   jbuilder
   jquery-rails
   koala
