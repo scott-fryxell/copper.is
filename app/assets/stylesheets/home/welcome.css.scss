@@ -27,7 +27,7 @@
 
       & > hgroup {
         display:inline-block;
-        width:grid-width(10);
+        width:grid-width(9);
         display:inline-block;
         margin-top: grid-width(1.5);
         
@@ -54,33 +54,36 @@
         vertical-align:top;
         display:inline-block;
         margin-top:1em;
-        margin-left:4em;
+        margin-left:3em;
       }
       & > figure > figcaption {
+        text-shadow: 2px 3px $darkness;
+        font-family: 'Nothing You Could Do', cursive;
+        font-size:1.5em;
         opacity:.7;
         color:$light-text;
         position:absolute;
         line-height:1.25em;
         width:3em;
-        top:2em;
-        left:1em;
+        top:3.25em;
+        left:2.25em;
       }
       & > figure > figcaption:nth-child(2) {
-        top:3.5em;
-        left:8.5em;
+        top:4.5em;
+        left:9.5em;
       }
       & > figure > figcaption:nth-child(3) {
-        top:8.5em;
-        left:5em;
+        top:9em;
+        left:6em;
       }
       & > figure > img {
         position:absolute;
         top:50%;
         left:50%;
-        margin-left:-4em;
-        margin-top:-4em;
-        width:8em;
-        height:8em;
+        margin-left:-3em;
+        margin-top:-3em;
+        width:6em;
+        height:6em;
         opacity:0.6;
       }
       & > figure > img:nth-child(4){
@@ -89,20 +92,15 @@
         @include animation-timing-function(linear);
         @include animation-iteration-count(infinite);
         @include animation-play-state(paused);
-        width:16em;
-        height:16em;
-        margin-left:-8em;
-        margin-top:-8em;
+        width:12em;
+        height:12em;
+        margin-left:-6em;
+        margin-top:-6em;
         opacity:0.3;
 
         &.spinning {
           @include animation-play-state(running);
         }
-      }
-      & > figure > figcaption {
-        text-shadow: 2px 3px $darkness;
-        font-family: 'Nothing You Could Do', cursive;
-        font-size:1.75em;
       }
     }
   }
