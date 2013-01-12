@@ -1,4 +1,5 @@
-﻿<%-content_for :head do-%>
+﻿<%-cache current_user do-%>
+<%-content_for :head do-%>
   <title>Terms and Conditions - Copper.</title>
 <%-end-%>
 <article id="terms">
@@ -311,6 +312,7 @@
   Services.</p>
 
   <h1>Indemnification</h1>
+  <%-end-%>
 
   <p>You shall defend, indemnify, and hold harmless Copper, its
   affiliates and each of their respective employees, contractors, directors,
