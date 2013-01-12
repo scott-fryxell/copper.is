@@ -47,6 +47,26 @@ class User < ActiveRecord::Base
     end
   end
 
+  def paid_royalties
+    Tip.kinged.where(page_id:authored_pages.pluck(:id))
+  end
+  
+  def pending_royalties
+    Tip.charged.where(page_id:authored_pages.pluck(:id))
+  end
+
+  def royalties
+    Tip.for_author.where(page_id:authored_pages.pluck(:id))    
+  end
+
+  def authored_pages
+    Page.where(author_id: author_ids).includes(:tips)
+  end
+  
+  def tipped_pages
+    pages.group('pages.id').includes(:tips).except(:order).order('MAX(tips.created_at) DESC')
+  end
+
   # def fan?
   #   roles.find{|e| e.name == 'Fan'}
   # end

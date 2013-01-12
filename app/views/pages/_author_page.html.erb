@@ -1,3 +1,4 @@
+<%-cache page do-%>
 <details itemscope itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>">
   <summary>
     <h2 itemprop="title"><%=page.title%></h2>
@@ -21,22 +22,11 @@
             </tr>
           </thead>
           <tbody>
-            <%-page.tips.for_author.each do |tip| -%>
-            <tr itemscope itemtype='tips' itemid='<%=tip.id%>'>
-              <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
-              <td>
-                <span itemprop='amount_in_cents' data-cents='<%=tip.amount_in_cents%>'></span>
-              </td>
-              <%-if tip.kinged?-%>
-                <td>paid</td>
-              <%-elsif tip.charged?-%>
-                <td>pending</td>
-              <%-end-%>
-            </tr>
-          <%-end-%>
+            <%= render partial:"tips/author_tip", collection:page.tips.for_author, as: :tip %>
           </tbody>
         </table>
       </details>          
     </dt>
   </dl>        
 </details>
+<%-end-%>

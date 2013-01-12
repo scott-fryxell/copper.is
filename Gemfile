@@ -31,6 +31,7 @@ gem 'carmen-rails'
 gem "vimeo"
 gem 'koala'
 gem 'mechanize'
+gem 'cache_digests'
 
 # gem 'rack-mini-profiler'
 # gem 'resque-scheduler', :require => 'resque_scheduler'

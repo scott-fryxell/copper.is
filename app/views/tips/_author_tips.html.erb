@@ -1,0 +1,13 @@
+<%-cache tip do-%>
+<tr itemscope itemtype='tips' itemid='<%=tip.id%>'>
+  <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
+  <td>
+    <span itemprop='amount_in_cents' data-cents='<%=tip.amount_in_cents%>'></span>
+  </td>
+  <%-if tip.kinged?-%>
+    <td>paid</td>
+  <%-elsif tip.charged?-%>
+    <td>pending</td>
+  <%-end-%>
+</tr>
+<%-end-%>

@@ -1,7 +1,7 @@
 class Author < ActiveRecord::Base
   include Enqueueable
   has_paper_trail 
-  belongs_to :user
+  belongs_to :user, touch:true
   has_many :pages
   has_many :tips, :through => :pages
   has_many :checks, :through => :pages
@@ -21,9 +21,9 @@ class Author < ActiveRecord::Base
     end
   end
   
-  scope :stranger, where('identity_state = ?', 'stranger')
-  scope :wanted, where('identity_state = ?', 'wanted')
-  scope :known, where('identity_state = ?', 'known')
+  scope :stranger, where(identity_state:'stranger')
+  scope :wanted, where(identity_state:'wanted')
+  scope :known, where(identity_state:'known')
 
   state_machine :identity_state, initial: :stranger do
 

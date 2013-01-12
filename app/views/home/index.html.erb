@@ -1,116 +1,118 @@
-<%-content_for :head do-%>
-  <title><%=current_user.name%> - Copper.</title>
-  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
-<%-end-%>
+<%-cache current_user do-%>
+  <%-content_for :head do-%>
+    <title><%=current_user.name%> - Copper.</title>
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
+  <%-end-%>
 
-<section id="banner">
-  <header>
-    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
-  </header>
-  <hgroup>
-    <h1>Your Profile</h1>
-    <p><%=current_user.name%><a href="/signout">not you?</a></p>
-  </hgroup>
-  <p>
-    This is your home on Copper. On this page, you can keep track of what
-    you’ve tipped, change or cancel pending tips, and explore content made
-    by your favorite creators. We also save the things you’ve tipped so you
-    can find them later to enjoy or share with your friends.
-  </p>
-</section>
-<section id="stats">
-  <header>
-    <h1>Your stats</h1>
-  </header>
-  <div>
-    <h2>Pages tipped</h2>
-    <p><%=current_user.pages.count%></p>
-  </div>
-  <div>
-    <h2>Average tip</h2>
-    <p><%=current_user.tips.average(:amount_in_cents).round() if current_user.tips.size > 0%></p>
-  </div>
-  <div>
-    <h2>Default tip</h2>
-    <p>
-      <span itemprop="tip_preference_in_cents" data-value="<%=current_user.tip_preference_in_cents%>"></span>
-      <button>+</button>
-      <button>-</button>
-    </p>
-  </div>
-  <footer></footer>
-</section>
-<%-if @pages.length > 0 -%>
-  <section id="pages" class="">
+  <section id="banner">
     <header>
-      <h1>What you've tipped</h1>
-      <hgroup>
-        <h2>Filter by</h2>
-        <nav>
-          <a href="#pages/recent" class="selected">recent</a>
-          <a href="#pages/adopted">adopted <span><%=current_user.pages.adopted.count%></span></a>
-          <a href="#pages/fostered">fostered <span><%=current_user.pages.fostered.count%></span></a>
-          <a href="#pages/manual">manual <span><%=current_user.pages.manual.count%></span></a>
-          <a href="#pages/orphaned">orphaned <span><%=current_user.pages.orphaned.count%></span></a>
-          <a href="#pages/author">author</a>
-          <a href="#pages/site">site</a>
-        </nav>
-      </hgroup>
+      <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
     </header>
-    <%= render partial:"pages/fan_page", collection:@pages, as: :page %>
-  
+    <hgroup>
+      <h1>Your Profile</h1>
+      <p><%=current_user.name%><a href="/signout">not you?</a></p>
+    </hgroup>
+    <p>
+      This is your home on Copper. On this page, you can keep track of what
+      you’ve tipped, change or cancel pending tips, and explore content made
+      by your favorite creators. We also save the things you’ve tipped so you
+      can find them later to enjoy or share with your friends.
+    </p>
   </section>
-<%-else-%>
-  <section id="install">
+  <section id="stats">
     <header>
+      <h1>Your stats</h1>
+    </header>
+    <div>
+      <h2>Pages tipped</h2>
+      <p><%=current_user.pages.count%></p>
+    </div>
+    <div>
+      <h2>Average tip</h2>
+      <p><%=current_user.tips.average(:amount_in_cents).round() if current_user.tips.size > 0%></p>
+    </div>
+    <div>
+      <h2>Default tip</h2>
       <p>
-        You’re now officially a fan on Copper. As soon as you
-        have the button, you can start tipping!
+        <span itemprop="tip_preference_in_cents" data-value="<%=current_user.tip_preference_in_cents%>"></span>
+        <button>+</button>
+        <button>-</button>
       </p>
-    </header>
-    <figure>
-      <a href="#me" title="Done! Your all signed up">
-        <%= image_tag "providers/facebook/connect.png"%>
-      </a>
-      <%= image_tag "arrows/right.svg"%>
-      <a class="button install" ><%= image_tag "icons/letter_logo_white.svg"%>Install The Button</a>
-      <%= image_tag "arrows/right_two.svg"%>
-      <a class="button">Start Tipping</a>
-    </figure>
+    </div>
+    <footer></footer>
   </section>
-  <section id="congrats">
-    <header>
-      <h3>Congrats!</h3>
-      <h1>Your button is installed!</h1>
-    </header>
-    <p>
-      <span>It's time to Take it for a test drive.</span>
-      Below are some things we have transferred from your News Feed
-      that you might want to tip! But of course, the tip button
-      works anywhere.
-    </p>
-    <p class="sub">
-      Note: We won’t ask for any payment info until you've been using
-      the service for a bit, but if you want to get that squared away now,
-      you can do that <a href="/settings">here</a>.
-    </p>
-  </section>
-  <section id="facebook">
-    <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
-    <nav></nav>
-  </section>
-  <section id="card">
-    <header>
-      <h3>All the cool kids are tipping with real money</h3>
+
+  <%-if current_user.pages.count > 0 -%>
+    <section id="pages" class="">
+      <header>
+        <h1>What you've tipped</h1>
+        <hgroup>
+          <h2>Filter by</h2>
+          <nav>
+            <a href="#pages/recent" class="selected">recent</a>
+            <a href="#pages/adopted">adopted <span><%=current_user.pages.adopted.count%></span></a>
+            <a href="#pages/fostered">fostered <span><%=current_user.pages.fostered.count%></span></a>
+            <a href="#pages/manual">manual <span><%=current_user.pages.manual.count%></span></a>
+            <a href="#pages/orphaned">orphaned <span><%=current_user.pages.orphaned.count%></span></a>
+            <a href="#pages/author">author</a>
+            <a href="#pages/site">site</a>
+          </nav>
+        </hgroup>
+      </header>
+      <%= render partial:"pages/fan_page", collection:current_user.tipped_pages, as: :page %>
+    </section>
+  <%-else-%>
+    <section id="install">
+      <header>
+        <p>
+          You’re now officially a fan on Copper. As soon as you
+          have the button, you can start tipping!
+        </p>
+      </header>
+      <figure>
+        <a href="#me" title="Done! Your all signed up">
+          <%= image_tag "providers/facebook/connect.png"%>
+        </a>
+        <%= image_tag "arrows/right.svg"%>
+        <a class="button install" ><%= image_tag "icons/letter_logo_white.svg"%>Install The Button</a>
+        <%= image_tag "arrows/right_two.svg"%>
+        <a class="button">Start Tipping</a>
+      </figure>
+    </section>
+    <section id="congrats">
+      <header>
+        <h3>Congrats!</h3>
+        <h1>Your button is installed!</h1>
+      </header>
       <p>
-        We won’t ask for any payment info until you've been using
+        <span>It's time to Take it for a test drive.</span>
+        Below are some things we have transferred from your News Feed
+        that you might want to tip! But of course, the tip button
+        works anywhere.
+      </p>
+      <p class="sub">
+        Note: We won’t ask for any payment info until you've been using
         the service for a bit, but if you want to get that squared away now,
-        we won't complain.
+        you can do that <a href="/settings">here</a>.
       </p>
-    </header>
-    <%= render partial:'shared/card' %>
-    <figure>
-      <%=image_tag "noun_project/3879.svg"%>
-    </figure>
-  </section>
+    </section>
+    <section id="facebook">
+      <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
+      <nav></nav>
+    </section>
+    <section id="card">
+      <header>
+        <h3>All the cool kids are tipping with real money</h3>
+        <p>
+          We won’t ask for any payment info until you've been using
+          the service for a bit, but if you want to get that squared away now,
+          we won't complain.
+        </p>
+      </header>
+      <%= render partial:'shared/card' %>
+      <figure>
+        <%=image_tag "noun_project/3879.svg"%>
+      </figure>
+    </section>
+  <%-end-%>
 <%-end-%>

@@ -1,9 +1,9 @@
 class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 class Tip < ActiveRecord::Base
-  belongs_to :page, :counter_cache => true
-  belongs_to :order, :touch => true
-  belongs_to :check, :touch => true
+  belongs_to :page, :counter_cache => true, touch:true
+  belongs_to :order, touch:true
+  belongs_to :check
   has_one :user, :through => :order
   has_paper_trail
   default_scope :order => 'created_at DESC'
