@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  filter_access_to :author, :require => :read
+  filter_access_to :settings, :require => :read
   respond_to :html
 
   def index    
