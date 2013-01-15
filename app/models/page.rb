@@ -28,19 +28,20 @@ class Page < ActiveRecord::Base
     begin
       logger.info "thumbnail id:#{id}, for: #{url[0...120]}"
       content = self.agent.get(url)
-      thumbnail_tag = content.at('link[rel="image_src"]') 
-      unless thumbnail_tag.blank?
-        logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...120]}"
-        if self.thumbnail_url = thumbnail_tag.attributes['href'].value
-          self.save!
-          return true
-        end
-      end
 
       thumbnail_tag = content.at('meta[property="og:image"]')
       unless thumbnail_tag.blank?
         logger.info ":    og:image=#{thumbnail_tag.attributes['content'].value[0...120]}"
         if self.thumbnail_url = thumbnail_tag.attributes['content'].value
+          self.save!
+          return true
+        end
+      end
+
+      thumbnail_tag = content.at('link[rel="image_src"]') 
+      unless thumbnail_tag.blank?
+        logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...120]}"
+        if self.thumbnail_url = thumbnail_tag.attributes['href'].value
           self.save!
           return true
         end
