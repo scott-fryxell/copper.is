@@ -102,19 +102,19 @@
       opacity:.25;
       height:2.5em;
     }
+    & > figure > a:first-child > img {
+      vertical-align:middle;
+      max-height: 2em;
+    }
     & > figure > a:nth-child(5) {
       opacity:.25;
-    }
-    & > figure > a:first-child > img {
-      padding:.5em;
-      vertical-align:middle;
     }
     & > figure > img {
       display:inline-block;
       vertical-align:middle;
       width:2em;
       height:2em;
-      margin:.25em;
+      margin: 0 .25em;
       opacity:.21;
     }
   }
@@ -134,14 +134,6 @@
         font-weight:bold;
       }
     }
-    & > p.sub {
-      display:none;
-      width:grid-width(10);
-      vertical-align:top;
-      font-size:.75em;
-      color:#999999;
-    }
-
     & > header {
       vertical-align:top;
       position:relative;

@@ -209,8 +209,10 @@
       margin-top:.5em;
       width:grid-width(13);
     }
+    & > figure > a:first-child > img {
+      max-height: 2em;
+    }
     & > figure > a {
-
       vertical-align:top;
       display:inline-block;
     }
@@ -222,8 +224,8 @@
       vertical-align:middle;
       width:2em;
       height:2em;
-      margin:.25em;
-      opacity:.21;
+      margin: 0 .5em;
+      opacity:.25;
     }
   }
 }
