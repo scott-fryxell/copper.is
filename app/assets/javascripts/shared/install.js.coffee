@@ -22,10 +22,9 @@ $(document).on "load.home_index load.home_settings", ->
         "Foo": 
           URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?"
           IconURL: "/assets/icons/logo.svg"
-          Hash: "sha1:8e169c7ec8d5c2f21e5c6e2d1d173bedc001fe35"
+          Hash: "sha1:41a41d60b4ee185e963deae35194cc29e3d3dd12"
           toString: -> "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"
       InstallTrigger.install params
-      $(document).trigger 'copper_button_installed'
       false;
   else
     $("a.install").hide();
