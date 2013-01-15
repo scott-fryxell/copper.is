@@ -12,12 +12,13 @@
       <h1>Your Profile</h1>
       <p><%=current_user.name%><a href="/signout">not you?</a></p>
     </hgroup>
+    <%-unless current_user.created_at < 7.days.ago-%>
     <p>
-      This is your home on Copper. On this page, you can keep track of what
+      This is your home on Copper. On this page, you track what
       you’ve tipped, change or cancel pending tips, and explore content made
-      by your favorite creators. We also save the things you’ve tipped so you
-      can find them later to enjoy or share with your friends.
+      by your favorite creators. 
     </p>
+    <%-end-%>
   </section>
   <section id="stats">
     <header>
@@ -45,7 +46,7 @@
   <%-if current_user.pages.count > 0 -%>
     <section id="pages" class="">
       <header>
-        <h1>What you've tipped</h1>
+        <h1>You're into this:</h1>
         <hgroup>
           <h2>Filter by</h2>
           <nav>
@@ -84,16 +85,17 @@
         <h3>Congrats!</h3>
         <h1>Your button is installed!</h1>
       </header>
-      <p>
-        <span>It's time to Take it for a test drive.</span>
-        Below are some things we have transferred from your News Feed
-        that you might want to tip! But of course, the tip button
-        works anywhere.
+      <p><span>Take the button for a test drive.</span>
+        Click through to the pages you've already liked, 
+        press the Copper button.
       </p>
-      <p class="sub">
-        Note: We won’t ask for any payment info until you've been using
-        the service for a bit, but if you want to get that squared away now,
-        you can do that <a href="/settings">here</a>.
+      <p class='sub'>
+        <span>Take the button for a test drive.</span>
+        Here's the fine print: If you tip someone a buck, 
+        they get paid a buck. <br> We charge you 10% for the service.
+        You can provide your payment information now, or we will 
+        give you a friendly reminder after you have been tipping 
+        for a bit.
       </p>
     </section>
     <section id="facebook">
@@ -104,9 +106,8 @@
       <header>
         <h3>All the cool kids are tipping with real money</h3>
         <p>
-          We won’t ask for any payment info until you've been using
-          the service for a bit, but if you want to get that squared away now,
-          we won't complain.
+          Here's the fine print: If you tip someone a buck, 
+          they get paid a buck. We charge you 10% for the service.
         </p>
       </header>
       <%= render partial:'shared/card' %>

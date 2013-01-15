@@ -11,6 +11,7 @@
     <h1>Your Settings</h1>
     <p><%=current_user.name%><a href="/signout">not you?</a></p>
   </hgroup>
+  <%-unless current_user.stripe_id-%>
   <p>
     Hey, cool. You’ve found some great stuff to tip with Copper.
     Let’s get your tips to the creators...
@@ -20,6 +21,7 @@
     your info we’ll charge you monthly whenever you have over 
     $10 of tips pledged.
   </p>
+  <%-end-%>
 </section>
 
 <section id="email" class="setting">

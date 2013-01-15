@@ -95,25 +95,19 @@
     }
     & > figure > a {
       position:relative;
-      vertical-align:top;
       display:inline-block;
-    }
-    & > figure > a.button {
-      opacity:0.5;
     }
     & > figure > a:first-child {
       cursor:pointer;
-      opacity:1;
-      padding-left: 3em;
+      opacity:.25;
+      height:2.5em;
+    }
+    & > figure > a:nth-child(5) {
+      opacity:.25;
     }
     & > figure > a:first-child > img {
-      position:absolute;
-      top:0;
-      left:0;
       padding:.5em;
-      width:1.15em;
-      height:1.15em;
-      border-right:1px solid darken(#907744, 10%);
+      vertical-align:middle;
     }
     & > figure > img {
       display:inline-block;
@@ -264,7 +258,7 @@
     & > header {
       vertical-align:top;
       width: grid-width(7);
-      margin-right:2.5em;
+      margin-right:3em;
 
       & > h3 {
         line-height:1.5em;

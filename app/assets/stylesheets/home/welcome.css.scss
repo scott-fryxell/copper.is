@@ -217,19 +217,6 @@
     & > figure > a.button {
       opacity:0.5;
     }
-    & > figure > a:nth-child(3) {
-      position:relative;
-      padding-left: 3em;
-    }
-    & > figure > a:nth-child(3) > img {
-      position:absolute;
-      top:0;
-      left:0;
-      padding:.5em;
-      width:1.15em;
-      height:1.15em;
-      border-right:1px solid darken(#907744, 10%);
-    }
     & > figure > img {
       display:inline-block;
       vertical-align:middle;

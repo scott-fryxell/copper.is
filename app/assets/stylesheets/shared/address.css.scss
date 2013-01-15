@@ -5,6 +5,7 @@
 
     & > form > input {
       width:grid-width(13);
+      margin-bottom:1em;
     }
     & > form > input[itemprop=city] {
       width:13em;

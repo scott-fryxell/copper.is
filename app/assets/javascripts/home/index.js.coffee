@@ -92,6 +92,6 @@ $(document).on "me.home_index", ->
         $.each facebook.data, (i, a_like) ->
           $.getJSON("https://graph.facebook.com/#{a_like.id}").success (like) ->
             image = $('<img/>', src:"https://graph.facebook.com/#{like.id}/picture")
-            $('<a/>', {href:like.link, html:image}).appendTo('#facebook > nav')
+            $('<a/>', {href:like.link, html:image, target:'blank'}).appendTo('#facebook > nav')
 
    

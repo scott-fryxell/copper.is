@@ -1,12 +1,13 @@
 $gw-column:2em;
 $gw-gutter:0.5em;
 $offset_color:rgba(182, 195, 181, .2);
-$button_color:#CC9933;
-$darkness:#2A2929;
+$button_color:rgba(204, 153, 51, 1);
+$darkness:rgba(42, 41, 41, 1);
 $header:rgba(42,41,41,0.75);
+$input_border:rgba(42, 41, 41, 0.3);
 $title:rgba(102,102,102,1);
 $text:rgba(102,102,102,0.8);
-$light-text:#FBFAF8;
+$light-text:rgba(251, 250, 248, 1);
 
 @import "normalize";
 @import "bourbon";
@@ -19,6 +20,7 @@ $light-text:#FBFAF8;
   text-align:center;
   text-decoration:none;
   padding:.5em .75em;
+  padding:.25em .75em;
   background-color:$button_color;
   @include background-image(linear-gradient($button_color 40%, shade($button_color, 25%) 100%, transparent 50%));
   color:$light-text !important;
