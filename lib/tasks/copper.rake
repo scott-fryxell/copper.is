@@ -12,6 +12,16 @@ namespace :copper do
   end
 
   namespace :page do
+
+    task :tumbnail => :environment do
+      Page.adopted.each do |page|
+        page.discover_thumbnail
+      end
+      Page.manual.each do |page|
+        page.discover_thumbnail
+      end
+
+    end
     task :adopt => :environment do
       adoption_rate = Page.adoption_rate
       puts "processing #{Page.orphaned.count} orphaned pages"

@@ -26,13 +26,37 @@ class Page < ActiveRecord::Base
 
   def discover_thumbnail
     begin
-      thumbnail_tag = Nokogiri::HTML(open(self.url)).css('link[itemprop="thumbnailUrl"]')
+      logger.info "thumbnail id:#{id}, for: #{url[0...120]}"
+      content = self.agent.get(url)
+      thumbnail_tag = content.at('link[rel="image_src"]') 
       unless thumbnail_tag.blank?
-        self.thumbnail_url = thumbnail_tag.attr('href').value
-        save!
+        logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...120]}"
+        if self.thumbnail_url = thumbnail_tag.attributes['href'].value
+          self.save!
+          return true
+        end
       end
+
+      thumbnail_tag = content.at('meta[property="og:image"]')
+      unless thumbnail_tag.blank?
+        logger.info ":    og:image=#{thumbnail_tag.attributes['content'].value[0...120]}"
+        if self.thumbnail_url = thumbnail_tag.attributes['content'].value
+          self.save!
+          return true
+        end
+      end
+      
+      thumbnail_tag = content.at('link[rel="thumbnailUrl"]') 
+      unless thumbnail_tag.blank?
+        logger.info ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...120]}"
+        if self.thumbnail_url = thumbnail_tag.attributes['href'].value
+          save! 
+          return true
+        end
+      end
+
     rescue => e
-      logger.error "error trying to discover thumbnail for: #{self.url}" 
+      logger.error "error trying to discover thumbnail for: #{url[0...120]}" 
       logger.error ":    #{e.class}: #{e.message}"
     end
   end
@@ -105,8 +129,8 @@ class Page < ActiveRecord::Base
     state :fostered do
       def find_author_from_page_links!
         begin
-          logger.info "Page links for: id=#{self.id}, #{self.url[0...120]}"
-          self.agent.get(self.url) do |doc|
+          logger.info "Page links for: id=#{id}, #{url[0...120]}"
+          self.agent.get(url) do |doc|
             if doc.title
               self.title = doc.title
             end

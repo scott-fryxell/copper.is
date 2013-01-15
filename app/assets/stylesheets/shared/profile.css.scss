@@ -109,6 +109,7 @@
     }
 
     & > details {
+      vertical-align: top;
       display:inline-block;
       width:grid-width(4);
       margin: 0 1em 1em 0;
@@ -129,12 +130,15 @@
       & > summary > figure {
         margin-top:.5em;
         position:relative; 
+        overflow:hidden;
+        width:grid-width(4);
+        height:grid-width(3);
+        @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
       }
       & > summary > figure > img {
         width:grid-width(4);
         height:grid-width(3);
-        overflow:hidden;
-        @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
+
       }
       & > summary > figure > figcaption {
         opacity:0.8;
@@ -188,14 +192,15 @@
           height:grid-width(5);
           margin-top:1.5em;
           margin-left:1.25em;
+          overflow: hidden;
           @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
         }
         & > figure > figcaption {
           font-size:2em;
         }
         & > figure > img {
-          width:grid-width(8);
-          height:grid-width(5);
+          min-width:grid-width(8);
+          min-height:grid-width(5);
         }
       }
       & > dl {
