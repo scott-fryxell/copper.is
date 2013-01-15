@@ -15,6 +15,9 @@
     width:grid-width(3);
   }
   #banner > header > img {
+    border-radius:.25em;
+    border:2px solid $darkness;
+    @include box-shadow(1px 2px 7px 2px rgba(0, 0, 0, 0.2));
     vertical-align:bottom;
     width:5em;
   }
