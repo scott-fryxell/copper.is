@@ -16,6 +16,7 @@
 #= require authors/edit
 
 $(document).on 'copper_button_installed', ->
+  # must be bound early for firefox onboarding to work.
   $('#install').delay(0).fadeOut 800 
   $('#congrats').delay(800).fadeIn 800
   $('#facebook').delay(800).fadeIn 800
