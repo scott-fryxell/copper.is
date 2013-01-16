@@ -15,6 +15,13 @@
 #= require home/welcome
 #= require authors/edit
 
+$(document).on 'copper_button_installed', ->
+  $('#install').delay(0).fadeOut 800 
+  $('#congrats').delay(800).fadeIn 800
+  $('#facebook').delay(800).fadeIn 800
+  $('#card').delay(800).fadeIn 800, ->
+    $('#card > form input').first().focus()
+
 $(document).ready ->
   jQuery('time').timeago();
   $(document).trigger "load." + $('body').attr 'id'

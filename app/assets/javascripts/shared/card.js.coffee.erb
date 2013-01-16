@@ -2,13 +2,6 @@ $(document).on "items.home_settings items.home_index", ->
   user = document.getItems()['users'][0]
   $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'selected'
 
-  $(document).on "load.home_index", ->
-    $(document).on 'copper_button_installed', ->
-      $('#install').delay(0).fadeOut 800 
-      $('#congrats').delay(800).fadeIn 800
-      $('#facebook').delay(800).fadeIn 800
-      $('#card').delay(800).fadeIn 800, ->
-        $('#card > form input').first().focus()
 
   $("#card > form").submit (event) ->
     Stripe.setPublishableKey '<%=Copper::Application.config.stripe_key%>'
