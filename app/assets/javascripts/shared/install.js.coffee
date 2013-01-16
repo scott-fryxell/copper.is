@@ -22,7 +22,7 @@ $(document).on "load.home_index load.home_settings", ->
         "Foo": 
           URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?"
           IconURL: "/assets/icons/logo.svg"
-          Hash: "sha1:41a41d60b4ee185e963deae35194cc29e3d3dd12"
+          Hash: "sha1:72f002468c66e1deb9811302476236bf8150df11"
           toString: -> "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"
       InstallTrigger.install params
       false;
