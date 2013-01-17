@@ -34,7 +34,7 @@
     </div>
     <div>
       <h2>Tips pending</h2>
-      <p><%=current_user.pending_royalties.sum :amount_in_cents%></p>
+      <p data-cents="<%=current_user.pending_royalties.sum :amount_in_cents%>"></p>
     </div>
     <div>
       <h2>highest tip</h2>
@@ -42,7 +42,7 @@
     </div>
     <div>
       <h2>Average tip</h2>
-      <p data-cents="<%=current_user.royalties.average :amount_in_cents%>"></p>
+      <p data-cents="<%=current_user.royalties.average(:amount_in_cents).round%>"></p>
     </div>
     <div>
       <h2>Total tips</h2>
