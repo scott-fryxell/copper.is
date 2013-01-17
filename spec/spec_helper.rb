@@ -33,6 +33,7 @@ Spork.prefork do
   include Authorization::TestHelper
 
   RSpec.configure do |config|
+    config.include Capybara::DSL
     config.filter_run_excluding :broken => true
     config.fail_fast = false
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy

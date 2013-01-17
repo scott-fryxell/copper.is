@@ -219,6 +219,7 @@ describe "Author settings", :slow do
   end
   
   it 'should be able to change their address' do
+    click_on 'Author settings'
     page.should have_css('#address form', visible:true)
 
     within '#address' do
