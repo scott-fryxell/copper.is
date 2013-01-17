@@ -72,7 +72,6 @@ namespace :copper do
   end
 end
 
-
 task :reset_page_adoption => :environment do
   Author.all.each do |author|
     author.destroy
@@ -82,6 +81,14 @@ task :reset_page_adoption => :environment do
     page.author_state = 'orphaned'
     page.author = nil
     page.save!
+  end
+end
+
+
+task :dev_user_stripe => :environment do
+  User.all.each do |user|
+    user.stripe_id = nil
+    user.save
   end
 end
 

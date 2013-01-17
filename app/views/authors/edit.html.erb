@@ -6,15 +6,13 @@
     <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
     <figcaption><%=cents_to_dollars(@author.tips.sum(:amount_in_cents))%></figcaption>
   </figure>
-  <h1>
-    <span>Hey there!</span> Looks like you’ve
-    just received some tips from a fan
-  </h1>
+  <hgroup>
+    <h1><span>Hey there!</span> you’ve just received some tips</h1>
+  </hgroup>
   <p>
     Welcome to Copper! We’re a new online tipping service that 
     connects fans to the people who make content they love (that’s you!)
     and allows them to send a tip to show their appreciation.
-    <a href="/how">See how it works</a>.
     <br><br>
     We just need a few things to make sure your tips wind up at your door.
   </p>
@@ -30,7 +28,6 @@
       <%= link_to image_tag("providers/#{@author.provider}/authorize.png"), "/auth/#{@author.provider}", :title => "Authorize #{@author.provider}" %>
       <figcaption>So we can make sure it’s really you</figcaption>
     <%-end-%>
-
   </figure>
 </section>
 <section id="email" class="setting">

@@ -13,7 +13,7 @@
     display:none;
   }
   #banner {
-    padding-top:4em;
+    margin-top:3em;
     position:inherit;
     background-color: transparent;
     border-color:transparent;
@@ -23,14 +23,14 @@
     vertical-align:top;
   }
   #banner > figure {
-    margin-right:2em;
+    margin-right:grid-width(1);
   }
   #banner > figure > img {
-    width:3.5em;
-    vertical-align:bottom;
-    border: .25em solid $text;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
   #banner > figure > figcaption {
+    text-align: center;
     font-size:1.25em;
     font-family: 'Bree Serif', serif;
     color:$light-text;
@@ -43,22 +43,30 @@
   #banner > figure > figcaption:before {
     content:'$';
   }
-  #banner > h1 {
-    vertical-align:top;
-    opacity:.85;
-    margin:0;
-    line-height:1.15em;
-    font-size:2.7em;
-    width:grid-width(4.2);
-    margin-right:.5em;
-    margin-top:-0.44em;
-  }
-  #banner > h1 > span {
-    color:$darkness;
-  }
-  #banner > p {
-    margin:0;
+  #banner > hgroup {
+    display:inline-block;
+    margin-right:grid-width(1);
     width:grid-width(9);
+    vertical-align:top;
+    & > h1 {
+      vertical-align:top;
+      opacity:.85;
+      margin:0;
+      line-height:1.15em;
+      font-size:2.5em;
+      margin-top:-0.25em;
+      & > span {
+        color:$darkness;
+      }
+    }
+  }
+
+  
+  #banner > p {
+    display:inline-block;
+    vertical-align: top;
+    margin:0;
+    width:grid-width(10);
   }
 
   #login {
