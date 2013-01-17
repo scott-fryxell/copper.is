@@ -7,3 +7,11 @@ _gaq.push(['_trackPageview']);
   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
+
+// Honeybadger.configure({api_key: 'df5151fb675d4d4af78d117fab648540'});
+
+// try {
+
+// } catch(e) {
+//   Honeybadger.notify(e);
+// }
