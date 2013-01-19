@@ -33,12 +33,12 @@ class Page < ActiveRecord::Base
   end
 
   def learn
-    logger.info "thumbnail id:#{id}, for: #{url[0...120]}"
+    puts "thumbnail id:#{id}, for: #{url[0...120]}"
     content = self.agent.get(url)
     
     thumbnail_tag = content.at('meta[property="og:image"]')
     unless thumbnail_tag.blank?
-      logger.info ":    og:image=#{thumbnail_tag.attributes['content'].value[0...120]}"
+      puts ":    og:image=#{thumbnail_tag.attributes['content'].value[0...120]}"
       if self.thumbnail_url = thumbnail_tag.attributes['content'].value
         self.save!
         return true
@@ -47,7 +47,7 @@ class Page < ActiveRecord::Base
 
     thumbnail_tag = content.at('link[rel="image_src"]') 
     unless thumbnail_tag.blank?
-      logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...120]}"
+      puts ":    image_src=#{thumbnail_tag.attributes['href'].value[0...120]}"
       if self.thumbnail_url = thumbnail_tag.attributes['href'].value
         self.save!
         return true
@@ -56,7 +56,7 @@ class Page < ActiveRecord::Base
     
     thumbnail_tag = content.at('link[rel="thumbnailUrl"]') 
     unless thumbnail_tag.blank?
-      logger.info ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...120]}"
+      puts ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...120]}"
       if self.thumbnail_url = thumbnail_tag.attributes['href'].value
         save! 
         return true
@@ -119,7 +119,7 @@ class Page < ActiveRecord::Base
 
     state :orphaned do
       def discover_author! 
-        logger.info("discover_author for: id=#{self.id}, #{self.url[0...120]}")
+        puts "discover_author for: id=#{self.id}, #{self.url[0...120]}"
         if self.author = Author.find_or_create_from_url(self.url)
           log_adopted
           adopt!

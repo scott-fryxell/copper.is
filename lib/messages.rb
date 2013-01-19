@@ -6,7 +6,7 @@ end
 
 module PhonyMessages
   def _send_wanted_message
-    # logger.info "#{self.inspect} URL=#{Copper::Application.config.hostname}/i/#{self.id}"
+    # puts "#{self.inspect} URL=#{Copper::Application.config.hostname}/i/#{self.id}"
   end
 end
 
