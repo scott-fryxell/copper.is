@@ -10,7 +10,7 @@ Copper::Application.configure do
   config.hostname = "http://copper.dev"
   config.log_level = :info
   config.active_record.mass_assignment_sanitizer = :strict
-  config.active_record.auto_explain_threshold_in_seconds = 0.5
+  config.active_record.auto_explain_threshold_in_seconds = 0.25
   # ActiveRecord::Base.logger.level = 1 if defined? ActiveRecord::Base
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
