@@ -6,50 +6,74 @@
 //= require shared/copper
 
 $(document).ready(function (){
-  document.postMessage(JSON.stringify({type:'tip_info'}))
-  $("section.sign_in a").click(function(event){
-    $(document).trigger("tip_hide")
-  });
+  try {
+    document.postMessage(JSON.stringify({type:'tip_info'}))
+    $("section.sign_in a").click(function(event){
+      $(document).trigger("tip_hide")
+    });
+  } catch(e) {
+    Honeybadger.notify(e);
+  }
 });
 $(document).bind({
   "tip_info": function (event){
-    title = decodeURIComponent(event.title)
-    new_tip = document.getItems('tips')[0]
-    new_tip.title = decodeURIComponent(event.title)
-    new_tip.url = decodeURIComponent(event.url)
-    Item.update_page(new_tip)
-    document.copper.format_cents_to_dollars("amount_in_cents")
+    try {
+      title = decodeURIComponent(event.title)
+      new_tip = document.getItems('tips')[0]
+      new_tip.title = decodeURIComponent(event.title)
+      new_tip.url = decodeURIComponent(event.url)
+      Item.update_page(new_tip)
+      document.copper.format_cents_to_dollars("amount_in_cents")
 
-    jQuery('<img/>', {
-      id: 'create_img',
-      src: decodeURIComponent(event.thumbnail_url),
-      style: 'opacity:0;'
-    }).appendTo('body');
+      jQuery('<img/>', {
+        id: 'create_img',
+        src: decodeURIComponent(event.thumbnail_url),
+        style: 'opacity:0;'
+      }).appendTo('body');
 
-    $(document).trigger("tip_display")
+      $(document).trigger("tip_display")
+    } catch(e) {
+      Honeybadger.notify(e);
+    }
   },
   "tip_display": function (event){
-    $("body > form").submit()
-    document.postMessage(JSON.stringify({type:'show'}))
-    $("body > section").addClass("show")
+    try {
+      $("body > form").submit()
+      document.postMessage(JSON.stringify({type:'show'}))
+      $("body > section").addClass("show")
 
-    if(!$("section").hasClass('sign_in')){
-      window.setTimeout(function (){
-        $(document).trigger("tip_hide")
-      },3000);
+      if(!$("section").hasClass('sign_in')){
+        window.setTimeout(function (){
+          $(document).trigger("tip_hide")
+        },3000);
 
-      window.setTimeout(function (){
-        document.postMessage(JSON.stringify({type:'hide'}))
-      },4000);      
+        window.setTimeout(function (){
+          document.postMessage(JSON.stringify({type:'hide'}))
+        },4000);      
+      }
+    } catch(e) {
+      Honeybadger.notify(e);
     }
   },
   "tip_hide": function(event){
-    $("body > section").removeClass('show')
+    try {
+      $("body > section").removeClass('show')
+    } catch(e) {
+      Honeybadger.notify(e);
+    }
   }
 });
 window.addEventListener('message', function(event) {
-  $(document).trigger(JSON.parse(event.data))
+  try {
+    $(document).trigger(JSON.parse(event.data))
+  } catch(e) {
+    Honeybadger.notify(e);
+  }
 });
 document.postMessage = function (message){
-  window.parent.postMessage(message, "*");
+  try {
+    window.parent.postMessage(message, "*");
+  } catch(e) {
+    Honeybadger.notify(e);
+  }
 }
