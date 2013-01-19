@@ -3,7 +3,7 @@
   <summary>
     <h2 itemprop="title"><%=page.title%></h2>
     <figure>
-      <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>" alt="tip image" title="<%=page.title%>"/> 
+      <img itemprop="thumbnail_url" src="<%=page.thumbnail%>" alt="tip image" title="<%=page.title%>"/> 
       <figcaption data-cents="<%=page.tips.for_author.sum(:amount_in_cents)%>"></figcaption>
     </figure>
   </summary>

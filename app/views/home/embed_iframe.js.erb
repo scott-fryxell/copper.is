@@ -34,19 +34,10 @@
         f.height='0'
       }
       else if(data.type == 'tip_info'){
-        var thumbnail_url = 'http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=' + window.location
-        if (document.querySelector('*[itemprop="thumbnailUrl"]')) {
-          if (document.querySelector('*[itemprop="thumbnailUrl"]').getAttribute('href')) {
-             thumbnail_url = document.querySelector('*[itemprop="thumbnailUrl"]').getAttribute('href')
-          }else {
-           thumbnail_url = document.querySelector('*[itemprop="thumbnailUrl"]').getAttribute('content')
-          }
-        }
         var message = {
           type:"tip_info",
           url:encodeURIComponent(window.location),
-          title:encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML),
-          thumbnail_url:encodeURIComponent(thumbnail_url)
+          title:encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML)
         }
         event.source.postMessage(JSON.stringify(message), "*");
       }

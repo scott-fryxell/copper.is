@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
   belongs_to :author
   has_many :tips
   has_many :checks, :through => :tips
-  attr_accessible :title, :url, :thumbnail_url
+  attr_accessible :title, :url
 
   validates :url, :presence => true
   validate :url_points_to_real_site
@@ -17,48 +17,50 @@ class Page < ActiveRecord::Base
   end
 
   def fan_tips(fan)
-   self.tips.joins(:order).where('orders.user_id=?', fan.id)
+    self.tips.joins(:order).where('orders.user_id=?', fan.id)
   end
 
   def self.adoption_rate
     (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round
   end
 
-  def discover_thumbnail
-    begin
-      logger.info "thumbnail id:#{id}, for: #{url[0...120]}"
-      content = self.agent.get(url)
+  def thumbnail
+    if thumbnail_url
+      thumbnail_url
+    else
+      "http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=#{url}"
+    end
+  end
 
-      thumbnail_tag = content.at('meta[property="og:image"]')
-      unless thumbnail_tag.blank?
-        logger.info ":    og:image=#{thumbnail_tag.attributes['content'].value[0...120]}"
-        if self.thumbnail_url = thumbnail_tag.attributes['content'].value
-          self.save!
-          return true
-        end
+  def learn
+    logger.info "thumbnail id:#{id}, for: #{url[0...120]}"
+    content = self.agent.get(url)
+    
+    thumbnail_tag = content.at('meta[property="og:image"]')
+    unless thumbnail_tag.blank?
+      logger.info ":    og:image=#{thumbnail_tag.attributes['content'].value[0...120]}"
+      if self.thumbnail_url = thumbnail_tag.attributes['content'].value
+        self.save!
+        return true
       end
+    end
 
-      thumbnail_tag = content.at('link[rel="image_src"]') 
-      unless thumbnail_tag.blank?
-        logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...120]}"
-        if self.thumbnail_url = thumbnail_tag.attributes['href'].value
-          self.save!
-          return true
-        end
+    thumbnail_tag = content.at('link[rel="image_src"]') 
+    unless thumbnail_tag.blank?
+      logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...120]}"
+      if self.thumbnail_url = thumbnail_tag.attributes['href'].value
+        self.save!
+        return true
       end
-      
-      thumbnail_tag = content.at('link[rel="thumbnailUrl"]') 
-      unless thumbnail_tag.blank?
-        logger.info ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...120]}"
-        if self.thumbnail_url = thumbnail_tag.attributes['href'].value
-          save! 
-          return true
-        end
+    end
+    
+    thumbnail_tag = content.at('link[rel="thumbnailUrl"]') 
+    unless thumbnail_tag.blank?
+      logger.info ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...120]}"
+      if self.thumbnail_url = thumbnail_tag.attributes['href'].value
+        save! 
+        return true
       end
-
-    rescue => e
-      logger.error "error trying to discover thumbnail for: #{url[0...120]}" 
-      logger.error ":    #{e.class}: #{e.message}"
     end
   end
   

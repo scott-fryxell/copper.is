@@ -8,9 +8,9 @@ class Tip < ActiveRecord::Base
   has_paper_trail
   default_scope :order => 'created_at DESC'
 
-  attr_accessor :url,:title,:thumbnail_url
+  attr_accessor :url,:title
 
-  attr_accessible :amount_in_cents,:url,:title,:thumbnail_url
+  attr_accessible :amount_in_cents,:url,:title
 
   scope :trending, order("Date(updated_at)")
   scope :promised, where(paid_state:'promised')

@@ -42,7 +42,7 @@
     </div>
     <div>
       <h2>Average tip</h2>
-      <p data-cents="<%=current_user.royalties.average(:amount_in_cents).round%>"></p>
+      <p data-cents="<%=current_user.average_royalties%>"></p>
     </div>
     <div>
       <h2>Total tips</h2>

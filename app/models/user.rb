@@ -25,7 +25,6 @@ class User < ActiveRecord::Base
   end
   
   after_create :create_current_order!
-
   def create_current_order!
     if self.orders.unpaid.count > 0
       raise "there is already an unpaid Order for this user: #{self.inspect}"
@@ -59,6 +58,12 @@ class User < ActiveRecord::Base
     Tip.for_author.where(page_id:authored_pages.pluck(:id))    
   end
 
+  def average_royalties
+    royalties = Tip.for_author.where(page_id:authored_pages.pluck(:id)).average(:amount_in_cents)
+    royalties = 0 unless royalties
+    royalties.round
+  end
+
   def authored_pages
     Page.where(author_id: author_ids).includes(:tips)
   end
@@ -75,11 +80,10 @@ class User < ActiveRecord::Base
     url    = args[:url]
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
     title  = CGI.unescapeHTML(args[:title])  if args[:title]
-    thumbnail_url = args[:thumbnail_url]
     
     tip = current_order.tips.build(amount_in_cents:amount_in_cents)
-    unless tip.page = Page.where('url = ?', url).first
-      tip.page = Page.create(url:url,title:title,thumbnail_url:thumbnail_url)
+    unless tip.page = Page.where(url:url).first
+      tip.page = Page.create(url:url,title:title)
     end
     tip.save!
     tip

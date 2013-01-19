@@ -3,6 +3,6 @@ json.array!(@pages) do |json, page|
   json.tip_count page.tips_count
   json.title page.title
   json.url page.url
-  json.thumbnail_url page.thumbnail_url
+  json.thumbnail_url page.thumbnail
   json.date page.updated_at.to_date
 end

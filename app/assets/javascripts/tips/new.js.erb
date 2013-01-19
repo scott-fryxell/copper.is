@@ -17,7 +17,6 @@ $(document).bind({
     new_tip = document.getItems('tips')[0]
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
-    new_tip.thumbnail_url = decodeURIComponent(event.thumbnail_url)
     Item.update_page(new_tip)
     document.copper.format_cents_to_dollars("amount_in_cents")
 
