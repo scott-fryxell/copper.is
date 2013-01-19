@@ -16,10 +16,7 @@ namespace :copper do
     end
 
     task :learn => :environment do
-      Page.adopted.each do |page|
-        Resque.enqueue Page, page.id, :learn
-      end
-      Page.manual.each do |page|
+      Page.all.each do |page|
         Resque.enqueue Page, page.id, :learn
       end
     end
