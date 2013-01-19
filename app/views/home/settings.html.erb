@@ -1,8 +1,8 @@
-<%-cache current_user do-%>
 <%-content_for :head do-%>
   <title><%=current_user.name%>'s Settings - Copper.</title>
   <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
 <%-end-%>
+<%-cache current_user do-%>
 <section id="banner">
   <header>
     <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
