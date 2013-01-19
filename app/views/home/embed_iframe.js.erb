@@ -1,4 +1,4 @@
-<%-cache  do-%>
+<%-cache do-%>
 (function(){
   var f = document.getElementById('copper');
   if (f) {
@@ -23,7 +23,6 @@
     f.height='0';
     f.style.zIndex='9999999999999999';
     window.addEventListener('message', function(event) {
-
       var data = JSON.parse(event.data)
       if (data.type == 'show'){
         f.width='350px'
@@ -34,10 +33,15 @@
         f.height='0'
       }
       else if(data.type == 'tip_info'){
+
+        if(document.getElementsByTagName('title')[0])
+          page_title=document.getElementsByTagName('title')[0].innerHTML
+        else
+          page_title="" 
         var message = {
           type:"tip_info",
           url:encodeURIComponent(window.location),
-          title:encodeURIComponent(document.getElementsByTagName('title')[0].innerHTML)
+          title:encodeURIComponent(page_title)
         }
         event.source.postMessage(JSON.stringify(message), "*");
       }
