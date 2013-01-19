@@ -14,6 +14,8 @@
 #= require home/settings
 #= require home/welcome
 #= require authors/edit
+#= require honeybadger.min
+Honeybadger.configure({api_key: 'df5151fb675d4d4af78d117fab648540'});
 
 $(document).on 'copper_button_installed', ->
   # must be bound early for firefox onboarding to work.
