@@ -17,6 +17,7 @@ gem 'omniauth-google-oauth2'
 
 gem 'jbuilder'
 gem 'stripe'
+gem 'memcachier'
 gem 'dalli'
 gem "foreman"
 gem 'unicorn'

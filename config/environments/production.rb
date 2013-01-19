@@ -19,11 +19,12 @@ Copper::Application.configure do
   config.action_controller.asset_host = "dxs9q85fcnuty.cloudfront.net"
 
   config.hostname = "https://www.copper.is"
-  config.action_dispatch.rack_cache = {
-    :metastore    => Dalli::Client.new,
-    :entitystore  => 'file:tmp/cache/rack/body',
-    :allow_reload => false
-  }
+  config.cache_store = :dalli_store
+  # config.action_dispatch.rack_cache = {
+  #   :metastore    => Dalli::Client.new,
+  #   :entitystore  => 'file:tmp/cache/rack/body',
+  #   :allow_reload => false
+  # }
 
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
