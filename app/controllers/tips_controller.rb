@@ -57,7 +57,7 @@ class TipsController < ApplicationController
   def load_tip
     @page = Page.find(params[:page_id]) if params[:page_id]
     @user = User.find(params[:user_id]) if params[:user_id]
-    @tip = Tip.find(params[:id])
+    @tip = Tip.find(params[:id]) if params[:id]
   end
   def new_tip
     @tip = Tip.new(params[:tip])
