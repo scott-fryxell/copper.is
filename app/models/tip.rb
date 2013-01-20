@@ -1,7 +1,7 @@
 class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 class Tip < ActiveRecord::Base
-  belongs_to :page, :counter_cache => true, touch:true
+  belongs_to :page, touch:true
   belongs_to :order, touch:true
   belongs_to :check
   has_one :user, :through => :order
