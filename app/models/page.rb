@@ -78,6 +78,7 @@ class Page < ActiveRecord::Base
     if page.orphaned?
       Resque.enqueue Page, page.id, :discover_author!
     end
+    Resque.enqueue Page, page.id, :learn
   end
 
   state_machine :author_state, initial: :orphaned do
