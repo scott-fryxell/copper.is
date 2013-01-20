@@ -58,7 +58,7 @@ class Page < ActiveRecord::Base
     unless thumbnail_tag.blank?
       puts ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...120]}"
       if self.thumbnail_url = thumbnail_tag.attributes['href'].value
-        save! 
+        self.save!
         return true
       end
     end
@@ -133,7 +133,7 @@ class Page < ActiveRecord::Base
     state :fostered do
       def find_author_from_page_links!
         begin
-          logger.info "Page links for: id=#{id}, #{url[0...120]}"
+          puts "Page links for: id=#{id}, #{url[0...120]}"
           self.agent.get(url) do |doc|
             if doc.title
               self.title = doc.title
@@ -142,7 +142,7 @@ class Page < ActiveRecord::Base
             if author_link = doc.at('link[rel=author]')
               href = author_link.attributes['href'].value
               output = ":    author: #{href[0...120]}"
-              logger.info output
+              puts output
               # puts output
               if self.author = Author.find_or_create_from_url(href)
                 log_adopted
@@ -150,7 +150,7 @@ class Page < ActiveRecord::Base
               end
             end
 
-            output = lambda { |link| logger.info ":    adopted: #{link.href[0...120]}"}
+            output = lambda { |link| puts ":    adopted: #{link.href[0...120]}"}
 
             doc.links_with(:href => %r{facebook.com}).each do |link|
               unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
@@ -192,14 +192,14 @@ class Page < ActiveRecord::Base
             reject! unless self.author
           end
         rescue Mechanize::ResponseCodeError => e
-          logger.info ":    ResponseCodeError: #{e.response_code}"
+          puts ":    ResponseCodeError: #{e.response_code}"
           if '404' == e.response_code or '410' == e.response_code
-            logger.info ":    dead: #{self.url}"
+            puts ":    dead: #{self.url}"
             self.author_state = 'dead'
             save!
           end
         rescue Net::HTTP::Persistent::Error => e
-          logger.info ":    dead: #{self.url}"
+          puts ":    dead: #{self.url}"
           self.author_state = 'dead'
           save!
         end  
@@ -223,9 +223,7 @@ class Page < ActiveRecord::Base
   private
 
   def log_adopted
-    output = ":    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
-    logger.info output
-    # puts output
+    puts ":    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
   end
 
 end
