@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "authors", :force => true do |t|
     t.string    "provider",       :null => false
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 16) do
     t.string    "country_code"
     t.timestamp "created_at",                                 :null => false
     t.timestamp "updated_at",                                 :null => false
+    t.boolean   "share_on_facebook"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
