@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Copper.is – The currency of appreciation</title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="<%=image_path('icons/favicon.ico')%>">
-    <link rel="icon" href="<%=image_path('icons/logo.svg')%>" type="image/svg">
-    <link rel="image_src" href="<%=image_path('icons/logo.svg')%>">
-
-    <link rel="logo" type="image/svg" href="<%=image_path('icons/logo.svg')%>">
+    <link rel="icon"      type="image/svg"  href="<%=image_path('icons/logo.svg')%>" >
+    <link rel="image_src" type="image/svg" href="<%=image_path('icons/logo.svg')%>">
+    <link rel="logo"      type="image/svg" type="image/svg" href="<%=image_path('icons/logo.svg')%>">
     <link rel="author" href="https://twitter.com/copper_is">
-    <link rel="apple-touch-icon" type="image/svg" itemprop="thumbnailUrl" href="<%=image_path('icons/watermark.svg')%>">
-
+    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
+    <%= stylesheet_link_tag "application", media:"all" %>
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One' >
+    <%= csrf_meta_tag %>
     <meta name="google-site-verification" content="ajqm1UZuvVaocEm3g_dULtZtRdPxR5KVf6odfYyYQkQ">
     <meta name="application-name" content="Copper.is">
     <meta property="og:image" content="<%=image_path('icons/logo.svg')%>">
     <meta name="keywords" content="Copper.is San Francisco, music, tipping, appreciation, copper">
-    <meta name="description" content="Copper. – Support artists through tipping. You find something 
-                cool anywhere online. You click a button to tip the content. We find the person who made it and pay them.">
-    <%= stylesheet_link_tag "application", media:"all" %>
-    <link href='https://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One' rel='stylesheet' type='text/css'>
-    <%= csrf_meta_tag %>
-    <%= yield(:head) %>
-    <title>Copper.is – The currency of appreciation</title>
+    <meta name="description" content="Copper. – Support artists through tipping.
+       You find something cool anywhere online. You click a button to tip the c
+       ontent. We find the person who made it and pay them.">
   </head>
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
     <header>

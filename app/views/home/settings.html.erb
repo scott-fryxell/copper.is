@@ -1,7 +1,4 @@
-<%-content_for :head do-%>
-  <title><%=current_user.name%>'s Settings - Copper.</title>
-  <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
-<%-end-%>
+
 <%-cache current_user do-%>
 <section id="banner">
   <header>
@@ -88,13 +85,26 @@
   <%= render partial:'shared/card' %>
 </section>
 
-<section id="install" class=setting>
+<section id="sharing">
+  <header>
+    <h2>Facebook</h2>
+  </header>
+  <form action="/users/me" method="put">
+    <input type='hidden' value='false' name="user[share_on_facebook]">
+    <input itemprop="share_on_facebook" type="checkbox" name="user[share_on_facebook]" value="true" <%= "checked" if current_user.share_on_facebook? %>/>
+
+    <label>Share tips on your timeline</label>
+  </form>
+</section>
+
+<section id="button" class="setting">
   <header>
     <h2>The button</h2>
   </header>
   <div>
     <a class="button install"><%= image_tag "icons/letter_logo_white.svg"%>Install The Tip Button</a>
-   </div>
+    <label>Installed!</label>
+  </div>
 </section>
 
 <nav>
