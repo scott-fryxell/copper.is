@@ -11,7 +11,34 @@
     overflow:hidden;
     @include hidden
   }
- 
+  
+  #sharing > form {
+    display:inline-block;
+    opacity:1;
+  }
+
+  #button {
+    & > div > a {
+      display:block;
+    }
+    & > div > label {
+      display:none;
+    }
+    &.installed {
+      & > div > a {
+        display:none;
+      }
+      & > div > label {
+        color:$darkness;
+        border-radius:0.25em;
+        border:2px solid $input_border;
+        font-family: 'Cantarell', sans-serif;
+        font-size:1.5em;
+        padding:0.5em;
+        display:block;
+      }
+    }
+  }
 }
 
 #home_settings.author {

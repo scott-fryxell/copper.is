@@ -62,7 +62,7 @@ input:disabled + label {
   -webkit-user-select: none;
 }
 
-section.setting, #authors {
+section.setting, #authors, #sharing {
   margin-bottom: 0.5em;
   padding-top:2em;
   padding-bottom:2em;
@@ -90,7 +90,7 @@ section.setting, #authors {
     vertical-align:top;
     max-width: grid-width(14);
   }
-  & > p {
+  & p.help {
     margin:0;
     display:inline-block;
     width:grid-width(5);

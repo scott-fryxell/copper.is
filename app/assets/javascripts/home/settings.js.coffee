@@ -49,6 +49,9 @@ $(document).on "me.home_settings", ->
 
 $(document).on "load.home_settings", ->
 
+  $('#sharing > form > input').change ->
+    $('#sharing > form').submit()
+
   $("#card").on "bad_credit_card", ->
     $("#card > header > a").click();
 

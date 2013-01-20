@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_paper_trail
 
-  attr_accessible :name, :email, :tip_preference_in_cents, :accept_terms, :payable_to, :line1, :line2, :city, :postal_code, :country_code, :subregion_code
+  attr_accessible :name, :email, :tip_preference_in_cents, :accept_terms, :payable_to, :line1, :line2, :city, :postal_code, :country_code, :subregion_code, :share_on_facebook
 
   validates :tip_preference_in_cents,
     :numericality => { greater_than_or_equal_to:Tip::MINIMUM_TIP_VALUE },
