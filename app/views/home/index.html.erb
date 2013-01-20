@@ -25,7 +25,7 @@
     </header>
     <div>
       <h2>Pages tipped</h2>
-      <p><%=current_user.pages.group(:page_id).length%></p>
+      <p><%=current_user.pages.group("pages.id").length%></p>
     </div>
     <div>
       <h2>Average tip</h2>
