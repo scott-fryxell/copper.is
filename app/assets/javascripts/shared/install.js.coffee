@@ -19,10 +19,10 @@ $(document).on "load.home_index load.home_settings", ->
   else if $.browser.mozilla
     $("a.install").click ->
       params = 
-        "Foo": 
+        "Copper tip button": 
           URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?"
-          IconURL: "/assets/icons/logo.svg"
-          Hash: "sha1:72f002468c66e1deb9811302476236bf8150df11"
+          IconURL: "https://www.copper.is/assets/icons/logo.svg"
+          Hash: "sha1:53b02499672a1babed411cf2cc06b33b55106fa6"
           toString: -> "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"
       InstallTrigger.install params
       false;

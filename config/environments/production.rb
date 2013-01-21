@@ -7,10 +7,6 @@ Copper::Application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
 
-  # https://github.com/ryanb/cancan/issues/511
-  config.logger = Logger.new(STDOUT)
-  config.logger.level = Logger.const_get((ENV["LOG_LEVEL"] || "INFO").upcase)
-
   config.assets.compress = true
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :yui
@@ -24,11 +20,6 @@ Copper::Application.configure do
 
   config.hostname = "https://www.copper.is"
   config.cache_store = :dalli_store
-  # config.action_dispatch.rack_cache = {
-  #   :metastore    => Dalli::Client.new,
-  #   :entitystore  => 'file:tmp/cache/rack/body',
-  #   :allow_reload => false
-  # }
 
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
