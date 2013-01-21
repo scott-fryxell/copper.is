@@ -36,6 +36,17 @@
   </form>
 </section>
 
+<section id="sharing">
+  <header>
+    <h2>Facebook</h2>
+  </header>
+  <form action="/users/me" method="put">
+    <input type='hidden' value='false' name="user[share_on_facebook]">
+    <input itemprop="share_on_facebook" type="checkbox" name="user[share_on_facebook]" value="true" <%= "checked" if current_user.share_on_facebook? %>/>
+    <label>Share tips on my timeline</label>
+  </form>
+</section>
+
 <section id="rate" class="setting">
   <header>
     <h2>Default Tip</h2>
@@ -83,18 +94,6 @@
     </section>
   </div>
   <%= render partial:'shared/card' %>
-</section>
-
-<section id="sharing">
-  <header>
-    <h2>Facebook</h2>
-  </header>
-  <form action="/users/me" method="put">
-    <input type='hidden' value='false' name="user[share_on_facebook]">
-    <input itemprop="share_on_facebook" type="checkbox" name="user[share_on_facebook]" value="true" <%= "checked" if current_user.share_on_facebook? %>/>
-
-    <label>Share tips on your timeline</label>
-  </form>
 </section>
 
 <section id="button" class="setting">
