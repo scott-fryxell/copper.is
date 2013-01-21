@@ -1,59 +1,50 @@
 Todo's
 ======
 - Automatically posting your tips to facebook feed.
-
 - Tip facebook pages via chrome
-
 - Tests passing
+- Badge works for authors to embed 
+- Include honeybadger for javascript (so rad)
+- Jobs scheduled
+    - Charging fans 
+    - copper:pages:adopt running on production
 
-- badge works for authors to embed 
-
-- include honeybadger for javascript (so rad).
-
-- Jobs scheduled   
--- Job for charging fans, 
--- job determining page authors running on production
-
-
-
-
-Later shit 
-===========
-
+Later shit
+==========
 - Messaging
--- Newsletter for existing customers
---- Stuff you might like
--- Setting to turn of newsletter
--- welcome fans to the service
--- Welcome artists to the service
--- Order processing
---- artist welcome
---- artist onboarding
+    - Newsletter for existing customers
+        - Stuff you might like
+    - Setting to turn of newsletter
+    - welcome fans to the service
+    - Welcome artists to the service
 
-- second click of tip button should show detailed overlay
+- Order processing
+    - artist welcome
+    - artist onboarding
+
+- Second click of tip button should show detailed overlay
 - Tiping cabin porn should work (JSON.parse is overwritten)
 
 - Welcome page h1 should cycle through
--- (artist|creator|blogger|musician|veteran)
+    - (artist|creator|blogger|musician|veteran)
 
 - email address
--- for ben, josh, laura
+    - for ben, josh, laura
 
 - Test facebook likes/stuff you might like against (some curated pages)
 
 - First blog: copper manifesto
--- need to map what first 4, define what we want people to know. 
+    - need to map what first 4 entries
 
 - Ben/Laura review EULA/Privacy Policy  
   
 ---
 
 
-
 The user agent
 ==============
 
-All javascript and css files are collected Into a 
+All javascript and css files are collected Into a
 single js/css file that each page loads. Javascript 
 and css are namespaced. via the body tag
 
@@ -69,7 +60,7 @@ To change the background color of the fans profile page
 }
 ```
 
-Each page can bind javascript to the page via:
+Each page can bind javascript to the page
 ```javascript
 $(document).on('load.controller_action',function (event){})  
 ```
