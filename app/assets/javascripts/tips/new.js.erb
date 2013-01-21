@@ -14,6 +14,7 @@ $(document).ready(function (){
       $(document).trigger("tip_hide")
     });
   } catch(e) {
+    console.error(e)
     Honeybadger.notify(e);
   }
 });
@@ -29,12 +30,13 @@ $(document).bind({
 
       jQuery('<img/>', {
         id: 'create_img',
-        src: decodeURIComponent(event.thumbnail_url),
+        src: decodeURIComponent("http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=" + new_tip.url),
         style: 'opacity:0;'
       }).appendTo('body');
 
       $(document).trigger("tip_display")
     } catch(e) {
+      console.error(e)
       Honeybadger.notify(e);
     }
   },
@@ -54,6 +56,7 @@ $(document).bind({
         },4000);      
       }
     } catch(e) {
+      console.error(e)
       Honeybadger.notify(e);
     }
   },
@@ -69,6 +72,7 @@ window.addEventListener('message', function(event) {
   try {
     $(document).trigger(JSON.parse(event.data))
   } catch(e) {
+    console.error(e)
     Honeybadger.notify(e);
   }
 });
@@ -76,6 +80,7 @@ document.postMessage = function (message){
   try {
     window.parent.postMessage(message, "*");
   } catch(e) {
+    console.error(e)
     Honeybadger.notify(e);
   }
 }

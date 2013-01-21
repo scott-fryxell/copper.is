@@ -86,6 +86,9 @@ class User < ActiveRecord::Base
       tip.page = Page.create(url:url,title:title)
     end
     tip.save!
+    if share_on_facebook
+      Resque.enqueue Tip, tip.id, :post_tip_to_facebook_feed
+    end
     tip
   end
 

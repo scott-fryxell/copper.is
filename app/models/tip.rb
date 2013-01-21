@@ -1,6 +1,7 @@
 class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 class Tip < ActiveRecord::Base
+  include Enqueueable
   belongs_to :page, touch:true
   belongs_to :order, touch:true
   belongs_to :check
@@ -38,6 +39,13 @@ class Tip < ActiveRecord::Base
 
   before_destroy do |tip|
     raise CantDestroyException unless tip.promised?
+  end
+
+  def post_tip_to_facebook_feed
+    puts "posting to facebook for tip_id=#{id}"
+    facebook = self.user.authors.where(provider:'facebook').first
+    graph = Koala::Facebook::API.new(facebook.token)
+    graph.put_connections("me", "copper-dev:tip", website:self.page.url)
   end
 
   state_machine :paid_state, :initial => :promised do
