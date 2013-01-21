@@ -44,9 +44,10 @@ Later shit
 The user agent
 ==============
 
-All javascript and css files are collected Into a
-single js/css file that each page loads. Javascript 
-and css are namespaced. via the body tag
+All javascript and css files are collected Into a    
+single js/css file that is instanceated (from cache) for     
+each page load. Javascript and css are namespaced.    
+via the body tag    
 
 The body's id attribute is set to controller_action
 ```html
