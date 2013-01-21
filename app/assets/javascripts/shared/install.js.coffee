@@ -22,7 +22,7 @@ $(document).on "load.home_index load.home_settings", ->
         "Copper tip button": 
           URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?"
           IconURL: "https://www.copper.is/assets/icons/logo.svg"
-          Hash: "sha1:53b02499672a1babed411cf2cc06b33b55106fa6"
+          Hash: "sha1:cd6b9c5cd0ef8ea1e35c09da2a4e4f3db3dd8396"
           toString: -> "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"
       InstallTrigger.install params
       false;
