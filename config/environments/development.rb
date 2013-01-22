@@ -8,6 +8,8 @@ Copper::Application.configure do
   config.assets.compress = false
   config.assets.debug = true
   config.hostname = "http://copper.dev"
+  config.facebook_appname = "copper-dev"
+  config.facebook_appid = "180829622036113"
   config.log_level = :info
 
   config.active_record.mass_assignment_sanitizer = :strict

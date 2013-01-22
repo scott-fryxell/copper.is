@@ -20,6 +20,14 @@ class Author < ActiveRecord::Base
       errors.add(:username, "username must exist")
     end
   end
+
+  def url
+    if self.username
+      "https://www.#{self.provider}.com/#{self.username}"
+    else
+      "https://www.#{self.provider}.com/#{self.uid}"
+    end
+  end
   
   scope :stranger, where(identity_state:'stranger')
   scope :wanted, where(identity_state:'wanted')
@@ -75,7 +83,6 @@ class Author < ActiveRecord::Base
   end
   
   before_save do
-
     if self.stranger?
       self.user = nil
     end

@@ -1,32 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
-    <title>¢opper.is – The currency of appreciation</title>
-
+    <title>¢ – <%=@page.title%></title>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="<%=image_path('icons/favicon.ico')%>">
     <link rel="icon"      type="image/svg"  href="<%=image_path('icons/logo.svg')%>" >
     <link rel="logo"      type="image/svg" type="image/svg" href="<%=image_path('icons/logo.svg')%>">
-    <link rel="author" href="https://twitter.com/copper_is">
-    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb">
     <%= stylesheet_link_tag "application", media:"all" %>
     <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One' >
     <%= csrf_meta_tag %>
-    <meta name="google-site-verification" content="ajqm1UZuvVaocEm3g_dULtZtRdPxR5KVf6odfYyYQkQ">
-    <meta name="keywords" content="Copper.is San Francisco, music, tipping, appreciation, copper">
-    <meta name="description" content="Copper. – Support artists through tipping.
-       You find something cool anywhere online. You click a button to tip the content.
-       We find the person who made it and pay them.">
-    <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>" /> 
-    <meta property="og:type"   content="website" /> 
-    <meta property="og:url"    content="Put your own URL to the object here" /> 
-    <meta property="og:title"  content="Copper.is – The currency of appreciation" /> 
-    <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" /> 
+    <link rel="author" href="<%=@page.author.url if @page.author %>">
+    <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>">
+    <meta property="og:type"   content="website"> 
+    <meta property="og:url"    content="<%=@page.url%>"> 
+    <meta property="og:title"  content="<%=@page.title%>"> 
+    <meta property="og:image"  content="<%=@page.thumbnail%>"> 
   </head>
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
     <header>
       <a href="/"><%= image_tag "icons/logo_light.svg", :title => "logo" %></a>
       <nav>
+        <a href="/faq">FAQ</a>
         <a href="/signout">Sign Out</a>
       </nav>
       <hgroup id="user_nav">
@@ -37,15 +31,13 @@
         <%= image_tag "icons/silhouette.svg", class:"author", alt:"me" %>
       </hgroup>
      </header>
-    <%= yield %>
+     <a id="copper_button"><%= image_tag "icons/letter_logo.svg", :title => "Tip: #{@page.title}" %></a>
+     <iframe id="page_url" itemprop="url" seamless allowtransparency src="<%=@page.url%>"> </iframe>
     <footer>
       <h3>Copper, Inc</h3>
       <nav>
         <a href="/privacy">Privacy Policy</a>
         <a href="/terms">Terms of Use</a>
-        <a href="/contact">contact</a>
-        <a href="http://blog.copper.is">blog</a>
-        <a href="/faq">FAQ</a>
       </nav>
       <h4>Copyright © 2012 Copper Inc. All rights reserved</h4>
     </footer>
@@ -53,3 +45,8 @@
     <%= javascript_include_tag "analytics" if Rails.env.production? %>
   </body>
 </html>
+
+
+
+
+

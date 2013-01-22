@@ -37,4 +37,12 @@ class Authors::Facebook < Author
     { :uid => id, :username => username}
   end
 
+  def url
+    if self.username
+      "https://facebook.com/#{self.username}"
+    else
+      "https://facebook.com/#{self.uid}"
+    end
+  end
+
 end

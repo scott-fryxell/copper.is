@@ -1,0 +1,86 @@
+#pages_show {
+
+  #copper_button {
+    // http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/
+    display:block;
+    margin: -2.85em auto .5em auto;
+    width:1.5em;
+    height:1.5em;
+    background-color:$light-text;
+    padding:0.25em;
+    position:relative;
+    text-decoration:none;
+    border: solid 2px $darkness;
+    @include background-image(linear-gradient($light-text 0%, shade($light-text, 25%) 100%, transparent 50%));
+    border-radius: 0.25em;
+
+    &:active {
+      padding-bottom:0.24em;
+      padding-left:0.25em;
+      padding-right:0.25em;
+      padding-top:0.26em;
+      @include background-image(linear-gradient($light-text   0%, shade($light-text, 40%) 100%, transparent 50%));
+    }
+
+    &:before {
+        background-color:#ccd0d5;
+        content:"";
+        display:block;
+        position:absolute;
+        width:100%;
+        height:100%;
+        padding:0.35em;
+        left:-0.35em;
+        top:-0.35em;
+        z-index:-1;
+        border-radius: 0.25em;
+        box-shadow: inset 0px 1px 1px $darkness, 0px 1px 0px $light-text;
+    }
+    & > img {
+      opacity:0.8;
+      position:absolute;
+      top:0;
+      left:0;
+      width:1.5em;
+      height:1.5em;
+      padding:0.25em
+    }
+  }
+   
+
+
+  #copper_button_old {
+    position:relative;
+    background-color:$light-text;
+    display:block;
+    margin: -2.75em auto .5em auto;
+    z-index: 200;
+    padding:.25em;
+    width:2em;
+    height:2em;
+    line-height:2em;
+    vertical-align:middle;
+    border-radius:.5em;
+    @include background-image(linear-gradient($light-text 40%, shade($light-text, 25%) 100%, transparent 50%));
+    @include box-shadow(1px 1px 5px 2px $darkness);
+    @include transition (box-shadow 0.25s ease-in 0s);
+    &:hover {
+      @include box-shadow(1px 1px 9px 2px $button_color);
+      @include transition (box-shadow 0.5s ease-in 0s);
+    }
+    &:active {
+      @include box-shadow(1px 1px 9px 2px $red);
+      padding:-1px;
+      padding-top:.25em;
+    }
+    & > img {
+      width:1.5em;
+      height:1.5em;
+      padding:.25em;
+    }
+  }
+  & > iframe {
+    width:100%;
+    min-height: 768px;
+  }
+}

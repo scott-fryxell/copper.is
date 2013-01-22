@@ -1,73 +1,3 @@
-#home_index.admin {
-  #pages {
-    & > header > hgroup {
-      display:block;
-    }
-    & > details[data-author_state=orphaned] > summary > figure > img {
-      //red
-      @include box-shadow(1px 1px 5px 2px rgba(255, 0, 0, 0.7));
-    }
-
-    & > details[data-author_state=fostered] > summary > figure > img {
-      //yellow
-      @include box-shadow(1px 1px 5px 2px rgba(255, 255, 0, 0.7)); 
-    }
-
-    & > details[data-author_state=adopted] > summary > figure > img {
-      //green
-      @include box-shadow(1px 1px 5px 2px rgba(0, 128, 0, 0.7)); 
-    }
-
-    & > details[data-author_state=manual] > summary > figure > img {
-      //brown
-      @include box-shadow(1px 1px 5px 2px rgba(165, 42, 42, 0.7)); 
-
-      //blue
-      //@include box-shadow(1px 1px 5px 2px rgba(0, 0, 255, 0.7)); 
-    }
-  }
-
-  #pages.adopted {
-    & > details[data-author_state]{
-      display:none;
-    }
-
-    & > details[data-author_state=adopted]{
-      display:inline-block;
-    }
-  }
-
-  #pages.triage {
-    & > details[data-author_state]{
-      display:none;
-    }
-
-    & > details[data-author_state=triage]{
-      display:inline-block;
-    }
-  }
-
-  #pages.fostered {
-    & > details[data-author_state]{
-      display:none;
-    }
-
-    & > details[data-author_state=fostered]{
-      display:inline-block;
-    }
-  }
-
-  #pages.manual {
-    & > details[data-author_state]{
-      display:none;
-    }
-
-    & > details[data-author_state=manual]{
-      display:inline-block;
-    }
-  }
-}
-
 #home_index {
 
   #install {
@@ -268,3 +198,67 @@
     } 
   }
 }
+
+#home_index.admin {
+  #pages {
+    & > header > hgroup {
+      display:block;
+    }
+    & > details[data-author_state=orphaned] > summary > figure > img {
+      @include box-shadow(1px 1px 5px 2px $red);
+    }
+
+    & > details[data-author_state=fostered] > summary > figure > img {
+      @include box-shadow(1px 1px 5px 2px $yellow); 
+    }
+
+    & > details[data-author_state=adopted] > summary > figure > img {
+      @include box-shadow(1px 1px 5px 2px $green); 
+    }
+
+    & > details[data-author_state=manual] > summary > figure > img {
+      @include box-shadow(1px 1px 5px 2px $brown); 
+    }
+  }
+
+  #pages.adopted {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=adopted]{
+      display:inline-block;
+    }
+  }
+
+  #pages.triage {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=triage]{
+      display:inline-block;
+    }
+  }
+
+  #pages.fostered {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=fostered]{
+      display:inline-block;
+    }
+  }
+
+  #pages.manual {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=manual]{
+      display:inline-block;
+    }
+  }
+}
+

@@ -20,7 +20,7 @@ $(document).on "load.home_index load.home_settings", ->
     $("a.install").click ->
       params = 
         "Copper tip button": 
-          URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi?"
+          URL: "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"
           IconURL: "https://www.copper.is/assets/icons/logo.svg"
           Hash: "sha1:cd6b9c5cd0ef8ea1e35c09da2a4e4f3db3dd8396"
           toString: -> "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.xpi"

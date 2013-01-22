@@ -30,8 +30,6 @@ $(document).on "load.home_index", ->
 
 $(document).on "load.home_index", ->
 
-  $('#pages > details:first summary').click()
-  $('#pages details[itemtype=tips] form[method=put] input[type=text]').focus()
   
   # format the page tip totals into dollars
   $('details[itemscope] > summary > figure > figcaption').each ->

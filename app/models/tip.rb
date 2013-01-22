@@ -42,10 +42,11 @@ class Tip < ActiveRecord::Base
   end
 
   def post_tip_to_facebook_feed
-    puts "posting to facebook for tip_id=#{id}"
+    puts "Posting to facebook, tip_id=#{id}"
     facebook = self.user.authors.where(provider:'facebook').first
     graph = Koala::Facebook::API.new(facebook.token)
-    graph.put_connections("me", "copper-dev:tip", website:self.page.url)
+    graph.put_connections("me", "#{Copper::Application.config.facebook_appname}:tip", website:"#{Copper::Application.config.hostname}/pages/#{self.page.id}")
+    puts ":    tip posted" 
   end
 
   state_machine :paid_state, :initial => :promised do

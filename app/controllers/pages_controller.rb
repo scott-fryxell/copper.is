@@ -6,6 +6,7 @@ class PagesController < ApplicationController
   end
 
   def show
+    render action:'show', layout:false
   end
 
   def new

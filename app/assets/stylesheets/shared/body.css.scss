@@ -51,7 +51,7 @@ body > header {
     }
   }
 
-  & > a {
+  & > a:first-child {
     position:absolute;
     top:0;
     left:1em;

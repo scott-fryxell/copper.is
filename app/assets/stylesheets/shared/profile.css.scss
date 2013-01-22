@@ -1,6 +1,5 @@
 #home_index, #home_author {
   #stats {
-    padding-bottom:1em;
     margin-bottom:1em;
     & > header {}
     & > header > h1 {
@@ -76,7 +75,9 @@
   #pages {
     margin-bottom:3em;
     & > header {
+      margin: 2em 0;
       & > h1 {
+        margin:0;
         font-size:1.5em;
       }
       & > hgroup {
