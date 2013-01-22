@@ -19,7 +19,7 @@ Copper::Application.configure do
   config.action_controller.asset_host = "dxs9q85fcnuty.cloudfront.net"
 
   config.hostname = "https://www.copper.is"
-  config.facebook_appname = "copper_us"
+  config.facebook_appname = "copper_is"
   config.facebook_appid = "340706775966925"
   config.cache_store = :dalli_store
 
