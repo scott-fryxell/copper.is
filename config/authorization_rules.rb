@@ -1,7 +1,8 @@
 authorization do
 
   role :admin do
-    has_omnipotence
+    # has_omnipotence
+    includes :fan
   end
 
   role :fan do
@@ -12,7 +13,7 @@ authorization do
     end
     
     has_permission_on :tips,       :to => [:update, :destroy, :create] do
-      if_attribute :user => is { user }
+      # if_attribute :user => is { user }
     end
     has_permission_on :home,       :to => [:read]
     has_permission_on :authors,    :to => [:edit, :destroy]
