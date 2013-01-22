@@ -75,7 +75,7 @@
   #pages {
     margin-bottom:3em;
     & > header {
-      margin: 2em 0;
+      margin: 2kem 0;
       & > h1 {
         margin:0;
         font-size:1.5em;
@@ -134,7 +134,7 @@
         overflow:hidden;
         width:grid-width(4);
         height:grid-width(3);
-        @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
+        @include box-shadow(2px 3px 15px 3px rgba(0, 0, 0, 0.4));
       }
       & > summary > figure > img {
         width:grid-width(4);
