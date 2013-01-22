@@ -20,7 +20,7 @@ Copper::Application.configure do
 
   config.hostname = "https://www.copper.is"
   config.facebook_appname = "copper_us"
-  config.facebook_appname = "340706775966925"
+  config.facebook_appid = "340706775966925"
   config.cache_store = :dalli_store
 
   ActionMailer::Base.smtp_settings = {
