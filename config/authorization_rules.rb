@@ -12,9 +12,7 @@ authorization do
       if_attribute :id => is { user.id }
     end
     
-    has_permission_on :tips,       :to => [:update, :destroy, :create] do
-      # if_attribute :user => is { user }
-    end
+    has_permission_on :tips,       :to => [:update, :destroy, :create]
     has_permission_on :home,       :to => [:read]
     has_permission_on :authors,    :to => [:edit, :destroy]
     has_permission_on :cards,      :to => [:manage]
