@@ -1,0 +1,15 @@
+<%-cache do-%>
+<header>
+  <a href="/"><%= image_tag "icons/logo_light.svg", :title => "logo" %></a>
+  <nav>
+    <a href="/signout">Sign Out</a>
+  </nav>
+  <hgroup id="user_nav">
+    <nav>
+      <%= link_to image_tag("noun_project/7719.svg"), '/author', title:"Who's tipping you" %>
+      <%= link_to image_tag("icons/gear_white.svg"), '/settings', :title => "Account settings"%>
+    </nav>
+    <%= image_tag "icons/silhouette.svg", class:"author", alt:"me" %>
+  </hgroup>
+</header>
+<%-end-%>

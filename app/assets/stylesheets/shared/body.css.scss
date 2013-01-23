@@ -156,7 +156,7 @@ body > nav > a {
 }
 .working {
   @include animation-name(spinning);
-  @include animation-duration(0.5s);
+  @include animation-duration(1.5s);
   @include animation-timing-function(ease);
   @include animation-iteration-count(infinite);
 }
@@ -180,10 +180,18 @@ a.install {
     height:1.15em;
     border-right:1px solid darken(#907744, 10%);
   }
-
 }
 
-
+p.help, span.help {
+  font-size:1em !important;
+  margin:0;
+  display:inline-block;
+  width:grid-width(5);
+  @include help_text
+}
+p.help {
+  @include help_arrow 
+}
 
 .hide {
   transition-property: opacity;

@@ -90,12 +90,6 @@ section.setting, #authors, #sharing {
     vertical-align:top;
     max-width: grid-width(14);
   }
-  & p.help {
-    margin:0;
-    display:inline-block;
-    width:grid-width(5);
-    @include help_text
-  }
   & > div {
     display:inline-block;
   }
@@ -112,6 +106,4 @@ section.setting, #authors, #sharing {
     opacity:.8;
     margin:0;
   }
-
 }
-

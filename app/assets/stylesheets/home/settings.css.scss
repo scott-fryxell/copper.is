@@ -12,9 +12,12 @@
     @include hidden
   }
   
-  #sharing > form {
-    display:inline-block;
-    opacity:1;
+  #sharing {
+    display:none;
+    & > form {
+      display:inline-block;
+      opacity:1;
+    }
   }
 
   #button {

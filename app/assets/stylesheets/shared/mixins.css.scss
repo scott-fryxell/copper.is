@@ -77,8 +77,11 @@ $red:rgba(255, 0, 0, 0.7);
 }
 @mixin help_text {
   font-family: 'Nothing You Could Do', cursive;
-  position:relative;
   padding-left:grid-width(2);
+}
+@mixin help_arrow {
+  padding-left:grid-width(2);
+  position:relative;
   &:before {
     content:"";
     position:absolute;
