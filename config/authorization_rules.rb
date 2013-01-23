@@ -8,6 +8,7 @@ authorization do
   role :fan do
     includes :guest
     has_permission_on :sessions,   :to => :delete
+    has_permission_on :home,       :to => [:read]
     has_permission_on :users,       :to => [:show,:update] do
       if_attribute :id => is { user.id }
     end
