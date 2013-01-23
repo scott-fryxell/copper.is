@@ -4,7 +4,7 @@ gem 'rails', '3.2.11'
 gem 'declarative_authorization'
 gem 'jquery-rails'
 
-gem 'honeybadger'
+# gem 'honeybadger'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-flickr'

@@ -182,14 +182,14 @@ a.install {
   }
 }
 
-p.help, span.help {
+.help, .help {
   font-size:1em !important;
   margin:0;
   display:inline-block;
   width:grid-width(5);
   @include help_text
 }
-p.help {
+p.help, figcaption.help {
   @include help_arrow 
 }
 

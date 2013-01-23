@@ -8,12 +8,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :item_scope
   before_filter :set_current_user
 
-  before_filter do
-    Honeybadger.context({
-      :user_id => current_user.id,
-      :user_email => current_user.email
-    }) if current_user
-  end
+  # before_filter do
+  #   Honeybadger.context({
+  #     :user_id => current_user.id,
+  #     :user_email => current_user.email
+  #   }) if current_user
+  # end
 
   protected
 
