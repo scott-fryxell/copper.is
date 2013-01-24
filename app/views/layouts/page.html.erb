@@ -3,6 +3,7 @@
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <title>¢opper – <%=@page.title%></title>
     <%= render partial:"layouts/head_links"%>
+    <%= csrf_meta_tag %>
     <link rel="author" href="<%=@page.author.url if @page.author %>">
     <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>">
     <meta property="og:type"   content="website"> 
