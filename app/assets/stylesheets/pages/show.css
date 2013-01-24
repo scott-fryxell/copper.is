@@ -1,9 +1,9 @@
 #pages_show {
 
   #copper_button {
+    /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
     display:block;
     margin: -2.85em auto .5em auto;
-    /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
     width:1.5em;
     height:1.5em;
     background-color:$light-text;
