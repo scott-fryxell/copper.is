@@ -57,6 +57,7 @@ group :development, :test do
   gem 'guard-livereload'
   gem 'guard-spork'
   gem 'guard-pow'
+  gem 'guard-process'
   gem 'rb-fsevent'
   gem 'spork-rails'
   gem 'launchy'

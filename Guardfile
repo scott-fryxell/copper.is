@@ -1,12 +1,3 @@
-# guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' } do
-#   watch('config/application.rb')
-#   watch('config/environment.rb')
-#   watch(%r{^config/environments/.+\.rb$})
-#   watch(%r{^config/initializers/.+\.rb$})
-#   watch('Gemfile')
-#   watch('Gemfile.lock')
-#   watch('spec/spec_helper.rb')
-# end
 
 guard :pow do
   watch('.rvmrc')
@@ -15,7 +6,7 @@ guard :pow do
   watch(%r{^config/.+\.rb$})
 end
 
-guard 'spork', :wait => 50 do
+guard 'spork', wait: 60, cucumber: false, rspec: true, test_unit: false do
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('config/application.rb')
@@ -23,8 +14,20 @@ guard 'spork', :wait => 50 do
   watch(%r{^config/environments/.+\.rb})
   watch(%r{^config/initializers/.+\.rb})
   watch('spec/spec_helper.rb')
-  watch('app/models/author.rb')
   watch('.rspec')
+end
+
+guard 'process', :name => 'worker', :command => 'foreman start worker', :stop_signal => 'TERM' do
+  watch('Gemfile')
+  watch('Gemfile.lock')
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  watch('config/routes.rb')
+  watch('config/authorization_rules.rb')
+  watch(%r{^config/environments/.+\.rb})
+  watch(%r{^config/initializers/.+\.rb})
+  watch('/app/**/*.rb')
+  watch('/lib/**/*.rb')
 end
 
 guard 'rspec', :version => 2, :cli => '--color --format doc --drb',
@@ -33,14 +36,14 @@ guard 'rspec', :version => 2, :cli => '--color --format doc --drb',
   watch(/^app\/.+\.rb$/) { 'spec' }
   watch(/^lib\/.+\.rb$/) { 'spec' }
   watch(/^config\/.+\.rb$/) { 'spec' }
-  watch(%r{(public/|app/assets).+\.(js|html|coffee|erb|json)}) {'spec/requests'}
+  watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/requests'}
 end
 
 guard 'livereload' do
   # default rails 3.1
   watch(%r{app/.+\.(erb|haml)})
   watch(%r{app/helpers/.+\.rb})
-  watch(%r{(public/|app/assets).+\.(css|js|html)})
+  watch(%r{(public/|app/assets).+\.(css|js|html|svg)})
   watch(%r{(app/assets/.+\.css)\.scss}) { |m| m[1] }
   watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
   watch(%r{config/locales/.+\.yml})

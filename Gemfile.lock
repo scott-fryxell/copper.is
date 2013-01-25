@@ -99,6 +99,8 @@ GEM
       multi_json (~> 1.0)
     guard-pow (1.0.0)
       guard (>= 1.1)
+    guard-process (1.0.1)
+      guard (>= 0.4.2)
     guard-rake (0.0.7)
       guard
       rake
@@ -375,6 +377,7 @@ DEPENDENCIES
   guard
   guard-livereload
   guard-pow
+  guard-process
   guard-rake
   guard-rspec
   guard-spork

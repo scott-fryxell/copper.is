@@ -27,6 +27,7 @@ Spork.prefork do
 
   Capybara.default_driver = :webkit
   Capybara.javascript_driver = :webkit
+  Capybara.default_selector = :css
   Capybara.ignore_hidden_elements = false
   Capybara.server_port = 8080
   Capybara.app_host = "http://127.0.0.1:8080"
@@ -51,6 +52,11 @@ end
 
 Spork.each_run do
   FactoryGirl.reload
+
+  load "#{Rails.root}/config/routes.rb"
+  # load "#{Rails.root}/config/authorization_rules.rb"
+  Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
+  Dir["#{Rails.root}/lib/**/*.rb"].each {|f| load f}
 
   RSpec.configure do |config|
 
