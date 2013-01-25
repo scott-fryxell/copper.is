@@ -59,7 +59,7 @@ $(document).on "load.home_index", ->
     new_total = 0;
     $(page).find('input[itemprop=amount_in_cents]').each ->
       new_total = new_total + Number($(@).val())
-    $(page).find('figcaption[itemprop=amount_in_cents]').text new_total 
+    $(page).find('figcaption').text document.copper.cents_to_dollars(new_total) 
 
   $('*[itemtype=tips] form[method=put]').on 'item.validate', ->
     tip_amount_in_cents = (parseFloat($(@).find('input[type=text]').val()) * 100);
