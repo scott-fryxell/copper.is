@@ -1,6 +1,6 @@
 #home_statistics {
   section {
-    width:44em;
+    width:48em;
     margin: 10em auto 1em auto;
   }
   figure {
@@ -25,7 +25,8 @@
     font-size:2em;
     margin-top:1em;
     &:nth-child(3){
-      color:$light-text;
+      color:$darkness;
+      opacity:.5;
       text-shadow: 3px 3px $offset_color;
     }
   }
