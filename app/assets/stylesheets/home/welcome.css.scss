@@ -98,6 +98,9 @@
       width: grid-width(11);
       margin-bottom:2em;
     }
+    & > header > span.help {
+      padding-left:grid-width(2.5);
+    }
     & > header > h1 {   
       line-height:1.25em;
       font-size: 2.5em;
