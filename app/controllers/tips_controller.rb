@@ -13,14 +13,12 @@ class TipsController < ApplicationController
 
   end
 
-  def new
-   
+  def new  
     if current_user 
-      render action:'new', layout:false
+      render action:'new', layout:'tip'
     else
-      render action:'sign_in', layout:false
+      render action:'sign_in', layout:'tip'
     end
-    
   end
 
   def create
