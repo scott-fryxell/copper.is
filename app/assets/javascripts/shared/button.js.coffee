@@ -14,7 +14,7 @@ $(document).on "load.home_index load.home_settings", ->
   else if $.browser.safari 
     $("a.install").click ->
       $(@).attr "href", "https://github.com/scott-fryxell/copper_extension/raw/master/compiled/copper.safariextz"
-      $(document).trigger 'copper_button_installed'
+      $(document).trigger 'safari_button_downloaded'
 
   else if $.browser.mozilla
     $("a.install").click ->
@@ -28,3 +28,16 @@ $(document).on "load.home_index load.home_settings", ->
       false;
   else
     $("a.install").hide();
+
+$(document).on 'safari_button_downloaded', -> 
+  $('#extension').addClass 'downloaded'
+
+$(document).on 'copper_button_installed', ->
+  # must be bound early for firefox onboarding to work.
+  $('#extension').addClass 'installed'
+  # TODO: refactor all this bullshit into class animations
+  $('#home_index #button').delay(0).fadeOut 800
+  $('#congrats').delay(800).fadeIn 800
+  $('#facebook').delay(800).fadeIn 800
+  $('#card').delay(800).fadeIn 800, ->
+    $('#card > form input').first().focus()

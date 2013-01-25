@@ -30,7 +30,6 @@ $(document).on "load.home_index", ->
 
 $(document).on "load.home_index", ->
 
-  
   # format the page tip totals into dollars
   $('details[itemscope] > summary > figure > figcaption').each ->
     $(@).text document.copper.cents_to_dollars( $(@).text() )

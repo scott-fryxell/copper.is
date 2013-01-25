@@ -76,8 +76,9 @@ $red:rgba(255, 0, 0, 0.7);
   text-transform:capitalize;
 }
 @mixin help_text {
-  font-family: 'Nothing You Could Do', cursive;
-  padding-left:grid-width(2);
+  font-family: 'Nothing You Could Do', cursive !important;
+  font-size:1em !important;
+  display:inline-block;
 }
 @mixin help_arrow {
   padding-left:grid-width(2);

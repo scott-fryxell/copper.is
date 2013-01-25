@@ -62,7 +62,9 @@ input:disabled + label {
   -webkit-user-select: none;
 }
 
-section.setting, #authors, #sharing {
+section.setting, 
+#home_settings > #button,
+#authors, #sharing {
   margin-bottom: 0.5em;
   padding-top:2em;
   padding-bottom:2em;

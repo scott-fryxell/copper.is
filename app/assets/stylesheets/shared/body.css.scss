@@ -183,13 +183,13 @@ a.install {
 }
 
 p.help, span.help {
-  font-size:1em !important;
+  font-size:1em;
   margin:0;
   display:inline-block;
   width:grid-width(5);
   @include help_text
 }
-p.help {
+p.help_arrow {
   @include help_arrow 
 }
 

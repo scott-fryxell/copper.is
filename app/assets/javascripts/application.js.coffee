@@ -5,7 +5,7 @@
 #= require jquery.details
 #= require shared/Item
 #= require shared/copper
-#= require shared/install
+#= require shared/button
 #= require shared/address
 #= require shared/card
 #= require shared/email
@@ -15,17 +15,8 @@
 #= require home/welcome
 #= require authors/edit
 #= require honeybadger.min
-Honeybadger.configure({api_key: 'df5151fb675d4d4af78d117fab648540'});
 
-$(document).on 'copper_button_installed', ->
-  # must be bound early for firefox onboarding to work.
-  $('#button').addClass 'installed'
-  # TODO: refactor all this bullshit into class animations
-  $('#install').delay(0).fadeOut 800 
-  $('#congrats').delay(800).fadeIn 800
-  $('#facebook').delay(800).fadeIn 800
-  $('#card').delay(800).fadeIn 800, ->
-    $('#card > form input').first().focus()
+Honeybadger.configure({api_key: 'df5151fb675d4d4af78d117fab648540'});
 
 $(document).ready ->
 

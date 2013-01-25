@@ -1,0 +1,10 @@
+<li itemtype='tip' itemid='' itemscope>
+  <time itemprop='created_at' datetime=""/>
+  <data itemprop='amount_in_cents' value=''>
+  <form method="put">
+    <input type="text" name='amount_in_dollars' value="<%=tip.amount_in_cents%>"/>
+    <input type="submit" value="Save"/>
+    <input type="hidden" itemprop="amount_in_cents" name="tip[amount_in_cents]" value="<%=tip.amount_in_cents%>"/>
+  </form>
+  <form method="delete"><input type="submit" value="X"/></form>
+</li>

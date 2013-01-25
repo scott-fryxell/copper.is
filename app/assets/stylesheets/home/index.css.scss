@@ -1,6 +1,6 @@
 #home_index {
 
-  #install {
+  #button {
     margin-bottom:grid-width(6.5);
 
     & > header {
@@ -16,12 +16,6 @@
     & > figure {
       vertical-align:top;
       display: inline-block;
-    }
-    & > figure > figcaption {
-      font-size:.70em;
-      display:block;
-      margin-top:.5em;
-      width:grid-width(13);
     }
     & > figure > a {
       position:relative;

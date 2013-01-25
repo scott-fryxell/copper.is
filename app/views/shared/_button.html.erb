@@ -1,0 +1,30 @@
+<%-cache do-%>
+<section id="button">
+  <header>
+    <h2>The button</h2>
+    <p>
+      You’re now officially a fan on Copper. As soon as you
+      have the button, you can start tipping!
+    </p>
+  </header>
+  <figure id="extension">
+    <a href="#me" title="Done! Your all signed up">
+      <%= image_tag "providers/facebook/connect.png"%>
+    </a>
+    <%= image_tag "arrows/right.svg"%>
+    <a class="button install" ><%= image_tag "icons/letter_logo_white.svg"%>Install The Button</a>
+    <p class="help safari"> 
+      Go to your <em>downloads</em> folder and open: <code>copper.safariext</code>
+      Once installed, the copper button will live in the top left of your toolbar
+    </p>
+    <figcaption>Installed!</figcaption>
+    <%= image_tag "arrows/right_two.svg"%>
+    <a class="button">Start Tipping</a>
+  </figure>
+  <figure id="bookmarklet" style="display:none">
+    <a href="<%= render :partial => 'home/wrapped_launcher', :formats => [:js] %>">¢opper</a>
+    <figcaption class="help ie">TODO: instructions for IE</figcaption>
+    <figcaption class="help ipad">TODO: instructions for ipad</figcaption>
+  </figure>  
+</section>
+<%-end-%>

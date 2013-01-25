@@ -3,13 +3,19 @@ require 'spec_helper'
 describe TipsController do
   describe 'high level' do
     before :each do
+      Page.stub(:learn)
+      Page.stub(:discover_author!)
+      Page.should_receive(:learn)
+      Page.should_receive(:discover_author!)
+
       @me = create!(:user)
       Author.any_instance.stub(:_send_wanted_message)
     end
 
-    it 'tips pages' do
+    it 'tips pages', :focus do
       proc do
         post_with @me, :create, tip:{url:'http://twitter.com/ableton'}, format: :json
+
         @page = Page.find_by_url('http://twitter.com/ableton')
         @page.tips.size.should eq(1)
         @me.reload
