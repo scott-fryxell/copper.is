@@ -7,5 +7,7 @@
   </head>
   <body id="tips_new" itemscope itemtype='tips' itemid="new">
     <%= yield %>
+    <%= javascript_include_tag "tips/new" %>
+    <%= javascript_include_tag "analytics" if Rails.env.production?%>
   </body>
 </html>

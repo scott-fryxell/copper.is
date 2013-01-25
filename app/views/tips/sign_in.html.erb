@@ -1,20 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <%= csrf_meta_tag %>
-    <%= stylesheet_link_tag "tips/new" %>
-    <%= javascript_include_tag "tips/new" %>
-    <%= javascript_include_tag "analytics" if Rails.env.production?%>
-  </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" itemscope itemtype='tips' itemid="/tips/new">
-    <section class="sign_in">
-      <a href="#close">X</a>
-      <header>
-        <h1>You Can Tip</h1>
-        <p itemprop="title"></p>
-        <a href="<%=request.scheme%>://<%=request.host%>" target="new">Learn more</a>
-      </header>
-    </section>
-  </body>
-</html>
+<%-cache do-%>
+<section class="sign_in">
+  <a href="#close">X</a>
+  <header>
+    <h1>You Can Tip</h1>
+    <p itemprop="title"></p>
+    <a href="<%=request.scheme%>://<%=request.host%>" target="new">Learn more</a>
+  </header>
+</section>
+<%-end-%>

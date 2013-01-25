@@ -12,6 +12,4 @@
   <input itemprop="amount_in_cents" name="tip[amount_in_cents]" 
          type="hidden" value="<%= current_user.tip_preference_in_cents%>"/>
 </form>
-<%= javascript_include_tag "tips/new" %>
-<%= javascript_include_tag "analytics" if Rails.env.production?%>
 <%-end-%>
