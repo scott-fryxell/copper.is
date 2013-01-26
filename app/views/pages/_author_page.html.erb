@@ -9,7 +9,7 @@
   </summary>
   <dl>
     <dt>Source</dt>
-    <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(page.url).host%></a></dd>
+    <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(URI.escape(page.url)).host%></a></dd>
     <dt>
       <details>
         <summary><%=pluralize(page.tips.for_author.count, 'tip')%></summary>
