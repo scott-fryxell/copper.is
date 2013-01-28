@@ -11,7 +11,7 @@
     <dt>Source</dt>
     <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(URI.escape(page.url)).host%></a></dd>
     <dt>
-      <details>
+      <details open>
         <summary><%=pluralize(page.fan_tips(current_user).count, 'tip')%></summary>
         <table>
           <thead>
