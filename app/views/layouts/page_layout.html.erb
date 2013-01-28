@@ -3,6 +3,7 @@
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <title>¢opper – <%=@page.title%></title>
     <%= render partial:"layouts/head_links"%>
+    <%= stylesheet_link_tag "application", media:"all" %>
     <%= csrf_meta_tag %>
     <link rel="author" href="<%=@page.author.url if @page.author %>">
     <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>">
@@ -15,5 +16,7 @@
     <%= render partial:"layouts/header"%>
     <%= yield %>
     <%= render partial:"layouts/footer"%>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "analytics" if Rails.env.production? %>
    </body>
  </html>

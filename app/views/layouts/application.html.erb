@@ -8,10 +8,13 @@
     <meta property="og:type"   content="website" /> 
     <meta property="og:title"  content="Copper.is – The currency of appreciation" /> 
     <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" /> 
+    <%= stylesheet_link_tag "application", media:"all" %>
   </head>
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
     <%= render partial:"layouts/header"%>
     <%= yield %>
     <%= render partial:"layouts/footer"%>
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "analytics" if Rails.env.production? %>
   </body>
 </html>
