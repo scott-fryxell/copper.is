@@ -1,6 +1,5 @@
 Todo's
 ======
-- Automatically posting your tips to facebook feed.
 - Tip facebook pages via chrome
 - Tests passing
 - Badge works for authors to embed 
@@ -8,6 +7,10 @@ Todo's
 - Jobs scheduled
     - Charging fans 
     - copper:pages:adopt running on production
+- Second click of tip button should show detailed overlay
+- Welcome page h1 should cycle through
+    - (artist|creator|blogger|musician|veteran)
+
 
 Later shit
 ==========
@@ -22,11 +25,8 @@ Later shit
     - artist welcome
     - artist onboarding
 
-- Second click of tip button should show detailed overlay
-- Tiping cabin porn should work (JSON.parse is overwritten)
 
-- Welcome page h1 should cycle through
-    - (artist|creator|blogger|musician|veteran)
+- Tiping cabin porn should work (JSON.parse is overwritten)
 
 - email address
     - for ben, josh, laura
