@@ -9,6 +9,7 @@
 #= require shared/address
 #= require shared/card
 #= require shared/email
+#= require shared/badge
 #= require home/index
 #= require home/author
 #= require home/settings
@@ -16,7 +17,7 @@
 #= require authors/edit
 #= require honeybadger.min
 
-Honeybadger.configure({api_key: 'df5151fb675d4d4af78d117fab648540'});
+Honeybadger.configure({api_key: 'faa71edd0c0ae3ccaa72bad63e5411f3'});
 
 $(document).ready ->
 
