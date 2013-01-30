@@ -1,6 +1,11 @@
 Todo's
 ======
 - Tip facebook pages via chrome
+
+- tip from pages/:id
+    - click the button should load tips/new into the page. 
+    - copy the flow from embed_iframe.js
+    
 - Tests passing
 - Badge works for authors to embed 
 - Include honeybadger for javascript (so rad)

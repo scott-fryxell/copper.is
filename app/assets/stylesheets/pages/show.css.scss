@@ -1,5 +1,4 @@
 #pages_show {
-
   #copper_button {
     /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
     display:block;
@@ -48,7 +47,7 @@
     }
   }
   
-  & > iframe {
+  & > iframe#page_url {
     width:100%;
     min-height: 768px;
   }

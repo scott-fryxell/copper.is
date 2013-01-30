@@ -5,11 +5,11 @@
 //= require shared/Item
 //= require shared/copper
 //= require honeybadger.min
-Honeybadger.configure({api_key: 'df5151fb675d4d4af78d117fab648540'});
 
+// Honeybadger.configure({api_key: 'faa71edd0c0ae3ccaa72bad63e5411f3'});
 $(document).ready(function (){
   try {
-    document.postMessage(JSON.stringify({type:'tip_info'}))
+    document.postMessage(JSON.stringify({type:'gather_page_info'}))
     $("section.sign_in a").click(function(event){
       $(document).trigger("tip_hide")
     });
@@ -19,8 +19,17 @@ $(document).ready(function (){
   }
 });
 $(document).bind({
+  "tip_details": function (event){
+    try {
+      console.debug('show tip details');
+    } catch(e) {
+      console.error(e)
+      Honeybadger.notify(e);
+    }
+  },
   "tip_info": function (event){
     try {
+      console.debug('show tip info');
       title = decodeURIComponent(event.title)
       new_tip = document.getItems('tips')[0]
       new_tip.title = decodeURIComponent(event.title)
@@ -42,6 +51,7 @@ $(document).bind({
   },
   "tip_display": function (event){
     try {
+      console.debug('tip_display');
       $("body > form").submit()
       document.postMessage(JSON.stringify({type:'show'}))
       $("body > section").addClass("show")
@@ -63,6 +73,10 @@ $(document).bind({
   "tip_hide": function(event){
     try {
       $("body > section").removeClass('show')
+      window.setTimeout(function (){
+        document.postMessage(JSON.stringify({type:'hide'}))
+      },2000);      
+
     } catch(e) {
       Honeybadger.notify(e);
     }

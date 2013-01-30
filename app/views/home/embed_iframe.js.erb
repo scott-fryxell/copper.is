@@ -1,17 +1,44 @@
 <%-cache do-%>
 (function(){
-  var f = document.getElementById('copper');
+  var f = document.getElementById('copper_tip');
+  window.addEventListener('message', function(event) {
+    console.debug(event.source)
+    var data = JSON.parse(event.data)
+    if (data.type == 'show'){
+      console.debug('show')
+      f.width='350px'
+      f.height='200px'
+    }
+    else if (data.type == 'hide'){
+      console.debug('hide!!!')
+      f.width='0'
+      f.height='0'
+    }
+    else if(data.type == 'gather_page_info'){
+      if(document.getElementsByTagName('title')[0])
+        page_title=document.getElementsByTagName('title')[0].innerHTML
+      else
+        page_title="" 
+      var message = {
+        type:"tip_info",
+        url:encodeURIComponent(window.location),
+        title:encodeURIComponent(page_title)
+      }
+      event.source.postMessage(JSON.stringify(message), "*");
+    }
+  }, false);
+
   if (f) {
-    // increment tip
+    f.postMessage(JSON.stringify({type:"tip_details"}), "*");
   }
   else {
     f=document.createElement('iframe');
-    f.id='copper';
+    f.id='copper_tip';
     f.style.position='fixed';
     f.style.top='0';
-    f.style.right='50%';
+    f.style.left='40%';
     f.style.padding='0';
-    f.style.margin='0 -350px 0';
+    f.style.margin='0 auto';
     f.scrolling='no';
     f.frameborder=0;
     f.style.background.color='transparent';
@@ -22,30 +49,6 @@
     f.width='0';
     f.height='0';
     f.style.zIndex='9999999999999999';
-    window.addEventListener('message', function(event) {
-      var data = JSON.parse(event.data)
-      if (data.type == 'show'){
-        f.width='350px'
-        f.height='200px'
-      }
-      else if (data.type == 'hide'){
-        f.width='0'
-        f.height='0'
-      }
-      else if(data.type == 'tip_info'){
-
-        if(document.getElementsByTagName('title')[0])
-          page_title=document.getElementsByTagName('title')[0].innerHTML
-        else
-          page_title="" 
-        var message = {
-          type:"tip_info",
-          url:encodeURIComponent(window.location),
-          title:encodeURIComponent(page_title)
-        }
-        event.source.postMessage(JSON.stringify(message), "*");
-      }
-    }, false);
   }
 })()
 <%-end-%>
