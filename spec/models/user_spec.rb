@@ -35,4 +35,9 @@ describe User do
     end
   end
 
+  describe 'email', :focus do
+    it 'should validate emails with a + sign' do
+      @me = create!(:user_email)
+    end
+  end
 end
