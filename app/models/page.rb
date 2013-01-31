@@ -32,38 +32,53 @@ class Page < ActiveRecord::Base
     end
   end
 
-  def learn
-    puts "thumbnail id:#{id}, for: #{url[0...120]}"
-    content = self.agent.get(url)
+  def learn_title(content = self.agent.get(url))
+    puts ":  title"
     
-    thumbnail_tag = content.at('meta[property="og:image"]')
-    unless thumbnail_tag.blank?
-      puts ":    og:image=#{thumbnail_tag.attributes['content'].value[0...120]}"
-      if self.thumbnail_url = thumbnail_tag.attributes['content'].value
-        self.save!
-        return true
-      end
+    if title_tag = content.at('meta[property="og:title"]')
+      puts ":    og:title=#{title_tag.attributes['content'].value[0...100]}"
+      title = title_tag.attributes['content'].value
     end
+    title
+  end
 
-    thumbnail_tag = content.at('link[rel="image_src"]') 
-    unless thumbnail_tag.blank?
-      puts ":    image_src=#{thumbnail_tag.attributes['href'].value[0...120]}"
-      if self.thumbnail_url = thumbnail_tag.attributes['href'].value
-        self.save!
-        return true
-      end
+  def learn_url (content = self.agent.get(url))
+    puts ":  url"
+    if url_tag = content.at('object[itemtype="#page"] > data[itemprop=url]')
+      puts ":    itemprop=url=#{url_tag.attributes['value'].value[0...100]}"
+      self.url = url_tag.attributes['value'].value
+    elsif url_tag = content.at('meta[property="og:url"]')   
+      puts ":    og:url=#{url_tag.attributes['content'].value[0...100]}"
+      self.url = url_tag.attributes['content'].value
     end
-    
-    thumbnail_tag = content.at('link[rel="thumbnailUrl"]') 
-    unless thumbnail_tag.blank?
-      puts ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...120]}"
-      if self.thumbnail_url = thumbnail_tag.attributes['href'].value
-        self.save!
-        return true
-      end
+    @url
+  end
+
+  def learn_image(content = self.agent.get(url))
+    puts ":  thumbnail"
+
+    if thumbnail_tag = content.at('meta[property="og:image"]')
+      puts ":    og:image=#{thumbnail_tag.attributes['content'].value[0...100]}"
+      self.thumbnail_url = thumbnail_tag.attributes['content'].value 
+    elsif thumbnail_tag = content.at('link[rel="image_src"]') 
+      puts ":    image_src=#{thumbnail_tag.attributes['href'].value[0...100]}"
+      self.thumbnail_url = thumbnail_tag.attributes['href'].value
+    elsif thumbnail_tag = content.at('link[rel="thumbnailUrl"]') 
+      puts ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...100]}"
+      self.thumbnail_url = thumbnail_tag.attributes['href'].value
     end
+    thumbnail_url
   end
   
+  def learn (content = self.agent.get(url))
+    puts " "
+    puts "learn about  id:#{id}, url: #{url[0...100]}"
+    learn_url(content)
+    learn_title(content)
+    learn_image(content)
+    self.save!
+  end
+
   def agent
     return Mechanize.new do |a|
       a.post_connect_hooks << lambda do |_,_,response,_|

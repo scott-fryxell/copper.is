@@ -2,26 +2,38 @@
 (function(){
   var f = document.getElementById('copper_tip');
   window.addEventListener('message', function(event) {
-    console.debug(event.source)
     var data = JSON.parse(event.data)
     if (data.type == 'show'){
-      console.debug('show')
       f.width='350px'
       f.height='200px'
     }
     else if (data.type == 'hide'){
-      console.debug('hide!!!')
       f.width='0'
       f.height='0'
     }
     else if(data.type == 'gather_page_info'){
-      if(document.getElementsByTagName('title')[0])
-        page_title=document.getElementsByTagName('title')[0].innerHTML
+
+      var page_title, page_url;
+
+      if(document.querySelector('object[itemtype="#page"] > data[itemprop=title]'))
+        page_title = document.querySelector('object[itemtype="#page"] > data[itemprop=title]').getAttribute('value');      
+      else if(document.querySelector('meta[property="og:title"]'))
+        page_title = document.querySelector('meta[property="og:title"]').getAttribute('content');
+      else if(document.querySelector('title'))
+        page_title=document.querySelector('title').innerHTML
       else
-        page_title="" 
+        page_title=""
+      
+      if (document.querySelector('object[itemtype="#page"] > data[itemprop=url]'))
+        page_url = document.querySelector('object[itemtype="#page"] > data[itemprop=url]').getAttribute('value');  
+      else if (document.querySelector('meta[property="og:url"]'))
+        page_url = document.querySelector('meta[property="og:url"]').getAttribute('content');
+      else
+        page_url = window.location
+
       var message = {
         type:"tip_info",
-        url:encodeURIComponent(window.location),
+        url:encodeURIComponent(page_url),
         title:encodeURIComponent(page_title)
       }
       event.source.postMessage(JSON.stringify(message), "*");
@@ -29,7 +41,7 @@
   }, false);
 
   if (f) {
-    f.postMessage(JSON.stringify({type:"tip_details"}), "*");
+    f.contentWindow.postMessage(JSON.stringify({type:"tip_details"}), "*");
   }
   else {
     f=document.createElement('iframe');

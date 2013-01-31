@@ -181,7 +181,6 @@ a.install {
     border-right:1px solid darken(#907744, 10%);
   }
 }
-
 p.help, span.help {
   font-size:1em;
   margin:0;
@@ -193,6 +192,9 @@ p.help_arrow {
   @include help_arrow 
 }
 
+object[itemscoped]{
+  display:none;
+}
 .hide {
   transition-property: opacity;
   transition-duration: 1s;

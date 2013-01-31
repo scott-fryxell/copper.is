@@ -17,6 +17,7 @@ namespace :copper do
 
     task :learn => :environment do
       Page.all.each do |page|
+        puts "spidering page: #{page.id}"
         Resque.enqueue Page, page.id, :learn
       end
     end
@@ -32,7 +33,8 @@ namespace :copper do
     end
     task :reset_stripe => :environment do
       User.all.each do |user|
-        user.stripe_id = nil
+        user.stripe_id = 'cus_1Csmeobb68qjza'
+        user.accept_terms = true
         user.save
       end
     end    
