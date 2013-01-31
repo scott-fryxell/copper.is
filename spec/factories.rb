@@ -87,6 +87,16 @@ FactoryGirl.define do
     roles [Role.find_or_create_by_name('Fan')]
   end
 
+  factory :user_email, class:'User' do
+    name 'Joe'
+    email 'scott+test@copper.is'
+    accept_terms true
+    tip_preference_in_cents 50
+    authors [FactoryGirl.create(:authors_phony,identity_state: :known)]
+    roles [Role.find_or_create_by_name('Fan')]
+  end
+
+
   factory :user_phony, class:'User' do
     name 'dude'
     accept_terms true

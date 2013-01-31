@@ -12,7 +12,7 @@ describe TipsController do
       Author.any_instance.stub(:_send_wanted_message)
     end
 
-    it 'tips pages', :focus do
+    it 'tips pages' do
       proc do
         post_with @me, :create, tip:{url:'http://twitter.com/ableton'}, format: :json
 
