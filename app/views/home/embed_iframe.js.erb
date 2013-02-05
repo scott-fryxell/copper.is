@@ -2,14 +2,19 @@
 (function(){
   var f = document.getElementById('copper_tip');
   window.addEventListener('message', function(event) {
-    var data = JSON.parse(event.data)
+
+    var data = event.data
     if (data.type == 'show'){
       f.width='350px'
       f.height='200px'
     }
+    else if (data.type == 'show_details'){
+      f.width='550px'
+      f.height='375px'
+    }
     else if (data.type == 'hide'){
-      f.width='0'
-      f.height='0'
+      f.width='350px'
+      f.height='9px'
     }
     else if(data.type == 'gather_page_info'){
 
@@ -36,12 +41,12 @@
         url:encodeURIComponent(page_url),
         title:encodeURIComponent(page_title)
       }
-      event.source.postMessage(JSON.stringify(message), "*");
+      event.source.postMessage(message, "*");
     }
   }, false);
 
   if (f) {
-    f.contentWindow.postMessage(JSON.stringify({type:"tip_details"}), "*");
+    f.contentWindow.postMessage({type:"tip_details"}, "*");
   }
   else {
     f=document.createElement('iframe');

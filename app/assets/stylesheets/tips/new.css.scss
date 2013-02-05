@@ -1,7 +1,7 @@
 $background_color: #313130;
 @import "shared/mixins";
-
 #tips_new {
+  margin-left:1em;
   width:300px;
   font-size:16px;
   section {
@@ -12,44 +12,68 @@ $background_color: #313130;
     height:0;
     border-radius: 0 0 0.5em 0.5em;
     padding:0 2em;
-    opacity:0;
-    @include transition(height 1.4s, padding 1s, opacity 2s ease-out);
-    header,p,h1 {
-      height:0;
-      @include transition(opacity .4s, height .4s);
+    opacity:1;
+    border:2px solid $darkness;
+    border-top:none;
+    @include box-shadow(4px 3px 8px 1px hsla(0, 0, 0, 0.65));
+    @include transition(min-height 1s ease-out 0.25s,  padding 1s);
+
+    header {
+      @include transition(min-height 1s ease-out 0.5s);
+      margin-top:1em;
+      min-height:0;
+    }
+    header,p,h1,form,aside,a{
+      @include transition(opacity 0.25s);
       opacity:0;
     }
+    & > aside {
+      margin-left:1em;
+      float:left;
+      width:7em;
+      & > div {
+        margin-bottom:1em;
+      }
+    }
+    & > a.button {
+      @include copper_button;
+      display:block;
+      margin-right:1.5em;
+      float:right; 
+    }
+
+    &.show, &.details {
+      padding:2em;
+      min-height:6em;
+      @include transition( min-height 1.4s, padding 1.4s);
+      header {
+        @include transition(min-height 1.4s);
+        min-height:2.5em;
+        overflow:hidden;
+      }
+      header,p,h1 {
+        @include transition(opacity 2s);
+        opacity:1;
+      }
+    }
+    &.details {
+      min-height:10em;
+      & > aside, & > a.button{
+        @include transition(opacity 1s ease-in 0.75s);
+        opacity:1;
+      }
+    }
   }
-  section.show {
-    padding:2em;
-    @include box-shadow(0 0 5px 3px hsla(0, 0%, 0%, 0.65));
-    @include transition(height 1.4s, padding 1.4s, opacity 1s);
-    opacity:1;
-    height:7em;
-    header {
-      @include transition(height 1.4s);
-      height:4em;
-    }
-    p,h1 {
-      @include transition(height 1.4s);
-      height:1.5em;
-    }
-    header,p,h1 {
-      @include transition(opacity 2.5s, height 1.4s);
-      opacity:1;
-    }
-  }
+
   section > header > h1 {
     margin:0;
     margin-top:1em;
+    margin-left:1em;
     margin-right:1em;
     vertical-align:middle;
     display:inline-block;
     font-size:.85em;
     color:#999999;
-  }
-  section > header > p {
-    color:#CCCCCC;
   }
   section > header > p[itemprop=amount_in_cents] {
     font-family: 'Bree Serif', serif;
@@ -58,34 +82,25 @@ $background_color: #313130;
     vertical-align:top;
     font-size:2em;
     display:inline-block;
-    width:3em;
     &:before{
       content:"$";
     }
   }
   section p[itemprop=title] {
     font-family: 'Doppio One', sans-serif;
-    width:15em;
-    height:3em;
+    width:14em;
+    height:1.5em;
     margin:0;
-    line-height:1.5em;
-    font-size:1em;
+    line-height:1em;
+    vertical-align: middle;
+    font-size:1.1em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  section > form {
-    display:none
-  }
-  section > header > button {
-    color:#CCCCCC;
-    background-color:$background_color;
-  }
-  section a {
+  section.sign_in > a {
     cursor:pointer;
     color:#CCCCCC;
-  }
-  section > a {
     text-decoration: none;
     position: absolute;
     top:1em;

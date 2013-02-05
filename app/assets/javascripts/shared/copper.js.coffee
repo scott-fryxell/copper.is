@@ -1,4 +1,3 @@
-
 document.copper = 
   tip_amount_options: [
                        5,10,25

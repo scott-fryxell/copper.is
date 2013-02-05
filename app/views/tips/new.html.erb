@@ -1,15 +1,20 @@
 <%-cache current_user do-%>
 <section>
+  <p itemprop="title"></p>
   <header>
     <h1>You're Tipping</h1>
     <p itemprop="amount_in_cents"><%= current_user.tip_preference_in_cents%></p>
   </header>
-  <p itemprop="title"></p>
+  <form action='/tips' method="post" accept-charset="utf-8">
+    <input itemprop="url" name="tip[url]" type="hidden"/>
+    <input itemprop="title" name="tip[title]" type="hidden" />
+    <input itemprop="amount_in_cents" name="tip[amount_in_cents]" 
+           type="text" value="<%= current_user.tip_preference_in_cents%>"/>
+  </form>
+  <aside id="share">
+    <div class="fb-like" data-send="false" data-layout="button_count" data-width="55" data-show-faces="false" data-colorscheme="dark"></div>
+    <a data-url="" class="twitter-share-button" data-count="horizontal" data-size="normal" data-hashtags="tipping" data-dnt="false">Tweet</a>
+  </aside>
+  <a class="button">Save</a>
 </section>
-<form action='/tips' method="post" accept-charset="utf-8">
-  <input itemprop="url" name="tip[url]" type="hidden"/>
-  <input itemprop="title" name="tip[title]" type="hidden" />
-  <input itemprop="amount_in_cents" name="tip[amount_in_cents]" 
-         type="hidden" value="<%= current_user.tip_preference_in_cents%>"/>
-</form>
 <%-end-%>

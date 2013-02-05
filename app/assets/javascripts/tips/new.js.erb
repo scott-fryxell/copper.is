@@ -4,95 +4,68 @@
 //= require jquery.tmpl
 //= require shared/Item
 //= require shared/copper
-//= require honeybadger.min
 
-// Honeybadger.configure({api_key: 'faa71edd0c0ae3ccaa72bad63e5411f3'});
 $(document).ready(function (){
-  try {
-    document.postMessage(JSON.stringify({type:'gather_page_info'}))
-    $("section.sign_in a").click(function(event){
-      $(document).trigger("tip_hide")
-    });
-  } catch(e) {
-    console.error(e)
-    Honeybadger.notify(e);
-  }
+  document.postMessage({type:'gather_page_info'})
+  $("section > a, section > button").click(function(event){
+    $(document).trigger("tip_hide")
+  });
 });
 $(document).bind({
   "tip_details": function (event){
-    try {
-      console.debug('show tip details');
-    } catch(e) {
-      console.error(e)
-      Honeybadger.notify(e);
-    }
+    document.postMessage({type:'show_details'})
+    $("body > section").addClass("details")
+
+    // embed the twitter iframe
+    $('#share > a').attr('data-url', document.getItems('tips')[0].url);
+    $('#share > div').attr('data-href', document.getItems('tips')[0].url);
+
+    var js, fjs=document.getElementsByTagName('script')[0];
+    window.setTimeout(function (){ 
+      if (document.getElementById('twitter-wjs')) return;
+      js=document.createElement('script');
+      js.id='twitter-wjs';
+      js.src="//platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js,fjs);
+    },1000);
+
+    // embed the facebook like iframe
+    if (document.getElementById('facebook-jssdk')) return;
+    var js = document.createElement('script'); 
+    js.id = 'facebook-jssdk';
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=340706775966925";
+    fjs.parentNode.insertBefore(js, fjs);
+
   },
   "tip_info": function (event){
-    try {
       title = decodeURIComponent(event.title)
       new_tip = document.getItems('tips')[0]
       new_tip.title = decodeURIComponent(event.title)
       new_tip.url = decodeURIComponent(event.url)
       Item.update_page(new_tip)
-      document.copper.format_cents_to_dollars("amount_in_cents")
-
-      jQuery('<img/>', {
-        id: 'create_img',
-        src: decodeURIComponent("http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=" + new_tip.url),
-        style: 'opacity:0;'
-      }).appendTo('body');
-
+      $("form").submit()
       $(document).trigger("tip_display")
-    } catch(e) {
-      console.error(e)
-      Honeybadger.notify(e);
-    }
   },
   "tip_display": function (event){
-    try {
-      $("body > form").submit()
-      document.postMessage(JSON.stringify({type:'show'}))
+      document.copper.format_cents_to_dollars("amount_in_cents")      
+      document.postMessage({type:'show'})
       $("body > section").addClass("show")
-
-      if(!$("section").hasClass('sign_in')){
-        window.setTimeout(function (){
-          $(document).trigger("tip_hide")
-        },3000);
-
-        window.setTimeout(function (){
-          document.postMessage(JSON.stringify({type:'hide'}))
-        },4000);      
-      }
-    } catch(e) {
-      console.error(e)
-      Honeybadger.notify(e);
-    }
+      if($("section").hasClass('sign_in')) return;
+      window.setTimeout(function (){
+        $(document).trigger("tip_hide")
+      },3000);     
   },
   "tip_hide": function(event){
-    try {
-      $("body > section").removeClass('show')
-      window.setTimeout(function (){
-        document.postMessage(JSON.stringify({type:'hide'}))
-      },2000);      
-
-    } catch(e) {
-      Honeybadger.notify(e);
-    }
+    $("body > section").removeClass('show')
+    $("body > section").removeClass('details')
+    window.setTimeout(function (){
+      document.postMessage({type:'hide'})
+    },2000);
   }
 });
 window.addEventListener('message', function(event) {
-  try {
-    $(document).trigger(JSON.parse(event.data))
-  } catch(e) {
-    console.error(e)
-    Honeybadger.notify(e);
-  }
+  $(document).trigger(event.data)
 });
 document.postMessage = function (message){
-  try {
-    window.parent.postMessage(message, "*");
-  } catch(e) {
-    console.error(e)
-    Honeybadger.notify(e);
-  }
+  window.parent.postMessage(message, "*");
 }

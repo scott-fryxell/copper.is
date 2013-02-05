@@ -16,13 +16,13 @@
 #= require home/welcome
 #= require authors/edit
 #= require honeybadger.min
-
-Honeybadger.configure({api_key: 'faa71edd0c0ae3ccaa72bad63e5411f3'});
+Honeybadger.configure
+  api_key: 'df5151fb675d4d4af78d117fab648540'
 
 $(document).ready ->
 
   jQuery('time').timeago();
-  $(document).trigger "load." + $('body').attr 'id'
+  $(document).trigger "load.#{$('body').attr('id')}"
 
   jQuery.ajax
     url:'/users/me.json',
