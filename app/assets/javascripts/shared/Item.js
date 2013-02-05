@@ -162,7 +162,7 @@ $("*[itemscope] form").submit(function(event){
       // console.debug("successful item submission", data)
       // let any listeners know that any the form submited succesfully update.
       // TODO we leave updating the items to the listener of this method. this is risky
-      $(form).trigger('item.' + method);
+      $(form).trigger('item.' + method, [data, textStatus, jqXHR]);
     }
   });
 

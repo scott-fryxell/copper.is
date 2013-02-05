@@ -7,7 +7,8 @@
 
 $(document).ready(function (){
   document.postMessage({type:'gather_page_info'})
-  $("section > a, section > button").click(function(event){
+  $("section > a").click(function(event){
+    $("form[method=put]").submit();
     $(document).trigger("tip_hide")
   });
 });
@@ -19,7 +20,7 @@ $(document).bind({
     // embed the twitter iframe
     $('#share > a').attr('data-url', document.getItems('tips')[0].url);
     $('#share > div').attr('data-href', document.getItems('tips')[0].url);
-
+    $("input[itemprop=amount_in_dollars]").focus();
     var js, fjs=document.getElementsByTagName('script')[0];
     window.setTimeout(function (){ 
       if (document.getElementById('twitter-wjs')) return;
@@ -35,7 +36,6 @@ $(document).bind({
     js.id = 'facebook-jssdk';
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=340706775966925";
     fjs.parentNode.insertBefore(js, fjs);
-
   },
   "tip_info": function (event){
       title = decodeURIComponent(event.title)
@@ -47,7 +47,8 @@ $(document).bind({
       $(document).trigger("tip_display")
   },
   "tip_display": function (event){
-      document.copper.format_cents_to_dollars("amount_in_cents")      
+      cents = $("input[itemprop=amount_in_dollars]").attr('value');
+      $("input[itemprop=amount_in_dollars]").attr('value',document.copper.cents_to_dollars(cents));
       document.postMessage({type:'show'})
       $("body > section").addClass("show")
       if($("section").hasClass('sign_in')) return;
@@ -63,6 +64,17 @@ $(document).bind({
     },2000);
   }
 });
+
+$('form').on('item.post', function(event, data, status, xhr){
+  $(this).attr('method', 'put');
+  $(this).attr('action', data);
+  $(this).on('item.validate', function(){
+    var cents = $(this).find("input[itemprop=amount_in_dollars]").attr('value') * 100;
+    $(this).find("input[itemprop=amount_in_cemts]").attr('value', cents)
+    console.debug("populate amount in cents", cents);
+  });
+});
+
 window.addEventListener('message', function(event) {
   $(document).trigger(event.data)
 });

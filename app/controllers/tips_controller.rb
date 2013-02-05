@@ -10,7 +10,6 @@ class TipsController < ApplicationController
   end
 
   def show
-
   end
 
   def new  
@@ -23,7 +22,7 @@ class TipsController < ApplicationController
 
   def create
     @tip = current_user.tip(params[:tip])   
-    render nothing:true, status:200
+    render text:"/tips/#{@tip.id}", status:200
   rescue ActiveRecord::RecordInvalid
     render nothing:true, status:403
   end
