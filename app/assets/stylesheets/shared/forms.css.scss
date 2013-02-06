@@ -23,7 +23,7 @@ select {
 }
 input.invalid, select.invalid {
   outline-offset: -3px;
-  outline: 5px auto red !important;
+  outline: 5px auto $red !important;
 }
 
 :focus {

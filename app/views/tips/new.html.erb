@@ -2,21 +2,20 @@
 <section>
   <p itemprop="title"></p>
   <header>
-    <h1>You're Tipping</h1>
+    <h1>You've Tipped</h1>
     <form action='/tips' method="post" accept-charset="utf-8">
       <input itemprop="url" name="tip[url]" type="hidden"/>
       <input itemprop="title" name="tip[title]" type="hidden" />
-      <input itemprop="amount_in_dollars" name="tip[amount_in_cents]" 
-             type="text" value="<%= current_user.tip_preference_in_cents%>"/>
-
+      <input itemprop="amount_in_dollars" type="text" value="<%=current_user.tip_preference_in_cents%>"/>
       <input itemprop="amount_in_cents" name="tip[amount_in_cents]" 
-             type="hidden" value="<%= current_user.tip_preference_in_cents%>"/>
+             type="hidden" value="<%=current_user.tip_preference_in_cents%>"/>
     </form>
   </header>
-  <aside id="share">
-    <div class="fb-like" data-send="false" data-layout="button_count" data-width="55" data-show-faces="false" data-colorscheme="dark"></div>
-    <a data-url="" class="twitter-share-button" data-count="horizontal" data-size="normal" data-hashtags="tipping" data-dnt="false">Tweet</a>
-  </aside>
-  <a class="button">Save</a>
+  <nav id="call_to_actions">
+    <a title="Share your tip on facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://hipiti.co/14v5YtU"><%= image_tag "share/Facebook.png" %></a>
+    <a title="Tweet your tip" href="https://twitter.com/intent/tweet?source=webclient&text=Check%20out%20this%20offer%20I%20found%20@hipiti&url=http://hipiti.co/14v5YtU"><%= image_tag "share/Twitter.png" %></a>
+    <a title="Blog about your tip on tumblr" href="http://www.tumblr.com/share"><%= image_tag "share/Tumblr.png" %></a>
+    <a class="button">Thanks!</a>
+  </nav>
 </section>
 <%-end-%>

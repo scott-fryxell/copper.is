@@ -10,16 +10,14 @@
     }
     else if (data.type == 'show_details'){
       f.width='550px'
-      f.height='375px'
+      f.height='475px'
     }
     else if (data.type == 'hide'){
       f.width='350px'
       f.height='9px'
     }
     else if(data.type == 'gather_page_info'){
-
       var page_title, page_url;
-
       if(document.querySelector('object[itemtype="#page"] > data[itemprop=title]'))
         page_title = document.querySelector('object[itemtype="#page"] > data[itemprop=title]').getAttribute('value');      
       else if(document.querySelector('meta[property="og:title"]'))

@@ -17,33 +17,40 @@ $background_color: #313130;
     border-top:none;
     // @include box-shadow(4px 3px 8px 1px hsla(0, 0, 0, 0.65));
     @include box-shadow(2px 3px 8px 0px hsla(0, 0, 0, 0.5));
-    @include transition(min-height 1s ease-out 0.25s,  padding 1s);
+    @include transition(min-height 0.5s ease-out 0.25s,  padding 0.5s);
 
     header {
-      @include transition(min-height 1s ease-out 0.5s);
+      @include transition(min-height 0.5s ease-out 0.5s);
       margin-top:1em;
       min-height:0;
     }
-    header,aside,p,a{
+    header,aside,p,nav, & > a{
       @include transition(opacity 0.25s ease-in);
       opacity:0;
     }
-    & > aside {
+    & > nav {
+      margin-top:1.5em;
       margin-left:1em;
-      float:left;
-      width:7em;
-      & > div {
-        margin-bottom:1em;
+
+      & > a {
+        display:inline-block;
+        margin-right:0.5em;
+        vertical-align:middle;  
+        & > img {
+          opacity:0.75;
+          height:1.5em;
+          width:1.5em;
+        }
+      }
+      & > a.button {
+        margin-left:1em;
+        margin-right:0;
+        @include copper_button;
+        &:hover {
+          border:0.10em solid darken($button_color, 10%);
+        }
       }
     }
-    & > a.button {
-      @include copper_button;
-      display:block;
-      margin-top:1em;
-      margin-right:1em;
-      float:right; 
-    }
-
     &.show, &.details {
       padding:2em;
       min-height:6em;
@@ -53,7 +60,7 @@ $background_color: #313130;
         min-height:2.5em;
         overflow:hidden;
       }
-      header,p {
+      header,p,nav {
         @include transition(opacity 1.5s ease-in 0.25s);
         opacity:1;
       }
@@ -64,11 +71,16 @@ $background_color: #313130;
         @include transition(opacity 1s ease-in 0.75s);
         opacity:1;
       }
+
+      & > header > form > input[itemprop=amount_in_dollars] {
+        border:2px solid $text;
+      }
     }
   }
 
   section > header {
-    margin-bottom:1em;
+    margin-bottom:0.9em;
+    padding:6px 0;
   }
   section > header > h1 {
     margin:0;
@@ -98,20 +110,23 @@ $background_color: #313130;
     width:1.85em;
     background-color:transparent;
     color:$light-text;
-    border:none;
     font-family: 'Bree Serif', serif;
     margin:0;
     padding:0;
+    padding-left:4px;
     vertical-align:top;
     font-size:2em;
+    line-height:1em;
     display:inline-block;
     vertical-align: middle;
     border:2px solid $background_color;
+    border-radius:.25em;
     &:focus {
-      padding-left:4px;
-      border-radius:.25em;
-      border:2px solid $text;
       outline:none;
+    }
+    &.invalid {
+      @include box-shadow(0px 0px .75em 2px $red);
+      border-color:$red;
     }
   }
   section p[itemprop=title] {
