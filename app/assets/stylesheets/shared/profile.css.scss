@@ -194,7 +194,7 @@
           margin-top:1.5em;
           margin-left:1.25em;
           overflow: hidden;
-          @include box-shadow(1px 1px 5px 2px rgba(0, 0, 0, .2));
+          @include box-shadow(2px 3px 15px 3px rgba(0, 0, 0, 0.4));
         }
         & > figure > figcaption {
           font-size:2em;
@@ -226,12 +226,11 @@
           vertical-align:top;
           display:block;
           & > summary {
+            @include header_text;
+            font-size:1.25em;
             outline:none;
             line-height:1.5em;
             margin-bottom:1em;
-          }
-          &[open] > summary {
-            outline:auto;
           }
           & > table {
             width:grid-width(12);
