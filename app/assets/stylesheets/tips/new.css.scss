@@ -4,6 +4,7 @@ $background_color: #313130;
   margin-left:1em;
   width:300px;
   font-size:16px;
+
   section {
     position:relative;
     font-family: 'Cantarell', sans-serif;
@@ -19,128 +20,150 @@ $background_color: #313130;
     @include box-shadow(2px 3px 8px 0px hsla(0, 0, 0, 0.5));
     @include transition(min-height 0.5s ease-out 0.25s,  padding 0.5s);
 
-    header {
+    & > header {
       @include transition(min-height 0.5s ease-out 0.5s);
-      margin-top:1em;
       min-height:0;
-    }
-    header,aside,p,nav, & > a{
-      @include transition(opacity 0.25s ease-in);
-      opacity:0;
-    }
-    & > nav {
-      margin-top:1.5em;
-      margin-left:1em;
+      margin-bottom:1em;
+      padding:6px 0;
 
-      & > a {
+      & > h1 {
+        margin:1em 0;
+        vertical-align:middle;
+        font-size:.85em;
+        color:#999999;
+      }
+
+      & > p[itemprop=title] {
+        font-family: 'Doppio One', sans-serif;
+        width:14em;
+        height:1.25em;
+        margin:0;
+        line-height:1em;
+        vertical-align: middle;
+        font-size:1.1em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+
+
+    & > form {
+      opacity:0;
+      display:block;
+      vertical-align:top;
+      width:6em;
+      margin: 0 auto;
+      background-color:transparent;
+      &:before{
+        content:"$";
+        font-family: 'Bree Serif', serif;
+        font-size:1.85em;
         display:inline-block;
-        margin-right:0.5em;
-        vertical-align:middle;  
-        & > img {
-          opacity:0.75;
-          height:1.5em;
-          width:1.5em;
+        vertical-align: middle;
+      }
+      & > input[itemprop=amount_in_dollars] {
+        width:1.85em;
+        background-color:transparent;
+        color:$light-text;
+        font-family: 'Bree Serif', serif;
+        margin:0;
+        padding:0;
+
+        vertical-align:top;
+        font-size:2em;
+        line-height:1em;
+        display:inline-block;
+        vertical-align: middle;
+        border:0px solid $background_color;
+        border-radius:.25em;
+        &:focus {
+          outline:none;
+        }
+        &.invalid {
+          @include box-shadow(0px 0px .75em 2px $red);
+          border-color:$red;
         }
       }
       & > a.button {
+        font-size:2em;
+        display:none;
         margin-left:1em;
-        margin-right:0;
-        @include copper_button;
+        vertical-align:middle;
         &:hover {
           border:0.10em solid darken($button_color, 10%);
         }
       }
+
     }
-    &.show, &.details {
-      padding:2em;
-      min-height:6em;
-      @include transition( min-height 1.4s, padding 1.4s);
-      header {
-        @include transition(min-height 1.4s);
+
+    & > header,
+    & > footer {
+      @include transition(opacity 0.25s ease-in);
+      opacity:0;
+    }
+    & footer > nav {
+      margin-top:1.5em;
+
+
+      & > a {
+        display:inline-block;
+        margin-right:0.5em;
+        vertical-align:top; 
+        &.button {
+          @include copper_button;
+          display:inline-block;
+          margin-left:1em;
+        }
+
+        & > img {
+          opacity:0.15;
+          height:1.5em;
+          width:1.5em;
+          &:hover {
+            opacity:0.95;
+          }
+        }
+      }
+    }
+    &.show,
+    &.details {
+      padding: 0 2em;
+      min-height:10em;
+      @include transition( min-height 0.25s, padding 0.25s);
+      & > header {
+        @include transition(min-height 1s);
         min-height:2.5em;
         overflow:hidden;
       }
-      header,p,nav {
-        @include transition(opacity 1.5s ease-in 0.25s);
+      & > header,
+      & > form {
+        @include transition(opacity 1s ease-in 0.25s);
         opacity:1;
+        & > input {
+          padding-left:4px;
+        }
       }
     }
     &.details {
-      min-height:10em;
-      & > aside, & > a.button{
+      min-height:14em;
+      & > header {
+        color:#999999;
+      }
+
+      & > footer {
         @include transition(opacity 1s ease-in 0.75s);
         opacity:1;
       }
-
-      & > header > form > input[itemprop=amount_in_dollars] {
-        border:2px solid $text;
+      & > form {
+        & > input[itemprop=amount_in_dollars] {
+          border:2px solid $text;
+        }
       }
     }
+
   }
 
-  section > header {
-    margin-bottom:0.9em;
-    padding:6px 0;
-  }
-  section > header > h1 {
-    margin:0;
-    margin-top:1em;
-    margin-left:1em;
-    margin-right:1em;
-    vertical-align:middle;
-    display:inline-block;
-    font-size:.85em;
-    color:#999999;
-  }
-  section > header > form {
-    display:inline-block;
-    vertical-align:top;
-    width:6em;
-    background-color:transparent;
-    &:before{
-      content:"$";
-      font-family: 'Bree Serif', serif;
-      font-size:1.85em;
-      display:inline-block;
-      vertical-align: middle;
-    }
-
-  } 
-  section > header > form > input[itemprop=amount_in_dollars] {
-    width:1.85em;
-    background-color:transparent;
-    color:$light-text;
-    font-family: 'Bree Serif', serif;
-    margin:0;
-    padding:0;
-    padding-left:4px;
-    vertical-align:top;
-    font-size:2em;
-    line-height:1em;
-    display:inline-block;
-    vertical-align: middle;
-    border:2px solid $background_color;
-    border-radius:.25em;
-    &:focus {
-      outline:none;
-    }
-    &.invalid {
-      @include box-shadow(0px 0px .75em 2px $red);
-      border-color:$red;
-    }
-  }
-  section p[itemprop=title] {
-    font-family: 'Doppio One', sans-serif;
-    width:14em;
-    height:1.5em;
-    margin:0;
-    line-height:1em;
-    vertical-align: middle;
-    font-size:1.1em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
   section.sign_in > a {
     cursor:pointer;
     color:#CCCCCC;
