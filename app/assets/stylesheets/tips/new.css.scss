@@ -120,7 +120,9 @@ $background_color: #313130;
           opacity:0.15;
           height:1.5em;
           width:1.5em;
+          padding-top:0.25em;
           &:hover {
+            @include transition(opacity 0.5s ease-out 0s);
             opacity:0.95;
           }
         }
