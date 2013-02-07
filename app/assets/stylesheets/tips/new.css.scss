@@ -1,10 +1,10 @@
-$background_color: #313130;
 @import "shared/mixins";
+$background_color: #313130;
+$suptle_text: #999999;
 #tips_new {
   margin-left:1em;
   width:300px;
   font-size:16px;
-
   section {
     position:relative;
     font-family: 'Cantarell', sans-serif;
@@ -16,21 +16,32 @@ $background_color: #313130;
     opacity:1;
     border:2px solid $darkness;
     border-top:none;
-    // @include box-shadow(4px 3px 8px 1px hsla(0, 0, 0, 0.65));
     @include box-shadow(2px 3px 8px 0px hsla(0, 0, 0, 0.5));
     @include transition(min-height 0.5s ease-out 0.25s,  padding 0.5s);
 
     & > header {
       @include transition(min-height 0.5s ease-out 0.5s);
       min-height:0;
-      margin-bottom:1em;
       padding:6px 0;
-
+      & > a {
+        display:inline-block;
+        float:right;
+        & > img {
+          height:1em;
+          width:3em;
+          opacity:0.25;
+          @include transition(opacity 0.5s);
+          &:hover{
+            @include transition(opacity 0.5s);
+            opacity:1;
+          }
+        }
+      }
       & > h1 {
-        margin:1em 0;
+        margin:1em 0 1.5em 0;
         vertical-align:middle;
         font-size:.85em;
-        color:#999999;
+        color:$suptle_text;
       }
 
       & > p[itemprop=title] {
@@ -46,7 +57,6 @@ $background_color: #313130;
         white-space: nowrap;
       }
     }
-
 
     & > form {
       opacity:0;
@@ -69,7 +79,6 @@ $background_color: #313130;
         font-family: 'Bree Serif', serif;
         margin:0;
         padding:0;
-
         vertical-align:top;
         font-size:2em;
         line-height:1em;
@@ -86,7 +95,7 @@ $background_color: #313130;
         }
       }
       & > a.button {
-        font-size:2em;
+        @include copper_button;
         display:none;
         margin-left:1em;
         vertical-align:middle;
@@ -94,7 +103,6 @@ $background_color: #313130;
           border:0.10em solid darken($button_color, 10%);
         }
       }
-
     }
 
     & > header,
@@ -102,20 +110,14 @@ $background_color: #313130;
       @include transition(opacity 0.25s ease-in);
       opacity:0;
     }
+
     & footer > nav {
-      margin-top:1.5em;
-
-
+      margin: 1.5em auto 0 auto;
+      width:7em;
       & > a {
         display:inline-block;
-        margin-right:0.5em;
+        margin-left:0.5em;
         vertical-align:top; 
-        &.button {
-          @include copper_button;
-          display:inline-block;
-          margin-left:1em;
-        }
-
         & > img {
           opacity:0.15;
           height:1.5em;
@@ -127,48 +129,63 @@ $background_color: #313130;
           }
         }
       }
-    }
-    &.show,
-    &.details {
-      padding: 0 2em;
-      min-height:10em;
-      @include transition( min-height 0.25s, padding 0.25s);
-      & > header {
-        @include transition(min-height 1s);
-        min-height:2.5em;
-        overflow:hidden;
-      }
-      & > header,
       & > form {
-        @include transition(opacity 1s ease-in 0.25s);
-        opacity:1;
-        & > input {
-          padding-left:4px;
-        }
-      }
-    }
-    &.details {
-      min-height:14em;
-      & > header {
-        color:#999999;
-      }
-
-      & > footer {
-        @include transition(opacity 1s ease-in 0.75s);
-        opacity:1;
-      }
-      & > form {
-        & > input[itemprop=amount_in_dollars] {
-          border:2px solid $text;
-        }
+        margin-left:0.5em;
+        font-size:0.75em;
+        padding-top:0.5em;
+        color:$suptle_text;
+        & > label {
+          padding-left:.5em;
+        }      
       }
     }
 
   }
 
+  section.show,
+  section.details {
+    padding: 0 2em;
+    min-height:10em;
+    @include transition( min-height 0.25s, padding 0.25s);
+    & > header {
+      @include transition(min-height 1s);
+      min-height:2.5em;
+      overflow:hidden;
+    }
+    & > header,
+    & > form {
+      @include transition(opacity 1s ease-in 0.25s);
+      opacity:1;
+    }
+  }
+
+  section.details {
+    min-height:15em;
+    & > header {
+      color:$suptle_text;
+    }
+    & > footer  {
+      @include transition(opacity 1s ease-in 0.75s);
+      opacity:1;
+    }
+    & > form {
+      width:13em;
+      margin-top:1em;
+
+      & > input[itemprop=amount_in_dollars] {
+        border:2px solid $text;
+        padding:0 0.25em;
+      }
+      & > a.button {
+        display:inline-block;
+      }
+    }
+  }
+
+
   section.sign_in > a {
     cursor:pointer;
-    color:#CCCCCC;
+    color:$suptle_text;
     text-decoration: none;
     position: absolute;
     top:1em;

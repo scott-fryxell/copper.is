@@ -1,6 +1,10 @@
 <%-cache current_user do-%>
+<script src="http://platform.tumblr.com/v1/share.js"></script>
+<script src='http://connect.facebook.net/en_US/all.js'></script>
+<div id='fb-root'></div>
 <section>
   <header>
+    <a href="/" target="blank"><%= image_tag "icons/logo_light.svg", :title => "View your profile" %></a>
     <h1>You've Tipped</h1>
     <p itemprop="title"></p>
   </header>
@@ -9,15 +13,25 @@
     <input itemprop="title" name="tip[title]" type="hidden" />
     <input itemprop="amount_in_dollars" type="text" value="<%=current_user.tip_preference_in_cents%>"/>
     <input itemprop="amount_in_cents" name="tip[amount_in_cents]" type="hidden" value="<%=current_user.tip_preference_in_cents%>"/>
-
+    <a class="button">Thanks!</a>
   </form>
   <footer>
     <nav>
-      <a title="Share your tip on facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://hipiti.co/14v5YtU"><%= image_tag "share/Facebook.png" %></a>
-      <a title="Tweet your tip" href="https://twitter.com/intent/tweet?source=webclient&text=Check%20out%20this%20offer%20I%20found%20@hipiti&url=http://hipiti.co/14v5YtU"><%= image_tag "share/Twitter.png" %></a>
-      <a title="Blog about your tip on tumblr" href="http://www.tumblr.com/share"><%= image_tag "share/Tumblr.png" %></a>
-      <a class="button">Thanks!</a>
+      <a id="facebook" title="Share your tip on facebook" target="blank"><%= image_tag "share/Facebook.png" %></a>
+      <a id="twitter" title="Tweet your tip" target="blank"><%= image_tag "share/Twitter.png" %></a>
+      <a id="tumblr_button_abc123" title="Blog about your tip on tumblr" target="blank" href="http://www.tumblr.com/share"><%= image_tag "share/Tumblr.png" %></a>
+     
+      <form style="display:none">
+        <input type="checkbox" name="user[training_wheels]" value="true" checked><label>Training wheels</label>
+        <details>
+          <summary>?</summary>
+          <p class="help">
+            Once your used to tipping pages and hae  ?rom there your tip
+          </p>
+        </details>
+      </form>
     </nav>
+
   </footer>
 </section>
 <%-end-%>
