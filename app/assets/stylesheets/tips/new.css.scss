@@ -1,13 +1,12 @@
 @import "shared/mixins";
 $background_color: #313130;
-$suptle_text: #999999;
+$subtle_text: #999999;
 #tips_new {
   margin-left:1em;
   width:300px;
   font-size:16px;
   section {
-    position:relative;
-    font-family: 'Cantarell', sans-serif;
+    position:relative;  
     background-color: $background_color;
     color:$light-text;
     height:0;
@@ -16,13 +15,14 @@ $suptle_text: #999999;
     opacity:1;
     border:2px solid $darkness;
     border-top:none;
+    @include text;
     @include box-shadow(2px 3px 8px 0px hsla(0, 0, 0, 0.5));
     @include transition(min-height 0.5s ease-out 0.25s,  padding 0.5s);
 
     & > header {
       @include transition(min-height 0.5s ease-out 0.5s);
       min-height:0;
-      padding:6px 0;
+      padding:1em 0;
       & > a {
         display:inline-block;
         float:right;
@@ -38,10 +38,11 @@ $suptle_text: #999999;
         }
       }
       & > h1 {
+        @include header_text;
         margin:1em 0 1.5em 0;
         vertical-align:middle;
         font-size:.85em;
-        color:$suptle_text;
+        color:$subtle_text;
       }
 
       & > p[itemprop=title] {
@@ -66,6 +67,7 @@ $suptle_text: #999999;
       margin: 0 auto;
       background-color:transparent;
       &:before{
+        color:$light_text;
         content:"$";
         font-family: 'Bree Serif', serif;
         font-size:1.85em;
@@ -106,7 +108,8 @@ $suptle_text: #999999;
     }
 
     & > header,
-    & > footer {
+    & > footer,
+    &.sign_in > nav {
       @include transition(opacity 0.25s ease-in);
       opacity:0;
     }
@@ -133,19 +136,18 @@ $suptle_text: #999999;
         margin-left:0.5em;
         font-size:0.75em;
         padding-top:0.5em;
-        color:$suptle_text;
+        color:$subtle_text;
         & > label {
           padding-left:.5em;
         }      
       }
     }
-
   }
 
   section.show,
   section.details {
     padding: 0 2em;
-    min-height:10em;
+    min-height:11em;
     @include transition( min-height 0.25s, padding 0.25s);
     & > header {
       @include transition(min-height 1s);
@@ -153,7 +155,8 @@ $suptle_text: #999999;
       overflow:hidden;
     }
     & > header,
-    & > form {
+    & > form,
+    &.sign_in > nav {
       @include transition(opacity 1s ease-in 0.25s);
       opacity:1;
     }
@@ -162,10 +165,10 @@ $suptle_text: #999999;
   section.details {
     min-height:15em;
     & > header {
-      color:$suptle_text;
+      color:$subtle_text;
     }
     & > footer  {
-      @include transition(opacity 1s ease-in 0.75s);
+      @include transition(opacity 1s ease-in 0.25s);
       opacity:1;
     }
     & > form {
@@ -182,13 +185,37 @@ $suptle_text: #999999;
     }
   }
 
+  section.sign_in {
+    & > header {
+      padding-bottom:0em;
+      & > h1 {
+        margin:1em 0 1em 0;
+        text-align:center;
+        color:$light_text;
+        font-size:1.75em;
+        opacity:0.5;
+        text-shadow: 3px -3px $darkness;
+        font-weight:normal;
+      }
+    }
+    & > nav {
+      width:10em;
+      margin:0 auto;
+      & > a {
+        margin-bottom:1em;
+        display:block;
+        text-align:center;
+      }
+    }
+    #close {
+      color:$light_text;
+      text-decoration:none;
+      opacity:0.2;
+      cursor:pointer;
+    }
+    #learn {
 
-  section.sign_in > a {
-    cursor:pointer;
-    color:$suptle_text;
-    text-decoration: none;
-    position: absolute;
-    top:1em;
-    right:2em;
+      @include copper_button;
+    }
   }
 }

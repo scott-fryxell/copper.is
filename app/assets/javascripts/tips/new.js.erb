@@ -7,9 +7,38 @@
 var display_timer, frame_timer;
 $(document).ready(function (){
   document.postMessage({type:'gather_page_info'})
-  $("a.button").click(function(event){
+
+  $("a.button").click(function(){
     $("form[method=put]").submit();
   });
+
+  $('#close').click(function(){
+    $(document).trigger("tip_hide");
+  });
+
+  $("#twitter").click(function(){
+    url=encodeURIComponent(document.getItems('tips')[0].url)
+    href="https://twitter.com/intent/tweet?source=webclient&hashtags=tipping&url=" + url;
+    $(this).attr('href', href);
+  });
+  $("#facebook").click(function(){
+    FB.init({appId: "340706775966925", status: true, cookie: true});
+    var obj = {
+      method: 'feed',
+      redirect_uri: 'https://www.copper.is',
+      link: document.getItems('tips')[0].url
+    };
+    FB.ui(obj);
+  });
+  $("#tumblr_button_abc123").click(function(){
+    href = "http://www.tumblr.com/share/link?url=" + encodeURIComponent(document.getItems('tips')[0].url) +  "&name=" + encodeURIComponent(document.getItems('tips')[0].title) + "&tags=tipping%20copper_is";
+    $(this).attr('href', href);
+  });
+
+  $(document).keyup(function(e) {
+    if (e.keyCode == 27) { $(document).trigger("tip_hide"); }   // esc
+  });
+
 });
 $(document).bind({
   "tip_details": function (event){
@@ -41,7 +70,7 @@ $(document).bind({
 
       if(!$("section").hasClass('sign_in')){
         display_timer = window.setTimeout(function(){
-          $(document).trigger("tip_hide")          
+          $(document).trigger("tip_hide")
         },3000);
       }
   },
@@ -71,30 +100,6 @@ $('form').on('item.post', function(event, data, status, xhr){
   });
 });
 
-
-
-$(document).keyup(function(e) {
-  if (e.keyCode == 27) { $(document).trigger("tip_hide"); }   // esc
-});
-
-$("#twitter").click(function(){
-  url=encodeURIComponent(document.getItems('tips')[0].url)
-  href="https://twitter.com/intent/tweet?source=webclient&hashtags=tipping&url=" + url;
-  $(this).attr('href', href);
-});
-$("#facebook").click(function(){
-  FB.init({appId: "340706775966925", status: true, cookie: true});
-  var obj = {
-    method: 'feed',
-    redirect_uri: 'https://www.copper.is',
-    link: document.getItems('tips')[0].url
-  };
-  FB.ui(obj);
-});
-$("#tumblr_button_abc123").click(function(){
-  href = "http://www.tumblr.com/share/link?url=" + encodeURIComponent(document.getItems('tips')[0].url) +  "&name=" + encodeURIComponent(document.getItems('tips')[0].title) + "&tags=tipping%20copper_is";
-  $(this).attr('href', href);
-});
 
 window.addEventListener('message', function(event) {
   $(document).trigger(event.data)

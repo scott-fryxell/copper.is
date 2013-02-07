@@ -1,13 +1,12 @@
 <%-cache do-%>
 <section class="sign_in">
   <header>
-    <a href="/" target="blank"><%= image_tag "icons/logo_light.svg", :title => "View your profile" %></a>
-    <p itemprop="title"></p>
-    <h1>Sign up with copper to tip this page</h1>
+    <a href="/" target="blank"><%= image_tag "icons/logo_light.svg", :title => "Visit Copper.is" %></a>
+    <h1>Pay Artists first!</h1>
   </header>
   <nav>
-    <a href="#close">close</a>
-    <a href="<%=request.scheme%>://<%=request.host%>" target="new">Learn more</a>
+    <a id="learn" href="<%=request.scheme%>://<%=request.host%>" target="new">Learn more</a>
+    <a id="close">Close</a>
   </nav>
 </section>
 <%-end-%>
