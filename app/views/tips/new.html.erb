@@ -1,6 +1,6 @@
 <%-cache current_user do-%>
-<script src="http://platform.tumblr.com/v1/share.js"></script>
 <script src='http://connect.facebook.net/en_US/all.js'></script>
+<script src="http://platform.tumblr.com/v1/share.js"></script>
 <div id='fb-root'></div>
 <section>
   <header>
@@ -22,12 +22,10 @@
       <a id="tumblr_button_abc123" title="Blog about your tip on tumblr" target="blank" href="http://www.tumblr.com/share"><%= image_tag "share/Tumblr.png" %></a>
      
       <form style="display:none">
-        <input type="checkbox" name="user[training_wheels]" value="true" checked><label>Training wheels</label>
+        <input type="checkbox" name="user[training_wheels]" value="true" checked>
         <details>
-          <summary>?</summary>
-          <p class="help">
-            Once your used to tipping pages and hae  ?rom there your tip
-          </p>
+          <summary>Training wheels</summary>
+          <p class="help">{some help text goes here}</p>
         </details>
       </form>
     </nav>

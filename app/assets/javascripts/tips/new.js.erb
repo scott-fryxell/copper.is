@@ -22,10 +22,10 @@ $(document).ready(function (){
     $(this).attr('href', href);
   });
   $("#facebook").click(function(){
-    FB.init({appId: "340706775966925", status: true, cookie: true});
+    FB.init({appId: "<%=Copper::Application.config.facebook_appid%>", status: true, cookie: true});
     var obj = {
       method: 'feed',
-      redirect_uri: 'https://www.copper.is',
+      redirect_uri: '<%=Copper::Application.config.hostname%>',
       link: document.getItems('tips')[0].url
     };
     FB.ui(obj);
@@ -80,7 +80,6 @@ $(document).bind({
     frame_timer = window.setTimeout(function (){
       document.postMessage({type:'hide'})
     },1000);
-
   }
 });
 
@@ -99,7 +98,6 @@ $('form').on('item.post', function(event, data, status, xhr){
     }
   });
 });
-
 
 window.addEventListener('message', function(event) {
   $(document).trigger(event.data)
