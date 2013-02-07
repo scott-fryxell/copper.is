@@ -21,21 +21,6 @@ $(document).bind({
     $('#share > a').attr('data-url', document.getItems('tips')[0].url);
     $('#share > div').attr('data-href', document.getItems('tips')[0].url);
     $("input[itemprop=amount_in_dollars]").focus();
-    // var js, fjs=document.getElementsByTagName('script')[0];
-    // window.setTimeout(function (){ 
-    //   if (document.getElementById('twitter-wjs')) return;
-    //   js=document.createElement('script');
-    //   js.id='twitter-wjs';
-    //   js.src="//platform.twitter.com/widgets.js";
-    //   fjs.parentNode.insertBefore(js,fjs);
-    // },1000);
-
-    // // embed the facebook like iframe
-    // if (document.getElementById('facebook-jssdk')) return;
-    // var js = document.createElement('script'); 
-    // js.id = 'facebook-jssdk';
-    // js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=340706775966925";
-    // fjs.parentNode.insertBefore(js, fjs);
   },
   "tip_info": function (event){
       title = decodeURIComponent(event.title)
