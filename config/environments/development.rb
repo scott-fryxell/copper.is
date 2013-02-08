@@ -10,6 +10,7 @@ Copper::Application.configure do
   config.hostname = "http://copper.dev"
   config.facebook_appname = "copper-dev"
   config.facebook_appid = "180829622036113"
+  config.honeybadger_js_app_id = "df5151fb675d4d4af78d117fab648540"
   config.log_level = :info
 
   config.active_record.mass_assignment_sanitizer = :strict

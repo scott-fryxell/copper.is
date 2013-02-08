@@ -17,6 +17,11 @@ Copper::Application.configure do
   config.hostname = "https://copper-stage.herokuapp.com"
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=31536000"
+
+  config.honeybadger_js_app_id = "df5151fb675d4d4af78d117fab648540"
+  config.facebook_appname = "copper-staging"
+  config.facebook_appid = "180829622036113"
+
   config.action_dispatch.rack_cache = {
     :metastore    => Dalli::Client.new,
     :entitystore  => 'file:tmp/cache/rack/body',

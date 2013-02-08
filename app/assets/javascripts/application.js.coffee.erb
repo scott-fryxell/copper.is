@@ -15,9 +15,7 @@
 #= require home/settings
 #= require home/welcome
 #= require authors/edit
-#= require honeybadger.min
-Honeybadger.configure
-  api_key: 'df5151fb675d4d4af78d117fab648540'
+#= require shared/honeybadger
 
 $(document).ready ->
 
@@ -43,5 +41,4 @@ $(document).ready ->
       dataType:'json'
       url: '/users/me.json'
       type: 'put'
-      data: jQuery.param document.copper.me 
-      error: -> $(document).trigger "error.me"
+      data: jQuery.param document.copper.me

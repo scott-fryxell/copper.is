@@ -1,0 +1,10 @@
+#= require honeybadger.min
+Honeybadger.configure
+  api_key: '<%=Copper::Application.config.honeybadger_js_app_id%>'
+  project_root: '<%=Copper::Application.config.hostname%>'
+  environment: '<%=Rails.env%>'
+  <%= "disabled: true" unless Rails.env == "production" %>
+
+# window.onerror =  (message, url, line) -> 
+#   Honeybadger.notify(new Error(message, url, line));
+#   return true
