@@ -16,9 +16,10 @@ class Page < ActiveRecord::Base
     scope state, where("author_state = ?", state)
   end
 
-  def fan_tips(fan)
-    self.tips.joins(:order).where('orders.user_id=?', fan.id)
-  end
+  #  going with this query instead current_user.tips.where(page_id:page.id)
+  # def fan_tips(fan)
+  #   self.tips.joins(:order).where('orders.user_id=?', fan.id)
+  # end
 
   def self.adoption_rate
     (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round

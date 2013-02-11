@@ -15,8 +15,6 @@ class User < ActiveRecord::Base
     :presence => true
   validates :name, length:{in:3..128}, allow_nil:true
 
-
-  # this doesn't match gmail '+' tags
   EMAIL_RE = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   validates :email, format:{with:EMAIL_RE}, :allow_nil => true
 
