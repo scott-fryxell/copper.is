@@ -23,7 +23,11 @@ class User < ActiveRecord::Base
     errors.add(:orders, "there must be only one") unless self.orders.current.size == 1
   end
   
-  after_create :create_current_order!
+  after_create
+    create_current_order!
+    Resque.enqueue User, user.id, :send_welcome_message
+  end
+
   def create_current_order!
     if self.orders.unpaid.count > 0
       raise "there is already an unpaid Order for this user: #{self.inspect}"
@@ -85,10 +89,42 @@ class User < ActiveRecord::Base
       tip.page = Page.create(url:url,title:title)
     end
     tip.save!
-    if share_on_facebook
-      Resque.enqueue Tip, tip.id, :post_tip_to_facebook_feed
-    end
+    Resque.enqueue Tip, tip.id, :post_tip_to_facebook_feed
     tip
+  end
+
+  def send_welcome_message 
+    m = Mandrill::API.new('hEOII_VElDaIzeazoKmR_Q')
+    m.messages 'send-template', {
+      template_name: "copper base",
+      template_content: [
+        { name: "main",
+          content: "<h1>Welcome To Copper #{self.name}!</h1>
+                    <p>Now you can support the stuff you love online
+                     by making small contributions with a single click.</p>
+                    <p>Here is how it works.</p>
+                    <ol>
+                      <li>Find something awesome online.</li>
+                      <li>Click the Copper button to support the folks who made it.</li>
+                      <li>We find them and pay them for you.</li>
+                    </ol>
+                    <br>"
+        },
+        { name: "footer",
+          content: '<br>
+                    <center>
+                      <a href="http://www.copper.is/faq">Frequently Asked Questions</a>
+                    </center>'
+        }
+
+      ],
+      message: {
+        subject:"Welcome to copper!",
+        from_email: "us@copper.is",
+        from_name: "The Copper Team",
+        to:[{email:self.email, name:self.name}]
+      }
+    }
   end
 
   # def charge_info?
@@ -119,6 +155,8 @@ class User < ActiveRecord::Base
   #     end
   #   end
   # end
+
+
 
   # def message_about_check(check_id)
   #   CheckMailer.check(Check.find(check_id)).deliver

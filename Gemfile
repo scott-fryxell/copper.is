@@ -33,7 +33,8 @@ gem "vimeo"
 gem 'koala'
 gem 'mechanize'
 gem 'cache_digests'
-gem 'mandrill'
+gem 'mandrill', :git => 'https://github.com/venioinc/mandrill/'
+
 
 # gem 'rack-mini-profiler'
 # gem 'resque-scheduler', :require => 'resque_scheduler'

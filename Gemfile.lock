@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/venioinc/mandrill/
+  revision: e96a5c2d37bdcd9bae3a242b96c9af83d02fdc2f
+  specs:
+    mandrill (0.0.2)
+      httpi
+      json
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -151,9 +159,6 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mandrill (0.0.2)
-      httpi
-      json
     mechanize (2.5.1)
       domain_name (~> 0.5, >= 0.5.1)
       mime-types (~> 1.17, >= 1.17.2)
@@ -395,7 +400,7 @@ DEPENDENCIES
   jquery-rails
   koala
   launchy
-  mandrill
+  mandrill!
   mechanize
   memcachier
   newrelic_rpm

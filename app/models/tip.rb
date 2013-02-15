@@ -42,11 +42,13 @@ class Tip < ActiveRecord::Base
   end
 
   def post_tip_to_facebook_feed
-    puts "Posting to facebook, tip_id=#{id}"
-    facebook = self.user.authors.where(provider:'facebook').first
-    graph = Koala::Facebook::API.new(facebook.token)
-    graph.put_connections("me", "#{Copper::Application.config.facebook_appname}:tip", website:"#{Copper::Application.config.hostname}/pages/#{self.page.id}")
-    puts ":    tip posted" 
+    if self.user.share_on_facebook
+      puts "Posting to facebook, tip_id=#{id}"
+      facebook = self.user.authors.where(provider:'facebook').first
+      graph = Koala::Facebook::API.new(facebook.token)
+      graph.put_connections("me", "#{Copper::Application.config.facebook_appname}:tip", website:"#{Copper::Application.config.hostname}/pages/#{self.page.id}")
+      puts ":    tip posted" 
+    end
   end
 
   state_machine :paid_state, :initial => :promised do
