@@ -64,6 +64,11 @@ describe Page do
       it "finds user on youtube.com from a channel" do
         @page.url = 'http://www.youtube.com/pitchforktv'
       end
+
+      it "finds user on youtube.com from a embed link" do
+        @page.url = 'https://www.youtube.com/embed/DX0fX47rQMc'
+      end
+
     
       it "finds user on vimeo.com" do
         @page.url = "http://vimeo.com/31453929"
