@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
     errors.add(:orders, "there must be only one") unless self.orders.current.size == 1
   end
   
-  after_create
+  after_create do
     create_current_order!
     Resque.enqueue User, user.id, :send_welcome_message
   end
