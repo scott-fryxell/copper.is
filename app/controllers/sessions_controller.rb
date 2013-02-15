@@ -79,6 +79,4 @@ class SessionsController < ApplicationController
 
   def new
   end
-
-  private
 end
