@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Author do
   before do
+    mock_user
     @user = User.create!
   end
 

@@ -4,7 +4,22 @@ class OpenStruct
   end
 end
 
+def mock_page
+  Page.any_instance.stub(:learn)
+  Page.any_instance.stub(:discover_author)
+end
+
+def mock_user
+  User.any_instance.stub(send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}])
+end
+
+def mock_page_and_user
+  mock_page
+  mock_user
+end
+
 def her_setup
+  mock_page_and_user
   @her = create!(:user_phony)
   @her_author = @her.authors.first
   @page1 = create!(:page,author_state:'adopted')
@@ -14,6 +29,7 @@ def her_setup
 end
 
 def me_setup
+  mock_page_and_user
   @page1 = create!(:page,author_state:'adopted')
   @me = create!(:user)
   @my_author = @me.authors.first
@@ -21,6 +37,7 @@ def me_setup
 end
 
 def other_setup
+  mock_page_and_user
   @stranger = create!(:authors_phony)
   @page1 = create!(:page,author_state:'adopted')
   @page2 = create!(:page,author_state:'adopted')

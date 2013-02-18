@@ -52,12 +52,6 @@ describe HomeController do
         get :faq
       end
     end
-
-    describe '/button' do
-      it '200' do
-        get :button
-      end
-    end
     
     describe "/buckingthesystem" do
       it '200' do

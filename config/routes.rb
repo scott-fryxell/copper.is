@@ -25,7 +25,6 @@ Copper::Application.routes.draw do
   get 'terms',           to:'home#terms'
   get 'privacy',         to:'home#privacy'
   get 'faq',             to:'home#faq'
-  get 'button',          to:'home#button'
   get 'states',          to:'home#states'
   get 'statistics',      to:'home#statistics'
   get 'embed_iframe.js', to:'home#iframe', :as => :iframe

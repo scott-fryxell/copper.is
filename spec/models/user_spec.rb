@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe User do
   before :each do
+    mock_user
     @me = create!(:user)
   end
   describe 'authors' do

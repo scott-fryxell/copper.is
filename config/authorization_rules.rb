@@ -29,7 +29,7 @@ authorization do
     has_permission_on :pages,       :to => [:show]
     has_permission_on :tips,       :to => [:read, :new]
     has_permission_on :authors,    :to => [:edit] do
-      if_attribute :identity_state => 'stranger'
+      if_attribute :identity_state => 'wanted'
     end
     has_permission_on :pages,      :to => [:read]
   end

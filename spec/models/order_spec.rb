@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Order do
   before do
+    mock_user
     @order = FactoryGirl.build(:order_unpaid)
     @charge_token = OpenStruct.new(id:1)
   end

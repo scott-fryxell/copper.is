@@ -3,11 +3,7 @@ require 'spec_helper'
 describe TipsController do
   describe 'high level' do
     before :each do
-      Page.stub(:learn)
-      Page.stub(:discover_author!)
-      Page.should_receive(:learn)
-      Page.should_receive(:discover_author!)
-
+      mock_page_and_user
       @me = create!(:user)
       Author.any_instance.stub(:_send_wanted_message)
     end

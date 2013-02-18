@@ -3,6 +3,7 @@ require 'spec_helper'
 describe PagesController do
   describe 'as Guest' do
     before do
+      mock_page
       controller.instance_eval do
         @current_user = nil
       end
@@ -83,6 +84,7 @@ describe PagesController do
   describe 'as Fan' do
 
     before :each do
+      mock_user
       @me = create!(:user)
     end
     describe 'index' do
@@ -119,6 +121,7 @@ describe PagesController do
     describe 'show' do
       describe '/pages/:id' do
         it 'assigns a given page' do
+          mock_page
           @page1 = create!(:page,author_state:'adopted')
           get_with @me, :show, id:@page1.id, format: :json
           assigns(:page).id.should == @page1.id

@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   
   after_create do
     create_current_order!
-    Resque.enqueue User, user.id, :send_welcome_message
+    Resque.enqueue User, self.id, :send_welcome_message
   end
 
   def create_current_order!

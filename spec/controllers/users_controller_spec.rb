@@ -64,6 +64,7 @@ describe UsersController do
 
   describe 'as Fan' do
     before :each do
+      mock_user
       @me = create!(:user)
     end
     describe 'index' do

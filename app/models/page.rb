@@ -149,7 +149,7 @@ class Page < ActiveRecord::Base
     state :fostered do
       def find_author_from_page_links!
         begin
-          puts "Page links for: id=#{id}, #{url[0...100]}"
+          puts "page_links for: id=#{id}, #{url[0...100]}"
           self.agent.get(url) do |doc|
             if doc.title
               self.title = doc.title
@@ -167,7 +167,6 @@ class Page < ActiveRecord::Base
             end
 
             output = lambda { |link| puts ":    adopted: #{link.href[0...100]}"}
-
             doc.links_with(:href => %r{facebook.com}).each do |link|
               unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
                 if self.author = Author.find_or_create_from_url(link.href) 

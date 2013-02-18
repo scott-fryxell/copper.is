@@ -14,6 +14,7 @@ guard 'spork', wait: 60, cucumber: false, rspec: true, test_unit: false do
   watch(%r{^config/environments/.+\.rb})
   watch(%r{^config/initializers/.+\.rb})
   watch('spec/spec_helper.rb')
+  watch('spec/support.rb')
   watch('.rspec')
 end
 

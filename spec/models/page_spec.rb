@@ -25,6 +25,7 @@ describe Page do
     after do
       @page.save!
       @page.reload
+      puts @page.url
       @page.adopted?.should be_true
     end
     
