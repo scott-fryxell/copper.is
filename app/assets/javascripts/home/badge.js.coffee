@@ -7,7 +7,6 @@ $(document).on "load.home_badge", ->
       $("#badge figure > img").remove()
       $.tmpl( "badge", badge ).appendTo "#badge figure"
       $("#badge textarea").val $("#badge figure" ).html() 
-      $("#badge textarea").select()
 
   $("#badge_template").template "badge"
   badge.render()
