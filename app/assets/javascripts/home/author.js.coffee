@@ -21,3 +21,11 @@ $(document).on "load.home_author", ->
 
   $("#settings textarea").click ->
     $(this).select()
+    
+  $('#authors > aside > nav > a > img, #authors form > input').click ->
+    $(@).addClass 'working'
+
+  $("#authors form").on 'item.delete', ->
+    $(@).parent().remove()
+    if 2 > $("#authors form").size()
+      $('#authors figure > form').addClass 'hide'

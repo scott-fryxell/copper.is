@@ -4,7 +4,7 @@
     <h2 itemprop="title"><%=page.title%></h2>
     <figure>
       <img itemprop="thumbnail_url" src="<%=page.thumbnail%>" alt="tip image" title="<%=page.title%>"/> 
-      <figcaption data-cents="<%=page.tips.for_author.sum(:amount_in_cents)%>"></figcaption>
+      <figcaption data-cents="<%=page.tips.sum(:amount_in_cents)%>"></figcaption>
     </figure>
   </summary>
   <dl>
@@ -12,17 +12,17 @@
     <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(URI.escape(page.url)).host%></a></dd>
     <dt>
       <details>
-        <summary><%=pluralize(page.tips.for_author.count, 'tip')%></summary>
+        <summary><%=pluralize(page.tips.count, 'tip')%></summary>
         <table>
           <thead>
             <tr>
               <th>when</th>
               <th>amount</th>
-              <th>paid?</th>
+
             </tr>
           </thead>
           <tbody>
-            <%= render partial:"tips/author_tips", collection:page.tips.for_author, as: :tip %>
+            <%= render partial:"tips/author_tips", collection:page.tips, as: :tip %>
           </tbody>
         </table>
       </details>          

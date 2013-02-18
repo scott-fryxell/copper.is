@@ -7,6 +7,9 @@
       width:grid-width(13);
       margin-bottom:1em;
     }
+    & > form > input[type=submit] {
+      width:grid-width(3);
+    }
     & > form > input[itemprop=city] {
       width:13em;
     }

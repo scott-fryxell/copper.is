@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
         # is the current user. So the author is already associated with
         # this user. We take them back to their settings page
         
-       redirect_to '/settings'
+       redirect_to '/author'
 
       else
         # The author is not associated with the current_user so lets
@@ -31,7 +31,7 @@ class SessionsController < ApplicationController
         @author.user = current_user
         @author.join!
         @author.save()
-        redirect_to '/settings'
+        redirect_to '/author'
       end
     else
       if @author.user

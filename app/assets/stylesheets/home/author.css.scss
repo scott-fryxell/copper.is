@@ -10,4 +10,83 @@
       content: "$";
     }
   }
+
+  section#services > details   summary {
+    outline:none;
+    text-align: right;
+  }
+
+
+  #authors {
+    margin-top:1em;
+    padding-top:2em;
+    padding-bottom:2em;
+    display:block;
+    & > div {
+      margin-left:2em;
+      vertical-align:top;
+      display:inline-block;
+      width:18em
+    }
+    & > div > h2 {
+      margin-bottom:1em
+    }
+    & > aside {
+      display:inline-block;
+    }
+    & > div > figure {
+      display:inline-block;
+      padding:.5em 0;
+      margin-right:.5em;
+    }
+    & > div > figure * {
+      display:inline-block;
+      vertical-align:middle
+    }
+    & > div > figure > form,
+    & > div > figure > figcaption {
+      opacity:0;
+      width:0;   
+    } 
+    & > aside {
+
+    }
+   
+    & > div > figure > form > input {
+      padding:0 .2em;
+      font-size:1em;
+    }
+
+    & > aside > header {
+      height:1em;
+      margin-bottom:1.5em
+    }
+    & > aside > nav {}
+    & > aside  > nav a {
+      margin-right:.65em
+    }
+
+    // &.edit {
+    
+      & > div > figure > figcaption {
+        opacity:1;
+        @include transition (width 0.5s ease-in 0s);
+        margin-left:0.5em; 
+        white-space: nowrap;
+        min-width:7em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      & > div > figure > form {
+        opacity:1;
+        @include transition (opacity 0.3s ease-in 0.5s);
+      }
+      & > div > figure > form.hide {
+        opacity:0;
+        @include transition (opacity 0.3s ease-in 0.25s);
+      }
+    // }
+  }
+
+
 }

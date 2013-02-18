@@ -15,6 +15,9 @@ class HomeController < ApplicationController
   def settings
   end
 
+  def badge
+  end
+
   def welcome
     response.headers['Cache-Control'] = 'public, max-age=300'
   end

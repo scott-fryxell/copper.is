@@ -47,9 +47,63 @@
     </div>
   </section>
 
+  <section id="services">
+    <details>
+      <summary>authorize services</summary>
+      <section id="authors">
+        <div>
+          <%-current_user.authors.each do |author|-%>
+          <figure class="<%=author.provider%>" itemscope itemtype="authors"  itemid="<%=author.id%>">
+            <%= image_tag "providers/#{author.provider}/sign_in.png", title:author.username%>
+            <figcaption itemprop='username'><%=author.username%></figcaption>
+            <%-if current_user.authors.count > 1-%>
+            <form action='<%=author_path(author)%>' method="delete">
+              <input type="submit" name="submit" value="X">
+            </form>
+            <%-end-%>
+          </figure>
+          <%-end-%>
+        </div>
+        <aside>
+          <header>
+            <h2>Authorize other services</h2>
+          </header>
+          <nav>
+            <a href="/auth/facebook" title="Authorize facebook">
+              <%= image_tag "providers/facebook/sign_in.png"%>
+            </a>
+            <a href="/auth/twitter" title="Authorize twitter">
+              <%= image_tag "providers/twitter/sign_in.png"%>
+            </a>
+            <a href="/auth/google_oauth2" title="Authorize google">
+              <%= image_tag "providers/google/sign_in.png"%>
+            </a>
+            <a href="/auth/soundcloud" title="Authorize soundcloud">
+              <%= image_tag "providers/soundcloud/sign_in.png"%>
+            </a>
+            <a href="/auth/vimeo" title="Authorize vimeo">
+              <%= image_tag "providers/vimeo/sign_in.png"%>
+            </a>
+            <a href="/auth/tumblr" title="Authorize tumblr">
+              <%= image_tag "providers/tumblr/sign_in.png"%>
+            </a>
+            <a href="/auth/github" title="Authorize github">
+              <%= image_tag "providers/github/sign_in.png"%>
+            </a>
+            <a href="/auth/flickr" title="Authorize flickr">
+              <%= image_tag "providers/flickr/sign_in.png"%>
+            </a>
+          </nav>
+        </aside>
+      </section>
+    </details>
+
+  </section>
+
+
   <section id="pages" >
     <header>
-      <h1>Pages You own</h1>
+      <h1>Pages You own </h1>
       <hgroup>
         <h2>Filter by</h2>
         <nav>

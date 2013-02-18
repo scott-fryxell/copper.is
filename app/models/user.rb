@@ -58,11 +58,11 @@ class User < ActiveRecord::Base
   end
 
   def royalties
-    Tip.for_author.where(page_id:authored_pages.pluck(:id))    
+    Tip.where(page_id:authored_pages.pluck(:id))    
   end
 
   def average_royalties
-    royalties = Tip.for_author.where(page_id:authored_pages.pluck(:id)).average(:amount_in_cents)
+    royalties = Tip.where(page_id:authored_pages.pluck(:id)).average(:amount_in_cents)
     royalties = 0 unless royalties
     royalties.round
   end
