@@ -1,4 +1,20 @@
 
+<section id="banner">
+  <header>
+    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+  </header>
+  <hgroup>
+    <h1>Get the badge</h1>
+    <p><%=current_user.name%><a href="/signout">not you?</a></p>
+  </hgroup>
+
+  <p>
+    Select the size badge you want on you page. then coppy the code and 
+    paste alongside content you create online.
+  </p>
+
+</section>
+
 <section id="badge">
   <div>
     <header>
@@ -26,4 +42,8 @@
          style="cursor:pointer; width:${size}px;" title="Tip This Page"
          onclick="<%= render :partial=>'home/wrapped_launcher', :formats=>[:js] %>">
   </script>
+</section>
+
+<section>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
 </section>
