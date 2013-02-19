@@ -64,7 +64,7 @@ $(document).bind({
       $(document).trigger("tip_display")
   },
   "tip_display": function (event){
-      var cents = $("input[itemprop=amount_in_dollars]").attr('value');
+      var cents = $("input[itemprop=amount_in_cents]").attr('value');
       var dollars = document.copper.cents_to_dollars(cents);
       $("input[itemprop=amount_in_dollars]").attr('value', dollars);
       document.postMessage({type:'show'})
