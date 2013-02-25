@@ -22,16 +22,5 @@ Copper::Application.configure do
   config.facebook_appname = "copper_is"
   config.facebook_appid = "340706775966925"
   config.honeybadger_js_app_id = "df5151fb675d4d4af78d117fab648540"
-
   config.cache_store = :dalli_store
-
-  ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com'
-  }
-  ActionMailer::Base.delivery_method = :smtp
 end
