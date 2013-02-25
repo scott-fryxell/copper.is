@@ -38,6 +38,7 @@ class Tip < ActiveRecord::Base
   end
 
   before_destroy do |tip|
+    tip.page.touch
     raise CantDestroyException unless tip.promised?
   end
 
