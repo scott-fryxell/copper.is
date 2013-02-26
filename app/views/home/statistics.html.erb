@@ -3,17 +3,17 @@
   <figure>
     <%= image_tag "noun_project/2966.svg" %>
     <figcaption><%=User.count%> Fans</figcaption>
-    <figcaption><%=User.where('created_at >= ?', 1.week.ago).count%> this week</figcaption>
+    <figcaption><%=User.where('created_at <= ?', 1.week.ago).count%> this week</figcaption>
   </figure>
   <figure>
     <%= image_tag "noun_project/4060.svg" %>
     <figcaption><%=Tip.count%> Tips</figcaption>  
-    <figcaption><%=Tip.where('created_at >= ?', 1.week.ago).count%> this week</figcaption>
+    <figcaption><%=Tip.where('created_at <= ?', 1.week.ago).count%> this week</figcaption>
   </figure>
   <figure>
     <%= image_tag "noun_project/4534.svg" %>
     <figcaption><%=Page.count%> Pages</figcaption>
-    <figcaption><%=Page.where('created_at >= ?', 1.week.ago).count%> this week</figcaption>
+    <figcaption><%=Page.where('created_at <= ?', 1.week.ago).count%> this week</figcaption>
   </figure>
 </section>
 <%-end-%>
