@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.11'
 gem 'declarative_authorization'
-gem 'jquery-rails'
+gem 'jquery-rails', '2.1.4' 
 
 gem 'honeybadger'
 gem 'omniauth'
