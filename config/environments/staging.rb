@@ -13,7 +13,7 @@ Copper::Application.configure do
   config.assets.compile = true
   config.assets.debug = false
   config.assets.digest = true
-  config.action_controller.asset_host = "dxs9q85fcnuty.cloudfront.net"
+  # config.action_controller.asset_host = "dxs9q85fcnuty.cloudfront.net"
   config.hostname = "https://copper-stage.herokuapp.com"
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=31536000"
@@ -21,25 +21,7 @@ Copper::Application.configure do
   config.honeybadger_js_app_id = "df5151fb675d4d4af78d117fab648540"
   config.facebook_appname = "copper-staging"
   config.facebook_appid = "180829622036113"
-
-  config.action_dispatch.rack_cache = {
-    :metastore    => Dalli::Client.new,
-    :entitystore  => 'file:tmp/cache/rack/body',
-    :allow_reload => false
-  }
-
   config.active_record.mass_assignment_sanitizer = :strict
-
   config.active_record.auto_explain_threshold_in_seconds = 0.5
-
-  ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com'
-  }
-  ActionMailer::Base.delivery_method = :smtp
-
+  config.cache_store = :dalli_store
 end
