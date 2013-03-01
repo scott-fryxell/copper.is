@@ -15,8 +15,6 @@ class SessionsController < ApplicationController
     @author.secret = auth['credentials']['secret']
     @author.username = auth['info']['nickname']
     @author.save
-    Resque.enqueue @author.class, @author.id, :claim_pages
-
 
     if session[:fb_permissions] == 'publish_actions'
       session[:fb_permissions] = nil
