@@ -100,8 +100,8 @@ class Author < ActiveRecord::Base
     end
     page.author = self
 
-    if author.user
-      author.user.touch
+    if self.user
+      self.user.touch
     end
   end
 
