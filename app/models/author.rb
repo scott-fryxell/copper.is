@@ -99,8 +99,11 @@ class Author < ActiveRecord::Base
       page = Page.create(url:self.url,title:self.username)
     end
     page.author = self
-  end
 
+    if author.user
+      author.user.touch
+    end
+  end
 
   # --------------------------------------------------------------------
   
