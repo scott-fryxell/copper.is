@@ -55,7 +55,11 @@
           <%-current_user.authors.each do |author|-%>
           <figure class="<%=author.provider%>" itemscope itemtype="authors"  itemid="<%=author.id%>">
             <%= image_tag "providers/#{author.provider}/sign_in.png", title:author.username%>
-            <figcaption itemprop='username'><%=author.username%></figcaption>
+            <%-if author.username-%>
+              <figcaption itemprop='username'><%=author.username%></figcaption>
+            <%-else-%>
+              <figcaption itemprop='uid'><%=author.uid%></figcaption>
+            <%-end-%> 
             <%-if current_user.authors.count > 1-%>
             <form action='<%=author_path(author)%>' method="delete">
               <input type="submit" name="submit" value="X">
@@ -94,10 +98,25 @@
               <%= image_tag "providers/flickr/sign_in.png"%>
             </a>
           </nav>
+          <%-current_user.authors.each do |author|-%>
+            <%-if author.provider == 'facebook' and author.token -%>
+              <a href="/auth/facebook/manage_pages">Claim facebook pages</a>
+            <%-end-%>
+          <%-end-%>
         </aside>
       </section>
     </details>
-
+    <aside id='facebook_pages'>
+      <header>
+        <h2>Facebook pages you admin</h2>
+        <p class='help'>check all the pages you want to recieve tips for</p>
+      </header>
+      <form method="post" action='/claim_facebook_pages'>
+        <fieldset>
+        </fieldset>
+        <input type='submit' value="Claim paiges">
+      </form>
+    </aside>
   </section>
 
 

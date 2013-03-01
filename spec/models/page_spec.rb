@@ -46,6 +46,10 @@ describe Page do
         @page.url = "https://www.facebook.com/profile.php?id=1340075098"
       end
       
+      it "finds an owner for an application on facebook.com" do
+        @page.url = "https://www.facebook.com/apps/application.php?id=265853386838821"
+      end
+
       it "finds user on twitter.com" do
         @page.url = "https://twitter.com/ChloesThinking"
       end

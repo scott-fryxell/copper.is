@@ -90,6 +90,18 @@ class Author < ActiveRecord::Base
     self.type = Author.subclass_from_provider(self.provider).to_s unless self.type
   end
 
+  after_create do
+    Resque.enqueue Author, author.id, :create_page_for_author  
+  end
+
+  def create_page_for_author
+    unless page = Page.where(url:self.url).first
+      page = Page.create(url:self.url,title:self.username)
+    end
+    page.author = self
+  end
+
+
   # --------------------------------------------------------------------
   
   def self.find_with_omniauth(auth)

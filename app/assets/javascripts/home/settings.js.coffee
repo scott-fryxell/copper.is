@@ -49,8 +49,17 @@ $(document).on "me.home_settings", ->
 
 $(document).on "load.home_settings", ->
 
-  $('#sharing > form > input').change ->
+  $('#sharing > form > input').change ->  
     $('#sharing > form').submit()
+
+  $('#sharing > form').on 'item.put', ->
+    # when the user decides to post to their timeline 
+    # authorize them with facebook to get permissions
+    # after you have the permissions then change the 
+    # checkbox
+    if $('#sharing > form > input[itemprop]').attr('checked')
+      window.location ='/auth/facebook/publish_actions'
+
 
   $("#card").on "bad_credit_card", ->
     $("#card > header > a").click();
@@ -63,22 +72,22 @@ $(document).on "load.home_settings", ->
     rate = document.copper.cents_to_dollars $('select[itemprop=tip_preference_in_cents]').val()
     $('#rate p[itemprop=tip_preference_in_cents]').text rate
 
-  $("#authors > header > a").click (event) -> 
-    event.preventDefault();
-    $('#authors').toggleClass 'edit'
+  # $("#authors > header > a").click (event) -> 
+  #   event.preventDefault();
+  #   $('#authors').toggleClass 'edit'
 
-    if $('#authors').hasClass 'edit'
-      $('#authors > header > a').text 'Done'
-    else
-      $('#authors > header > a').text 'Add/Remove'
+  #   if $('#authors').hasClass 'edit'
+  #     $('#authors > header > a').text 'Done'
+  #   else
+  #     $('#authors > header > a').text 'Add/Remove'
   
-  $('#authors > aside > nav > a > img, #authors form > input').click ->
-    $(@).addClass 'working'
+  # $('#authors > aside > nav > a > img, #authors form > input').click ->
+  #   $(@).addClass 'working'
 
-  $("#authors form").on 'item.delete', ->
-    $(@).parent().remove()
-    if 2 > $("#authors form").size()
-      $('#authors figure > form').addClass 'hide'
+  # $("#authors form").on 'item.delete', ->
+  #   $(@).parent().remove()
+  #   if 2 > $("#authors form").size()
+  #     $('#authors figure > form').addClass 'hide'
 
   $("#address form").on 'item.validate', ->
     unless $('#address form .invalid').size == 0

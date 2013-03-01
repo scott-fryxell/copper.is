@@ -16,7 +16,7 @@ document.copper =
   get_author_image: ->
     pic
     for author in document.copper.me.authors
-      if author.provider is 'facebook'
+      if author.provider is 'facebook' and author.token
         pic = "https://graph.facebook.com/#{author.uid}/picture?type=square"
       if author.provider is 'twitter'
         pic = "https://api.twitter.com/1/users/profile_image?id=#{author.uid}&size=bigger"

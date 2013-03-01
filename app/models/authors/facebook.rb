@@ -24,6 +24,14 @@ class Authors::Facebook < Author
       rescue
         id = id_from_url
       end
+      elsif match = %r{/application.php}.match(url.path)
+        app_id_from_url = url.query.split('id=')[1]
+        begin
+          fb_object = graph.get_object(app_id_from_url)
+          id = fb_object['id']
+        rescue
+          id = id_from_url
+        end
     else
       username_from_url = url.path.split('/').last
       begin
@@ -31,10 +39,14 @@ class Authors::Facebook < Author
         username = fb_object['username']
         id = fb_object['id']
       rescue
-        username = username_from_url 
+        id= nil
+        username=nil
       end
     end
-    { :uid => id, :username => username}
+    if id == nil and username == nil
+      return nil
+    end
+    {:uid => id, :username => username}
   end
 
   def url

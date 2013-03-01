@@ -30,6 +30,8 @@ Copper::Application.routes.draw do
   get 'statistics',      to:'home#statistics'
   get 'embed_iframe.js', to:'home#iframe', :as => :iframe
 
+  post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
+
   if Rails.env.test? || Rails.env.development?
     get 'test',    to:'home#test'
   end
@@ -39,6 +41,10 @@ Copper::Application.routes.draw do
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
 
+  match '/auth/facebook/setup', :to => 'sessions#facebook_setup'
+  match '/auth/facebook/publish_actions', :to => 'sessions#publish_actions'
+  match '/auth/facebook/manage_pages', :to => 'sessions#manage_pages'
+  
   mount Resque::Server.new, :at => "/admin/resque"
   root :to => 'home#index'
 end

@@ -11,11 +11,57 @@
     }
   }
 
-  section#services > details   summary {
+  section#services > details summary {
     outline:none;
     text-align: right;
   }
 
+  #facebook_pages {
+    opacity:0;
+    display:none;
+    margin-top:1em;
+    padding:1em;
+    border-radius:0.5em;
+    background-color:$offset_color;
+    &.show{
+      opacity:1;
+      transition-property: opacity;
+      transition-duration: 2s;
+      transition-delay: 0.5s;
+    }
+    & > header {
+      margin-bottom:1em;
+      & > p {
+        font-size:0.75em;
+        margin-left:1em;
+        width:auto;
+        margin-top:1em;
+      }
+    }
+    & a.button {
+      display:block;
+      width:7em;
+      font-size:0.75em;
+      margin: 2em 0 1em 2em;
+    }
+    & > form {
+      fieldset {
+        margin-left:1em;
+        width:12em;
+        & > input {
+          margin:0;
+          display:inline-block;
+          width:0.75em;
+          margin-bottom:0.5em;
+        }
+        & > label {
+          margin-bottom:0.5em;
+          display: inline-block;
+          width:10em;
+        }
+      }
+    }
+  }
 
   #authors {
     margin-top:1em;
@@ -48,8 +94,11 @@
       opacity:0;
       width:0;   
     } 
-    & > aside {
 
+    & > div > figure > figcaption > a {
+      display:block;
+      font-size:0.5em;
+      text-decoration: underline;
     }
    
     & > div > figure > form > input {
@@ -61,7 +110,12 @@
       height:1em;
       margin-bottom:1.5em
     }
-    & > aside > nav {}
+    & > aside > nav {
+      margin-bottom:1em;
+    }
+    & > aside > a {
+      text-decoration: underline;
+    }
     & > aside  > nav a {
       margin-right:.65em
     }
