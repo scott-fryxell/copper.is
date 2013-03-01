@@ -91,7 +91,7 @@ class Author < ActiveRecord::Base
   end
 
   after_create do
-    Resque.enqueue Author, author.id, :create_page_for_author  
+    Resque.enqueue Author, self.id, :create_page_for_author  
   end
 
   def create_page_for_author
