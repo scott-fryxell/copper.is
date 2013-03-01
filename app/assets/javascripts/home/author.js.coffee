@@ -2,25 +2,6 @@ $(document).on "load.home_author", ->
 
   $('*[data-cents]').each ->
     $(@).text( document.copper.cents_to_dollars( $(@).attr('data-cents')) or 0)
-
-  # badge = 
-  #   type: "name",
-  #   size: "175",
-  #   render: ->
-  #     $("#settings figure > img").remove()
-  #     $.tmpl( "badge", badge ).appendTo "#settings figure"
-  #     $("#settings textarea").val $("#settings figure" ).html() 
-  #     $("#settings textarea").select()
-
-  # $("#badge_template").template "badge"
-  # badge.render()
-
-  # $("#size").change (event) ->
-  #   badge.size = $("#size option:selected").val()
-  #   badge.render()
-
-  # $("#settings textarea").click ->
-  #   $(this).select()
     
   $('#authors > aside > nav > a > img, #authors form > input').click ->
     $(@).addClass 'working'
@@ -42,7 +23,6 @@ $('#facebook_pages > form').submit ->
     success: (data, textStatus, jqXHR) ->
       window.location = '/author'
 
-
 $(document).on '#claim_pages', ->
 
   $(document).on "me.home_author", ->
@@ -59,6 +39,3 @@ $(document).on '#claim_pages', ->
           unless(page.category == 'Application')
             $('<input/>', {type:"checkbox", value:page.id, name:"facebook_objects[]", id:page.name}).appendTo('#facebook_pages > form > fieldset')
             $('<label/>', {html:page.name, for:page.name}).appendTo('#facebook_pages > form > fieldset')
-
-
-

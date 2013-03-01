@@ -15,7 +15,6 @@
     outline:none;
     text-align: right;
   }
-
   #facebook_pages {
     opacity:0;
     display:none;
@@ -120,26 +119,24 @@
       margin-right:.65em
     }
 
-    // &.edit {
-    
-      & > div > figure > figcaption {
-        opacity:1;
-        @include transition (width 0.5s ease-in 0s);
-        margin-left:0.5em; 
-        white-space: nowrap;
-        min-width:7em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      & > div > figure > form {
-        opacity:1;
-        @include transition (opacity 0.3s ease-in 0.5s);
-      }
-      & > div > figure > form.hide {
-        opacity:0;
-        @include transition (opacity 0.3s ease-in 0.25s);
-      }
-    // }
+    & > div > figure > figcaption {
+      opacity:1;
+      @include transition (width 0.5s ease-in 0s);
+      margin-left:0.5em; 
+      white-space: nowrap;
+      min-width:7em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    & > div > figure > form {
+      opacity:1;
+      @include transition (opacity 0.3s ease-in 0.5s);
+    }
+    & > div > figure > form.hide {
+      opacity:0;
+      @include transition (opacity 0.3s ease-in 0.25s);
+    }
+
   }
 
 
