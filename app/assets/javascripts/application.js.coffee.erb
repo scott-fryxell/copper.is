@@ -16,11 +16,10 @@
 #= require home/badge
 #= require home/welcome
 #= require authors/edit
+#= require orders/index
 #= require shared/honeybadger
 
 $(document).ready ->
-  jQuery('time').timeago();
-  $(document).trigger "load.#{$('body').attr('id')}"
 
   jQuery.ajax
     url:'/users/me.json',
@@ -42,6 +41,3 @@ $(document).ready ->
       url: '/users/me.json'
       type: 'put'
       data: jQuery.param document.copper.me
-
-  # treat fragment identifiers as an event to call on the page
-  $(document).trigger(window.location.hash);

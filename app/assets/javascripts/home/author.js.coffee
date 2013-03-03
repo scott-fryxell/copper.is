@@ -1,8 +1,5 @@
 $(document).on "load.home_author", ->
 
-  $('*[data-cents]').each ->
-    $(@).text( document.copper.cents_to_dollars( $(@).attr('data-cents')) or 0)
-    
   $('#authors > aside > nav > a > img, #authors form > input').click ->
     $(@).addClass 'working'
 

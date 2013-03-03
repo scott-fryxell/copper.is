@@ -82,8 +82,8 @@ class Tip < ActiveRecord::Base
     end
   end
 
-  def thumbnail_url
-    page.thumbnail_url
+  def thumbnail
+    page.thumbnail
   end
 
   def url

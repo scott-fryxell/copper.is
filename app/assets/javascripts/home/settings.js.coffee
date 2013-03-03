@@ -99,9 +99,6 @@ $(document).on "load.home_settings", ->
       $('span[itemprop=postal_code]').text $(@).find('input[itemprop=postal_code]').val()
 
 
-  $('*[data-cents]').each ->
-    $(@).text( document.copper.cents_to_dollars( $(@).attr('data-cents')) or 0)
-
   badge = 
     type: "name",
     size: "175",

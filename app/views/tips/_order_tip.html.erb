@@ -1,0 +1,27 @@
+<%-cache tip do-%>
+<tr itemscope itemtype='tips' itemid='<%=tip.id%>'>
+  <td>
+    <figure><img src="<%=tip.thumbnail%>"></figure>
+    <div>
+      <p><%=tip.title%></p>
+      <time datetime="<%=tip.created_at.getutc.iso8601%>" />
+    </div>
+  </td>
+  <td>
+    <%-if tip.paid_state == 'promised' -%>
+      <form method="put">
+        <input type="text" name='amount_in_dollars' value="<%=tip.amount_in_cents%>"/>
+        <input type="submit" value="Save"/>
+        <input type="hidden" itemprop="amount_in_cents" name="tip[amount_in_cents]" value="<%=tip.amount_in_cents%>"/>
+      </form>
+    <%-else-%>
+      <span itemprop='amount_in_cents' data-cents='<%=tip.amount_in_cents%>'></span>
+    <%-end-%>
+  </td>
+  <td>
+    <%-if tip.paid_state == 'promised' -%>
+      <form method="delete"><input type="submit" value="X"/></form>
+    <%-end-%>
+  </td>
+</tr>
+<%-end-%>

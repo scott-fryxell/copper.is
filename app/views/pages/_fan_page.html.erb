@@ -13,7 +13,7 @@
     <dt>
       <details open>
         <summary><%=pluralize(current_user.tips.where(page_id:page.id).count, 'tip')%></summary>
-        <table>
+        <table id="tips">
           <thead>
             <tr>
               <th>when</th>
