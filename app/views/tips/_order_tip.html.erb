@@ -3,7 +3,7 @@
   <td>
     <figure><img src="<%=tip.thumbnail%>"></figure>
     <div>
-      <p><%=tip.title%></p>
+      <p><a href="<%=tip.url%>" target="_blank"><%=tip.title%></a></p>
       <time datetime="<%=tip.created_at.getutc.iso8601%>" />
     </div>
   </td>

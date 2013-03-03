@@ -73,7 +73,10 @@
                 font-size:1em;
                 line-height:1.25em;
                 overflow:hidden;
-                margin: 0 0 0.25em 0 ;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                margin: 0 0 0.25em 0;
+
               }
               time {
                 font-size:0.85em;
