@@ -53,7 +53,6 @@ $red:rgba(255, 0, 0, 0.7);
     // background-position:center;
     // @include background-size(cover);
   }
-
 }
 @mixin ribbon {
   @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
@@ -131,7 +130,6 @@ $red:rgba(255, 0, 0, 0.7);
     background-size: .75em;
   }
 }
-
 
 @mixin keyframes($name) {
   @-moz-keyframes #{$name} { @content; }

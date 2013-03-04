@@ -3,8 +3,7 @@
   #rate > div > p:before{
     content: "$";
   }
-  
-  
+ 
   #sharing {
 
     & > form {
@@ -12,99 +11,10 @@
       opacity:1;
     }
   }
-}
 
-#home_settings.author {
-  & > nav > a:nth-child(2) {
-    @include settings_pointer_down;
-  }  
-
-  #authors, #address, #badge {
-    height:auto;
-    padding:auto;
-    overflow:auto;
-    @include active
-  }
-
-  #address {
-    padding-top:2em;
-    padding-bottom:2em;
-
-    min-height:grid-width(4);
-    & > form > input[type=submit] {
-      width:4em;
+  #orders {
+    & > nav > a {
+      @include settings_pointer;
     }
-  }
-
-  #badge {
-    width:55em;
-    padding:0;
-    @include full_width($offset_color);
-    margin: 4em auto 0 auto;
-    background-color:transparent;
-
-    & > div {
-      min-height:8em;
-      margin-right:0;
-      vertical-align:top;
-      position:relative;
-      display:inline-block;
-      background-color:$offset_color;
-    }
-    & > div:first-child {
-      width:27em;
-      margin-right:.5em;
-    }
-    & > div:first-child > header {
-      margin:2em 0;
-      vertical-align:top;
-      display:inline-block;
-      width:grid-width(6);
-    }
-    & > div:first-child > header > select {
-      width:grid-width(4);
-    }
-    & > div:first-child > figure {
-      vertical-align:middle;
-      text-align:center;
-      width:12em;
-      height:12em;
-      line-height:12em;
-      display:inline-block;
-    }
-    & > div:first-child > figure > img {
-      display:inline;
-      vertical-align:middle;
-      text-align:center;
-    }
-    & > div:nth-child(2) {
-      width:21.20em;
-      padding:2em;
-      padding-left:4em;
-    }
-    & > div:nth-child(2) > header {
-      height:2em;
-      margin-bottom:1em;
-    }
-    & > div:nth-child(2) > header > h3 {
-      margin-top:.4em;
-      vertical-align:middle;
-      display:inline-block;
-    }
-    & > div:nth-child(2) > header > a {
-      float:right;
-      color:$light-text;
-      padding: .5em 1em;
-      background-color:rgba(0,0,0, .5);
-    }
-    & > div:nth-child(2) > textarea {
-      width:19em;
-      height:4em;
-      background-color: #CCCCCC;
-    }
-  }
-
-  & > footer {
-    margin-top:0;
   }
 }

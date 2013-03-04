@@ -93,7 +93,7 @@ section.setting,
     vertical-align:top;
     max-width: grid-width(14);
   }
-  & > div {
+  & > div, & > nav, & > aside  {
     display:inline-block;
   }
   & > div h4 {

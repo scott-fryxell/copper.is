@@ -36,6 +36,8 @@
   </form>
 </section>
 
+<%= render partial:"shared/button"%>
+
 <section id="sharing">
   <header>
     <h2>Facebook</h2>
@@ -96,8 +98,14 @@
   <%= render partial:'shared/card' %>
 </section>
 
-<%= render partial:"shared/button"%>
-
+<section id="orders" class="setting">
+  <header>
+    <h2>Tip orders</h2>
+  </header>
+  <nav>
+    <a href="/orders"> view order details</a>
+  </nav>
+</section>
 
 <section id="address" class="setting">
   <header>
