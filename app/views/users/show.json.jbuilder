@@ -1,6 +1,7 @@
 json.(@user,
   :id, 
   :email,
+  :accept_terms,
   :tip_preference_in_cents,
   :stripe_id,
   :payable_to,
