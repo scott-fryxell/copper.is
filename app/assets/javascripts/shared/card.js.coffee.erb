@@ -28,8 +28,8 @@ $(document).on "items.home_settings items.home_index", ->
 
     if $('#card .invalid').length > 0
       console.debug 'card is invalid'
-      $('#card > header > a').click()
-    
+      $("#card").trigger "bad_credit_card"
+      
     else
       $(@).find('input[type=submit]').addClass('working')
       Stripe.createToken {
