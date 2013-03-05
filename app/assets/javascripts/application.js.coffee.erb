@@ -22,11 +22,7 @@
 $(document).ready ->
 
   if $(window).height() > $('body').height()
-    extra = $(window).height() - $('body').height()
-    console.debug(extra)
-    extra += $('body > footer').height() + 30;
-    console.debug(extra)
-    $('body > footer').css('margin-top', extra)
+    $('body > footer').addClass('bottom')
 
   jQuery.ajax
     url:'/users/me.json',
