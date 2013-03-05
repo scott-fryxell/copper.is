@@ -2,6 +2,8 @@ $(document).on "items.home_settings items.home_index", ->
   user = document.getItems()['users'][0]
   $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'selected'
 
+  $('input[itemprop=accept_terms]').on 'item.changed', ->
+    $(@).attr('value', 'true');
 
   $("#card > form").submit (event) ->
     Stripe.setPublishableKey '<%=Copper::Application.config.stripe_key%>'
@@ -29,7 +31,7 @@ $(document).on "items.home_settings items.home_index", ->
     if $('#card .invalid').length > 0
       console.debug 'card is invalid'
       $("#card").trigger "bad_credit_card"
-      
+
     else
       $(@).find('input[type=submit]').addClass('working')
       Stripe.createToken {
