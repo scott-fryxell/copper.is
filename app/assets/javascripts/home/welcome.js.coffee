@@ -6,11 +6,6 @@ $(document).on "load.home_welcome", ->
   $("#banner > header > figure img:nth-child(5)").hover ->
     $("#banner > header > figure img:nth-child(4)").toggleClass('spinning')
 
-  # $("#samples > nav > a").click (event) ->
-  #   event.preventDefault()
-  #   clearInterval carousel
-  #   show_sample @
-
   # carousel the samples
   show_sample = (nav, img) ->
     unless 'nope' is $(nav).attr 'data-distance' 
