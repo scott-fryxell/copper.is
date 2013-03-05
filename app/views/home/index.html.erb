@@ -23,12 +23,12 @@
     </div>
     <div>
       <h2>Average tip</h2>
-      <p><%=current_user.tips.average(:amount_in_cents).round() if current_user.tips.size > 0%></p>
+      <p data-cents='<%=current_user.tips.average(:amount_in_cents).round() if current_user.tips.size > 0%>'></p>
     </div>
     <div>
       <h2>Default tip</h2>
       <p>
-        <span itemprop="tip_preference_in_cents" data-value="<%=current_user.tip_preference_in_cents%>"></span>
+        <span itemprop="tip_preference_in_cents"></span>
         <button>+</button>
         <button>-</button>
       </p>
@@ -68,14 +68,6 @@
         <h3>Congrats!</h3>
         <h1>Your button is installed!</h1>
       </header>
-      <p><span>Take the button for a test drive.</span>
-        Click through to the pages you've already liked, 
-        press the Copper button.
-      </p>
-    </section>
-    <section id="facebook">
-      <h4><%=image_tag "providers/facebook/thumb.png"%></h4>
-      <nav></nav>
     </section>
     <section id="card">
       <header>
