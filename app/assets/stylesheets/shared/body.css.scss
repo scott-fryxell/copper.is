@@ -39,9 +39,62 @@ body {
   ul, ol, dl {
     list-style: none;
   }
-}
 
-body > header { 
+  a[href='/signout'] {
+    display:none;
+  }
+
+  a.button {
+    @include copper_button;
+  }
+  a.install {
+    position:relative;
+    padding-left: 2.5em;
+    & > img {
+      position:absolute;
+      top:-0.1em;
+      left:0;
+      padding:.35em;
+      width:1.15em;
+      height:1.15em;
+      border-right:1px solid darken(#907744, 10%);
+    }
+  }
+
+  p.help, span.help {
+    font-size:1em;
+    margin:0;
+    display:inline-block;
+    width:grid-width(5);
+    @include help_text
+  }
+  p.help_arrow {
+    @include help_arrow 
+  }
+
+  object[itzemscoped]{
+    display:none;
+  }
+  .working {
+    @include animation-name(spinning);
+    @include animation-duration(1.5s);
+    @include animation-timing-function(ease);
+    @include animation-iteration-count(infinite);
+  }
+  .hide {
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-delay: 0.25s;
+    opacity:0;
+  }
+  .show {
+    opacity:1;
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-delay: .25s;
+  }
+}
+body > header {
   @include full_width($header);
   height:3.4em;
   hgroup {
@@ -79,132 +132,70 @@ body > header {
     margin-right:2em;
   }
 }
-
 body > section,
 body > article {
   width:grid-width(22);
   margin: 0 auto 0 auto;
-}
-body > section a {
-  font-family: 'Doppio One', sans-serif;
-  color:$text;
-}
-
-body > section, 
-body > article,
-body > footer {
   padding-left:75px;
   padding-right:75px;
+  & a {
+    font-family: 'Doppio One', sans-serif;
+    color:$text;
+  }
 }
-
 body > footer {
-  padding-top:1em;
-  padding-bottom:0.75em;
+  padding:1em 1em 0.75em 2em;
   @include full_width($darkness);
-}
-body > footer > h3 {
-  font-size:.85em;
-  display:inline-block;
-  font-family: 'Patua One', cursive;
-  color:$light-text;
-  opacity:.5;
-}
-body > footer > h4 {
-  font-family: 'Cantarell', sans-serif;
-  display:inline-block;
-  font-size:.75em;
-  color:$light-text;
-  opacity:.5;
-  &:before {
-    display:inline-block;
-    content: '|';
-    margin-right:1em;
-    margin-left:1em;
-    text-decoration:none !important;
-  }
-}
-body > footer > nav {
-  color:#A7A39B;
-  display:inline-block;
-}
-body > footer > nav > a {
-  font-size:.75em;
-  display:inline-block;
-  color:#a7a39b;
-  &:before {
-    display:inline-block;
-    content: '|';
-    margin-right:1em;
-    margin-left:1em;
-    text-decoration:none !important;
-  }
-}
 
+  & > h3 {
+    font-size:.85em;
+    display:inline-block;
+    font-family: 'Patua One', cursive;
+    color:$light-text;
+    opacity:.5;
+  }
+  & > h4 {
+    font-family: 'Cantarell', sans-serif;
+    display:inline-block;
+    font-size:.75em;
+    color:$light-text;
+    opacity:.5;
+    &:before {
+      display:inline-block;
+      content: '|';
+      margin-right:1em;
+      margin-left:1em;
+      text-decoration:none !important;
+    }
+  }
+  & > nav {
+    color:#A7A39B;
+    display:inline-block;
+  }
+  & > nav > a {
+    font-size:.75em;
+    display:inline-block;
+    color:#a7a39b;
+    &:before {
+      display:inline-block;
+      content: '|';
+      margin-right:1em;
+      margin-left:1em;
+      text-decoration:none !important;
+    }
+  }
+}
 body > nav {
   padding:5em;
-}
-body > nav > a,
-body > nav > button {
-  font-size:.85em;
-  display:block;
-  margin: 0 auto 0 auto;
-  width: 13em;
-  color:$text;
-}
-body > nav > a {
-  @include settings_pointer;
-}
-.working {
-  @include animation-name(spinning);
-  @include animation-duration(1.5s);
-  @include animation-timing-function(ease);
-  @include animation-iteration-count(infinite);
-}
-
-a[href='/signout'] {
-  display:none;
-}
-
-a.button {
-  @include copper_button;
-}
-a.install {
-  position:relative;
-  padding-left: 2.5em;
-  & > img {
-    position:absolute;
-    top:-0.1em;
-    left:0;
-    padding:.35em;
-    width:1.15em;
-    height:1.15em;
-    border-right:1px solid darken(#907744, 10%);
+  & > a,
+  & > button {
+    font-size:.85em;
+    display:block;
+    margin: 0 auto 0 auto;
+    width: 13em;
+    color:$text;
   }
-}
-p.help, span.help {
-  font-size:1em;
-  margin:0;
-  display:inline-block;
-  width:grid-width(5);
-  @include help_text
-}
-p.help_arrow {
-  @include help_arrow 
-}
-
-object[itemscoped]{
-  display:none;
-}
-.hide {
-  transition-property: opacity;
-  transition-duration: 1s;
-  transition-delay: 0.25s;
-  opacity:0;
-}
-
-.show {
-  opacity:1;
-  transition-property: opacity;
-  transition-duration: 1s;
-  transition-delay: .25s;
+  & > a {
+    @include settings_pointer;
+  }
 }
