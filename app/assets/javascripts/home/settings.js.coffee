@@ -1,11 +1,7 @@
-$(document).on "items.updated.home_settings", ->
-  document.copper.format_cents_to_dollars "tip_preference_in_cents"
-
-$(document).on "items.home_settings", ->
-  user = document.getItems()['users'][0]
-  $("#rate > form > select > option[value=#{user.tip_preference_in_cents}]").attr 'selected', true
+$(document).on "load.home_settings", ->
 
   $("section.setting > header > a").click (event) ->
+    console.debug('clicked');
     event.preventDefault();
     div = $(@).parents("section").find "div"
     form = $(@).parents("section").find "form"
@@ -24,7 +20,43 @@ $(document).on "items.home_settings", ->
       div.css "display","inline-block"
       div.animate {opacity:1}, 500
 
-$(document).on "me.home_settings", ->
+  $('#sharing > form > input').change ->  
+    $('#sharing > form').submit()
+
+  $('#sharing > form').on 'item.put', ->
+    # when the user decides to post to their timeline 
+    # authorize them with facebook to get permissions
+    # after you have the permissions then change the 
+    # checkbox
+    if $('#sharing > form > input[itemprop]').attr('checked')
+      window.location = '/auth/facebook/publish_actions'
+
+  $("#card").on "bad_credit_card", ->
+    credit_card_form = window.setTimeout( ->
+      console.debug('show the credit card form')
+      $("#card > header > a").click()
+    ,1000)
+
+  $('p[itemprop=tip_preference_in_cents]').on 'item.changed', ->
+    $(@).text document.copper.cents_to_dollars($(@).text().trim())
+
+  $("#rate form").on 'item.validate', ->
+    rate = document.copper.cents_to_dollars $('select[itemprop=tip_preference_in_cents]').val()
+    $('#rate p[itemprop=tip_preference_in_cents]').text rate
+
+  $("#address form").on 'item.validate', ->
+    unless $('#address form .invalid').size == 0
+      $('p[itemprop=payable_to]').text $(@).find('input[itemprop=payable_to]').val()
+      $('p[itemprop=line1]').text $(@).find('input[itemprop=line1]').val()
+      $('p[itemprop=line2]').text $(@).find('input[itemprop=line2]').val()
+      $('span[itemprop=city]').text $(@).find('input[itemprop=city]').val()
+      $('span[itemprop=subregion_code]').text $(@).find('select[itemprop=subregion_code]').val()
+      $('span[itemprop=postal_code]').text $(@).find('input[itemprop=postal_code]').val()
+
+$(document).on   "me.home_settings", ->
+
+  user = document.getItems()['users'][0]
+  $("#rate > form > select > option[value=#{user.tip_preference_in_cents}]").attr 'selected', true
 
   if document.copper.me.country_code
     $("select[itemprop=country_code]").change()
@@ -45,76 +77,4 @@ $(document).on "me.home_settings", ->
       error: (data, textStatus, jqXHR) ->
         console.error "error getting stripe info", data, textStatus, jqXHR ;
   else
-    $("#card > header > a").click();
-
-$(document).on "load.home_settings", ->
-
-  $('#sharing > form > input').change ->  
-    $('#sharing > form').submit()
-
-  $('#sharing > form').on 'item.put', ->
-    # when the user decides to post to their timeline 
-    # authorize them with facebook to get permissions
-    # after you have the permissions then change the 
-    # checkbox
-    if $('#sharing > form > input[itemprop]').attr('checked')
-      window.location ='/auth/facebook/publish_actions'
-
-
-  $("#card").on "bad_credit_card", ->
-    $("#card > header > a").click();
-
-  $("#home_settings > nav > a:nth-child(2)").click  (event) ->
-    # event.preventDefault()
-    $("#home_settings").toggleClass('author');
-
-  $("#rate form").on 'item.validate', ->
-    rate = document.copper.cents_to_dollars $('select[itemprop=tip_preference_in_cents]').val()
-    $('#rate p[itemprop=tip_preference_in_cents]').text rate
-
-  # $("#authors > header > a").click (event) -> 
-  #   event.preventDefault();
-  #   $('#authors').toggleClass 'edit'
-
-  #   if $('#authors').hasClass 'edit'
-  #     $('#authors > header > a').text 'Done'
-  #   else
-  #     $('#authors > header > a').text 'Add/Remove'
-  
-  # $('#authors > aside > nav > a > img, #authors form > input').click ->
-  #   $(@).addClass 'working'
-
-  # $("#authors form").on 'item.delete', ->
-  #   $(@).parent().remove()
-  #   if 2 > $("#authors form").size()
-  #     $('#authors figure > form').addClass 'hide'
-
-  $("#address form").on 'item.validate', ->
-    unless $('#address form .invalid').size == 0
-      $('p[itemprop=payable_to]').text $(@).find('input[itemprop=payable_to]').val()
-      $('p[itemprop=line1]').text $(@).find('input[itemprop=line1]').val()
-      $('p[itemprop=line2]').text $(@).find('input[itemprop=line2]').val()
-      $('span[itemprop=city]').text $(@).find('input[itemprop=city]').val()
-      $('span[itemprop=subregion_code]').text $(@).find('select[itemprop=subregion_code]').val()
-      $('span[itemprop=postal_code]').text $(@).find('input[itemprop=postal_code]').val()
-
-
-  badge = 
-    type: "name",
-    size: "175",
-    render: ->
-      $("#badge figure > img").remove()
-      $.tmpl( "badge", badge ).appendTo "#badge figure"
-      $("#badge textarea").val $("#badge figure" ).html() 
-      $("#badge textarea").select()
-
-  $("#badge_template").template "badge"
-  badge.render()
-
-  $("#size").change (event) ->
-    badge.size = $("#size option:selected").val()
-    badge.render()
-
-  $("#badge textarea").click ->
-    $(this).select()
-
+    $("#card").trigger "bad_credit_card"

@@ -21,12 +21,11 @@
 // not what's being maintained in a seperate javascript object. 
 // every time you access the items on the page this state is re-created
 // from the dom. 
-
 Item = {
   items: {},
-
-  // Determine what elements on the page are available to be managed. 
   discover_items: function(){
+    // Determine what elements on the page 
+    // are available to be managed. 
     $("*[itemscope]").each(function (index){
       if(!Item.items[$(this).attr("itemtype")]){
         Item.items[$(this).attr("itemtype")] = []        
@@ -44,7 +43,6 @@ Item = {
     });
     return Item.items;
   },
-
   get_value: function (element){
     if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
       if ($(element).val())
@@ -64,9 +62,8 @@ Item = {
       }
     }
   },
-
-  // update exsisting items on the page
   update_page: function(item){
+    // update exsisting items on the page
     // Make sure your only updating the item for a single type and id. 
     // console.debug('item to be updated', item);
     // console.debug('update page')
@@ -85,11 +82,11 @@ Item = {
           else {
             $(this).text(value);
           }
+          $(this).trigger('item.changed'); 
         });
       }
     });
-    // let any listeners know that the items on the page have been updated
-    $(document).trigger('items.updated.' + $('body').attr('id'));
+
   },
   CSRFProtection: function (xhr){
     var token = $('meta[name="csrf-token"]').attr('content');
@@ -104,20 +101,14 @@ document.getItems = function (type){
     return Item.items
   }
 }
-$(document).ready(function (event){
-  $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
-
-  if(Item.discover_items()){
-    // let any listeners know that their are items on the page
-    $(document).trigger("items." + $('body').attr('id'));
-  }
-});
-
-// capture form submissions for items. Determine
-// their values and submit the data via ajax. 
-// this means forms are submited with CSRF protection 
-// without requireing the forms themselves to know the token
 $("*[itemscope] form").submit(function(event){
+  // capture form submissions for items. Determine
+  // their values and submit the data via ajax. 
+  // this means forms are submited with CSRF protection 
+  // without requireing the forms themselves to know the token
+  // The form is only submited if there are elements with 
+  // itemprop set
+
   event.preventDefault()
 
   // if their are no Items in the form just end the submit. 
@@ -168,5 +159,13 @@ $("*[itemscope] form").submit(function(event){
 
   //don't submit the form so that the page redraws
   return false;
+});
+$(document).ready(function (event){
+  $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
+
+  if(Item.discover_items()){
+    // let any listeners know that their are items on the page
+    $(document).trigger("items." + $('body').attr('id'));
+  }
 });
 

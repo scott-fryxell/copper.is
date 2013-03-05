@@ -4,7 +4,7 @@
     <h2 itemprop="title"><%=page.title%></h2>
     <figure>
       <img itemprop="thumbnail_url" src="<%=page.thumbnail%>" alt="tip image" title="<%=page.title%>"/> 
-      <figcaption><%=current_user.tips.where(page_id:page.id).sum(:amount_in_cents)%></figcaption>
+      <figcaption data-cents='<%=current_user.tips.where(page_id:page.id).sum(:amount_in_cents)%>'></figcaption>
     </figure>
   </summary>
   <dl>

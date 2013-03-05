@@ -1,13 +1,10 @@
-$(document).on "items.updated.home_index", ->
-  tip_preference = $("span[itemprop=tip_preference_in_cents]").attr('data-value')
-  $("span[itemprop=tip_preference_in_cents]").text document.copper.cents_to_dollars(tip_preference)
-
 $(document).on "load.home_index", ->
-  if '' is $('#stats > div:nth-child(3) > p').text().trim() 
+  # set up page stats.
+  $('span[itemprop=tip_preference_in_cents]').on 'item.changed', ->
+    $(@).text document.copper.cents_to_dollars($(@).text().trim())
+
+  if '' is $('#stats > div:nth-child(3) > p').attr('data-cents').trim() 
     $('#stats > div:nth-child(3)').hide()
-  else
-    dollars = document.copper.cents_to_dollars($('#stats > div:nth-child(3) > p').text().trim())
-    $('#stats > div:nth-child(3) > p').text dollars
 
   $('#stats > div > p > button:nth-child(2)').click ->
     for amount in document.copper.tip_amount_options
@@ -29,10 +26,6 @@ $(document).on "load.home_index", ->
           return
 
 $(document).on "load.home_index", ->
-
-  # format the page tip totals into dollars
-  $('details[itemscope] > summary > figure > figcaption').each ->
-    $(@).text document.copper.cents_to_dollars( $(@).text() )
 
   # format tips into dollars
   $("*[itemtype=tips] input[type=text]").each -> 
@@ -72,23 +65,3 @@ $(document).on "load.home_index", ->
     $(page).find('input[type=text]').each -> new_total += Number($(@).val())
     $(page).find('span[itemprop=amount_in_cents]').each -> new_total +=  Number($(@).text())
     $(page).find('figcaption').text new_total
-
-# if logged in display the the second step in the sign up process.
-$(document).on "me.home_index", ->
-  if $('#facebook').size() > 0
-    facebook = -1
-    for author in document.copper.me.authors 
-      if author.provider is 'facebook'
-        facebook = author
-
-    if facebook
-      likes_url = "https://graph.facebook.com/#{facebook.username}/likes?limit=9&access_token=#{facebook.token}"
-      me_url = "https://graph.facebook.com/me?&access_token=#{facebook.token}"
-
-      $.getJSON(likes_url).success (facebook) ->
-        $.each facebook.data, (i, a_like) ->
-          $.getJSON("https://graph.facebook.com/#{a_like.id}").success (like) ->
-            image = $('<img/>', src:"https://graph.facebook.com/#{like.id}/picture")
-            $('<a/>', {href:like.link, html:image, target:'blank'}).appendTo('#facebook > nav')
-
-   

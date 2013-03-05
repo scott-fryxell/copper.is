@@ -26,10 +26,7 @@ document.copper =
     
 $(document).ready ->
   jQuery('time').timeago();
+  $(document).trigger "load.#{$('body').attr('id')}"
+  $(document).trigger(window.location.hash);
   $('*[data-cents]').each ->
     $(@).text( document.copper.cents_to_dollars( $(@).attr('data-cents')) or 0)
-
-  $(document).trigger "load.#{$('body').attr('id')}"
-
-  # treat fragment identifiers as an event to call on the page
-  $(document).trigger(window.location.hash);

@@ -55,7 +55,7 @@
     <a href="#">Change</a>
   </header>
   <div>
-    <p itemprop="tip_preference_in_cents"><%=current_user.tip_preference_in_cents%></p>
+    <p itemprop="tip_preference_in_cents"></p>
   </div>
   <form method="put" action="/users/me" accept-charset="UTF-8">
     <select itemprop="tip_preference_in_cents" name="user[tip_preference_in_cents]">
@@ -79,7 +79,7 @@
 <section id="card" class="setting">
   <header>
     <h2>Payment Info</h2>
-    <a href="#">Change</a>
+    <a href="#card">Change</a>
   </header>
   <div>
     <section>
@@ -103,7 +103,7 @@
     <h2>Tip orders</h2>
   </header>
   <nav>
-    <a href="/orders"> view order details</a>
+    <a href="/orders">View order details</a>
   </nav>
 </section>
 
