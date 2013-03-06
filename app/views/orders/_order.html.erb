@@ -1,7 +1,7 @@
 <%-cache order do-%>
-<details itemscope itemtype='orders' itemid='<%=order.id%>'>
+<details itemscope itemtype='orders' itemid='<%=order.id%>' date-order_state="<%=order.order_state%>">
   <summary>
-    <h2 itemprop="order_state">
+    <h2>
       <span><%=pluralize(order.tips.count, 'tip')%></span>
     </h2>
     <p>
@@ -23,7 +23,9 @@
         <tr>
           <th>when</th>
           <th>amount</th>
+          <%-if 'current' == order.order_state -%>
           <th>delete</th>
+          <%-end-%>
         </tr>
       </thead>
       <tbody>

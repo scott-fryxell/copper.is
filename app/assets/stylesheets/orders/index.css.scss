@@ -13,7 +13,7 @@
     }
 
     & > details {
-      margin-bottom:1em;
+      margin-bottom:1.5em;
 
       &[open] {
         border-radius:0.25em;
@@ -32,7 +32,7 @@
         display:inline-block;
       }
       & > summary > p {
-        margin-left:1em;
+        margin:0 1em;
         display:inline-block;
       }
 
