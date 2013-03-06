@@ -10,8 +10,8 @@ document.copper =
       cents = $(@).text().trim()
       $(@).text document.copper.cents_to_dollars(cents)
   cents_to_dollars: (cents) ->
-    dollars = (parseFloat(cents) / 100.00)
-    dollars += '0' if dollars is 0.5 or dollars is 0.1
+    dollars = (parseFloat(cents) / 100.00).toFixed(2);
+
     return dollars
   get_author_image: ->
     pic

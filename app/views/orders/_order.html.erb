@@ -2,17 +2,21 @@
 <details itemscope itemtype='orders' itemid='<%=order.id%>'>
   <summary>
     <h2 itemprop="order_state">
-      <%-if 'current' == order.order_state -%>
+      <span><%=pluralize(order.tips.count, 'tip')%></span>
+    </h2>
+    <p>
+       <%-if 'current' == order.order_state -%>
         <%=order.order_state%>
       <%-else-%>
         <time datetime="<%=order.updated_at.getutc.iso8601%>" />
       <%-end-%>
-    </h2>
+    </p>  
   </summary>
   <section>
     <header>
-      <h2><%=pluralize(order.tips.count, 'tip')%></h2>
-      <h4><span data-cents="<%=order.tips.sum :amount_in_cents%>"><%=order.tips.sum :amount_in_cents%></span> total</h4>
+      <h4>sub total: <span data-cents="<%=order.subtotal%>"></span></h4>
+      <h4>fees: <span data-cents="<%=order.fees%>"></span></h4>
+      <h4>total: <span data-cents="<%=order.total%>"></span></h4>
     </header>
     <table id="tips">
       <thead>
