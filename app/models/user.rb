@@ -94,7 +94,7 @@ class User < ActiveRecord::Base
   end
 
   def send_welcome_message 
-    m = Mandrill::API.new('hEOII_VElDaIzeazoKmR_Q')
+    m = Mandrill::API.new(Copper::Application.config.mandrill_key)
     m.messages 'send-template', {
       template_name: "copper base",
       template_content: [

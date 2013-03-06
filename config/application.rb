@@ -26,7 +26,7 @@ module Copper
     config.assets.enabled = true
     config.assets.version = '1.1'
     config.assets.prefix = "/assets"
-
+  
     config.assets.initialize_on_precompile= false
 
     %w[
@@ -65,7 +65,7 @@ module Copper
       resque_overview_password
 
       redistogo_url
-
+      mandrill_key
 
     ].each do |env|
       raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?

@@ -37,7 +37,13 @@ namespace :copper do
         user.accept_terms = true
         user.save
       end
-    end    
+    end
+    task :set_email_to_scott => :environment do
+      User.all.each do |user|
+        user.email='scott@copper.is'
+        user.save
+      end
+    end
     task :reset_thumbnail => :environment do
       Page.all.each do |page|
         page.thumbnail_url = nil
