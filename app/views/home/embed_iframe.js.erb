@@ -5,8 +5,8 @@
 
     var data = event.data
     if (data.type == 'show'){
-      f.width='350px'
-      f.height='200px'
+      f.width='425px'
+      f.height='575px'
     }
     else if (data.type == 'show_details'){
       f.width='550px'
@@ -14,7 +14,7 @@
     }
     else if (data.type == 'hide'){
       f.width='350px'
-      f.height='9px'
+      f.height='0px'
     }
     else if(data.type == 'gather_page_info'){
       var page_title, page_url;
@@ -44,7 +44,7 @@
   }, false);
 
   if (f) {
-    f.contentWindow.postMessage({type:"tip_details"}, "*");
+    f.contentWindow.postMessage({type:"tip_display"}, "*");
   }
   else {
     f=document.createElement('iframe');

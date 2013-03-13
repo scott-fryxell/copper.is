@@ -29,7 +29,6 @@ Copper::Application.routes.draw do
   get 'states',          to:'home#states'
   get 'statistics',      to:'home#statistics'
   get 'embed_iframe.js', to:'home#iframe', :as => :iframe
-
   post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
 
   if Rails.env.test? || Rails.env.development?

@@ -3,15 +3,16 @@ $background_color: #313130;
 $subtle_text: #999999;
 #tips_new {
   margin-left:1em;
-  width:300px;
+  width:350px;
   font-size:16px;
+  // section * { outline: 1px dotted $subtle_text;}
   section {
     position:relative;  
     background-color: $background_color;
     color:$light-text;
     height:0;
     border-radius: 0 0 0.5em 0.5em;
-    padding:0 2em;
+    padding:0 1em;
     opacity:1;
     border:2px solid $darkness;
     border-top:none;
@@ -22,13 +23,20 @@ $subtle_text: #999999;
     & > header {
       @include transition(min-height 0.5s ease-out 0.5s);
       min-height:0;
-      padding:1em 0;
+      padding:1em 0 0 0 ;
       & > a {
         display:inline-block;
-        float:right;
+
+        &:nth-child(2) {
+          font-size:0.85em;
+          padding:0.2em 0.55em;
+          text-decoration: none;
+          float:right;
+          color:$subtle_text;
+        }
         & > img {
-          height:1em;
-          width:3em;
+          height:1.25em;
+
           opacity:0.25;
           @include transition(opacity 0.5s);
           &:hover{
@@ -39,23 +47,18 @@ $subtle_text: #999999;
       }
       & > h1 {
         @include header_text;
-        margin:1em 0 1.5em 0;
+        margin:1em 0 0.5em 0;
         vertical-align:middle;
-        font-size:.85em;
-        color:$subtle_text;
+        font-size:1.5em;
+        text-align:center;
+        color:$button_color;
       }
-
-      & > p[itemprop=title] {
-        font-family: 'Doppio One', sans-serif;
-        width:14em;
-        height:1.25em;
-        margin:0;
-        line-height:1em;
-        vertical-align: middle;
-        font-size:1.1em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+      & > h2 {
+        margin-bottom:0;
+        font-size:1em;
+        color:$light-text;
+        color:$subtle_text;
+        text-align:center;
       }
     }
 
@@ -115,39 +118,48 @@ $subtle_text: #999999;
     }
 
     & footer > nav {
-      margin: 1.5em auto 0 auto;
-      width:7em;
+      text-align:center;
       & > a {
-        display:inline-block;
-        margin-left:0.5em;
-        vertical-align:top; 
-        & > img {
-          opacity:0.15;
-          height:1.5em;
-          width:1.5em;
-          padding-top:0.25em;
-          &:hover {
-            @include transition(opacity 0.5s ease-out 0s);
-            opacity:0.95;
+        color:$subtle_text;
+        text-decoration: none;
+        font-size:0.75em;
+      }
+      &:first-child {
+        a {
+          color:$button_color;
+        }
+        a:before{
+          content:"[";
+        }
+        a:after{
+          content:"]";
+        }
+
+      }
+      &:nth-child(2) {
+        margin: 1em auto 0.5em auto;
+        width:7em;
+        & > a {
+          display:inline-block;
+          margin-left:0.5em;
+          vertical-align:top; 
+          & > img {
+            opacity:0.15;
+            height:2em;
+            width:2em;
+            padding-top:0.25em;
+            &:hover {
+              @include transition(opacity 0.5s ease-out 0s);
+              opacity:0.95;
+            }
           }
         }
       }
-      & > form {
-        margin-left:0.5em;
-        font-size:0.75em;
-        padding-top:0.5em;
-        color:$subtle_text;
-        & > label {
-          padding-left:.5em;
-        }      
-      }
     }
   }
-
   section.show,
   section.details {
-    padding: 0 2em;
-    min-height:11em;
+    min-height:17em;
     @include transition( min-height 0.25s, padding 0.25s);
     & > header {
       @include transition(min-height 1s);
@@ -160,21 +172,20 @@ $subtle_text: #999999;
       @include transition(opacity 1s ease-in 0.25s);
       opacity:1;
     }
-  }
 
+    & > footer  {
+      @include transition(opacity 1s ease-in 0.25s);
+      opacity:1;
+    }
+  }
   section.details {
     min-height:15em;
     & > header {
       color:$subtle_text;
     }
-    & > footer  {
-      @include transition(opacity 1s ease-in 0.25s);
-      opacity:1;
-    }
     & > form {
       width:13em;
-
-      & > input[itemprop=amount_in_dollars] {
+       & > input[itemprop=amount_in_dollars] {
         border:2px solid $text;
         padding:0 0.25em;
       }
@@ -183,7 +194,6 @@ $subtle_text: #999999;
       }
     }
   }
-
   section.sign_in {
     & > header {
       padding-bottom:0em;
@@ -213,7 +223,6 @@ $subtle_text: #999999;
       cursor:pointer;
     }
     #learn {
-
       @include copper_button;
     }
   }

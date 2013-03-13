@@ -5,31 +5,28 @@
 <section>
   <header>
     <a href="/" target="blank"><%= image_tag "icons/logo_light.svg", :title => "View your profile" %></a>
-    <h1>You've Tipped</h1>
-    <p itemprop="title"></p>
+    <%= link_to image_tag("noun_project/6447.svg"), '#close', title:"Close" %>
+    <h1>Thank You!</h1>
+    <h2>You just Tipped</h2>
   </header>
   <form action='/tips' method="post" accept-charset="utf-8">
     <input itemprop="url" name="tip[url]" type="hidden"/>
     <input itemprop="title" name="tip[title]" type="hidden" />
     <input itemprop="amount_in_dollars" type="text" value=""/>
     <input itemprop="amount_in_cents" name="tip[amount_in_cents]" type="hidden" value="<%=current_user.tip_preference_in_cents%>"/>
-    <a class="button">Thanks!</a>
   </form>
   <footer>
+    <nav>
+      <a href="/" target="blank">I want to tip more show me how</a>
+    </nav>
     <nav>
       <a id="facebook" title="Share your tip on facebook" target="blank"><%= image_tag "share/Facebook.png" %></a>
       <a id="twitter" title="Tweet your tip" target="blank"><%= image_tag "share/Twitter.png" %></a>
       <a id="tumblr_button_abc123" title="Blog about your tip on tumblr" target="blank" href="http://www.tumblr.com/share"><%= image_tag "share/Tumblr.png" %></a>
-     
-      <form style="display:none">
-        <input type="checkbox" name="user[training_wheels]" value="true" checked>
-        <details>
-          <summary>Training wheels</summary>
-          <p class="help">{some help text goes here}</p>
-        </details>
-      </form>
     </nav>
-
+    <nav>
+      <a href="#close">Close</a>
+    </nav>
   </footer>
 </section>
 <%-end-%>
