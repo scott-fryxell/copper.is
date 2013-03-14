@@ -31,7 +31,7 @@ Copper::Application.routes.draw do
   get 'embed_iframe.js', to:'home#iframe', :as => :iframe
   post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
 
-  if Rails.env.test? || Rails.env.development?
+  if Rails.env.test? || Rails.env.development? || Rails.env.staging?
     get 'test',    to:'home#test'
   end
 

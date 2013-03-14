@@ -17,10 +17,12 @@
       text-transform:capitalize;
     }
   </style>
-  <body >
+  <body>
     <section>
       <h1>Copper test page</h1>
+      <nav>
+        <a href="<%= render :partial => 'home/wrapped_launcher', :formats => [:js] %>">¢opper</a>
+      </nav>
     </section>
   </body>
 </html>
-<script><%= raw render :partial => 'home/wrapped_launcher', :formats => [:js] %></script>
