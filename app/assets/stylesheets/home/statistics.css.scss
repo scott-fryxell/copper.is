@@ -16,6 +16,8 @@
   figure > img {
     opacity:.8;
     vertical-align:top;
+    display:block;
+    margin:0 auto;
     width: 10em;
     height:10em;
   }
@@ -23,7 +25,11 @@
     text-align:center;
     font-size:2em;
     margin-top:1em;
+    &:nth-child(2){
+      font-size:1.5em;
+    }
     &:nth-child(3){
+      text-transform: capitalize;
       color:$darkness;
       opacity:.5;
       text-shadow: 3px 3px $offset_color;
