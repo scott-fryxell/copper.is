@@ -26,7 +26,6 @@ $subtle_text: #999999;
       padding:1em 0 0 0 ;
       & > a {
         display:inline-block;
-
         &:nth-child(2) {
           font-size:0.85em;
           padding:0.2em 0.55em;
@@ -36,7 +35,6 @@ $subtle_text: #999999;
         }
         & > img {
           height:1.25em;
-
           opacity:0.25;
           @include transition(opacity 0.5s);
           &:hover{
@@ -110,6 +108,15 @@ $subtle_text: #999999;
       }
     }
 
+    & > footer {
+      & > p {
+        font-size:0.75em;
+        text-align:center;
+        & > a {
+          color:$text;
+        }
+      }
+    }
     & > header,
     & > footer,
     &.sign_in > nav {
@@ -159,7 +166,7 @@ $subtle_text: #999999;
   }
   section.show,
   section.details {
-    min-height:17em;
+    min-height:19em;
     @include transition( min-height 0.25s, padding 0.25s);
     & > header {
       @include transition(min-height 1s);
