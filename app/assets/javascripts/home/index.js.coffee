@@ -65,3 +65,6 @@ $(document).on "load.home_index", ->
     $(page).find('input[type=text]').each -> new_total += Number($(@).val())
     $(page).find('span[itemprop=amount_in_cents]').each -> new_total +=  Number($(@).text())
     $(page).find('figcaption').text new_total
+
+  $(document).on '#latest_tip', ->
+    $('#pages > details:nth-child(2) > summary').click()

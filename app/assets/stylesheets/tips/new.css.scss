@@ -5,7 +5,6 @@ $subtle_text: #999999;
   margin-left:1em;
   width:350px;
   font-size:16px;
-  // section * { outline: 1px dotted $subtle_text;}
   section {
     position:relative;  
     background-color: $background_color;
@@ -24,6 +23,7 @@ $subtle_text: #999999;
       @include transition(min-height 0.5s ease-out 0.5s);
       min-height:0;
       padding:1em 0 0 0 ;
+      margin-bottom:0.25em;
       & > a {
         display:inline-block;
         &:nth-child(2) {
@@ -47,7 +47,7 @@ $subtle_text: #999999;
         @include header_text;
         margin:1em 0 0.5em 0;
         vertical-align:middle;
-        font-size:1.5em;
+        font-size:2em;
         text-align:center;
         color:$button_color;
       }
@@ -166,7 +166,7 @@ $subtle_text: #999999;
   }
   section.show,
   section.details {
-    min-height:19em;
+    min-height:20em;
     @include transition( min-height 0.25s, padding 0.25s);
     & > header {
       @include transition(min-height 1s);
@@ -176,12 +176,12 @@ $subtle_text: #999999;
     & > header,
     & > form,
     &.sign_in > nav {
-      @include transition(opacity 1s ease-in 0.25s);
+      @include transition(opacity 0.25s ease-in 0.1s);
       opacity:1;
     }
 
     & > footer  {
-      @include transition(opacity 1s ease-in 0.25s);
+      @include transition(opacity 0.25s ease-in 0.1s);
       opacity:1;
     }
   }
