@@ -306,8 +306,17 @@ table#tips {
       opacity:1;
     }
   }
-  & > tbody tr td:nth-child(3) form input[type=submit] {
+  & > tbody tr td:nth-child(3) form input[type=image] {
+    border:none;
+    opacity:0.25;
+    width:2em;
+    height:2em;
     font-size:0.65em;
+    @include transition (opacity 0.3s ease-out 0.25s);
+    &:hover {
+      opacity:1;
+      @include transition (opacity 0.5s ease-in 0);
+    }
   }
 }
 
