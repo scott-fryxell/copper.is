@@ -2,13 +2,14 @@
 <header>
   <a href="/"><%= image_tag "icons/logo_light.svg", :title => "View your profile" %></a>
   <nav>
-    <a href="/signout">Sign Out</a>
-    <a href="/badge">Get the badge</a>
+
+    <a href="/badge">Add a badge to your site</a>
   </nav>
   <hgroup id="user_nav">
     <nav>
-      <%= link_to image_tag("noun_project/7719.svg"), '/author', title:"Who's tipping you" %>
+      <%= link_to image_tag("noun_project/7719.svg"), '/author', title:"Tips you've earned" %>
       <%= link_to image_tag("icons/gear_white.svg"), '/settings', :title => "Account settings"%>
+      <%= link_to image_tag("noun_project/94.svg"), '/signout', :title => "Sign out of Copper"%>
     </nav>
     <%= image_tag "icons/silhouette.svg", class:"author", alt:"me" %>
   </hgroup>
