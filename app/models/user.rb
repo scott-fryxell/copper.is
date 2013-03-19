@@ -96,28 +96,8 @@ class User < ActiveRecord::Base
   def send_welcome_message 
     m = Mandrill::API.new(Copper::Application.config.mandrill_key)
     m.messages 'send-template', {
-      template_name: "copper base",
-      template_content: [
-        { name: "main",
-          content: "<h1>Welcome To Copper #{self.name}!</h1>
-                    <p>Now you can support the stuff you love online
-                     by making small contributions with a single click.</p>
-                    <p>Here is how it works.</p>
-                    <ol>
-                      <li>Find something awesome online.</li>
-                      <li>Click the Copper button to support the folks who made it.</li>
-                      <li>We find them and pay them for you.</li>
-                    </ol>
-                    <br>"
-        },
-        { name: "footer",
-          content: '<br>
-                    <center>
-                      <a href="http://www.copper.is/faq">Frequently Asked Questions</a>
-                    </center>'
-        }
-
-      ],
+      template_name: "welcome-message-for-fans",
+      template_content: [],
       message: {
         subject:"Welcome to copper!",
         from_email: "us@copper.is",
