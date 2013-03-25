@@ -23,6 +23,19 @@ namespace :copper do
     end
   end
 
+  namespace :messaging do
+    task :fans_who_have_tipped => :environment do
+      users = User.where('users.stripe_id IS NOT NULL')
+      users.each do |user|
+        if user.tips.count > 0
+          Resque.enqueue User, user.id, :send_message_to_fans_who_have_tipped
+          # puts "gonna message #{user.email}"
+        end  
+      end
+    end
+
+  end
+
   namespace :dev do
     task :reset_page => :environment do
       Page.all.each do |page|

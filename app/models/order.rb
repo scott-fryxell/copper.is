@@ -58,7 +58,7 @@ class Order < ActiveRecord::Base
         end
         process!
         stripe_charge
-        send_paid_order_message
+        send_paid_order_message stripe_charge.card['last4']
       rescue Stripe::CardError => e
         decline!
         raise e
@@ -66,39 +66,52 @@ class Order < ActiveRecord::Base
     end
   end
   
-  def send_paid_order_message 
+  def send_paid_order_message card_number
     m = Mandrill::API.new(Copper::Application.config.mandrill_key)
     m.messages 'send-template', {
-      template_name: "copper base",
+      template_name: "order reciept",
       template_content: [
-        { name: "main",
-          content: "<h1>Receipt for tip order ##{self.id}</h1>
-                    <h4 style='font-weight:normal;'>Tips: <span style='font-weight:bold;''>#{self.tips.count}</span></h4>
-                    <h4 style='font-weight:normal;'>Sub Total: <span style='font-weight:bold;'>$#{self.subtotal_in_dollars}</span></h4>
-                    <h4 style='font-weight:normal;'>Fees: <span style='font-weight:bold;'>$#{self.fees_in_dollars}</span></h4>
-                    <h4 style='font-weight:normal;'>Total: <span style='font-weight:bold;'>$#{self.total_in_dollars}</span></h4>
-                    <br><br>
-                    <a class='button' style='text-decoration:none;' href='https://www.copper.is/orders'>View your Tip order</a>
-                    <br><br>
-                    <h2>Thank you!</h2>
-                    "
+        { name: "order_id",
+          content: "#{self.id}"
         },
-        { name: "footer",
-          content: '<br><br>
-                    <center>
-                      <a href="https://www.copper.is/terms">Terms</a>
-                      <a href="https://www.copper.is/faq">FAQ</a>
-                    </center>'
+        { name: "order_total",
+          content: "$#{self.total_in_dollars}"
+        },
+        { name: "order_date",
+          content: "#{self.updated_at.strftime('%m/%d/%Y')}"
+        },
+        { name: "order_credit_card_number",
+          content: "#{card_number}"
+        },
+        { name: "order_subtotal",
+          content: "$#{self.subtotal_in_dollars}"
+        },
+        { name: "order_fee",
+          content: "$#{self.fees_in_dollars}"
+        },
+        { name: "order_tips",
+          content: self.tips_to_table_rows
         }
-
       ],
       message: {
-        subject:"Your Receipt ##{self.id}",
+        subject:"Your Receipt for order number #{self.id}",
         from_email: "us@copper.is",
         from_name: "The Copper Team",
         to:[{email:self.user.email, name:self.user.name}]
       }
     }
+  end
+
+  def tips_to_table_rows
+    tip_rows = ""
+    self.tips.find_each do |tip|
+      title = tip.title
+      if title.length == 0
+        title = tip.url
+      end
+      tip_rows += "<tr><td width='400'><a href='#{tip.url}'>#{title[0...75]}</a><br/></td><td>$#{tip.amount_in_dollars}</td></tr>"
+    end
+    tip_rows
   end
 
   def subtotal

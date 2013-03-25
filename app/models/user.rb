@@ -107,17 +107,23 @@ class User < ActiveRecord::Base
     }
   end
 
-  # def charge_info?
-  #   !!self.stripe_id
-  # end
-
   def current_order
     self.orders.current.first or self.orders.create
   end
 
-  # def current_tips
-  #   current_order.tips
-  # end
+  def send_message_to_fans_who_have_tipped
+    m = Mandrill::API.new(Copper::Application.config.mandrill_key)
+    m.messages 'send-template', {
+      template_name: "fans who have tipped",
+      template_content: [],
+      message: {
+        subject:"Take a look at what you've tipped!",
+        from_email: "us@copper.is",
+        from_name: "The Copper Team",
+        to:[{email:self.email, name:self.name}]
+      }
+    }
+  end
 
   # def try_to_create_check!
   #   the_tips = []
@@ -136,9 +142,4 @@ class User < ActiveRecord::Base
   #   end
   # end
 
-
-
-  # def message_about_check(check_id)
-  #   CheckMailer.check(Check.find(check_id)).deliver
-  # end
 end
