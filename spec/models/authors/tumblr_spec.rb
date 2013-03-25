@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Authors::Tumblr do
+  before do
+    mock_page
+  end
 
   describe "Should return nil for url's that don't provide user information" do
     it "https://www.twitter.com/" do

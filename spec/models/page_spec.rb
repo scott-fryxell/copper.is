@@ -3,6 +3,7 @@
 describe Page do
   describe "url" do
     before(:each) do
+      mock_page
       @page = Page.new
       @page.url = 'http://example.com/path1'
     end
@@ -27,29 +28,23 @@ describe Page do
       @page.reload
       puts @page.url
       @page.adopted?.should be_true
+
+      Author.count.should == 1
     end
     
     describe "from a provider service" do
       it "finds user on facebook.com" do
-        @page.url = "http://www.facebook.com/scott.fryxell"
+        @page.url = "https://www.facebook.com/scott.fryxell"
       end
       
       it "finds user on facebook.com via their photo" do
-        @page.url = "https://www.facebook.com/photo.php?fbid=415648305162300&set=a.304808032912995.69593.286232048103927&type=1&theater"
-      end
-
-      it "finds user on facebook.com via their photo" do
-        @page.url = "https://www.facebook.com/photo.php?fbid=4198406752067&set=a.2719363096900.2127501.1041690079&type=1&theater"
+        @page.url = "https://www.facebook.com/photo.php?fbid=559044474113512&set=t.580281278&type=3&theater"
       end
       
       it "finds user on facebook.com old style id" do
         @page.url = "https://www.facebook.com/profile.php?id=1340075098"
       end
       
-      it "finds an owner for an application on facebook.com" do
-        @page.url = "https://www.facebook.com/apps/application.php?id=265853386838821"
-      end
-
       it "finds user on twitter.com" do
         @page.url = "https://twitter.com/ChloesThinking"
       end
@@ -74,7 +69,6 @@ describe Page do
         @page.url = 'https://www.youtube.com/embed/DX0fX47rQMc'
       end
 
-    
       it "finds user on vimeo.com" do
         @page.url = "http://vimeo.com/31453929"
       end
@@ -115,7 +109,6 @@ describe Page do
       end
     end
   end
-
   
   describe "transitions from :orphaned to :manual" do
     before do

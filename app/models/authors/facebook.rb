@@ -25,13 +25,7 @@ class Authors::Facebook < Author
         id = id_from_url
       end
       elsif match = %r{/application.php}.match(url.path)
-        app_id_from_url = url.query.split('id=')[1]
-        begin
-          fb_object = graph.get_object(app_id_from_url)
-          id = fb_object['id']
-        rescue
-          id = id_from_url
-        end
+       return nil
     else
       username_from_url = url.path.split('/').last
       begin

@@ -9,6 +9,10 @@ def mock_page
   Page.any_instance.stub(:discover_author)
 end
 
+def mock_order
+  Order.any_instance.stub(:send_paid_order_message)
+end
+
 def mock_user
   User.any_instance.stub(send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}])
 end

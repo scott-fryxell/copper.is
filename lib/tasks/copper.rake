@@ -33,7 +33,6 @@ namespace :copper do
         end  
       end
     end
-
   end
 
   namespace :dev do

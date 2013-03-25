@@ -31,13 +31,28 @@ guard 'process', :name => 'worker', :command => 'foreman start worker', :stop_si
   watch('/lib/**/*.rb')
 end
 
+guard 'process', :name => 'web', :command => 'rails s', :stop_signal => 'TERM' do
+  watch('Gemfile')
+  watch('Gemfile.lock')
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  watch('config/routes.rb')
+  watch('config/authorization_rules.rb')
+  watch(%r{^config/environments/.+\.rb})
+  watch(%r{^config/initializers/.+\.rb})
+  watch('/app/**/*.rb')
+  watch('/lib/**/*.rb')
+end
+
+
+
 guard 'rspec', :version => 2, :cli => '--color --format doc --drb',
                :all_on_start => true, :all_after_pass => false do
-  watch(/^spec\/.+\.rb$/) { 'spec' }
-  watch(/^app\/.+\.rb$/) { 'spec' }
-  watch(/^lib\/.+\.rb$/) { 'spec' }
-  watch(/^config\/.+\.rb$/) { 'spec' }
-  watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/requests'}
+  # watch(/^spec\/.+\.rb$/) { 'spec' }
+  # watch(/^app\/.+\.rb$/) { 'spec' }
+  # watch(/^lib\/.+\.rb$/) { 'spec' }
+  # watch(/^config\/.+\.rb$/) { 'spec' }
+  # watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/requests'}
 end
 
 guard 'livereload' do

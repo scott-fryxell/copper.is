@@ -63,10 +63,23 @@ class Author < ActiveRecord::Base
     
     state :known do
       validates :user_id, presence:true
+
+      def create_page_for_author
+        unless page = Page.where(url:self.url).first
+          page = Page.create(url:self.url,title:self.username, author_state:'adopted')
+        end
+        page.author = self
+        if self.user
+          self.user.touch
+        end
+      end
     end
     
     after_transition any => :wanted do |author,transition|
       Resque.enqueue author.class, author.id, :send_wanted_message
+    end
+    after_transition any => :known do |author,transition|
+      Resque.enqueue Author, author.id, :create_page_for_author  
     end
   end
 
@@ -90,20 +103,6 @@ class Author < ActiveRecord::Base
     self.type = Author.subclass_from_provider(self.provider).to_s unless self.type
   end
 
-  after_create do
-    Resque.enqueue Author, self.id, :create_page_for_author  
-  end
-
-  def create_page_for_author
-    unless page = Page.where(url:self.url).first
-      page = Page.create(url:self.url,title:self.username)
-    end
-    page.author = self
-
-    if self.user
-      self.user.touch
-    end
-  end
 
   # --------------------------------------------------------------------
   
@@ -134,7 +133,7 @@ class Author < ActiveRecord::Base
 
     case uri.host
     when /facebook\.com$/ then 
-      if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter}.match(uri.path)
+      if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter|application}.match(uri.path)
         nil
       else
         'facebook'

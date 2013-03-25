@@ -62,7 +62,7 @@ class OrdersController < ApplicationController
         order.charge!
       end
       if order.paid?
-        OrderMailer.reciept(order).deliver
+        # OrderMailer.reciept(order).deliver
         render text:'<meta name="event_trigger" content="card_approved"/>'
       elsif order.denied?
         render text:'<meta name="event_trigger" content="card_declined"/>'

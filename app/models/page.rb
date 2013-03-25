@@ -4,7 +4,7 @@ class Page < ActiveRecord::Base
   belongs_to :author
   has_many :tips
   has_many :checks, :through => :tips
-  attr_accessible :title, :url
+  attr_accessible :title, :url, :author_state
 
   validates :url, :presence => true
   validate :url_points_to_real_site
@@ -52,7 +52,7 @@ class Page < ActiveRecord::Base
       puts ":    og:url=#{url_tag.attributes['content'].value[0...100]}"
       self.url = url_tag.attributes['content'].value
     end
-    @url
+    self.url
   end
 
   def learn_image(content = self.agent.get(url))
@@ -135,6 +135,7 @@ class Page < ActiveRecord::Base
     end
 
     state :orphaned do
+      
       def discover_author! 
         puts "discover_author for: id=#{self.id}, #{self.url[0...100]}"
         if self.author = Author.find_or_create_from_url(self.url)
@@ -144,9 +145,11 @@ class Page < ActiveRecord::Base
           reject!
         end
       end
+
     end
 
     state :fostered do
+      
       def find_author_from_page_links!
         begin
           puts "page_links for: id=#{id}, #{url[0...100]}"
@@ -222,12 +225,13 @@ class Page < ActiveRecord::Base
     end
 
     state :manual do
+
       def notify_admin_to_find_page_author!
         # update a list for admin's to look at of pages that need authors
       end
     end
 
-     state :dead do
+    state :dead do
       def clean_up_dead_page!
         # refund unpaid tips. 
         # remove page from the app

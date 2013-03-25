@@ -133,6 +133,7 @@ describe TipsController do
 
         it '403 a :kinged tip' do 
           me_setup
+          mock_order
           proc do
             order = @me.current_order
             @me.current_order.rotate!

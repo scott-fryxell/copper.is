@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Author do
   before do
-    mock_user
+    mock_page_and_user
     @user = User.create!
   end
 
@@ -17,7 +17,7 @@ describe Author do
   end
 
   it '#authors can add_facebook' do
-    @user.authors.create!(provider:'facebook', username:'mgarriss')
+    @user.authors.create!(provider:'facebook', username:'scott.fryxell')
   end
 
   it '#authors can add google!' do
@@ -91,7 +91,11 @@ describe Author do
   describe "url's that shouldn't result in authors being created" do
     it "https://soundcloud.com/dashboard" do
       Author.provider_from_url("https://soundcloud.com/dashboard").should be_false
-    end 
+    end
+
+    it "https://www.facebook.com/apps/application.php?id=265853386838821" do
+      Author.provider_from_url("https://www.facebook.com/apps/application.php?id=265853386838821").should be_false
+    end
 
     it "http://www.tumblr.com/customize?redirect_to=http://brokenbydawn.tumblr.com/" do
       Author.provider_from_url("http://www.tumblr.com/customize?redirect_to=http://brokenbydawn.tumblr.com/").should be_false

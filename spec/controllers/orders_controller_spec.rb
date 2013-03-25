@@ -3,7 +3,8 @@ require 'spec_helper'
 describe OrdersController  do
   before :each do
     mock_page_and_user
-
+    mock_order
+    
     @me = create!(:user)
     @me.current_order.rotate!
     @me.orders.unpaid.first.charge!
