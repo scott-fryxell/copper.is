@@ -44,11 +44,14 @@ class Tip < ActiveRecord::Base
 
   def post_tip_to_facebook_feed
     if self.user.share_on_facebook
-      puts "Posting to facebook, tip_id=#{id}"
-      facebook = self.user.authors.where(provider:'facebook').first
-      graph = Koala::Facebook::API.new(facebook.token)
-      graph.put_connections("me", "#{Copper::Application.config.facebook_appname}:tip", website:"#{Copper::Application.config.hostname}/pages/#{self.page.id}")
-      puts ":    tip posted" 
+      self.user.authors.where(provider:'facebook').each do |author|
+        if author.token
+          puts "Posting to facebook, tip_id=#{id}"
+          graph = Koala::Facebook::API.new(author.token)
+          graph.put_connections("me", "#{Copper::Application.config.facebook_appname}:tip", website:"#{Copper::Application.config.hostname}/pages/#{self.page.id}")
+          puts ":    tip posted"
+        end
+      end
     end
   end
 
