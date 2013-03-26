@@ -5,7 +5,7 @@ describe Order do
     mock_user
     mock_order
     @order = FactoryGirl.build(:order_unpaid)
-    @charge_token = OpenStruct.new(id:1)
+
   end
 
   it "should save correctly when all the required values are set" do
@@ -26,7 +26,6 @@ describe Order do
   end
   
   it 'charge! moves a unpaid order to paid with good CC info' do
-    Stripe::Charge.stub(:create) { @charge_token }
     order = FactoryGirl.create(:order_unpaid)
     order.unpaid?.should be_true
     order.charge!
@@ -46,7 +45,7 @@ describe Order do
   end
   
   it 'moves a denied order to paid with good CC info' do
-    Stripe::Charge.stub(:create) { @charge_token }
+    # Stripe::Charge.stub(:create) { @charge_token }
     order = FactoryGirl.create(:order_denied)
     order.denied?.should be_true
     order.charge!

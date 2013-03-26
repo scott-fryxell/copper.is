@@ -84,7 +84,7 @@ Spork.each_run do
       class Stripe::Charge
         def self.create(*args)
           # puts "charge #{args}"
-          OpenStruct.new(id:'1')
+          OpenStruct.new(id:'1', :card => {last4:'4242'})
         end
       end
     end

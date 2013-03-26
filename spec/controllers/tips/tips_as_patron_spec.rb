@@ -138,7 +138,6 @@ describe TipsController do
             order = @me.current_order
             @me.current_order.rotate!
             order.reload
-            Stripe::Charge.stub(:create) { OpenStruct.new(id:1) }
             order.charge!
             @my_tip.reload
             @my_tip.check_id = 1
