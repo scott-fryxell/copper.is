@@ -16,7 +16,7 @@ $subtle_text: #999999;
     border:2px solid $darkness;
     border-top:none;
     @include text;
-    @include box-shadow(2px 3px 8px 0px hsla(0, 0, 0, 0.5));
+    box-shadow: 2px 3px 8px 0px hsla(0, 0, 0, 0.5);
     @include transition(min-height 0.5s ease-out 0.25s,  padding 0.5s);
 
     & > header {
@@ -93,7 +93,7 @@ $subtle_text: #999999;
           outline:none;
         }
         &.invalid {
-          @include box-shadow(0px 0px .75em 2px $red);
+          box-shadow: 0px 0px .75em 2px $red;
           border-color:$red;
         }
       }

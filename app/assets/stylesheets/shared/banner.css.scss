@@ -20,7 +20,7 @@
   #banner > figure > img {
     border-radius:.25em;
     border:2px solid $darkness;
-    @include box-shadow(1px 2px 7px 2px rgba(0, 0, 0, 0.2));
+    box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.2);
     vertical-align:bottom;
     width:5em;
   }
@@ -68,7 +68,7 @@
     width:auto;
     @include background-size(cover);
     @include full_width(black);
-    @include box-shadow(0 -0.5em 1.75em 1em rgba(0, 0, 0, .3));
+    box-shadow: 0 -0.5em 1.75em 1em rgba(0, 0, 0, .3);
     & > header {
       margin:0 auto 0 auto;
       width:grid-width(22);

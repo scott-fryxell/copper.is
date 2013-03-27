@@ -11,7 +11,7 @@
   }
 
   #samples {
-    @include box-shadow(inset 0 .75em 1.5em -0.75em rgba(0, 0, 0, .1), inset 0 -0.5em 1.5em -1em rgba(0, 0, 0, .3));
+    box-shadow: inset 0 .75em 1.5em -0.75em rgba(0, 0, 0, .1), inset 0 -0.5em 1.5em -1em rgba(0, 0, 0, .3);
     padding:0;
     position:relative;
     overflow:hidden;
@@ -86,7 +86,7 @@
     & > figure > img {
       margin-left: grid-width(1);
       display:inline-block;
-      @include box-shadow(1em 1em 1.5em -0.75em rgba(0, 0, 0, .5));
+      box-shadow: 1em 1em 1.5em -0.75em rgba(0, 0, 0, .5);
     }
   }
 

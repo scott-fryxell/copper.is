@@ -201,19 +201,19 @@
       display:block;
     }
     & > details[data-author_state=orphaned] > summary > figure > img {
-      @include box-shadow(1px 1px 5px 2px $red);
+      box-shadow: 1px 1px 5px 2px $red;
     }
 
     & > details[data-author_state=fostered] > summary > figure > img {
-      @include box-shadow(1px 1px 5px 2px $yellow); 
+      box-shadow: 1px 1px 5px 2px $yellow;
     }
 
     & > details[data-author_state=adopted] > summary > figure > img {
-      @include box-shadow(1px 1px 5px 2px $green); 
+      box-shadow: 1px 1px 5px 2px $green; 
     }
 
     & > details[data-author_state=manual] > summary > figure > img {
-      @include box-shadow(1px 1px 5px 2px $brown); 
+      box-shadow:1px 1px 5px 2px $brown;
     }
   }
 
