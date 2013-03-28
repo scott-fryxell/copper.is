@@ -58,6 +58,7 @@ $(document).bind({
       $("input[itemprop=amount_in_dollars]").attr('value', dollars);
       document.postMessage({type:'show'})
       $("body > section").addClass("show");
+      $("a[href=#close]").focus();
 
       // if(!$("section").hasClass('sign_in')){
       //   display_timer = window.setTimeout(function(){

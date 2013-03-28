@@ -130,6 +130,9 @@ $subtle_text: #999999;
         color:$subtle_text;
         text-decoration: none;
         font-size:0.75em;
+        &:focus {
+          outline:none;
+        }
       }
       &:first-child {
         a {
