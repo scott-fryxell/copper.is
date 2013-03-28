@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         # User is signed in so they are trying to link an author with their
         # account. But we found the author and the user associated with it
         # is the current user. So the author is already associated with
-        # this user. We take them back to their settings page
+        # this user. We take them back to the author page
         
        redirect_to '/author'
 
