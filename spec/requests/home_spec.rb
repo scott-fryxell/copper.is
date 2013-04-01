@@ -11,9 +11,8 @@ describe "A guest", :slow do
 
   it "will see the welcome page when they first visit copper" do
     page.should have_content('Support Artists Through Tipping');
-    page.save_screenshot('public/screenshots/welcome.png')
+    page.save_screenshot('tmp/screenshots/welcome.png')
   end
-
 
   it "can not see the fan navigation" do
     page.should have_css('#user_nav', visible:false)

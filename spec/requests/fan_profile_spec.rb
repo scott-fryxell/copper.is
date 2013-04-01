@@ -14,7 +14,7 @@ describe "a fan", :slow do
     end
 
     it "can install the copper tip extension" do
-      page.save_screenshot('public/screenshots/onboarding/01.png')
+      page.save_screenshot('tmp/screenshots/onboarding/01.png')
       page.should have_css('#button', visible:true)
       page.should have_css('#congrats', visible:false)
       page.should have_css('#card', visible:false)
@@ -33,12 +33,12 @@ describe "a fan", :slow do
         select('April', :from => 'month')
         select('2015', :from => 'year')
         check('terms')
-        page.save_screenshot('public/screenshots/onboarding/02.png')
+        page.save_screenshot('tmp/screenshots/onboarding/02.png')
         click_on('Save')
         sleep 3
         page.should have_css('form', :visible => false)
         page.should have_css('figure', :visible => true)
-        page.save_screenshot('public/screenshots/onboarding/03.png')
+        page.save_screenshot('tmp/screenshots/onboarding/03.png')
       end
     end
 
@@ -53,7 +53,7 @@ describe "a fan", :slow do
         check('terms')
         click_on('Save')
         sleep 3
-        page.save_screenshot('public/screenshots/onboarding/03.png')
+        page.save_screenshot('tmp/screenshots/onboarding/03.png')
         page.should have_css('form', :visible => true)
         page.should have_css('figure', :visible => false)
         page.should have_css('form > h1', :visible => true)
@@ -68,9 +68,9 @@ describe "a fan", :slow do
       visit "/auth/facebook"
       User.count.should == 1
 
-      VCR.use_cassette('nytimes') do
+      # VCR.use_cassette('nytimes') do :broken
         User.first.tip({url:'http://www.nytimes.com', title:'nytimes homepage', amount_in_cents:'50'})
-      end
+      # end
       VCR.use_cassette('fasterlighterbetter') do
         User.first.tip({url:'http://www.fasterlighterbetter.com', title:'faster lighter better', amount_in_cents:'50'})
       end
@@ -81,7 +81,7 @@ describe "a fan", :slow do
     end
 
     it "can see their name" do
-      page.save_screenshot('public/screenshots/profile/01.png')
+      page.save_screenshot('tmp/screenshots/profile/01.png')
       find("#banner > hgroup > p").should have_content("facebook user")
     end
 
@@ -169,7 +169,7 @@ describe "a fan", :slow do
       within '#pages > details:nth-child(2) > summary > figure > figcaption' do
         page.should have_content('0.50');
       end
-      page.save_screenshot('public/screenshots/profile/02.png')
+      page.save_screenshot('tmp/screenshots/profile/02.png')
     end
 
     it 'can see their tipped pages ' do

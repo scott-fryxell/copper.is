@@ -23,7 +23,7 @@ describe "tipping a page", :slow do
     it "should display the tipped pages title", :broken do
       page.should have_selector('#copper_tip')
       sleep 3
-      page.save_screenshot('public/screenshots/tip/01.png')
+      page.save_screenshot('tmp/screenshots/tip/01.png')
       within_frame('copper') do
         page.execute_script("jQuery.fx.off = true")
         page.should have_content("Thank You!")
@@ -44,7 +44,7 @@ describe "tipping a page", :slow do
 
     it "should see a service invite" do
       page.should have_selector('#copper_tip')
-      page.save_screenshot('public/screenshots/tip/01.png')
+      page.save_screenshot('tmp/screenshots/tip/01.png')
       within_frame('copper') do
         # page.execute_script("jQuery.fx.off = true")
         page.should have_content("copper-test page")

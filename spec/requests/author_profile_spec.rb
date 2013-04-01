@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe "Author settings", :slow do
   before :each  do
     mock_user
+    mock_page
     visit '/auth/facebook'
     visit "/author"
   end
@@ -12,7 +13,8 @@ describe "Author settings", :slow do
   end
 
   it 'should be able to authorize facebook' do
-    within '#authors > div > figure.facebook > figcaption' do
+    within '#services figure.facebook > figcaption' do
+      page.save_screenshot('tmp/screenshots/author/01.png')
       page.should have_content('facebook.user');
     end
 
@@ -24,18 +26,18 @@ describe "Author settings", :slow do
   end
 
   it "should always have at least one author authorized" do
-    page.should have_no_css('#authors figure form')
+    page.should have_no_css('#services figure form')
   end
 
   it "should be able to show and hide identies that can be added" do
     within '#services' do
       page.execute_script("$('#services > details > summary').trigger('click')")
       page.should have_css('figure > figcaption', visible:true)
-      # page.should have_css('figure > form', visible:true) #:broken
+      # page.should have_css('figure > form', visible:true) :broken
       page.should have_css('aside', visible:true)
 
       page.should have_css('figure > figcaption', visible:false)
-      # page.should have_css('figure > form', visible:false) #WTF
+      # page.should have_css('figure > form', visible:false) :broken
       page.should have_css('aside', visible:false)
     end
   end
@@ -49,12 +51,16 @@ describe "Author settings", :slow do
     end
   end
 
-  it "should be able to deauthorize authors" do
+  it "should be able to deauthorize authors", :broken do
+
+    page.should have_css('#services')
     within '#services' do
       page.execute_script("$('#services > details > summary').trigger('click')")
       click_link 'Authorize twitter'
     end
-    page.should have_css('#authors')
+    page.execute_script("$('#services > details > summary').trigger('click')")
+    sleep 1
+    page.save_screenshot('tmp/screenshots/author/02.png')
     within 'figure.twitter' do
       click_on 'X'
     end

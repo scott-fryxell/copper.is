@@ -34,7 +34,7 @@ describe "Fan's settings", :slow do
   end
 
   it "should have the fan's name in the title" do
-    page.save_screenshot('public/screenshots/profile/01.png')
+    page.save_screenshot('tmp/screenshots/settings/01.png')
     find("#banner > hgroup > p").should have_content("facebook user")
   end
 
@@ -111,7 +111,7 @@ describe "Fan's settings", :slow do
       sleep 2
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
-      page.save_screenshot('public/screenshots/settings/03.png')
+      page.save_screenshot('tmp/screenshots/settings/03.png')
       find("div p.number").should have_content("4242")
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
@@ -126,7 +126,7 @@ describe "Fan's settings", :slow do
     end
     click_link 'Account settings'
     sleep 2
-    page.save_screenshot('public/screenshots/settings/01.png')
+    page.save_screenshot('tmp/screenshots/settings/02.png')
 
     within("#card") do
       page.should have_css('form', :visible => false)
@@ -147,7 +147,7 @@ describe "Fan's settings", :slow do
       check('terms')
       click_on('Save')
       sleep 3
-      page.save_screenshot('public/screenshots/settings/02.png')
+      page.save_screenshot('tmp/screenshots/settings/03.png')
       page.should have_css('form', :visible => true)
       page.should have_css('form > h1', :visible => true)
       page.should have_content('Your card was declined');
@@ -159,7 +159,7 @@ describe "Fan's settings", :slow do
 
     within '#address' do
       click_on 'Save'
-      page.save_screenshot('public/screenshots/settings/04.png')
+      page.save_screenshot('tmp/screenshots/settings/04.png')
       # page.should have_css('form', visible:true) wtf headless webkit. :broken
       page.should have_css("input[itemprop=payable_to].invalid")
       page.should have_css("input[itemprop=line1].invalid")
@@ -193,6 +193,7 @@ describe "Fan's settings", :slow do
 
       page.should have_css('form', visible:false)
       page.should have_css('div', visible:true)
+      page.save_screenshot('tmp/screenshots/settings/05.png')
     end
   end
 
