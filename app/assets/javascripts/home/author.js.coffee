@@ -1,12 +1,12 @@
 $(document).on "load.home_author", ->
 
-  $('#authors > aside > nav > a > img, #authors form > input').click ->
+  $('#services aside > nav > a > img, #authors form > input').click ->
     $(@).addClass 'working'
 
-  $("#authors form").on 'item.delete', ->
+  $("#services form").on 'item.delete', ->
     $(@).parent().remove()
-    if 2 > $("#authors form").size()
-      $('#authors figure > form').addClass 'hide'
+    if 2 > $("#services form").size()
+      $('#services figure > form').addClass 'hide'
 
 $('#facebook_pages > form').submit ->
   console.debug('claiming pages');
