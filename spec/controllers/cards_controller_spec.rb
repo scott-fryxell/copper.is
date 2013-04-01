@@ -21,8 +21,8 @@ describe CardsController do
   end
 
   describe 'create' do
-    it 'responds to .json' do
-      post_with @me, :create, format: :json
+    it 'responds to .json', :vcr do
+      post_with @me, :create, format: :json  
       response.status.should == 200
       response.should be_success
     end

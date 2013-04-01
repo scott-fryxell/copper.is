@@ -34,46 +34,46 @@ class Page < ActiveRecord::Base
   end
 
   def learn_title(content = self.agent.get(url))
-    puts ":  title"
+    logger.info ":  title"
     
     if title_tag = content.at('meta[property="og:title"]')
-      puts ":    og:title=#{title_tag.attributes['content'].value[0...100]}"
+      logger.info ":    og:title=#{title_tag.attributes['content'].value[0...100]}"
       title = title_tag.attributes['content'].value
     end
     title
   end
 
   def learn_url (content = self.agent.get(url))
-    puts ":  url"
+    logger.info ":  url"
     if url_tag = content.at('object[itemtype="#page"] > data[itemprop=url]')
-      puts ":    itemprop=url=#{url_tag.attributes['value'].value[0...100]}"
+      logger.info ":    itemprop=url=#{url_tag.attributes['value'].value[0...100]}"
       self.url = url_tag.attributes['value'].value
     elsif url_tag = content.at('meta[property="og:url"]')   
-      puts ":    og:url=#{url_tag.attributes['content'].value[0...100]}"
+      logger.info ":    og:url=#{url_tag.attributes['content'].value[0...100]}"
       self.url = url_tag.attributes['content'].value
     end
     self.url
   end
 
   def learn_image(content = self.agent.get(url))
-    puts ":  thumbnail"
+    logger.info ":  thumbnail"
 
     if thumbnail_tag = content.at('meta[property="og:image"]')
-      puts ":    og:image=#{thumbnail_tag.attributes['content'].value[0...100]}"
+      logger.info ":    og:image=#{thumbnail_tag.attributes['content'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['content'].value 
     elsif thumbnail_tag = content.at('link[rel="image_src"]') 
-      puts ":    image_src=#{thumbnail_tag.attributes['href'].value[0...100]}"
+      logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['href'].value
     elsif thumbnail_tag = content.at('link[rel="thumbnailUrl"]') 
-      puts ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...100]}"
+      logger.info ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['href'].value
     end
     thumbnail_url
   end
   
   def learn (content = self.agent.get(url))
-    puts " "
-    puts "learn about  id:#{id}, url: #{url[0...100]}"
+    logger.info " "
+    logger.info "<- Learn about  id:#{id}, url: #{url[0...100]} -> "
     learn_url(content)
     learn_title(content)
     learn_image(content)
@@ -137,7 +137,7 @@ class Page < ActiveRecord::Base
     state :orphaned do
       
       def discover_author! 
-        puts "discover_author for: id=#{self.id}, #{self.url[0...100]}"
+        logger.info "discover_author for: id=#{self.id}, #{self.url[0...100]}"
         if self.author = Author.find_or_create_from_url(self.url)
           log_adopted
           adopt!
@@ -152,7 +152,7 @@ class Page < ActiveRecord::Base
       
       def find_author_from_page_links!
         begin
-          puts "page_links for: id=#{id}, #{url[0...100]}"
+          logger.info "page_links for: id=#{id}, #{url[0...100]}"
           self.agent.get(url) do |doc|
             if doc.title
               self.title = doc.title
@@ -161,15 +161,14 @@ class Page < ActiveRecord::Base
             if author_link = doc.at('link[rel=author]')
               href = author_link.attributes['href'].value
               output = ":    author: #{href[0...100]}"
-              puts output
-              # puts output
+              logger.info output
               if self.author = Author.find_or_create_from_url(href)
                 log_adopted
                 return adopt!
               end
             end
 
-            output = lambda { |link| puts ":    adopted: #{link.href[0...100]}"}
+            output = lambda { |link| logger.info ":    adopted: #{link.href[0...100]}"}
             doc.links_with(:href => %r{facebook.com}).each do |link|
               unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
                 if self.author = Author.find_or_create_from_url(link.href) 
@@ -210,14 +209,14 @@ class Page < ActiveRecord::Base
             reject! unless self.author
           end
         rescue Mechanize::ResponseCodeError => e
-          puts ":    ResponseCodeError: #{e.response_code}"
+          logger.info ":    ResponseCodeError: #{e.response_code}"
           if '404' == e.response_code or '410' == e.response_code
-            puts ":    dead: #{self.url}"
+            logger.info ":    dead: #{self.url}"
             self.author_state = 'dead'
             save!
           end
         rescue Net::HTTP::Persistent::Error => e
-          puts ":    dead: #{self.url}"
+          logger.info ":    dead: #{self.url}"
           self.author_state = 'dead'
           save!
         end  
@@ -242,7 +241,7 @@ class Page < ActiveRecord::Base
   private
 
   def log_adopted
-    puts ":    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
+    logger.info ":    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
   end
 
 end

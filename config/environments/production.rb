@@ -14,6 +14,9 @@ Copper::Application.configure do
   config.assets.debug = false
   config.assets.digest = true
 
+  config.logger = Logger.new(STDOUT)
+  config.logger.level = Logger.const_get((ENV["LOG_LEVEL"] || "INFO").upcase)
+
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=31536000"
   config.action_controller.asset_host = "dxs9q85fcnuty.cloudfront.net"

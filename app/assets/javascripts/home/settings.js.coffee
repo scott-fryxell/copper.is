@@ -45,15 +45,17 @@ $(document).on "load.home_settings", ->
     $('#rate p[itemprop=tip_preference_in_cents]').text rate
 
   $("#address form").on 'item.validate', ->
-    unless $('#address form .invalid').size == 0
+    if $('#address form .invalid').size == 0
       $('p[itemprop=payable_to]').text $(@).find('input[itemprop=payable_to]').val()
       $('p[itemprop=line1]').text $(@).find('input[itemprop=line1]').val()
       $('p[itemprop=line2]').text $(@).find('input[itemprop=line2]').val()
       $('span[itemprop=city]').text $(@).find('input[itemprop=city]').val()
       $('span[itemprop=subregion_code]').text $(@).find('select[itemprop=subregion_code]').val()
       $('span[itemprop=postal_code]').text $(@).find('input[itemprop=postal_code]').val()
-
-$(document).on   "me.home_settings", ->
+    else
+      $("#address > header > a").click()
+        
+$(document).on "me.home_settings", ->
 
   user = document.getItems()['users'][0]
   $("#rate > form > select > option[value=#{user.tip_preference_in_cents}]").attr 'selected', true

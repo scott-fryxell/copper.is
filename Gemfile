@@ -45,6 +45,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'thin'
   gem 'awesome_print'
   gem 'simplecov', :require => false
   gem 'sqlite3', :require => 'sqlite3'
@@ -68,9 +69,12 @@ group :development, :test do
 end
 
 group :test do
+  gem 'poltergeist'
   gem 'factory_girl_rails'
   gem 'resque_spec'
   gem 'hashugar'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 gem 'sass-rails',   '~> 3.2.3' # needed global for heroku

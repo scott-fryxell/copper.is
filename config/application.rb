@@ -26,7 +26,7 @@ module Copper
     config.assets.enabled = true
     config.assets.version = '1.1'
     config.assets.prefix = "/assets"
-  
+
     config.assets.initialize_on_precompile= false
 
     %w[

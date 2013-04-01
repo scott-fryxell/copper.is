@@ -199,31 +199,31 @@ describe OrdersController  do
           @my_new_tip.promised?.should be_true
         end
 
-        it 'pays current order for the current user' do
+        it 'pays current order for the current user', :vcr do
           put_with @me, :update, id:@me.current_order.id, terms:true, strip_token:123, format: :json
           @my_new_tip.reload
           @my_new_tip.charged?.should be_true
           Order.find(@order_id).paid?.should be_true
         end
 
-        it 'pays a denied order for the current user' do
+        it 'pays a denied order for the current user', :vcr do
           @my_denied_order.denied?.should be_true
           put_with @me, :update, id:@my_denied_order.id, terms:true, strip_token:123, format: :json
           @my_denied_order.reload
           @my_denied_order.paid?.should be_true
         end
 
-        it "doesn't allow any column updates to the order" do
+        it "doesn't allow any column updates to the order", :vcr do
           put_with @me, :update, id:@me.current_order.id, terms:true, strip_token:123,
-                       order_state:'denied', format: :json
+                        order_state:'denied', format: :json
           @my_new_tip.reload
           @my_new_tip.charged?.should be_true
           Order.find(@order_id).paid?.should be_true
         end
 
-        it '401 if not owned by current user' do
-              put_with @me, :update, id:@her_denied_order.id, terms:true,
-                           strip_token:123, order_state:'denied', format: :json
+        it '401 if not owned by current user', :vcr do
+          put_with @me, :update, id:@her_denied_order.id, terms:true,
+                       strip_token:123, order_state:'denied', format: :json
           response.status.should == 401
         end
       end

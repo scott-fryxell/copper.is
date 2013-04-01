@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    puts auth.to_yaml
+    Rails.logger.info auth.to_yaml
     # Find an author here
     @author = Author.find_with_omniauth(auth)
 

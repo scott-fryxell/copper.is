@@ -1,27 +1,32 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "Guest home page experience", :slow do
+describe "A guest", :slow do
   before(:each) do
+    mock_user
     visit "/"
-    page.execute_script("jQuery.fx.off = true")
   end
   after(:each) do
     page.driver.error_messages.should be_empty
   end
 
-  it "should display the user nav" do
+  it "will see the welcome page when they first visit copper" do
+    page.should have_content('Support Artists Through Tipping');
+    page.save_screenshot('public/screenshots/welcome.png')
+  end
+
+
+  it "can not see the fan navigation" do
     page.should have_css('#user_nav', visible:false)
     page.should have_no_css('a[href="/signout"]', visible:true)
     page.should have_css('#join', visible:true)
     click_link 'connect with facebook'
-    page.execute_script("jQuery.fx.off = true")
     page.should have_css('#user_nav', visible:false)
     page.should have_css('a[href="/signout"]', visible:true)
   end
 
-  it 'should be able to sign out and back in' do
+  it 'sign out and back in' do
     click_link 'connect with facebook'
-    click_link 'Sign Out'
+    click_link 'Sign out of Copper'
     click_link 'connect with facebook'
   end
 

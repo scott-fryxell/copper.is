@@ -24,9 +24,11 @@ Spork.prefork do
   require 'omniauth'
   require 'omniauth/test'
   require 'support'
+  require 'capybara/poltergeist'
 
+  Capybara.javascript_driver = :poltergeist
   Capybara.default_driver = :webkit
-  Capybara.javascript_driver = :webkit
+  # Capybara.javascript_driver = :webkit
   Capybara.default_selector = :css
   Capybara.ignore_hidden_elements = false
   Capybara.server_port = 8080
@@ -46,6 +48,12 @@ Spork.prefork do
     config.use_transactional_fixtures = false
     # REDIS_PID = "#{Rails.root}/tmp/pids/redis-test.pid"
     # REDIS_CACHE_PATH = "#{Rails.root}/tmp/cache/"
+
+    config.around(:each, :vcr) do |example|
+        name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
+        options = example.metadata.slice(:record, :match_requests_on).except(:example_group)
+        VCR.use_cassette(name, options) { example.call }
+      end
   end
 
 end

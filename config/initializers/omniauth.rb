@@ -10,3 +10,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :soundcloud, Copper::Application.config.soundcloud_key, Copper::Application.config.soundcloud_secret
   provider :flickr, Copper::Application.config.flickr_key, Copper::Application.config.flickr_secret
 end
+
+OmniAuth.config.logger = Rails.logger
