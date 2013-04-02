@@ -25,12 +25,29 @@ namespace :copper do
 
   namespace :messaging do
     task :fans_who_have_tipped => :environment do
-      users = User.where('users.stripe_id IS NOT NULL')
-      users.each do |user|
+      User.where('users.stripe_id IS NOT NULL').each do |user|
         if user.tips.count > 0
-          Resque.enqueue User, user.id, :send_message_to_fans_who_have_tipped
           # puts "gonna message #{user.email}"
+          Resque.enqueue User, user.id, :send_message_to_fans_who_have_tipped
         end  
+      end
+    end
+  end
+
+  task :rotate_orders => :environment do
+    Order.current.where('created_at <= ?', 1.week.ago).each do |order|
+      if order.user.stripe_id and order.tips.count > 0
+        # puts order.tips.sum(:amount_in_cents)
+        Resque.enqueue Order, order.id, :rotate!
+      end
+    end
+  end
+
+  task :charge_unpaid_orders => :environment do
+    Order.unpaid.each do |order|
+      if order.user.stripe_id
+        # puts order.tips.sum(:amount_in_cents)
+        Resque.enqueue Order, order.id, :charge!
       end
     end
   end
@@ -45,9 +62,12 @@ namespace :copper do
     end
     task :reset_stripe => :environment do
       User.all.each do |user|
-        user.stripe_id = 'cus_1Csmeobb68qjza'
-        user.accept_terms = true
-        user.save
+        if user.stripe_id
+          user.stripe_id = 'cus_1ZPqPjxc87MHT9'
+          user.accept_terms = true
+          user.email ="scott@copper.is"
+          user.save
+        end
       end
     end
     task :set_email_to_scott => :environment do

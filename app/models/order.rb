@@ -1,4 +1,5 @@
 class Order < ActiveRecord::Base
+  include Enqueueable
   has_many :tips
   belongs_to :user,  touch:true
   has_paper_trail
