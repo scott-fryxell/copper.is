@@ -3,6 +3,7 @@ authorization do
   role :admin do
     # has_omnipotence
     includes :fan
+    has_permission_on :users, :to => :manage
   end
 
   role :fan do

@@ -1,0 +1,21 @@
+
+<section id="banner">
+  <h1>Manage Users</h1>
+</section>
+<section id="users"> 
+<%-User.order("name").each do |user|-%>
+  <details itemscoped itemid="<%=user.id%>">
+    <summary itemprop='name'><%=user.name%></summary>
+    <section>
+      <p>id: <%=user.id%></p>
+      <p><span><%=user.tips.count%></span> tips</p>
+      <p>Created <time datetime="<%=user.created_at.getutc.iso8601%>"/></p>
+      <nav id="authors">
+        <%-user.authors.each do |author| -%>
+          <a target="blank" href="<%=author.url%>"><%=author.url%></a>
+        <%-end-%>
+      </nav>
+    </section>
+  </details>  
+<%-end-%>
+</section>
