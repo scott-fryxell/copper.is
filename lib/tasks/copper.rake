@@ -36,10 +36,7 @@ namespace :copper do
 
   task :rotate_orders => :environment do
     Order.current.where('created_at <= ?', 1.week.ago).each do |order|
-      if order.user.stripe_id 
-         and order.tips.count > 0
-         and order.tips.sum(:amount_in_cents) > 50
-         and order.user.email
+      if order.user.stripe_id and order.tips.count > 0 and order.tips.sum(:amount_in_cents) > 50 and order.user.email
         # puts order.tips.sum(:amount_in_cents)
         Resque.enqueue Order, order.id, :rotate!
       end
