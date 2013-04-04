@@ -1,18 +1,21 @@
 #home_getting_started {
 
-  section.chrome {
-    .safari, .firefox{
-      display:none !important;
+  section {
+    margin-bottom: grid-width(1);
+    &.chrome {
+      .safari, .firefox{
+        display:none !important;
+      }
     }
-  }
-  section.safari {
-    .chrome, .firefox{
-      display:none !important;
+    &.safari {
+      .chrome, .firefox{
+        display:none !important;
+      }
     }
-  }
-  section.firefox {
-    .chrome, .safari{
-      display:none !important;
+    &.firefox {
+      .chrome, .safari{
+        display:none !important;
+      }
     }
   }
 
@@ -30,7 +33,6 @@
         }
       }
     }
-
     & > img {
       display:inline-block;
     }
@@ -44,6 +46,7 @@
 
   figure#sign_up_install_button {
     background-color: $offset_color;
+    @include full_width($offset_color);
     & > figcaption {}
     & > img {
       display:block;
@@ -62,7 +65,7 @@
           margin-bottom:0;
         }
         &.firefox {
-          margin-top:5em;
+          margin-top:3em;
           margin-bottom:0;
           & > img {
             display:inline-block;
