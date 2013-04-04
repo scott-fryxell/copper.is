@@ -1,0 +1,81 @@
+#home_getting_started {
+
+  section.chrome {
+    .safari, .firefox{
+      display:none !important;
+    }
+  }
+  section.safari {
+    .chrome, .firefox{
+      display:none !important;
+    }
+  }
+  section.firefox {
+    .chrome, .safari{
+      display:none !important;
+    }
+  }
+
+  figure {
+    padding:3em 2em;
+    vertical-align: top;
+    & > figcaption {
+      vertical-align: top;
+      display:inline-block;
+      width:grid-width(10);
+      & > h2 {
+        font-size: 1.75em;
+        &:nth-child(3) {
+          margin-top:1em;
+        }
+      }
+    }
+
+    & > img {
+      display:inline-block;
+    }
+  }
+
+  figure#any_url {
+    figcaption {
+      margin-right:grid-width(3);
+    }
+  }
+
+  figure#sign_up_install_button {
+    background-color: $offset_color;
+    & > figcaption {}
+    & > img {
+      display:block;
+    }
+    nav {
+      margin-top:grid-width(1);
+      margin-left:2em;
+      display:inline-block;
+      width:grid-width(9);
+      & > a {
+        width:11.5em;
+        display:block;
+        margin-bottom:3em;
+        &.safari {
+          margin-top:-2em;
+          margin-bottom:0;
+        }
+        &.firefox {
+          margin-top:5em;
+          margin-bottom:0;
+          & > img {
+            display:inline-block;
+            margin-left:2em
+          }
+        }
+      }
+    }
+  }
+
+  figure#start_tipping {
+    figcaption {
+      margin-right: grid-width(3);
+    }
+  }
+}

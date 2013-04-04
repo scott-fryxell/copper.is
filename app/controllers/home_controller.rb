@@ -15,6 +15,9 @@ class HomeController < ApplicationController
   def settings
   end
 
+  def getting_started
+  end
+
   def badge
   end
 

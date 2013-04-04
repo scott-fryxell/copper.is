@@ -4,10 +4,8 @@
     line-height: 2em;
   }
 
-  & *{
-    // outline: 1px solid silver;
-  }
   section#users {
+    padding-top:1em;
     padding:0;
     @include columns(3);
     vertical-align: top;

@@ -1,0 +1,25 @@
+#pages_index {
+
+  section#pages{
+    @include columns(3);
+
+    & > details > summary > img {
+      width:2em;
+    }
+
+    details {
+      margin: 1em 0;
+
+      &[open] {
+        background-color: $offset_color;
+        border-radius:0.5em;
+        padding-top:0.25em;
+      }
+
+      & > summary:focus {
+        outline: none;
+      }
+    }
+
+  }
+}

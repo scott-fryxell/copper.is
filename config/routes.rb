@@ -28,6 +28,7 @@ Copper::Application.routes.draw do
   get 'faq',             to:'home#faq'
   get 'states',          to:'home#states'
   get 'statistics',      to:'home#statistics'
+  get 'getting_started', to:'home#getting_started'
   get 'embed_iframe.js', to:'home#iframe', :as => :iframe
   post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
 
