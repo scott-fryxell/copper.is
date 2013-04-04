@@ -1,0 +1,19 @@
+<section id="pages">
+  <%-Page.order("updated_at").each do |page|-%>
+    <details itemscoped itemid="<%=page.id%>">
+      <summary itemprop='title'><%=page.title%></summary>
+      <section>
+        <p>id: <%=page.id%></p>
+        <p><span><%=page.tips.count%></span> tips</p>
+        <p>Created <time datetime="<%=page.created_at.getutc.iso8601%>"/></p>
+        <nav>
+          <a target="blank" href="<%=page.url%>"><%=page.url%></a>
+        </nav>
+        <figure>
+          <img itemprop='thmbnail' src="<%=page.thumbnail%>">
+          <figcaption itemprop='title'><%=page.title%></figcaption>
+        </figure>
+      </section>
+    </details>
+  <%-end-%>
+</section>

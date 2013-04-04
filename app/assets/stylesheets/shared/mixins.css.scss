@@ -32,7 +32,7 @@ $red:rgba(255, 0, 0, 0.7);
   @include background-image(linear-gradient($button_color 40%, shade($button_color, 25%) 100%, transparent 50%));
   color:$light-text !important;
   border-radius:.25em;
-  border:0.10em solid darken($button_color, 10%);
+  border:3px solid darken($button_color, 10%);
   @include transition (box-shadow 0.5s ease-in 0.25s);
   position:relative;
   &:hover {

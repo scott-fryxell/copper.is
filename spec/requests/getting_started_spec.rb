@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "a guest who wants to learn how to get started with copper",:focus, :slow do
+describe "a guest who wants to learn how to get started with copper", :slow do
   before(:each) do
     visit "/getting_started"
   end
