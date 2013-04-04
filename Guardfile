@@ -1,3 +1,30 @@
+guard 'process', :name => 'worker', :command => 'rake jobs:work', :stop_signal => 'TERM' do
+  # watch('Gemfile')
+  # watch('Gemfile.lock')
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  # watch('config/routes.rb')
+  watch('config/authorization_rules.rb')
+  watch(%r{^config/environments/.+\.rb})
+  watch(%r{^config/initializers/.+\.rb})
+  watch('/app/models/**/*.rb')
+  watch('/app/models/*.rb')
+  watch('/app/jobs/*.rb')
+  watch('/lib/**/*.rb')
+end
+
+guard 'process', :name => 'web', :command => 'rails s thin', :stop_signal => 'TERM' do
+  # watch('Gemfile')
+  # watch('Gemfile.lock')
+  # watch('config/application.rb')
+  # watch('config/environment.rb')
+  # watch('config/routes.rb')
+  # watch('config/authorization_rules.rb')
+  # watch(%r{^config/environments/.+\.rb})
+  # watch(%r{^config/initializers/.+\.rb})
+  # watch('/app/**/*.rb')
+  # watch('/lib/**/*.rb')
+end
 
 guard :pow do
   watch('.rvmrc')
@@ -18,36 +45,8 @@ guard 'spork', wait: 60, cucumber: false, rspec: true, test_unit: false do
   watch('.rspec')
 end
 
-guard 'process', :name => 'worker', :command => 'foreman start worker', :stop_signal => 'TERM' do
-  watch('Gemfile')
-  watch('Gemfile.lock')
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch('config/routes.rb')
-  watch('config/authorization_rules.rb')
-  watch(%r{^config/environments/.+\.rb})
-  watch(%r{^config/initializers/.+\.rb})
-  watch('/app/models/**/*.rb')
-  watch('/app/models/*.rb')
-  watch('/app/jobs/*.rb')
-  watch('/lib/**/*.rb')
-end
-
-guard 'process', :name => 'web', :command => 'rails s thin', :stop_signal => 'TERM' do
-  watch('Gemfile')
-  watch('Gemfile.lock')
-  watch('config/application.rb')
-  watch('config/environment.rb')
-  watch('config/routes.rb')
-  # watch('config/authorization_rules.rb')
-  watch(%r{^config/environments/.+\.rb})
-  watch(%r{^config/initializers/.+\.rb})
-  # watch('/app/**/*.rb')
-  # watch('/lib/**/*.rb')
-end
-
 guard 'rspec', :cli => '--color --format doc --drb',
-               :all_on_start => true, :all_after_pass => false do
+               :all_on_start => false, :all_after_pass => false do
   watch(/^spec\/.+\.rb$/) { 'spec' }
   watch(/^app\/.+\.rb$/) { 'spec' }
   watch(/^lib\/.+\.rb$/) { 'spec' }
