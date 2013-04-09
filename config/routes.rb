@@ -4,13 +4,8 @@ Copper::Application.routes.draw do
   resources :orders
   resources :checks
   resources :authors
-
-  resources :pages do
-    resources :tips
-  end
-  resources :users do 
-    resources :tips
-  end
+  resources :pages
+  resources :users
 
   get    'cards', to:'cards#show',  :as => :show_card
   post   'cards', to:'cards#create',:as => :create_card
@@ -18,8 +13,8 @@ Copper::Application.routes.draw do
   delete 'cards', to:'cards#delete', :as => :delete_card
 
   get 'tip_some_pages', to:'home#tip_some_pages'
-
-  get 'badge',          to:'home#badge' 
+  get "admin",           to:'admin#index'
+  get 'badge',           to:'home#badge' 
   get 'author',          to:'home#author' 
   get 'settings',        to:'home#settings'
   get 'about',           to:'home#about'
