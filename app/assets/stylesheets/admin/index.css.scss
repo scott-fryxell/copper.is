@@ -1,0 +1,26 @@
+#admin_index {
+
+  & > nav {
+    padding:1em;
+    border-radius:0.5em;
+    width:grid-width(22);
+    margin:1em auto;
+    & > a {
+      margin-right:1em;
+      a:nth-child(6){margin-right:0;}
+      margin-bottom:2em;
+      width:8em;
+      display:inline-block;
+      font-family: 'Doppio One', sans-serif;
+      @include inset_button($text);
+      &:after {
+        // resetting some nav css for body > nav 
+        background-image:none;
+        padding-right:0;
+        width:0;
+        height:0;
+        margin:none;
+      }
+    }
+  }
+}

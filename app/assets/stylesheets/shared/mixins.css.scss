@@ -1,6 +1,6 @@
 $gw-column:2em;
 $gw-gutter:0.5em;
-$offset_color:rgba(182, 195, 181, 0.2);
+$offset_color:rgba(182, 195, 181, 0.21);
 
 $darkness:rgba(42, 41, 41, 1);
 $header:rgba(42,41,41,0.75);
@@ -9,7 +9,7 @@ $title:rgba(102,102,102,1);
 $text:rgba(102,102,102,0.8);
 $light-text:rgba(251, 250, 248, 1);
 
-$button_color:rgba(204, 153, 51, 1);
+$copper:rgba(204, 153, 51, 1);
 $green:rgba(0, 128, 0, 0.7);
 $yellow:rgba(255, 255, 0, 0.7);
 $brown:rgba(165, 42, 42, 0.7);
@@ -20,6 +20,45 @@ $red:rgba(255, 0, 0, 0.7);
 @import "bourbon";
 @import "details";
 
+@mixin inset_button($color) {
+  /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
+  color:lighten($color, 75%);
+  background-color:$color;
+  padding:0.25em;
+  border-radius: 0.25em;
+  position:relative;
+  text-decoration:none;
+  border: solid 1px darken($color, 60%);
+  box-shadow: inset 0px 1px 0px lighten($color, 1%), 0px 1px 0px lighten($color, 1%);
+  @include background-image(linear-gradient($color 0%, shade($color, 25%) 100%));
+  &:active {
+    padding-top:0.27em;
+    padding-right:0.25em;
+    padding-bottom:0.20em;
+    padding-left:0.25em;
+
+    // @include background-image(linear-gradient(bottom, $light-text 0%, shade($light-text, 20%) 100%));
+    @include background-image(linear-gradient(bottom, shade($color, 7%) 20%, shade($color, 15%) 95%) );
+    background-color:$color;
+  }
+  &:before {
+      // background-color:#ccd0d5;
+      background-color:lighten($color, 30%);
+      opacity:0.3;
+      content:"";
+      display:block;
+      position:absolute;
+      width:100%;
+      height:100%;
+      padding:0.5em;
+      left:-0.5em;
+      top:-0.5em;
+      z-index:-1;
+      border-radius: 0.25em;
+      box-shadow: inset 0px 1px 1px darken($color, 10%), 0px 1px 0px lighten($color, 40%);
+      // box-shadow: inset 0px 1px 1px lighten($header, 1%), 0px 1px 0px #FFFFFF;
+  }
+}
 @mixin copper_button {
   cursor:pointer;
   font-size:1em;
@@ -28,15 +67,15 @@ $red:rgba(255, 0, 0, 0.7);
   text-decoration:none;
   padding:.5em .75em;
   padding:.25em .75em;
-  background-color:$button_color;
-  @include background-image(linear-gradient($button_color 40%, shade($button_color, 25%) 100%, transparent 50%));
+  background-color:$copper;
+  @include background-image(linear-gradient($copper 40%, shade($copper, 25%) 100%, transparent 50%));
   color:$light-text !important;
   border-radius:.25em;
-  border:3px solid darken($button_color, 10%);
+  border:3px solid darken($copper, 10%);
   @include transition (box-shadow 0.5s ease-in 0.25s);
   position:relative;
   &:hover {
-    box-shadow: 0 0 .75em 0  $button_color;
+    box-shadow: 0 0 .75em 0  $copper;
     @include transition (box-shadow 0.5s ease-in);
   }
   &:before{
@@ -60,7 +99,6 @@ $red:rgba(255, 0, 0, 0.7);
   background-position:center;
   @include background-size(cover);
 }
-
 @mixin text {
   font-size:1em;
   font-family: 'Cantarell', sans-serif;
@@ -95,7 +133,6 @@ $red:rgba(255, 0, 0, 0.7);
     background-size:3em;
   }
 }
-
 @mixin settings_pointer {
   text-transform:uppercase;
   text-decoration:none;
@@ -112,7 +149,6 @@ $red:rgba(255, 0, 0, 0.7);
     background-size: .75em;
   }
 }
-
 @mixin settings_pointer_down {
   text-transform:uppercase;
   text-decoration:none;
@@ -130,7 +166,6 @@ $red:rgba(255, 0, 0, 0.7);
     background-size: .75em;
   }
 }
-
 @mixin keyframes($name) {
   @-moz-keyframes #{$name} { @content; }
   @-webkit-keyframes #{$name} { @content; }
@@ -143,7 +178,6 @@ $red:rgba(255, 0, 0, 0.7);
   from { @include transform(rotate(0deg)); }
   to { @include transform(rotate(360deg)); }
 }
-
 @mixin animation-play-state($state) {
   -moz-animation-play-state: $state;
   -webkit-animation-play-state: $state;

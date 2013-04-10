@@ -49,7 +49,7 @@ $subtle_text: #999999;
         vertical-align:middle;
         font-size:2em;
         text-align:center;
-        color:$button_color;
+        color:$copper;
       }
       & > h2 {
         margin-bottom:0;
@@ -103,7 +103,7 @@ $subtle_text: #999999;
         margin-left:1em;
         vertical-align:middle;
         &:hover {
-          border:0.10em solid darken($button_color, 10%);
+          border:0.10em solid darken($copper, 10%);
         }
       }
     }
@@ -136,7 +136,7 @@ $subtle_text: #999999;
       }
       &:first-child {
         a {
-          color:$button_color;
+          color:$copper;
         }
         a:before{
           content:"[";

@@ -13,12 +13,23 @@ describe "some shit that needs doin'", :slow do
   end
 
   describe "a admin", :focus, :slow do
-    it "has a homepage to start working from" do 
-      visit "/admin"
-      page.save_screenshot('tmp/screenshots/scratch/01.png')
-      # save_and_open_page
-      page.should have_css('section#admin > header > nav', visible:true)
+    before :each do
+      visit "/admin"      
     end
+
+    it "has a homepage to start working from" do 
+      page.save_screenshot('tmp/screenshots/scratch/01.png')
+      page.should have_css('section > header > nav', visible:true)
+    end
+
+    it "can view a list of orders" do 
+      click_on "Orders"
+
+      page.should have_css('section#orders', visible:true)
+  
+
+    end
+
   end
 
 

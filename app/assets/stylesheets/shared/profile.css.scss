@@ -39,14 +39,14 @@
     & > div > p > button {
       padding-right:.75em;
       font-family: 'Doppio One', sans-serif;
-      background-color:$button_color;
+      background-color:$copper;
       color:$light-text;
       font-size:.75em;
       display:inline-block;
       width:1em;
       height:1em;
       line-height:.5em;
-      border:1px solid darken($button_color, 5%);
+      border:1px solid darken($copper, 5%);
       -webkit-appearance: none;
       border-radius:0.1em;
       box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
@@ -287,7 +287,7 @@ table#tips {
     & input[type=text] {
       padding:0 0 0 .25em;
       width:2.5em;
-      color:$button_color;
+      color:$copper;
       font-weight:bold;
       background-color:transparent;
       box-shadow:none;
