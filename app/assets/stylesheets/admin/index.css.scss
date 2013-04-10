@@ -1,17 +1,23 @@
 #admin_index {
+  & > section, & > nav {
+    padding:0;
+    width:grid-width(24);
+  }
+  & > nav > a:nth-child(6), 
+  & > section > a:nth-child(6) {
+    margin-right:0;
+  }
+
 
   & > nav {
-    padding:1em;
     border-radius:0.5em;
-    width:grid-width(22);
-    margin:1em auto;
+    margin:1em auto 1em auto; 
     & > a {
       margin-right:1em;
-      a:nth-child(6){margin-right:0;}
-      margin-bottom:2em;
       width:8em;
       display:inline-block;
       font-family: 'Doppio One', sans-serif;
+      font-size:1em;
       @include inset_button($text);
       &:after {
         // resetting some nav css for body > nav 
@@ -21,6 +27,41 @@
         height:0;
         margin:none;
       }
+    }
+    & > a.selected {
+      box-shadow: 1px 1px 5px 2px $green; 
+    }
+  }
+  & > section {
+    padding:0;
+    width:grid-width(24);
+    margin-bottom: grid-width(1);
+  }
+  & > section > article {
+    width:8em;
+    min-height:grid-width(3);
+    vertical-align: top;
+    display:inline-block;
+    border: 1px solid $offset_color;
+    height:0;
+    opacity:0;
+    padding:0.25em;
+    background-color:$offset_color;
+    border-radius:0.25em;
+    margin-right:1em;
+    margin-bottom:grid-width(1);
+    @include transition (opacity 0.5s ease-in 0s);
+    @include transition (height 0.5s ease-in 0.5s);
+    &.selected{
+      height:auto;
+      opacity:1;
+      @include transition (opacity 0.5s ease-in 0s);
+    }
+    & > footer h2 {
+      margin-top:1em;
+      text-align: right;
+      font-size: 1.5em;
+      margin:0;
     }
   }
 }

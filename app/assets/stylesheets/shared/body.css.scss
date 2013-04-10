@@ -23,8 +23,9 @@ body {
 
   h1, h2, h3, h4, h5, h6 {
     @include header_text;
+    text-transform:capitalize;
   }
-  nav > a {
+  nav > a, summary {
     text-transform:capitalize;
   }
   h2 {

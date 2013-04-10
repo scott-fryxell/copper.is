@@ -5,4 +5,8 @@ class AdminController < ApplicationController
   
   end
 
+  def orders
+    render :action => 'orders', :layout => false
+  end
+
 end

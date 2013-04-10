@@ -2,16 +2,9 @@ class OrdersController < ApplicationController
   filter_resource_access
 
   def index
-    case params[:s]
-    when 'paid'
-      @orders = current_user.orders.paid.all
-    when 'unpaid'
-      @orders = current_user.orders.unpaid.all
-    when 'denied'
-      @orders = current_user.orders.denied.all
-    else
-      @orders = current_user.orders.all
-    end
+  end
+
+  def current
   end
 
   def show
@@ -77,14 +70,11 @@ class OrdersController < ApplicationController
   end
 
   def new
-
   end
 
   def create
-
   end
 
   def destroy
-
   end
 end

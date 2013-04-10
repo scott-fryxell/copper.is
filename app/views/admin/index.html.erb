@@ -1,11 +1,71 @@
-<nav>
-  <a href="#pages">Pages</a>
-  <a href="#users">Users</a>
-  <a href="#authors">Authors</a>
-  <a href="#orders">Orders</a>
-  <a href="#checks">Checks</a>
-  <a href="#tips">Tips</a>
+<nav id="models">
+  <a href="#users">users</a>
+  <a href="#authors">authors</a>
+  <a href="#pages">pages</a>
+  <a href="#tips">tips</a>
+  <a href="#orders">orders</a>
+  <a href="#checks">checks</a>
 </nav>
 
 <section>
+  <article id="users">
+    <details item itemid="/users/newest">
+      <summary>recent</summary>
+      <p><%=User.count%></p>
+    </details>
+  </article>
+
+  <article id="authors">
+    <%-[:stranger, :wanted, :known].each do |state|-%>
+    <details item itemid="/authors/#{state}">
+      <summary><%=state%></summary>    
+      <p><%=Author.send(state).count%></p>
+    </details>
+    <%-end-%>
+  </article>
+
+  <article id="pages">
+    <%-[:adopted, :orphaned, :fostered, :dead, :manual].each do |state|-%>
+    <details item itemid="/pages/#{state}">
+      <summary><%=state%></summary>
+      <p><%=Page.send(state).count%></p>
+    </details>
+    <%-end-%>
+  </article>
+
+  <article id="tips">
+    <%-[:promised, :charged, :kinged].each do |state|-%>
+    <details item itemid="/tips/#{state}">
+      <summary><%=state%></summary>
+      <p><%=Tip.send(state).count%></p>
+    </details>
+    <%-end-%>
+  </article>
+
+  <article id="orders">
+    <%-['current','paid','unpaid','denied'].each do |state|-%>
+    <details item itemid="/orders/#{state}">
+      <summary><%=state%></summary>    
+      <p><%=Order.send(state).count%></p>
+    </details>
+    <%-end-%>
+    <object itemtype='/orders' itemid='0'>
+      <data itemprop="count" value="<%=Order.count%>" >
+      <data itemprop="paid.count" value="<%=Order.paid.count%>">
+      <data itemprop="unpaid.count" value="<%=Order.unpaid.count%>">
+      <data itemprop="denied.count" value="<%=Order.denied.count%>">
+      <data itemprop="current.count" value="<%=Order.current.count%>">
+    </object>
+  </article>
+
+  <article id="checks">
+    <%-[:earned, :paid, :cashed].each do |state|-%>
+    <details item itemid="/checks/#{state}">
+      <summary><%=state%></summary>    
+      <p><%=Check.send(state).count%></p>
+    </details>
+    <%-end-%>
+  </article>
 </section>
+
+
