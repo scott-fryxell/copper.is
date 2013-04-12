@@ -6,10 +6,9 @@
   <a href="#orders">orders</a>
   <a href="#checks">checks</a>
 </nav>
-
-<section>
+<section id="states">
   <article id="users">
-    <details item itemid="/users/newest">
+    <details itemscoped itemid="/users/newest">
       <summary>recent</summary>
       <p><%=User.count%></p>
     </details>
@@ -17,7 +16,7 @@
 
   <article id="authors">
     <%-[:stranger, :wanted, :known].each do |state|-%>
-    <details item itemid="/authors/#{state}">
+    <details itemscoped itemid="/authors/#{state}">
       <summary><%=state%></summary>    
       <p><%=Author.send(state).count%></p>
     </details>
@@ -26,7 +25,7 @@
 
   <article id="pages">
     <%-[:adopted, :orphaned, :fostered, :dead, :manual].each do |state|-%>
-    <details item itemid="/pages/#{state}">
+    <details itemscoped itemid="/pages/<%=state%>">
       <summary><%=state%></summary>
       <p><%=Page.send(state).count%></p>
     </details>
@@ -35,7 +34,7 @@
 
   <article id="tips">
     <%-[:promised, :charged, :kinged].each do |state|-%>
-    <details item itemid="/tips/#{state}">
+    <details itemscoped itemid="/tips/<%=state%>" >
       <summary><%=state%></summary>
       <p><%=Tip.send(state).count%></p>
     </details>
@@ -43,29 +42,28 @@
   </article>
 
   <article id="orders">
-    <%-['current','paid','unpaid','denied'].each do |state|-%>
-    <details item itemid="/orders/#{state}">
+    <%-[:current,:paid,:unpaid,:denied].each do |state|-%>
+    <details itemscoped itemid="/orders/<%=state%>" draggable="true" id='<%=state%>'>
       <summary><%=state%></summary>    
       <p><%=Order.send(state).count%></p>
     </details>
     <%-end-%>
-    <object itemtype='/orders' itemid='0'>
-      <data itemprop="count" value="<%=Order.count%>" >
-      <data itemprop="paid.count" value="<%=Order.paid.count%>">
-      <data itemprop="unpaid.count" value="<%=Order.unpaid.count%>">
-      <data itemprop="denied.count" value="<%=Order.denied.count%>">
-      <data itemprop="current.count" value="<%=Order.current.count%>">
-    </object>
   </article>
 
   <article id="checks">
     <%-[:earned, :paid, :cashed].each do |state|-%>
-    <details item itemid="/checks/#{state}">
+    <details itemscoped itemid="/checks/<%=state%>">
       <summary><%=state%></summary>    
       <p><%=Check.send(state).count%></p>
     </details>
     <%-end-%>
   </article>
+
+  <section id="pallet">
+
+  </section>
+
 </section>
+
 
 

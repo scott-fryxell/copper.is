@@ -1,37 +1,11 @@
 <%-cache order do-%>
-<details itemscope itemtype='orders' itemid='<%=order.id%>' date-order_state="<%=order.order_state%>">
-  <summary>
-    <h2>
-      <span><%=pluralize(order.tips.count, 'tip')%></span>
-    </h2>
-    <p>
-       <%-if 'current' == order.order_state -%>
-        <%=order.order_state%>
-      <%-else-%>
-        <time datetime="<%=order.updated_at.getutc.iso8601%>" />
-      <%-end-%>
-    </p>  
-  </summary>
-  <section>
-    <header>
-      <h4>sub total: <span data-cents="<%=order.subtotal%>"></span></h4>
-      <h4>fees: <span data-cents="<%=order.fees%>"></span></h4>
-      <h4>total: <span data-cents="<%=order.total%>"></span></h4>
-    </header>
-    <table id="tips">
-      <thead>
-        <tr>
-          <th>when</th>
-          <th>amount</th>
-          <%-if 'current' == order.order_state -%>
-          <th>delete</th>
-          <%-end-%>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render partial:"tips/order_tip", collection:order.tips, as: :tip %>
-      </tbody>
-    </table>
-  </section>
-</details>
+<data itemscope itemtype='order' itemid='/orders/<%=order.id%>'>
+  <time itemprop="updated_at" pubdate><%=order.updated_at.getutc.iso8601%></time>
+  <time itemprop="created_at"><%=order.created_at.getutc.iso8601%></time>
+  <data itemprop="order_state"><%=order.order_state%></data>
+  <data itemprop="charge_token"><%=order.charge_token%></data>
+  <data itemprop="order_state"><%=order.order_state%></data>
+  <data itemscope itemtype='user' itemid='/users/<%=order.user_id%>'></data>
+  <data itemscope itemtype='tip' itemid='/orders/<%=order.id%>/tips'></data>
+</data>
 <%-end-%>

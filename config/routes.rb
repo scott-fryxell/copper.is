@@ -1,5 +1,6 @@
 require 'resque/server'
 Copper::Application.routes.draw do
+
   resources :tips
   resources :orders
   resources :checks

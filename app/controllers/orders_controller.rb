@@ -1,27 +1,24 @@
 class OrdersController < ApplicationController
-  filter_resource_access
+  # filter_resource_access
 
   def index
   end
 
-  def current
-  end
-
   def show
     if params[:id] == 'current'
-      @order = current_user.current_order
+      @state = 'current'
+      render :action => 'data', :layout => false
+    elsif params[:id] == 'paid'
+      @state = 'paid'
+      render :action => 'data', :layout => false
+    elsif params[:id] == 'unpaid'
+      @state = 'unpaid'
+      render :action => 'data', :layout => false
+    elsif params[:id] == 'denied'
+      @state = 'denied'
+      render :action => 'data', :layout => false
     else
-      @order = current_user.orders.find(params[:id])
-    end
-  rescue ActiveRecord::RecordNotFound
-    render nothing:true, status:401
-  end
-
-  def edit
-    if params[:id] == 'current'
-      @order = current_user.current_order
-    else
-      @order = current_user.orders.find(params[:id])
+      render :action => 'show', :layout => false
     end
   rescue ActiveRecord::RecordNotFound
     render nothing:true, status:401

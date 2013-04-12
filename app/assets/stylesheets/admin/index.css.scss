@@ -4,16 +4,38 @@
     width:grid-width(24);
   }
   & > nav > a:nth-child(6), 
-  & > section > a:nth-child(6) {
+  & > section > article:nth-child(6) {
     margin-right:0;
   }
+  & > nav > a.selected {
+    box-shadow: 1px 1px 5px 2px $green; 
+  }
 
+  details {
+    cursor:move;
+    margin-bottom:0.5em;
+    padding:0.5em;
+    border-radius:0.5em;
+    background-color:$header;
+    box-shadow: 1px 1px 5px 2px $text;
+    color:$light_text;
+    &[open] {
+      cursor:pointer;
+      & > summary {
+        cursor:pointer;
+      }
+    }
+    & > summary {
+      cursor:move;
+      outline:none;
+    }
+  }
 
   & > nav {
     border-radius:0.5em;
-    margin:1em auto 1em auto; 
+    margin:1em auto 0.75em auto; 
     & > a {
-      margin-right:1em;
+      margin-right:1.25em;
       width:8em;
       display:inline-block;
       font-family: 'Doppio One', sans-serif;
@@ -28,27 +50,39 @@
         margin:none;
       }
     }
-    & > a.selected {
-      box-shadow: 1px 1px 5px 2px $green; 
-    }
   }
   & > section {
     padding:0;
     width:grid-width(24);
-    margin-bottom: grid-width(1);
+    position:relative;
+  }
+  & > section#states {
+    position:relative;
+    min-height: grid-width(13);
+
+  }
+  & > section#states > section#pallet {
+    margin-top: 1em;
+    // outline:1px solid silver;
+    z-index:-2;
+    position:absolute;
+    top:0;
+    left:-0.25em;
+    background-color:$offset_color;
+    width: grid-width(24);
+    min-height: grid-width(12);
+    border-radius:0.5em;
   }
   & > section > article {
     width:8em;
-    min-height:grid-width(3);
     vertical-align: top;
     display:inline-block;
     border: 1px solid $offset_color;
     height:0;
     opacity:0;
     padding:0.25em;
-    background-color:$offset_color;
     border-radius:0.25em;
-    margin-right:1em;
+    margin-right:1.25em;
     margin-bottom:grid-width(1);
     @include transition (opacity 0.5s ease-in 0s);
     @include transition (height 0.5s ease-in 0.5s);
@@ -65,3 +99,35 @@
     }
   }
 }
+
+.dragstart {
+  opacity:0.5;
+  background-color:$brown;
+}
+
+.drag {
+  outline:2px solid $blue;
+}
+
+.dragend {
+  opacity:1;
+  background-color:$header;
+}
+
+// recieve draggable elements
+.dragenter {
+  opacity:0.5;
+  border:0.25em solid $header;
+}
+.dragleave {
+  opacity:1;
+  border:none;
+}
+.dragover {
+  background-color:$green;
+}
+
+.drop {
+  background-color:$red;
+}
+
