@@ -2,12 +2,13 @@ $gw-column:2em;
 $gw-gutter:0.5em;
 $offset_color:rgba(182, 195, 181, 0.21);
 
-$darkness:rgba(42, 41, 41, 1);
+$dark:rgba(42, 41, 41, 1);
+$light:rgba(251, 250, 248, 1);
 $header:rgba(42,41,41,0.75);
 $input_border:rgba(42, 41, 41, 0.3);
 $title:rgba(102,102,102,1);
 $text:rgba(102,102,102,0.8);
-$light-text:rgba(251, 250, 248, 1);
+
 
 $copper:rgba(204, 153, 51, 1);
 $green:rgba(0, 128, 0, 0.7);
@@ -37,7 +38,7 @@ $red:rgba(255, 0, 0, 0.7);
     padding-bottom:0.20em;
     padding-left:0.25em;
 
-    // @include background-image(linear-gradient(bottom, $light-text 0%, shade($light-text, 20%) 100%));
+    // @include background-image(linear-gradient(bottom, $light 0%, shade($light, 20%) 100%));
     @include background-image(linear-gradient(bottom, shade($color, 7%) 20%, shade($color, 15%) 95%) );
     background-color:$color;
   }
@@ -54,6 +55,7 @@ $red:rgba(255, 0, 0, 0.7);
       left:-0.5em;
       top:-0.5em;
       z-index:-1;
+      outline: 1px solid $light;
       border-radius: 0.25em;
       box-shadow: inset 0px 1px 1px darken($color, 10%), 0px 1px 0px lighten($color, 40%);
       // box-shadow: inset 0px 1px 1px lighten($header, 1%), 0px 1px 0px #FFFFFF;
@@ -69,7 +71,7 @@ $red:rgba(255, 0, 0, 0.7);
   padding:.25em .75em;
   background-color:$copper;
   @include background-image(linear-gradient($copper 40%, shade($copper, 25%) 100%, transparent 50%));
-  color:$light-text !important;
+  color:$light !important;
   border-radius:.25em;
   border:3px solid darken($copper, 10%);
   @include transition (box-shadow 0.5s ease-in 0.25s);
@@ -94,7 +96,7 @@ $red:rgba(255, 0, 0, 0.7);
   }
 }
 @mixin ribbon {
-  @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+  @include background-image( linear-gradient(black 0, $dark 75%, transparent 32%),image-url('icons/congrats.svg'));
   background-repeat: no-repeat;
   background-position:center;
   @include background-size(cover);

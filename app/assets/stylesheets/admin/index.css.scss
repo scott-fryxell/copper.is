@@ -1,46 +1,23 @@
 #admin_index {
-  & > section, & > nav {
-    padding:0;
-    width:grid-width(24);
-  }
-  & > nav > a:nth-child(6), 
-  & > section > article:nth-child(6) {
-    margin-right:0;
-  }
-  & > nav > a.selected {
-    box-shadow: 1px 1px 5px 2px $green; 
-  }
-
-  details {
-    cursor:move;
-    margin-bottom:0.5em;
-    padding:0.5em;
-    border-radius:0.5em;
-    background-color:$header;
-    box-shadow: 1px 1px 5px 2px $text;
-    color:$light_text;
-    &[open] {
-      cursor:pointer;
-      & > summary {
-        cursor:pointer;
-      }
-    }
-    & > summary {
-      cursor:move;
-      outline:none;
-    }
-  }
-
   & > nav {
-    border-radius:0.5em;
+    padding:0;
+    width:grid-width(25);
     margin:1em auto 0.75em auto; 
     & > a {
-      margin-right:1.25em;
+      margin:0.6em;
+      margin-right:1em;
+      padding: 0.25em 0;
       width:8em;
       display:inline-block;
       font-family: 'Doppio One', sans-serif;
       font-size:1em;
       @include inset_button($text);
+      &.selected {
+        box-shadow: 1px 1px 5px 2px $green; 
+      }
+      &:nth-child(6) {
+        margin-right:0;        
+      }
       &:after {
         // resetting some nav css for body > nav 
         background-image:none;
@@ -51,83 +28,97 @@
       }
     }
   }
-  & > section {
-    padding:0;
-    width:grid-width(24);
-    position:relative;
-  }
   & > section#states {
-    position:relative;
-    min-height: grid-width(13);
-
-  }
-  & > section#states > section#pallet {
-    margin-top: 1em;
-    // outline:1px solid silver;
-    z-index:-2;
-    position:absolute;
-    top:0;
-    left:-0.25em;
-    background-color:$offset_color;
-    width: grid-width(24);
-    min-height: grid-width(12);
-    border-radius:0.5em;
-  }
-  & > section > article {
-    width:8em;
-    vertical-align: top;
-    display:inline-block;
-    border: 1px solid $offset_color;
+    width:grid-width(25);
+    padding:0;
     height:0;
-    opacity:0;
-    padding:0.25em;
-    border-radius:0.25em;
-    margin-right:1.25em;
-    margin-bottom:grid-width(1);
-    @include transition (opacity 0.5s ease-in 0s);
-    @include transition (height 0.5s ease-in 0.5s);
-    &.selected{
-      height:auto;
-      opacity:1;
+    // visibility: hidden;
+    margin-bottom: 0.75em;
+    & > article {
+      width:8em;
+      vertical-align: top;
+      display:inline-block;
+      border: 1px solid $offset_color;
+      visibility: hidden;
+      height:0;
+      opacity:0;
+      padding-top:0;
+      border-radius:0.25em;
+      padding:0 1em;
       @include transition (opacity 0.5s ease-in 0s);
-    }
-    & > footer h2 {
-      margin-top:1em;
-      text-align: right;
-      font-size: 1.5em;
-      margin:0;
+      @include transition (height 0.5s ease-in 0.5s);
+      &:nth-child(6){
+        margin-right:0;
+      }
+      &.selected{
+        visibility: visible;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 1em;
+        height:auto;
+        opacity:1;
+        @include transition (opacity 0.5s ease-in 0s);
+        @include transition (height 0.5s ease-in 0.5s);
+      }
+      & > details {
+        @include background-image(linear-gradient($title 0%, shade($title, 25%) 100%));
+        cursor:move;
+        margin-bottom:0.5em;
+        padding:0.5em 0 ;
+        box-shadow: 1px 1px 5px 2px darken($offset_color, 40%);
+        border-radius:0.5em;
+        background-color:$title;
+        color:$light;
+        border: 2px solid darken($title, 20%);
+        &[open] {
+          cursor:pointer;
+          & > summary {
+            cursor:pointer;
+          }
+        }
+        & > summary {
+          text-align: center;
+          cursor:move;
+          outline:none;
+        }
+        & > summary::-webkit-details-marker {
+          display: none
+        }
+
+      }
     }
   }
-}
+  & > section#pallet {
+    padding:0 0 0 0;
+    margin-bottom: grid-width(1);
+    width:grid-width(25);
+    min-height: grid-width(12);
+    background-color:$offset_color;
+    border-radius:0.5em;
+    & > details {
 
-.dragstart {
-  opacity:0.5;
-  background-color:$brown;
+      border: 2px solid darken($title, 20%);
+      vertical-align: top;
+      margin: 1em 0 0 0.75em;
+      display:inline-block;
+      width:grid-width(8);
+      border-radius:0.5em;
+      & > summary {
+        @include background-image(linear-gradient($title 0%, shade($title, 25%) 100%));
+        outline:none;
+        padding:0.5em;
+        color:$light;
+      }
+    }
+  }
 }
 
 .drag {
-  outline:2px solid $blue;
+  opacity:0.5;
+  background-color:$brown;
 }
-
-.dragend {
-  opacity:1;
-  background-color:$header;
-}
-
-// recieve draggable elements
-.dragenter {
+.hover {
   opacity:0.5;
   border:0.25em solid $header;
-}
-.dragleave {
-  opacity:1;
-  border:none;
-}
-.dragover {
-  background-color:$green;
-}
-
-.drop {
-  background-color:$red;
 }
 

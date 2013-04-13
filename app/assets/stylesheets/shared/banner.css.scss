@@ -21,7 +21,7 @@
   #banner > header > img,
   #banner > figure > img {
     border-radius:.25em;
-    border:2px solid $darkness;
+    border:2px solid $dark;
     box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.2);
     vertical-align:bottom;
     width:5em;
@@ -39,7 +39,7 @@
     line-height:1em;
   }
   #banner > hgroup > p {
-    color: $darkness;
+    color: $dark;
     font-family: 'Doppio One', sans-serif;
     font-size:1.25em;
     margin-top:.25em;
@@ -83,16 +83,16 @@
         
         line-height:1.35em;
         & > h1 {
-          text-shadow: 3px 3px $darkness;
+          text-shadow: 3px 3px $dark;
           font-size:2.4em;
           line-height:1.3em;
-          color:$light-text;
+          color:$light;
           opacity:.8;
         }
         & > p {
           font-size:1em;
-          text-shadow: 2px 2px $darkness;
-          color:$light-text;
+          text-shadow: 2px 2px $dark;
+          color:$light;
           opacity:.9;
         }
       }
@@ -107,11 +107,11 @@
         margin-left:3em;
       }
       & > figure > figcaption {
-        text-shadow: 2px 3px $darkness;
+        text-shadow: 2px 3px $dark;
         font-family: 'Nothing You Could Do', cursive;
         font-size:1.5em;
         opacity:.7;
-        color:$light-text;
+        color:$light;
         position:absolute;
         line-height:1.25em;
         width:3em;

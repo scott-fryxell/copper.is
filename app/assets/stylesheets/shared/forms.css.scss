@@ -6,7 +6,7 @@ body {
     font-size: 1em;
     line-height: 1.2em;
     background: #fff;
-    color:$darkness;
+    color:$dark;
     border-radius:0.25em;
     border:2px solid $input_border;
     background-color:rgba(251, 250, 248, 0.2);  
@@ -99,7 +99,7 @@ section.setting,
   }
   & > div p {
     font-family: 'Doppio One', sans-serif;
-    color:$darkness;
+    color:$dark;
     font-size: 1.1em;
     opacity:.8;
     margin:0;

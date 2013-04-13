@@ -23,11 +23,9 @@
       }
       & > a {
         display:block;
-
-
       }
       & > a > img {
-        border:2px solid $light-text;
+        border:2px solid $light;
         border-radius:0.5em;
         display:block;
         width:grid-width(6);

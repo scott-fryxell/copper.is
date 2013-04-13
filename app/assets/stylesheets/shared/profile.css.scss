@@ -40,7 +40,7 @@
       padding-right:.75em;
       font-family: 'Doppio One', sans-serif;
       background-color:$copper;
-      color:$light-text;
+      color:$light;
       font-size:.75em;
       display:inline-block;
       width:1em;
@@ -103,7 +103,7 @@ section#pages {
         content: ":";
       }
       & > nav > a.selected {
-        color:$darkness;
+        color:$dark;
       }
     }
     & > hgroup:nth-child(3) {
@@ -154,7 +154,7 @@ section#pages {
       min-height:1em;
       padding:0.5em 0.5em 0.75em 0.5em;
       @include header_text;
-      color:$light-text;
+      color:$light;
       font-size:1em;
     }
     & > summary > figure > figcaption:before {
@@ -216,7 +216,7 @@ section#pages {
       }
       dd {
         @include header_text;
-        color:$light-text;
+        color:$light;
         font-size:1em;
       }
       & > summary > figure > figcaption:before {

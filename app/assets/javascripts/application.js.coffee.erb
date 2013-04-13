@@ -23,6 +23,10 @@
 
 $(document).ready ->
 
+  $("a[href^=#]").click ->
+    event.preventDefault();
+    history.pushState({}, "", @.href)
+  
   if $(window).height() > $('body').height()
     $('body > footer').addClass('bottom')
 
