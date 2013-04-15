@@ -23,7 +23,7 @@
 // from the dom. 
 Item = {
   items: {},
-  discover_items: function(){
+  discover_items: function(element){
     // Determine what elements on the page 
     // are available to be managed. 
     $("*[itemscope]").each(function (index){
@@ -86,7 +86,6 @@ Item = {
         });
       }
     });
-
   },
   CSRFProtection: function (xhr){
     var token = $('meta[name="csrf-token"]').attr('content');

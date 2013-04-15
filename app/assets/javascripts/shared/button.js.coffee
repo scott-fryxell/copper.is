@@ -1,8 +1,6 @@
 $(document).on "load.home_index load.home_settings", ->
-
   # set appropriate extension based on browswer type
-  is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
-  if is_chrome
+  if $.browser.chrome
     $("a.install").click ->
       url = "https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb"
       chrome.webstore.install url, ->

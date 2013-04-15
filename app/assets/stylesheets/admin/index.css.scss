@@ -2,7 +2,7 @@
   & > nav {
     padding:0;
     width:grid-width(25);
-    margin:1em auto 0.75em auto; 
+    margin:1em auto 0em auto; 
     & > a {
       margin:0.6em;
       margin-right:1em;
@@ -96,7 +96,6 @@
     background-color:$offset_color;
     border-radius:0.5em;
     & > details {
-
       border: 2px solid darken($title, 20%);
       vertical-align: top;
       margin: 1em 0 0 0.75em;
@@ -104,11 +103,19 @@
       width:grid-width(8);
       border-radius:0.5em;
       & > summary {
+        border-radius:0.35em;
         @include background-image(linear-gradient($title 0%, shade($title, 25%) 100%));
         outline:none;
         padding:0.5em;
         color:$light;
       }
+      &[open]{
+        summary {
+          border-bottom-right-radius:0;
+          border-bottom-left-radius:0;
+        }
+      }
+
     }
   }
 }
@@ -122,3 +129,6 @@
   border:0.25em solid $header;
 }
 
+data {
+  display:block;
+}

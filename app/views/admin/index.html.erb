@@ -10,15 +10,15 @@
   <article id="users">
     <details itemscoped itemid="/users/newest" draggable="true">
       <summary>recent</summary>
-      <p><%=User.count%></p>
+      <meta itemprop="count" content="<%=User.count%>">
     </details>
   </article>
 
   <article id="authors">
     <%-[:stranger, :wanted, :known].each do |state|-%>
     <details itemscoped itemid="/authors/#{state}" draggable="true">
-      <summary><%=state%></summary>    
-      <p><%=Author.send(state).count%></p>
+      <summary><%=state%></summary>
+      <meta itemprop="count" content="<%=Author.send(state).count%>">
     </details>
     <%-end-%>
   </article>
@@ -27,7 +27,7 @@
     <%-[:adopted, :orphaned, :fostered, :dead, :manual].each do |state|-%>
     <details itemscoped itemid="/pages/<%=state%>" draggable="true">
       <summary><%=state%></summary>
-      <p><%=Page.send(state).count%></p>
+      <meta itemprop="count" content="<%=Page.send(state).count%>">
     </details>
     <%-end-%>
   </article>
@@ -36,7 +36,7 @@
     <%-[:promised, :charged, :kinged].each do |state|-%>
     <details itemscoped itemid="/tips/<%=state%>" draggable="true">
       <summary><%=state%></summary>
-      <p><%=Tip.send(state).count%></p>
+      <meta itemprop="count" content="<%=Tip.send(state).count%>">
     </details>
     <%-end-%>
   </article>
@@ -44,8 +44,8 @@
   <article id="orders">
     <%-[:current,:paid,:unpaid,:denied].each do |state|-%>
     <details itemscoped itemid="/orders/<%=state%>" draggable="true">
-      <summary><%=state%></summary>    
-      <p><%=Order.send(state).count%></p>
+      <summary><%=state%></summary>
+      <meta itemprop="count" content="<%=Order.send(state).count%>">
     </details>
     <%-end-%>
   </article>
@@ -54,15 +54,34 @@
     <%-[:earned, :paid, :cashed].each do |state|-%>
     <details itemscoped itemid="/checks/<%=state%>" draggable="true">
       <summary><%=state%></summary>    
-      <p><%=Check.send(state).count%></p>
+      <meta itemprop="count" content="<%=Check.send(state).count%>"></p>
     </details>
     <%-end-%>
   </article>
 </section>
 
-<section id="pallet">
+<section id="pallet"></section>
 
-</section>
+<script itemtype="template" itemscoped itemid="/templates/orders/header" type="text/html">
+  <header>
+  <form>
+    <button formmethod="post" formaction="/orders/{{order.id}}/reject">make current</button>
+    <button formmethod="post" formaction="/orders/{{order.id}}/refund">refund</button>
+  </form>
+  </header>
+</script>
+
+<script itemtype="template" itemscoped itemid="/templates/orders/footer" type="text/html">
+  <footer>
+    <details itemscope itemtype='user' itemid='/users/{{order.user_id}}'>
+      <summary>{{order.user_name} details}</summary>
+    </details>
+    <details itemscope itemtype='tip' itemid='/orders/{{order.id}}/tips'>
+      <summary>tips</summary>
+    </details>
+  </footer>
+</script>
+
 
 
 

@@ -12,6 +12,7 @@ $(document).on "load.admin_index", ->
         url:$(@).attr('itemid'),
         success: (data) ->
           $(details).append(data)
+          $(details).find('time').timeago()
         statusCode:
           401:->
             $(document).trigger "401"

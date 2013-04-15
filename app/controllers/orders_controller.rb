@@ -6,17 +6,13 @@ class OrdersController < ApplicationController
 
   def show
     if params[:id] == 'current'
-      @state = 'current'
       render :action => 'data', :layout => false
     elsif params[:id] == 'paid'
-      @state = 'paid'
       render :action => 'data', :layout => false
     elsif params[:id] == 'unpaid'
-      @state = 'unpaid'
       render :action => 'data', :layout => false
-    elsif params[:id] == 'denied'
-      @state = 'denied'
-      render :action => 'data', :layout => false
+    elsif params[:id] == 'declined'
+      render :action => 'model', :layout => false
     else
       render :action => 'show', :layout => false
     end
@@ -64,12 +60,6 @@ class OrdersController < ApplicationController
     end
   rescue ActiveRecord::RecordNotFound
     render nothing:true, status:401
-  end
-
-  def new
-  end
-
-  def create
   end
 
   def destroy

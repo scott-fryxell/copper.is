@@ -1,0 +1,29 @@
+<%-cache order do-%>
+<details itemscope itemtype='order' itemid='/orders/<%=order.id%>'>
+  <summary><%=order.user.name if order.user%></summary>
+  <meta itemprop="user_id" content="<%=order.user_id%>">
+  <dl>
+    <dt>Created<dt>
+    <dd><time itemprop="created_at" pubdate datetime="<%=order.created_at.getutc.iso8601%>"/></dd>
+    <dt>Last change</dt>
+    <dd>
+      <time itemprop="updated_at" datetime="<%=order.updated_at.getutc.iso8601%>"/>
+    </dd>
+    <dt>State</dt>
+      <dd itemprop="order_state"><%=order.order_state%></dd>
+    <dt itemprop='charge_token'>stripe token</dt>      
+    <dd itemprop="charge_token"><%=order.charge_token%></dd>
+  <dl>
+</details>
+<%-end-%>
+
+<!-- super optimized version -->
+<!--  <details itemscope itemtype='order' itemid='/orders/<%=order.id%>'>
+  <summary itemprop="user_name"><%=order.user.name if order.user%></summary>
+  <time itemprop="created_at" pubdate datetime="<%=order.created_at.getutc.iso8601%>"/>
+  <time itemprop="updated_at" datetime="<%=order.updated_at.getutc.iso8601%>"/>
+  <data itemprop="order_state"><%=order.order_state%></data>
+  <data itemprop="charge_token"><%=order.charge_token%></data>
+  <data itemprop='user_id'><%=order.user_id%></value>
+</details>
+ --> 
