@@ -192,6 +192,11 @@ body > footer {
     }
   }
 }
+
+a[itemprop=url] {
+  text-transform: lowercase;
+}
+
 body > nav {
   padding:5em;
   & > a,
