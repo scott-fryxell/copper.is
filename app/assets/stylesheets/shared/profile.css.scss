@@ -124,11 +124,12 @@ section#pages {
       @include text;
       font-size:1em;
       display:inline-block;
-      width:grid-width(4.5);
+      width:13em;
       height:1em;
       line-height:1em;
       overflow: hidden;
       text-overflow: ellipsis;
+      white-space: nowrap;
     }
     & > summary > figure {
       margin-top:.5em;
@@ -137,8 +138,10 @@ section#pages {
       width:grid-width(6);
       height:grid-width(4);
       box-shadow: 2px 3px 15px 3px rgba(0, 0, 0, 0.4);
+      border-radius:0.25em;
     }
     & > summary > figure > img {
+
       width:grid-width(6);
       height:grid-width(4);
     }
