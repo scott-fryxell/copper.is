@@ -68,3 +68,6 @@ $(document).on "load.home_index", ->
 
   $(document).on '#latest_tip', ->
     $('#pages > details:nth-child(2) > summary').click()
+
+  $('#card').on 'credit_card_approved', ->
+    window.location = "/tip_some_pages"

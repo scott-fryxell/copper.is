@@ -61,6 +61,7 @@ $(document).on "items.home_settings items.home_index", ->
             success: ->
               $("#card > form input[type=submit]").removeClass('working')
               $("#card").addClass 'approved'
+              $("#card").trigger('credit_card_approved')
             error: (data, textStatus, jqXHR) ->
               $("#card > form input[type=submit]").removeClass('working')
               $("#card > form > h1").text data.responseText

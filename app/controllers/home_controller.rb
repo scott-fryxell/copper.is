@@ -82,4 +82,8 @@ class HomeController < ApplicationController
     render nothing:true, status:200
   end
 
+  def tip_some_pages
+
+  end
+
 end

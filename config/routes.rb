@@ -17,6 +17,8 @@ Copper::Application.routes.draw do
   put    'cards', to:'cards#update',:as => :update_card
   delete 'cards', to:'cards#delete', :as => :delete_card
 
+  get 'tip_some_pages', to:'home#tip_some_pages'
+
   get 'badge',          to:'home#badge' 
   get 'author',          to:'home#author' 
   get 'settings',        to:'home#settings'

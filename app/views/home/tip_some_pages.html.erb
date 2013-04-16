@@ -1,0 +1,15 @@
+<section id="banner">
+  <header>
+    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+  </header>
+  <hgroup>
+    <h1>tip some pages!</h1>
+  </hgroup>
+  <p>Now you can head out into the world and tip any page on the web.
+     Here's a list of pages that people have been tipping with copper.</p>
+</section>
+<% cache("top_pages", :expires_in => 1.hour) do %>
+<section id="pages">
+  <%= render partial:"pages/trending_page", collection:Page.includes(:tips).order("updated_at DESC").limit(75), as: :page %>
+</section>
+<%-end-%>
