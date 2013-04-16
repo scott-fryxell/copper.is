@@ -68,7 +68,7 @@
     background-color:transparent;
     height: 24em;
     width:auto;
-    @include background-size(cover);
+    background-size:cover;
     @include full_width(black);
     box-shadow: 0 -0.5em 1.75em 1em rgba(0, 0, 0, .3);
     & > header {

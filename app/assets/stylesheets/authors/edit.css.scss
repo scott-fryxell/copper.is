@@ -38,7 +38,7 @@
     @include background-image( linear-gradient($text 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
     background-repeat: no-repeat;
     background-position:center;
-    @include background-size(cover);
+    background-size:cover;
   }
   #banner > figure > figcaption:before {
     content:'$';

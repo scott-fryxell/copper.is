@@ -51,14 +51,14 @@ $red:rgba(255, 0, 0, 0.7);
     // background-image: image-url("icons/letter_logo_white.svg");
     // background-repeat: no-repeat;
     // background-position:center;
-    // @include background-size(cover);
+    // background-size: cover;
   }
 }
 @mixin ribbon {
   @include background-image( linear-gradient(black 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
   background-repeat: no-repeat;
   background-position:center;
-  @include background-size(cover);
+  background-size:cover;
 }
 
 @mixin text {
