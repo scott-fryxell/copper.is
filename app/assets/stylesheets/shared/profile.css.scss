@@ -72,175 +72,179 @@
       @include settings_pointer
     }
   }
+}
 
-  #pages {
-    margin-bottom:3em;
-    & > header {
-      margin: 2em 0;
-      & > h1 {
-        margin:0;
-        font-size:1.5em;
+section#pages {
+  margin-bottom:3em;
+  & > header {
+    margin: 2em 0;
+    & > h1 {
+      margin:0;
+      font-size:1.5em;
+    }
+    & > hgroup {
+      display:none;
+      & > nav {
+        margin-bottom:grid-width(1);
       }
-      & > hgroup {
-        display:none;
-        & > nav {
-          margin-bottom:grid-width(1);
-        }
-        & h2,
-        & > nav > a {
-          display:inline-block;
-          margin-right:1em;
-          @include text;
-        }
-        & > nav > a span {
-          font-weight:bold;
-        }
-        & > h2 {
-          margin-bottom:0.5em;
-        }
-        & > h2:after{
-          content: ":";
-        }
-        & > nav > a.selected {
-          color:$darkness;
-        }
+      & h2,
+      & > nav > a {
+        display:inline-block;
+        margin-right:1em;
+        @include text;
       }
-      & > hgroup:nth-child(3) {
-        display:none;
+      & > nav > a span {
+        font-weight:bold;
+      }
+      & > h2 {
+        margin-bottom:0.5em;
+      }
+      & > h2:after{
+        content: ":";
+      }
+      & > nav > a.selected {
+        color:$darkness;
       }
     }
+    & > hgroup:nth-child(3) {
+      display:none;
+    }
+  }
 
-    & > details {
-      vertical-align: top;
+  & > details {
+    vertical-align: top;
+    display:inline-block;
+    width:grid-width(6);
+    margin: 0 3.5em 1em 0;
+    & > summary {
+      cursor:pointer;
+      outline:none;
+    }
+    & > summary > h2 {    
+      @include text;
+      font-size:1em;
       display:inline-block;
-      width:grid-width(4);
-      margin: 0 1em 1em 0;
-      & > summary {
-        cursor:pointer;
-        outline:none;
-      }
-      & > summary > h2 {    
-        @include text;
-        font-size:.75em;
-        display:inline-block;
-        width:grid-width(4.5);
-        height:1em;
-        line-height:1em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      & > summary > figure {
-        margin-top:.5em;
-        position:relative; 
-        overflow:hidden;
-        width:grid-width(4);
-        height:grid-width(3);
-        box-shadow: 2px 3px 15px 3px rgba(0, 0, 0, 0.4);
-      }
-      & > summary > figure > img {
-        width:grid-width(4);
-        height:grid-width(3);
+      width:grid-width(4.5);
+      height:1em;
+      line-height:1em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    & > summary > figure {
+      margin-top:.5em;
+      position:relative; 
+      overflow:hidden;
+      width:grid-width(6);
+      height:grid-width(4);
+      box-shadow: 2px 3px 15px 3px rgba(0, 0, 0, 0.4);
+    }
+    & > summary > figure > img {
+      width:grid-width(6);
+      height:grid-width(4);
+    }
+    & > summary > figure > figcaption {
+      opacity:0.8;
+      text-align:center;
+      vertical-align:middle;
+      position:absolute;
+      top:0;
+      right:0;
+      @include ribbon;
+      min-width:1em;
+      min-height:1em;
+      padding:0.5em 0.5em 0.75em 0.5em;
+      @include header_text;
+      color:$light-text;
+      font-size:1em;
+    }
+    & > summary > figure > figcaption:before {
+      content: "$";
+    }
+  }
 
-      }
-      & > summary > figure > figcaption {
-        opacity:0.8;
-        text-align:center;
-        vertical-align:middle;
+  & > details[open] {
+    position:relative;
+    width:grid-width(21);
+    margin:1em 0;
+    height:auto;
+
+    padding:0 .5em 1em .5em;
+    background-color:$offset_color;
+
+    & > summary {
+      outline:none;
+      padding-top:1em;
+      margin-right:1em;
+      display:inline-block;
+      & > h2 {
         position:absolute;
-        top:0;
-        right:0;
-        @include ribbon;
-        min-width:1em;
-        min-height:1em;
-        padding:0.5em 0.5em 0.75em 0.5em;
+        top:0.25em;
+        left:1.5em;
+        width:auto;
+        margin-top:.5em;
+        vertical-align:middle;
+        font-size: 1.34em;
+        height:1.34em;
+        line-height:1.34em;
+
+        @include header_text;
+      }
+      & > figure {
+        width:grid-width(8);
+        height:grid-width(5);
+        margin-top:1.5em;
+        margin-left:1.25em;
+        overflow: hidden;
+        box-shadow:2px 3px 15px 3px rgba(0, 0, 0, 0.4);
+      }
+      & > figure > figcaption {
+        font-size:2em;
+      }
+      & > figure > img {
+        min-width:grid-width(8);
+        min-height:grid-width(5);
+      }
+    }
+    & > dl {
+      clear:right;
+      margin-top:3.25em;
+      display:inline-block;
+      vertical-align:top;
+
+      dt {
+        font-weight:bold;
+      }
+      dd {
         @include header_text;
         color:$light-text;
         font-size:1em;
       }
       & > summary > figure > figcaption:before {
         content: "$";
+        text-transform:lowercase;
+        margin-bottom:1em;
       }
-    }
-
-    & > details[open] {
-      position:relative;
-      width:grid-width(21);
-      margin:1em 0;
-      height:auto;
-
-      padding:0 .5em 1em .5em;
-      background-color:$offset_color;
-
-      & > summary {
-        outline:none;
-        padding-top:1em;
-        margin-right:1em;
-        display:inline-block;
-        & > h2 {
-          position:absolute;
-          top:0.25em;
-          left:1.5em;
-          width:auto;
-          margin-top:.5em;
-          vertical-align:middle;
-          font-size: 1.34em;
-          height:1.34em;
-          line-height:1.34em;
-
-          @include header_text;
-        }
-        & > figure {
-          width:grid-width(8);
-          height:grid-width(5);
-          margin-top:1.5em;
-          margin-left:1.25em;
-          overflow: hidden;
-          box-shadow:2px 3px 15px 3px rgba(0, 0, 0, 0.4);
-        }
-        & > figure > figcaption {
-          font-size:2em;
-        }
-        & > figure > img {
-          min-width:grid-width(8);
-          min-height:grid-width(5);
+      dd > a {
+        display:inline-block; 
+        border-bottom: 0.15em solid rgba(102, 102, 102, 0.3);
+        padding: 0.15em 0em;
+        border-radius: 0.1em;
+        @include transition(all 0.25s);
+        &:hover {
+          @include transition(border-radius 0.5s ease-out 0s, border-bottom 0.25s);
+          border-radius: 0.4em;
+          border-bottom: 0.15em solid rgba(102, 102, 102, 0.5);
         }
       }
-      & > dl {
-        clear:right;
-        margin-top:3.25em;
-        display:inline-block;
+      dt > details {
         vertical-align:top;
-
-        dt {
-          font-weight:bold;
-        }
-        dd {
+        display:block;
+        & > summary {
           @include header_text;
-          text-transform:lowercase;
+          font-size:1.25em;
+          outline:none;
+          line-height:1.5em;
           margin-bottom:1em;
-        }
-        dd > a {
-          display:inline-block; 
-          border-bottom: 0.15em solid rgba(102, 102, 102, 0.3);
-          padding: 0.15em 0em;
-          border-radius: 0.1em;
-          @include transition(all 0.25s);
-          &:hover {
-            @include transition(border-radius 0.5s ease-out 0s, border-bottom 0.25s);
-            border-radius: 0.4em;
-            border-bottom: 0.15em solid rgba(102, 102, 102, 0.5);
-          }
-        }
-        dt > details {
-          vertical-align:top;
-          display:block;
-          & > summary {
-            @include header_text;
-            font-size:1.25em;
-            outline:none;
-            line-height:1.5em;
-            margin-bottom:1em;
-          }
         }
       }
     }
@@ -318,4 +322,3 @@ table#tips {
     }
   }
 }
-
