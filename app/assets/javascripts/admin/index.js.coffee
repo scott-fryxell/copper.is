@@ -5,7 +5,7 @@ $(document).on "load.admin_index", ->
     
     $("article#{$(@).attr('href')}").toggleClass('selected');
 
-  $("body").on 'click', 'details[itemscoped]', ->
+  $("body").on 'click', 'details[itemscope]', ->
     if $(@).attr('open')
       $(@).attr('draggable', 'true')
     else
@@ -16,24 +16,25 @@ $(document).on "load.admin_index", ->
         url:$(@).attr('itemid'),
         success: (data) ->
           $(details).append(data)
+          console.debug('element', details)
+          new Item_m(details)
           $(details).find('time').timeago()
         statusCode:
           401:->
-            $(document).trigger "401"
+            $(details).trigger "401"
   
   $("#pallet").on "drop", ->
     # event.preventDefault()
     console.debug("drop")
     $(@).removeClass("hover")
-    # event.preventDefault()
     itemid = event.dataTransfer.getData("item")
-    console.debug(  $("[itemid='#{itemid}']"))
+    # console.debug(  $("[itemid='#{itemid}']"))
     event.target.appendChild($("[itemid='#{itemid}']")[0])
     # return false;
 
   $("#pallet").on "dragenter", ->
     # event.preventDefault()
-    console.debug("dragenter")
+    # console.debug("dragenter")
     $(@).addClass("hover")
     return false;
 
@@ -42,18 +43,17 @@ $(document).on "load.admin_index", ->
 
   $("#pallet").on "dragleave", ->
     # event.preventDefault()
-    console.debug("dragleave")
+    # console.debug("dragleave")
     $(@).removeClass("hover")
     return false;
 
   $('[draggable]').on 'dragstart', ->
     # event.preventDefault()
-    console.debug("dragstart")
+    # console.debug("dragstart")
     $(@).addClass("drag")
     event.dataTransfer.setData('item', $(@).attr('itemid') )
-    # event.dataTransfer.setData("Text",event.target.id)
 
   $('[draggable]').on 'dragend', ->
     # event.preventDefault()
-    console.debug("dragend")
+    # console.debug("dragend")
     $(@).removeClass("drag")

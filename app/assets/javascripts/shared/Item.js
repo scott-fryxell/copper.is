@@ -56,6 +56,12 @@ Item = {
     else if( $(element).is("img") || $(element).is("object") || $(element).is("embed")){
       return $(element).attr('src');
     }
+    else if( $(element).is("meta")){
+      return $(element).attr('content');
+    }
+    else if( $(element).is("time")){
+      return $(element).attr('datetime');
+    }
     else {
       if($(element).text()){
         return $(element).text().trim();

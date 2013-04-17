@@ -5,13 +5,11 @@
   <dl>
     <dt>Created<dt>
     <dd><time itemprop="created_at" pubdate datetime="<%=order.created_at.getutc.iso8601%>"/></dd>
-    <dt>Last change</dt>
-    <dd>
-      <time itemprop="updated_at" datetime="<%=order.updated_at.getutc.iso8601%>"/>
-    </dd>
-    <dt>State</dt>
-      <dd itemprop="order_state"><%=order.order_state%></dd>
-    <dt itemprop='charge_token'>stripe token</dt>      
+    <dt>last change</dt>
+    <dd><time itemprop="updated_at" datetime="<%=order.updated_at.getutc.iso8601%>"/></dd>
+    <dt>state</dt>
+    <dd itemprop="order_state"><%=order.order_state%></dd>
+    <dt>stripe token</dt>      
     <dd itemprop="charge_token"><%=order.charge_token%></dd>
   <dl>
 </details>
