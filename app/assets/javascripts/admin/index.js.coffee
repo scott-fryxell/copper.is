@@ -1,12 +1,16 @@
 $(document).on "load.admin_index", ->
-  
+ 
   $('nav#models > a').click ->
     $(@).toggleClass('selected')
     
     $("article#{$(@).attr('href')}").toggleClass('selected');
 
-  $("details[itemscoped]").click ->
-    unless $(@).attr('open')
+  $("body").on 'click', 'details[itemscoped]', ->
+    if $(@).attr('open')
+      $(@).attr('draggable', 'true')
+    else
+      console.debug('opening')
+      $(@).attr('draggable', 'false')    
       details = @
       jQuery.ajax
         url:$(@).attr('itemid'),
@@ -16,7 +20,7 @@ $(document).on "load.admin_index", ->
         statusCode:
           401:->
             $(document).trigger "401"
-
+  
   $("#pallet").on "drop", ->
     # event.preventDefault()
     console.debug("drop")
