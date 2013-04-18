@@ -7,7 +7,7 @@ class Item_m
     unless element
       element = $('body')
 
-    console.debug('gathering item data', element, @items)
+    # console.debug('gathering item data', element, @items)
     @discover_items element
     @apply_templates element
     document.items = @items
@@ -21,9 +21,10 @@ class Item_m
 
       $(@).find("[itemprop]").each ->
         item_prop = $(@).attr 'itemprop'
-        console.debug(item_prop, Item.get_value(@) )
+        # console.debug(item_prop, Item.get_value(@) )
         item[item_prop] = Item.get_value(@)
 
+      # console.debug(item_type)
       if item_type
         unless items[item_type]
           items[item_type] = {}

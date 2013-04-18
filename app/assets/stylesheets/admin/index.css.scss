@@ -32,7 +32,6 @@
     width:grid-width(25);
     padding:0;
     height:0;
-    // visibility: hidden;
     margin-bottom: 0.75em;
     & > article {
       width:8em;
@@ -61,30 +60,20 @@
         @include transition (height 0.5s ease-in 0.5s);
       }
       & > details {
+        width:8em;
         @include background-image(linear-gradient($title 0%, shade($title, 25%) 100%));
-        cursor:move;
-        margin-bottom:0.5em;
-        padding:0.5em 0 ;
+        margin: 0 0 0.5em 0;
         box-shadow: 1px 1px 5px 2px darken($offset_color, 40%);
         border-radius:0.5em;
         background-color:$title;
         color:$light;
         border: 2px solid darken($title, 20%);
-        &[open] {
-          cursor:pointer;
-          & > summary {
-            cursor:pointer;
-          }
-        }
         & > summary {
           text-align: center;
-          cursor:move;
-          outline:none;
         }
         & > summary::-webkit-details-marker {
           display: none
         }
-
       }
     }
   }
@@ -95,27 +84,59 @@
     min-height: grid-width(12);
     background-color:$offset_color;
     border-radius:0.5em;
-    & > details {
-      border: 2px solid darken($title, 20%);
-      vertical-align: top;
-      margin: 1em 0 0 0.75em;
+    & > details > summary > span {
       display:inline-block;
-      width:grid-width(8);
-      border-radius:0.5em;
+      margin-right: 0.25em;
+    }
+  }
+  details {
+    max-width: grid-width(14);
+    border: 2px solid darken($title, 20%);
+    vertical-align: top;
+    margin: 0.5em;
+    display:inline-block;
+    border-radius:0.5em;
+    &[draggable=true] {
+     cursor:move;          
+    }
+    &[open]{
+      cursor:pointer;
       & > summary {
-        border-radius:0.35em;
-        @include background-image(linear-gradient($title 0%, shade($title, 25%) 100%));
-        outline:none;
-        padding:0.5em;
-        color:$light;
+        border-bottom-right-radius:0;
+        border-bottom-left-radius:0;
       }
-      &[open]{
-        summary {
-          border-bottom-right-radius:0;
-          border-bottom-left-radius:0;
-        }
+    }
+    & > summary {
+      border-radius:0.35em;
+      @include background-image(linear-gradient($title 0%, shade($title, 25%) 100%));
+      outline:none;
+      padding:0.5em;
+      color:$light;
+      & > span {
+        display:none
       }
-
+    }
+    & > dl {
+      width:grid-width(10);
+      margin-left: 1em;
+      margin-bottom:1em;
+      vertical-align: top;
+      dt {
+        width:grid-width(3);
+        display:inline-block;
+        font-weight: bold;
+        margin-right: 1em;
+      }
+      dd {
+        display:inline-block;
+        width:grid-width(6);
+      }
+    }
+    & footer {
+      margin: 1em;
+      form {
+        margin:0.5em
+      }
     }
   }
 }

@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
     elsif params[:id] == 'unpaid'
       render :action => 'data', :layout => false
     elsif params[:id] == 'declined'
-      render :action => 'model', :layout => false
+      render :action => 'data', :layout => false
     else
       render :action => 'show', :layout => false
     end
