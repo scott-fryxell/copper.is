@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    render :action => 'show', :layout => false
   end
 
   def destroy

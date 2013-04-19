@@ -11,17 +11,7 @@ $(document).on "load.admin_index", ->
     else
       console.debug('opening')
       $(@).attr('draggable', 'false')    
-      details = @
-      jQuery.ajax
-        url:$(@).attr('itemid'),
-        success: (data) ->
-          $(details).append(data)
-          console.debug('element', details)
-          new Item_m(details)
-          $(details).find('time').timeago()
-        statusCode:
-          401:->
-            $(details).trigger "401"
+      $(@).trigger('get_details_content');
   
   $("#pallet").on "drop", ->
     # event.preventDefault()
@@ -57,3 +47,21 @@ $(document).on "load.admin_index", ->
     # event.preventDefault()
     # console.debug("dragend")
     $(@).removeClass("drag")
+
+
+  $('body').on 'get_details_content', 'details[itemscope]', ->
+    console.debug($(@).find('section').length)
+    console.debug(@)
+    unless $(@).find('section').length > 0 || $(@).find('details').length > 0
+      console.debug('getting info')
+      jQuery.ajax
+        url:$(@).attr('itemid'),
+        success: (data) =>
+          $(@).append(data)
+          # console.debug('element', @)
+          new Item_m(@)
+          $(@).find('time').timeago()
+
+        statusCode:
+          401:=>
+            $(@).trigger "401"

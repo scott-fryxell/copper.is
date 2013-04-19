@@ -6,18 +6,16 @@ class OrdersController < ApplicationController
 
   def show
     if params[:id] == 'current'
-      render :action => 'data', :layout => false
+      render :action => 'index', :layout => false
     elsif params[:id] == 'paid'
-      render :action => 'data', :layout => false
+      render :action => 'index', :layout => false
     elsif params[:id] == 'unpaid'
-      render :action => 'data', :layout => false
+      render :action => 'index', :layout => false
     elsif params[:id] == 'declined'
-      render :action => 'data', :layout => false
+      render :action => 'index', :layout => false
     else
       render :action => 'show', :layout => false
     end
-  rescue ActiveRecord::RecordNotFound
-    render nothing:true, status:401
   end
 
   def update

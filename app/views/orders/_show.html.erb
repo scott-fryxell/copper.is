@@ -1,0 +1,28 @@
+<%-cache order do-%>
+<section>
+  <header>
+    <form>
+      <button formmethod="post" formaction="/orders/<%=order.id%>/current">make current</button>
+      <button formmethod="post" formaction="/orders/<%=order.id%>/refund">refund</button>
+    </form>
+  </header>
+  <dl>
+    <dt>Created</dt>
+    <dd><time itemprop="created_at" datetime="<%=order.created_at.getutc.iso8601%>"/></dd>
+    <dt>Last change</dt>
+    <dd><time itemprop="updated_at" datetime="<%=order.updated_at.getutc.iso8601%>"/></dd>
+    <dt>State</dt>
+    <dd itemprop="order_state"><%=order.order_state%></dd>
+    <dt>stripe token</dt>      
+    <dd itemprop="charge_token"><%=order.charge_token%></dd>
+  </dl>
+  <footer>
+    <details itemscope itemtype='users' itemid='/users/<%=order.user_id%>'>
+      <summary>User</summary>
+    </details>
+    <details itemscope itemtype='tips' itemid='/orders/<%=order.id%>/tips'>
+      <summary>tips</summary>
+    </details>
+  </footer>
+</section>
+<%-end-%>

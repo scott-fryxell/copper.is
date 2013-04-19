@@ -30,18 +30,16 @@
   }
   & > section#states {
     width:grid-width(25);
-    padding:0;
-    height:0;
-    margin-bottom: 0.75em;
+    padding:0.5em;
+    background-color:$offset_color; 
+    margin: 0.75em auto;
+    border-radius:1em;
     & > article {
-      width:8em;
-      vertical-align: top;
-      display:inline-block;
-      border: 1px solid $offset_color;
-      visibility: hidden;
+      display:none;
+      vertical-align: baseline;
       height:0;
       opacity:0;
-      padding-top:0;
+
       border-radius:0.25em;
       padding:0 1em;
       @include transition (opacity 0.5s ease-in 0s);
@@ -50,10 +48,11 @@
         margin-right:0;
       }
       &.selected{
+        display:block;
         visibility: visible;
         position: relative;
         z-index: 2;
-        margin-bottom: 1em;
+        margin-top:0.5em;
         height:auto;
         opacity:1;
         @include transition (opacity 0.5s ease-in 0s);
@@ -61,12 +60,17 @@
       }
       & > details {
         width:8em;
-        @include background-image(linear-gradient($title 0%, shade($title, 25%) 100%));
-        margin: 0 0 0.5em 0;
+        margin: 0 0 0.5em 0.5em;
         box-shadow: 1px 1px 5px 2px darken($offset_color, 40%);
         border-radius:0.5em;
         background-color:$title;
-        color:$light;
+        color:darken($light, 20%);
+        text-shadow: 1px 1px 1px $dark;
+        &[open] {
+          display:block;
+          min-width:8em;
+          width:auto;
+        }
         border: 2px solid darken($title, 20%);
         & > summary {
           text-align: center;
@@ -90,7 +94,7 @@
     }
   }
   details {
-    max-width: grid-width(14);
+    // max-width: grid-width(14);
     border: 2px solid darken($title, 20%);
     vertical-align: top;
     margin: 0.5em;
@@ -116,30 +120,43 @@
         display:none
       }
     }
-    & > dl {
-      width:grid-width(10);
-      margin-left: 1em;
-      margin-bottom:1em;
-      vertical-align: top;
-      dt {
-        width:grid-width(3);
-        display:inline-block;
-        font-weight: bold;
-        margin-right: 1em;
+    & > section {
+      & > header > form {
+        width:grid-width(5);
+        margin: 1em auto 0 auto;
+        & > button {
+          @include header_text();
+          border-radius:0.5em;
+          border:1px solid $dark;
+        }
       }
-      dd {
-        display:inline-block;
-        width:grid-width(6);
+      & > dl {
+        width:grid-width(10);
+        margin:1em;
+        vertical-align: top;
+        dt {
+          @include header_text();
+          color:darken($light, 20%);
+          width:grid-width(3);
+          text-shadow: 1px 1px 1px black;
+          display:inline-block;
+          margin-right: 1em;
+        }
+        dd {
+          display:inline-block;
+          width:grid-width(6);
+        }
       }
-    }
-    & footer {
-      margin: 1em;
-      form {
-        margin:0.5em
-      }
+      & footer {
+        margin: 1em;
+        form {
+          margin:0.5em
+        }
+      }      
     }
   }
 }
+
 
 .drag {
   opacity:0.5;

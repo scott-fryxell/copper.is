@@ -1,0 +1,29 @@
+<%-cache author do-%>
+<details itemscope itemtype='authors' itemid='/authors/<%=order.id%>' draggable="true" >
+  <summary><%=author.username%></summary>
+  <dl itemscope itemtype='authors' itemid='/authors/<%=author.id%>'>
+    <dd itemprop="created_at"><%=author.created_at.getutc.iso8601%></dd>
+    <dd itemprop="updated_at"><%=author.updated_at.getutc.iso8601%></dd>
+    <dd itemprop="provider"><%=author.provider%></dd>
+    <dd itemprop="uid"><%=author.uid%></dd>
+    <dd itemprop="username"><%=author.username%></dd>
+    <dd itemprop="identity_state"><%=author.identity_state%></dd>
+    <dd itemprop="type"><%=author.type%></dd>
+    <dd itemprop='user_id'><%=author.user_id%></dd>
+    <dd itemprop='token'><%=author.token%></dd>
+    <dd itemprop='secret'><%=author.secret%></dd>
+  </dl>
+  <footer>
+    <form>
+      <button formmethod="post" formaction="/orders/<%=order.id%>/reject">make current</button>
+      <button formmethod="post" formaction="/orders/<%=order.id%>/refund">refund</button>
+    </form>
+    <details itemscope itemtype='users' itemid='/users/<%=order.user_id%>'>
+      <summary>User</summary>
+    </details>
+    <details itemscope itemtype='pages' itemid='/authors/<%=author.id%>/pages'>
+      <summary>pages</summary>
+    </details>
+  </footer>
+</details>
+<%-end-%>
