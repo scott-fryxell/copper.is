@@ -1,15 +1,21 @@
 class TipsController < ApplicationController
-  filter_resource_access
+  # filter_access_to :all
 
   def index
+    puts params
     if params[:user_id]
-      @tips = current_user.current_tips
-    else
-      @tips = Tip.trending
+      @tips = User.where(id:params[:user_id]).first.tips
+    elsif params[:order_id]
+      @tips = Order.where(id:params[:order_id]).first.tips
+    elsif params[:page_id]
+      @tips = Page.where(id:params[:page_id]).first.tips      
     end
+    render action:'index', layout:false
   end
 
   def show
+    @tip = Tip.where(id:params[:id])
+    render action:'show', layout:false
   end
 
   def new  
@@ -32,6 +38,7 @@ class TipsController < ApplicationController
   end
 
   def update
+    @tip = Tip.find(params[:tip_id])
     if (params[:tip][:amount_in_cents] && params[:tip][:amount_in_cents] != "" and @tip.order.current? and @tip.user == current_user)
       @tip.amount_in_cents = params[:tip][:amount_in_cents]
       @tip.save
@@ -41,6 +48,7 @@ class TipsController < ApplicationController
   end
 
   def destroy
+    @tip = Tip.find(params[:tip_id])
     if(@tip.order.user == current_user and @tip.order.current?)
       @tip.destroy
     end
@@ -49,14 +57,4 @@ class TipsController < ApplicationController
     redirect_to tips_path, notice:'Tips can not be changed after they have been paid for'
   end
 
-  protected
-
-  def load_tip
-    @page = Page.find(params[:page_id]) if params[:page_id]
-    @user = User.find(params[:user_id]) if params[:user_id]
-    @tip = Tip.find(params[:tip_id]) if params[:tip_id]
-  end
-  def new_tip
-    @tip = Tip.new(params[:tip])
-  end
 end

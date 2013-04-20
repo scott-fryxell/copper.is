@@ -2,11 +2,22 @@ require 'resque/server'
 Copper::Application.routes.draw do
 
   resources :tips
-  resources :orders
+
+  resources :orders do
+    resources :tips
+  end
+
   resources :checks
   resources :authors
   resources :pages
-  resources :users
+  
+  resources :users do
+    resources :tips
+    resources :authors
+    resources :pages
+    resources :orders
+    resources :checks
+  end
 
   get    'cards', to:'cards#show',  :as => :show_card
   post   'cards', to:'cards#create',:as => :create_card
