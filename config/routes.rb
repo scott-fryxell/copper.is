@@ -8,8 +8,13 @@ Copper::Application.routes.draw do
   end
 
   resources :checks
-  resources :authors
-  resources :pages
+  resources :authors do
+    resources :pages
+  end
+
+  resources :pages do
+    resources :tips
+  end
   
   resources :users do
     resources :tips

@@ -2,7 +2,6 @@ class TipsController < ApplicationController
   filter_access_to :all
 
   def index
-    puts params
     if params[:user_id]
       @tips = User.where(id:params[:user_id]).first.tips
     elsif params[:order_id]

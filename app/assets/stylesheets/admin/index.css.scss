@@ -142,6 +142,7 @@
         vertical-align: top;
         dt {
           @include header_text();
+          vertical-align: top;
           color:darken($light, 20%);
           width:grid-width(4);
           text-shadow: 1px 1px 1px black;
@@ -168,6 +169,10 @@
   .hover {
     opacity:0.5;
     border:0.25em solid $header;
+  }
+
+  & > footer {
+    display:none;
   }
 }
 

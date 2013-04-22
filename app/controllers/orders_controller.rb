@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
   filter_access_to :all
 
   def index
-    puts params
     if params[:state]
       @orders = Order.send(params[:state]).limit(25)  
     elsif params[:user_id]

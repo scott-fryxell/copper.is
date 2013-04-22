@@ -1,5 +1,1 @@
-<%-if request.headers['retrieve_as_data']-%>
-  <%= render partial:"model", object: Author.where(id:params[:id]).first, as: :author %>
-<%-else-%>
-  <%= render partial:"show", object: Author.where(id:params[:id]).first, as: :author %>
-<%-end-%>
+<%= render partial:"show", object: @author, as: :author %>

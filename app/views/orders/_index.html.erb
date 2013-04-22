@@ -1,5 +1,5 @@
 <%-cache order do-%>
-<details itemscope itemtype='orders' itemid='/orders/<%=order.id%>' draggable="true" >
+<details itemscope itemtype='orders' itemid='/orders/<%=order.id%>' >
   <summary><span>order <%=order.order_state%></span><%=order.user.name if order.user%></summary>
   <meta itemprop="user_id" content="<%=order.user_id%>">
 </details>
