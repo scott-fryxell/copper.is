@@ -1,10 +1,5 @@
 <%-cache tip do-%>
 <section>
-  <header>
-    <form>
-      <button formmethod="post" formaction="/tips/<%=tip.id%>/reject">reject</button>
-    </form>
-  </header>
   <dl>
     <dt>created</dt>
     <dd><time itemprop="created_at" datetime="<%=tip.created_at.getutc.iso8601%>"/></dd>

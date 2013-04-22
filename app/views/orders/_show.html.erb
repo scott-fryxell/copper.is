@@ -1,11 +1,5 @@
 <%-cache order do-%>
 <section>
-  <header>
-    <form>
-      <button formmethod="post" formaction="/orders/<%=order.id%>/current">make current</button>
-      <button formmethod="post" formaction="/orders/<%=order.id%>/refund">refund</button>
-    </form>
-  </header>
   <dl>
     <dt>ID</dt>
     <dd itemprop='id'><%=order.id%></dd>

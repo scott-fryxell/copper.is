@@ -2,7 +2,9 @@ class TipsController < ApplicationController
   filter_access_to :all
 
   def index
-    if params[:user_id]
+    if params[:state]
+      @tips = Tip.send(params[:state]).limit(25)  
+    elsif params[:user_id]
       @tips = User.where(id:params[:user_id]).first.tips
     elsif params[:order_id]
       @tips = Tip.where(order_id:params[:order_id])
