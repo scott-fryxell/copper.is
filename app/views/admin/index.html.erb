@@ -43,7 +43,7 @@
 
   <article id="orders">
     <%-[:current,:paid,:unpaid,:denied].each do |state|-%>
-    <details itemscope itemtype="orders" itemid="/orders/<%=state%>">
+    <details itemscope itemtype="orders" itemid="/orders?state=<%=state%>">
       <summary><span>orders</span><%=state%></summary>
       <meta itemprop="count" content="<%=Order.send(state).count%>">
     </details>

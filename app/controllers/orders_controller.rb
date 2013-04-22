@@ -3,20 +3,12 @@ class OrdersController < ApplicationController
 
   def index
     puts params
+    @state = "unpaid" unless params[:when]
+    render :action => 'index', :layout => false if request.headers['retrieve_as_data']
   end
 
   def show
-    if params[:id] == 'current'
-      render :action => 'index', :layout => false
-    elsif params[:id] == 'paid'
-      render :action => 'index', :layout => false
-    elsif params[:id] == 'unpaid'
-      render :action => 'index', :layout => false
-    elsif params[:id] == 'declined'
-      render :action => 'index', :layout => false
-    else
-      render :action => 'show', :layout => false
-    end
+    render :action => 'show', :layout => false
   end
 
   def update
