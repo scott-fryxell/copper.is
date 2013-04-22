@@ -19,6 +19,7 @@ $(document).on "load.admin_index", ->
       # console.debug('getting info')
       jQuery.ajax
         url:$(@).attr('itemid'),
+        headers: {retrieve_as_data: "true"}
         success: (data) =>
           $(@).append(data)
           # console.debug('element', @)

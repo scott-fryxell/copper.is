@@ -8,7 +8,7 @@
 </nav>
 <section id="states">
   <article id="users">
-    <details itemscope itemtype="users" itemid="/users/newest">
+    <details itemscope itemtype="users" itemid="/users?state=recent">
       <summary><span>users</span>recent</summary>
       <meta itemprop="count" content="<%=User.count%>">
     </details>
@@ -16,7 +16,7 @@
 
   <article id="authors">
     <%-[:stranger, :wanted, :known].each do |state|-%>
-    <details itemscope itemtype="authors" itemid="/authors/<%=state%>">
+    <details itemscope itemtype="authors" itemid="/authors?state=<%=state%>">
       <summary><span>authors</span><%=state%></summary>
       <meta itemprop="count" content="<%=Author.send(state).count%>">
     </details>
@@ -25,7 +25,7 @@
 
   <article id="pages">
     <%-[:adopted, :orphaned, :fostered, :dead, :manual].each do |state|-%>
-    <details itemscope itemtype="pages" itemid="/pages/<%=state%>" >
+    <details itemscope itemtype="pages" itemid="/pages?state=<%=state%>" >
       <summary><span>pages</span><%=state%></summary>
       <meta itemprop="count" content="<%=Page.send(state).count%>">
     </details>
@@ -34,7 +34,7 @@
 
   <article id="tips">
     <%-[:promised, :charged, :kinged].each do |state|-%>
-    <details itemscope itemtype="tip" itemid="/tips/<%=state%>">
+    <details itemscope itemtype="tip" itemid="/tips?state=<%=state%>">
       <summary><span>tips</span><%=state%></summary>
       <meta itemprop="count" content="<%=Tip.send(state).count%>">
     </details>
@@ -52,7 +52,7 @@
 
   <article id="checks">
     <%-[:earned, :paid, :cashed].each do |state|-%>
-    <details itemscope itemtype="checks" itemid="/checks/<%=state%>" >
+    <details itemscope itemtype="checks" itemid="/checks?state=<%=state%>" >
       <summary><span>checks</span><%=state%></summary>    
       <meta itemprop="count" content="<%=Check.send(state).count%>"></p>
     </details>

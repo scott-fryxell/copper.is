@@ -3,12 +3,17 @@ class OrdersController < ApplicationController
 
   def index
     puts params
-    @state = "unpaid" unless params[:when]
+    if params[:state]
+      @orders = Order.send(params[:state]).limit(25)  
+    elsif params[:user_id]
+      @orders = Order.where(user_id:params[:user_id])
+    end
     render :action => 'index', :layout => false if request.headers['retrieve_as_data']
   end
 
   def show
-    render :action => 'show', :layout => false
+    @order = Order.where(id:params[:id]).first
+    render :action => 'show', :layout => false if request.headers['retrieve_as_data']
   end
 
   def update

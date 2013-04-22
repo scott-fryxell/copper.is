@@ -1,21 +1,21 @@
 class TipsController < ApplicationController
-  # filter_access_to :all
+  filter_access_to :all
 
   def index
     puts params
     if params[:user_id]
       @tips = User.where(id:params[:user_id]).first.tips
     elsif params[:order_id]
-      @tips = Order.where(id:params[:order_id]).first.tips
+      @tips = Tip.where(order_id:params[:order_id])
     elsif params[:page_id]
-      @tips = Page.where(id:params[:page_id]).first.tips      
+      @tips = Tip.where(page_id:params[:page_id])
     end
-    render action:'index', layout:false
+    render action:'index', layout:false if request.headers['retrieve_as_data']
   end
 
   def show
-    @tip = Tip.where(id:params[:id])
-    render action:'show', layout:false
+    @tip = Tip.where(id:params[:id]).first
+    render action:'show', layout:false if request.headers['retrieve_as_data']
   end
 
   def new  

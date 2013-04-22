@@ -1,5 +1,1 @@
-<%-if request.headers['retrieve_as_data']-%>
-  <%= render partial:"model", collection: @tip, as: :tip %>
-<%-else-%>
-  <%= render partial:"show", collection: @tip, as: :tip %>
-<%-end-%>
+<%= render partial:"show", object: @tip, as: :tip %>

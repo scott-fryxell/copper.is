@@ -1,5 +1,1 @@
-<%-if request.headers['retrieve_as_data']-%>
-  <%= render partial:"model", object: Order.where(id:params[:id]).first, as: :order %>
-<%-else-%>
-  <%= render partial:"show", object: Order.where(id:params[:id]).first, as: :order %>
-<%-end-%>
+<%= render partial:"show", object: @order, as: :order %>

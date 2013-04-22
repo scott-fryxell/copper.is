@@ -1,5 +1,1 @@
-<%-if request.headers['retrieve_as_data']-%>
-  <%= render partial:"model", collection: User.where(id:params[:id]), as: :user %>
-<%-else-%>
-  <%= render partial:"show", collection: User.where(id:params[:id]), as: :user %>
-<%-end-%>
+<%= render partial:"show", object: @user, as: :user %>

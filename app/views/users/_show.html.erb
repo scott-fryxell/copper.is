@@ -1,9 +1,9 @@
 <%-cache user do-%>
 <section>
-  <header>
-
-  </header>
+  <header>  </header>
   <dl itemscope itemtype='user' itemid='/users/<%=user.id%>'>
+    <dt>ID</dt>
+    <dd itemprop="id"><%=user.id%></dd>
     <dt>Created</dt>
     <dd itemprop="created_at"><time itemprop="created_at" datetime="<%=user.created_at.getutc.iso8601%>"/></dd>
     <dt>updated</dt>
@@ -51,7 +51,7 @@
     <details itemscope itemtype='authors' itemid='/users/<%=user.id%>/authors'>
       <summary>authors</summary>
     </details>
-    <details itemscope itemtype='checks' itemid='/users/<%=user.id%>/checks'>
+    <details itemscope itemtype='pages' itemid='/users/<%=user.id%>/pages'>
       <summary>pages</summary>
     </details>
     <details itemscope itemtype='orders' itemid='/users/<%=user.id%>/orders'>
@@ -61,5 +61,5 @@
       <summary>checks</summary>
     </details>
   </footer>
-<section>
+</section>
 <%-end-%>
