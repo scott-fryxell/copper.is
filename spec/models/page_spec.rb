@@ -140,4 +140,43 @@ describe Page do
       @page.url = "http://test.com/"
     end
   end
+
+  describe "can be displayed on different pages", :focus do
+    before(:each) do
+      mock_page
+      @page = Page.new
+      @page.url = 'http://example.com/path1'
+    end
+
+    it "can be shown during the onboarding process" do
+      @page.onboarding = true
+      @page.save!
+      @page.reload
+      @page.onboarding?.should be_true
+    end
+
+    it "can be shown on the welcome page " do
+      @page.welcome = true
+      @page.save!
+      @page.reload
+      @page.welcome?.should be_true
+    end
+
+    it "can be shown on the trending content page " do
+      @page.trending = true
+      @page.save!
+      @page.reload
+      @page.trending?.should be_true
+    end
+
+    it "can be marked as not safe for work" do
+      @page.nsfw = true
+      @page.save!
+      @page.reload
+      @page.nsfw?.should be_true
+    end
+
+
+  end
+
 end
