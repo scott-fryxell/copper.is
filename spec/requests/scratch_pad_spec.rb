@@ -21,10 +21,10 @@ describe "some shit that needs doin'", :slow do
     end
 
     it "can view a list of orders", :focus do 
-      page.should have_css('section#orders', visible:false)
+      page.should have_css('article#orders')
       page.should have_no_css('nav#models > a[href="#orders"].selected', visible:true)
       click_on "Orders"
-      page.should have_css('section#orders', visible:true)
+      page.should have_css('article#orders', visible:true)
       page.should have_css('nav#models > a[href="#orders"].selected', visible:true)
     end
 
