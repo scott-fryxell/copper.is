@@ -26,32 +26,19 @@ $red:rgba(255, 0, 0, 0.7);
   font-family: 'Doppio One', sans-serif;
   text-align:center;
   text-decoration:none;
-  padding:.5em .75em;
-  padding:.25em .75em;
+  padding:.25em ;
   background-color:$button_color;
   @include background-image(linear-gradient($button_color 40%, shade($button_color, 25%) 100%, transparent 50%));
   color:$light-text !important;
   border-radius:.25em;
-  border:3px solid darken($button_color, 10%);
-  @include transition (box-shadow 0.5s ease-in 0.25s);
+  border:2px solid darken($button_color, 10%);
+  border-bottom:2px inset darken($button_color, 20%);
+  box-shadow: 1px 1px 1px 0px lighten($button_color, 10%) inset;
+  @include transition (box-shadow 0.5s ease-out 0.25s);
   position:relative;
   &:hover {
     box-shadow: 0 0 .75em 0  $button_color;
-    @include transition (box-shadow 0.5s ease-in);
-  }
-  &:before{
-    // content:"";
-    // display:inline-block;
-    // vertical-align:middle;
-    // outline:1px solid $red;
-    // width:1em;
-    // height:1em;
-    // margin-right:1em;
-    // padding:.25em;
-    // background-image: image-url("icons/letter_logo_white.svg");
-    // background-repeat: no-repeat;
-    // background-position:center;
-    // background-size: cover;
+    @include transition (box-shadow 0.25s ease-in);
   }
 }
 @mixin ribbon {
@@ -66,7 +53,7 @@ $red:rgba(255, 0, 0, 0.7);
   font-family: 'Cantarell', sans-serif;
   font-weight:normal;
   color:$text;
-  line-height:1.25em;
+  // line-height:1.25em;
 }
 @mixin header_text {
   color:$title;
