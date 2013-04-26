@@ -16,54 +16,6 @@
 </section>
 
 <section id="pages">
-  <figure itemscope itemtype='pages' itemid='/pages/1'>
-    <a itemprop="url" target="_blank" href="#"><img itemprop="thumbnail_url" src="http://graphics8.nytimes.com/images/2013/04/21/business/21-UNBOX/21-UNBOX-superJumbo.jpg" /></a>
-    <figcaption itemprop="name">
-      <p>Jean Canoli</p>
-      <p>watch</p>
-    </figcaption>
-  </figure>
-
-  <figure itemscope itemtype='pages' itemid='/pages/2'>
-    <a><img itemprop="thumbnail_url" src="http://static.squarespace.com/static/50b3ef0ae4b036192ac7edd6/t/517594dde4b0b9b09d3cbabc/?format=500w"/></a>
-    <figcaption itemprop="name">
-      <p>Jean Canoli</p>
-      <p>read</p>
-    </figcaption>
-  </figure>
-
-
-  <figure itemscope itemtype='pages' itemid='/pages/3'>
-    <a><img itemprop="thumbnail_url" src="http://i2.ytimg.com/vi/iZ4ou_2L1_0/maxresdefault.jpg"/></a>
-    <figcaption itemprop="name">
-      <p>Chelsae wolf</p>
-      <p>listen</p>
-    </figcaption>
-  </figure>
-  <figure itemscope itemtype='pages' itemid='/pages/1'>
-    <a itemprop="url" target="_blank" href="#"><img itemprop="thumbnail_url" src="http://graphics8.nytimes.com/images/2013/04/21/business/21-UNBOX/21-UNBOX-superJumbo.jpg" /></a>
-    <figcaption itemprop="name">
-      <p>Jean Canoli</p>
-      <p>watch</p>
-    </figcaption>
-  </figure>
-
-  <figure itemscope itemtype='pages' itemid='/pages/2'>
-    <a><img itemprop="thumbnail_url" src="http://static.squarespace.com/static/50b3ef0ae4b036192ac7edd6/t/517594dde4b0b9b09d3cbabc/?format=500w"/></a>
-    <figcaption itemprop="name">
-      <p>Jean Canoli</p>
-      <p>read</p>
-    </figcaption>
-  </figure>
-
-
-  <figure itemscope itemtype='pages' itemid='/pages/3'>
-    <a><img itemprop="thumbnail_url" src="http://i2.ytimg.com/vi/iZ4ou_2L1_0/maxresdefault.jpg"/></a>
-    <figcaption itemprop="name">
-      <p>Chelsae wolf</p>
-      <p>listen</p>
-    </figcaption>
-  </figure>
+  <%= render partial:"pages/show", collection:Page.safe.welcome.limit(9), as: :page %>
 </section>
-
 <%-end-%>
