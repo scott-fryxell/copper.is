@@ -1,5 +1,6 @@
-$gw-column:2em;
-$gw-gutter:0.5em;
+$gw-column:34px;
+$gw-gutter:8px;
+$gutter:$gw-gutter;
 $offset_color:rgba(182, 195, 181, 0.2);
 
 $darkness:rgba(42, 41, 41, 1);
@@ -15,6 +16,8 @@ $yellow:rgba(255, 255, 0, 0.7);
 $brown:rgba(165, 42, 42, 0.7);
 $blue:rgba(0, 0, 255, 0.7);
 $red:rgba(255, 0, 0, 0.7);
+
+$shadow:rgba(0, 0, 0, 0.5);
 
 @import "normalize";
 @import "bourbon";
