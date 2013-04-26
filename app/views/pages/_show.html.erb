@@ -2,7 +2,7 @@
   <a itemprop="url" target="_self" href="/pages/<%=page.id%>"><img itemprop="thumbnail_url" src="<%=page.thumbnail%>" /></a>
   <%-if page.author -%>
   <figcaption itemprop="name">
-    <p>made by:</p>
+    <p><%=page.title%></p>
     <p><%=page.author.username%></p>
   </figcaption>
   <%-end-%>
