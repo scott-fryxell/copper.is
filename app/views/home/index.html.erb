@@ -59,7 +59,7 @@
           </nav>
         </hgroup>
       </header>
-      <%= render partial:"pages/fan_page", collection:current_user.tipped_pages, as: :page %>
+      <%= render partial:"pages/fan_page", collection:current_user.tipped_pages.limit(50), as: :page %>
     </section>
   <%-else-%>
     <%= render partial:"shared/button"%>

@@ -1,3 +1,5 @@
+$copper:rgba(204, 153, 51, 0.33);
+$light:rgba(251, 250, 248, 0.33);
 *, *:after, *:before {
   @include box-sizing(border-box);
 }
@@ -16,13 +18,14 @@ body {
   &:after {
     content:"";
     position:fixed;
+
     z-index:-1;
     top:0;
     bottom:0;
     left:0;
     right:0;
-    opacity:0.5;
-    @include background-image(radial-gradient(rgba(255,255,255,0.5) 0em, lighten(rgba(0,0,0,0.5), 20%) 100%));
+    opacity:0.22;
+    @include background-image(radial-gradient($light 22%, $copper 100%));
   }
 
   h1, h2, h3, h4, h5, h6 {
