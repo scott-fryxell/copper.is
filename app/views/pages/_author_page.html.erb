@@ -1,5 +1,5 @@
 <%-cache page do-%>
-<details itemscope itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>">
+<details itemscope itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>" open>
   <summary>
     <h2 itemprop="title"><%=page.title%></h2>
     <figure>
@@ -9,7 +9,7 @@
   </summary>
   <dl>
     <dt>Source</dt>
-    <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(URI.escape(page.url)).host%></a></dd>
+    <dd><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(URI.escape(page.url))%></a></dd>
     <dt>
       <details>
         <summary><%=pluralize(page.tips.count, 'tip')%></summary>

@@ -12,7 +12,7 @@
       display:inline-block;
     }
     & > div {
-      padding:1em 0 0 2em;
+      padding:0.5em 0 0 1em;
       background-color:$offset_color;
       margin-right:0.5em;
       width:grid-width(4);
@@ -22,15 +22,13 @@
       @include text;
     }
     & > div > p {
-      margin:0.4em 0 0 0;
+      margin:0 0 0 0;
       font-size:1.5em;
+      vertical-align: middle;
       @include header_text;
     }
     & > div > p > span {
-      display:inline-block;
-      width:2em;
-      padding:0 .5em 0 0;
-      line-height:1em;
+      vertical-align: baseline;
     }
     & > div > p > span:before,
     & > div:nth-child(3) > p:before  {
@@ -40,8 +38,10 @@
       -webkit-appearance: none;
       @include copper_button;
       display:inline-block;
-      width:1em;
-      height:1em;
+      font-size: 16px;
+      line-height: 0.75em;
+      margin-left:0.25em;
+      vertical-align: middle;
     }
     & > div > p > button:active {
       box-shadow: 0px 0px 0px 0px $shadow;
@@ -65,16 +65,87 @@
     }
   }
 
-  section#pages {
-    margin-bottom:3em;
+  table#tips {
+    & > thead > tr > th {
+      @include header_text;
+      text-align:center;
+      padding-bottom:0.5em;
+      &:nth-child(2){
+        text-align:left;
+      }
+    }
+    & > thead > tr > th:first-child {
+      text-align:left;
+    }
+    & > tbody tr td:first-child {
+      text-align:left;
+      text-transform:capitalize;
+    }
+    & > tbody > tr > td > span[itemprop=amount_in_cents]:before {
+      content:"$";
+    }
+    & > tbody > tr > td {
+      text-align:center;
+      margin-bottom:1em;
+      padding-bottom:.5em;
+      &:nth-child(2){
+        text-align:left;
+      }
+    }
+    & > tbody > tr > td:first-child {
+      width:15em;
+    }
+    & > tbody > tr > td:nth-child(2) > form {
+
+      & input[type=text] {
+        padding:0 0 0 0.25em;
+        width:3em;
+        color:$button_color;
+        font-weight:bold;
+        background-color:transparent;
+        box-shadow:none;
+      }
+      &:before {
+        content:"$";
+        font-size:1.15em;
+      }
+      & > input[type=submit] {
+        @include transition (opacity 0.3s ease-in 0.25s);
+        opacity:0;
+        font-size:0.75em;
+      }
+      & > input:focus + input[type=submit] {
+        @include transition (opacity 0.3s ease-out 0.25s);
+        opacity:1;
+      }
+      & > input[type=submit]:focus {
+        opacity:1;
+      }
+    }
+    & > tbody tr td:nth-child(3) form input[type=image] {
+      border:none;
+      opacity:0.25;
+      width:2em;
+      height:2em;
+      font-size:1em;
+      @include transition (opacity 0.75s ease-out 0.25s);
+      &:hover {
+        opacity:1;
+        @include transition (opacity 0.5s ease-in 0);
+      }
+    }
+  }
+  
+  #pages {
     & > header {
+      display:none;
       margin: 2em 0;
       & > h1 {
         margin:0;
         font-size:1.5em;
       }
       & > hgroup {
-        display:none;
+
         & > nav {
           margin-bottom:grid-width(1);
         }
@@ -106,16 +177,17 @@
       vertical-align: top;
       display:inline-block;
       width:grid-width(6);
-      margin: 0 3.25em 1em 0;
+      margin: 0 2em 2em 0;
       & > summary {
         cursor:pointer;
         outline:none;
       }
-      & > summary > h2 {    
+      & > summary > h2 {
         @include text;
         font-size:1em;
         display:inline-block;
-        width:13em;
+        width:grid-width(6);
+       
         height:1em;
         line-height:1em;
         overflow: hidden;
@@ -128,11 +200,10 @@
         overflow:hidden;
         width:grid-width(6);
         height:grid-width(4);
-        box-shadow: 2px 3px 15px 3px rgba(0, 0, 0, 0.4);
+        box-shadow: 1px 1px 1px lighten($shadow, 50%);
         border-radius:0.25em;
       }
       & > summary > figure > img {
-
         width:grid-width(6);
         height:grid-width(4);
       }
@@ -154,15 +225,19 @@
       & > summary > figure > figcaption:before {
         content: "$";
       }
+      & > summary::-webkit-details-marker {
+        display: none
+      }
     }
 
     & > details[open] {
+      border-radius:0.25em;
       position:relative;
       width:grid-width(21);
-      margin:1em 0;
+      margin:1em 0 1em 0;
       height:auto;
 
-      padding:0 .5em 1em .5em;
+      padding:0 0.5em 1.5em 0.5em;
       background-color:$offset_color;
 
       & > summary {
@@ -174,22 +249,21 @@
           position:absolute;
           top:0.25em;
           left:1.5em;
-          width:auto;
-          margin-top:.5em;
-          vertical-align:middle;
+          width:grid-width(14);
+          overflow: hidden;
+          // margin-top:0.5em;
+          line-height: 2em;
+          height:2em;
+          vertical-align:top;
           font-size: 1.34em;
-          height:1.34em;
-          line-height:1.34em;
-
           @include header_text;
         }
         & > figure {
           width:grid-width(8);
           height:grid-width(5);
-          margin-top:1.5em;
+          margin-top:2.5em;
           margin-left:1.25em;
           overflow: hidden;
-          box-shadow:2px 3px 15px 3px rgba(0, 0, 0, 0.4);
         }
         & > figure > figcaption {
           font-size:2em;
@@ -200,7 +274,6 @@
         }
       }
       & > dl {
-        clear:right;
         margin-top:3.25em;
         display:inline-block;
         vertical-align:top;
@@ -220,8 +293,8 @@
         }
         dd > a {
           display:inline-block; 
-          border-bottom: 0.15em solid rgba(102, 102, 102, 0.3);
-          padding: 0.15em 0em;
+          border-bottom: 0.15em solid $offset_color;
+          padding: 0em 0em;
           border-radius: 0.1em;
           @include transition(all 0.25s);
           &:hover {
@@ -244,79 +317,6 @@
       }
     }
   }
-
-  table#tips {
-    width:grid-width(12);
-    & > thead > tr > th {
-      @include header_text;
-      text-align:center;
-      padding-bottom:0.5em;
-      &:nth-child(2){
-        text-align:left;
-      }
-    }
-    & > thead > tr > th:first-child {
-      text-align:left;
-    }
-    & > tbody tr td:first-child {
-      text-align:left;
-      text-transform:capitalize;
-    }
-    & > tbody > tr > td > span[itemprop=amount_in_cents]:before {
-      content:"$";
-    }
-    & > tbody > tr > td {
-      text-align:center;
-      margin-bottom:1em;
-      padding-bottom:.5em;
-      &:nth-child(2){
-        text-align:left;
-      }
-    }
-    & > tbody > tr > td:first-child {
-      width:15em ;
-    }
-    & > tbody > tr > td:nth-child(2) > form {
-
-      & input[type=text] {
-        padding:0 0 0 .25em;
-        width:2.5em;
-        color:$button_color;
-        font-weight:bold;
-        background-color:transparent;
-        box-shadow:none;
-      }
-      &:before {
-        content:"$";
-        font-size:1.15em;
-      }
-      & > input[type=submit] {
-        @include transition (opacity 0.3s ease-in 0.25s);
-        opacity:0;
-        font-size:0.75em;
-      }
-      & > input:focus + input[type=submit] {
-        @include transition (opacity 0.3s ease-out 0.25s);
-        opacity:1;
-      }
-      & > input[type=submit]:focus {
-        opacity:1;
-      }
-    }
-    & > tbody tr td:nth-child(3) form input[type=image] {
-      border:none;
-      opacity:0.25;
-      width:2em;
-      height:2em;
-      font-size:0.65em;
-      @include transition (opacity 0.75s ease-out 0.25s);
-      &:hover {
-        opacity:1;
-        @include transition (opacity 0.5s ease-in 0);
-      }
-    }
-  }
-  
 }
 
 
