@@ -141,7 +141,7 @@ describe Page do
     end
   end
 
-  describe "can be displayed on different pages", :focus do
+  describe "can be displayed on different pages" do
     before(:each) do
       mock_page
       @page = Page.new

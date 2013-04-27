@@ -30,5 +30,4 @@
 <section id="orders">
   <%= render partial:"order", collection:current_user.orders.order("created_at DESC"), as: :order %>
 </section>
-
 <%-end-%>
