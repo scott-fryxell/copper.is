@@ -16,6 +16,8 @@ class Page < ActiveRecord::Base
     scope state, where("author_state = ?", state)
   end
 
+  scope :recent, order("Date(updated_at) DESC")
+
   #  going with this query instead current_user.tips.where(page_id:page.id)
   # def fan_tips(fan)
   #   self.tips.joins(:order).where('orders.user_id=?', fan.id)

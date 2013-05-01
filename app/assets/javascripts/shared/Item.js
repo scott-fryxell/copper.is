@@ -44,11 +44,17 @@ Item = {
     return Item.items;
   },
   get_value: function (element){
+
+
+
     if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
       if ($(element).val())
         return $(element).val().trim();
       else
-        return 
+        return ""
+    }
+    else if ($(element).attr('data-value')){
+      return $(element).attr('data-value');
     }
     else if( $(element).is("a") || $(element).is("link")){
       return $(element).attr('href');
@@ -69,15 +75,16 @@ Item = {
     }
   },
   update_page: function(item){
-    // update exsisting items on the page
-    // Make sure your only updating the item for a single type and id. 
-    // console.debug('item to be updated', item);
-    // console.debug('update page')
+    // update exsisting items on the page itemid 
+    // is assumed to be unique identifier
     $.each(item, function(key, value){
       if(value != null){
-        $('*[itemprop=' + key + ']').each(function(){
+        $('[itemprop=' + key + ']').each(function(){
           if($(this).is("input") || $(this).is("select") || $(this).is("textarea") ){
             $(this).val(value);
+          }
+          else if ($(this).attr('data-value')){
+            $(this).attr('data-value', value)
           }
           else if( $(this).is("a") || $(this).is("link")){
             $(this).attr('href', value);
@@ -106,7 +113,7 @@ document.getItems = function (type){
     return Item.items
   }
 }
-$("*[itemscope] form").submit(function(event){
+$("[itemscope] form").submit(function(event){
   // capture form submissions for items. Determine
   // their values and submit the data via ajax. 
   // this means forms are submited with CSRF protection 

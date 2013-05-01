@@ -1,5 +1,6 @@
 $gw-column:2em;
 $gw-gutter:0.5em;
+$gutter:$gw-gutter;
 $offset_color:rgba(182, 195, 181, 0.21);
 
 $dark:rgba(42, 41, 41, 1);
@@ -22,6 +23,9 @@ $red:rgba(255, 0, 0, 0.7);
 @import "details";
 
 @mixin inset_button($color) {
+  text-transform:uppercase;
+  text-decoration:none;
+  text-align:center;
   /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
   color:lighten($color, 75%);
   background-color:$color;

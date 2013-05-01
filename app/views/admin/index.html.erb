@@ -1,64 +1,32 @@
-<nav id="models">
-  <a href="#users">users</a>
-  <a href="#authors">authors</a>
-  <a href="#pages">pages</a>
-  <a href="#tips">tips</a>
-  <a href="#orders">orders</a>
-  <a href="#checks">checks</a>
+<nav data-role="admin">
+  <a href="/users">users</a>
+  <a href="/authors">authors</a>
+  <a href="/pages">pages</a>
+  <a href="/tips">tips</a>
+  <a href="/orders">orders</a>
+  <a href="/checks">checks</a>
 </nav>
-<section id="states">
-   
-  <article id="users">
-    <details itemscope itemtype="users" itemid="/users?state=recent">
-      <summary><span>users</span>recent</summary>
-      <meta itemprop="count" content="<%=User.count%>">
-    </details>
-  </article>
 
-  <article id="authors">
-    <%-[:stranger, :wanted, :known].each do |state|-%>
-    <details itemscope itemtype="authors" itemid="/authors?state=<%=state%>">
-      <summary><span>authors</span><%=state%></summary>
-      <meta itemprop="count" content="<%=Author.send(state).count%>">
-    </details>
-    <%-end-%>
-  </article>
+<nav data-role="admin">
+  <a href="https://www.google.com/analytics/web/?hl=en&pli=1#realtime/rt-overview/a30118836w56495303p57575125/">analytics</a>
+</nav>
 
-  <article id="pages">
-    <%-[:adopted, :orphaned, :fostered, :dead, :manual].each do |state|-%>
-    <details itemscope itemtype="pages" itemid="/pages?state=<%=state%>" >
-      <summary><span>pages</span><%=state%></summary>
-      <meta itemprop="count" content="<%=Page.send(state).count%>">
-    </details>
-    <%-end-%>
-  </article>
-
-  <article id="tips">
-    <%-[:promised, :charged, :kinged].each do |state|-%>
-    <details itemscope itemtype="tip" itemid="/tips?state=<%=state%>">
-      <summary><span>tips</span><%=state%></summary>
-      <meta itemprop="count" content="<%=Tip.send(state).count%>">
-    </details>
-    <%-end-%>
-  </article>
-
-  <article id="orders">
-    <%-[:current,:paid,:unpaid,:denied].each do |state|-%>
-    <details itemscope itemtype="orders" itemid="/orders?state=<%=state%>">
-      <summary><span>orders</span><%=state%></summary>
-      <meta itemprop="count" content="<%=Order.send(state).count%>">
-    </details>
-    <%-end-%>
-  </article>
-
-  <article id="checks">
-    <%-[:earned, :paid, :cashed].each do |state|-%>
-    <details itemscope itemtype="checks" itemid="/checks?state=<%=state%>" >
-      <summary><span>checks</span><%=state%></summary>    
-      <meta itemprop="count" content="<%=Check.send(state).count%>"></p>
-    </details>
-    <%-end-%>
-  </article>
+<section id="statistics">
+  <figure>
+    <%= image_tag "noun_project/2966.svg" %>
+    <figcaption><%=User.count%> Fans</figcaption>
+    <figcaption><b><%=User.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
+  <figure>
+    <%= image_tag "noun_project/4060.svg" %>
+    <figcaption><%=Tip.count%> Tips</figcaption>  
+    <figcaption><b><%=Tip.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
+  <figure>
+    <%= image_tag "noun_project/4534.svg" %>
+    <figcaption><%=Page.count%> Pages</figcaption>
+    <figcaption><b><%=Page.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
 </section>
 
 <script itemscope itemtype="templates" itemid="/templates/orders/header" type="text/html">

@@ -6,6 +6,8 @@ class PagesController < ApplicationController
       @pages = Page.send(params[:state]).limit(25)  
     elsif params[:author_id]
       @pages = Page.where(author_id:params[:author_id])
+    else
+      @pages = Page.recent.limit(50)
     end
     render :action => 'index', :layout => false if request.headers['retrieve_as_data']
   end
@@ -16,6 +18,29 @@ class PagesController < ApplicationController
   end
 
   def new
+  end
+
+  def update
+    @page = Page.where(id:params[:id]).first
+
+    if params[:thumbnail_url] 
+      if params[:thumbnail_url].length > 0
+        @page.thumbnail_url = params[:thumbnail_url]
+      else
+        @page.thumbnail_url = nil
+      end
+    end
+
+    if params[:title] and params[:title].length > 0
+      @page.title = params[:title]
+    end
+
+    if params[:url] and params[:url].length > 7
+      @page.url = params[:url]
+    end
+
+    @page.save
+    render :action => 'update', :layout => false 
   end
 
   def create

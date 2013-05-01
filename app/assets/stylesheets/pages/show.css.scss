@@ -1,4 +1,6 @@
 #pages_show {
+  * { box-sizing: border-box; }
+
   #copper_button {
     /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
     display:block;
@@ -24,4 +26,173 @@
     min-height: 768px;
   }
 
+  section#admin {
+    box-shadow: inset 0 0.25em 0.25em 0.25em $dark;
+    @include full_width($dark);
+    background-color:$offset_color;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    border: 0.25em solid $dark;
+    border-top: none;
+    width: grid-width(24);
+    padding: grid-width(1);
+
+    max-height:100em;
+    max-width:100em;
+    opacity:1;
+    overflow:visible;
+    @include transition (all 1s ease-out 0s);
+    &.hide {
+      padding:0.5em;
+      background-color:transparent;
+      border-radius:0.5em;
+      border-top: 0.25em solid $dark;
+      box-shadow:none;
+      overflow:hidden;
+      width: 3.5em;
+      max-height:3.5em;
+      opacity:0;
+      margin-top:-3.5em;
+      @include transition (max-height 0.25s ease-in 0s, margin-top 0.5 ease-in );      
+      &:hover {
+        opacity:0.8;
+      }
+      & > img {
+        margin-top:0;
+      }
+    }
+    & > img {
+      display:block;
+      margin:-1em auto 0 auto;
+      opacity:0.5;
+      width:grid-width(1);
+      height:grid-width(1);
+      cursor:pointer;
+      @include transition (all 0.25s ease-out 0.15s);
+      &:hover {
+        opacity:1;
+        @include transition (all 0.25s ease-out 0.15s);
+      }
+    }
+    & > header {
+
+      margin: grid-width(1) auto;
+      & > hgroup {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: grid-width(1);
+        h1, h4, p {
+          margin:0;
+        }
+        h1 {
+          text-align: center;
+        }
+        &:first-child {
+          width:grid-width(8);
+        }
+        &:last-child {
+          margin-right: 0;
+        }
+        & > h4, & > p {
+          display: inline-block;
+        }
+        & > h4 {
+          margin-right: $gutter;
+        }
+        }
+    }
+    & > div {
+      // width: grid-width(22);
+      display:block;
+      margin:0;
+      padding:0;
+      & > figure {
+        width: grid-width(8);
+        height: grid-width(8);
+        background-color:$offset_color;
+        border-radius:0.5em;
+        margin-right:grid-width(1);
+        overflow:hidden;
+        display:inline-block;
+        & > img {
+          border-radius:0.5em;
+          min-width: grid-width(8);
+          min-height: grid-width(8);
+          max-width:200%;
+          max-height:100%
+        }
+      }
+      fieldset {
+        width:grid-width(13);
+        vertical-align: top;
+        display:inline-block;
+        & > input {
+          color:$text;
+          display:block;
+          height:grid-width(1);
+          width:100%;
+          margin-right:0;
+          margin-bottom:grid-width(1);
+        }
+
+        & > details {
+          padding:0.25em;
+          border-radius:0.25em;
+          border:2px solid $input_border;
+          background-color:rgba(251, 250, 248, 0.2);  
+          vertical-align: middle;
+          & > summary {
+            p {
+              text-transform: lowercase;
+              margin:0;
+              display:inline-block;
+            }
+            h4 {
+              margin:0;
+              display:inline-block;
+              margin-right: grid-width(1);
+            }
+          }
+        }
+
+        & > nav {
+          padding-left:0.5em;
+          margin-top: grid-width(1);
+          height:grid-width(1);
+          & > button {
+            margin-right: grid-width(2);            
+            width: grid-width(3); 
+            font-family: 'Doppio One', sans-serif;
+          }
+
+          & > button:last-child {
+            margin-right: 0;
+          }
+
+          &:nth-child(5){
+            & > button {
+
+              color:$text;
+              padding:0.25em;
+              border-radius:0.25em;
+              border:2px solid $input_border;
+              background-color:rgba(251, 250, 248, 0.2);  
+            }
+          }
+          &:last-child > button {
+            @include inset_button($text);
+          }
+        }
+      }
+    }
+    & > footer {
+      margin-bottom: grid-width(1);
+      details {
+        margin-bottom: grid-width(1);
+      }
+      details > summary {
+        font-size: 2em;
+      }
+    }
+  }
 }

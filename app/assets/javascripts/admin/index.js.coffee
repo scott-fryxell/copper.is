@@ -1,35 +1,5 @@
 $(document).on "load.admin_index", ->
- 
-  $('nav#models > a').click ->
-    $(@).toggleClass('selected')
-    
-    $("article#{$(@).attr('href')}").toggleClass('selected');
-
-  $("body").on 'click', 'details[itemscope]', ->
-    if $(@).attr('open')
-      $(@).attr('draggable', 'true')
-    else
-      # console.debug('opening')
-      $(@).attr('draggable', 'false')    
-      $(@).trigger('get_details_content');
-
-  $('body').on 'get_details_content', 'details[itemscope]', ->
-    # todo: instead of checking for elements i should just turn this event listener off
-    unless $(@).find('section').length > 0 || $(@).find('details').length > 0
-      # console.debug('getting info')
-      jQuery.ajax
-        url:$(@).attr('itemid'),
-        headers: {retrieve_as_data: "true"}
-        success: (data) =>
-          $(@).append(data)
-          # console.debug('element', @)
-          new Item_m(@)
-          $(@).find('time').timeago()
-
-        statusCode:
-          401:=>
-            $(@).trigger "401"
- 
+  
   $("#pallet").on "drop", ->
     # event.preventDefault()
     # console.debug("drop")
@@ -64,3 +34,7 @@ $(document).on "load.admin_index", ->
     # event.preventDefault()
     # console.debug("dragend")
     $(@).removeClass("drag")
+
+$('[contenteditable]').on 'blur', ->
+  # save the item
+  console.debug('content edited')

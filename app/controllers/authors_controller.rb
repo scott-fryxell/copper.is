@@ -7,7 +7,9 @@ class AuthorsController < ApplicationController
     elsif params[:user_id]
       @authors = Author.where(user_id:params[:user_id])
     elsif params[:page_id]
-      @authors = Authir.where(page_id:params[:page_id])
+      @authors = Author.where(page_id:params[:page_id])
+    else
+      @authors = Author.all()
     end
     render action:'index', layout:false if request.headers['retrieve_as_data']
   end

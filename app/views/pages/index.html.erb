@@ -1,1 +1,12 @@
-<%= render partial:"index", collection:@pages, as: :page %>
+<nav data-role="admin">
+  <a href="/pages">all</a>
+  <a href="/pages?state=manual">manual</a>
+  <a href="/pages?state=adopted">adopted</a>
+  <a href="/pages?state=orphaned">orphaned</a>
+  <a href="/pages?state=fostered">fostered</a>
+  <a href="/pages?state=dead">dead</a>
+</nav>
+<section id="pages">
+  <%= render partial:"index", collection:@pages, as: :page %>
+</section>
+
