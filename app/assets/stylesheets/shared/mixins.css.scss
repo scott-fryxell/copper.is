@@ -71,18 +71,19 @@ $shadow:rgba(0, 0, 0, 0.5);
   font-family: 'Doppio One', sans-serif;
   text-align:center;
   text-decoration:none;
-  padding:.5em .75em;
-  padding:.25em .75em;
+  padding:.25em ;
   background-color:$copper;
   @include background-image(linear-gradient($copper 40%, shade($copper, 25%) 100%, transparent 50%));
   color:$light !important;
   border-radius:.25em;
-  border:3px solid darken($copper, 10%);
-  @include transition (box-shadow 0.5s ease-in 0.25s);
+  border:2px solid darken($copper, 10%);
+  border-bottom:2px inset darken($copper, 20%);
+  box-shadow: 1px 1px 1px 0px lighten($copper, 10%) inset;
+  @include transition (box-shadow 0.5s ease-out 0.25s);
   position:relative;
   &:hover {
-    box-shadow: 0 0 .75em 0  $copper;
-    @include transition (box-shadow 0.5s ease-in);
+    box-shadow: 0 0 .25em 0  $copper;
+    @include transition (box-shadow 0.25s ease-in);
   }
 }
 @mixin ribbon {
