@@ -10,16 +10,7 @@
     <a href="/pages?state=dead">dead</a>
   </nav>
 </section>
-<<<<<<< HEAD
-<% cache("trending_pages", :expires_in => 1.hour) do %>
-<section id="pages">
-  <%= render partial:"show", collection:Page.safe.includes(:tips).order("updated_at DESC").limit(75), as: :page %>
-=======
 <% end %>
-
-
 <section id="pages">
   <%= render partial:"index", collection:@pages, as: :page %>
->>>>>>> admin_tools
 </section>
-
