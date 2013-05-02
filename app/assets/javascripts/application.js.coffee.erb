@@ -35,6 +35,9 @@ $(document).ready ->
   if $(window).height() > $('body').height()
     $('body > footer').addClass('bottom')
 
+  $('#admin > img.toggle').click ->
+    $('#admin').toggleClass('hide');
+
   jQuery.ajax
     url:'/users/me.json',
     dataType:'json',

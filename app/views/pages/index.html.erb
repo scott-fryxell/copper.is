@@ -1,11 +1,18 @@
-<nav data-role="admin">
-  <a href="/pages">all</a>
-  <a href="/pages?state=manual">manual</a>
-  <a href="/pages?state=adopted">adopted</a>
-  <a href="/pages?state=orphaned">orphaned</a>
-  <a href="/pages?state=fostered">fostered</a>
-  <a href="/pages?state=dead">dead</a>
-</nav>
+<% permitted_to? :manage, :pages do %>
+<section id="admin" class="hide">
+  <img class="toggle" src='<%= image_path 'noun_project/94.svg'%>'/>
+  <nav>
+    <a href="/pages">all</a>
+    <a href="/pages?state=manual">manual</a>
+    <a href="/pages?state=adopted">adopted</a>
+    <a href="/pages?state=orphaned">orphaned</a>
+    <a href="/pages?state=fostered">fostered</a>
+    <a href="/pages?state=dead">dead</a>
+  </nav>
+</section>
+<% end %>
+
+
 <section id="pages">
   <%= render partial:"index", collection:@pages, as: :page %>
 </section>
