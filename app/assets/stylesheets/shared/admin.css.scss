@@ -173,4 +173,10 @@ section#admin {
     }
   }
 }
+#admin_index {
+  section#admin {
+    width: grid-width(28);
+    margin-bottom: grid-width(1);
+  }
+}
 

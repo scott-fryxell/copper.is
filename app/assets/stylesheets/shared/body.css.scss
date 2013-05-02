@@ -1,6 +1,6 @@
 $copper:rgba(204, 153, 51, 0.33);
 $light:rgba(251, 250, 248, 0.33);
-*, *:after, *:before {
+* {
   @include box-sizing(border-box);
 }
 

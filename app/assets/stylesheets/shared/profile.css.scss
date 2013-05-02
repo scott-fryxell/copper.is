@@ -12,9 +12,9 @@
       display:inline-block;
     }
     & > div {
-      padding:0.5em 0 0 1em;
+      padding:1em 0 0 2em;
       background-color:$offset_color;
-      margin-right:0.5em;
+      margin-right:.5em;
       width:grid-width(4);
     }
     & > div > h2 {
@@ -22,13 +22,15 @@
       @include text;
     }
     & > div > p {
-      margin:0 0 0 0;
+      margin:.4em 0 0 0;
       font-size:1.5em;
-      vertical-align: middle;
       @include header_text;
     }
     & > div > p > span {
-      vertical-align: baseline;
+      display:inline-block;
+      width:2em;
+      padding:0 .5em 0 0;
+      line-height:1em;
     }
     & > div > p > span:before,
     & > div:nth-child(3) > p:before  {
@@ -46,15 +48,11 @@
       line-height:.5em;
       border:1px solid darken($copper, 5%);
       -webkit-appearance: none;
-      @include copper_button;
-      display:inline-block;
-      font-size: 16px;
-      line-height: 0.75em;
-      margin-left:0.25em;
-      vertical-align: middle;
+      border-radius:0.1em;
+      box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
     }
     & > div > p > button:active {
-      box-shadow: 0px 0px 0px 0px $shadow;
+      box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.5);
     }
     & > div:nth-child(2) {
       padding-left:0;
@@ -74,71 +72,36 @@
       @include settings_pointer
     }
   }
+}
 
-  table#tips {
-    & > thead > tr > th {
-      @include header_text;
-      text-align:center;
-      padding-bottom:0.5em;
-      &:nth-child(2){
-        text-align:left;
+section#pages {
+  margin-bottom:3em;
+  & > header {
+    margin: 2em 0;
+    & > h1 {
+      margin:0;
+      font-size:1.5em;
+    }
+    & > hgroup {
+      display:none;
+      & > nav {
+        margin-bottom:grid-width(1);
       }
-    }
-    & > thead > tr > th:first-child {
-      text-align:left;
-    }
-    & > tbody tr td:first-child {
-      text-align:left;
-      text-transform:capitalize;
-    }
-    & > tbody > tr > td > span[itemprop=amount_in_cents]:before {
-      content:"$";
-    }
-    & > tbody > tr > td {
-      text-align:center;
-      margin-bottom:1em;
-      padding-bottom:.5em;
-      &:nth-child(2){
-        text-align:left;
+      & h2,
+      & > nav > a {
+        display:inline-block;
+        margin-right:1em;
+        @include text;
       }
-    }
-    & > tbody > tr > td:first-child {
-      width:15em;
-    }
-    & > tbody > tr > td:nth-child(2) > form {
-
-      & input[type=text] {
-        padding:0 0 0 0.25em;
-        width:3em;
-        color:$button_color;
+      & > nav > a span {
         font-weight:bold;
-        background-color:transparent;
-        box-shadow:none;
       }
-      &:before {
-        content:"$";
-        font-size:1.15em;
+      & > h2 {
+        margin-bottom:0.5em;
       }
-      & > input[type=submit] {
-        @include transition (opacity 0.3s ease-in 0.25s);
-        opacity:0;
-        font-size:0.75em;
+      & > h2:after{
+        content: ":";
       }
-<<<<<<< HEAD
-      & > input:focus + input[type=submit] {
-        @include transition (opacity 0.3s ease-out 0.25s);
-        opacity:1;
-      }
-      & > input[type=submit]:focus {
-        opacity:1;
-      }
-    }
-    & > tbody tr td:nth-child(3) form input[type=image] {
-      border:none;
-      opacity:0.25;
-      width:2em;
-      height:2em;
-=======
       & > nav > a.selected {
         color:$dark;
       }
@@ -192,202 +155,135 @@
       padding:0.5em 0.5em 0.75em 0.5em;
       @include header_text;
       color:$light;
->>>>>>> admin_tools
       font-size:1em;
-      @include transition (opacity 0.75s ease-out 0.25s);
-      &:hover {
-        opacity:1;
-        @include transition (opacity 0.5s ease-in 0);
-      }
+    }
+    & > summary > figure > figcaption:before {
+      content: "$";
     }
   }
-  
-  #pages {
-    & > header {
-      display:none;
-      margin: 2em 0;
-      & > h1 {
-        margin:0;
-        font-size:1.5em;
-      }
-      & > hgroup {
 
-        & > nav {
-          margin-bottom:grid-width(1);
-        }
-        & h2,
-        & > nav > a {
-          display:inline-block;
-          margin-right:1em;
-          @include text;
-        }
-        & > nav > a span {
-          font-weight:bold;
-        }
-        & > h2 {
-          margin-bottom:0.5em;
-        }
-        & > h2:after{
-          content: ":";
-        }
-        & > nav > a.selected {
-          color:$darkness;
-        }
+  & > details[open] {
+    position:relative;
+    width:grid-width(21);
+    margin:1em 0;
+    height:auto;
+
+    padding:0 .5em 1em .5em;
+    background-color:$offset_color;
+
+    & > summary {
+      outline:none;
+      padding-top:1em;
+      margin-right:1em;
+      display:inline-block;
+      & > h2 {
+        position:absolute;
+        top:0.25em;
+        left:1.5em;
+        width:auto;
+        margin-top:.5em;
+        vertical-align:middle;
+        font-size: 1.34em;
+        height:1.34em;
+        line-height:1.34em;
+
+        @include header_text;
       }
-      & > hgroup:nth-child(3) {
-        display:none;
+      & > figure {
+        width:grid-width(8);
+        height:grid-width(5);
+        margin-top:1.5em;
+        margin-left:1.25em;
+        overflow: hidden;
+        box-shadow:2px 3px 15px 3px rgba(0, 0, 0, 0.4);
+      }
+      & > figure > figcaption {
+        font-size:2em;
+      }
+      & > figure > img {
+        min-width:grid-width(8);
+        min-height:grid-width(5);
       }
     }
-
-    & > details {
-      vertical-align: top;
+    & > dl {
+      clear:right;
+      margin-top:3.25em;
       display:inline-block;
-      width:grid-width(6);
-      margin: 0 2em 2em 0;
-      & > summary {
-        cursor:pointer;
-        outline:none;
+      vertical-align:top;
+
+      dt {
+        font-weight:bold;
       }
-      & > summary > h2 {
-        @include text;
-        font-size:1em;
-        display:inline-block;
-        width:grid-width(6);
-       
-        height:1em;
-        line-height:1em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      & > summary > figure {
-        margin-top:.5em;
-        position:relative; 
-        overflow:hidden;
-        width:grid-width(6);
-        height:grid-width(4);
-        box-shadow: 1px 1px 1px lighten($shadow, 50%);
-        border-radius:0.25em;
-      }
-      & > summary > figure > img {
-        width:grid-width(6);
-        height:grid-width(4);
-      }
-      & > summary > figure > figcaption {
-        opacity:0.8;
-        text-align:center;
-        vertical-align:middle;
-        position:absolute;
-        top:0;
-        right:0;
-        @include ribbon;
-        min-width:1em;
-        min-height:1em;
-        padding:0.5em 0.5em 0.75em 0.5em;
+      dd {
         @include header_text;
         color:$light;
         font-size:1em;
       }
       & > summary > figure > figcaption:before {
         content: "$";
+        text-transform:lowercase;
+        margin-bottom:1em;
       }
-      & > summary::-webkit-details-marker {
-        display: none
-      }
-    }
-
-    & > details[open] {
-      border-radius:0.25em;
-      position:relative;
-      width:grid-width(21);
-      margin:1em 0 1em 0;
-      height:auto;
-
-      padding:0 0.5em 1.5em 0.5em;
-      background-color:$offset_color;
-
-      & > summary {
-        outline:none;
-        padding-top:1em;
-        margin-right:1em;
-        display:inline-block;
-        & > h2 {
-          position:absolute;
-          top:0.25em;
-          left:1.5em;
-          width:grid-width(14);
-          overflow: hidden;
-          // margin-top:0.5em;
-          line-height: 2em;
-          height:2em;
-          vertical-align:top;
-          font-size: 1.34em;
-          @include header_text;
-        }
-        & > figure {
-          width:grid-width(8);
-          height:grid-width(5);
-          margin-top:2.5em;
-          margin-left:1.25em;
-          overflow: hidden;
-        }
-        & > figure > figcaption {
-          font-size:2em;
-        }
-        & > figure > img {
-          min-width:grid-width(8);
-          min-height:grid-width(5);
+      dd > a {
+        display:inline-block; 
+        border-bottom: 0.15em solid rgba(102, 102, 102, 0.3);
+        padding: 0.15em 0em;
+        border-radius: 0.1em;
+        @include transition(all 0.25s);
+        &:hover {
+          @include transition(border-radius 0.5s ease-out 0s, border-bottom 0.25s);
+          border-radius: 0.4em;
+          border-bottom: 0.15em solid rgba(102, 102, 102, 0.5);
         }
       }
-      & > dl {
-        margin-top:3.25em;
-        display:inline-block;
+      dt > details {
         vertical-align:top;
-
-        dt {
-          font-weight:bold;
-        }
-        dd {
+        display:block;
+        & > summary {
           @include header_text;
-          color:$light-text;
-          font-size:1em;
-        }
-        & > summary > figure > figcaption:before {
-          content: "$";
-          text-transform:lowercase;
+          font-size:1.25em;
+          outline:none;
+          line-height:1.5em;
           margin-bottom:1em;
-        }
-        dd > a {
-          display:inline-block; 
-          border-bottom: 0.15em solid $offset_color;
-          padding: 0em 0em;
-          border-radius: 0.1em;
-          @include transition(all 0.25s);
-          &:hover {
-            @include transition(border-radius 0.5s ease-out 0s, border-bottom 0.25s);
-            border-radius: 0.4em;
-            border-bottom: 0.15em solid rgba(102, 102, 102, 0.5);
-          }
-        }
-        dt > details {
-          vertical-align:top;
-          display:block;
-          & > summary {
-            @include header_text;
-            font-size:1.25em;
-            outline:none;
-            line-height:1.5em;
-            margin-bottom:1em;
-          }
         }
       }
     }
   }
 }
 
+table#tips {
+  width:grid-width(12);
+  & > thead > tr > th {
+    @include header_text;
+    text-align:center;
+    padding-bottom:0.5em;
+    &:nth-child(2){
+      text-align:left;
+    }
+  }
+  & > thead > tr > th:first-child {
+    text-align:left;
+  }
+  & > tbody tr td:first-child {
+    text-align:left;
+    text-transform:capitalize;
+  }
+  & > tbody > tr > td > span[itemprop=amount_in_cents]:before {
+    content:"$";
+  }
+  & > tbody > tr > td {
+    text-align:center;
+    margin-bottom:1em;
+    padding-bottom:.5em;
+    &:nth-child(2){
+      text-align:left;
+    }
+  }
+  & > tbody > tr > td:first-child {
+    width:15em ;
+  }
+  & > tbody > tr > td:nth-child(2) > form {
 
-<<<<<<< HEAD
-=======
     & input[type=text] {
       padding:0 0 0 .25em;
       width:2.5em;
@@ -426,4 +322,3 @@
     }
   }
 }
->>>>>>> admin_tools
