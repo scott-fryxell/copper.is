@@ -1,0 +1,172 @@
+#admin_index {
+  & > section#states {
+    width:grid-width(25);
+    min-height: grid-width(12);
+    padding:0.5em;
+    background-color:$offset_color; 
+    margin: 0.75em auto;
+    border-radius:1em;
+    & > article {
+      display:none;
+      vertical-align: baseline;
+      height:0;
+      opacity:0;
+
+      border-radius:0.25em;
+      padding:0 1em;
+      @include transition (opacity 0.5s ease-in 0s);
+      @include transition (height 0.5s ease-in 0.5s);
+      &:nth-child(6){
+        margin-right:0;
+      }
+      &.selected{
+        display:block;
+        visibility: visible;
+        position: relative;
+        z-index: 2;
+        margin-top:0.5em;
+        height:auto;
+        opacity:1;
+        @include transition (opacity 0.5s ease-in 0s);
+        @include transition (height 0.5s ease-in 0.5s);
+      }
+      & > details {
+        width:8em;
+        margin: 0 0 0.5em 0.5em;
+        box-shadow: 1px 1px 5px 2px darken($offset_color, 40%);
+        border-radius:0.5em;
+        background-color:$title;
+        color:darken($light, 20%);
+        text-shadow: 1px 1px 1px $dark;
+        &[open] {
+          display:block;
+          min-width:8em;
+          width:auto;
+        }
+        border: 2px solid darken($title, 20%);
+        & > summary {
+          text-align: center;
+        }
+        & > summary::-webkit-details-marker {
+          display: none
+        }
+      }
+    }
+  }
+  section#statistics {
+    figure {
+      margin-right:4em;
+      vertical-align:top;
+      display:inline-block
+    }
+    figure:nth-child(3){
+      margin-right:0;
+    }
+    figure:nth-child(2) > img{
+      opacity:.9;
+    }
+    figure > img {
+      opacity:.8;
+      vertical-align:top;
+      display:block;
+      margin:0 auto;
+      width: 10em;
+      height:10em;
+    }
+    figure > figcaption {
+      text-align:center;
+      font-size:2em;
+      margin-top:1em;
+      &:nth-child(2){
+        font-size:1.5em;
+      }
+      &:nth-child(3){
+        text-transform: capitalize;
+        color:$dark;
+        opacity:.5;
+        text-shadow: 3px 3px $offset_color;
+      }
+    }
+  }
+  details {
+    // max-width: grid-width(14);
+    border: 2px solid darken($title, 20%);
+    vertical-align: top;
+    margin: 0.5em;
+    display:inline-block;
+    border-radius:0.5em;
+    &[draggable=true] {
+      & > summary {
+        cursor:move;
+      }
+    }
+    &[open]{
+      & > summary {
+        cursor:pointer;
+        border-bottom-right-radius:0;
+        border-bottom-left-radius:0;
+      }
+    }
+    & > summary {
+      border-radius:0.35em;
+      @include background-image(linear-gradient($title 0%, shade($title, 25%) 100%));
+      outline:none;
+      padding:0.5em;
+      color:$light;
+      & > span {
+        display:none
+      }
+    }
+    & > section {
+      & > header {
+        margin-top:1em;
+        margin-left:1em;
+        & > form {
+          & > button {
+            @include header_text();
+            border-radius:0.5em;
+            border:1px solid $dark;
+            margin-right:0.5em;
+          }
+        }
+      }
+      & > dl {
+        width:grid-width(12);
+        margin:1em;
+        vertical-align: top;
+        dt {
+          @include header_text();
+          vertical-align: top;
+          color:darken($light, 20%);
+          width:grid-width(4);
+          text-shadow: 1px 1px 1px black;
+          display:inline-block;
+          margin-right: 1em;
+        }
+        dd {
+          display:inline-block;
+          width:grid-width(6);
+        }
+      }
+      & footer {
+        margin: 1em;
+        & > details {
+          margin:0 1em 1em 0;
+        }
+      }      
+    }
+  }
+ 
+  .drag {
+    opacity:0.5;
+    background-color:$brown;
+  }
+  .hover {
+    opacity:0.5;
+    border:0.25em solid $header;
+  }
+
+  & > footer {
+    display:none;
+  }
+}

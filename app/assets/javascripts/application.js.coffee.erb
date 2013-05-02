@@ -1,8 +1,11 @@
+#= require mustache
 #= require jquery
 #= require jquery.cookie
 #= require jquery.timeago
 #= require jquery.tmpl
+#= require jquery.browser
 #= require jquery.details
+#= require Item
 #= require shared/Item
 #= require shared/copper
 #= require shared/button
@@ -10,20 +13,30 @@
 #= require shared/card
 #= require shared/email
 #= require shared/badge
+#= require shared/honeybadger
 #= require home/index
 #= require home/author
 #= require home/settings
 #= require home/badge
 #= require home/welcome
 #= require home/getting_started
+#= require pages/index
+#= require pages/show
 #= require authors/edit
 #= require orders/index
-#= require shared/honeybadger
+#= require admin/index
 
 $(document).ready ->
 
+  $("a[href^=#]").click ->
+    event.preventDefault();
+    history.pushState({}, "", @.href)
+  
   if $(window).height() > $('body').height()
     $('body > footer').addClass('bottom')
+
+  $('#admin > img.toggle').click ->
+    $('#admin').toggleClass('hide');
 
   jQuery.ajax
     url:'/users/me.json',

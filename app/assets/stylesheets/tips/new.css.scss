@@ -8,12 +8,12 @@ $subtle_text: #999999;
   section {
     position:relative;  
     background-color: $background_color;
-    color:$light-text;
+    color:$light;
     height:0;
     border-radius: 0 0 0.5em 0.5em;
     padding:0 1em;
     opacity:1;
-    border:2px solid $darkness;
+    border:2px solid $dark;
     border-top:none;
     @include text;
     box-shadow: 2px 3px 8px 0px hsla(0, 0, 0, 0.5);
@@ -49,12 +49,12 @@ $subtle_text: #999999;
         vertical-align:middle;
         font-size:2em;
         text-align:center;
-        color:$button_color;
+        color:$copper;
       }
       & > h2 {
         margin-bottom:0;
         font-size:1em;
-        color:$light-text;
+        color:$light;
         color:$subtle_text;
         text-align:center;
       }
@@ -78,7 +78,7 @@ $subtle_text: #999999;
       & > input[itemprop=amount_in_dollars] {
         width:1.85em;
         background-color:transparent;
-        color:$light-text;
+        color:$light;
         font-family: 'Bree Serif', serif;
         margin:0;
         padding:0;
@@ -103,7 +103,7 @@ $subtle_text: #999999;
         margin-left:1em;
         vertical-align:middle;
         &:hover {
-          border:0.10em solid darken($button_color, 10%);
+          border:0.10em solid darken($copper, 10%);
         }
       }
     }
@@ -136,7 +136,7 @@ $subtle_text: #999999;
       }
       &:first-child {
         a {
-          color:$button_color;
+          color:$copper;
         }
         a:before{
           content:"[";
@@ -213,7 +213,7 @@ $subtle_text: #999999;
         color:$light_text;
         font-size:1.5em;
         opacity:0.5;
-        text-shadow: 3px -3px $darkness;
+        text-shadow: 3px -3px $dark;
         font-weight:normal;
       }
     }

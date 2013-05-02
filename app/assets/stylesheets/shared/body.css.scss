@@ -8,9 +8,9 @@ html {
   height:100%;
   font-size:16px;
   overflow-x:hidden;
-  background-color: $light-text;
+  background-color: $light;
   background-image: image-url('shared/texture_light.png');
-  @include user-select(none);
+  @include user-select(text);
   @include text;
 }
 body {
@@ -30,8 +30,9 @@ body {
 
   h1, h2, h3, h4, h5, h6 {
     @include header_text;
+    text-transform:capitalize;
   }
-  nav > a {
+  nav > a, summary {
     text-transform:capitalize;
   }
   h2 {
@@ -98,18 +99,18 @@ body {
     @include animation-timing-function(ease);
     @include animation-iteration-count(infinite);
   }
-  .hide {
-    transition-property: opacity;
-    transition-duration: 1s;
-    transition-delay: 0.25s;
-    opacity:0;
-  }
-  .show {
-    opacity:1;
-    transition-property: opacity;
-    transition-duration: 1s;
-    transition-delay: .25s;
-  }
+  // .hide {
+  //   transition-property: opacity;
+  //   transition-duration: 1s;
+  //   transition-delay: 0.25s;
+  //   opacity:0;
+  // }
+  // .show {
+  //   opacity:1;
+  //   transition-property: opacity;
+  //   transition-duration: 1s;
+  //   transition-delay: .25s;
+  // }
 }
 body > header {
   @include full_width($header);
@@ -127,7 +128,7 @@ body > header {
     left:1em;
     vertical-align:top;
     text-decoration:none;
-    color:$light-text;
+    color:$light;
     padding:.75em 1em;
 
     & > img {
@@ -141,7 +142,7 @@ body > header {
   }
   & > nav > a {
     font-family: 'Doppio One', sans-serif;
-    color:$light-text;
+    color:$light;
     opacity:.5;
     font-size:.77em;
     text-decoration:none;
@@ -173,14 +174,14 @@ body > footer {
     font-size:.85em;
     display:inline-block;
     font-family: 'Patua One', cursive;
-    color:$light-text;
+    color:$light;
     opacity:.5;
   }
   & > h4 {
     font-family: 'Cantarell', sans-serif;
     display:inline-block;
     font-size:.75em;
-    color:$light-text;
+    color:$light;
     opacity:.5;
     &:before {
       display:inline-block;
@@ -208,11 +209,12 @@ body > footer {
   }
 }
 
+
 a[itemprop=url] {
   text-transform: lowercase;
 }
 
-body > nav {
+body > nav.navigation {
   padding:5em;
   & > a,
   & > button {

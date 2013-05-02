@@ -35,6 +35,16 @@
       content:"$";
     }
     & > div > p > button {
+      padding-right:.75em;
+      font-family: 'Doppio One', sans-serif;
+      background-color:$copper;
+      color:$light;
+      font-size:.75em;
+      display:inline-block;
+      width:1em;
+      height:1em;
+      line-height:.5em;
+      border:1px solid darken($copper, 5%);
       -webkit-appearance: none;
       @include copper_button;
       display:inline-block;
@@ -114,6 +124,7 @@
         opacity:0;
         font-size:0.75em;
       }
+<<<<<<< HEAD
       & > input:focus + input[type=submit] {
         @include transition (opacity 0.3s ease-out 0.25s);
         opacity:1;
@@ -127,6 +138,61 @@
       opacity:0.25;
       width:2em;
       height:2em;
+=======
+      & > nav > a.selected {
+        color:$dark;
+      }
+    }
+    & > hgroup:nth-child(3) {
+      display:none;
+    }
+  }
+
+  & > details {
+    vertical-align: top;
+    display:inline-block;
+    width:grid-width(6);
+    margin: 0 3.5em 1em 0;
+    & > summary {
+      cursor:pointer;
+      outline:none;
+    }
+    & > summary > h2 {    
+      @include text;
+      font-size:1em;
+      display:inline-block;
+      width:grid-width(4.5);
+      height:1em;
+      line-height:1em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    & > summary > figure {
+      margin-top:.5em;
+      position:relative; 
+      overflow:hidden;
+      width:grid-width(6);
+      height:grid-width(4);
+      box-shadow: 2px 3px 15px 3px rgba(0, 0, 0, 0.4);
+    }
+    & > summary > figure > img {
+      width:grid-width(6);
+      height:grid-width(4);
+    }
+    & > summary > figure > figcaption {
+      opacity:0.8;
+      text-align:center;
+      vertical-align:middle;
+      position:absolute;
+      top:0;
+      right:0;
+      @include ribbon;
+      min-width:1em;
+      min-height:1em;
+      padding:0.5em 0.5em 0.75em 0.5em;
+      @include header_text;
+      color:$light;
+>>>>>>> admin_tools
       font-size:1em;
       @include transition (opacity 0.75s ease-out 0.25s);
       &:hover {
@@ -219,7 +285,7 @@
         min-height:1em;
         padding:0.5em 0.5em 0.75em 0.5em;
         @include header_text;
-        color:$light-text;
+        color:$light;
         font-size:1em;
       }
       & > summary > figure > figcaption:before {
@@ -320,3 +386,44 @@
 }
 
 
+<<<<<<< HEAD
+=======
+    & input[type=text] {
+      padding:0 0 0 .25em;
+      width:2.5em;
+      color:$copper;
+      font-weight:bold;
+      background-color:transparent;
+      box-shadow:none;
+    }
+    &:before {
+      content:"$";
+      font-size:1.15em;
+    }
+    & > input[type=submit] {
+      @include transition (opacity 0.3s ease-in 0.25s);
+      opacity:0;
+      font-size:0.75em;
+    }
+    & > input:focus + input[type=submit] {
+      @include transition (opacity 0.3s ease-out 0.25s);
+      opacity:1;
+    }
+    & > input[type=submit]:focus {
+      opacity:1;
+    }
+  }
+  & > tbody tr td:nth-child(3) form input[type=image] {
+    border:none;
+    opacity:0.25;
+    width:2em;
+    height:2em;
+    font-size:0.65em;
+    @include transition (opacity 0.75s ease-out 0.25s);
+    &:hover {
+      opacity:1;
+      @include transition (opacity 0.5s ease-in 0);
+    }
+  }
+}
+>>>>>>> admin_tools

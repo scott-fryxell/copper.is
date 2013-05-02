@@ -20,6 +20,7 @@ class Page < ActiveRecord::Base
   scope :onboarding, where(onboarding:true)
   scope :trending, where(onboarding:true)
   scope :safe, where(nsfw:false)
+  scope :recent, order("Date(updated_at) DESC")
 
   #  going with this query instead current_user.tips.where(page_id:page.id)
   # def fan_tips(fan)

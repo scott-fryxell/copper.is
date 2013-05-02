@@ -10,8 +10,7 @@ document.copper =
       cents = $(@).text().trim()
       $(@).text document.copper.cents_to_dollars(cents)
   cents_to_dollars: (cents) ->
-    dollars = (parseFloat(cents) / 100.00).toFixed(2);
-
+    dollars = (parseFloat(cents) / 100.00).toFixed(2)
     return dollars
   get_author_image: ->
     pic
@@ -27,6 +26,6 @@ document.copper =
 $(document).ready ->
   jQuery('time').timeago();
   $(document).trigger "load.#{$('body').attr('id')}"
-  $(document).trigger(window.location.hash);
+  $(document).trigger(window.location.hash)
   $('*[data-cents]').each ->
     $(@).text( document.copper.cents_to_dollars( $(@).attr('data-cents')) or 0)

@@ -7,6 +7,7 @@
 @import "shared/address";
 @import "shared/forms";
 @import "shared/card";
+@import "shared/admin";
 
 @import "home/index";
 @import "home/welcome";
@@ -17,8 +18,9 @@
 @import "home/faq";
 @import "home/getting_started";
 
-@import "authors/edit";
 @import "pages/show";
+@import "pages/index";
 @import "orders/index";
 @import "users/index";
-@import "pages/index";
+@import "authors/edit";
+@import "admin/index";

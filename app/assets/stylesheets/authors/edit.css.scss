@@ -33,9 +33,9 @@
     text-align: center;
     font-size:1.25em;
     font-family: 'Bree Serif', serif;
-    color:$light-text;
+    color:$light;
     padding:.7em .25em 1.25em .35em;
-    @include background-image( linear-gradient($text 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+    @include background-image( linear-gradient($text 0, $dark 75%, transparent 32%),image-url('icons/congrats.svg'));
     background-repeat: no-repeat;
     background-position:center;
     background-size:cover;
@@ -56,7 +56,7 @@
       font-size:2.5em;
       margin-top:-0.25em;
       & > span {
-        color:$darkness;
+        color:$dark;
       }
     }
   }

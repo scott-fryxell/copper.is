@@ -9,7 +9,7 @@
       margin-bottom:2em;
     }
     & > header > h1 {
-      text-shadow: 3px -3px $light-text;
+      text-shadow: 3px -3px $light;
       line-height:1.25em;
       font-size: 2.5em;
       margin:0;
@@ -65,7 +65,7 @@
       margin-bottom:2em;
     }
     & > header > h3 {
-      @include background-image( linear-gradient(#2A2929  0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+      @include background-image( linear-gradient(#2A2929  0, $dark 75%, transparent 32%),image-url('icons/congrats.svg'));
       background-repeat: no-repeat;
       background-position:center;
       background-size:cover;
@@ -75,7 +75,7 @@
       top:-0.5em;
       right:0;
       display:inline-block;
-      color:$light-text;
+      color:$light;
       padding:.75em;
       height: grid-width(1);
     }
@@ -102,7 +102,7 @@
     }
     & > div > p {
       opacity:1;
-      color:$darkness;
+      color:$dark;
       margin:0;
       line-height:1em;
       font-family: 'Bree Serif', serif;

@@ -1,15 +1,25 @@
 class AuthorsController < ApplicationController
-  filter_resource_access
+  filter_access_to :all
 
   def index
-    @authors = current_user.authors
+    if params[:state]
+      @authors = Author.send(params[:state]).limit(25)  
+    elsif params[:user_id]
+      @authors = Author.where(user_id:params[:user_id])
+    elsif params[:page_id]
+      @authors = Author.where(page_id:params[:page_id])
+    else
+      @authors = Author.all()
+    end
+    render action:'index', layout:false if request.headers['retrieve_as_data']
   end
 
   def new
   end
 
   def show
-    @authors = current_user.authors.find(params[:id])
+    @author = Author.where(id:params[:id]).first
+    render :action => 'show', :layout => false if request.headers['retrieve_as_data']
   rescue ActiveRecord::RecordNotFound
     render nothing:true, status:401
   end

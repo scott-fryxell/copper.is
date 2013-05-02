@@ -1,0 +1,54 @@
+<nav data-role="admin">
+  <a href="/users">users</a>
+  <a href="/authors">authors</a>
+  <a href="/pages">pages</a>
+  <a href="/tips">tips</a>
+  <a href="/orders">orders</a>
+  <a href="/checks">checks</a>
+</nav>
+
+<nav data-role="admin">
+  <a href="https://www.google.com/analytics/web/?hl=en&pli=1#realtime/rt-overview/a30118836w56495303p57575125/">analytics</a>
+</nav>
+
+<section id="statistics">
+  <figure>
+    <%= image_tag "noun_project/2966.svg" %>
+    <figcaption><%=User.count%> Fans</figcaption>
+    <figcaption><b><%=User.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
+  <figure>
+    <%= image_tag "noun_project/4060.svg" %>
+    <figcaption><%=Tip.count%> Tips</figcaption>  
+    <figcaption><b><%=Tip.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
+  <figure>
+    <%= image_tag "noun_project/4534.svg" %>
+    <figcaption><%=Page.count%> Pages</figcaption>
+    <figcaption><b><%=Page.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
+</section>
+
+<script itemscope itemtype="templates" itemid="/templates/orders/header" type="text/html">
+  <header>
+    <form>
+      <button formmethod="post" formaction="/orders/{{order.id}}/reject">make current</button>
+      <button formmethod="post" formaction="/orders/{{order.id}}/refund">refund</button>
+    </form>
+  </header>
+</script>
+
+<script itemscope itemtype="templates" itemid="/templates/orders/footer" type="text/html">
+  <footer>
+    <details itemscope itemtype='user' itemid='/users/{{order.user_id}}'>
+      <summary>{{order.user_name} details}</summary>
+    </details>
+    <details itemscope itemtype='tip' itemid='/orders/{{order.id}}/tips'>
+      <summary>tips</summary>
+    </details>
+  </footer>
+</script>
+
+
+
+
