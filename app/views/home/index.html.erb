@@ -38,26 +38,6 @@
 
   <%-if current_user.pages.count > 0 -%>
     <section id="pages">
-      <header>
-        <hgroup>
-          <h2>Filter by</h2>
-          <nav>
-            <a href="#pages.read" class="selected">read</a>
-            <a href="#pages.watch">watch</a>
-            <a href="#pages.listen">listen</a>
-          </nav>
-          <nav>
-            <a href="#pages.author">author</a>
-            <a href="#pages.site">site</a>
-          </nav>
-          <nav>
-            <a href="#pages.adopted">adopted <span><%=current_user.pages.adopted.count%></span></a>
-            <a href="#pages.fostered">fostered <span><%=current_user.pages.fostered.count%></span></a>
-            <a href="#pages.manual">manual <span><%=current_user.pages.manual.count%></span></a>
-            <a href="#pages.orphaned">orphaned <span><%=current_user.pages.orphaned.count%></span></a>
-          </nav>
-        </hgroup>
-      </header>
       <%= render partial:"pages/fan", collection:current_user.tipped_pages.limit(50), as: :page %>
     </section>
   <%-else-%>

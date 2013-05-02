@@ -1,0 +1,157 @@
+#home_index, #home_author, #home_welcome, #home_tip_some_pages, #pages_index {
+  #pages {
+    margin-bottom: grid-width(1);
+    border:0.25em solid transparent;
+    border-radius:0.5em;
+    padding:0;
+    background-color: $offset_color;
+    min-height: grid-width(24);
+
+    & > details {
+      display:inline-block;
+      height:grid-width(8);
+      width:grid-width(8);
+      vertical-align: top;
+      padding:0.5em;
+      overflow: hidden;
+      & > summary {
+        overflow: hidden;
+        cursor:pointer;
+        outline:none;
+        height:100%;
+        width:100%;
+        box-shadow: 1px 1px 1px lighten($shadow, 50%);
+        border-radius:0.25em;
+        &::-webkit-details-marker {
+          display: none
+        }
+        & > figure {
+          border-radius:0.25em;
+          overflow: hidden;
+          position:relative; 
+
+          & > img {
+            max-width: 200%;
+            max-height: 100%;
+            min-width: 100%;
+            min-height: 100%;        
+          }
+          & > figcaption {
+            & > h2 {
+              @include text;
+              font-size:1em;
+              display:inline-block;
+              // width:grid-width(6);     
+              height:1em;
+              line-height:1em;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+
+            & > p {
+              opacity:0.8;
+              text-align:center;
+              vertical-align:middle;
+              position:absolute;
+              top:0;
+              right:0;
+              @include ribbon;
+              min-width:1em;
+              min-height:1em;
+              padding:0.5em 0.5em 0.75em 0.5em;
+              @include header_text;
+              color:$light;
+              font-size:1em;
+              &:before {
+                content: "$";
+              }
+            }
+          }
+        }
+      }
+
+      &[open] {
+        width:100%;
+        border-radius:0.25em;
+        position:relative;
+        height:auto;
+        // background-color:$offset_color;
+        & > summary {
+          width:grid-width(10);
+          max-height:grid-width(8);
+          margin-right: 1em;
+          display:inline-block;
+          & > figure {
+            overflow: hidden;
+          }
+
+          & > figure > figcaption {
+            h2 {display:none;}
+          }
+          & > figure > img {
+            max-width: 100%;
+            max-height: 100%;
+          }
+        }
+      }
+      & > section {
+        width:grid-width(13);
+        vertical-align:top;
+        display:inline-block;
+
+        & > header > hgroup {
+          margin-bottom:1em;
+        }
+      }
+    }
+
+    & > figure { 
+      display:inline-block;
+      height:grid-width(8);
+      width:grid-width(8);
+      overflow: hidden;
+      vertical-align: top;
+      padding:0.5em;
+
+      & > a {
+        border-radius: 0.25em;
+        width:100%;
+        height:100%;
+        display:block;
+        box-shadow: 1px 1px 1px lighten($shadow, 50%);
+        overflow:hidden;
+        & > img {
+          max-width: 200%;
+          max-height: 100%;
+          min-width: 100%;
+          min-height: 100%;
+        }
+      }
+
+      figcaption {
+        z-index: 4;
+        color: $light;
+        margin-left:grid-width(1);
+        text-shadow: 1px 1px 1px $text;
+        font-family: 'Doppio One', sans-serif;
+      
+        &:nth-child(2) {         
+          margin-top: grid-width(-2);
+        }
+        & > p {
+          &:first-child {
+            width:grid-width(5);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1em;
+          }
+          font-size: 1.25em;
+          margin:0 0 0.25em 0;  
+        }
+      }
+    }
+
+  }  
+}

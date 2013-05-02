@@ -46,6 +46,35 @@ section#admin {
     }
   }
 }
+section#admin{
+  &.hide {
+    nav {
+      height:0;
+      margin:0;
+      & > a {
+        opacity:0;
+        @include transition (opacity 0.25s ease-out 0);
+      }
+    }
+  }
+
+  nav {
+    margin:1em auto;
+    a {
+      opacity:1;
+      display:inline-block;
+      margin: 1em 0 0 2em ;
+      width:grid-width(3);
+      @include transition (opacity 0.25s ease-out 1s);
+      @include inset_button($text);
+    }
+    a:first-child {
+      margin-left: 1em;
+    }
+  }
+}
+
+
 #pages_show {
   section#admin {
     & > header {
