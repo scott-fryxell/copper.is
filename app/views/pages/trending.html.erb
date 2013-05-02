@@ -1,14 +1,14 @@
+<% cache("top_pages", :expires_in => 1.hour) do %>
 <section id="banner">
   <header>
-    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
   </header>
   <hgroup>
     <h1>Trending pages</h1>
   </hgroup>
   <p>here are some pages that other copper fans have been tipping. </p>
 </section>
-<% cache("top_pages", :expires_in => 1.hour) do %>
 <section id="pages">
-  <%= render partial:"trending_page", collection:Page.includes(:tips).order("updated_at DESC").limit(75), as: :page %>
+  <%= render partial:"show", collection:Page.trending, as: :page %>
 </section>
 <%-end-%>

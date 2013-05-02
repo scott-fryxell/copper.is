@@ -68,7 +68,7 @@ $subtle_text: #999999;
       margin: 0 auto;
       background-color:transparent;
       &:before{
-        color:$light_text;
+        color:$light;
         content:"$";
         font-family: 'Bree Serif', serif;
         font-size:1.85em;
@@ -169,7 +169,7 @@ $subtle_text: #999999;
   }
   section.show,
   section.details {
-    min-height:20em;
+    min-height:grid-width(9);
     @include transition( min-height 0.25s, padding 0.25s);
     & > header {
       @include transition(min-height 1s);
@@ -210,7 +210,7 @@ $subtle_text: #999999;
       & > h1 {
         margin:1em 0 1em 0;
         text-align:center;
-        color:$light_text;
+        color:$light;
         font-size:1.5em;
         opacity:0.5;
         text-shadow: 3px -3px $dark;
@@ -227,7 +227,7 @@ $subtle_text: #999999;
       }
     }
     #close {
-      color:$light_text;
+      color:$light;
       text-decoration:none;
       opacity:0.2;
       cursor:pointer;

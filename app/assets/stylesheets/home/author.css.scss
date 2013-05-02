@@ -1,4 +1,5 @@
 #home_author {
+
   #stats > div {
     width:7.25em;
     padding-left:1.25em;
@@ -11,10 +12,6 @@
     }
   }
 
-  section#services > details summary {
-    outline:none;
-    text-align: right;
-  }
   #facebook_pages {
     opacity:0;
     display:none;
@@ -62,82 +59,90 @@
     }
   }
 
-  #services > details > section  {
-    margin-top:1em;
-    padding-top:2em;
-    padding-bottom:2em;
-    display:block;
-    & > div {
-      margin-left:2em;
-      vertical-align:top;
-      display:inline-block;
-      width:18em
-    }
-    & > div > h2 {
-      margin-bottom:1em
-    }
-    & > aside {
-      display:inline-block;
-    }
-    & > div > figure {
-      display:inline-block;
-      padding:.5em 0;
-      margin-right:.5em;
-    }
-    & > div > figure * {
-      display:inline-block;
-      vertical-align:middle
-    }
-    & > div > figure > form,
-    & > div > figure > figcaption {
-      opacity:0;
-      width:0;   
-    } 
+  #services {
+    margin-bottom:1em;
+    & > details {
+      & summary {
+        outline:none;
+        text-align: right;
+      }
 
-    & > div > figure > figcaption > a {
-      display:block;
-      font-size:0.5em;
-      text-decoration: underline;
-    }
-   
-    & > div > figure > form > input {
-      padding:0 .2em;
-      font-size:1em;
-    }
+      & > section  {
+        margin-top:1em;
+        padding-top:2em;
+        padding-bottom:2em;
+        display:block;
+        & > div {
+          margin-left:2em;
+          vertical-align:top;
+          display:inline-block;
+          width:18em
+        }
+        & > div > h2 {
+          margin-bottom:1em
+        }
+        & > aside {
+          display:inline-block;
+        }
+        & > div > figure {
+          display:inline-block;
+          padding:.5em 0;
+          margin-right:.5em;
+        }
+        & > div > figure * {
+          display:inline-block;
+          vertical-align:middle
+        }
+        & > div > figure > form,
+        & > div > figure > figcaption {
+          opacity:0;
+          width:0;   
+        } 
 
-    & > aside > header {
-      height:1em;
-      margin-bottom:1.5em
-    }
-    & > aside > nav {
-      margin-bottom:1em;
-    }
-    & > aside > a {
-      text-decoration: underline;
-    }
-    & > aside  > nav a {
-      margin-right:.65em
-    }
+        & > div > figure > figcaption > a {
+          display:block;
+          font-size:0.5em;
+          text-decoration: underline;
+        }
+       
+        & > div > figure > form > input {
+          padding:0 .2em;
+          font-size:1em;
+        }
 
-    & > div > figure > figcaption {
-      opacity:1;
-      @include transition (width 0.5s ease-in 0s);
-      margin-left:0.5em; 
-      min-width:7em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    & > div > figure > form {
-      opacity:1;
-      @include transition (opacity 0.3s ease-in 0.5s);
-    }
-    & > div > figure > form.hide {
-      opacity:0;
-      @include transition (opacity 0.3s ease-in 0.25s);
-    }
+        & > aside > header {
+          height:1em;
+          margin-bottom:1.5em
+        }
+        & > aside > nav {
+          margin-bottom:1em;
+        }
+        & > aside > a {
+          text-decoration: underline;
+        }
+        & > aside  > nav a {
+          margin-right:.65em
+        }
 
-  }
-
+        & > div > figure > figcaption {
+          opacity:1;
+          @include transition (width 0.5s ease-in 0s);
+          margin-left:0.5em; 
+          min-width:7em;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        & > div > figure > form {
+          opacity:1;
+          @include transition (opacity 0.3s ease-in 0.5s);
+        }
+        & > div > figure > form.hide {
+          opacity:0;
+          @include transition (opacity 0.3s ease-in 0.25s);
+        }
+      }
+    }
+  }  
 
 }

@@ -1,7 +1,7 @@
 <%-cache current_user do-%>
   <section id="banner">
     <header>
-      <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+      <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
     </header>
     <hgroup>
       <h1>what you love</h1>
@@ -38,7 +38,7 @@
 
   <%-if current_user.pages.count > 0 -%>
     <section id="pages">
-      <%= render partial:"pages/fan", collection:current_user.tipped_pages.limit(50), as: :page %>
+      <%= render partial:"pages/details", collection:current_user.tipped_pages.limit(60), as: :page %>
     </section>
   <%-else-%>
     <%= render partial:"shared/button"%>

@@ -13,6 +13,7 @@
 #= require shared/card
 #= require shared/email
 #= require shared/badge
+#= require shared/tips
 #= require shared/honeybadger
 #= require home/index
 #= require home/author
@@ -37,6 +38,7 @@ $(document).ready ->
 
   $('#admin > img.toggle').click ->
     $('#admin').toggleClass('hide');
+
 
   jQuery.ajax
     url:'/users/me.json',

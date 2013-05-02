@@ -17,7 +17,7 @@
     display:inline-block;
     width:grid-width(3);
   }
-  #banner > header > img,
+  #banner > header > a > img,
   #banner > figure > img {
     border-radius:.25em;
     border:2px solid $dark;
