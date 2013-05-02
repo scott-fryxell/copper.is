@@ -13,7 +13,7 @@ section#admin {
   max-width:100em;
   opacity:1;
   overflow:visible;
-  @include transition (all 1s ease-out 0.25s);
+  @include transition (all 0.35s ease-out 0.25s);
   &.hide {
     padding:0.5em;
     background-color:transparent;
