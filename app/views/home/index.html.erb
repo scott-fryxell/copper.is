@@ -4,7 +4,7 @@
       <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
     </header>
     <hgroup>
-      <h1>Your Profile</h1>
+      <h1>what you love</h1>
       <p><%=current_user.name%><a href="/signout">not you?</a></p>
     </hgroup>
     <%-unless current_user.created_at < 7.days.ago-%>
@@ -39,7 +39,6 @@
   <%-if current_user.pages.count > 0 -%>
     <section id="pages">
       <header>
-        <h1>The stuff you love</h1>
         <hgroup>
           <h2>Filter by</h2>
           <nav>
@@ -59,7 +58,7 @@
           </nav>
         </hgroup>
       </header>
-      <%= render partial:"pages/fan_page", collection:current_user.tipped_pages, as: :page %>
+      <%= render partial:"pages/fan_page", collection:current_user.tipped_pages.limit(50), as: :page %>
     </section>
   <%-else-%>
     <%= render partial:"shared/button"%>

@@ -24,7 +24,7 @@ describe "a fan", :slow do
       page.should have_css('#card', visible:true)
     end
 
-    it "can provide credit card information" do
+    it "can provide credit card information", :focus do
       page.execute_script('$(document).trigger("copper_button_installed")')
       within("#card") do
         page.should have_css('form', :visible => true)
@@ -53,7 +53,7 @@ describe "a fan", :slow do
         check('terms')
         click_on('Save')
         sleep 3
-        page.save_screenshot('tmp/screenshots/onboarding/03.png')
+        page.save_screenshot('tmp/screenshots/onboarding/04.png')
         page.should have_css('form', :visible => true)
         page.should have_css('figure', :visible => false)
         page.should have_css('form > h1', :visible => true)

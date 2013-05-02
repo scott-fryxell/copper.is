@@ -1,77 +1,21 @@
-<%-cache do-%>
+<% cache("homepage_pages", :expires_in => 1.hour) do %>
+
 <section id="banner">
   <header>
     <hgroup>
-      <h1>Support artists through tipping</h1>
-      <p>You find something cool anywhere online. You click a button to
-      tip the content. We find the person who made it and pay them.</p>
+      <h1>Like it? Tip it.</h1>
+      <p>Support your favorite artists &amp; easily discover new ones</p>
     </hgroup>
     <figure>
-      <figcaption>They create</figcaption>
-      <figcaption>You enjoy</figcaption>
-      <figcaption>You tip</figcaption>
-      <%= image_tag "arrows/circle.svg" %>
-      <%= image_tag "icons/letter_logo_white.svg" %>
+      <figcaption>Sign up &amp; tip any page on the web. Install the Copper buttonin your browser</figcaption>
+      <a href="/auth/facebook" title="connect with facebook"><%= image_tag "providers/facebook/connect.png"%></a>
+      <%= image_tag "arrows/right.svg"%>
+      <a class="button install">Install The Button</a>
     </figure>
   </header>
 </section>
-<section id="join">
-  <header>
-    <h1>Sign up!</h1><span class="help">Or sign in</span>
-    <p>
-      Install the Copper button. It will live
-      on your browser’s tool bar – ready and waiting for when
-      you find something tip-worthy. <br>All you have to
-      do is click it...
-    </p>
-  </header>
-  <figure>
-    <a href="/auth/facebook" title="connect with facebook">
-      <%= image_tag "providers/facebook/connect.png"%>
-    </a>
-    <%= image_tag "arrows/right.svg"%>
-    <a class="button install"><%= image_tag "icons/letter_logo_white.svg" %>Install The Button</a>
-    <%= image_tag "arrows/right_two.svg"%>
-    <a class="button">Start Tipping</a>
-    <figcaption>We'll never post to your timeline without your permission.</figcaption>
-  </figure>
-</section>
 
-<section id="samples">
-  <nav>
-    <a id="tumblr" data-distance="0" class="selected">
-      <%= image_tag "providers/tumblr/mask.png", class:'mask' %>
-      <%= image_tag "providers/tumblr/logo.png", class:'logo' %>
-    </a>
-    <a id="vimeo" data-distance="1">
-      <%= image_tag "providers/vimeo/mask.png", class:'mask' %>
-      <%= image_tag "providers/vimeo/logo.png", class:'logo' %>
-    </a>
-    <a id="soundcloud" data-distance="2">
-      <%= image_tag "providers/soundcloud/mask.png", class:'mask' %>
-      <%= image_tag "providers/soundcloud/logo.png", class:'logo' %>
-    </a>
-    <a id="github" data-distance="3">
-      <%= image_tag "providers/github/mask.png", class:'mask' %>
-      <%= image_tag "providers/github/logo.png", class:'logo' %>
-    </a>
-    <a id="youtube" data-distance="4" >
-      <%= image_tag "providers/youtube/mask.png", class:'mask' %>
-      <%= image_tag "providers/youtube/logo.png", class:'logo' %>
-    </a>
-    <a id="xkcd" data-distance="5">
-      <%= image_tag "providers/xkcd/mask.png", class:'mask' %>
-      <%= image_tag "providers/xkcd/logo.png", class:'logo' %>
-    </a>
-    <a id="more" data-distance="nope">...and more!</a>
-  </nav>
-  <figure>
-    <%= image_tag "providers/tumblr/sample.jpg", class:'selected' %>
-    <%= image_tag "providers/vimeo/sample.jpg" %>
-    <%= image_tag "providers/soundcloud/sample.jpg" %>
-    <%= image_tag "providers/github/sample.jpg" %>
-    <%= image_tag "providers/youtube/sample.jpg" %>
-    <%= image_tag "providers/xkcd/sample.jpg" %>
-  </figure>
+<section id="pages">
+  <%= render partial:"pages/show", collection:Page.safe.welcome.limit(9), as: :page %>
 </section>
 <%-end-%>

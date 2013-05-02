@@ -123,8 +123,8 @@
       opacity:1;
       @include transition (width 0.5s ease-in 0s);
       margin-left:0.5em; 
-      white-space: nowrap;
       min-width:7em;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }

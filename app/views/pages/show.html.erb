@@ -1,6 +1,6 @@
 <%= render partial:"shared/badge"%>
-<object itemscoped itemtype="#page" itemid="<%=@page.id%>">
+<object itemscoped itemtype="pages" itemid="/pages/<%=@page.id%>">
   <data itemprop="url" value="<%=@page.url%>"></data>
   <data itemprop="title" value="<%=@page.title%>"></data>
 </object>  
-<iframe id="page_url" itemprop="url" seamless allowtransparency src="<%=@page.url%>"> </iframe>
+<iframe id="page_url" itemprop="url" height="100%" seamless allowtransparency src="<%=@page.url%>"></iframe>

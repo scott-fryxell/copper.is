@@ -28,10 +28,6 @@
   <footer></footer>
 </section>
 <section id="orders">
-  <header>
-    <h1>Tip Orders</h1>
-  </header>
   <%= render partial:"order", collection:current_user.orders.order("created_at DESC"), as: :order %>
 </section>
-
 <%-end-%>

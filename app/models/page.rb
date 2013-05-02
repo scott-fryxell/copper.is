@@ -16,6 +16,11 @@ class Page < ActiveRecord::Base
     scope state, where("author_state = ?", state)
   end
 
+  scope :welcome, where(welcome:true)
+  scope :onboarding, where(onboarding:true)
+  scope :trending, where(onboarding:true)
+  scope :safe, where(nsfw:false)
+
   #  going with this query instead current_user.tips.where(page_id:page.id)
   # def fan_tips(fan)
   #   self.tips.joins(:order).where('orders.user_id=?', fan.id)
