@@ -8,12 +8,11 @@ section#admin {
   border-top: none;
   width: grid-width(24);
   padding: grid-width(1);
-
   max-height:100em;
-  max-width:100em;
   opacity:1;
   overflow:visible;
-  @include transition (all 0.35s ease-out 0.25s);
+  @include transition (width 0.25s ease-in 0s, max-height 0.35s ease-in 0.25s, margin-top 0.35s ease-in 0.25s, opacity 1s ease-in, overflow 0.35s ease-in 0);
+
   &.hide {
     padding:0.5em;
     background-color:transparent;
@@ -25,7 +24,7 @@ section#admin {
     max-height:3.5em;
     opacity:0;
     margin-top:-3.5em;
-    @include transition (max-height 0.25s ease-in 0.5s, margin-top 0.5 ease-in 0.5s);      
+    @include transition (max-height 0.25s ease-in 0.5s, margin-top 0.5s ease-in 0.5s, opacity 1s ease-in, width 0.35s ease-in 0.75s, overflow 0.35s ease-in);
     &:hover {
       opacity:0.8;
     }
@@ -48,7 +47,6 @@ section#admin {
   }
 }
 #pages_show {
-
   section#admin {
     & > header {
 
@@ -136,7 +134,6 @@ section#admin {
           margin-top: grid-width(1);
           height:grid-width(1);
           & > button {
-            margin-right: grid-width(2);            
             width: grid-width(3); 
             font-family: 'Doppio One', sans-serif;
           }
@@ -147,7 +144,7 @@ section#admin {
 
           &:nth-child(5){
             & > button {
-
+              margin-right: 0.5em;
               color:$text;
               padding:0.25em;
               border-radius:0.25em;
@@ -155,8 +152,12 @@ section#admin {
               background-color:rgba(251, 250, 248, 0.2);  
             }
           }
-          &:last-child > button {
-            @include inset_button($text);
+          &:last-child {
+            padding-left:3em;
+            & > button {
+              margin-right: grid-width(1);
+              @include inset_button($text);
+            }
           }
         }
       }
