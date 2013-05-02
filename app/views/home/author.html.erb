@@ -116,7 +116,7 @@
   </section>
 
   <section id="pages" >
-    <%= render partial:"pages/author_page", collection:current_user.authored_pages, as: :page %>
+    <%= render partial:"pages/owner", collection:current_user.authored_pages, as: :page %>
   </section>
   <nav>
     <a href="/settings">Edit your settings</a>
