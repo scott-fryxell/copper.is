@@ -4,7 +4,7 @@
     border:0.25em solid transparent;
     border-radius:0.5em;
     padding:0;
-    background-color: $offset_color;
+    background-color: $offset;
     min-height: grid-width(24);
 
     & > details {
@@ -78,7 +78,7 @@
         border-radius:0.25em;
         position:relative;
         height:auto;
-        // background-color:$offset_color;
+        // background-color:$offset;
         & > summary {
           width:grid-width(10);
           max-height:grid-width(8);
@@ -154,6 +154,5 @@
         }
       }
     }
-
   }  
 }

@@ -1,7 +1,7 @@
 #badge {
   width:55em;
   padding:0;
-  @include full_width($offset_color);
+  @include full_width($offset);
   margin: 4em auto 0 auto;
   background-color:transparent;
 
@@ -11,7 +11,7 @@
     vertical-align:top;
     position:relative;
     display:inline-block;
-    background-color:$offset_color;
+    background-color:$offset;
   }
   & > div:first-child {
     width:27em;

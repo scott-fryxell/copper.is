@@ -1,29 +1,55 @@
 #pages_show {
-  * { box-sizing: border-box; }
+  #user_nav {
+    display:none;
+  }
+  #banner {
+    padding:grid-width(1);
+    margin-top: 0;
+    background-color: $dark;
+    @include full_width($dark);
+    hgroup {
+      margin-right:grid-width(8);
+      display:inline-block;
+      h1 {
+        margin:0;
+        font-size:2.5em;
+        color:$light;
+        font-family: 'Doppio One', sans-serif;
+      }
+      p {
+        margin:0;
+        font-size:1.25em;
+        color:$light;
+        font-family: 'Cantarell', sans-serif;
+      }
+    }
 
-  #copper_button {
-    /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
-    display:block;
-    margin: -2.85em auto .5em auto;
-    width:1.5em;
-    height:1.5em;
-
-    @include inset_button($copper);
-  
-    & > img {
-      opacity:0.8;
+    figure {
       position:absolute;
-      top:0;
-      left:0;
-      width:1.5em;
-      height:1.5em;
-      padding:0.25em;
+      top:2em;
+      right:-10em;
+      display:inline-block;
+      img {
+        position:absolute;
+        top:-2em;
+        right:-1em;
+        @include transform(rotate(104deg));
+      }
+      figcaption{
+        font-family: 'Nothing You Could Do', cursive;
+        font-size:1.75em;
+        color:$light;
+        p {
+          text-align:center;
+          margin:0;
+        }
+      }
     }
   }
-  
-  & > iframe#page_url {
+
+  & > iframe {
     width:100%;
-    min-height: 768px;
+    height:100%;
   }
 
 }

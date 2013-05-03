@@ -1,9 +1,10 @@
 class HomeController < ApplicationController
   filter_access_to :author, :require => :read
   filter_access_to :settings, :require => :read
+  filter_access_to :admin, :require => :manage
   respond_to :html
 
-  def index    
+  def index 
     unless current_user
       redirect_to :action => 'welcome', :status => 302
     end
@@ -83,7 +84,9 @@ class HomeController < ApplicationController
   end
 
   def tip_some_pages
+  end
 
+  def admin
   end
 
 end

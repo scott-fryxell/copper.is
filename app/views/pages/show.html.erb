@@ -1,4 +1,4 @@
 <% permitted_to? :manage, :pages do %>
   <%= render partial:"admin", object: @page, as: :page %>
 <% end %>
-<%= render partial:"details", object: @page, as: :page %>
+<%= render partial:"show", object: @page, as: :page %>

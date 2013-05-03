@@ -13,7 +13,7 @@
     }
     & > div {
       padding:0.5em 0 0 1em;
-      background-color:$offset_color;
+      background-color:$offset;
       margin-right:0.5em;
       width:grid-width(4);
     }
@@ -48,12 +48,12 @@
     }
     & > div:nth-child(2) {
       padding-left:0;
-      @include right_width($offset_color)
+      @include right_width($offset)
     }
     & > footer {
       padding-top:1em;
-      background-color: $offset_color;
-      @include left_width($offset_color)
+      background-color: $offset;
+      @include left_width($offset)
     }
     & > footer > a {
       display:inline-block;

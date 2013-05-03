@@ -30,7 +30,7 @@ Copper::Application.routes.draw do
   delete 'cards', to:'cards#delete', :as => :delete_card
 
   get 'tip_some_pages',  to:'home#tip_some_pages'
-  get "admin",           to:'admin#index'
+  get "admin",           to:'home#admin'
   get 'badge',           to:'home#badge' 
   get 'author',          to:'home#author' 
   get 'settings',        to:'home#settings'

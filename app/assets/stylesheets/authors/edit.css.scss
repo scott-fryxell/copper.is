@@ -109,7 +109,7 @@
       height: 0;
       border-left: 2em solid transparent;
       border-right: 2em solid transparent;
-      border-top: 1.5em solid $offset_color;
+      border-top: 1.5em solid $offset;
     }
   }
 
@@ -131,13 +131,13 @@
       height: 0;
       border-left: 2em solid transparent;
       border-right: 2em solid transparent;
-      border-bottom: 1.5em solid $offset_color;
+      border-bottom: 1.5em solid $offset;
     }
     &:before{
       content:"";
       height:4em;
       width:100%;
-      background-color:$offset_color;
+      background-color:$offset;
       position:absolute;
       bottom:0;
       left:0;

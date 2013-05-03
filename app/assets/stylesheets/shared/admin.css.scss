@@ -1,7 +1,7 @@
 section#admin {
-  box-shadow: inset 0 0.25em 0.25em 0.25em $dark;
+  box-shadow: inset 0 0.25em 0.25em 0.25em $header;
   @include full_width($dark);
-  background-color:$offset_color;
+  background-color:$offset;
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
   border: 0.25em solid $dark;
@@ -17,7 +17,7 @@ section#admin {
     padding:0.5em;
     background-color:transparent;
     border-radius:0.5em;
-    border-top: 0.25em solid $dark;
+    border: 0.25em solid $header;
     box-shadow:none;
     overflow:hidden;
     width: 3.5em;
@@ -34,7 +34,7 @@ section#admin {
   }
   & > img {
     display:block;
-    margin:-1em auto 0 auto;
+    margin:-4.5em auto 0 auto;
     opacity:0.5;
     width:grid-width(1);
     height:grid-width(1);
@@ -73,12 +73,9 @@ section#admin{
     }
   }
 }
-
-
 #pages_show {
   section#admin {
     & > header {
-
       margin: grid-width(1) auto;
       & > hgroup {
         display: inline-block;
@@ -112,7 +109,7 @@ section#admin{
       & > figure {
         width: grid-width(8);
         height: grid-width(8);
-        background-color:$offset_color;
+        background-color:$offset;
         border-radius:0.5em;
         margin-right:grid-width(1);
         overflow:hidden;
@@ -142,7 +139,7 @@ section#admin{
           padding:0.25em;
           border-radius:0.25em;
           border:2px solid $input_border;
-          background-color:rgba(251, 250, 248, 0.2);  
+          background-color:$input_background;  
           vertical-align: middle;
           & > summary {
             p {
@@ -178,7 +175,7 @@ section#admin{
               padding:0.25em;
               border-radius:0.25em;
               border:2px solid $input_border;
-              background-color:rgba(251, 250, 248, 0.2);  
+              background-color:$input_background;  
             }
           }
           &:last-child {
@@ -203,9 +200,44 @@ section#admin{
   }
 }
 #admin_index {
-  section#admin {
+  #admin {
     width: grid-width(28);
     margin-bottom: grid-width(1);
   }
+  #statistics {
+    figure {
+      margin-right:4em;
+      vertical-align:top;
+      display:inline-block
+    }
+    figure:nth-child(3){
+      margin-right:0;
+    }
+    figure:nth-child(2) > img{
+      opacity:.9;
+    }
+    figure > img {
+      opacity:.8;
+      vertical-align:top;
+      display:block;
+      margin:0 auto;
+      width: 10em;
+      height:10em;
+    }
+    figure > figcaption {
+      text-align:center;
+      font-size:2em;
+      margin-top:1em;
+      &:nth-child(2){
+        font-size:1.5em;
+      }
+      &:nth-child(3){
+        text-transform: capitalize;
+        color:$dark;
+        opacity:.5;
+        text-shadow: 3px 3px $offset;
+      }
+    }
+  } 
 }
 

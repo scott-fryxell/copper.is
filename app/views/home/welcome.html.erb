@@ -6,16 +6,13 @@
       <h1>Like it? Tip it.</h1>
       <p>Support your favorite artists &amp; easily discover new ones</p>
     </hgroup>
-    <figure>
-      <figcaption>Sign up &amp; tip any page on the web. Install the Copper buttonin your browser</figcaption>
-      <a href="/auth/facebook" title="connect with facebook"><%= image_tag "providers/facebook/connect.png"%></a>
-      <%= image_tag "arrows/right.svg"%>
-      <a class="button install">Install The Button</a>
-    </figure>
+    <hgroup>
+      <a class="button" href="/getting_started">Sign Up</a>
+    </hgroup>
   </header>
 </section>
 
 <section id="pages">
-  <%= render partial:"pages/show", collection:Page.safe.welcome.limit(9), as: :page %>
+  <%= render partial:"pages/index", collection:Page.safe.welcome.limit(9), as: :page %>
 </section>
 <%-end-%>

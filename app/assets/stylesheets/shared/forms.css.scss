@@ -1,15 +1,15 @@
 body {
   input, textarea, select {
+    @include user-select(text);
     margin: 0 1em 0 0;
     font-family: 'Cantarell', sans-serif;
     padding: 0.25em;
     font-size: 1em;
     line-height: 1.2em;
-    background: #fff;
-    color:$dark;
+    color:$header;
     border-radius:0.25em;
     border:2px solid $input_border;
-    background-color:rgba(251, 250, 248, 0.2);  
+    background-color:$input_background;  
   }
 
   input[type=submit] {
@@ -44,7 +44,7 @@ body {
     display: inline-block;
     margin: 0 .25em 0 0;
     border-radius: 0.25em;
-    border-color:rgba(0,0,0,0.4);
+    border-color:$input_border;
   }
   input:disabled {
     opacity:.6;
@@ -65,7 +65,7 @@ section.setting,
   padding-top:2em;
   padding-bottom:2em;
   border-radius:.10em;
-  background-color: $offset_color;
+  background-color: $offset;
 
   & > header {
     vertical-align:top;

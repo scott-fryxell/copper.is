@@ -22,9 +22,9 @@
       }
 
       & > dl {
-        border-top: 0.5em solid $offset_color;
+        border-top: 0.5em solid $offset;
         border-radius:2em;
-        border-bottom: 0.5em solid $offset_color;
+        border-bottom: 0.5em solid $offset;
         width:grid-width(14);
         margin:0 auto;
         padding: grid-width(1);
@@ -33,7 +33,7 @@
           &:first-child {
             margin-top:0;
           }
-          text-shadow: 3px 3px $offset_color;
+          text-shadow: 3px 3px $offset;
           font-weight:bold;
           margin: grid-width(1) 0;
         }

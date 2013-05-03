@@ -4,7 +4,7 @@
     width:7.25em;
     padding-left:1.25em;
     &:nth-child(7){
-      @include left_width($offset_color)
+      @include left_width($offset)
     }
 
     p[data-cents]:before {
@@ -18,7 +18,7 @@
     margin-top:1em;
     padding:1em;
     border-radius:0.5em;
-    background-color:$offset_color;
+    background-color:$offset;
     &.show{
       opacity:1;
       transition-property: opacity;

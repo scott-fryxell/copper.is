@@ -45,8 +45,8 @@
   }
 
   figure#sign_up_install_button {
-    background-color: $offset_color;
-    @include full_width($offset_color);
+    background-color: $offset;
+    @include full_width($offset);
     & > figcaption {}
     & > img {
       display:block;

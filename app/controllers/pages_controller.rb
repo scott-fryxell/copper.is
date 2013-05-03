@@ -3,11 +3,11 @@ class PagesController < ApplicationController
 
   def index
     if params[:state]
-      @pages = Page.send(params[:state]).limit(25)  
+      @pages = Page.send(params[:state]).limit(60)  
     elsif params[:author_id]
       @pages = Page.where(author_id:params[:author_id])
     else
-      @pages = Page.recent.limit(50)
+      @pages = Page.recent.limit(60)
     end
     render :action => 'index', :layout => false if request.headers['retrieve_as_data']
   end
@@ -15,9 +15,6 @@ class PagesController < ApplicationController
   def show
     @page = Page.where(id:params[:id]).first
     render :action => 'show', :layout => false if request.headers['retrieve_as_data']
-  end
-
-  def new
   end
 
   def update

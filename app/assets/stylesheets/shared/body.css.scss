@@ -3,8 +3,9 @@ html {
   overflow-x:hidden;
   background-color: $light;
   background-image: image-url('shared/texture_light.png');
-  @include user-select(text);
+  @include user-select(none);
   @include text;
+  * {@include box-sizing(border-box);}
 }
 body {
   overflow-x:hidden;
@@ -20,7 +21,6 @@ body {
     opacity:0.11;
     @include background-image(radial-gradient($light 22%, $copper 100%));
   }
-  * {@include box-sizing(border-box);}
   h1, h2, h3, h4, h5, h6 {
     @include header_text;
     text-transform:capitalize;
@@ -91,7 +91,7 @@ body {
 }
 body > header {
   @include full_width($header);
-  height:3.4em;
+  height:grid-width(1.5);
   hgroup {
     display:none;
     &.show{
@@ -106,8 +106,7 @@ body > header {
     vertical-align:top;
     text-decoration:none;
     color:$light;
-    padding:.75em 1em;
-
+    padding:0.75em 1em;
     & > img {
       width:5em;
     }
@@ -120,8 +119,8 @@ body > header {
   & > nav > a {
     font-family: 'Doppio One', sans-serif;
     color:$light;
-    opacity:.5;
-    font-size:.77em;
+    opacity:0.5;
+    font-size:0.75em;
     text-decoration:none;
     text-transform:uppercase;
     margin-right:2em;
@@ -139,8 +138,7 @@ body > article {
 }
 body > footer {
   padding:1em 1em 1em 2em;
-  @include full_width($dark);
-
+  @include full_width($header);
   &.bottom {
     position:fixed;
     bottom:0;
@@ -148,19 +146,20 @@ body > footer {
   }
 
   & > h3 {
-    font-size:.85em;
+    font-size:0.85em;
     display:inline-block;
     font-family: 'Patua One', cursive;
-    color:$light;
-    opacity:.5;
+    color:$offset;
+    // opacity:0.5;
   }
   & > h4 {
     font-family: 'Cantarell', sans-serif;
     display:inline-block;
-    font-size:.75em;
-    color:$light;
-    opacity:.5;
+    font-size:0.75em;
+    color:$offset;
+
     &:before {
+      color:$light;
       display:inline-block;
       content: '|';
       margin-right:1em;
@@ -171,17 +170,18 @@ body > footer {
   & > nav {
     color:#A7A39B;
     display:inline-block;
-  }
-  & > nav > a {
-    font-size:.75em;
-    display:inline-block;
-    color:#a7a39b;
-    &:before {
+    & > a {
+      font-size:0.75em;
       display:inline-block;
-      content: '|';
-      margin-right:1em;
-      margin-left:1em;
-      text-decoration:none !important;
+      color:$light;
+      &:before {
+        color:$light;
+        display:inline-block;
+        content: '|';
+        margin-right:1em;
+        margin-left:1em;
+        text-decoration:none !important;
+      }
     }
   }
 }

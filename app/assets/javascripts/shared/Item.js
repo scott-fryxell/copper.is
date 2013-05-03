@@ -139,7 +139,7 @@ $("[itemscope] form").submit(function(event){
 
   if(!action){
     // determine the action from the itemscope
-    action = "/" + $(item_element).attr('itemtype') + "/" + $(item_element).attr('itemId');
+    action = $(item_element).attr('itemId');
   }
   var method = $(this).attr('method').toLowerCase();
 

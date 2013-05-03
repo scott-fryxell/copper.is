@@ -1,8 +1,11 @@
 <%-cache page do-%>
-<figure>
-  <a href="/pages/<%=page.id%>">
-    <img itemprop="tumbnail_url" src="<%=page.thumbnail_url%>">
-  </a>
-  <figcaption itemprop='title'><%=page.title%></figcaption>
+<figure itemscope itemtype='pages' itemid='/pages/<%=page.id%>'>
+  <a itemprop="url" target="_self" href="/pages/<%=page.id%>"><img itemprop="thumbnail_url" src="<%=page.thumbnail%>" /></a>
+  <%-if page.author -%>
+  <figcaption>
+    <p itemprop="title"><%=page.title%></p>
+    <p><%=page.author.username%></p>
+  </figcaption>
+  <%-end-%>
 </figure>
 <%-end-%>

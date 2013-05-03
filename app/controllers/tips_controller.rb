@@ -49,7 +49,7 @@ class TipsController < ApplicationController
   end
 
   def destroy
-    @tip = Tip.find(params[:tip_id])
+    @tip = Tip.find(params[:id])
     if(@tip.order.user == current_user and @tip.order.current?)
       @tip.destroy
     end
