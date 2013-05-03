@@ -109,6 +109,7 @@
     }
 
     & > figure { 
+
       display:inline-block;
       height:grid-width(8);
       width:grid-width(8);
@@ -132,7 +133,8 @@
       }
 
       figcaption {
-        z-index: 4;
+        position:relative;
+        z-index: 2;
         color: $light;
         margin-left:grid-width(1);
         text-shadow: 1px 1px 1px $text;
@@ -153,6 +155,23 @@
           margin:0 0 0.25em 0;  
         }
       }
+    }
+
+    & > figure > a:hover {
+      position:relative;
+      
+      z-index: 1;
+      & > img {
+        @include transition (opacity 0.35s ease-out 0.15s);
+        opacity:0.25;
+        position:relative;
+        z-index: -1;
+      }
+
+      width:100%;
+      height:100%;
+      background-color:$header;
+      background-clip:padding-box;
     }
   }  
 }
