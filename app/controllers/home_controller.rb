@@ -86,6 +86,10 @@ class HomeController < ApplicationController
   def tip_some_pages
   end
 
+  def trending
+  end
+
+
   def admin
   end
 

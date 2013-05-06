@@ -9,6 +9,6 @@
   <p>here are some pages that other copper fans have been tipping. </p>
 </section>
 <section id="pages">
-  <%= render partial:"show", collection:Page.trending, as: :page %>
+  <%= render partial:"show", collection:Page.safe.trending, as: :page %>
 </section>
 <%-end-%>

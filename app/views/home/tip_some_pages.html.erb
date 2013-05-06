@@ -1,3 +1,4 @@
+<% cache("onboarding_pages", :expires_in => 1.hour) do %>
 <section id="banner">
   <header>
     <hgroup>
@@ -16,5 +17,6 @@
 </section>
 
 <section id="pages">
-  <%= render partial:"pages/index", collection:Page.includes(:tips).order("updated_at DESC").limit(75), as: :page %>
+  <%= render partial:"pages/index", collection:Page.safe.onboarding.limit(18), as: :page %>
 </section>
+<%-end-%>

@@ -1,4 +1,4 @@
-#home_welcome {
+#home_welcome, #home_trending {
   #banner {
     width:grid-width(24);
     margin: grid-width(1) auto;
@@ -70,5 +70,21 @@
         }
       }
     }
+  }
+}
+
+#home_trending {
+  #banner  > header {
+    hgroup:first-child {
+      width:grid-width(13);
+      margin-right: grid-width(1);
+      p {
+        width:13.5em;
+      }
+    }
+    hgroup:last-child {
+      width:grid-width(7);
+    }
+
   }
 }
