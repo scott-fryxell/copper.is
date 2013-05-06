@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
     if params[:state]
       @orders = Order.send(params[:state]).limit(25)  
     elsif params[:user_id]
-      @orders = Order.where(user_id:params[:user_id])
+      @orders = Order.where(user_id:params[:user_id]).order("created_at DESC")
     end
     render :action => 'index', :layout => false if request.headers['retrieve_as_data']
   end
