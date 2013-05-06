@@ -6,6 +6,7 @@ $offset:rgba(182, 195, 181, 0.2);
 $dark:rgba(41, 11, 5, 1);
 $light:rgba(251, 250, 248, 1);
 $header:rgba(82,52,45,1);
+$header_opaque:rgba(82,52,45,0.1);
 $title:rgba(102,102,102,1);
 $text:rgba(102,102,102,0.8);
 $input_border:rgba(42, 41, 41, 0.3);
@@ -98,6 +99,7 @@ $shadow:rgba(0, 0, 0, 0.5);
   // line-height:1.25em;
 }
 @mixin header_text {
+  letter-spacing: 1px;
   color:$title;
   font-family: 'Bree Serif', serif;
   font-weight:normal;
@@ -130,14 +132,14 @@ $shadow:rgba(0, 0, 0, 0.5);
   text-align:center;
   &:after {
     content:"";
-    width:.75em;
-    height:.75em;
-    margin-left:.35em;
+    width:0.75em;
+    height:0.75em;
+    margin-left:0.35em;
     display:inline-block;
-    opacity:.5;
+    opacity:0.5;
     @include transform(rotate(-90deg));
     background: image-url('shared/triangles/isosceles.svg') no-repeat 0% 0%;
-    background-size: .75em;
+    background-size:0.75em;
   }
 }
 @mixin settings_pointer_down {

@@ -1,4 +1,4 @@
-$(document).on "load.home_index load.home_settings", ->
+$(document).on "load.home_getting_started load.home_settings", ->
   # set appropriate extension based on browswer type
   if $.browser.chrome
     $("a.install").click ->

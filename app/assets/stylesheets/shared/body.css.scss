@@ -12,7 +12,6 @@ body {
   &:after {
     content:"";
     position:fixed;
-
     z-index:-1;
     top:0;
     bottom:0;
@@ -90,7 +89,22 @@ body {
   }
 }
 body > header {
+  position:relative;
+  // background-color:$header;
   @include full_width($header);
+  &:before {
+    content:"";
+    position:absolute;
+    // z-index:1;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    opacity:0.9;
+    @include background-image(linear-gradient($header_opaque 50%, $header 100%), radial-gradient($dark 25%, $header_opaque 100%));
+  }
+  box-shadow:0px 1px $shadow;
+
   height:grid-width(1.5);
   hgroup {
     display:none;
@@ -119,7 +133,7 @@ body > header {
   & > nav > a {
     font-family: 'Doppio One', sans-serif;
     color:$light;
-    opacity:0.5;
+    opacity:0.75;
     font-size:0.75em;
     text-decoration:none;
     text-transform:uppercase;
@@ -139,6 +153,18 @@ body > article {
 body > footer {
   padding:1em 1em 1em 2em;
   @include full_width($header);
+  &:before {
+    content:"";
+    position:absolute;
+    // z-index:1;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    opacity:0.9;
+    @include background-image(linear-gradient($header_opaque 50%, $header 100%), radial-gradient($dark 25%, $header_opaque 100%));
+  }
+
   &.bottom {
     position:fixed;
     bottom:0;
@@ -149,17 +175,19 @@ body > footer {
     font-size:0.85em;
     display:inline-block;
     font-family: 'Patua One', cursive;
-    color:$offset;
-    // opacity:0.5;
+    color:$light;
+    opacity:0.5;
   }
   & > h4 {
     font-family: 'Cantarell', sans-serif;
     display:inline-block;
     font-size:0.75em;
-    color:$offset;
+    color:$light;
+    opacity:0.5;
 
     &:before {
       color:$light;
+      opacity:0.5;
       display:inline-block;
       content: '|';
       margin-right:1em;
@@ -171,11 +199,14 @@ body > footer {
     color:#A7A39B;
     display:inline-block;
     & > a {
+      letter-spacing: 1px;
+      font-family: 'Doppio One', sans-serif;
       font-size:0.75em;
       display:inline-block;
       color:$light;
+      opacity:0.75;
       &:before {
-        color:$light;
+        color:$offset;
         display:inline-block;
         content: '|';
         margin-right:1em;
@@ -189,7 +220,7 @@ body > nav {
   padding:5em;
   & > a,
   & > button {
-    font-size:.85em;
+    font-size:0.85em;
     display:block;
     margin: 0 auto 0 auto;
     width: 13em;

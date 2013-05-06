@@ -132,46 +132,37 @@
         }
       }
 
-      figcaption {
+      & > figcaption {
+        height:4em;
         position:relative;
-        z-index: 2;
         color: $light;
-        margin-left:grid-width(1);
         text-shadow: 1px 1px 1px $text;
-        font-family: 'Doppio One', sans-serif;
-      
-        &:nth-child(2) {         
-          margin-top: grid-width(-2);
-        }
+        margin-top: -4em;
+        border-bottom-left-radius:0.25em;
+        border-bottom-right-radius:0.25em;
+        padding:0.75em 1em;
         & > p {
+          font-family: 'Cantarell', sans-serif; 
+          font-size: 1em;
+          margin:0 0 0.25em 0;  
+          text-align:right;
           &:first-child {
-            width:grid-width(5);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             line-height: 1em;
           }
-          font-size: 1.25em;
-          margin:0 0 0.25em 0;  
         }
       }
     }
 
-    & > figure > a:hover {
-      position:relative;
-      
-      z-index: 1;
-      & > img {
-        @include transition (opacity 0.35s ease-out 0.15s);
-        opacity:0.25;
-        position:relative;
-        z-index: -1;
+    & > figure:hover {
+      & > figcaption {
+        $page_offset:rgba(82,52,45,0.77);        
+        background-color:$page_offset;
+        @include transition (background-color 0.35s ease-out 0.15s);
       }
 
-      width:100%;
-      height:100%;
-      background-color:$header;
-      background-clip:padding-box;
     }
   }  
 }

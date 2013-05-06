@@ -1,4 +1,4 @@
-$(document).on "items.home_settings items.home_index", ->
+$(document).on "items.home_settings items.home_getting_started", ->
   user = document.getItems()['users'][0]
   $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'selected'
 
