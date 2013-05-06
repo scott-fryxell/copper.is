@@ -15,7 +15,7 @@
     <h1>Sign up</h1>
     <a href="/auth/facebook">Login with Facebook</a>
     <p>Sign up by connecting yourFacebook account. </p>
-    <p>*Sign up using Google or Twitter coming soon.</p>
+    <p class="fine_print">Sign up using Google or Twitter coming soon.</p>
   </div>
 </section>
 
@@ -24,15 +24,25 @@
   <div>
     <h1>Install the button</h1>
     <a class="button install">Install the button</a>
-    <p>
+    <p class="chrome">
+      The Copper Button lives on your browser’s 
+      toolbar. It enables you to support the content 
+      you love online with a single click.</p>
+    <p class="safari">
       Clicking  “Get the Button” will download a file 
       called copper.safariextz. It will appear in your 
       Downloads folder. Open it and choose to install
       the extension. 
     </p>
+    <p class="mozilla">
+      Click “Get the Button.” Confirm you want to add 
+      it by clicking “Allow.” Firefox will walk you 
+      through the last two steps.</p>
   </div>
   <figure>
     <%= image_tag "getting_started/chrome/magnification.png", class:"chrome" %>
+    <%= image_tag "getting_started/safari/magnification.png", class:"safari" %>
+    <%= image_tag "getting_started/firefox/magnification.png", class:"firefox" %>
   </figure>
 </section>
 
@@ -44,7 +54,7 @@
       the top Left corner of your browser. Add your 
       credit card information and get started.</p>
     <p>All the cool kids are tipping with real money.</p>
-    <p>*Here’s the fine print: If you tip someone a buck,
+    <p class="fine_print">Here’s the fine print: If you tip someone a buck,
       they get paid a buck. We charge you 10% for the 
       service.</p>
   </div>

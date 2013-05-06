@@ -40,26 +40,5 @@
     <section id="pages">
       <%= render partial:"pages/details", collection:current_user.tipped_pages.limit(60), as: :page %>
     </section>
-  <%-else-%>
-    <%= render partial:"shared/button"%>
-    <section id="congrats">
-      <header>
-        <h3>Congrats!</h3>
-        <h1>Your button is installed!</h1>
-      </header>
-    </section>
-    <section id="card">
-      <header>
-        <h3>All the cool kids are tipping with real money</h3>
-        <p>
-          Here's the fine print: If you tip someone a buck, 
-          they get paid a buck. We charge you 10% for the service.
-        </p>
-      </header>
-      <%= render partial:'shared/card' %>
-      <figure>
-        <%=image_tag "noun_project/3879.svg"%>
-      </figure>
-    </section>
   <%-end-%>
 <%-end-%>

@@ -32,10 +32,6 @@ $(document).on 'safari_button_downloaded', ->
 
 $(document).on 'copper_button_installed', ->
   # must be bound early for firefox onboarding to work.
-  $('#extension').addClass 'installed'
+  # $('#extension').addClass 'installed'
   # TODO: refactor all this bullshit into class animations
-  $('#home_index #button').delay(0).fadeOut 800
-  $('#congrats').delay(800).fadeIn 800
-  $('#facebook').delay(800).fadeIn 800
-  $('#card').delay(800).fadeIn 800, ->
     $('#card > form input').first().focus()
