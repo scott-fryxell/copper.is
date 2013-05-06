@@ -22,11 +22,6 @@ class Page < ActiveRecord::Base
   scope :safe, where(nsfw:false)
   scope :recent, order("Date(updated_at) DESC")
 
-  #  going with this query instead current_user.tips.where(page_id:page.id)
-  # def fan_tips(fan)
-  #   self.tips.joins(:order).where('orders.user_id=?', fan.id)
-  # end
-
   def self.adoption_rate
     (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round
   end
@@ -140,6 +135,12 @@ class Page < ActiveRecord::Base
       Resque.enqueue Page, page.id, :clean_up_dead_page!
     end
 
+    after_transition :adopt => :adopt do |page,transition|
+      # respider the page for images 
+      Resque.enqueue Page, page.id, :learn
+    end
+
+
     state :orphaned do
       
       def discover_author! 
@@ -155,7 +156,7 @@ class Page < ActiveRecord::Base
     end
 
     state :fostered do
-      
+     
       def find_author_from_page_links!
         begin
           logger.info "page_links for: id=#{id}, #{url[0...100]}"
@@ -227,20 +228,23 @@ class Page < ActiveRecord::Base
           save!
         end  
       end
+
     end
 
     state :manual do
 
       def notify_admin_to_find_page_author!
-        # update a list for admin's to look at of pages that need authors
+        # TODO: update a list for admin's to look at of pages that need authors
       end
+
     end
 
     state :dead do
+
       def clean_up_dead_page!
-        # refund unpaid tips. 
-        # remove page from the app
+        #TODO: refund unpaid tips. 
       end
+
     end
   end
 
