@@ -1,5 +1,5 @@
-$gw-column:2em;
-$gw-gutter:0.5em;
+$gw-column:2rem;
+$gw-gutter:0.5rem;
 $gutter:$gw-gutter;
 $offset_color:rgba(182, 195, 181, 0.2);
 $offset:rgba(182, 195, 181, 0.2);
@@ -70,18 +70,18 @@ $shadow:rgba(0, 0, 0, 0.5);
   font-family: 'Doppio One', sans-serif;
   text-align:center;
   text-decoration:none;
-  padding:.25em ;
+  padding:0.25em ;
   background-color:$copper;
   @include background-image(linear-gradient($copper 40%, shade($copper, 25%) 100%, transparent 50%));
   color:$light !important;
-  border-radius:.25em;
+  border-radius:0.25em;
   border:2px solid darken($copper, 10%);
   border-bottom:2px inset darken($copper, 20%);
   box-shadow: 1px 1px 1px 0px lighten($copper, 10%) inset;
   @include transition (box-shadow 0.5s ease-out 0.25s);
   position:relative;
   &:hover {
-    box-shadow: 0 0 .25em 0  $copper;
+    box-shadow: 0 0 0.25em 0  $copper;
     @include transition (box-shadow 0.25s ease-in);
   }
 }
@@ -96,7 +96,7 @@ $shadow:rgba(0, 0, 0, 0.5);
   font-family: 'Cantarell', sans-serif;
   font-weight:normal;
   color:$text;
-  // line-height:1.25em;
+
 }
 @mixin header_text {
   letter-spacing: 1px;
