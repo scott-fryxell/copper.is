@@ -40,7 +40,7 @@ class Items
         items[item_id] = item
 
   apply_templates: (element) =>
-    console.debug "apply templates to #{element}"
+    # console.debug "apply templates to #{element}"
 
 $('body').on 'item.get', "[itemscope]", ->
   console.debug("get updated info about me", @)

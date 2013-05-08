@@ -33,13 +33,12 @@ $(document).ready ->
     event.preventDefault();
     history.pushState({}, "", @.href)
   
-  if $(window).height() > $('body').height()
-    $('body > footer').addClass('bottom')
+  # if $(window).height() > $('body').height()
+    # $('body > footer').addClass('bottom')
 
   $('#admin > img.toggle').click ->
     console.debug('clicked')
-    $('#admin').toggleClass('hide');
-
+    $('#admin').toggleClass('hide')
 
   jQuery.ajax
     url:'/users/me.json',

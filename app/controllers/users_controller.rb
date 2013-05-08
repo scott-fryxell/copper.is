@@ -14,6 +14,13 @@ class UsersController < ApplicationController
   end
 
   def update
+
+    if 'me' == params[:id]
+      @user = current_user
+    else
+      @user = User.where(id:params[:id])
+    end
+
     @user.update_attributes(params[:user])
     @user.tip_preference_in_cents = params[:tip_preference_in_cents] if params[:tip_preference_in_cents]
     @user.email = params[:email] if params[:email]

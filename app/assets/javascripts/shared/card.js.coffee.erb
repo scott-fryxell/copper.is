@@ -1,6 +1,13 @@
 $(document).on "items.home_settings items.home_getting_started", ->
-  user = document.getItems()['users'][0]
-  $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'selected'
+  $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'true'
+  # console.debug("#month > option[value=#{new String(new Date().getMonth() + 1)}]");
+
+  if document.getItems()['users']
+    user = document.getItems()['users'][0]
+  else
+    user = {}
+    # $('#card input').attr('disabled', 'disabled')
+    # $('#card select').attr('disabled', 'disabled')
 
   $('input[itemprop=accept_terms]').on 'item.changed', ->
     $(@).attr('value', 'true');
@@ -61,7 +68,7 @@ $(document).on "items.home_settings items.home_getting_started", ->
             success: ->
               $("#card > form input[type=submit]").removeClass('working')
               $("#card").addClass 'approved'
-              $("#card").trigger('credit_card_approved')
+              $("#card").trigger 'credit_card_approved'
             error: (data, textStatus, jqXHR) ->
               $("#card > form input[type=submit]").removeClass('working')
               $("#card > form > h1").text data.responseText

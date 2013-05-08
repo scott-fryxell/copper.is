@@ -28,10 +28,10 @@ $(document).on "load.home_getting_started load.home_settings", ->
     $("a.install").hide();
 
 $(document).on 'safari_button_downloaded', -> 
-  $('#extension').addClass 'downloaded'
+  # $('#extension').addClass 'downloaded'
 
 $(document).on 'copper_button_installed', ->
-  # must be bound early for firefox onboarding to work.
-  # $('#extension').addClass 'installed'
-  # TODO: refactor all this bullshit into class animations
-    $('#card > form input').first().focus()
+  console.debug('button installed')
+  # $('#card input').attr('disabled', 'false')
+  # $('#card select').attr('disabled', 'false')
+  $('#card > form input').first().focus()

@@ -5,3 +5,6 @@ $(document).on "load.home_getting_started", ->
     $("section#step_two").addClass('firefox')
   else
     $("section#step_two").addClass('chrome')
+
+  $("#card").on 'credit_card_approved', ->
+    window.location = "/tip_some_pages"
