@@ -18,9 +18,9 @@ class Page < ActiveRecord::Base
 
   scope :welcome, where(welcome:true)
   scope :onboarding, where(onboarding:true)
-  scope :trending, where(onboarding:true)
+  scope :trending, where(trending:true)
   scope :safe, where(nsfw:false)
-  scope :recent, order("Date(updated_at) DESC")
+  scope :recent, order("updated_at DESC")
 
   def self.adoption_rate
     (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round

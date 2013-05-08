@@ -14,5 +14,5 @@
 </section>
 
 <section id="pages">
-  <%= render partial:"pages/index", collection:Page.includes(:tips).order("updated_at DESC").limit(75), as: :page %>
+  <%= render partial:"pages/show", collection:Page.safe.trending, as: :page %>
 </section>

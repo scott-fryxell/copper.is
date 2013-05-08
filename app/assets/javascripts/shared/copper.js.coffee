@@ -28,4 +28,8 @@ $(document).ready ->
   $(document).trigger "load.#{$('body').attr('id')}"
   $(document).trigger(window.location.hash)
   $('*[data-cents]').each ->
-    $(@).text( document.copper.cents_to_dollars( $(@).attr('data-cents')) or 0)
+
+    if $(@).attr('data-cents')
+      $(@).text( document.copper.cents_to_dollars( $(@).attr('data-cents')) or 0)
+    else
+      $(@).text(0)

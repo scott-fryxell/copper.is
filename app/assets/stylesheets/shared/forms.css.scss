@@ -14,7 +14,10 @@ body {
 
   input[type=submit] {
     display:inline-block;
-    @include copper_button;
+    vertical-align: top;
+    @include button($copper);
+    font-size: 0.9em;
+    border:none;  
   }
 
   select {

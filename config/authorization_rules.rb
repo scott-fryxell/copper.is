@@ -1,13 +1,15 @@
 authorization do
+  role :god do
+    has_omnipotence
+  end
 
   role :admin do
-    # has_omnipotence
     includes :fan
     has_permission_on :users,   :to => :manage
     has_permission_on :pages,   :to => :manage
     has_permission_on :authors, :to => :manage
     has_permission_on :tips,    :to => :manage
-    has_permission_on :admin,   :to => :read
+    has_permission_on :home,   :to => :manage
   end
 
   role :fan do
@@ -26,7 +28,6 @@ authorization do
     has_permission_on :checks,     :to => [:read]
     has_permission_on :orders,     :to => [:read,:update]
     has_permission_on :authors,    :to => [:edit, :destroy]
-    # has_permission_on :pages,      :to => [:index]
     has_permission_on :cards,      :to => [:manage]
   end
 

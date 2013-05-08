@@ -144,7 +144,7 @@
     }
   }
   & > nav > button {
-    @include copper_button;
+    @include button($copper);
     font-size:1.25em;
     width:5em;
     display:block;

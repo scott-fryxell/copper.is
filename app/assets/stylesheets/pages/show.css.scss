@@ -10,6 +10,16 @@
     hgroup {
       margin-right:grid-width(8);
       display:inline-block;
+      vertical-align: top;
+      &:last-child{
+
+        height:100%;
+        margin-right: 0;
+        & > a {
+          font-size: 1.5em;
+          font-family: 'Bree Serif', serif;
+        }        
+      }
       h1 {
         margin:0;
         font-size:2.5em;
@@ -25,11 +35,13 @@
     }
 
     figure {
+
       position:absolute;
       top:2em;
       right:-10em;
       display:inline-block;
       img {
+
         position:absolute;
         top:-2em;
         right:-1em;

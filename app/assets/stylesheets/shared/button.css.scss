@@ -14,8 +14,8 @@
 
         & > em {
           display:inline-block;
-          border-bottom: .10em solid $text;
-          border-radius:.25em;
+          border-bottom: 0.10em solid $text;
+          border-radius:0.25em;
         }
         & > code {
           display:block;
@@ -56,9 +56,6 @@
     & > a:first-child,
     & > a:nth-child(7) {
       display:none;
-    }
-    & > a {
-      width:grid-width(4);
     }
   }
 }

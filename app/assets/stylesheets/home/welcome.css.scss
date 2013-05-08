@@ -14,7 +14,7 @@
           height:100%;
           vertical-align: top;
           text-align: right;
-          line-height:grid-width(3);
+          height:grid-width(3);
         }
         & > h1 {
           text-shadow: 1px 0px 2px $shadow;
@@ -33,9 +33,11 @@
           opacity:1;
         }
         & > a {
+          display: inline-block;
+          margin-top:1em;
           margin-right:1em;
-          vertical-align: middle;
           font-size:1.75em;
+          font-family: 'Bree Serif', serif;
           padding:0.25em 1.5em;
         }
       }

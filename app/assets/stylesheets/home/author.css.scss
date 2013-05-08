@@ -1,8 +1,11 @@
 #home_author {
 
   #stats > div {
-    width:7.25em;
-    padding-left:1.25em;
+    width:8em;
+    padding-left:1em;
+    &:nth-child(2){
+      width:6em;
+    }
     &:nth-child(7){
       @include left_width($offset)
     }
