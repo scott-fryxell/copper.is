@@ -1,7 +1,4 @@
 #pages_show {
-  & > header {
-
-  }
   & > iframe{
     position:fixed;
     width:100%;
@@ -10,10 +7,8 @@
   & > footer {
     display:none;
   }
-  #user_nav {
-    display:none;
-  }
   #banner {
+    overflow:hidden;
     padding:grid-width(1);
     margin-top: 0;
     background-color: $dark;
@@ -47,6 +42,7 @@
 
     figure {
       opacity:0;
+      height:0;
       figcaption{
         font-family: 'Nothing You Could Do', cursive;
         font-size:1.75em;
@@ -58,6 +54,7 @@
       }
     }
     figure.chrome{
+      height:auto;
       opacity:1;
       @include transition (opacity 1.5s ease-in 2s);
       position:absolute;
@@ -71,6 +68,38 @@
         @include transform(rotate(132deg));
       }
     }
+    figure.safari{
+      z-index: 5;
+      height:auto;
+      opacity:1;
+      @include transition (opacity 1.5s ease-in 2s);
+      position:absolute;
+      top:3em;
+      left:-14em;
+      display:inline-block;
+      img {
+        position:absolute;
+        top:-4em;
+        left:6em;
+        @include transform(rotate(85deg));
+      }
+    }
+    figure.mozilla{
+      height:auto;
+      opacity:1;
+      @include transition (opacity 1.5s ease-in 2s);
+      position:absolute;
+      top:2em;
+      right:-3em;
+      display:inline-block;
+      img {
+        position:absolute;
+        top:-2em;
+        right:-2em;
+        @include transform(rotate(132deg));
+      }
+    }
+
   }
 
   & > iframe {

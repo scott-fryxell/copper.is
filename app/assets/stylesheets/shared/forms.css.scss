@@ -12,7 +12,7 @@ body {
     background-color:$input_background;  
   }
 
-  input[type=submit], button {
+  input[type=submit] {
     display:inline-block;
     @include button($copper);
     font-size: 0.9em;
@@ -66,7 +66,7 @@ section.setting,
   margin-bottom: 0.5em;
   padding-top:2em;
   padding-bottom:2em;
-  border-radius:.10em;
+  border-radius:0.10em;
   background-color: $offset;
 
   & > header {
@@ -77,11 +77,11 @@ section.setting,
     height:100%
   }
   & > header > h2 {
-    margin-bottom:.5em;
+    margin-bottom:0.5em;
     text-align:left;
   }
   & > header > a {
-    font-size:.75em;
+    font-size:0.75em;
     color: #999999;
   }
   & > form {
@@ -103,7 +103,7 @@ section.setting,
     font-family: 'Doppio One', sans-serif;
     color:$dark;
     font-size: 1.1em;
-    opacity:.8;
+    opacity:0.8;
     margin:0;
   }
 }

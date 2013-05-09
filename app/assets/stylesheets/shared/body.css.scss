@@ -8,7 +8,7 @@ html {
   * {@include box-sizing(border-box);}
 }
 body {
-  overflow-x:hidden;
+  // overflow-x:hidden;
   &:after {
     content:"";
     position:fixed;

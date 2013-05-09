@@ -161,7 +161,6 @@ section#admin{
           height:grid-width(1);
           & > button {
             width: grid-width(3); 
-            font-family: 'Doppio One', sans-serif;
           }
 
           & > button:last-child {
@@ -175,7 +174,13 @@ section#admin{
               padding:0.25em;
               border-radius:0.25em;
               border:2px solid $input_border;
-              background-color:$input_background;  
+              background-color:$input_background;
+              &[value=true]{
+                border:1px solid $green;
+                box-shadow: 1px 1px 9px -2px $green; 
+                color:$green;
+              }
+
             }
           }
           &:last-child {

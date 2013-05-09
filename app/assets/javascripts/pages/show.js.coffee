@@ -7,3 +7,20 @@ $(document).on "load.pages_show", ->
     $('#banner > figure').addClass('mozilla')
   else
     $('#banner > figure').addClass('safari')
+
+  $("button[formaction]").click ->
+    jQuery.ajax
+      url:$(@).attr('formaction')
+      method:$(@).attr('formmethod')
+      headers: {retrieve_as_data: "true"}
+      success: (data) ->
+        $('data#items').append(data)
+        console.debug('bam!')
+        new Items($('data#items'))
+        $('data#items').empty()
+
+
+      statusCode:
+        401:=>
+          $(@).trigger "401"
+          console.debug("you don't have rights to view this resource")
