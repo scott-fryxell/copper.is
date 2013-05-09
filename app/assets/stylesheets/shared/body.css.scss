@@ -69,9 +69,11 @@ body {
   }
 }
 body > header {
-  position:relative;
   // background-color:$header;
   @include full_width($header);
+  box-shadow:0px 1px $shadow;
+  height:grid-width(1.5);
+
   &:before {
     content:"";
     position:absolute;
@@ -80,12 +82,9 @@ body > header {
     bottom:0;
     left:0;
     right:0;
-    opacity:0.9;
-    @include background-image(linear-gradient($header_opaque 50%, $header 100%), radial-gradient($dark 25%, $header_opaque 100%));
-  }
-  box-shadow:0px 1px $shadow;
 
-  height:grid-width(1.5);
+    @include background-image(linear-gradient($header_transparent 50%, $header 100%), radial-gradient($dark 25%, $header_transparent 100%));
+  }
   hgroup {
     display:none;
     &.show{
@@ -142,7 +141,7 @@ body > footer {
     left:0;
     right:0;
     opacity:0.9;
-    @include background-image(linear-gradient($header_opaque 50%, $header 100%), radial-gradient($dark 25%, $header_opaque 100%));
+    @include background-image(linear-gradient($header_transparent 50%, $header 100%), radial-gradient($dark 25%, $header_transparent 100%));
   }
 
   &.bottom {

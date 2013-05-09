@@ -37,14 +37,14 @@
     & > div > p > button {
       -webkit-appearance: none;
       @include button($copper);
+      font-size: 0.75em;
+      padding:0.25em;
       display:inline-block;
-      font-size: 16px;
       line-height: 0.75em;
       margin-left:0.25em;
-      vertical-align: middle;
-    }
-    & > div > p > button:active {
-      box-shadow: 0px 0px 0px 0px $shadow;
+      vertical-align: top;
+      margin-top:0.35em;
+      box-shadow: none;
     }
     & > div:nth-child(2) {
       padding-left:0;
