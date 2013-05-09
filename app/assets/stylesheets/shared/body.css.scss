@@ -69,7 +69,8 @@ body {
   }
 }
 body > header {
-  @include full_width($header_transparent);
+
+  @include full_width($header);
   box-shadow:0px 1px $shadow;
   height:grid-width(1.5);
   &:before {
@@ -79,7 +80,7 @@ body > header {
     bottom:0;
     left:0;
     right:0;
-    @include background-image(linear-gradient($header 25%, $header_transparent 80%), radial-gradient($dark 25%, $header_transparent 50%));
+    @include background-image(linear-gradient($header 12%, $header_transparent 78%), radial-gradient($dark 40%, $header_transparent 90%));
   }
   hgroup {
     display:none;
