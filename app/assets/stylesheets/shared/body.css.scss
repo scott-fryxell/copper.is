@@ -69,21 +69,17 @@ body {
   }
 }
 body > header {
-  // background-color:$header;
-  @include full_width($header);
+  @include full_width($header_transparent);
   box-shadow:0px 1px $shadow;
   height:grid-width(1.5);
-
   &:before {
     content:"";
     position:absolute;
-    // z-index:1;
     top:0;
     bottom:0;
     left:0;
     right:0;
-
-    @include background-image(linear-gradient($header_transparent 50%, $header 100%), radial-gradient($dark 25%, $header_transparent 100%));
+    @include background-image(linear-gradient($header 25%, $header_transparent 80%), radial-gradient($dark 25%, $header_transparent 50%));
   }
   hgroup {
     display:none;
