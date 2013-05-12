@@ -34,17 +34,26 @@
     & > div:nth-child(3) > p:before  {
       content:"$";
     }
-    & > div > p > button {
-      -webkit-appearance: none;
-      @include button($copper);
-      font-size: 0.75em;
-      padding:0.25em;
+    & > div > p > img {
+      height:0.75em;
+      width:0.75em;
+      padding:0em;
+      opacity:0.25;
       display:inline-block;
-      line-height: 0.75em;
-      margin-left:0.25em;
-      vertical-align: top;
-      margin-top:0.35em;
+      vertical-align: baseline;
+      // line-height: 0.75em;
+      // margin-left:0.25em;
+      // vertical-align: top;
+      // margin-top:0.35em;
       box-shadow: none;
+      @include transition (opacity 0.25s ease-out 0);
+      &:hover{
+        @include transition (opacity 0.25s ease-out 0);
+        opacity:0.75;
+      }
+      &:active{
+        opacity:1;
+      }
     }
     & > div:nth-child(2) {
       padding-left:0;

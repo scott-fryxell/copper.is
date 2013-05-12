@@ -6,7 +6,7 @@ $(document).on "load.home_index", ->
   if '' is $('#stats > div:nth-child(3) > p').attr('data-cents').trim() 
     $('#stats > div:nth-child(3)').hide()
 
-  $('#stats > div > p > button:nth-child(2)').click ->
+  $('#stats > div > p > img:nth-child(2)').click ->
     for amount in document.copper.tip_amount_options
       unless 2000 is document.copper.me.tip_preference_in_cents  
         if amount > document.copper.me.tip_preference_in_cents
@@ -15,7 +15,7 @@ $(document).on "load.home_index", ->
           $(document).trigger 'save.me'
           return
 
-  $('#stats > div > p > button:nth-child(3)').click ->
+  $('#stats > div > p > img:nth-child(3)').click ->
     reversed = document.copper.tip_amount_options.slice(0).reverse()
     for amount in reversed
       unless 5 is document.copper.me.tip_preference_in_cents
