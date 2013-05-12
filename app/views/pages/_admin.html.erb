@@ -37,16 +37,16 @@
         <button itemprop="welcome" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.welcome?%>">welcome</button>
         <button itemprop="onboarding" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.onboarding?%>">onboarding</button>
         <button itemprop="trending" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.trending?%>">trending</button>
-        <button itemprop="nsfw" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.onboarding?%>">nsfw</button>
+        <button itemprop="nsfw" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.nsfw?%>">nsfw</button>
       </nav>
-      <nav>
+      <nav style="display:none">
         <button formmethod="delete" formaction="/pages/<%=page.id%>">delete</button>
         <button formmethod="post" formaction="/pages/<%=page.id%>/adopt">adopt</button>
         <button formmethod="post" formaction="/pages/<%=page.id%>/reject">reject</button>
       </nav>
     </fieldset>
   </div>
-  <footer>
+  <footer style="display:none">
     <details itemscope itemtype='tips' itemid='/pages/<%=page.id%>/tips'>
       <summary>tips</summary>
     </details>

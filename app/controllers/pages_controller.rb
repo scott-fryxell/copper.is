@@ -36,6 +36,22 @@ class PagesController < ApplicationController
       @page.url = params[:url]
     end
 
+    if params[:onboarding]
+      @page.onboarding = params[:onboarding]
+    end
+
+    if params[:nsfw]
+      @page.nsfw = params[:nsfw]
+    end
+
+    if params[:welcome]
+      @page.welcome = params[:welcome]
+    end
+
+    if params[:trending]
+      @page.trending = params[:trending]
+    end
+
     @page.save
     render :action => 'update', :layout => false 
   end
