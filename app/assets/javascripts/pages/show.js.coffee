@@ -8,6 +8,9 @@ $(document).on "load.pages_show", ->
   else
     $('#banner > figure').addClass('safari')
 
+  $('body').on 'change', "input[itemprop=thumbnail_url]", ->
+    $('img[itemprop=thumbnail_url]').attr('src', $(@).val())
+    
   $("button[formaction]").click ->
     value = $(@).attr('value') 
 
