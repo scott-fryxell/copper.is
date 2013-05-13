@@ -1,5 +1,4 @@
-<% cache("homepage_pages", :expires_in => 1.hour) do %>
-
+<%-cache("homepage_pages", :expires_in => 1.minute) do-%>
 <section id="banner">
   <header>
     <hgroup>
@@ -11,7 +10,6 @@
     </hgroup>
   </header>
 </section>
-
 <section id="pages">
   <%= render partial:"pages/index", collection:Page.safe.welcome.limit(9), as: :page %>
 </section>

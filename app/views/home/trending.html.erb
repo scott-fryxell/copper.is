@@ -1,3 +1,4 @@
+<%-cache("trending_pages", :expires_in => 1.minute) do-%>
 <section id="banner">
   <header>
     <hgroup>
@@ -16,3 +17,4 @@
 <section id="pages">
   <%= render partial:"pages/show", collection:Page.safe.trending, as: :page %>
 </section>
+<%-end-%>
