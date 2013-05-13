@@ -1,6 +1,4 @@
-<%= render partial:"shared/badge"%>
-<object itemscoped itemtype="#page" itemid="<%=@page.id%>">
-  <data itemprop="url" value="<%=@page.url%>"></data>
-  <data itemprop="title" value="<%=@page.title%>"></data>
-</object>  
-<iframe id="page_url" itemprop="url" seamless allowtransparency src="<%=@page.url%>"> </iframe>
+<% permitted_to? :manage, :pages do %>
+  <%= render partial:"admin", object: @page, as: :page %>
+<% end %>
+<%= render partial:"show", object: @page, as: :page %>

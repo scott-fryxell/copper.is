@@ -33,9 +33,9 @@
     text-align: center;
     font-size:1.25em;
     font-family: 'Bree Serif', serif;
-    color:$light-text;
+    color:$light;
     padding:.7em .25em 1.25em .35em;
-    @include background-image( linear-gradient($text 0, $darkness 75%, transparent 32%),image-url('icons/congrats.svg'));
+    @include background-image( linear-gradient($text 0, $dark 75%, transparent 32%),image-url('icons/congrats.svg'));
     background-repeat: no-repeat;
     background-position:center;
     background-size:cover;
@@ -56,7 +56,7 @@
       font-size:2.5em;
       margin-top:-0.25em;
       & > span {
-        color:$darkness;
+        color:$dark;
       }
     }
   }
@@ -109,7 +109,7 @@
       height: 0;
       border-left: 2em solid transparent;
       border-right: 2em solid transparent;
-      border-top: 1.5em solid $offset_color;
+      border-top: 1.5em solid $offset;
     }
   }
 
@@ -131,20 +131,20 @@
       height: 0;
       border-left: 2em solid transparent;
       border-right: 2em solid transparent;
-      border-bottom: 1.5em solid $offset_color;
+      border-bottom: 1.5em solid $offset;
     }
     &:before{
       content:"";
       height:4em;
       width:100%;
-      background-color:$offset_color;
+      background-color:$offset;
       position:absolute;
       bottom:0;
       left:0;
     }
   }
   & > nav > button {
-    @include copper_button;
+    @include button($copper);
     font-size:1.25em;
     width:5em;
     display:block;

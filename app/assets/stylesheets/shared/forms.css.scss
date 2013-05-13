@@ -1,20 +1,22 @@
 body {
   input, textarea, select {
+    @include user-select(text);
     margin: 0 1em 0 0;
     font-family: 'Cantarell', sans-serif;
     padding: 0.25em;
     font-size: 1em;
     line-height: 1.2em;
-    background: #fff;
-    color:$darkness;
+    color:$header;
     border-radius:0.25em;
     border:2px solid $input_border;
-    background-color:rgba(251, 250, 248, 0.2);  
+    background-color:$input_background;  
   }
 
   input[type=submit] {
     display:inline-block;
-    @include copper_button;
+    @include button($copper);
+    font-size: 0.9em;
+    border:none;  
   }
 
   select {
@@ -44,7 +46,7 @@ body {
     display: inline-block;
     margin: 0 .25em 0 0;
     border-radius: 0.25em;
-    border-color:rgba(0,0,0,0.4);
+    border-color:$input_border;
   }
   input:disabled {
     opacity:.6;
@@ -64,8 +66,8 @@ section.setting,
   margin-bottom: 0.5em;
   padding-top:2em;
   padding-bottom:2em;
-  border-radius:.10em;
-  background-color: $offset_color;
+  border-radius:0.10em;
+  background-color: $offset;
 
   & > header {
     vertical-align:top;
@@ -75,11 +77,11 @@ section.setting,
     height:100%
   }
   & > header > h2 {
-    margin-bottom:.5em;
+    margin-bottom:0.5em;
     text-align:left;
   }
   & > header > a {
-    font-size:.75em;
+    font-size:0.75em;
     color: #999999;
   }
   & > form {
@@ -99,9 +101,9 @@ section.setting,
   }
   & > div p {
     font-family: 'Doppio One', sans-serif;
-    color:$darkness;
+    color:$dark;
     font-size: 1.1em;
-    opacity:.8;
+    opacity:0.8;
     margin:0;
   }
 }

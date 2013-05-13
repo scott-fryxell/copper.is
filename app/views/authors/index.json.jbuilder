@@ -1,1 +1,0 @@
-json.(@authors, :provider, :username, :uid, :token)

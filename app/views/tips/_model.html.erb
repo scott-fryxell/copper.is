@@ -1,0 +1,11 @@
+<%-cache tip do-%>
+<dl itemscope itemtype='tips' itemid='/tips/<%=tip.id%>'>
+  <dd itemprop="created_at"><%=tip.created_at.getutc.iso8601%></dd>
+  <dd itemprop="updated_at"><%=tip.updated_at.getutc.iso8601%></dd>
+  <dd itemprop="order_id"><%=tip.order_id%></dd>
+  <dd itemprop="page_id"><%=tip.page_id%></dd>
+  <dd itemprop="check_id"><%=tip.check_id%></dd>
+  <dd itemprop="paid_state"><%=tip.paid_state%></dd>
+  <dd itemprop='amount_in_cents'><%=tips.amount_in_cents%></dd>
+</dl>
+<%-end-%>

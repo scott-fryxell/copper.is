@@ -10,5 +10,6 @@ roles = Role.create([
   { :name => 'Curator' },
   { :name => 'Author' },
   { :name => 'Guest' },
-  { :name => 'Admin' }
+  { :name => 'Admin' },
+  { :name => 'God' }
 ])

@@ -1,24 +1,27 @@
 @import "shared/mixins";
 @import "shared/body";
 @import "shared/user_nav";
-@import "shared/profile";
+@import "shared/stats";
+@import "shared/tips";
+@import "shared/pages";
 @import "shared/banner";
 @import "shared/button";
 @import "shared/address";
 @import "shared/forms";
 @import "shared/card";
+@import "shared/admin";
 
 @import "home/index";
 @import "home/welcome";
 @import "home/badge";
 @import "home/author";
 @import "home/settings";
-@import "home/statistics";
 @import "home/faq";
 @import "home/getting_started";
+@import "home/tip_some_pages";
 
-@import "authors/edit";
 @import "pages/show";
+@import "pages/index";
 @import "orders/index";
 @import "users/index";
-@import "pages/index";
+@import "authors/edit";

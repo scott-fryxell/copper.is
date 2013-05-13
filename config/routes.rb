@@ -1,15 +1,27 @@
 require 'resque/server'
 Copper::Application.routes.draw do
+
   resources :tips
-  resources :orders
+
+  resources :orders do
+    resources :tips
+  end
+
   resources :checks
-  resources :authors
+  resources :authors do
+    resources :pages
+  end
 
   resources :pages do
     resources :tips
   end
-  resources :users do 
+  
+  resources :users do
     resources :tips
+    resources :authors
+    resources :pages
+    resources :orders
+    resources :checks
   end
 
   get    'cards', to:'cards#show',  :as => :show_card
@@ -17,9 +29,9 @@ Copper::Application.routes.draw do
   put    'cards', to:'cards#update',:as => :update_card
   delete 'cards', to:'cards#delete', :as => :delete_card
 
-  get 'tip_some_pages', to:'home#tip_some_pages'
-
-  get 'badge',          to:'home#badge' 
+  get 'tip_some_pages',  to:'home#tip_some_pages'
+  get "admin",           to:'home#admin'
+  get 'badge',           to:'home#badge' 
   get 'author',          to:'home#author' 
   get 'settings',        to:'home#settings'
   get 'about',           to:'home#about'
@@ -29,9 +41,10 @@ Copper::Application.routes.draw do
   get 'privacy',         to:'home#privacy'
   get 'faq',             to:'home#faq'
   get 'states',          to:'home#states'
-  get 'statistics',      to:'home#statistics'
   get 'getting_started', to:'home#getting_started'
+  get 'trending',        to:'home#trending'
   get 'embed_iframe.js', to:'home#iframe', :as => :iframe
+  
   post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
 
   if Rails.env.test? || Rails.env.development? || Rails.env.staging?

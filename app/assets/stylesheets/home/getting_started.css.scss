@@ -1,84 +1,156 @@
 #home_getting_started {
-
   section {
-    margin-bottom: grid-width(1);
-    &.chrome {
-      .safari, .firefox{
-        display:none !important;
+    padding:2em;
+    & > header.step {
+      display:inline-block;
+      padding:0;
+      margin:0;
+      // outline: 15empx solid silver;
+      font-size: 15em;
+      line-height: 1em;
+      color:$light;
+    }
+    & > div {
+      vertical-align: top;
+      width:grid-width(9);
+      margin-left:5em;
+      color:$light;
+      display:inline-block;
+
+      & > h1 {
+        color:$light;
+        margin-bottom: 0.5em;
       }
+      & > a {}
+      & > p {
+        font-size: 1em;
+        &.fine_print {
+          &:before {
+            content:"*";
+          }
+          font-size: 0.85em;
+        }
+      }
+    }
+  }
+
+  #banner {
+    margin-bottom: grid-width(1);
+    padding-bottom:0;
+    header {
+      width:grid-width(13);
+      & > h1 {
+        text-shadow: 1px 0px $shadow;
+        margin:0;
+        color:$copper_text;
+        font-size: 2.2em;
+      }
+      & > h4, p {
+        font-family: 'Cantarell', sans-serif;      
+        color:#888;
+
+      }
+      & > h4 {
+        margin:0.4em 0;
+        font-size: 1.2em;
+      }
+      & > p {
+        margin:0;
+        font-size: 1em;
+      }
+    }
+  }
+
+  #step_one {
+    margin-bottom:0;
+    background-color:#939598;
+    & > div {
+      & > a {
+        $facebook:#5F78AC;
+        @include button_with_img($facebook, 'providers/facebook/f.svg');
+        font-family: 'Bree Serif', serif;
+        font-size: 1.5em;
+        &:before {
+          left:0.5em;
+        }
+      }
+    }
+  }
+
+  #step_two {
+    margin-bottom:0;
+    background-color:#BCBEC0;
+    & > figure > img {
+      display:none;
     }
     &.safari {
-      .chrome, .firefox{
-        display:none !important;
+      .safari {display: block}
+      .chrome, .mozilla {
+        display:none;
       }
     }
-    &.firefox {
-      .chrome, .safari{
-        display:none !important;
+    &.chrome{
+      .chrome {display: block}
+      .safari, .mozilla {
+        display:none;
       }
     }
-  }
-
-  figure {
-    padding:3em 2em;
-    vertical-align: top;
-    & > figcaption {
-      vertical-align: top;
-      display:inline-block;
-      width:grid-width(10);
-      & > h2 {
-        font-size: 1.75em;
-        &:nth-child(3) {
-          margin-top:1em;
-        }
+    &.mozilla {
+      .mozilla {display: block}
+      .chrome, .safari {
+        display:none;
       }
     }
-    & > img {
-      display:inline-block;
-    }
-  }
-
-  figure#any_url {
-    figcaption {
-      margin-right:grid-width(3);
-    }
-  }
-
-  figure#sign_up_install_button {
-    background-color: $offset_color;
-    @include full_width($offset_color);
-    & > figcaption {}
-    & > img {
-      display:block;
-    }
-    nav {
-      margin-top:grid-width(1);
-      margin-left:2em;
-      display:inline-block;
-      width:grid-width(9);
+    & > div {
       & > a {
-        width:11.5em;
-        display:block;
-        margin-bottom:3em;
-        &.safari {
-          margin-top:-2em;
-          margin-bottom:0;
-        }
-        &.firefox {
-          margin-top:3em;
-          margin-bottom:0;
-          & > img {
-            display:inline-block;
-            margin-left:2em
-          }
-        }
+        @include button_with_img($copper, 'icons/letter_logo_white.svg');
+
+        font-family: 'Bree Serif', serif;
+        font-size: 1.5em;
+
       }
+      & > p {
+        font-size: 1em;
+      }
+    }
+    figure {
+      margin-left: 4em;
+      display:inline-block;
+      width:grid-width(5);
     }
   }
 
-  figure#start_tipping {
-    figcaption {
-      margin-right: grid-width(3);
+  #step_three {
+    background-color:#939598;
+    margin-bottom: grid-width(2);
+    & > aside {
+      input, select {
+        min-width:3em;
+        border:none;
+        border-radius:0.25em;
+        background-color:$light;
+      }
+      input[type=submit] {
+        min-height: 2em;
+        min-width: 4em;
+        margin-right: none;
+      }
+      select {
+        min-width:6em;
+      }
+      margin-left: 3em;
+      display:inline-block;
+      width:15.5em;
+
+      fieldset.pay {
+        color:$light;
+
+        font-size: 0.85em;
+        display: inline-block;
+        width:grid-width(5);
+
+        &  a {color:$light;}
+      }
     }
   }
 }

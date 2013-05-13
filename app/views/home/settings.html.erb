@@ -2,7 +2,7 @@
 <%-cache current_user do-%>
 <section id="banner">
   <header>
-    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
   </header>
   <hgroup>
     <h1>Your Settings</h1>
@@ -97,12 +97,12 @@
   <%= render partial:'shared/card' %>
 </section>
 
-<section id="orders" class="setting">
+<section id="orders" class="setting" style='display:none;'>
   <header>
     <h2>Tip orders</h2>
   </header>
   <nav>
-    <a href="/orders">View order details</a>
+    <a href="/users/<%=current_user.id%>/orders">View order details</a>
   </nav>
 </section>
 

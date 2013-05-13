@@ -30,8 +30,7 @@ class SessionsController < ApplicationController
         # account. But we found the author and the user associated with it
         # is the current user. So the author is already associated with
         # this user. We take them back to the author page
-        
-       redirect_to '/author'
+        redirect_to '/author'
 
       else
         # The author is not associated with the current_user so lets
@@ -68,7 +67,7 @@ class SessionsController < ApplicationController
         else
           @author.join!
           @author.save()
-          redirect_to "#{root_url}#me"
+          redirect_to "/getting_started#step_two"
         end
       end
     end

@@ -18,7 +18,7 @@
       &[open] {
         border-radius:0.25em;
         padding-top:0.75em;
-        background:$offset_color;
+        background:$offset;
 
         & > summary {
           padding-left:0.5em;
@@ -69,10 +69,7 @@
         // table * {outline:1px solid silver;}
         table {
           display:inline-block;
-          width:40em;
-          tr {
-
-          }
+          width:39em;
           th:first-child {
             padding-left:5em;
           }

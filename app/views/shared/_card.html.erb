@@ -1,5 +1,5 @@
 <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
-<input itemprop="stripe_id" name="stripe_id" type="hidden" value="<%=current_user.stripe_id%>">
+<input itemprop="stripe_id" name="stripe_id" type="hidden" value="<%=current_user.stripe_id if current_user%>">
 <form method="put">
   <!-- 4242424242424242 test approved-->
   <!-- 4000000000000002 test declined-->
@@ -36,7 +36,7 @@
     </select>
   </fieldset>
   <fieldset class="pay">
-    <input itemprop="accept_terms" type="checkbox"  name="user[accept_terms]" id="site_terms" value="true" <%= "checked" if current_user.accept_terms? %> />
+    <input itemprop="accept_terms" type="checkbox"  name="user[accept_terms]" id="site_terms" value="true" <%= "checked" if current_user  && current_user.accept_terms? %> />
     <label for="site_terms">I accept the <a href="/terms" target="window">terms</a></label>
   </fieldset>
   <input type="submit" value="Save" />

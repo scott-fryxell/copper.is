@@ -1,55 +1,108 @@
 #pages_show {
-  #copper_button {
-    /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
-    display:block;
-    margin: -2.85em auto .5em auto;
-    width:1.5em;
-    height:1.5em;
-    background-color:$light-text;
-    padding:0.25em;
-    position:relative;
-    text-decoration:none;
-    border: solid 2px $darkness;
-    @include background-image(linear-gradient($light-text 0%, shade($light-text, 25%) 100%, transparent 50%));
-    border-radius: 0.25em;
-
-    &:active {
-      padding-bottom:0.24em;
-      padding-left:0.25em;
-      padding-right:0.25em;
-      padding-top:0.26em;
-      @include background-image(linear-gradient($light-text   0%, shade($light-text, 40%) 100%, transparent 50%));
-    }
-
-    &:before {
-        background-color:#ccd0d5;
-        content:"";
-        display:block;
-        position:absolute;
-        width:100%;
-        height:100%;
-        padding:0.35em;
-        left:-0.35em;
-        top:-0.35em;
-        z-index:-1;
-        border-radius: 0.25em;
-        box-shadow: inset 0px 1px 1px $darkness, 0px 1px 0px $light-text;
-    }
-  
-    & > img {
-      opacity:0.8;
-      position:absolute;
-      top:0;
-      left:0;
-      width:1.5em;
-      height:1.5em;
-      padding:0.25em;
-    }
-  }
-  
-  & > iframe#page_url {
+  & > iframe{
+    position:fixed;
     width:100%;
-    min-height: 768px;
+    height:100%;
+  }
+  & > footer {
+    display:none;
+  }
+  #banner {
+    overflow:hidden;
+    padding:grid-width(1);
+    margin-top: 0;
+    background-color: $dark;
+    @include full_width($dark);
+    hgroup {
+      margin-right:grid-width(8);
+      display:inline-block;
+      vertical-align: top;
+      &:last-child{
+
+        height:100%;
+        margin-right: 0;
+        & > a {
+          font-size: 1.5em;
+          font-family: 'Bree Serif', serif;
+        }        
+      }
+      h1 {
+        margin:0;
+        font-size:2.5em;
+        color:$light;
+        font-family: 'Doppio One', sans-serif;
+      }
+      p {
+        margin:0;
+        font-size:1.25em;
+        color:$light;
+        font-family: 'Cantarell', sans-serif;
+      }
+    }
+
+    figure {
+      opacity:0;
+      height:0;
+      figcaption{
+        font-family: 'Nothing You Could Do', cursive;
+        font-size:1.75em;
+        color:$light;
+        p {
+          text-align:center;
+          margin:0;
+        }
+      }
+    }
+    figure.chrome{
+      height:auto;
+      opacity:1;
+      @include transition (opacity 1.5s ease-in 2s);
+      position:absolute;
+      top:2em;
+      right:-10em;
+      display:inline-block;
+      img {
+        position:absolute;
+        top:-2em;
+        right:-2em;
+        @include transform(rotate(132deg));
+      }
+    }
+    figure.safari{
+      z-index: 5;
+      height:auto;
+      opacity:1;
+      @include transition (opacity 1.5s ease-in 2s);
+      position:absolute;
+      top:3em;
+      left:-14em;
+      display:inline-block;
+      img {
+        position:absolute;
+        top:-4em;
+        left:6em;
+        @include transform(rotate(85deg));
+      }
+    }
+    figure.mozilla{
+      height:auto;
+      opacity:1;
+      @include transition (opacity 1.5s ease-in 2s);
+      position:absolute;
+      top:2em;
+      right:-3em;
+      display:inline-block;
+      img {
+        position:absolute;
+        top:-2em;
+        right:-2em;
+        @include transform(rotate(132deg));
+      }
+    }
   }
 
+  & > iframe {
+    width:100%;
+    height:100%;
+  }
 }

@@ -1,7 +1,7 @@
 <%-cache current_user do-%>
   <section id="banner">
     <header>
-      <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+      <a href="/"><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
     </header>
     <hgroup>
       <h1>Your pages</h1>
@@ -11,14 +11,12 @@
       Hi <%=@current_user.name%>! On this page, 
       you can see what content your fans are connecting with
       and the tips they’ve sent to show their appreciation.
-      Also look at other cool metrics on this page -- 
-      like which types of content people are responding 
-      to the most.
     </p>
   </section>
+
   <section id="stats">
     <header>
-      <h1>Your stats</h1>
+
     </header>
     <div>
       <h2>Tip count</h2>
@@ -34,7 +32,7 @@
     </div>
     <div>
       <h2>highest tip</h2>
-      <p data-cents="<%=current_user.royalties.maximum :amount_in_cents%>"></p>
+        <p data-cents="<%=current_user.royalties.maximum :amount_in_cents%>"></p>
     </div>
     <div>
       <h2>Average tip</h2>
@@ -52,7 +50,7 @@
       <section>
         <div>
           <%-current_user.authors.each do |author|-%>
-          <figure class="<%=author.provider%>" itemscope itemtype="authors"  itemid="<%=author.id%>">
+          <figure class="<%=author.provider%>" itemscope itemtype="authors"  itemid="/authors/<%=author.id%>">
             <%= image_tag "providers/#{author.provider}/sign_in.png", title:author.username%>
             <%-if author.username-%>
               <figcaption itemprop='username'><%=author.username%></figcaption>
@@ -118,19 +116,8 @@
     </aside>
   </section>
 
-
   <section id="pages" >
-    <header>
-      <h1>Pages You own </h1>
-      <hgroup>
-        <h2>Filter by</h2>
-        <nav>
-          <a href="#pages/recent" class="selected">recent</a>
-          <a href="#pages/site">site</a>
-        </nav>
-      </hgroup>
-    </header>
-    <%= render partial:"pages/author_page", collection:current_user.authored_pages, as: :page %>
+    <%= render partial:"pages/details", collection:current_user.authored_pages, as: :page %>
   </section>
   <nav>
     <a href="/settings">Edit your settings</a>

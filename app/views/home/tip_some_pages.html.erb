@@ -1,14 +1,22 @@
+<% cache("onboarding_pages", :expires_in => 1.hour) do %>
 <section id="banner">
   <header>
-    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+    <hgroup>
+      <h1>tip some pages!</h1>
+    </hgroup>
+    <p>You’re ready to go. Discover new 
+        artists or tip your favorites. </p>
   </header>
-  <hgroup>
-    <h1>tip some pages!</h1>
-  </hgroup>
-  <p>Now you can head out into the world and tip any page on the web.
-    Here are some awesome pages people have been tipping with Copper.</p>
+  <figure style="display:none;">
+    <%= image_tag "arrows/swoop_left.svg" %>
+    <figcaption>
+      <p>It’s easy.</p>
+      <p>Your button is right there!</p>
+    </figcaption>
+  </figure>
 </section>
 
 <section id="pages">
-  <%= render partial:"pages/trending_page", collection:Page.includes(:tips).order("updated_at DESC").limit(75), as: :page %>
+  <%= render partial:"pages/index", collection:Page.safe.onboarding.limit(18), as: :page %>
 </section>
+<%-end-%>

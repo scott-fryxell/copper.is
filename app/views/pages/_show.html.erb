@@ -1,0 +1,20 @@
+<section id="banner">
+  <hgroup>
+    <h1>Like <%=page.author.username if page.author%>?</h1>
+    <p>Go ahead and tip them.</p>
+  </hgroup>
+  <%-if current_user-%>
+    <figure>
+      <%= image_tag "arrows/swoop_left_light.svg" %>
+      <figcaption>
+        <p>Go Ahead.</p>
+        <p>You know you wanna.</p>
+       </figcaption>
+    </figure>
+  <%-else-%>
+    <hgroup>
+      <a class="button" href="/getting_started">Sign Up</a>
+    </hgroup>
+  <%-end-%>
+</section>
+<iframe src="<%=page.url%>" scrollable="true"></iframe>

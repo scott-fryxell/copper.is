@@ -1,0 +1,14 @@
+<%-cache author do-%>
+<dl itemscope itemtype='authors' itemid='/authors/<%=author.id%>'>
+  <dd itemprop="created_at"><%=author.created_at.getutc.iso8601%></dd>
+  <dd itemprop="updated_at"><%=author.updated_at.getutc.iso8601%></dd>
+  <dd itemprop="provider"><%=author.provider%></dd>
+  <dd itemprop="uid"><%=author.uid%></dd>
+  <dd itemprop="username"><%=author.username%></dd>
+  <dd itemprop="identity_state"><%=author.identity_state%></dd>
+  <dd itemprop="type"><%=author.type%></dd>
+  <dd itemprop='user_id'><%=author.user_id%></dd>
+  <dd itemprop='token'><%=author.token%></dd>
+  <dd itemprop='secret'><%=author.secret%></dd>
+</dl>
+<%-end-%>

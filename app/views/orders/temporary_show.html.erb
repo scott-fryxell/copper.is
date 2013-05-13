@@ -1,0 +1,35 @@
+<%-cache order do-%>
+<details itemscope itemtype='orders' itemid='<%=order.id%>' date-order_state="<%=order.order_state%>" >
+  <summary>
+    <h2>
+      <span><%=pluralize(order.tips.count, 'tip')%></span>
+    </h2>
+    <p>
+       <%-if 'current' == order.order_state -%>
+        <%=order.order_state%>
+      <%-else-%>
+        <time datetime="<%=order.updated_at.getutc.iso8601%>" />
+      <%-end-%>
+    </p>  
+  </summary>
+  <section>
+    <header>
+      <h4>sub total: <span data-cents="<%=order.subtotal%>"></span></h4>
+      <h4>fees: <span data-cents="<%=order.fees%>"></span></h4>
+      <h4>total: <span data-cents="<%=order.total%>"></span></h4>
+    </header>
+    <table id="tips">
+      <thead>
+        <tr>
+          <th>when</th>
+          <th>amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial:"tips/details", collection:order.tips, as: :tip %>
+      </tbody>
+    </table>
+  </section>
+</details>
+<%-end-%>

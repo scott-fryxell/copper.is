@@ -1,39 +1,60 @@
-#pages_index, #home_tip_some_pages {
+#pages_index {  
+  #pages {
+    margin-top:grid-width(1);
+    & > details[data-author_state=orphaned] > summary > figure {
+      box-shadow: 1px 1px 5px 2px $red;
+    }
 
-  section#pages {
-    & > figure {
-      margin: 0 4em 2em 0;
-      vertical-align: top;
+    & > details[data-author_state=fostered] > summary > figure {
+      box-shadow: 1px 1px 5px 2px $yellow;
+    }
+
+    & > details[data-author_state=adopted] > summary > figure {
+      box-shadow: 1px 1px 5px 2px $green; 
+    }
+
+    & > details[data-author_state=manual] > summary > figure {
+      box-shadow:1px 1px 5px 2px $brown;
+    }
+  }
+
+  #pages.adopted {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=adopted]{
       display:inline-block;
-      overflow:hidden;
-      &:nth-child(3n+3){
-        margin-right:0;
-      }
+    }
+  }
 
-      & > figcaption {
-        @include text;
-        font-size:1em;
-        display:block;
-        width:grid-width(6);
-        height:1em;
-        line-height:1em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        margin-bottom: 1em;
-      }
-      & > a {
-        display:block;
+  #pages.triage {
+    & > details[data-author_state]{
+      display:none;
+    }
 
+    & > details[data-author_state=triage]{
+      display:inline-block;
+    }
+  }
 
-      }
-      & > a > img {
-        border:2px solid $light-text;
-        border-radius:0.5em;
-        display:block;
-        width:grid-width(6);
-        height:grid-width(4);
-      }
+  #pages.fostered {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=fostered]{
+      display:inline-block;
+    }
+  }
+
+  #pages.manual {
+    & > details[data-author_state]{
+      display:none;
+    }
+
+    & > details[data-author_state=manual]{
+      display:inline-block;
     }
   }
 }

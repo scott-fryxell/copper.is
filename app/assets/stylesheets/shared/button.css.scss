@@ -14,8 +14,8 @@
 
         & > em {
           display:inline-block;
-          border-bottom: .10em solid $text;
-          border-radius:.25em;
+          border-bottom: 0.10em solid $text;
+          border-radius:0.25em;
         }
         & > code {
           display:block;
@@ -31,7 +31,7 @@
         display:none;
       }
       & > figcaption {
-        color:$darkness;
+        color:$dark;
         border-radius:0.25em;
         border:2px solid $input_border;
         font-family: 'Cantarell', sans-serif;
@@ -42,8 +42,6 @@
     }
   }
 }
-
-
 #home_settings {
   #button {
     & > header > p {
@@ -59,13 +57,8 @@
     & > a:nth-child(7) {
       display:none;
     }
-    & > a {
-      width:grid-width(4);
-    }
   }
-
 }
-
 #home_index {
   #button {
     margin-bottom:grid-width(6.5);

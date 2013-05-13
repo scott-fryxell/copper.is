@@ -1,0 +1,56 @@
+<%-cache page do-%>
+<section id="admin" itemscope itemtype='pages' itemid='/pages/<%=page.id%>' class="hide">
+  <img class="toggle" src='<%= image_path 'noun_project/94_light.svg'%>'/>
+  <header>
+    <hgroup>
+      <h1 itemprop='author_state'><%=page.author_state%></h1>
+    </hgroup>
+    <hgroup>
+      <h4>id</h4>
+      <p itemprop="id"><%=page.id%></p>
+    </hgroup>
+    <hgroup>
+      <h4>updated</h4>
+      <time itemprop="updated_at" datetime="<%=page.updated_at.getutc.iso8601%>"/>
+    </hgroup>
+    <hgroup>
+      <h4>Created</h4>
+      <time itemprop="created_at" datetime="<%=page.created_at.getutc.iso8601%>"/>
+    </hgroup>
+  </header>
+  <div>
+    <figure>
+      <img itemprop='thumbnail_url' itemprop='thumbnail_url' src="<%=page.thumbnail_url%>"/>
+    </figure>
+    <fieldset>
+      <input placeholder="title" itemprop="title" value="<%=page.title%>" >
+      <input placeholder="url" itemprop="url" value="<%=page.url%>" >
+      <input placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">
+      <%-if page.author-%>
+        <details itemscope itemtype='authors' itemid='/author/<%=page.author_id%>'>
+          <summary><h4>author</h4><p itemprop="url"><%=page.author.url%></p></summary>
+        </details>
+      <%-end-%>
+      <nav>
+        <button itemprop="welcome" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.welcome?%>">welcome</button>
+        <button itemprop="onboarding" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.onboarding?%>">onboarding</button>
+        <button itemprop="trending" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.trending?%>">trending</button>
+        <button itemprop="nsfw" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.nsfw?%>">nsfw</button>
+      </nav>
+      <nav style="display:none">
+        <button formmethod="delete" formaction="/pages/<%=page.id%>">delete</button>
+        <button formmethod="post" formaction="/pages/<%=page.id%>/adopt">adopt</button>
+        <button formmethod="post" formaction="/pages/<%=page.id%>/reject">reject</button>
+      </nav>
+    </fieldset>
+  </div>
+  <footer style="display:none">
+    <details itemscope itemtype='tips' itemid='/pages/<%=page.id%>/tips'>
+      <summary>tips</summary>
+    </details>
+    <details itemscope itemtype='checks' itemid='/pages/<%=page.id%>/checks'>
+      <summary>checks</summary>
+    </details>
+  </footer>
+</section>
+<%-end-%>

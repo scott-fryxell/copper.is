@@ -1,4 +1,4 @@
-#home_index, #home_settings{
+#home_settings, #home_getting_started{
   #card {
     
       #number {
@@ -7,6 +7,10 @@
       #cvc {
         width:2.25em;
       }
+      #year {
+        width:2.25em;
+      }
+
       & > div {
         display:none;
         width:40em;

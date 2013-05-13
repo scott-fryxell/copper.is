@@ -1,8 +1,6 @@
-$(document).on "load.home_index load.home_settings", ->
-
+$(document).on "load.home_getting_started load.home_settings", ->
   # set appropriate extension based on browswer type
-  is_chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1
-  if is_chrome
+  if $.browser.chrome
     $("a.install").click ->
       url = "https://chrome.google.com/webstore/detail/aoioappfaobhjafcnnajbndogjhaodpb"
       chrome.webstore.install url, ->
@@ -30,14 +28,10 @@ $(document).on "load.home_index load.home_settings", ->
     $("a.install").hide();
 
 $(document).on 'safari_button_downloaded', -> 
-  $('#extension').addClass 'downloaded'
+  # $('#extension').addClass 'downloaded'
 
 $(document).on 'copper_button_installed', ->
-  # must be bound early for firefox onboarding to work.
-  $('#extension').addClass 'installed'
-  # TODO: refactor all this bullshit into class animations
-  $('#home_index #button').delay(0).fadeOut 800
-  $('#congrats').delay(800).fadeIn 800
-  $('#facebook').delay(800).fadeIn 800
-  $('#card').delay(800).fadeIn 800, ->
-    $('#card > form input').first().focus()
+  console.debug('button installed')
+  # $('#card input').attr('disabled', 'false')
+  # $('#card select').attr('disabled', 'false')
+  $('#card > form input').first().focus()

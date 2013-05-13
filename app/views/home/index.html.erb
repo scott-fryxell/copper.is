@@ -1,10 +1,10 @@
 <%-cache current_user do-%>
   <section id="banner">
     <header>
-      <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+      <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
     </header>
     <hgroup>
-      <h1>Your Profile</h1>
+      <h1>what you love</h1>
       <p><%=current_user.name%><a href="/signout">not you?</a></p>
     </hgroup>
     <%-unless current_user.created_at < 7.days.ago-%>
@@ -29,58 +29,16 @@
       <h2>Default tip</h2>
       <p>
         <span itemprop="tip_preference_in_cents"></span>
-        <button>+</button>
-        <button>-</button>
+        <%= image_tag "noun_project/5805.svg", alt:"increase defalut tip amount"%>
+        <%= image_tag "noun_project/5802.svg", alt:"decrease default tip amount"%>
       </p>
     </div>
     <footer></footer>
   </section>
 
-  <%-if current_user.pages.count > 0 -%>
-    <section id="pages">
-      <header>
-        <h1>The stuff you love</h1>
-        <hgroup>
-          <h2>Filter by</h2>
-          <nav>
-            <a href="#pages.read" class="selected">read</a>
-            <a href="#pages.watch">watch</a>
-            <a href="#pages.listen">listen</a>
-          </nav>
-          <nav>
-            <a href="#pages.author">author</a>
-            <a href="#pages.site">site</a>
-          </nav>
-          <nav>
-            <a href="#pages.adopted">adopted <span><%=current_user.pages.adopted.count%></span></a>
-            <a href="#pages.fostered">fostered <span><%=current_user.pages.fostered.count%></span></a>
-            <a href="#pages.manual">manual <span><%=current_user.pages.manual.count%></span></a>
-            <a href="#pages.orphaned">orphaned <span><%=current_user.pages.orphaned.count%></span></a>
-          </nav>
-        </hgroup>
-      </header>
-      <%= render partial:"pages/fan_page", collection:current_user.tipped_pages, as: :page %>
-    </section>
-  <%-else-%>
-    <%= render partial:"shared/button"%>
-    <section id="congrats">
-      <header>
-        <h3>Congrats!</h3>
-        <h1>Your button is installed!</h1>
-      </header>
-    </section>
-    <section id="card">
-      <header>
-        <h3>All the cool kids are tipping with real money</h3>
-        <p>
-          Here's the fine print: If you tip someone a buck, 
-          they get paid a buck. We charge you 10% for the service.
-        </p>
-      </header>
-      <%= render partial:'shared/card' %>
-      <figure>
-        <%=image_tag "noun_project/3879.svg"%>
-      </figure>
-    </section>
-  <%-end-%>
+  <section id="pages">
+    <%-if current_user.pages.count > 0 -%>
+      <%= render partial:"pages/details", collection:current_user.tipped_pages.limit(60), as: :page %>
+    <%-end-%>
+  </section>
 <%-end-%>

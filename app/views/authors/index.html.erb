@@ -1,0 +1,15 @@
+<nav data-role="admin">
+  <h1>states</h1>
+  <a href="/authors">all</a>
+  <a href="/authors?state=known">known</a>
+  <a href="/authors?state=wanted">wanted</a>
+  <a href="/authors?state=stranger">stranger</a>
+  <h1>providers</h1>
+  <a href="#facebook">facebook</a>
+  <a href="#twitter">twitter</a>
+  <a href="#soundcloud">soundcloud</a>
+  <a href="#github">github</a>
+</nav>
+<nav id="authors">
+<%= render partial:"index", collection:@authors, as: :author %>
+</nav>

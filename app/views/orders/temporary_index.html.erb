@@ -1,0 +1,36 @@
+<%-cache current_user do-%>
+<section id="banner">
+  <header>
+    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+  </header>
+  <hgroup>
+    <h1>Your tip orders</h1>
+    <p><%=@current_user.name%><a href="/signout">not you?</a></p>
+  </hgroup>
+  <p></p>
+</section>
+<section id="stats">
+  <header>
+    <h1>Order stats</h1>
+  </header>
+  <div>
+    <h2>Order count</h2>
+    <p><%=current_user.orders.count%></p>
+  </div>
+  <div>
+    <h2>Highest tip</h2>
+    <p data-cents="<%=current_user.tips.maximum :amount_in_cents%>"></p>
+  </div>
+  <div>
+    <h2>Orders total</h2>
+    <p data-cents="<%=current_user.tips.sum :amount_in_cents %>"></p>
+  </div>
+  <footer></footer>
+</section>
+<section id="orders">
+  <header>
+    <h1>Tip Orders</h1>
+  </header>
+  <%= render partial:"temporary_show", collection:current_user.orders.order("created_at DESC"), as: :order %>
+</section>
+<%-end-%>
