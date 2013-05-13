@@ -22,7 +22,7 @@ section#admin {
     overflow:hidden;
     width: 3.5em;
     max-height:3.5em;
-    opacity:0;
+    opacity:0.5;
     margin-top:-3.5em;
     @include transition (max-height 0.25s ease-in 0.5s, margin-top 0.5s ease-in 0.5s, opacity 1s ease-in, width 0.35s ease-in 0.75s, overflow 0.35s ease-in);
     &:hover {
@@ -102,7 +102,6 @@ section#admin{
         }
     }
     & > div {
-      // width: grid-width(22);
       display:block;
       margin:0;
       padding:0;

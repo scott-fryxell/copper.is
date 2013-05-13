@@ -30,8 +30,6 @@
         <details itemscope itemtype='authors' itemid='/author/<%=page.author_id%>'>
           <summary><h4>author</h4><p itemprop="url"><%=page.author.url%></p></summary>
         </details>
-      <%-else-%>
-        <input placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">
       <%-end-%>
       <nav>
         <button itemprop="welcome" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.welcome?%>">welcome</button>
