@@ -36,3 +36,4 @@ $(document).on '#claim_pages', ->
           unless(page.category == 'Application')
             $('<input/>', {type:"checkbox", value:page.id, name:"facebook_objects[]", id:page.name}).appendTo('#facebook_pages > form > fieldset')
             $('<label/>', {html:page.name, for:page.name}).appendTo('#facebook_pages > form > fieldset')
+            
