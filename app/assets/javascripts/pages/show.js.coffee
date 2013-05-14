@@ -11,11 +11,6 @@ $(document).on "load.pages_show", ->
   $('body').on 'change', "input[itemprop=thumbnail_url]", ->
     $('img[itemprop=thumbnail_url]').attr('src', $(@).val())
     
-    
-  $('body').on 'change', "input[placeholder=author]", ->
-    # submit the new url and see if it works
-    $(@).val()
-
   $("button[formaction]").click ->
     value = $(@).attr('value') 
 
