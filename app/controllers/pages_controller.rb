@@ -52,6 +52,12 @@ class PagesController < ApplicationController
       @page.trending = params[:trending]
     end
 
+    if params[:author_url]
+      if @page.author = Author.find_or_create_from_url(params[:author_url])
+        @page.adopt!
+      end
+    end
+
     @page.save
     render :action => 'update', :layout => false 
   end

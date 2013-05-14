@@ -26,15 +26,7 @@
       <input placeholder="title" itemprop="title" value="<%=page.title%>" >
       <input placeholder="url" itemprop="url" value="<%=page.url%>" >
       <input placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">
-      <%-if page.author-%>
-      <details itemscope itemtype='authors' itemid='/authors/<%=page.author_id%>'>
-        <summary><h4>author</h4><p itemprop="url"><%=page.author.url%></p></summary>
-      </details>
-      <%-else-%>
-      <details itemscope itemtype='authors' itemid='/authors/'>
-        <summary><h4>author</h4><p itemprop="url">unknown</p></summary>
-      </details>
-      <%-end-%>
+      <input placeholder="author" itemprop="author_url" value="<%=page.author.url if page.author %>">
       <nav>
         <button itemprop="welcome" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.welcome?%>">welcome</button>
         <button itemprop="onboarding" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.onboarding?%>">onboarding</button>
