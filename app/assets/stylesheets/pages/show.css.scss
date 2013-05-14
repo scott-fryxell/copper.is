@@ -57,9 +57,9 @@
       height:auto;
       opacity:1;
       @include transition (opacity 1.5s ease-in 2s);
-      position:absolute;
-      top:2em;
-      right:-10em;
+      position:fixed;
+      top:4em;
+      right:4em;
       display:inline-block;
       img {
         position:absolute;
@@ -72,10 +72,13 @@
       z-index: 5;
       height:auto;
       opacity:1;
+      background-color:$dark;
+      border-radius: 0.5em;
+      padding:1em;
       @include transition (opacity 1.5s ease-in 2s);
-      position:absolute;
-      top:3em;
-      left:-14em;
+      position:fixed;
+      top:6em;
+      left:4em;
       display:inline-block;
       img {
         position:absolute;
@@ -89,7 +92,7 @@
       opacity:1;
       @include transition (opacity 1.5s ease-in 2s);
       position:absolute;
-      top:2em;
+      top:1em;
       right:-3em;
       display:inline-block;
       img {
