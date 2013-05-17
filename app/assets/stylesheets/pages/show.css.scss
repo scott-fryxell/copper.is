@@ -9,104 +9,148 @@
     display:none;
   }
   #banner {
+    min-height: grid-width(4);
     overflow:hidden;
     padding:grid-width(1);
     margin-top: 0;
     background-color: $dark;
     @include full_width($dark);
     hgroup {
-      margin-right:grid-width(8);
       display:inline-block;
       vertical-align: top;
-      &:last-child{
-
+      &:first-child {
+        width:grid-width(14);
+        p {
+          margin:0;
+          font-size:1.25em;
+          color:$light;
+          font-family: 'Cantarell', sans-serif;
+          height:0;
+          opacity:0;
+        }
+        h1 {
+          margin:0;
+          font-size:2.5em;
+          color:$light;
+          font-family: 'Doppio One', sans-serif;
+        }
+      }
+      &:last-child {
+        width:grid-width(8);
         height:100%;
         margin-right: 0;
         & > a {
+          height:0;
+          width:0;
+          opacity:0;
+          display:inline-block;
+          margin-top: grid-width(1);
+          margin-left: grid-width(3);
+          text-align: center;
           font-size: 1.5em;
           font-family: 'Bree Serif', serif;
-        }        
-      }
-      h1 {
-        margin:0;
-        font-size:2.5em;
-        color:$light;
-        font-family: 'Doppio One', sans-serif;
-      }
-      p {
-        margin:0;
-        font-size:1.25em;
-        color:$light;
-        font-family: 'Cantarell', sans-serif;
-      }
-    }
-
-    figure {
-      opacity:0;
-      height:0;
-      figcaption{
-        font-family: 'Nothing You Could Do', cursive;
-        font-size:1.75em;
-        color:$light;
-        p {
-          text-align:center;
-          margin:0;
-        }
-      }
-    }
-    figure.chrome{
-      height:auto;
-      opacity:1;
-      @include transition (opacity 1.5s ease-in 2s);
-      position:fixed;
-      top:4em;
-      right:4em;
-      display:inline-block;
-      img {
-        position:absolute;
-        top:-2em;
-        right:-2em;
-        @include transform(rotate(132deg));
-      }
-    }
-    figure.safari{
-      z-index: 5;
-      height:auto;
-      opacity:1;
-      background-color:$dark;
-      border-radius: 0.5em;
-      padding:1em;
-      @include transition (opacity 1.5s ease-in 2s);
-      position:fixed;
-      top:6em;
-      left:4em;
-      display:inline-block;
-      img {
-        position:absolute;
-        top:-4em;
-        left:6em;
-        @include transform(rotate(85deg));
-      }
-    }
-    figure.mozilla{
-      height:auto;
-      opacity:1;
-      @include transition (opacity 1.5s ease-in 2s);
-      position:absolute;
-      top:1em;
-      right:-3em;
-      display:inline-block;
-      img {
-        position:absolute;
-        top:-2em;
-        right:-2em;
-        @include transform(rotate(132deg));
+        }  
+        & > figure {
+          width:0;
+          opacity:0;
+          height:0;
+          & > figcaption{
+            font-family: 'Nothing You Could Do', cursive !important;
+            font-size:1.75em;
+            color:$light;
+            p {
+              text-align:center;
+              margin:0;
+            }
+          }
+        }      
       }
     }
   }
-
   & > iframe {
     width:100%;
     height:100%;
+  }
+}
+#pages_show.fan {
+  #banner > hgroup {
+    &:first-child p.fan {
+      @include transition (opacity 1.5s ease-in 0.25s);
+      height:auto;
+      opacity:1;
+    }
+
+    &:last-child > figure {
+      @include transition (opacity 1.5s ease-in 0.25s);
+      height:auto;
+      width:auto;
+      opacity:1;
+
+      &.chrome{
+        height:auto;
+        opacity:1;
+        @include transition (opacity 1.5s ease-in 2s);
+        position:fixed;
+        top:4em;
+        right:4em;
+        display:inline-block;
+        img {
+          position:absolute;
+          top:-2em;
+          right:-2em;
+          @include transform(rotate(132deg));
+        }
+      }
+      &.safari{
+        z-index: 5;
+        height:auto;
+        opacity:1;
+        background-color:$dark;
+        border-radius: 0.5em;
+        padding:1em;
+        @include transition (opacity 1.5s ease-in 2s);
+        position:fixed;
+        top:6em;
+        left:4em;
+        display:inline-block;
+        img {
+          position:absolute;
+          top:-4em;
+          left:6em;
+          @include transform(rotate(85deg));
+        }
+      }
+      &.mozilla{
+        height:auto;
+        opacity:1;
+        @include transition (opacity 1.5s ease-in 2s);
+        position:absolute;
+        top:1em;
+        right:-3em;
+        display:inline-block;
+        img {
+          position:absolute;
+          top:-2em;
+          right:-2em;
+          @include transform(rotate(132deg));
+        }
+      }
+
+    }
+  }
+}
+#pages_show.guest {
+  #banner > hgroup {
+    &:first-child p.guest {
+      @include transition (opacity 1.5s ease-in 0.25s);
+      height:auto;
+      opacity:1;
+    }
+    &:last-child a {
+      @include transition (opacity 1.5s ease-in 0.25s);
+      height:auto;
+      width:auto;
+      opacity:1;
+    }
   }
 }

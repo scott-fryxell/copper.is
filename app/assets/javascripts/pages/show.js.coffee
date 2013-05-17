@@ -1,12 +1,12 @@
 $(document).on "load.pages_show", ->
-  page = document.items['pages'][window.location.pathname]
+  # page = document.items['pages'][window.location.pathname]
 
   if $.browser.chrome
-    $('#banner > figure').addClass('chrome')
+    $('#banner > hgroup > figure').addClass('chrome')
   else if $.browser.mozilla
-    $('#banner > figure').addClass('mozilla')
+    $('#banner > hgroup > figure').addClass('mozilla')
   else
-    $('#banner > figure').addClass('safari')
+    $('#banner > hgroup > figure').addClass('safari')
 
   $('body').on 'change', "input[itemprop=thumbnail_url]", ->
     $('img[itemprop=thumbnail_url]').attr('src', $(@).val())
