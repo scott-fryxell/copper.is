@@ -1,0 +1,39 @@
+#home_trending {
+  #banner > header {
+    height:grid-width(3)
+  }
+
+  #banner > header > hgroup > p,
+  #banner > header > hgroup.guest {
+    opacity:0;
+    height:0;
+  }
+  #banner  > header {
+    hgroup:first-child {
+      width:grid-width(14);
+      margin-right: 0;
+      p {
+      }
+    }
+    hgroup:last-child {
+      width:grid-width(7);
+    }
+  }
+}
+
+#home_trending.guest {
+  #banner > header > hgroup > p.guest,
+  #banner > header > hgroup.guest {
+    @include transition (opacity 1.5s ease-in 0.25s);
+    opacity:1;
+    height:auto;
+  }
+}
+
+#home_trending.fan {
+  #banner > header > hgroup > p.fan {
+    @include transition (opacity 1s ease-in 0);
+    opacity:1;
+    height:auto;
+  }
+}

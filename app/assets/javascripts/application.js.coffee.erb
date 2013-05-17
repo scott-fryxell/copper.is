@@ -20,6 +20,7 @@
 #= require home/settings
 #= require home/badge
 #= require home/welcome
+#= require home/trending
 #= require home/getting_started
 #= require pages/index
 #= require pages/show
@@ -33,9 +34,6 @@ $(document).ready ->
     event.preventDefault();
     history.pushState({}, "", @.href)
   
-  # if $(window).height() > $('body').height()
-    # $('body > footer').addClass('bottom')
-
   $('#admin > img.toggle').click ->
     $('#admin').toggleClass('hide')
 
@@ -49,9 +47,11 @@ $(document).ready ->
       $("#user_nav").addClass 'show'
       $('a[href="/signout"]').css 'display','inline-block'
       $(document).trigger "me." + $('body').attr 'id'
+      $('body').addClass("fan")
     statusCode:
       401:->
         $(document).trigger "guest." + $('body').attr 'id'
+        $('body').addClass("guest")
     
   $(document).bind 'save.me', ->
     jQuery.ajax

@@ -2,14 +2,16 @@
 <section id="banner">
   <header>
     <hgroup>
-      <h1>Check out this cool stuff.</h1>
-      <p>Support your favorite artists 
-        &amp; easily discover new ones.</p>
+      <h1>What’s trending on Copper</h1>
+      <p class="guest">Get the Copper button to support 
+        your favorite creators with a 
+        single click.</p>
+      <p class="fan">Clicks make tips, 
+        your button is right there! Support your favorite 
+        content and easily discover more.</p>
     </hgroup>
-    <hgroup>
-      <%-unless current_user-%>
+    <hgroup class="guest">
       <a class="button" href="/getting_started">Sign Up</a>
-      <%-end-%>
     </hgroup>
   </header>
 </section>

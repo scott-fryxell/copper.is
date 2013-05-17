@@ -74,19 +74,3 @@
     }
   }
 }
-
-#home_trending {
-  #banner  > header {
-    hgroup:first-child {
-      width:grid-width(13);
-      margin-right: grid-width(1);
-      p {
-        width:13.5em;
-      }
-    }
-    hgroup:last-child {
-      width:grid-width(7);
-    }
-
-  }
-}
