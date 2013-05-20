@@ -17,6 +17,6 @@
 </section>
 
 <section id="pages">
-  <%= render partial:"pages/index", collection:Page.safe.trending, as: :page %>
+  <%= render partial:"pages/index", collection:Page.safe.trending.limit(18), as: :page %>
 </section>
 <%-end-%>
