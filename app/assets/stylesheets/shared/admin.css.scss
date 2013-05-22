@@ -8,7 +8,7 @@ section#admin {
   border: 0.25em solid $dark;
   border-top: none;
   width: grid-width(24);
-  padding: grid-width(1);
+  padding: 1em 0 1em 2em;
   max-height:100em;
   opacity:1;
   overflow:visible;
@@ -35,7 +35,7 @@ section#admin {
   }
   & > img {
     display:block;
-    margin:-4.5em auto 0 auto;
+    margin:0 auto 1.5em auto;
     opacity:0.5;
     width:grid-width(1);
     height:grid-width(1);
@@ -223,10 +223,10 @@ section#admin{
       margin-right:0;
     }
     figure:nth-child(2) > img{
-      opacity:.9;
+      opacity:0.9;
     }
     figure > img {
-      opacity:.8;
+      opacity:0.8;
       vertical-align:top;
       display:block;
       margin:0 auto;
