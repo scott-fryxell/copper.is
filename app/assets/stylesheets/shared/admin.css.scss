@@ -68,7 +68,9 @@ section#admin{
       margin: 0 0 0 2em ;
       width:grid-width(3);
       @include transition (opacity 0.25s ease-out 1s);
-      @include inset_button($text);
+      @include button($copper);
+      text-align: center;
+      text-transform: capitalize;
     }
     a:first-child {
       margin-left: 1em;
