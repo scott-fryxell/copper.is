@@ -1,4 +1,5 @@
 section#admin {
+
   box-shadow: inset 0 0.25em 0.25em 0.25em $header;
   @include full_width($dark);
   background-color:$offset;
@@ -209,6 +210,8 @@ section#admin{
     margin-bottom: grid-width(1);
   }
   #statistics {
+    min-height: grid-width(13);
+    padding-top:grid-width(2);
     figure {
       margin-right:4em;
       vertical-align:top;
