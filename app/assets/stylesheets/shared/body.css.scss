@@ -80,7 +80,8 @@ body > header {
     bottom:0;
     left:0;
     right:0;
-    @include background-image(linear-gradient($header 12%, $header_transparent 78%), radial-gradient($dark 40%, $header_transparent 90%));
+    @include background-image(linear-gradient($header 29%, $header_transparent 98%), radial-gradient($dark 44%, $header_transparent 100%));
+
   }
   hgroup {
     display:none;
