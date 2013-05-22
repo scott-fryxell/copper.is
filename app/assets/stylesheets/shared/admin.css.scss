@@ -1,6 +1,6 @@
 section#admin {
 
-  box-shadow: inset 0 0.25em 0.25em 0.25em $header;
+  box-shadow: inset 0 0.15em 0.15em 0em $header;
   @include full_width($dark);
   background-color:$offset;
   border-bottom-left-radius: 0.5em;
@@ -55,6 +55,7 @@ section#admin{
       & > a {
         opacity:0;
         @include transition (opacity 0.25s ease-out 0);
+
       }
     }
   }
@@ -64,7 +65,7 @@ section#admin{
     a {
       opacity:1;
       display:inline-block;
-      margin: 1em 0 0 2em ;
+      margin: 0 0 0 2em ;
       width:grid-width(3);
       @include transition (opacity 0.25s ease-out 1s);
       @include inset_button($text);
@@ -206,11 +207,12 @@ section#admin{
 }
 #home_admin {
   #admin {
+    padding: 1em;
     width: grid-width(28);
     margin-bottom: grid-width(1);
   }
   #statistics {
-    min-height: grid-width(13);
+    min-height: grid-width(14);
     padding-top:grid-width(2);
     figure {
       margin-right:4em;
