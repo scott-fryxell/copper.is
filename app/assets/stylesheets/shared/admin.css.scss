@@ -25,7 +25,7 @@ section#admin {
     max-height:3.5em;
     opacity:0.5;
     margin-top:-3.5em;
-    @include transition (max-height 0.25s ease-in 0.5s, margin-top 0.5s ease-in 0.5s, opacity 1s ease-in, width 0.35s ease-in 0.75s, overflow 0.35s ease-in);
+    @include transition (width 0.35s ease-in 0.75s ,max-height 0.25s ease-in 0.5s, margin-top 0.5s ease-in 0.5s, opacity 1s ease-in, overflow 0.35s ease-in);
     &:hover {
       opacity:0.8;
     }
