@@ -4,10 +4,12 @@ html {
   background-color: $light;
   background-image: image-url('shared/texture_light.png');
   @include user-select(none);
-  @include text;
-  * {@include box-sizing(border-box);}
+  * {
+    @include box-sizing(border-box);
+  }
 }
 body {
+  @include text;
   overflow-x:hidden;
   &:after {
     content:"";
