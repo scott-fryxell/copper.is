@@ -2,7 +2,7 @@
 $background_color: #313130;
 $subtle_text: #999999;
 #tips_new {
-  margin-left:1em;
+  margin-left:1rem;
   width:350px;
   font-size:16px;
   section {
@@ -10,8 +10,8 @@ $subtle_text: #999999;
     background-color: $background_color;
     color:$light;
     height:0;
-    border-radius: 0 0 0.5em 0.5em;
-    padding:0 1em;
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding:0 1rem;
     opacity:1;
     border:2px solid $dark;
     border-top:none;
@@ -22,13 +22,13 @@ $subtle_text: #999999;
     & > header {
       @include transition(min-height 0.5s ease-out 0.5s);
       min-height:0;
-      padding:1em 0 0 0 ;
-      margin-bottom:0.25em;
+      padding:1rem 0 0 0 ;
+      margin-bottom:0.25rem;
       & > a {
         display:inline-block;
         &:nth-child(2) {
-          font-size:0.85em;
-          padding:0.2em 0.55em;
+          font-size:0.85rem;
+          padding:0.2rem 0.55rem;
           text-decoration: none;
           float:right;
           color:$subtle_text;
@@ -45,37 +45,42 @@ $subtle_text: #999999;
       }
       & > h1 {
         @include header_text;
-        margin:1em 0 0.5em 0;
-        vertical-align:middle;
-        font-size:2em;
-        text-align:center;
-        color:$copper;
+        margin: 0.5rem 0 0.5rem 0;
+        vertical-align: middle;
+        font-size: 2rem;
+        text-align: center;
+        color: $copper;
       }
       & > h2 {
-        margin-bottom:0;
-        font-size:1em;
-        color:$light;
-        color:$subtle_text;
-        text-align:center;
+        margin-bottom: 0;
+        font-size: 1rem;
+        color: $light;
+        color: $subtle_text;
+        text-align: center;
       }
     }
 
     & > form {
-      opacity:0;
-      display:block;
-      vertical-align:top;
-      width:6em;
-      margin: 0 auto;
+      opacity: 0;
+      display: block;
+      vertical-align: top;
       background-color:transparent;
-      &:before{
-        color:$light;
-        content:"$";
-        font-family: 'Bree Serif', serif;
-        font-size:1.85em;
-        display:inline-block;
-        vertical-align: middle;
+      & > fieldset {
+        display:block;
+        margin:0 auto;
+        width:grid-width(3);
+        text-align: center;
+        &:before{
+          color:$light;
+          content:"$";
+          font-family: 'Bree Serif', serif;
+          font-size:1.85em;
+          display:inline-block;
+          vertical-align: middle;
+        }
       }
-      & > input[itemprop=amount_in_dollars] {
+      & > fieldset > input[itemprop=amount_in_dollars] {
+        position:relative;
         width:1.85em;
         background-color:transparent;
         color:$light;
@@ -83,17 +88,17 @@ $subtle_text: #999999;
         margin:0;
         padding:0;
         vertical-align:top;
-        font-size:2em;
-        line-height:1em;
-        display:inline-block;
+        font-size: 2rem;
+        line-height: 1rem;
+        display: inline-block;
         vertical-align: middle;
-        border:0px solid $background_color;
-        border-radius:.25em;
+        border: 0px solid $background_color;
+        border-radius: 0.25em;
         &:focus {
           outline:none;
         }
         &.invalid {
-          box-shadow: 0px 0px .75em 2px $red;
+          box-shadow: 0px 0px 0.75rem 2px $red;
           border-color:$red;
         }
       }
@@ -101,7 +106,7 @@ $subtle_text: #999999;
         @include button($copper);
         
         display:none;
-        margin-left:1em;
+        margin-left:1rem;
         vertical-align:middle;
         &:hover {
           border:0.10em solid darken($copper, 10%);
@@ -111,7 +116,7 @@ $subtle_text: #999999;
 
     & > footer {
       & > p {
-        font-size:0.75em;
+        font-size:0.75rem;
         text-align:center;
         & > a {
           color:$text;
@@ -130,7 +135,7 @@ $subtle_text: #999999;
       & > a {
         color:$subtle_text;
         text-decoration: none;
-        font-size:0.75em;
+        font-size:0.75rem;
         &:focus {
           outline:none;
         }
@@ -148,17 +153,21 @@ $subtle_text: #999999;
 
       }
       &:nth-child(2) {
-        margin: 1em auto 0.5em auto;
-        width:7em;
+        margin: 1rem auto 0.5rem auto;
+        width:grid-width(4);
+
         & > a {
+          &:first-child {
+            margin:0;
+          }
           display:inline-block;
           margin-left:0.5em;
           vertical-align:top; 
           & > img {
             opacity:0.15;
-            height:2em;
-            width:2em;
-            padding-top:0.25em;
+            height:2rem;
+            width:2rem;
+            padding-top:0.25rem;
             &:hover {
               @include transition(opacity 0.5s ease-out 0s);
               opacity:0.95;
@@ -170,7 +179,7 @@ $subtle_text: #999999;
   }
   section.show,
   section.details {
-    min-height:grid-width(9);
+    min-height:21rem;
     @include transition( min-height 0.25s, padding 0.25s);
     & > header {
       @include transition(min-height 1s);
@@ -198,7 +207,7 @@ $subtle_text: #999999;
       width:13em;
        & > input[itemprop=amount_in_dollars] {
         border:2px solid $text;
-        padding:0 0.25em;
+        padding:0 0.25rem;
       }
       & > a.button {
         display:inline-block;
