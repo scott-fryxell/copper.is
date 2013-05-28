@@ -5,7 +5,6 @@
   }
  
   #sharing {
-
     & > form {
       display:inline-block;
       opacity:1;
@@ -17,4 +16,7 @@
       @include settings_pointer;
     }
   }
+
+  
+
 }
