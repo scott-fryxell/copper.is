@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 18) do
+ActiveRecord::Schema.define(:version => 19) do
 
   create_table "authors", :force => true do |t|
     t.string    "provider",       :null => false
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 18) do
     t.boolean   "welcome",       :default => false
     t.boolean   "trending",      :default => false
     t.boolean   "nsfw",          :default => false
+    t.text      "description"
   end
 
   add_index "pages", ["url"], :name => "index_pages_on_url"
