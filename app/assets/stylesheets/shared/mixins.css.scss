@@ -134,7 +134,6 @@ $shadow:rgba(0, 0, 0, 0.5);
   font-family: 'Cantarell', sans-serif;
   font-weight:normal;
   color:$text;
-
 }
 @mixin header_text {
   letter-spacing: 1px;
@@ -186,8 +185,8 @@ $shadow:rgba(0, 0, 0, 0.5);
   text-align:center;
   &:after {
     content:"";
-    width:.75em;
-    height:.75em;
+    width:0.75em;
+    height:0.75em;
     width:3em;
     margin:0 auto 0 auto;
     display:block;
