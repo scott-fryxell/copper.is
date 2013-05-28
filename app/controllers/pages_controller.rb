@@ -14,7 +14,11 @@ class PagesController < ApplicationController
 
   def show
     @page = Page.where(id:params[:id]).first
-    render :action => 'show', :layout => false if request.headers['retrieve_as_data']
+    if request.headers['retrieve_as_data'] 
+      render :action => 'show', layout:false 
+    else
+      render :action => 'show', layout:"page_layout"
+    end
   end
 
   def update
