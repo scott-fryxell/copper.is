@@ -39,16 +39,15 @@ figure{
 audio,
 canvas,
 video {
-display: inline-block;
-*display: inline;
-*zoom: 1;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
 }
 
 /*
 * Prevents modern browsers from displaying 'audio' without controls
 * Remove excess height in iOS5 devices
 */
-
 audio:not([controls]) {
 display: none;
 height: 0;
@@ -76,9 +75,16 @@ display: none;
 */
 
 html {
-  font-size: 100%; /* 1 */
+  font-size: 100%; 
   -webkit-text-size-adjust: 100%; /* 2 */
   -ms-text-size-adjust: 100%; /* 2 */
+}
+
+@-moz-document url-prefix() {
+
+  html {
+    font-size: 99%;   
+  }
 }
 
 /*
