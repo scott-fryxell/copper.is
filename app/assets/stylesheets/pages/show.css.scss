@@ -85,7 +85,9 @@
       height:auto;
       width:auto;
       opacity:1;
-
+      img {
+        height:1.75rem;
+      }
       &.chrome{
         height:auto;
         opacity:1;
@@ -98,7 +100,7 @@
           position:absolute;
           top:-2em;
           right:-2em;
-          @include transform(rotate(132deg));
+          @include transform(rotate(126deg));
         }
       }
       &.safari{
@@ -132,7 +134,7 @@
           position:absolute;
           top:-2em;
           right:-2em;
-          @include transform(rotate(132deg));
+          @include transform(rotate(126deg));
         }
       }
 
