@@ -39,7 +39,7 @@ class TipsController < ApplicationController
   end
 
   def update
-    @tip = Tip.find(params[:tip_id])
+    @tip = Tip.find(params[:id])
     if (params[:tip][:amount_in_cents] && params[:tip][:amount_in_cents] != "" and @tip.order.current? and @tip.user == current_user)
       @tip.amount_in_cents = params[:tip][:amount_in_cents]
       @tip.save
