@@ -91,26 +91,26 @@
       &.chrome{
         height:auto;
         opacity:1;
-        @include transition (opacity 1.5s ease-in 2s);
+        @include transition (opacity 1.5s ease-in 4s);
         position:fixed;
-        top:4em;
+        top:5em;
         right:4em;
         display:inline-block;
         img {
           position:absolute;
-          top:-2em;
+          top:-3em;
           right:-2em;
           @include transform(rotate(126deg));
         }
       }
-      &.safari{
+      &.safari {
         z-index: 5;
         height:auto;
         opacity:1;
         background-color:$dark;
         border-radius: 0.5em;
         padding:1em;
-        @include transition (opacity 1.5s ease-in 2s);
+        @include transition (opacity 1.5s ease-in 6s);
         position:fixed;
         top:6em;
         left:4em;
@@ -125,15 +125,15 @@
       &.mozilla{
         height:auto;
         opacity:1;
-        @include transition (opacity 1.5s ease-in 2s);
+        @include transition (opacity 1.5s ease-in 6s);
         position:absolute;
-        top:1em;
-        right:-3em;
+        top:2em;
+        right:-8em;
         display:inline-block;
         img {
           position:absolute;
-          top:-2em;
-          right:-2em;
+          top:-3em;
+          right:-5em;
           @include transform(rotate(126deg));
         }
       }
