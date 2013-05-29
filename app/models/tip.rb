@@ -5,7 +5,7 @@ class Tip < ActiveRecord::Base
   belongs_to :page, touch:true
   belongs_to :order, touch:true
   belongs_to :check
-  has_one :user, :through => :order
+  has_one :user, :through => :order #, as:'fan' TODO:
   has_paper_trail
   default_scope :order => 'created_at DESC'
 
