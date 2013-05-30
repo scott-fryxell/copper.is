@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 19) do
+ActiveRecord::Schema.define(:version => 20) do
 
   create_table "authors", :force => true do |t|
     t.string    "provider",       :null => false
@@ -49,18 +49,18 @@ ActiveRecord::Schema.define(:version => 19) do
   end
 
   create_table "pages", :force => true do |t|
-    t.string    "title"
-    t.string    "url",                              :null => false
-    t.string    "author_state"
-    t.integer   "author_id"
-    t.timestamp "created_at",                       :null => false
-    t.timestamp "updated_at",                       :null => false
-    t.text      "thumbnail_url"
-    t.boolean   "onboarding",    :default => false
-    t.boolean   "welcome",       :default => false
-    t.boolean   "trending",      :default => false
-    t.boolean   "nsfw",          :default => false
-    t.text      "description"
+    t.string   "title"
+    t.text     "url",           :limit => 255,                    :null => false
+    t.string   "author_state"
+    t.integer  "author_id"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.text     "thumbnail_url"
+    t.boolean  "onboarding",                   :default => false
+    t.boolean  "welcome",                      :default => false
+    t.boolean  "trending",                     :default => false
+    t.boolean  "nsfw",                         :default => false
+    t.text     "description"
   end
 
   add_index "pages", ["url"], :name => "index_pages_on_url"
