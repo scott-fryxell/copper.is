@@ -53,11 +53,14 @@ class Author < ActiveRecord::Base
     end
 
     state :wanted do
-      def send_wanted_message
+      def ask_author_to_join
         raise "this author has a user" if self.user_id
-        _send_wanted_message
-        self.message = Time.now
-        save!
+        unless self.message
+
+          send_wanted_message
+          self.message = Time.now
+          save!
+        end
       end
     end
     
@@ -76,7 +79,7 @@ class Author < ActiveRecord::Base
     end
     
     after_transition any => :wanted do |author,transition|
-      Resque.enqueue author.class, author.id, :send_wanted_message
+      Resque.enqueue author.class, author.id, :ask_author_to_join
     end
     after_transition any => :known do |author,transition|
       Resque.enqueue Author, author.id, :create_page_for_author  
@@ -89,11 +92,11 @@ class Author < ActiveRecord::Base
     end
   end
 
-  after_save do
-    if self.wanted? and !self.message
-      Resque.enqueue self.class, self.id, :send_wanted_message
-    end
-  end
+  # after_save do
+  #   if self.wanted? and !self.message
+  #     Resque.enqueue self.class, self.id, :ask_author_to_join
+  #   end
+  # end
   
   before_save do
     if self.stranger?

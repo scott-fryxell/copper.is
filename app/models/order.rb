@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   include Enqueueable
+  include OrderMessages
   has_many :tips
   belongs_to :user,  touch:true
   has_paper_trail
@@ -62,46 +63,15 @@ class Order < ActiveRecord::Base
         send_paid_order_message stripe_charge.card['last4']
       rescue Stripe::CardError => e
         decline!
+        if e.code == 'expired_card'
+          user.message_
+        end
+
         raise e
       end
     end
   end
   
-  def send_paid_order_message card_number
-    m = Mandrill::API.new(Copper::Application.config.mandrill_key)
-    m.messages 'send-template', {
-      template_name: "order reciept",
-      template_content: [
-        { name: "order_id",
-          content: "#{self.id}"
-        },
-        { name: "order_total",
-          content: "$#{self.total_in_dollars}"
-        },
-        { name: "order_date",
-          content: "#{self.updated_at.strftime('%m/%d/%Y')}"
-        },
-        { name: "order_credit_card_number",
-          content: "#{card_number}"
-        },
-        { name: "order_subtotal",
-          content: "$#{self.subtotal_in_dollars}"
-        },
-        { name: "order_fee",
-          content: "$#{self.fees_in_dollars}"
-        },
-        { name: "order_tips",
-          content: self.tips_to_table_rows
-        }
-      ],
-      message: {
-        subject:"Your Receipt for order number #{self.id}",
-        from_email: "us@copper.is",
-        from_name: "The Copper Team",
-        to:[{email:self.user.email, name:self.user.name}]
-      }
-    }
-  end
 
   def tips_to_table_rows
     tip_rows = ""

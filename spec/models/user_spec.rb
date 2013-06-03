@@ -41,4 +41,16 @@ describe User do
       @me = create!(:user_email)
     end
   end
+
+  describe "lists", :focus do
+
+    it "should know all the fans who have tipped" do
+      User.should respond_to(:tipped)
+    end
+
+    it "should know all the fans who have provided payment info" do
+      User.should respond_to(:payment_info)
+    end
+    
+  end
 end

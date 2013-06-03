@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include Enqueueable
+  include UserMessages
   has_many :authors
   has_many :orders
   has_many :tips, :through => :orders
@@ -10,6 +11,9 @@ class User < ActiveRecord::Base
 
 
   attr_accessible :name, :email, :tip_preference_in_cents, :accept_terms, :payable_to, :line1, :line2, :city, :postal_code, :country_code, :subregion_code, :share_on_facebook
+
+  scope :tipped, joins(:tips)
+  scope :payment_info, where('stripe_id IS NOT NULL')
 
   validates :tip_preference_in_cents,
     :numericality => { greater_than_or_equal_to:Tip::MINIMUM_TIP_VALUE },
@@ -94,38 +98,12 @@ class User < ActiveRecord::Base
     tip
   end
 
-  def send_welcome_message 
-    m = Mandrill::API.new(Copper::Application.config.mandrill_key)
-    m.messages 'send-template', {
-      template_name: "welcome-message-for-fans",
-      template_content: [],
-      message: {
-        subject:"Welcome to copper!",
-        from_email: "us@copper.is",
-        from_name: "The Copper Team",
-        to:[{email:self.email, name:self.name}]
-      }
-    }
-  end
-
+  
   def current_order
     self.orders.current.first or self.orders.create
   end
 
-  def send_message_to_fans_who_have_tipped
-    m = Mandrill::API.new(Copper::Application.config.mandrill_key)
-    m.messages 'send-template', {
-      template_name: "fans who have tipped",
-      template_content: [],
-      message: {
-        subject:"Take a look at what you've tipped!",
-        from_email: "us@copper.is",
-        from_name: "The Copper Team",
-        to:[{email:self.email, name:self.name}]
-      }
-    }
-  end
-
+  
   # def try_to_create_check!
   #   the_tips = []
   #   self.authors.each do |ident|
