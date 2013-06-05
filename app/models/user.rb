@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
       role.name.underscore.to_sym
     end
   end
-
+    
   def paid_royalties
     Tip.kinged.where(page_id:authored_pages.pluck(:id))
   end

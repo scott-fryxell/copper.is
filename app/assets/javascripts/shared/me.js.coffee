@@ -3,27 +3,26 @@ class Me
     jQuery.ajax
       url:'/users/me.json',
       dataType:'json',
-      success: (data) ->
+      success: (data) =>
         document.me = data;
+        mixpanel.identify(document.me.id) 
         Item.update_page document.me
-        $('img.author').attr 'src', Me.pic()
-        $("#user_nav").addClass 'show'
-        $('a[href="/signout"]').css 'display','inline-block'
-        if  Me.is_admin()
+        $('img.author').attr 'src', @.pic()
+        if @.is_admin()
           $('body').addClass("admin")
 
           $('#admin > img.toggle').click ->
             $('#admin').toggleClass('hide')
 
-        if Me.is_fan()
+        if @.is_fan()
           $('body').addClass("fan")
 
-        $(document).trigger "me." + $('body').attr 'id'
+        $(document).trigger "me.#{$('body').attr('id')}"
           
       statusCode:
         401:->
-          $(document).trigger "guest." + $('body').attr 'id'
           $('body').addClass("guest")
+          $(document).trigger "guest.#{$('body').attr('id')}"
 
   is_admin: ->
     if document.me
@@ -39,12 +38,6 @@ class Me
         if role.name is 'Fan'
           return true    
     return false 
-
-  is_guest: ->
-    if document.me
-      return false 
-    else 
-      return true
 
   pic: ->
     pic
@@ -64,3 +57,6 @@ class Me
       url: '/users/me.json'
       type: 'put'
       data: jQuery.param document.me
+
+$(document).ready ->  
+  new Me()

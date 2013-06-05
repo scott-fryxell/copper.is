@@ -12,16 +12,24 @@ $(document).on "load.home_getting_started", ->
     $("section#step_two").addClass('chrome')
 
   $("#step_two a.button").click ->
-    mixpanel.track 'try to install button' 
+    mixpanel.track 'Try to install button' 
 
   $("#card").on 'credit_card_approved', ->
-    mixpanel.track 'provide credit card'
+    mixpanel.track 'Save credit card'
     window.location = "/tip_some_pages"
 
 $(document).on "me.home_getting_started", ->
   if document.brand_new_fan
+    mixpanel.track 'Fan created'
     mixpanel.alias(document.me.id)
-    mixpanel.register
-      emai: document.me.email
-      name: document.me.name
-   
+    mixpanel.people.set
+      "$email": "jsmith@example.com"
+      "$created": document.me.created_at
+      "$last_login": new Date()
+      "$name": document.me.name
+      "user_id": document.me.id
+      "tip_preference_in_cents": document.me.tip_preference_in_cents
+      "share_on_facebook": document.me.share_on_facebook
+    
+$(document).on "guest.home_getting_started", ->
+  mixpanel.track 'Learn how the service works'

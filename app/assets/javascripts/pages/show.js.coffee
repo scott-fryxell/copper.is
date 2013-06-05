@@ -1,4 +1,5 @@
 $(document).on "load.pages_show", ->
+  mixpanel.track 'View a Page'
   # page = document.items['pages'][window.location.pathname]
 
   if $.browser.chrome

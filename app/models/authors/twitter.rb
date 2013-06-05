@@ -17,11 +17,11 @@ class Authors::Twitter < Author
   #   end
   # end
 
-  # def populate_username_from_uid! 
-  #   super do
-  #     self.username = ::Twitter.user(self.uid.to_i).screen_name
-  #   end
-  # end
+  def populate_username_from_uid! 
+    super do
+      self.username = ::Twitter.user(self.uid.to_i).screen_name
+    end
+  end
 
   # private
 
