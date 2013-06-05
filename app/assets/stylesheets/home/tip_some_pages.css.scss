@@ -5,15 +5,17 @@
   #banner {
     position:relative;
     header{
-      width:grid-width(10);
+      
       margin-right: grid-width(3);
       display: inline-block;
       h1{
+        width:grid-width(10);
         margin:0;
         font-size: 2.5em;
         color:$copper_text;
       }
       p {
+        width:grid-width(16);
         margin:0;
         font-size: 1.5em;
       }
