@@ -51,6 +51,8 @@ $(document).bind({
       new_tip.url = decodeURIComponent(event.url)
       Item.update_page(new_tip)
       $("form").submit()
+      
+      mixpanel.identify($('[itemtype=users] > [itemprop=id]').text())
       mixpanel.track("Tip", {
         'url': new_tip.url, 
         'amount_in_cents': $("input[itemprop=amount_in_cents]").attr('value')

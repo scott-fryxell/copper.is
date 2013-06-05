@@ -67,7 +67,7 @@ class SessionsController < ApplicationController
         else
           @author.join!
           @author.save()
-          redirect_to "/getting_started#step_two"
+          redirect_to "/getting_started#one_of_us"
         end
       end
     end
