@@ -5,6 +5,7 @@
 //= require shared/Item
 //= require shared/copper
 //= require shared/honeybadger
+//= require mixpanel_analytics
 
 var display_timer, frame_timer;
 $(document).ready(function (){
@@ -50,6 +51,10 @@ $(document).bind({
       new_tip.url = decodeURIComponent(event.url)
       Item.update_page(new_tip)
       $("form").submit()
+      mixpanel.track("Tip", {
+        'url': new_tip.url, 
+        'amount_in_cents': $("input[itemprop=amount_in_cents]").attr('value')
+      });
       $(document).trigger("tip_display")
   },
   "tip_display": function (event){
@@ -67,6 +72,7 @@ $(document).bind({
       // }
   },
   "tip_details": function (event){
+
     clearInterval(display_timer);
     clearInterval(frame_timer);
     document.postMessage({type:'show_details'});
