@@ -44,9 +44,6 @@ Item = {
     return Item.items;
   },
   get_value: function (element){
-
-
-
     if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
       if ($(element).val())
         return $(element).val().trim();

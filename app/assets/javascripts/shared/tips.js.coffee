@@ -1,4 +1,3 @@
-#home_index, #home_author, #orders_index {
 $(document).on "load.home_index load.home_author #orders_index", ->
   $("[itemtype=tips] span[itemprop=amount_in_cents]").each -> 
     $(@).text document.copper.cents_to_dollars($(@).attr('data-value'))
