@@ -30,10 +30,10 @@ body {
     text-transform:capitalize;
   }
   h2 {
-    font-size:1.34em;
+    font-size:1.34rem;
   }
   p {
-    font-size:0.85em;
+    font-size:0.85rem;
   }
   ul, ol, dl {
     list-style: none;
@@ -44,17 +44,13 @@ body {
     &[itemprop=url] {
       text-transform: lowercase;
     }
-    &[href='/signout'] {
-      display:none;
-    }
     &.button {
       @include button($copper);
-    }
-    
+    }   
   }
 
   .help {
-    font-size:1em;
+    font-size:1rem;
     margin:0;
     display:inline-block;
     width:grid-width(5);
@@ -69,123 +65,55 @@ body {
     @include animation-timing-function(ease);
     @include animation-iteration-count(infinite);
   }
-}
-body > header {
 
-  @include full_width($header);
-  box-shadow:0px 1px $shadow;
-  height:grid-width(1.5);
-  &:before {
-    content:"";
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    @include background-image(linear-gradient($header 29%, $header_transparent 98%), radial-gradient($dark 44%, $header_transparent 100%));
-
-  }
-  hgroup {
-    display:none;
-    &.show{
-      display:inline-block;
+  & > section,
+  & > article {
+    width:grid-width(24);
+    margin: 0 auto 0 auto;
+    padding: 0 grid-width(2);
+    & a {
+      font-family: 'Doppio One', sans-serif;
+      color:$text;
     }
   }
-
-  & > a:first-child {
-    position:absolute;
-    top:0;
-    left:1em;
-    vertical-align:top;
-    text-decoration:none;
-    color:$light;
-    padding:0.75em 1em;
-    & > img {
-      width:5em;
-    }
-  }
-  & > nav {
-    margin-top:1em;
-    margin-left:9.5em;
-    display:inline-block;
-  }
-  & > nav > a {
-    font-family: 'Doppio One', sans-serif;
-    color:$light;
-    opacity:0.75;
-    font-size:0.75em;
-    text-decoration:none;
-    text-transform:uppercase;
-    margin-right:2em;
-  }
-}
-body > section,
-body > article {
-  width:grid-width(24);
-  margin: 0 auto 0 auto;
-  padding: 0 grid-width(2);
-  & a {
-    font-family: 'Doppio One', sans-serif;
-    color:$text;
-  }
-}
-body > footer {
-  padding:1em 1em 1em 2em;
-  @include full_width($header);
-  &:before {
-    content:"";
-    position:absolute;
-    // z-index:1;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    opacity:0.9;
-    @include background-image(linear-gradient($header_transparent 50%, $header 100%), radial-gradient($dark 25%, $header_transparent 100%));
-  }
-
-  &.bottom {
-    position:fixed;
-    bottom:0;
-    left:0;
-  }
-
-  & > h3 {
-    font-size:0.85em;
-    display:inline-block;
-    font-family: 'Patua One', cursive;
-    color:$light;
-    opacity:0.5;
-  }
-  & > h4 {
-    font-family: 'Cantarell', sans-serif;
-    display:inline-block;
-    font-size:0.75em;
-    color:$light;
-    opacity:0.5;
-
+  & > footer {
+    padding:1em 1em 1em 2em;
+    @include full_width($header);
     &:before {
+      content:"";
+      position:absolute;
+      // z-index:1;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      opacity:0.9;
+      @include background-image(linear-gradient($header_transparent 50%, $header 100%), radial-gradient($dark 25%, $header_transparent 100%));
+    }
+
+    &.bottom {
+      position:fixed;
+      bottom:0;
+      left:0;
+    }
+
+    & > h3 {
+      font-size:0.85em;
+      display:inline-block;
+      font-family: 'Patua One', cursive;
       color:$light;
       opacity:0.5;
-      display:inline-block;
-      content: '|';
-      margin-right:1em;
-      margin-left:1em;
-      text-decoration:none !important;
     }
-  }
-  & > nav {
-    color:#A7A39B;
-    display:inline-block;
-    & > a {
-      letter-spacing: 1px;
-      font-family: 'Doppio One', sans-serif;
-      font-size:0.75em;
+    & > h4 {
+      font-family: 'Cantarell', sans-serif;
       display:inline-block;
+      font-size:0.75em;
       color:$light;
-      opacity:0.75;
+      opacity:0.5;
+
       &:before {
-        color:$offset;
+        color:$light;
+        opacity:0.5;
         display:inline-block;
         content: '|';
         margin-right:1em;
@@ -193,19 +121,47 @@ body > footer {
         text-decoration:none !important;
       }
     }
+    & > nav {
+      color:#A7A39B;
+      display:inline-block;
+      & > a {
+        letter-spacing: 1px;
+        font-family: 'Doppio One', sans-serif;
+        font-size:0.75em;
+        display:inline-block;
+        color:$light;
+        opacity:0.75;
+        &:before {
+          color:$offset;
+          display:inline-block;
+          content: '|';
+          margin-right:1em;
+          margin-left:1em;
+          text-decoration:none !important;
+        }
+      }
+    }
+  }
+  & > nav {
+    padding:5em;
+    & > a,
+    & > button {
+      font-size:0.85em;
+      display:block;
+      margin: 0 auto 0 auto;
+      width: 13em;
+      color:$text;
+    }
+    & > a {
+      @include settings_pointer;
+    }
   }
 }
-body > nav {
-  padding:5em;
-  & > a,
-  & > button {
-    font-size:0.85em;
-    display:block;
-    margin: 0 auto 0 auto;
-    width: 13em;
-    color:$text;
-  }
-  & > a {
-    @include settings_pointer;
+body.guest {
+}
+
+body.fan {
+  & > header > hgroup > #fan_nav {
+    opacity:1;
   }
 }
