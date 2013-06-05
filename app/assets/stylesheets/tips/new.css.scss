@@ -5,6 +5,9 @@ $subtle_text: #999999;
   margin-left:1rem;
   width:350px;
   font-size:16px;
+  dl[itemscope] {
+    display:none;
+  }
   section {
     position:relative;  
     background-color: $background_color;

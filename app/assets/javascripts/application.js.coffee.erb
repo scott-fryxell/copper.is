@@ -1,4 +1,4 @@
-#= require mustache
+#= require mixpanel_analytics
 #= require jquery
 #= require jquery.cookie
 #= require jquery.timeago
@@ -7,13 +7,14 @@
 #= require jquery.details
 #= require Item
 #= require shared/Item
+#= require shared/me
+#= require shared/tips
 #= require shared/copper
 #= require shared/button
 #= require shared/address
 #= require shared/card
 #= require shared/email
 #= require shared/badge
-#= require shared/tips
 #= require shared/honeybadger
 #= require home/index
 #= require home/author
@@ -21,6 +22,7 @@
 #= require home/badge
 #= require home/welcome
 #= require home/getting_started
+#= require home/tip_some_pages
 #= require pages/index
 #= require pages/show
 #= require authors/edit
@@ -28,33 +30,5 @@
 #= require admin/index
 
 $(document).ready ->
-
-  $("a[href^=#]").click ->
-    event.preventDefault();
-    history.pushState({}, "", @.href)
-  
-  $('#admin > img.toggle').click ->
-    $('#admin').toggleClass('hide')
-
-  jQuery.ajax
-    url:'/users/me.json',
-    dataType:'json',
-    success: (data) ->
-      document.copper.me = data;
-      Item.update_page document.copper.me
-      $('img.author').attr 'src', document.copper.get_author_image()
-      $("#user_nav").addClass 'show'
-      $('a[href="/signout"]').css 'display','inline-block'
-      $(document).trigger "me." + $('body').attr 'id'
-      $('body').addClass("fan")
-    statusCode:
-      401:->
-        $(document).trigger "guest." + $('body').attr 'id'
-        $('body').addClass("guest")
-    
-  $(document).bind 'save.me', ->
-    jQuery.ajax
-      dataType:'json'
-      url: '/users/me.json'
-      type: 'put'
-      data: jQuery.param document.copper.me
+  new Items()
+  new me()

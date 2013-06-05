@@ -1,5 +1,6 @@
 <%-cache user do-%>
 <dl itemscope itemtype='users' itemid='/users/<%=user.id%>'>
+  <dd itemprop="id"><%=user.id%></dd>
   <dd itemprop="created_at"><%=user.created_at.getutc.iso8601%></dd>
   <dd itemprop="updated_at"><%=user.updated_at.getutc.iso8601%></dd>
   <dd itemprop='name'><%=user.name%></dd>

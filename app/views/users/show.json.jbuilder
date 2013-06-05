@@ -13,3 +13,4 @@ json.(@user,
   :postal_code
 )
 json.authors @user.authors, :provider, :username, :uid, :token
+json.roles @user.roles, :name
