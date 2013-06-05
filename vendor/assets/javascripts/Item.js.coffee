@@ -5,7 +5,7 @@ class Items
       @items = {}
 
     unless element
-      element = $('body')
+      element = $('body') # parse the document for items
 
     # console.debug('gathering item data', element, @items)
     @discover_items element
@@ -92,7 +92,4 @@ $("body").on 'click', 'details[itemscope]', ->
         401:=>
           $(@).trigger "401"
           console.debug("you don't have rights to view this resource")
-
-$(document).ready ->
-  localStorage.clear()
-  new Items()
+  
