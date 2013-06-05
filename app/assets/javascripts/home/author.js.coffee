@@ -25,7 +25,7 @@ $(document).on '#claim_pages', ->
   $(document).on "me.home_author", ->
     $("#facebook_pages").css("display", "block")
     $("#facebook_pages").addClass("show")
-    for author in document.copper.me.authors 
+    for author in document.me.authors 
       if author.provider is 'facebook' and author.token 
         facebook = author
 

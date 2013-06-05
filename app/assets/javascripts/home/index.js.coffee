@@ -1,4 +1,6 @@
 $(document).on "load.home_index", ->
+  mixpanel.track('visit homepage')
+
   # set up page stats.
   $('span[itemprop=tip_preference_in_cents]').on 'item.changed', ->
     $(@).text document.copper.cents_to_dollars($(@).text().trim())
@@ -8,21 +10,21 @@ $(document).on "load.home_index", ->
 
   $('#stats > div > p > img:nth-child(2)').click ->
     for amount in document.copper.tip_amount_options
-      unless 2000 is document.copper.me.tip_preference_in_cents  
-        if amount > document.copper.me.tip_preference_in_cents
-          document.copper.me.tip_preference_in_cents = amount
+      unless 2000 is document.me.tip_preference_in_cents  
+        if amount > document.me.tip_preference_in_cents
+          document.me.tip_preference_in_cents = amount
           $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
-          $(document).trigger 'save.me'
+          Me.save()
           return
 
   $('#stats > div > p > img:nth-child(3)').click ->
     reversed = document.copper.tip_amount_options.slice(0).reverse()
     for amount in reversed
-      unless 5 is document.copper.me.tip_preference_in_cents
-        if amount < document.copper.me.tip_preference_in_cents
-          document.copper.me.tip_preference_in_cents = amount
+      unless 5 is document.me.tip_preference_in_cents
+        if amount < document.me.tip_preference_in_cents
+          document.me.tip_preference_in_cents = amount
           $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
-          $(document).trigger 'save.me'
+          Me.save()
           return
 
 $(document).on "load.home_index", ->

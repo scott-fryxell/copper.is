@@ -60,14 +60,14 @@ $(document).on "me.home_settings", ->
   user = document.getItems()['users'][0]
   $("#rate > form > select > option[value=#{user.tip_preference_in_cents}]").attr 'selected', true
 
-  if document.copper.me.country_code
+  if document.me.country_code
     $("select[itemprop=country_code]").change()
   else
     $("#address > header > a").click()
   
-  $("#email > header > a").click() unless document.copper.me.email
+  $("#email > header > a").click() unless document.me.email
 
-  if document.copper.me.stripe_id
+  if document.me.stripe_id
     jQuery.ajax
       url: '/cards'
       type: 'get'

@@ -12,23 +12,12 @@ document.copper =
   cents_to_dollars: (cents) ->
     dollars = (parseFloat(cents) / 100.00).toFixed(2)
     return dollars
-  get_author_image: ->
-    pic
-    for author in document.copper.me.authors
-      if author.provider is 'facebook' and author.token
-        pic = "https://graph.facebook.com/#{author.uid}/picture?type=square"
-      if author.provider is 'twitter'
-        pic = "https://api.twitter.com/1/users/profile_image?id=#{author.uid}&size=bigger"
-      if author.provider is 'google'
-        pic = "https://plus.google.com/s2/photos/profile/#{author.uid}"
-    pic
     
 $(document).ready ->
   jQuery('time').timeago();
   $(document).trigger "load.#{$('body').attr('id')}"
   $(document).trigger(window.location.hash)
-  $('*[data-cents]').each ->
-
+  $('[data-cents]').each ->
     if $(@).attr('data-cents')
       $(@).text( document.copper.cents_to_dollars( $(@).attr('data-cents')) or 0)
     else
