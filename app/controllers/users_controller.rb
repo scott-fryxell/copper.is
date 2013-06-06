@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if 'me' == params[:id]
       @user = current_user
     else
-      @user = User.where(id:params[:id])
+      @user = User.where(id:params[:id]).first()
     end
 
     @user.update_attributes(params[:user])

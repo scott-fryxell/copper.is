@@ -11,7 +11,7 @@
     <p>
       This is your home on Copper. On this page, you track what
       you’ve tipped, change or cancel pending tips, and explore content made
-      by your favorite creators. 
+      by your favorite creators.
     </p>
     <%-end-%>
   </section>
@@ -28,7 +28,7 @@
     <div>
       <h2>Default tip</h2>
       <p>
-        <span itemprop="tip_preference_in_cents"></span>
+        <span itemprop="tip_preference_in_cents" data-value="<%=current_user.tip_preference_in_cents%>"></span>
         <%= image_tag "noun_project/5805.svg", alt:"increase defalut tip amount"%>
         <%= image_tag "noun_project/5802.svg", alt:"decrease default tip amount"%>
       </p>
@@ -41,5 +41,5 @@
       <%= render partial:"pages/details", collection:current_user.tipped_pages.limit(60), as: :page %>
     <%-end-%>
   </section>
-  
+
 <%-end-%>

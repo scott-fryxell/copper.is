@@ -35,6 +35,6 @@ class ApplicationController < ActionController::Base
 
   def item_scope
     return nil unless current_user
-    "itemscope itemtype=users itemid='/users/#{current_user.id}"
+    "itemscope itemtype=users itemid=/users/#{current_user.id}"
   end
 end
