@@ -11,16 +11,16 @@ $(document).on "load.pages_show", ->
 
   $('body').on 'change', "input[itemprop=thumbnail_url]", ->
     $('img[itemprop=thumbnail_url]').attr('src', $(@).val())
-    
+
   $("button[formaction]").click ->
-    value = $(@).attr('value') 
+    value = $(@).attr('value')
 
     if value == 'true'
       new_value = 'false'
     else
       new_value = 'true'
 
-    $(@).attr('value', new_value) 
+    $(@).attr('value', new_value)
     prop = {}
     prop[$(@).attr('itemprop')] = new_value
     jQuery.ajax

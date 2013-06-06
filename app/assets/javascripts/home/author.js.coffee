@@ -25,8 +25,8 @@ $(document).on '#claim_pages', ->
   $(document).on "me.home_author", ->
     $("#facebook_pages").css("display", "block")
     $("#facebook_pages").addClass("show")
-    for author in document.me.authors 
-      if author.provider is 'facebook' and author.token 
+    for author in document.me.authors
+      if author.provider is 'facebook' and author.token
         facebook = author
 
     if facebook
@@ -36,4 +36,3 @@ $(document).on '#claim_pages', ->
           unless(page.category == 'Application')
             $('<input/>', {type:"checkbox", value:page.id, name:"facebook_objects[]", id:page.name}).appendTo('#facebook_pages > form > fieldset')
             $('<label/>', {html:page.name, for:page.name}).appendTo('#facebook_pages > form > fieldset')
-            

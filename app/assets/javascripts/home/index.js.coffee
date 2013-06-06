@@ -3,12 +3,12 @@ $(document).on "load.home_index", ->
   $('span[itemprop=tip_preference_in_cents]').on 'item.changed', ->
     $(@).text document.copper.cents_to_dollars($(@).text().trim())
 
-  if '' is $('#stats > div:nth-child(3) > p').attr('data-cents').trim() 
+  if '' is $('#stats > div:nth-child(3) > p').attr('data-cents').trim()
     $('#stats > div:nth-child(3)').hide()
 
   $('#stats > div > p > img:nth-child(2)').click ->
     for amount in document.copper.tip_amount_options
-      unless 2000 is document.me.tip_preference_in_cents  
+      unless 2000 is document.me.tip_preference_in_cents
         if amount > document.me.tip_preference_in_cents
           document.me.tip_preference_in_cents = amount
           $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
@@ -29,6 +29,3 @@ $(document).on "load.home_index", ->
 
 $(document).on "me.home_index", ->
   mixpanel.track('View profile')
-
-
-  

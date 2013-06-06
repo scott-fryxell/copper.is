@@ -41,7 +41,7 @@ body > header {
   & > hgroup {
     float:right;
     text-align:right;
-    
+
     nav {
       @include transition (opacity 0.5s ease-in 0s);
       opacity:0;
@@ -49,7 +49,7 @@ body > header {
       margin-top:0.75rem;
       // height:2.5rem;
       display:inline-block;
-      vertical-align:top;      
+      vertical-align:top;
       & > a {
         vertical-align:middle;
         display:inline-block;

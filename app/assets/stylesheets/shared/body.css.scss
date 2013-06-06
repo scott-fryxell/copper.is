@@ -46,7 +46,7 @@ body {
     }
     &.button {
       @include button($copper);
-    }   
+    }
   }
 
   .help {
@@ -57,7 +57,7 @@ body {
     @include help_text
   }
   .help_arrow {
-    @include help_arrow 
+    @include help_arrow
   }
   .working {
     @include animation-name(spinning);

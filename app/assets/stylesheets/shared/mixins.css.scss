@@ -65,28 +65,6 @@ $shadow:rgba(0, 0, 0, 0.5);
       box-shadow: inset 0px 1px 1px darken($color, 10%), 0px 1px 0px lighten($color, 40%);
   }
 }
-@mixin copper_button_old {
-  cursor:pointer;
-  font-size:1em;
-  font-family: 'Doppio One', sans-serif;
-  text-align:center;
-  text-decoration:none;
-  padding:0.25em ;
-  background-color:$copper;
-  @include background-image(linear-gradient($copper 40%, shade($copper, 25%) 100%, transparent 50%));
-  color:$light !important;
-  border-radius:0.25em;
-  border:2px solid darken($copper, 10%);
-  border-bottom:2px inset darken($copper, 20%);
-  box-shadow: 1px 1px 1px 0px lighten($copper, 10%) inset;
-  @include transition (box-shadow 0.5s ease-out 0.25s);
-  position:relative;
-  &:hover {
-    box-shadow: 0 0 0.25em 0  $copper;
-    @include transition (box-shadow 0.25s ease-in);
-  }
-}
-
 @mixin button_with_img($color, $img) {
   @include button($color);
   position:relative;
@@ -102,7 +80,6 @@ $shadow:rgba(0, 0, 0, 0.5);
     background: image-url($img) no-repeat 0% 0%;
   }
 }
-
 @mixin button($color) {
   @include header_text;
   font-family: 'Doppio One', sans-serif;
@@ -121,8 +98,6 @@ $shadow:rgba(0, 0, 0, 0.5);
     box-shadow: 1px 1px 2px 2px $shadow;
   }
 }
-
-
 @mixin ribbon {
   @include background-image( linear-gradient(black 0, $dark 75%, transparent 32%),image-url('icons/congrats.svg'));
   background-repeat: no-repeat;

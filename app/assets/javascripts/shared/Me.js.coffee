@@ -8,7 +8,7 @@ class Me
         Item.update_page document.me
         if document.me.id is mixpanel.get_distinct_id()
           console.debug('setting identity')
-          mixpanel.identify(document.me.id) 
+          mixpanel.identify(document.me.id)
         else
           console.debug('registering new user')
           mixpanel.alias document.me.id
@@ -20,7 +20,7 @@ class Me
             "user_id": document.me.id
             "tip_preference_in_cents": document.me.tip_preference_in_cents
             "share_on_facebook": document.me.share_on_facebook
-        
+
         $('img.author').attr 'src', @.pic()
         if @.is_admin()
           $('body').addClass("admin")
@@ -32,7 +32,7 @@ class Me
           $('body').addClass("fan")
 
         $(document).trigger "me.#{$('body').attr('id')}"
-          
+
       statusCode:
         401:->
           $('body').addClass("guest")
@@ -43,15 +43,15 @@ class Me
       for role in document.me.roles
         if role.name is 'Admin'
           return true
-    
-    return false 
+
+    return false
 
   is_fan: ->
     if document.me
       for role in document.me.roles
         if role.name is 'Fan'
-          return true    
-    return false 
+          return true
+    return false
 
   pic: ->
     pic
@@ -72,5 +72,5 @@ class Me
       type: 'put'
       data: jQuery.param document.me
 
-$(document).ready ->  
+$(document).ready ->
   new Me()

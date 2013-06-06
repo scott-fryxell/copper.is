@@ -11,7 +11,7 @@
 var display_timer, frame_timer;
 $(document).ready(function (){
   document.postMessage({type:'gather_page_info'})
-  
+
   $("a.button").click(function(){
     $("form[method=put]").submit();
   });
@@ -115,7 +115,7 @@ document.postMessage = function (message){
 
 $(document).on("me.tips_new", function(event){
   mixpanel.track("Tip", {
-    'url': $("input[itemprop=url]").attr('value'), 
+    'url': $("input[itemprop=url]").attr('value'),
     'amount_in_cents': $("input[itemprop=amount_in_cents]").attr('value')
   });
 });

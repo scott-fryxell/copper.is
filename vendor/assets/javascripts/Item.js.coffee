@@ -23,19 +23,19 @@ class Items
         $(@).trigger('item.post')
       @.delete = ->
         $(@).trigger('item.delete')
-      
+
       item_type = $(@).attr 'itemtype'
-      item_id = $(@).attr 'itemid' 
+      item_id = $(@).attr 'itemid'
       item = {}
       $(@).find("[itemprop]").each ->
-        if item_id == $(@).parents("[itemscope]").first().attr('itemid') 
+        if item_id == $(@).parents("[itemscope]").first().attr('itemid')
           item_prop = $(@).attr 'itemprop'
           item[item_prop] = Item.get_value(@)
 
       if item_type
         unless items[item_type]
           items[item_type] = {}
-        items[item_type][item_id] = item 
+        items[item_type][item_id] = item
       else
         items[item_id] = item
 
@@ -59,7 +59,7 @@ $('body').on 'item.update', 'data#items', ->
   $(@).find('[itemscope]').each ->
     item_id = $(@).attr('itemid')
     $(@).remove()
-    $("[itemid='#{item_id}']")   
+    $("[itemid='#{item_id}']")
 $('body').on 'change', "[itemprop]", ->
   parent = $(@).parents("[itemscope]").first()
   jQuery.ajax
@@ -68,12 +68,12 @@ $('body').on 'change', "[itemprop]", ->
     type: 'put'
     data: "#{$(@).attr('itemprop')}=#{Item.get_value(@)}"
     success:  (data) ->
-      console.info "item.updated"     
+      console.info "item.updated"
       $('data#items').append(jQuery.parseHTML(data))
       $('data#items').trigger('item.update')
 
     error: (data, textStatus, jqXHR) ->
-      console.error "Error updating this item", data, textStatus, jqXHR 
+      console.error "Error updating this item", data, textStatus, jqXHR
 $('body').on 'click', 'details[itemscope]', ->
   # todo: instead of checking for elements i should just turn this event listener off
   unless $(@).find('section').length > 0 || $(@).find('details').length > 0
@@ -92,5 +92,5 @@ $('body').on 'click', 'details[itemscope]', ->
           $(@).trigger "401"
           console.debug("you don't have rights to view this resource")
 
-$(document).ready ->  
+$(document).ready ->
   new Items()

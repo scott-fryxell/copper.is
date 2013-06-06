@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_paper_trail
 
-
   attr_accessible :name, :email, :tip_preference_in_cents, :accept_terms, :payable_to, :line1, :line2, :city, :postal_code, :country_code, :subregion_code, :share_on_facebook
 
   scope :tipped, joins(:tips)
@@ -27,7 +26,7 @@ class User < ActiveRecord::Base
   def validate_one_current_order
     errors.add(:orders, "there must be only one") unless self.orders.current.size == 1
   end
-  
+
   after_create do
     create_current_order!
     Resque.enqueue User, self.id, :send_welcome_message
@@ -53,17 +52,17 @@ class User < ActiveRecord::Base
       role.name.underscore.to_sym
     end
   end
-    
+
   def paid_royalties
     Tip.kinged.where(page_id:authored_pages.pluck(:id))
   end
-  
+
   def pending_royalties
     Tip.charged.where(page_id:authored_pages.pluck(:id))
   end
 
   def royalties
-    Tip.where(page_id:authored_pages.pluck(:id))    
+    Tip.where(page_id:authored_pages.pluck(:id))
   end
 
   def average_royalties
@@ -75,20 +74,16 @@ class User < ActiveRecord::Base
   def authored_pages
     Page.where(author_id: author_ids).includes(:tips)
   end
-  
+
   def tipped_pages
     pages.group('pages.id').includes(:tips).except(:order).order('MAX(tips.created_at) DESC')
   end
-
-  # def fan?
-  #   roles.find{|e| e.name == 'Fan'}
-  # end
 
   def tip(args = {})
     url    = args[:url]
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
     title  = CGI.unescapeHTML(args[:title])  if args[:title]
-    
+
     tip = current_order.tips.build(amount_in_cents:amount_in_cents)
     unless tip.page = Page.where(url:url).first
       tip.page = Page.create(url:url,title:title)
@@ -98,12 +93,10 @@ class User < ActiveRecord::Base
     tip
   end
 
-  
   def current_order
     self.orders.current.first or self.orders.create
   end
 
-  
   # def try_to_create_check!
   #   the_tips = []
   #   self.authors.each do |ident|
@@ -120,5 +113,4 @@ class User < ActiveRecord::Base
   #     end
   #   end
   # end
-
 end
