@@ -5,8 +5,21 @@ class Me
       dataType:'json',
       success: (data) =>
         document.me = data;
-        mixpanel.identify(document.me.id) 
         Item.update_page document.me
+        if (document.me.id == mixpanel.get_distinct_id) {
+          mixpanel.identify(document.me.id) 
+        }else{
+          mixpanel.alias document.me.id
+          mixpanel.people.set
+            "$email": document.me.email
+            "$created": document.me.created_at
+            "$last_login": new Date()
+            "$name": document.me.name
+            "user_id": document.me.id
+            "tip_preference_in_cents": document.me.tip_preference_in_cents
+            "share_on_facebook": document.me.share_on_facebook
+        }
+
         $('img.author').attr 'src', @.pic()
         if @.is_admin()
           $('body').addClass("admin")

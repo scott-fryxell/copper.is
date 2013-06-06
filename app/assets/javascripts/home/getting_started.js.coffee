@@ -20,16 +20,7 @@ $(document).on "load.home_getting_started", ->
 
 $(document).on "me.home_getting_started", ->
   if document.brand_new_fan
-    mixpanel.track 'Fan created'
-    mixpanel.alias(document.me.id)
-    mixpanel.people.set
-      "$email": "jsmith@example.com"
-      "$created": document.me.created_at
-      "$last_login": new Date()
-      "$name": document.me.name
-      "user_id": document.me.id
-      "tip_preference_in_cents": document.me.tip_preference_in_cents
-      "share_on_facebook": document.me.share_on_facebook
-    
+    mixpanel.track 'Fan created'    
+
 $(document).on "guest.home_getting_started", ->
   mixpanel.track 'Learn how the service works'
