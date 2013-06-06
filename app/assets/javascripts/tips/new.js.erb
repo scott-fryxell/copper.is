@@ -51,12 +51,6 @@ $(document).bind({
       new_tip.url = decodeURIComponent(event.url)
       Item.update_page(new_tip)
       $("form").submit()
-
-      mixpanel.track("Tip", {
-        'url': new_tip.url, 
-        'amount_in_cents': $("input[itemprop=amount_in_cents]").attr('value')
-      });
-      $(document).trigger("tip_display")
   },
   "tip_display": function (event){
       var cents = $("input[itemprop=amount_in_cents]").attr('value');
@@ -118,3 +112,10 @@ window.addEventListener('message', function(event) {
 document.postMessage = function (message){
   window.parent.postMessage(message, "*");
 }
+
+$(document).on("me.tips_new", function(event){
+  mixpanel.track("Tip", {
+    'url': $("input[itemprop=url]").attr('value'), 
+    'amount_in_cents': $("input[itemprop=amount_in_cents]").attr('value')
+  });
+});

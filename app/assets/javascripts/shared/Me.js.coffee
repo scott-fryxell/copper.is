@@ -6,9 +6,11 @@ class Me
       success: (data) =>
         document.me = data;
         Item.update_page document.me
-        if (document.me.id == mixpanel.get_distinct_id) {
+        if document.me.id is mixpanel.get_distinct_id()
+          console.debug('setting identity')
           mixpanel.identify(document.me.id) 
-        }else{
+        else
+          console.debug('registering new user')
           mixpanel.alias document.me.id
           mixpanel.people.set
             "$email": document.me.email
@@ -18,8 +20,7 @@ class Me
             "user_id": document.me.id
             "tip_preference_in_cents": document.me.tip_preference_in_cents
             "share_on_facebook": document.me.share_on_facebook
-        }
-
+        
         $('img.author').attr 'src', @.pic()
         if @.is_admin()
           $('body').addClass("admin")
