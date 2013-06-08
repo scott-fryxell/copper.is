@@ -2,9 +2,9 @@
   section#banner {
     margin-bottom:0;
     & > img.admin {
-      opacity:0.1;
-      width:grid-width(2);
-      height:grid-width(2);
+      opacity:0.05;
+      width:2rem;
+      height:2rem;
       cursor:pointer;
       @include transition (all 0.25s ease-out 0.15s);
       &:hover {
