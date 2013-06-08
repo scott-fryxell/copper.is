@@ -19,7 +19,7 @@ authorization do
     has_permission_on :users,       :to => [:show,:update] do
       if_attribute :id => is { user.id }
     end
-    
+
     has_permission_on :tips,       :to => [:create]
     has_permission_on :tips,       :to => [:update, :destroy] do
       if_attribute :user => is { user }

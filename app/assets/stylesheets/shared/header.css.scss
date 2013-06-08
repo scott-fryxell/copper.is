@@ -39,8 +39,11 @@ body > header {
   }
 
   & > hgroup {
-    float:right;
+    position:absolute;
+    top:0rem;
+    right:2rem;
     text-align:right;
+    display: inline-block;
 
     nav {
       @include transition (opacity 0.5s ease-in 0s);
@@ -108,5 +111,23 @@ body.fan > header {
   #fan_nav {
     opacity:1;
     width:auto;
+  }
+}
+
+body.admin > header {
+  #admin_nav {
+    position:absolute;
+    top:grid-width(2);
+    right:0rem;
+    opacity:0.99;
+    width:18rem;
+    a > img {
+      opacity:0.1;
+      width:2em;
+      height:2rem;
+      &:hover {
+        opacity:1;
+      }
+    }
   }
 }

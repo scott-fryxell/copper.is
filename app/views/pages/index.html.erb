@@ -1,16 +1,23 @@
-<% permitted_to? :manage, :pages do %>
-<section id="admin">
-  <img class="toggle" src='<%= image_path 'noun_project/94.svg'%>'/>
+<section id="banner">
+  <header>
+    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+  </header>
+  <hgroup>
+    <h1>pages</h1>
+    <p><%=current_user.name%><a href="/signout">not you?</a></p>
+  </hgroup>
+  <img class="admin" src='<%= image_path 'noun_project/5506.svg'%>'/>
+</section>
+<section id="admin" class='hide'>
   <nav>
-    <a href="/pages">recent</a>
-    <a href="/pages?state=manual">manual</a>
-    <a href="/pages?state=adopted">adopted</a>
-    <a href="/pages?state=orphaned">orphaned</a>
-    <a href="/pages?state=fostered">fostered</a>
-    <a href="/pages?state=dead">dead</a>
+    <a href="#manual">manual</a>
+    <a href="#adopted">adopted</a>
+    <a href="#orphaned">orphaned</a>
+    <a href="#fostered">fostered</a>
+    <a href="#dead">dead</a>
   </nav>
 </section>
-<% end %>
+
 <section id="pages">
   <%= render partial:"index", collection:@pages, as: :page %>
 </section>

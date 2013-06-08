@@ -1,4 +1,4 @@
-#pages_index {  
+#pages_index {
   #pages {
     margin-top:grid-width(1);
     & > details[data-author_state=orphaned] > summary > figure {
@@ -10,7 +10,7 @@
     }
 
     & > details[data-author_state=adopted] > summary > figure {
-      box-shadow: 1px 1px 5px 2px $green; 
+      box-shadow: 1px 1px 5px 2px $green;
     }
 
     & > details[data-author_state=manual] > summary > figure {
@@ -56,5 +56,13 @@
     & > details[data-author_state=manual]{
       display:inline-block;
     }
+  }
+}
+
+body.admin {
+  #admin_nav {
+      a[href="/pages"] > img{
+        opacity:0.99;
+      }
   }
 }

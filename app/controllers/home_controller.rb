@@ -1,10 +1,10 @@
 class HomeController < ApplicationController
   filter_access_to :author, :require => :read
   filter_access_to :settings, :require => :read
-  filter_access_to :admin, :require => :manage
+  filter_access_to :integrations, :require => :manage
   respond_to :html
 
-  def index 
+  def index
     unless current_user
       redirect_to :action => 'welcome', :status => 302
     end
@@ -20,6 +20,15 @@ class HomeController < ApplicationController
   end
 
   def badge
+  end
+
+  def tip_some_pages
+  end
+
+  def trending
+  end
+
+  def integrations
   end
 
   def welcome
@@ -81,16 +90,6 @@ class HomeController < ApplicationController
       end
     end
     render nothing:true, status:200
-  end
-
-  def tip_some_pages
-  end
-
-  def trending
-  end
-
-
-  def admin
   end
 
 end
