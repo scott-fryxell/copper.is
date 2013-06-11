@@ -45,20 +45,21 @@ $(document).ready(function (){
 });
 $(document).bind({
   "tip_info": function (event){
-      title = decodeURIComponent(event.title)
-      new_tip = document.getItems('tips')[0]
-      new_tip.title = decodeURIComponent(event.title)
-      new_tip.url = decodeURIComponent(event.url)
-      Item.update_page(new_tip)
-      $("form").submit()
+    title = decodeURIComponent(event.title)
+    new_tip = document.getItems('tips')[0]
+    new_tip.title = decodeURIComponent(event.title)
+    new_tip.url = decodeURIComponent(event.url)
+    Item.update_page(new_tip)
+    $("form").submit()
+    $(document).trigger("tip_display");
   },
   "tip_display": function (event){
-      var cents = $("input[itemprop=amount_in_cents]").attr('value');
-      var dollars = document.copper.cents_to_dollars(cents);
-      $("input[itemprop=amount_in_dollars]").attr('value', dollars);
-      document.postMessage({type:'show'})
-      $("body > section").addClass("show");
-      $("a[href=#close]").focus();
+    var cents = $("input[itemprop=amount_in_cents]").attr('value');
+    var dollars = document.copper.cents_to_dollars(cents);
+    $("input[itemprop=amount_in_dollars]").attr('value', dollars);
+    document.postMessage({type:'show'})
+    $("body > section").addClass("show");
+    $("a[href=#close]").focus();
 
       // if(!$("section").hasClass('sign_in')){
       //   display_timer = window.setTimeout(function(){
