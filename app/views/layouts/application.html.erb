@@ -14,7 +14,7 @@
     <meta name="keywords" content="Copper.is San Francisco, music, tipping, appreciation, copper">
     <%= stylesheet_link_tag "application", media:"all" %>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" >
     <%= render partial:"layouts/header"%>
     <%= yield %>
     <%= render partial:"layouts/footer"%>

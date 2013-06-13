@@ -58,11 +58,26 @@
     }
   }
 }
-
 #pages_index.admin {
+  section#banner {
+    margin-bottom:0;
+    & > img.admin {
+      opacity:0.05;
+      width:2rem;
+      height:2rem;
+      cursor:pointer;
+      @include transition (all 0.25s ease-out 0.15s);
+      &:hover {
+        opacity:1;
+        @include transition (all 0.25s ease-out 0.15s);
+      }
+    }
+  }
+
   #admin_nav {
       a[href="/pages"] > img{
         opacity:0.99;
       }
   }
 }
+

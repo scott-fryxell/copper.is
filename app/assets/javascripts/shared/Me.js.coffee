@@ -5,21 +5,21 @@ class Me
       dataType:'json',
       success: (data) =>
         document.me = data;
-        Item.update_page document.me
-        # if document.me.id is mixpanel.get_distinct_id()
-          # console.debug('setting identity')
-          # mixpanel.identify(document.me.id)
-        # else
-          # console.debug('registering new user')
-          # mixpanel.alias document.me.id
-          # mixpanel.people.set
-          #   "$email": document.me.email
-          #   "$created": document.me.created_at
-          #   "$last_login": new Date()
-          #   "$name": document.me.name
-          #   "user_id": document.me.id
-          #   "tip_preference_in_cents": document.me.tip_preference_in_cents
-          #   "share_on_facebook": document.me.share_on_facebook
+        # Item.update_page document.me
+        if document.me.id is mixpanel.get_distinct_id()
+          console.debug('setting identity')
+          mixpanel.identify(document.me.id)
+        else
+          console.debug('registering new user')
+          mixpanel.alias document.me.id
+          mixpanel.people.set
+            "$email": document.me.email
+            "$created": document.me.created_at
+            "$last_login": new Date()
+            "$name": document.me.name
+            "user_id": document.me.id
+            "tip_preference_in_cents": document.me.tip_preference_in_cents
+            "share_on_facebook": document.me.share_on_facebook
 
         $('img.author').attr 'src', @.pic()
         if @.is_admin()

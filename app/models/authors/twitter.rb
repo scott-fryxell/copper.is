@@ -8,16 +8,18 @@ class Authors::Twitter < Author
     else
       screen_name = uri.path.split('/')[1]
     end
-    { :username => screen_name }
+
+    twitter_id = ::Twitter.user(screen_name).id.to_s
+    { username:screen_name, uid: twitter_id}
   end
 
-  # def populate_uid_from_username!
-  #   super do
-  #     self.uid = ::Twitter.user(self.username).id.to_s
-  #   end
-  # end
+  def populate_uid_from_username!
+    super do
+      self.uid = ::Twitter.user(self.username).id.to_s
+    end
+  end
 
-  def populate_username_from_uid! 
+  def populate_uid_from_usernamername_from_uid!
     super do
       self.username = ::Twitter.user(self.uid.to_i).screen_name
     end

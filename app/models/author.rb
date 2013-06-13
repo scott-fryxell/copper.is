@@ -29,6 +29,10 @@ class Author < ActiveRecord::Base
     end
   end
 
+  [:twitter, :facebook, :tumblr, :soundcloud, :github, :vimeo, :flickr, :google].each do |provider|
+    scope provider, where("provider = ?", provider)
+  end
+
   scope :stranger, where(identity_state:'stranger')
   scope :wanted, where(identity_state:'wanted')
   scope :known, where(identity_state:'known')
