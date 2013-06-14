@@ -3,13 +3,13 @@ class PagesController < ApplicationController
 
   def index
     if params[:state]
-      @pages = Page.send(params[:state]).recent.endless(params[:page])
+      @pages = Page.send(params[:state]).recent.endless(params[:endless])
     elsif params[:author_id]
-      @pages = Page.where(author_id:params[:author_id]).endless(params[:page])
+      @pages = Page.where(author_id:params[:author_id]).endless(params[:endless])
     else
-      @pages = Page.recent.charged_tips.endless(params[:page])
+      @pages = Page.recent.charged_tips.endless(params[:endless])
     end
-    render :action => 'index', :layout => false if request.headers['retrieve_as_data']
+    render :action => 'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
   def show

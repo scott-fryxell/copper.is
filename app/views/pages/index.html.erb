@@ -1,4 +1,5 @@
-<section id="banner">
+<%-unless params[:endless]-%>
+  <section id="banner">
   <header>
     <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
   </header>
@@ -10,16 +11,14 @@
 </section>
 <section id="admin_nav" class='hide admin'>
   <nav>
-    <a href="#manual">manual</a>
-    <a href="#adopted">adopted</a>
-    <a href="#orphaned">orphaned</a>
-    <a href="#fostered">fostered</a>
-    <a href="#dead">dead</a>
+    <a href=".manual">manual</a>
+    <a href=".adopted">adopted</a>
+    <a href=".orphaned">orphaned</a>
+    <a href=".fostered">fostered</a>
+    <a href=".dead">dead</a>
   </nav>
 </section>
-
-<section id="pages" data-url="/pages/?paid_state=charged">
+<%-end-%>
+<section class='endless pages'>
   <%= render partial:"details", collection:@pages, as: :page %>
 </section>
-
-<%= paginate @pages %>

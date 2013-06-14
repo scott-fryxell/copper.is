@@ -1,5 +1,5 @@
 #home_index, #home_author, #home_welcome, #home_tip_some_pages, #home_trending, #pages_index {
-  #pages {
+  section.pages {
     margin-bottom: grid-width(1);
     border:0.25em solid transparent;
     border-radius:0.5em;
@@ -182,7 +182,7 @@
   }
 }
 
-#pages {
+section.pages {
   details > section {
     & > header {
 

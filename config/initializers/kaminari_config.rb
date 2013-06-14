@@ -6,5 +6,5 @@ Kaminari.configure do |config|
   # config.left = 0
   # config.right = 0
   config.page_method_name = :endless
-  # config.param_name = :page
+  config.param_name = :endless
 end

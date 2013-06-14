@@ -36,9 +36,9 @@
     <footer></footer>
   </section>
 
-  <section id="pages">
+  <section class="pages endless" >
     <%-if current_user.pages.count > 0 -%>
-      <%= render partial:"pages/details", collection:current_user.tipped_pages.limit(60), as: :page %>
+      <%= render partial:"pages/details", collection:current_user.tipped_pages.endless(params[:endless]), as: :page %>
     <%-end-%>
   </section>
 

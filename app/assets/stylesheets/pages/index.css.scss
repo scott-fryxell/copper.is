@@ -1,5 +1,5 @@
 #pages_index {
-  #pages {
+  section.pages {
     margin-top:grid-width(1);
     & > details[data-author_state=orphaned] > summary > figure {
       box-shadow: 1px 1px 5px 2px $red;
@@ -18,7 +18,7 @@
     }
   }
 
-  #pages.adopted {
+  section.pages.adopted {
     & > details[data-author_state]{
       display:none;
     }
@@ -28,7 +28,7 @@
     }
   }
 
-  #pages.triage {
+  section.pages.triage {
     & > details[data-author_state]{
       display:none;
     }
@@ -38,7 +38,7 @@
     }
   }
 
-  #pages.fostered {
+  section.pages.fostered {
     & > details[data-author_state]{
       display:none;
     }
@@ -48,7 +48,7 @@
     }
   }
 
-  #pages.manual {
+  section.pages.manual {
     & > details[data-author_state]{
       display:none;
     }
