@@ -13,6 +13,7 @@ gem 'omniauth-vimeo'
 gem 'omniauth-soundcloud'
 gem 'omniauth-google-oauth2'
 
+gem 'kaminari'
 gem 'newrelic_rpm'
 gem 'honeybadger'
 gem 'declarative_authorization'

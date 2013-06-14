@@ -3,11 +3,11 @@ class PagesController < ApplicationController
 
   def index
     if params[:state]
-      @pages = Page.send(params[:state]).recent.limit(30)
+      @pages = Page.send(params[:state]).recent.endless(params[:page])
     elsif params[:author_id]
-      @pages = Page.where(author_id:params[:author_id]).limit(30)
+      @pages = Page.where(author_id:params[:author_id]).endless(params[:page])
     else
-      @pages = Page.recent.charged_tips.limit(30)
+      @pages = Page.recent.charged_tips.endless(params[:page])
     end
     render :action => 'index', :layout => false if request.headers['retrieve_as_data']
   end

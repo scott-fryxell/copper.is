@@ -18,6 +18,8 @@
   </nav>
 </section>
 
-<section id="pages">
+<section id="pages" data-url="/pages/?paid_state=charged">
   <%= render partial:"details", collection:@pages, as: :page %>
 </section>
+
+<%= paginate @pages %>
