@@ -1,5 +1,5 @@
-<%-cache [page] do-%>
-<details itemscope itemtype='/pages' itemid='/pages/<%=page.id%>' data-author_state="<%=page.author_state%>">
+<%-cache [page, current_user] do-%>
+<details itemscope itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>">
   <summary>
     <figure>
       <%-if page.thumbnail_url -%>
@@ -8,47 +8,32 @@
           <%= image_tag "noun_project/6437.svg" %>
       <%-end-%>
       <figcaption>
-        <p data-cents='<%=page.tips.charged.sum(:amount_in_cents)%>'></p>
-        <p data-count='<%=page.tips.charged.count%>'><%=page.tips.charged.count%></p>
+        <p data-cents='<%=current_user.tips.where(page_id:page.id).sum(:amount_in_cents)%>'></p>
         <h2 itemprop="title"><%=page.title%></h2>
       </figcaption>
     </figure>
   </summary>
   <section>
     <header>
-      <h1 itemprop='author_state'><%=page.author_state%></h1>
       <hgroup>
-        <h4>id</h4>
-        <p itemprop="id"><%=page.id%></p>
+        <h3 itemprop="title"><a itemprop="url" target="_blank" href="<%=page.url%>"><%=page.title%></a></h3>
       </hgroup>
       <hgroup>
-        <h4>updated</h4>
-        <time itemprop="updated_at" datetime="<%=page.updated_at.getutc.iso8601%>"/>
-      </hgroup>
-      <hgroup>
-        <h4>Created</h4>
-        <time itemprop="created_at" datetime="<%=page.created_at.getutc.iso8601%>"/>
+        <h4><a itemprop="url" target="_blank" href="<%=page.url%>"><%=URI(URI.escape(page.url)).host%></a></h4>
       </hgroup>
     </header>
-    <div>
-      <fieldset>
-        <input placeholder="title" itemprop="title" value="<%=page.title%>" >
-        <input placeholder="url" itemprop="url" value="<%=page.url%>" >
-        <input placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">
-        <input placeholder="author" itemprop="author_url" value="<%=page.author.url if page.author %>">
-        <nav>
-          <button itemprop="welcome" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.welcome?%>">welcome</button>
-          <button itemprop="onboarding" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.onboarding?%>">onboarding</button>
-          <button itemprop="trending" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.trending?%>">trending</button>
-          <button itemprop="nsfw" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.nsfw?%>">nsfw</button>
-        </nav>
-        <nav style="display:none">
-          <button formmethod="delete" formaction="/pages/<%=page.id%>">delete</button>
-          <button formmethod="post" formaction="/pages/<%=page.id%>/adopt">adopt</button>
-          <button formmethod="post" formaction="/pages/<%=page.id%>/reject">reject</button>
-        </nav>
-      </fieldset>
-    </div>
+    <table id="tips">
+      <thead>
+        <tr>
+          <th>when</th>
+          <th>amount</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial:"tips/details", collection:current_user.tips.where(page_id:page.id), as: :tip %>
+      </tbody>
+    </table>
   </section>
 </details>
 <%-end-%>
