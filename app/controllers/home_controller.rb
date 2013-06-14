@@ -80,7 +80,7 @@ class HomeController < ApplicationController
       graph = Koala::Facebook::API.new(facebook.token)
 
       puts "getting facebook pages owned by author #{current_user.name}"
-
+      pages.each  do |id|
         puts id
         fb_page =  graph.get_object(id)
         another_me = Author.find_or_create_from_url(fb_page['link'])
