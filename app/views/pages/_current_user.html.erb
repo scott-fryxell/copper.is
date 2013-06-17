@@ -2,7 +2,11 @@
 <details itemscope itemtype='/pages' itemid='<%=page.id%>' data-author_state="<%=page.author_state%>">
   <summary>
     <figure>
-      <img itemprop="thumbnail_url" src="<%=page.thumbnail%>" alt="tip image" title="<%=page.title%>"/>
+      <%-if page.thumbnail_url -%>
+        <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>" alt="tip image" title="<%=page.title%>"/>
+      <%-else-%>
+          <%= image_tag "noun_project/6437.svg" %>
+      <%-end-%>
       <figcaption>
         <p data-cents='<%=current_user.tips.where(page_id:page.id).sum(:amount_in_cents)%>'></p>
         <h2 itemprop="title"><%=page.title%></h2>

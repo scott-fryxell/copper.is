@@ -6,14 +6,13 @@ class Endless
     @check = false
 
     if $('section.endless').length
-      $('body').on 'load.endless', document.endless.next
+      $('body').on 'next.endless', document.endless.next
       setInterval(document.endless.wait, 500)
       $(window).scroll ->
         if document.endless.check
           document.endless.check = false
-          console.debug('window.scroll')
-          if $(window).scrollTop() > $(document).height() - $(window).height() - 250
-            $('body').trigger('load.endless')
+          if $(window).scrollTop() > $(document).height() - $(window).height() - 350
+            $('body').trigger('next.endless')
 
   next: =>
     @page++
@@ -22,17 +21,15 @@ class Endless
 
     jQuery.get "#{window.location}?endless=#{@page}",  (data) ->
       $('body > footer').before(data);
-      # console.debug("huh", data )
+      $('body').trigger('load.endless')
       if $('section.endless').last().html().trim().length
-        $('body').on 'load.endless', document.endless.next
+        $('body').on 'next.endless', document.endless.next
       else
         $('section.endless').last().remove()
         clearInterval(document.endless.wait)
-        console.debug("you aint got no content")
 
   wait: =>
     @check = true
 
 $(document).ready ->
-  console.debug('endless setup')
   new Endless()

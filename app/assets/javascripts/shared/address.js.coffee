@@ -19,8 +19,3 @@ $(document).on "load.authors_edit load.home_settings", ->
       $('input[itemprop=postal_code]').addClass('invalid')
     if( !$('select[itemprop=country_code]').val())
       $('select[itemprop=country_code]').addClass('invalid')
-
-$(document).on "load.home_settings", ->
-  $('#address > form').on "item.validate", ->
-    unless $('#address form .invalid').size == 0
-      $("#address > header > a").click()

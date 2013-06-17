@@ -20,7 +20,7 @@ class Page < ActiveRecord::Base
   scope :onboarding, where(onboarding:true)
   scope :trending, where(trending:true)
   scope :safe, where(nsfw:false)
-  scope :recent, order("pages.updated_at DESC")
+  scope :recent, order("pages.created_at DESC")
   scope :charged_tips, includes(:tips).where('tips.paid_state=?', 'charged')
 
 

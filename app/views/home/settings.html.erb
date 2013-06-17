@@ -20,7 +20,7 @@
   <%-end-%>
 </section>
 
-<section id="email" class="setting">
+<section id="email" class="setting" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
   <header>
     <h2>Contact Info</h2>
     <a href="#">Change</a>
@@ -37,7 +37,7 @@
 
 <%= render partial:"shared/button"%>
 
-<section id="sharing">
+<section id="sharing" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
   <header>
     <h2>Facebook</h2>
   </header>
@@ -48,7 +48,7 @@
   </form>
 </section>
 
-<section id="rate" class="setting">
+<section id="rate" class="setting" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
   <header>
     <h2>Default Tip</h2>
     <a href="#">Change</a>
@@ -75,7 +75,7 @@
   </form>
 </section>
 
-<section id="card" class="setting">
+<section id="card" class="setting" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
   <header>
     <h2>Payment Info</h2>
     <a href="#card">Change</a>
@@ -106,7 +106,7 @@
   </nav>
 </section>
 
-<section id="address" class="setting">
+<section id="address" class="setting" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
   <header>
     <h2>Your address</h2>
     <a href="#address">Change</a>

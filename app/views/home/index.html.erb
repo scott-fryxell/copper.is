@@ -1,5 +1,5 @@
 <%-cache current_user do-%>
-  <section id="banner">
+  <section id="banner" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
     <header>
       <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
     </header>
@@ -15,7 +15,7 @@
     </p>
     <%-end-%>
   </section>
-  <section id="stats">
+  <section id="stats" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
     <header></header>
     <div>
       <h2>Pages tipped</h2>
@@ -36,9 +36,9 @@
     <footer></footer>
   </section>
 
-  <section class="pages endless" >
+  <section class="pages" >
     <%-if current_user.pages.count > 0 -%>
-      <%= render partial:"pages/details", collection:current_user.tipped_pages.endless(params[:endless]), as: :page %>
+      <%= render partial:"pages/current_user", collection:current_user.tipped_pages.endless(params[:endless]), as: :page %>
     <%-end-%>
   </section>
 

@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   filter_access_to :author, :require => :read
   filter_access_to :settings, :require => :read
+  filter_access_to :claim_facebook_pages, :require => :read
   filter_access_to :integrations, :require => :manage
   respond_to :html
 
