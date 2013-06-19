@@ -5,7 +5,7 @@ class Me
       dataType:'json',
       success: (data) =>
         document.me = data;
-        # Item.update_page document.me
+        Item.update_page document.me
         if document.me.id is mixpanel.get_distinct_id()
           console.debug('setting identity')
           mixpanel.identify(document.me.id)

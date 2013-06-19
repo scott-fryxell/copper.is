@@ -1,76 +1,162 @@
 #pages_index {
-  & > section#banner {
-    padding:0;
-    & > header {
-      margin-left: grid-width(2);
-    }
-  }
-  &.adopted {
-    & > details[data-author_state=adopted]{
-      display:inline-block;
-    }
-  }
-
-  &.triage {
-    & > details[data-author_state=triage]{
-      display:inline-block;
-    }
-  }
-
-  &.fostered {
-    & > details[data-author_state=fostered]{
-      display:inline-block;
-    }
-  }
+  &.adopted {}
+  &.triage {}
+  &.fostered {}
 
   &.manual {
-    & > section.pages > details[data-author_state=manual]{
-      display:inline-block;
-      // height:grid-width(8);
-      // width:grid-width(8);
-    }
-  }
-
-  & > section.pages {
-    & > details[data-author_state]{
-      display:none;
-      // width:0;
-      // height:0;
-      // padding:0;
-    }
-  }
-}
-
-
-
-#pages_index.admin {
-  section#banner {
-    margin-bottom:0;
-    details {
-      & > summary {
-        outline: none;
-        text-align:center;
-        &::-webkit-details-marker { display:none; }
+    details.admin > nav a {
+      opacity:0.25;
+      &:first-child {
+        opacity:1;
       }
-      & > summary > img.admin {
+    }
+    section.manual {
+      display:block;
+    }
+  }
 
-        opacity:0.05;
-        width:2rem;
-        height:2rem;
-        cursor:pointer;
-        @include transition (all 0.25s ease-out 0.15s);
-        &:hover {
-          opacity:1;
-          @include transition (all 0.25s ease-out 0.15s);
+  nav#admin_nav {
+    a[href="/pages"] > img{
+      opacity:0.99;
+    }
+  }
+
+  section.pages {
+    display:none;
+    & > details > section {
+      & > header {
+        & > hgroup {
+          display: inline-block;
+          vertical-align: top;
+          margin-right: 0.5rem;
+          h1, h4, p {
+            margin:0;
+          }
+          h1 {
+            text-align: center;
+          }
+          &:first-child {
+            width:grid-width(8);
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+          & > h4, & > p {
+            display: inline-block;
+          }
+          & > h4 {
+            margin-right: $gutter;
+           }
+        }
+      }
+      & > div {
+        display:block;
+        margin:0;
+        padding:0;
+        & > figure {
+          width: grid-width(8);
+          height: grid-width(8);
+          background-color:$offset;
+          border-radius:0.5em;
+          margin-right:grid-width(1);
+          overflow:hidden;
+          display:inline-block;
+          & > img {
+            border-radius:0.5em;
+            min-width: grid-width(8);
+            min-height: grid-width(8);
+            max-width:200%;
+            max-height:100%
+          }
+        }
+        fieldset {
+          width:grid-width(13);
+          vertical-align: top;
+          display:inline-block;
+          & > input {
+            color:$text;
+            display:block;
+            height:grid-width(1);
+            width:100%;
+            margin-right:0;
+            margin-bottom:grid-width(1);
+            &[itemprop=url] {
+              display:inline-block;
+              width:30.4rem;
+            }
+          }
+          & > a {
+            vertical-align: bottom;
+          }
+          & > a > img {
+            display:inline-block;
+            margin-right:0.25rem;
+            width:1rem;
+            height:1rem;
+          }
+          & > details {
+            padding:0.25em;
+            border-radius:0.25em;
+            border:2px solid $input_border;
+            background-color:$input_background;
+            vertical-align: middle;
+            & > summary {
+              p {
+                text-transform: lowercase;
+                margin:0;
+                display:inline-block;
+              }
+              h4 {
+                margin:0;
+                display:inline-block;
+                margin-right: grid-width(1);
+              }
+            }
+          }
+
+          & > nav {
+            padding-left:0.5em;
+            margin-top: grid-width(1);
+            height:grid-width(1);
+            & > button {
+              width: grid-width(3);
+            }
+
+            & > button:last-child {
+              margin-right: 0;
+            }
+            & > button {
+              margin-right: 0.5em;
+              color:$text;
+              padding:0.25em;
+              border-radius:0.25em;
+              border:2px solid $input_border;
+              background-color:$input_background;
+              &[value=true]{
+                border:1px solid $green;
+                box-shadow: 1px 1px 9px -2px $green;
+                color:$green;
+              }
+            }
+            &:last-child {
+              padding-left:3em;
+              & > button {
+                margin-right: grid-width(1);
+                @include inset_button($text);
+              }
+            }
+          }
+        }
+      }
+      & > footer {
+        margin-bottom: grid-width(1);
+        details {
+          margin-bottom: grid-width(1);
+          & > summary {
+            font-size: 2em;
+          }
         }
       }
     }
   }
-
-  #admin_nav {
-      a[href="/pages"] > img{
-        opacity:0.99;
-      }
-  }
 }
-
