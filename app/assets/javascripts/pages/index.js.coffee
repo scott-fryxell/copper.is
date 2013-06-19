@@ -1,9 +1,10 @@
 $(document).on "load.pages_index", ->
+  $('body').addClass('manual')
+
   $('img.admin').click ->
     $('section.admin').toggleClass('hide')
-  $("section.admin > nav > a[href='#{window.location.hash}']").addClass('selected')
-  $("section.admin > nav > a").click ->
-    $(@).toggleClass('de-selected')
+  $("details.admin > nav > a").click ->
+    $('body').toggleClass($(@).text())
 
   $('body').on 'change', "input[itemprop=thumbnail_url]", ->
     console.debug($(@).parents('[itemscope]').find('img[itemprop=thumbnail_url]'))

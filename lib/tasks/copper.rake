@@ -29,7 +29,7 @@ namespace :copper do
         if user.tips.count > 0
           # puts "gonna message #{user.email}"
           Resque.enqueue User, user.id, :send_message_to_fans_who_have_tipped
-        end  
+        end
       end
     end
   end
@@ -81,7 +81,7 @@ namespace :copper do
         page.thumbnail_url = nil
         page.save
       end
-    end    
+    end
   end
 end
 

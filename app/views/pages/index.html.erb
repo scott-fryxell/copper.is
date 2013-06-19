@@ -7,16 +7,16 @@
     <h1>pages</h1>
     <p><%=current_user.name%><a href="/signout">not you?</a></p>
   </hgroup>
-  <img class="admin" src='<%= image_path 'noun_project/8233.svg'%>'/>
-</section>
-<section id="admin_nav" class='hide admin'>
-  <nav>
-    <a href=".manual">manual</a>
-    <a href=".adopted">adopted</a>
-    <a href=".orphaned">orphaned</a>
-    <a href=".fostered">fostered</a>
-    <a href=".dead">dead</a>
-  </nav>
+  <details class='admin'>
+    <summary><img class="admin" src='<%= image_path 'noun_project/8233.svg'%>'/></summary>
+    <nav>
+      <a>manual</a>
+      <a>adopted</a>
+      <a>orphaned</a>
+      <a>fostered</a>
+      <a>dead</a>
+    </nav>
+  </details>
 </section>
 <%-end-%>
 <section class='endless pages'>

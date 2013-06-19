@@ -33,3 +33,4 @@ class Endless
 
 $(document).ready ->
   new Endless()
+  $(window).scroll()

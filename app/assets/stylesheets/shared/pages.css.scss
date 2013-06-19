@@ -1,11 +1,18 @@
 #home_index, #home_author, #home_welcome, #home_tip_some_pages, #home_trending, #pages_index {
   section.pages {
-    margin-bottom: grid-width(1);
     border:0.25em solid transparent;
-    border-radius:0.5em;
     padding:0;
     background-color: $offset;
-    min-height: grid-width(24);
+    &:nth-child(4){
+      border-top-left-radius:0.5em;
+      border-top-right-radius:0.5em;
+    }
+    &:last-of-type{
+      border-bottom-left-radius:0.5em;
+      border-bottom-right-radius:0.5em;
+      // min-height: grid-width(24);
+      margin-bottom: grid-width(1);
+    }
 
     & > details {
       display:inline-block;
@@ -183,11 +190,10 @@
 section.pages {
   details > section {
     & > header {
-
       & > hgroup {
         display: inline-block;
         vertical-align: top;
-        margin-right: grid-width(1);
+        margin-right: 0.5rem;
         h1, h4, p {
           margin:0;
         }
@@ -239,8 +245,20 @@ section.pages {
           width:100%;
           margin-right:0;
           margin-bottom:grid-width(1);
+          &[itemprop=url] {
+            display:inline-block;
+            width:30.4rem;
+          }
         }
-
+        & > a {
+          vertical-align: bottom;
+        }
+        & > a > img {
+          display:inline-block;
+          margin-right:0.25rem;
+          width:1rem;
+          height:1rem;
+        }
         & > details {
           padding:0.25em;
           border-radius:0.25em;
@@ -272,21 +290,17 @@ section.pages {
           & > button:last-child {
             margin-right: 0;
           }
-
-          &:nth-child(5){
-            & > button {
-              margin-right: 0.5em;
-              color:$text;
-              padding:0.25em;
-              border-radius:0.25em;
-              border:2px solid $input_border;
-              background-color:$input_background;
-              &[value=true]{
-                border:1px solid $green;
-                box-shadow: 1px 1px 9px -2px $green;
-                color:$green;
-              }
-
+          & > button {
+            margin-right: 0.5em;
+            color:$text;
+            padding:0.25em;
+            border-radius:0.25em;
+            border:2px solid $input_border;
+            background-color:$input_background;
+            &[value=true]{
+              border:1px solid $green;
+              box-shadow: 1px 1px 9px -2px $green;
+              color:$green;
             }
           }
           &:last-child {

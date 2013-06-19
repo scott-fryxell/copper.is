@@ -7,7 +7,7 @@ class PagesController < ApplicationController
     elsif params[:author_id]
       @pages = Page.where(author_id:params[:author_id]).endless(params[:endless])
     else
-      @pages = Page.recent.charged_tips.endless(params[:endless])
+      @pages = Page.manual.recent.charged_tips.endless(params[:endless])
     end
     render :action => 'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end

@@ -3,7 +3,7 @@ class AuthorsController < ApplicationController
 
   def index
     if params[:state]
-      @authors = Author.send(params[:state]).limit(25)  
+      @authors = Author.send(params[:state]).limit(25)
     elsif params[:user_id]
       @authors = Author.where(user_id:params[:user_id])
     elsif params[:page_id]
@@ -29,7 +29,7 @@ class AuthorsController < ApplicationController
 
   def create
   end
-  
+
   def update
   end
 

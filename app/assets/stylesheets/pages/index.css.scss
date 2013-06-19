@@ -1,75 +1,68 @@
 #pages_index {
-  section.pages {
-    margin-top:grid-width(1);
-    & > details[data-author_state=orphaned] > summary > figure {
-      box-shadow: 1px 1px 5px 2px $red;
-    }
-
-    & > details[data-author_state=fostered] > summary > figure {
-      box-shadow: 1px 1px 5px 2px $yellow;
-    }
-
-    & > details[data-author_state=adopted] > summary > figure {
-      box-shadow: 1px 1px 5px 2px $green;
-    }
-
-    & > details[data-author_state=manual] > summary > figure {
-      box-shadow:1px 1px 5px 2px $brown;
+  & > section#banner {
+    padding:0;
+    & > header {
+      margin-left: grid-width(2);
     }
   }
-
-  section.pages.adopted {
-    & > details[data-author_state]{
-      display:none;
-    }
-
+  &.adopted {
     & > details[data-author_state=adopted]{
       display:inline-block;
     }
   }
 
-  section.pages.triage {
-    & > details[data-author_state]{
-      display:none;
-    }
-
+  &.triage {
     & > details[data-author_state=triage]{
       display:inline-block;
     }
   }
 
-  section.pages.fostered {
-    & > details[data-author_state]{
-      display:none;
-    }
-
+  &.fostered {
     & > details[data-author_state=fostered]{
       display:inline-block;
     }
   }
 
-  section.pages.manual {
+  &.manual {
+    & > section.pages > details[data-author_state=manual]{
+      display:inline-block;
+      // height:grid-width(8);
+      // width:grid-width(8);
+    }
+  }
+
+  & > section.pages {
     & > details[data-author_state]{
       display:none;
-    }
-
-    & > details[data-author_state=manual]{
-      display:inline-block;
+      // width:0;
+      // height:0;
+      // padding:0;
     }
   }
 }
+
+
+
 #pages_index.admin {
   section#banner {
     margin-bottom:0;
-    & > img.admin {
-      opacity:0.05;
-      width:2rem;
-      height:2rem;
-      cursor:pointer;
-      @include transition (all 0.25s ease-out 0.15s);
-      &:hover {
-        opacity:1;
+    details {
+      & > summary {
+        outline: none;
+        text-align:center;
+        &::-webkit-details-marker { display:none; }
+      }
+      & > summary > img.admin {
+
+        opacity:0.05;
+        width:2rem;
+        height:2rem;
+        cursor:pointer;
         @include transition (all 0.25s ease-out 0.15s);
+        &:hover {
+          opacity:1;
+          @include transition (all 0.25s ease-out 0.15s);
+        }
       }
     }
   }

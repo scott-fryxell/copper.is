@@ -8,38 +8,35 @@ body.admin {
   img.admin{
     display:inline-block;
   }
-  section.admin {
-    display:block;
-    box-shadow: inset 0px 0px 51px 38px darken($offset, 10%);
-    background-color:$dark;
-    border-bottom-left-radius: 0.5em;
-    border-bottom-right-radius: 0.5em;
-    border: 0.15em solid black;
-    width: grid-width(24);
-    height:grid-width(3);
-    padding:0;
-    opacity:1;
-    overflow:hidden;
-    @include transition ( height 0.35s ease-in 0s);
-
-    &.hide {
-      border: 0.15em solid $offset;
-      border:none;
-      box-shadow:none;
-      height:0;
-      @include transition (height 0.25s ease-in );
+  details.admin {
+    border: 0.15em solid $offset;
+    border:none;
+    box-shadow:none;
+    // height:3rem;
+    @include transition (height 0.25s ease-in );
+    &[open]  {
+      // height:auto;
     }
-  }
-  section.admin{
-
-    nav {
-      display:block;
-      margin:2em auto;
+    & >  nav {
+      // display:block;
+      // margin:2em auto;
       text-align: center;
+      // vertical-align: middle;
+      display:block;
+      box-shadow: inset 0px 0px 51px 38px darken($offset, 10%);
+      background-color:$dark;
+      border-bottom-left-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+      border: 0.15em solid black;
+      width: grid-width(24);
+      height:grid-width(3);
+      padding:0;
+      opacity:1;
+      @include transition ( height 0.35s ease-in 0s);
       a {
         opacity:1;
         display:inline-block;
-        margin: 0 0 0 2em ;
+        margin: 2em 0 0 2em ;
         width:grid-width(3);
         @include transition (opacity 0.25s ease-out 0.15s);
         @include button($copper);
@@ -48,60 +45,6 @@ body.admin {
       }
       a:first-child {
         margin-left: 1em;
-      }
-    }
-    &.hide {
-      nav {
-        & > a {
-          opacity:0;
-          @include transition (opacity 0.25s ease-in 0);
-        }
-      }
-    }
-  }
-}
-
-
-#home_integrations {
-  #admin {
-    padding: 1em;
-    width: grid-width(28);
-    margin-bottom: grid-width(1);
-  }
-  #statistics {
-    min-height: grid-width(14);
-    padding-top:grid-width(2);
-    figure {
-      margin-right:4em;
-      vertical-align:top;
-      display:inline-block
-    }
-    figure:nth-child(3){
-      margin-right:0;
-    }
-    figure:nth-child(2) > img{
-      opacity:0.9;
-    }
-    figure > img {
-      opacity:0.8;
-      vertical-align:top;
-      display:block;
-      margin:0 auto;
-      width: 10em;
-      height:10em;
-    }
-    figure > figcaption {
-      text-align:center;
-      font-size:2em;
-      margin-top:1em;
-      &:nth-child(2){
-        font-size:1.5em;
-      }
-      &:nth-child(3){
-        text-transform: capitalize;
-        color:$dark;
-        opacity:.5;
-        text-shadow: 3px 3px $offset;
       }
     }
   }
