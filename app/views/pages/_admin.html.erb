@@ -8,8 +8,8 @@
           <%= image_tag "noun_project/6437.svg" %>
       <%-end-%>
       <figcaption>
-        <p data-cents='<%=page.tips.charged.sum(:amount_in_cents)%>'></p>
-        <p data-count='<%=page.tips.charged.count%>'><%=page.tips.charged.count%></p>
+        <p data-cents='<%=page.tips.sum(:amount_in_cents)%>'></p>
+        <p data-count='<%=page.tips_pending_count%>'><%=page.tips_pending_count%></p>
         <h2 itemprop="title"><%=page.title%></h2>
       </figcaption>
     </figure>
@@ -19,7 +19,7 @@
       <h1 itemprop='author_state'><%=page.author_state%></h1>
       <hgroup>
         <h4>id</h4>
-        <a href="/pages/<%=page.id%>" itemprop="id"><%=page.id%></a>
+        <a href="/pages/<%=page.id%>" itemprop="url"><%=page.id%></a>
       </hgroup>
       <hgroup>
         <h4>updated</h4>
