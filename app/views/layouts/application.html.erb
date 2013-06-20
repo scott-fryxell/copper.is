@@ -4,17 +4,17 @@
     <title>copper.is – The currency of appreciation</title>
     <%= render partial:"layouts/head_links"%>
     <%= csrf_meta_tag %>
-    <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>" /> 
-    <meta property="og:type"   content="website" /> 
-    <meta property="og:title"  content="Copper.is – The currency of appreciation" /> 
-    <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" /> 
+    <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>" />
+    <meta property="og:type"   content="website" />
+    <meta property="og:title"  content="Copper.is – The currency of appreciation" />
+    <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" />
     <meta name="description" content="Copper. – Support artists through tipping.
        You find something cool anywhere online. You click a button to tip the content.
        We find the person who made it and pay them.">
     <meta name="keywords" content="Copper.is San Francisco, music, tipping, appreciation, copper">
     <%= stylesheet_link_tag "application", media:"all" %>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" >
     <%= render partial:"layouts/header"%>
     <%= yield %>
     <%= render partial:"layouts/footer"%>

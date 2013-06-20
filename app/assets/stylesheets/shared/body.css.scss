@@ -9,6 +9,9 @@ html {
   }
 }
 body {
+  section.admin {
+    display:none;
+  }
   @include text;
   overflow-x:hidden;
   &:after {

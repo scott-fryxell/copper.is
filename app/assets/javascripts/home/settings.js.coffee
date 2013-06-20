@@ -20,13 +20,13 @@ $(document).on "load.home_settings", ->
       div.css "display","inline-block"
       div.animate {opacity:1}, 500
 
-  $('#sharing > form > input').change ->  
+  $('#sharing > form > input').change ->
     $('#sharing > form').submit()
 
   $('#sharing > form').on 'item.put', ->
-    # when the user decides to post to their timeline 
+    # when the user decides to post to their timeline
     # authorize them with facebook to get permissions
-    # after you have the permissions then change the 
+    # after you have the permissions then change the
     # checkbox
     if $('#sharing > form > input[itemprop]').attr('checked')
       window.location = '/auth/facebook/publish_actions'
@@ -54,29 +54,28 @@ $(document).on "load.home_settings", ->
       $('span[itemprop=postal_code]').text $(@).find('input[itemprop=postal_code]').val()
     else
       $("#address > header > a").click()
-        
+
 $(document).on "me.home_settings", ->
 
-  user = document.getItems()['users'][0]
-  $("#rate > form > select > option[value=#{user.tip_preference_in_cents}]").attr 'selected', true
+  $("#rate > form > select > option[value=#{document.me.tip_preference_in_cents}]").attr 'selected', true
 
   if document.me.country_code
     $("select[itemprop=country_code]").change()
   else
     $("#address > header > a").click()
-  
+
   $("#email > header > a").click() unless document.me.email
 
-  if document.me.stripe_id
-    jQuery.ajax
-      url: '/cards'
-      type: 'get'
-      success:  (data) ->
-        $("#card p.type").text data.active_card.type
-        $("#card p.number").text data.active_card.last4
-        $("#card p.expiration").text "#{data.active_card.exp_month}/#{data.active_card.exp_year}"
-        $("#card > div").css 'display', 'inline-block'
-      error: (data, textStatus, jqXHR) ->
-        console.error "error getting stripe info", data, textStatus, jqXHR ;
-  else
-    $("#card").trigger "bad_credit_card"
+  # if document.me.stripe_id
+  #   jQuery.ajax
+  #     url: '/cards'
+  #     type: 'get'
+  #     success:  (data) ->
+  #       $("#card p.type").text data.active_card.type
+  #       $("#card p.number").text data.active_card.last4
+  #       $("#card p.expiration").text "#{data.active_card.exp_month}/#{data.active_card.exp_year}"
+  #       $("#card > div").css 'display', 'inline-block'
+  #     error: (data, textStatus, jqXHR) ->
+  #       console.error "error getting stripe info", data, textStatus, jqXHR ;
+  # else
+  #   $("#card").trigger "bad_credit_card"

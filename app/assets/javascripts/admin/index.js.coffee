@@ -1,5 +1,5 @@
 $(document).on "load.admin_index", ->
-  
+
   $("#pallet").on "drop", ->
     # event.preventDefault()
     # console.debug("drop")

@@ -14,9 +14,8 @@
     </p>
   </section>
 
-  <section id="stats">
+  <section id="stats" >
     <header>
-
     </header>
     <div>
       <h2>Tip count</h2>
@@ -44,7 +43,7 @@
     </div>
   </section>
 
-  <section id="services">
+  <section id="services" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
     <details>
       <summary>Authorize services</summary>
       <section>
@@ -116,7 +115,7 @@
     </aside>
   </section>
 
-  <section id="pages" >
+  <section class="pages" >
     <%= render partial:"pages/details", collection:current_user.authored_pages, as: :page %>
   </section>
   <nav>

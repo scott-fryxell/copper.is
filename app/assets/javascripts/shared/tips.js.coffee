@@ -1,10 +1,10 @@
 $(document).on "load.home_index load.home_author #orders_index", ->
-  $("[itemtype=tips] span[itemprop=amount_in_cents]").each -> 
+  $("[itemtype=tips] span[itemprop=amount_in_cents]").each ->
     $(@).text document.copper.cents_to_dollars($(@).attr('data-value'))
 
 $(document).on "load.home_index #orders_index", ->
   # format tips into dollars
-  $("[itemtype=tips] input[type=text]").each -> 
+  $("[itemtype=tips] input[type=text]").each ->
     $(@).val document.copper.cents_to_dollars($(@).val())
 
   $("[itemtype=tips] form[method=delete]").on 'item.delete', ->
@@ -20,12 +20,12 @@ $(document).on "load.home_index #orders_index", ->
       $(page).find('dl > dt > details > summary').text '1 Tip'
     else
       $(page).find('dl > dt > details > summary').text "#{tip_count} Tips"
-    
+
     # TODO update the pages tip totals
     new_total = 0;
     $(page).find('input[itemprop=amount_in_cents]').each ->
       new_total = new_total + Number($(@).val())
-    $(page).find('figcaption').text document.copper.cents_to_dollars(new_total) 
+    $(page).find('figcaption > p').text document.copper.cents_to_dollars(new_total)
 
   $('[itemtype=tips] form[method=put]').on 'item.validate', ->
     tip_amount_in_cents = (parseFloat($(@).find('input[type=text]').val()) * 100);

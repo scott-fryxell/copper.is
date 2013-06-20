@@ -3,19 +3,19 @@ class PagesController < ApplicationController
 
   def index
     if params[:state]
-      @pages = Page.send(params[:state]).recent 
+      @pages = Page.send(params[:state]).charged_tips.order_by_tips.endless(params[:endless])
     elsif params[:author_id]
-      @pages = Page.where(author_id:params[:author_id])
+      @pages = Page.where(author_id:params[:author_id]).endless(params[:endless])
     else
-      @pages = Page.recent
+      @pages = Page.manual.charged_tips.order_by_tips.endless(params[:endless])
     end
-    render :action => 'index', :layout => false if request.headers['retrieve_as_data']
+    render :action => 'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
   def show
     @page = Page.where(id:params[:id]).first
-    if request.headers['retrieve_as_data'] 
-      render :action => 'show', layout:false 
+    if request.headers['retrieve_as_data']
+      render :action => 'show', layout:false
     else
       render :action => 'show', layout:"page_layout"
     end
@@ -24,7 +24,7 @@ class PagesController < ApplicationController
   def update
     @page = Page.where(id:params[:id]).first
 
-    if params[:thumbnail_url] 
+    if params[:thumbnail_url]
       if params[:thumbnail_url].length > 0
         @page.thumbnail_url = params[:thumbnail_url]
       else
@@ -63,7 +63,7 @@ class PagesController < ApplicationController
     end
 
     @page.save
-    render :action => 'update', :layout => false 
+    render :action => 'update', :layout => false
   end
 
   def create

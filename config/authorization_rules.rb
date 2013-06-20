@@ -19,7 +19,7 @@ authorization do
     has_permission_on :users,       :to => [:show,:update] do
       if_attribute :id => is { user.id }
     end
-    
+
     has_permission_on :tips,       :to => [:create]
     has_permission_on :tips,       :to => [:update, :destroy] do
       if_attribute :user => is { user }
@@ -33,11 +33,10 @@ authorization do
 
   role :guest do
     has_permission_on :pages,       :to => [:show]
-    has_permission_on :tips,       :to => [:read, :new]
+    has_permission_on :tips,       :to => [:new]
     has_permission_on :authors,    :to => [:edit] do
       if_attribute :identity_state => 'wanted'
     end
-    has_permission_on :pages,      :to => [:read]
   end
 end
 

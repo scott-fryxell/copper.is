@@ -10,7 +10,7 @@
     </hgroup>
   </header>
 </section>
-<section id="pages">
-  <%= render partial:"pages/index", collection:Page.safe.welcome.limit(9), as: :page %>
+<section class="pages">
+  <%= render partial:"pages/as_figure", collection:Page.safe.welcome.limit(9), as: :page %>
 </section>
 <%-end-%>

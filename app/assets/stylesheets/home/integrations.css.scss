@@ -1,0 +1,44 @@
+#home_integrations {
+  #admin {
+    padding: 1em;
+    width: grid-width(28);
+    margin-bottom: grid-width(1);
+  }
+  #statistics {
+    min-height: grid-width(14);
+    padding-top:grid-width(2);
+    figure {
+      margin-right:4em;
+      vertical-align:top;
+      display:inline-block;
+    }
+    figure:nth-child(3){
+      margin-right:0;
+    }
+    figure:nth-child(2) > img {
+      opacity:0.9;
+    }
+    figure > img {
+      opacity:0.8;
+      vertical-align:top;
+      display:block;
+      margin:0 auto;
+      width: 10em;
+      height:10em;
+    }
+    figure > figcaption {
+      text-align:center;
+      font-size:2em;
+      margin-top:1em;
+      &:nth-child(2){
+        font-size:1.5em;
+      }
+      &:nth-child(3){
+        text-transform: capitalize;
+        color:$dark;
+        opacity:.5;
+        text-shadow: 3px 3px $offset;
+      }
+    }
+  }
+}

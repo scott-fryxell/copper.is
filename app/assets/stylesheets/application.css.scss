@@ -1,17 +1,17 @@
 @import "shared/mixins";
 @import "shared/body";
 @import "shared/header";
+@import "shared/banner";
 @import "shared/stats";
 @import "shared/tips";
 @import "shared/pages";
-@import "shared/banner";
 @import "shared/button";
 @import "shared/address";
 @import "shared/forms";
 @import "shared/card";
-@import "shared/admin";
 
 @import "home/index";
+@import "home/integrations";
 @import "home/welcome";
 @import "home/badge";
 @import "home/author";

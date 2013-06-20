@@ -9,7 +9,7 @@ $subtle_text: #999999;
     display:none;
   }
   section {
-    position:relative;  
+    position:relative;
     background-color: $background_color;
     color:$light;
     height:0;
@@ -107,7 +107,7 @@ $subtle_text: #999999;
       }
       & > a.button {
         @include button($copper);
-        
+
         display:none;
         margin-left:1rem;
         vertical-align:middle;
@@ -165,7 +165,7 @@ $subtle_text: #999999;
           }
           display:inline-block;
           margin-left:0.5em;
-          vertical-align:top; 
+          vertical-align:top;
           & > img {
             opacity:0.15;
             height:2rem;
@@ -218,6 +218,7 @@ $subtle_text: #999999;
     }
   }
   section.sign_in {
+    min-height:16rem;
     & > header {
       padding-bottom:0em;
       & > h1 {
@@ -231,22 +232,23 @@ $subtle_text: #999999;
       }
     }
     & > nav {
-      width:10em;
+      width:8em;
       margin:0 auto;
       & > a {
         margin-bottom:1em;
         display:block;
-        text-align:center;
       }
+    }
+    #learn {
+      @include button($copper);
     }
     #close {
       color:$light;
       text-decoration:none;
+      text-align:center;
       opacity:0.2;
       cursor:pointer;
-    }
-    #learn {
-      @include button($copper);
+      outline:none;
     }
   }
 }

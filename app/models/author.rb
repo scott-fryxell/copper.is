@@ -1,18 +1,18 @@
 class Author < ActiveRecord::Base
   include Enqueueable
-  has_paper_trail 
+  has_paper_trail
   belongs_to :user, touch:true
   has_many :pages
   has_many :tips, :through => :pages
   has_many :checks, :through => :pages
-  
+
   attr_accessible :provider, :uid, :username
 
   # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   # validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
-  
+
   validates :provider, presence:true
-  
+
   validate :validate_presence_of_username_or_uid
   def validate_presence_of_username_or_uid
     unless self.username or self.uid
@@ -28,7 +28,11 @@ class Author < ActiveRecord::Base
       "#{self.provider}.com/#{self.uid}"
     end
   end
-  
+
+  [:twitter, :facebook, :tumblr, :soundcloud, :github, :vimeo, :flickr, :google].each do |provider|
+    scope provider, where("provider = ?", provider)
+  end
+
   scope :stranger, where(identity_state:'stranger')
   scope :wanted, where(identity_state:'wanted')
   scope :known, where(identity_state:'known')
@@ -38,7 +42,7 @@ class Author < ActiveRecord::Base
     event :publicize do
       transition :stranger => :wanted
     end
-    
+
     event :join do
       transition any => :known
     end
@@ -63,7 +67,7 @@ class Author < ActiveRecord::Base
         end
       end
     end
-    
+
     state :known do
       validates :user_id, presence:true
 
@@ -77,12 +81,12 @@ class Author < ActiveRecord::Base
         end
       end
     end
-    
+
     after_transition any => :wanted do |author,transition|
       Resque.enqueue author.class, author.id, :ask_author_to_join
     end
     after_transition any => :known do |author,transition|
-      Resque.enqueue Author, author.id, :create_page_for_author  
+      Resque.enqueue Author, author.id, :create_page_for_author
     end
   end
 
@@ -97,7 +101,7 @@ class Author < ActiveRecord::Base
   #     Resque.enqueue self.class, self.id, :ask_author_to_join
   #   end
   # end
-  
+
   before_save do
     if self.stranger?
       self.user = nil
@@ -108,7 +112,7 @@ class Author < ActiveRecord::Base
 
 
   # --------------------------------------------------------------------
-  
+
   def self.find_with_omniauth(auth)
     find_by_provider_and_uid(auth['provider'], auth['uid'].to_s)
   end
@@ -127,7 +131,7 @@ class Author < ActiveRecord::Base
   end
 
   def self.provider_from_url(url)
-    begin  
+    begin
       uri = URI.parse(url)
       return nil unless /tumblr\.com$/.match(uri.host) or uri.path.size > 1 or uri.query or uri.fragment
     rescue => e
@@ -135,13 +139,13 @@ class Author < ActiveRecord::Base
     end
 
     case uri.host
-    when /facebook\.com$/ then 
+    when /facebook\.com$/ then
       if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter|application}.match(uri.path)
         nil
       else
         'facebook'
       end
-    when /tumblr\.com$/ then 
+    when /tumblr\.com$/ then
       if %r{www.tumblr.com}.match(uri.host) and uri.path.size < 3
         nil
       elsif  %r{/dashboard|/customize}.match(uri.path)
@@ -158,14 +162,14 @@ class Author < ActiveRecord::Base
         'twitter'
       end
     when /plus\.google\.com$/ then 'google'
-    when /vimeo\.com$/ then 
+    when /vimeo\.com$/ then
       if %r{/groups/}.match(uri.path)
         nil
       else
         'vimeo'
       end
     when /flickr\.com$/ then 'flickr'
-    when /github\.com$/ then 
+    when /github\.com$/ then
       if %r{gist.github.com}.match(uri.host)
         nil
       elsif %r{/blog}.match(uri.path)
@@ -174,7 +178,7 @@ class Author < ActiveRecord::Base
         'github'
       end
     when /youtube\.com$/ then 'youtube'
-    when /soundcloud\.com$/ then 
+    when /soundcloud\.com$/ then
       if  %r{/dashboard}.match(uri.path)
         nil
       else
@@ -187,7 +191,7 @@ class Author < ActiveRecord::Base
   rescue URI::InvalidURIError => e
     return nil
   end
-  
+
   def self.find_or_create_from_url(url)
     if provider = provider_from_url(url)
       i = subclass_from_provider(provider).discover_uid_and_username_from_url url
@@ -200,9 +204,9 @@ class Author < ActiveRecord::Base
       nil
     end
   end
-  
+
   # --------------------------------------------------------------------
-  
+
   def populate_uid_and_username!
     if self.uid.blank? and self.username.blank?
       raise "both uid and username can't be blank"
@@ -228,7 +232,7 @@ class Author < ActiveRecord::Base
     yield
     save!
   end
-  
+
   def try_to_make_wanted!
     self.publicize! if self.tips.charged.count > 0
   end

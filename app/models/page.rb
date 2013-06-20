@@ -20,7 +20,9 @@ class Page < ActiveRecord::Base
   scope :onboarding, where(onboarding:true)
   scope :trending, where(trending:true)
   scope :safe, where(nsfw:false)
-  scope :recent, order("updated_at DESC")
+  scope :recent, order("pages.created_at DESC")
+  scope :charged_tips, joins(:tips).where('tips.paid_state=?', 'charged')
+  scope :order_by_tips, joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc')
 
   def self.adoption_rate
     (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round

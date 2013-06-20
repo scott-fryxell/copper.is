@@ -13,7 +13,6 @@ class Tip < ActiveRecord::Base
 
   attr_accessible :amount_in_cents,:url,:title
 
-  scope :trending, order("Date(updated_at)")
   scope :promised, where(paid_state:'promised')
   scope :charged, where(paid_state:'charged')
   scope :kinged, where(paid_state:'kinged').readonly
