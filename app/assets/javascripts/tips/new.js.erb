@@ -45,6 +45,7 @@ $(document).ready(function (){
 });
 $(document).bind({
   "tip_info": function (event){
+      console.debug("tip info")
       title = decodeURIComponent(event.title)
       new_tip = document.getItems('tips')[0]
       new_tip.title = decodeURIComponent(event.title)
@@ -53,6 +54,7 @@ $(document).bind({
       $("form").submit()
   },
   "tip_display": function (event){
+      console.debug("tip_display")
       var cents = $("input[itemprop=amount_in_cents]").attr('value');
       var dollars = document.copper.cents_to_dollars(cents);
       $("input[itemprop=amount_in_dollars]").attr('value', dollars);
@@ -67,7 +69,7 @@ $(document).bind({
       // }
   },
   "tip_details": function (event){
-
+    console.debug("tip_details")
     clearInterval(display_timer);
     clearInterval(frame_timer);
     document.postMessage({type:'show_details'});
@@ -91,6 +93,8 @@ $(document).bind({
 });
 
 $('form').on('item.post', function(event, data, status, xhr){
+  $(document).trigger("tip_display");
+  console.debug("item post");
   $(this).attr('method', 'put');
   $(this).attr('action', data);
   $(this).on('item.validate', function(){
@@ -118,4 +122,8 @@ $(document).on("me.tips_new", function(event){
     'url': $("input[itemprop=url]").attr('value'),
     'amount_in_cents': $("input[itemprop=amount_in_cents]").attr('value')
   });
+});
+
+$(document).on("guest.tips_new", function(event){
+  $(document).trigger("tip_display");
 });

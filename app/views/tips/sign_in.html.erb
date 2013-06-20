@@ -1,12 +1,12 @@
 <%-cache do-%>
-<section class="sign_in">
+<section class="sign_in" itemscope>
   <header>
     <a href="/" target="blank"><%= image_tag "icons/logo_light.svg", :title => "Visit Copper.is" %></a>
-    <h1>Support this Author!</h1>
+    <h1>Support creative content</h1>
   </header>
   <nav>
     <a id="learn" href="<%=request.scheme%>://<%=request.host%>" target="new">Learn more</a>
-    <a id="close">Close</a>
+    <a id="close" href="#close">Close</a>
   </nav>
 </section>
 <%-end-%>

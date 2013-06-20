@@ -6,7 +6,7 @@ $offset:rgba(182, 195, 181, 0.2);
 $dark:rgba(41, 11, 5, 1);
 $light:rgba(251, 250, 248, 1);
 $header:rgba(82,52,45,1);
-// 78  54  47  
+// 78  54  47
 $header_transparent:rgba(82,52,45,0.1);
 $title:rgba(102,102,102,1);
 $text:rgba(102,102,102,0.8);
@@ -84,7 +84,7 @@ $shadow:rgba(0, 0, 0, 0.5);
   @include header_text;
   font-family: 'Doppio One', sans-serif;
   cursor:pointer;
-  text-transform:none;
+  text-decoration:none;
   color:$light;
   border-radius: 0.25em;
   vertical-align: middle;

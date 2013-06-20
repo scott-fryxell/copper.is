@@ -156,12 +156,13 @@ $("[itemscope] form").submit(function(event){
       $(form).trigger('item.error');
       Item.items[type][item_index] = item_rolback;
       Item.update_page(Item.items[type][item_index]);
-      // console.error("error submiting item form " + id, data, textStatus, jqXHR);
+      console.error("error submiting item form " + id, data, textStatus, jqXHR);
     },
     success: function(data, textStatus, jqXHR){
       // console.debug("successful item submission", data)
       // let any listeners know that any the form submited succesfully update.
       // TODO we leave updating the items to the listener of this method. this is risky
+      console.debug("form success")
       $(form).trigger('item.' + method, [data, textStatus, jqXHR]);
     }
   });

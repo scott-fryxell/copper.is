@@ -5,14 +5,17 @@
 
     var data = event.data
     if (data.type == 'show'){
+      console.debug("show")
       f.width='425px'
       f.height='575px'
     }
     else if (data.type == 'show_details'){
+      console.debug("show_details")
       f.width='550px'
       f.height='475px'
     }
     else if (data.type == 'hide'){
+      console.debug("hide")
       f.width='350px'
       f.height='0px'
     }
@@ -24,7 +27,6 @@
         page_title=document.querySelector('title').innerHTML
       else
         page_title=""
-      
 
       if (document.querySelector('link[rel="canonical"]'))
         page_url = document.querySelector('link[rel="canonical"]').getAttribute('href');
