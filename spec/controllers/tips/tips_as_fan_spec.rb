@@ -10,20 +10,11 @@ describe TipsController do
   end
 
   describe 'as Fan' do
-
     describe 'index' do
       describe '/tips' do
-        it 'responds to .json' do
-          get_with @me, :index, format: :json
-          response.should be_success
-        end
-
-        it 'a list of the most recent tips of all users and current user' do pending
-          get_with @me, :index, format: :json
-          assigns(:tips).include?(@her_tip2).should be_true
-          assigns(:tips).include?(@her_tip1).should be_true
-          assigns(:tips).include?(@my_tip).should be_true
-          response.status.should == 200
+        it 'should respond with 401' do
+          get_with @me, :index
+          response.status.should == 403
         end
       end
     end
@@ -32,7 +23,7 @@ describe TipsController do
       describe '/tips/new' do
         it 'renders a form to specify a url to tip' do
           get_with @me, :new
-          assigns(:tip).new_record?.should be_true
+          response.status.should == 200
         end
       end
     end
@@ -67,23 +58,13 @@ describe TipsController do
     describe 'show' do
       describe '/tips/:id' do
         it 'loads my tip' do
-          get_with @me, :show, id:@my_tip.id, format: :json
-          assigns(:tip).id.should == @my_tip.id
-          response.should be_success
+          get_with @me, :show, id:@my_tip.id
+          response.status.should == 403
         end
 
         it 'loads someone else\'s tip via json' do
-          get_with @me, :show, id:@her_tip1.id, format: :json
-          assigns(:tip).id.should == @her_tip1.id
-        end
-      end
-    end
-
-    describe 'edit' do
-      describe '/tips/:id/edit' do
-        it 'assigns the given tip' do
-          get_with @me, :edit, id:@my_tip.id, format: :json
-          (tip = assigns(:tip)).id.should == @my_tip.id
+          get_with @me, :show, id:@her_tip1.id
+          response.status.should == 403
         end
       end
     end
@@ -92,6 +73,7 @@ describe TipsController do
       describe 'PUT /tips/:id' do
         it 'update the amount of the tip' do
           put_with @me, :update, id:@my_tip.id, tip:{amount_in_cents:200}, format: :json
+          response.status.should == 200
           @my_tip.reload
           @my_tip.amount_in_cents.should == 200
         end

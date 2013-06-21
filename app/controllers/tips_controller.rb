@@ -34,12 +34,14 @@ class TipsController < ApplicationController
     render nothing:true, status:403
   end
 
-  def edit
-    render nothing:true
-  end
-
   def update
+
     @tip = Tip.find(params[:id])
+
+    if @tip.user != current_user
+      return render nothing:true, status:403
+    end
+
     if (params[:tip][:amount_in_cents] && params[:tip][:amount_in_cents] != "" and @tip.order.current? and @tip.user == current_user)
       @tip.amount_in_cents = params[:tip][:amount_in_cents]
       @tip.save

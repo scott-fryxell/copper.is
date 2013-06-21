@@ -6,7 +6,7 @@ FactoryGirl.define do
   sequence 'username' do |n|
     "foobar#{n}"
   end
-  
+
   sequence 'a_n_string' do |n|
     n.to_s
   end
@@ -86,6 +86,15 @@ FactoryGirl.define do
     authors [FactoryGirl.create(:authors_phony,identity_state: :known)]
     roles [Role.find_or_create_by_name('Fan')]
   end
+
+  factory :admin, class:'User' do
+    name 'admin joe'
+    accept_terms true
+    tip_preference_in_cents 50
+    authors [FactoryGirl.create(:authors_phony,identity_state: :known)]
+    roles [Role.find_or_create_by_name('Admin')]
+  end
+
 
   factory :user_email, class:'User' do
     name 'Joe'

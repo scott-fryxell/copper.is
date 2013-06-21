@@ -28,13 +28,13 @@ authorization do
     has_permission_on :checks,     :to => [:read]
     has_permission_on :orders,     :to => [:read,:update]
     has_permission_on :authors,    :to => [:edit, :destroy]
-    has_permission_on :cards,      :to => [:manage]
+    has_permission_on :cards,       :to => [:manage]
   end
 
   role :guest do
     has_permission_on :pages,       :to => [:show]
-    has_permission_on :tips,       :to => [:new]
-    has_permission_on :authors,    :to => [:edit] do
+    has_permission_on :tips,          :to => [:new]
+    has_permission_on :authors,     :to => [:edit] do
       if_attribute :identity_state => 'wanted'
     end
   end

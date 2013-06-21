@@ -15,7 +15,7 @@ describe User do
       @her.authors.count.should > 0
     end
   end
-  
+
   describe 'addresses' do
     it 'has 2 lines, a postal code, a country, a state, a territory, and a city' do
       @me.should respond_to(:payable_to)
@@ -42,7 +42,7 @@ describe User do
     end
   end
 
-  describe "lists", :focus do
+  describe "lists" do
 
     it "should know all the fans who have tipped" do
       User.should respond_to(:tipped)
@@ -51,6 +51,6 @@ describe User do
     it "should know all the fans who have provided payment info" do
       User.should respond_to(:payment_info)
     end
-    
+
   end
 end

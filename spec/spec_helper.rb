@@ -26,9 +26,9 @@ Spork.prefork do
   require 'support'
   require 'capybara/poltergeist'
 
-  Capybara.javascript_driver = :poltergeist
   Capybara.default_driver = :webkit
-  # Capybara.javascript_driver = :webkit
+  Capybara.javascript_driver = :webkit
+  # Capybara.javascript_driver = :poltergeist
   Capybara.default_selector = :css
   Capybara.ignore_hidden_elements = false
   Capybara.server_port = 8080
@@ -41,7 +41,7 @@ Spork.prefork do
     config.fail_fast = false
     config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
     config.mock_with :rspec
-    config.profile_examples = true
+    config.profile_examples = false
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
     config.run_all_when_everything_filtered = true

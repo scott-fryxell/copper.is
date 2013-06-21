@@ -1,13 +1,18 @@
 require 'spec_helper'
 
 describe TipsController do
-  describe 'as Guest' do
+  describe 'as Admin' do
 
     describe 'index' do
       describe '/tips' do
-        it 'should respond with 401' do
-          get :index
-          response.status.should == 401
+        it 'assigns all tips' do
+          her_setup
+          me_setup
+          get :index, format: :json
+          tips = assigns(:tips)
+          tips.include?(@her_tip2).should be_true
+          tips.include?(@her_tip1).should be_true
+          tips.include?(@my_tip).should be_true
         end
       end
     end
@@ -34,9 +39,21 @@ describe TipsController do
 
     describe 'show' do
       describe '/tips/:id' do
-        it 'should respond with 401' do
+        it 'should display a tip' do 
           me_setup
-          get :show, id:@my_tip.id
+          get :show, id:@my_tip.id, format: :json
+          assigns(:tip).should eq(@my_tip)
+          tip = assigns(:tip)
+          response.should be_success
+        end
+      end
+    end
+
+    describe 'edit' do
+      describe '/tips/:id/edit' do
+        it 'respond with not authorized' do
+          me_setup
+          get :edit, id:@my_tip.id, format: :json
           response.status.should == 401
         end
       end
