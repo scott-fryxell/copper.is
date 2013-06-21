@@ -1,63 +1,55 @@
-#home_index,
-#home_settings,
-#home_author,
-#home_badge,
-#home_tip_some_pages,
-#orders_index,
-#pages_index,
-#authors_edit {
-  #signed_in > img {
-    display:none;
-  }
-  #banner {
-    margin-top:2.5em;
-    margin-bottom:2em;
-  }
-  #banner > header {
-    display:inline-block;
-    width:grid-width(3);
-  }
-  #banner > header > a > img.author,
-  #banner > figure > img.author {
-    border-radius:0.25em;
-    border:2px solid $dark;
-    box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.2);
-    vertical-align:bottom;
-    width:5em;
-  }
-  #banner > hgroup {
-    vertical-align:top;
-    display:inline-block;
-    width:grid-width(8);
-  }
-  #banner > hgroup > h1 {
-    vertical-align:top;
-    font-size:2.5em;
-    margin-bottom:0;
-    margin-top:0;
-    line-height:1em;
-  }
-  #banner > hgroup > p {
-    color: $dark;
-    font-family: 'Doppio One', sans-serif;
-    font-size:1.25em;
-    margin-top:.25em;
-  }
-  #banner > hgroup > p > a {
-    padding-left:1em;
-    font-size:.6em;
-    font-family: 'Cantarell', sans-serif;
-    opacity:.5;
-  }
-  #banner > p {
-    vertical-align:top;
-    margin-top:0;
-    display:inline-block;
-    width:grid-width(9);
-  }
+ #signed_in > img {
+  display:none;
+}
+#banner {
+  margin-top:2.5em;
+  margin-bottom:2em;
+}
+#banner > header {
+  display:inline-block;
+  width:grid-width(3);
+}
+#banner > header > a > img.author,
+#banner > figure > img.author {
+  border-radius:0.25em;
+  border:2px solid $dark;
+  box-shadow: 1px 2px 7px 2px rgba(0, 0, 0, 0.2);
+  vertical-align:bottom;
+  width:5em;
+}
+#banner > hgroup {
+  vertical-align:top;
+  display:inline-block;
+  width:grid-width(8);
+}
+#banner > hgroup > h1 {
+  vertical-align:top;
+  font-size:2.5em;
+  margin-bottom:0;
+  margin-top:0;
+  line-height:1em;
+}
+#banner > hgroup > p {
+  color: $dark;
+  font-family: 'Doppio One', sans-serif;
+  font-size:1.25em;
+  margin-top:.25em;
+}
+#banner > hgroup > p > a {
+  padding-left:1em;
+  font-size:.6em;
+  font-family: 'Cantarell', sans-serif;
+  opacity:.5;
+}
+#banner > p {
+  vertical-align:top;
+  margin-top:0;
+  display:inline-block;
+  width:grid-width(9);
 }
 
-body.admin {
+
+body.admin{
   #banner {
     padding:0;
     & > header {

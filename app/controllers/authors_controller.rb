@@ -3,15 +3,15 @@ class AuthorsController < ApplicationController
 
   def index
     if params[:state]
-      @authors = Author.send(params[:state]).limit(25)
+      @authors = Author.send(params[:state]).endless(params[:endless])
     elsif params[:user_id]
-      @authors = Author.where(user_id:params[:user_id])
+      @authors = Author.where(user_id:params[:user_id]).endless(params[:endless])
     elsif params[:page_id]
-      @authors = Author.where(page_id:params[:page_id])
+      @authors = Author.where(page_id:params[:page_id]).endless(params[:endless])
     else
-      @authors = Author.all()
+      @authors = Author.tips_waiting.endless(params[:endless])
     end
-    render action:'index', layout:false if request.headers['retrieve_as_data']
+    render action:'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
   def new

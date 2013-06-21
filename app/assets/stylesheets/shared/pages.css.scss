@@ -1,5 +1,5 @@
-#home_index, #home_author, #home_welcome, #home_tip_some_pages, #home_trending, #pages_index {
-  section.pages {
+#home_index, #home_author, #home_welcome, #home_tip_some_pages, #home_trending, #pages_index, #authors_index {
+  section.pages, section.authors {
     border:0.25em solid transparent;
     padding:0;
     background-color: $offset;

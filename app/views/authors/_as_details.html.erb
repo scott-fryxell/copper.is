@@ -1,0 +1,10 @@
+<%-cache author do-%>
+<details itemscope type='authors' itemid="/authors/<%=author.id%>">
+  <summary>
+    <figure>
+      <%= image_tag "icons/silhouette.svg"%>
+      <figcaption><%=author.username%>@<%=author.provider%></figcaption>
+    </figure>
+  </summary>
+</details>
+<%-end-%>
