@@ -1,16 +1,11 @@
 #authors_index {
-
-  section.authors > details {
-    display:inline-block;
-    height:grid-width(8);
-    width:grid-width(8);
-    vertical-align: top;
-    padding:0.5em;
-    overflow: hidden;
-
-    summary > figure > img {
-     height:grid-width(2);
-     width:grid-width(2);
+  section.endless > details summary > figure > img {
+    height:grid-width(2);
+    width:grid-width(2);
+  }
+  #admin_nav {
+    a[href="/authors"] > img{
+      opacity:0.99;
     }
   }
 }

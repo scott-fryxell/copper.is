@@ -4,7 +4,7 @@
     <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
   </header>
   <hgroup>
-    <h1>pages</h1>
+    <h1>Authors</h1>
     <p><%=current_user.name%><a href="/signout">not you?</a></p>
   </hgroup>
   <details class='admin'>
@@ -14,9 +14,12 @@
       <a>wanted</a>
       <a>known</a>
     </nav>
+    <fieldset>
+      <input class="endless" type="range" min="2" max="12" step="1" value="3" />
+    </fieldset>
   </details>
 </section>
 <%-end-%>
-<section class="authors endless">
+<section class="authors endless" data-per-row="4">
 <%= render partial:"as_details", collection:@authors, as: :author %>
 </section>

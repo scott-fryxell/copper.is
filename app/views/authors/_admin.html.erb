@@ -1,0 +1,64 @@
+<%-cache author do-%>
+<section>
+    <header>
+      <h1 itemprop='author_state'><%=author.identity_state%></h1>
+      <hgroup>
+        <h4>id</h4>
+        <a href="/author/<%=author.id%>" itemprop="id"><%=author.id%></a>
+      </hgroup>
+      <hgroup>
+        <h4>uid</h4>
+        <p><%=author.uid%></p>
+      </hgroup>
+      <hgroup>
+        <h4>provider</h4>
+        <a parent="_blank" href="//<%=author.url%>" itemprop="url"><%=author.provider%></a>
+      </hgroup>
+      <hgroup>
+        <h4>username</h4>
+        <a parent="_blank" href="//<%=author.url%>" itemprop="url"><%=author.username%></a>
+      </hgroup>
+      <hgroup>
+        <h4>updated</h4>
+        <time itemprop="updated_at" datetime="<%=author.updated_at.getutc.iso8601%>"/>
+      </hgroup>
+      <hgroup>
+        <h4>Created</h4>
+        <time itemprop="created_at" datetime="<%=author.created_at.getutc.iso8601%>"/>
+      </hgroup>
+    </header>
+    <dl style='display:none'>
+      <dt>token</dt>
+      <dd itemprop='token'><%=author.token%></dd>
+      <dt>secret</dt>
+      <dd itemprop='secret'><%=author.secret%></dd>
+    </dl>
+</section>
+<%-if author.user_id -%>
+<details itemscope itemtype='users' itemid='/users/<%=author.user_id%>'>
+  <summary>User</summary>
+</details>
+<%-end-%>
+
+<details>
+  <summary>pages</summary>
+  <%-author.pages.each  do |page| -%>
+  <details itemscope itemtype='pages' itemid='/page/<%=page.id%>'>
+    <summary><%=page.url%></summary>
+  </details>
+  <%-end-%>
+</details>
+
+<details>
+  <summary>charged tips</summary>
+  <%-author.tips.charged.each  do |tip| -%>
+  <details itemscope itemtype='tips' itemid='/tips/<%=tip.id%>'>
+    <summary>
+      <time datetime="<%=tip.created_at.getutc.iso8601%>"/>
+    </summary>
+  </details>
+  <%-end-%>
+</details>
+
+
+<%-end-%>

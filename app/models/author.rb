@@ -36,7 +36,7 @@ class Author < ActiveRecord::Base
   scope :stranger, where(identity_state:'stranger')
   scope :wanted, where(identity_state:'wanted')
   scope :known, where(identity_state:'known')
-  scope :tips_waiting, joins(:tips).where("tips.paid_state='charged'").group('authors.id').select("authors.*, count('tips') as charged_tips_count").order('charged_tips_count')
+  scope :tips_waiting, joins(:tips).where("tips.paid_state='charged'").group('authors.id').select("authors.*, count('tips') as charged_tips_count").order('charged_tips_count desc')
 
   state_machine :identity_state, initial: :stranger do
 

@@ -9,7 +9,7 @@ class AuthorsController < ApplicationController
     elsif params[:page_id]
       @authors = Author.where(page_id:params[:page_id]).endless(params[:endless])
     else
-      @authors = Author.tips_waiting.endless(params[:endless])
+      @authors = Author.twitter.stranger.tips_waiting.endless(params[:endless])
     end
     render action:'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end

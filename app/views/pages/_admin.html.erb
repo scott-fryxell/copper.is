@@ -19,7 +19,7 @@
       <h1 itemprop='author_state'><%=page.author_state%></h1>
       <hgroup>
         <h4>id</h4>
-        <a href="/pages/<%=page.id%>" itemprop="url"><%=page.id%></a>
+        <a href="/pages/<%=page.id%>" itemprop="id"><%=page.id%></a>
       </hgroup>
       <hgroup>
         <h4>updated</h4>
@@ -34,9 +34,9 @@
       <fieldset>
         <input placeholder="title" itemprop="title" value="<%=page.title%>" >
         <a target="_blank" href="<%=page.url%>"><%= image_tag "noun_project/13883.svg" %></a>
-        <input placeholder="url" itemprop="url" value="<%=page.url%>" >
-        <input placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">
-        <input placeholder="author" itemprop="author_url" value="<%=page.author.url if page.author %>">
+        <input type="url" placeholder="url" itemprop="url" value="<%=page.url%>" >
+        <input type="url" placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">
+        <input type="url" placeholder="author" itemprop="author_url" value="<%=page.author.url if page.author %>">
         <nav>
           <button itemprop="welcome" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.welcome?%>">welcome</button>
           <button itemprop="onboarding" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.onboarding?%>">onboarding</button>
