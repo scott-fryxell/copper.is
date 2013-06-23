@@ -93,7 +93,7 @@ body.admin{
           @include button($copper);
           display:inline-block;
           margin: 2rem 0 0 2rem ;
-          width:grid-width(3);
+          min-width:grid-width(3);
           text-align: center;
           text-transform: capitalize;
         }
