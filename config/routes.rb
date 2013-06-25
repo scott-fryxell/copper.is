@@ -1,48 +1,50 @@
 require 'resque/server'
 Copper::Application.routes.draw do
 
-  resources :tips
+  resources :tips, except:[:new, :edit]
 
-  resources :orders do
-    resources :tips
+  resources :orders, except:[:new, :edit] do
+    resources :tips, only:[:index, :show]
   end
 
-  resources :checks
-  resources :authors do
-    resources :pages
+  resources :authors, except:[:new] do
+    resources :pages, only:[:index, :show]
   end
 
-  resources :pages do
-    resources :tips
+  resources :pages, except:[:new, :edit] do
+    member do
+       post 'reject'
+     end
+    resources :tips, only:[:index, :show]
   end
 
-  resources :users do
-    resources :tips
-    resources :authors
-    resources :pages
-    resources :orders
-    resources :checks
+  resources :users, except:[:new, :edit] do
+    resources :tips, only:[:index, :show]
+    resources :authors, only:[:index, :show]
+    resources :pages, only:[:index, :show]
+    resources :orders, only:[:index, :show]
+    resources :checks, only:[:index, :show]
   end
 
-  get    'cards', to:'cards#show',  :as => :show_card
-  post   'cards', to:'cards#create',:as => :create_card
-  put    'cards', to:'cards#update',:as => :update_card
+  get    'cards', to:'cards#show',   :as => :show_card
+  post   'cards', to:'cards#create', :as => :create_card
+  put    'cards', to:'cards#update', :as => :update_card
   delete 'cards', to:'cards#delete', :as => :delete_card
 
   get 'tip_some_pages',  to:'home#tip_some_pages'
-  get "integrations",           to:'home#integrations'
-  get 'badge',           to:'home#badge'
-  get 'author',          to:'home#author'
-  get 'settings',        to:'home#settings'
-  get 'about',           to:'home#about'
-  get 'welcome',         to:'home#welcome'
-  get 'contact',         to:'home#contact'
-  get 'terms',           to:'home#terms'
-  get 'privacy',         to:'home#privacy'
-  get 'faq',             to:'home#faq'
-  get 'states',          to:'home#states'
-  get 'getting_started', to:'home#getting_started'
-  get 'trending',        to:'home#trending'
+  get "integrations",       to:'home#integrations'
+  get 'badge',                to:'home#badge'
+  get 'author',               to:'home#author'
+  get 'settings',             to:'home#settings'
+  get 'about',                to:'home#about'
+  get 'welcome',            to:'home#welcome'
+  get 'contact',              to:'home#contact'
+  get 'terms',                to:'home#terms'
+  get 'privacy',              to:'home#privacy'
+  get 'faq',                    to:'home#faq'
+  get 'states',                to:'home#states'
+  get 'getting_started',   to:'home#getting_started'
+  get 'trending',             to:'home#trending'
   get 'embed_iframe.js', to:'home#iframe', :as => :iframe
 
   post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
@@ -60,6 +62,6 @@ Copper::Application.routes.draw do
   match '/auth/facebook/publish_actions', :to => 'sessions#publish_actions'
   match '/auth/facebook/manage_pages', :to => 'sessions#manage_pages'
 
-  mount Resque::Server.new, :at => "/admin/resque"
+  # mount Resque::Server.new, :at => "/admin/resque"
   root :to => 'home#index'
 end

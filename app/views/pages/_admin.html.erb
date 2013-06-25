@@ -43,9 +43,7 @@
           <button itemprop="trending" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.trending?%>">trending</button>
           <button itemprop="nsfw" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.nsfw?%>">nsfw</button>
         </nav>
-        <nav style="display:none">
-          <button formmethod="delete" formaction="/pages/<%=page.id%>">delete</button>
-          <button formmethod="post" formaction="/pages/<%=page.id%>/adopt">adopt</button>
+        <nav>
           <button formmethod="post" formaction="/pages/<%=page.id%>/reject">reject</button>
         </nav>
       </fieldset>

@@ -31,5 +31,9 @@ describe PagesController do
       delete("/pages/1").should route_to("pages#destroy", :id => "1")
     end
 
+    it "routes to #reject" do
+      get("/pages/1/reject").should route_to("pages#reject", :id => "1")
+    end
+
   end
 end

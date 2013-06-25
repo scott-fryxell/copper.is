@@ -36,7 +36,7 @@ class Author < ActiveRecord::Base
   scope :stranger, where(identity_state:'stranger')
   scope :wanted, where(identity_state:'wanted')
   scope :known, where(identity_state:'known')
-  scope :tips_waiting, joins(:tips).where("tips.paid_state='charged'").group('authors.id').select("authors.*, count('tips') as charged_tips_count").order('charged_tips_count desc')
+  scope :pending_royalties, joins(:tips).where("tips.paid_state='charged'").group('authors.id').select("authors.*, count('tips') as charged_tips_count").order('charged_tips_count desc')
 
   state_machine :identity_state, initial: :stranger do
 
@@ -232,6 +232,11 @@ class Author < ActiveRecord::Base
     raise "username is blank" if self.username.blank?
     yield
     save!
+  end
+
+  def profile_image
+    raise "not implemented in subclass" unless block_given?
+    yield
   end
 
   def try_to_make_wanted!

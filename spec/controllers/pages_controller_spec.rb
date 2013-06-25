@@ -84,12 +84,18 @@ describe PagesController do
         it 'assigns pages in created order' do pending
           @page1 = create!(:page,author_state:'adopted')
           @page2 = create!(:page,author_state:'adopted')
-          get_with @me, :index, format: :json
+          get_with @me, :index
           response.status.should == 200
           assigns(:pages).should_not be_nil
           assigns(:pages).should eq([@page1, @page2])
         end
       end
+    end
+
+    it "should be able reject a page state" do
+      @page1 = create!(:page,author_state:'adopted')
+      post_with @me, :reject
+      assigns(:pages).should_not be_nil
     end
   end
 end
