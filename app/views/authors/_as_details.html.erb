@@ -2,11 +2,11 @@
 <details itemscope type='authors' itemid="/authors/<%=author.id%>">
   <summary>
     <figure>
-      <%= image_tag "icons/silhouette.svg"%>
+      <img src="<%=author.profile_image%>">
       <figcaption>
         <p data-cents='<%=author.tips.charged.sum(:amount_in_cents)%>'></p>
         <p data-count='<%=author.charged_tips_count%>'><%=author.charged_tips_count%></p>
-        <h2 itemprop="title"><%=author.username%></h2>
+        <h2 itemprop="username"><%=author.username%></h2>
       </figcaption>
     </figure>
   </summary>

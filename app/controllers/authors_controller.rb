@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   filter_access_to :all
-
+  filter_access_to :show, attribute_check:true
   def index
     if params[:state]
       @authors = Author.send(params[:state]).endless(params[:endless])
@@ -9,12 +9,9 @@ class AuthorsController < ApplicationController
     elsif params[:page_id]
       @authors = Author.where(page_id:params[:page_id]).endless(params[:endless])
     else
-      @authors = Author.twitter.stranger.tips_waiting.endless(params[:endless])
+      @authors = Author.twitter.stranger.pending_royalties.endless(params[:endless])
     end
     render action:'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
-  end
-
-  def new
   end
 
   def show
@@ -24,13 +21,10 @@ class AuthorsController < ApplicationController
     render nothing:true, status:401
   end
 
-  def edit
-  end
-
-  def create
-  end
-
   def update
+    @author = author.where(id:params[:id])
+    @author.update_attributes(params[:author])
+    @author.save!
   end
 
   def destroy

@@ -25,6 +25,11 @@ class Authors::Twitter < Author
     end
   end
 
+  def profile_image
+    super do
+      ::Twitter.user(self.username).profile_image_url_https.gsub(/_normal/, '')
+    end
+  end
   # private
 
   def send_tweet(tweet)

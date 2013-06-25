@@ -26,7 +26,7 @@ end
 def her_setup
   mock_page_and_user
   @her = create!(:user_phony)
-  @her_author = @her.authors.first
+  @her_author = create!(:authors_phony)
   @page1 = create!(:page,author_state:'adopted')
   @page2 = create!(:page,author_state:'adopted')
   @her_tip1 = @her.tip(url:@page1.url)
@@ -37,7 +37,7 @@ def me_setup
   mock_page_and_user
   @page1 = create!(:page,author_state:'adopted')
   @me = create!(:user)
-  @my_author = @me.authors.first
+  @my_author = create!(:authors_phony)
   @my_tip = @me.tip(url:@page1.url)
 end
 
@@ -46,7 +46,7 @@ def other_setup
   @stranger = create!(:authors_phony)
   @page1 = create!(:page,author_state:'adopted')
   @page2 = create!(:page,author_state:'adopted')
-  @wanted = create!(:authors_phony,author_state:'wanted')
+  @wanted = create!(:authors_phony,identity_state:'wanted')
   @wanted.pages << @page1
   @wanted.pages << @page2
 end

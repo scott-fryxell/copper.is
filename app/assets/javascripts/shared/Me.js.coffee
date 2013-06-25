@@ -60,7 +60,7 @@ class Me
         pic = "https://graph.facebook.com/#{author.uid}/picture?type=square"
         return pic
       if author.provider is 'twitter'
-        pic = "https://api.twitter.com/1/users/profile_image?id=#{author.uid}&size=bigger"
+        pic = "https://api.twitter.com/1.1/users/profile_image?id=#{author.uid}&size=bigger"
       if author.provider is 'google'
         pic = "https://plus.google.com/s2/photos/profile/#{author.uid}"
     pic
