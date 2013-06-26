@@ -11,18 +11,10 @@ describe ChecksController do
         end
       end
     end
-    describe 'new' do
-      describe '/checks/new' do
-        it 'should reply with a 401' do
-          get :index
-          response.status.should == 401
-        end
-      end
-    end
     describe 'create' do
       describe 'POST /checks' do
         it 'should reply with a 401' do
-          get :index
+          post :index
           response.status.should == 401
         end
       end
@@ -139,15 +131,6 @@ describe ChecksController do
       end
     end
 
-    describe 'new' do
-      describe '/checks/new' do
-        it '403' do
-          get_with @me, :new, :format => :json
-          response.status.should == 403
-        end
-      end
-    end
-
     describe 'create' do
       describe 'POST /checks' do
         it '403' do
@@ -169,15 +152,6 @@ describe ChecksController do
         it '401 if check is not owned by current user' do
           get_with @me, :show, id:@her_check.id, format: :json
           response.status.should == 401
-        end
-      end
-    end
-
-    describe 'edit' do
-      describe '/checks/:id/edit' do
-        it '403' do
-          get_with @me, :edit, id:@check.id, format: :json
-          response.status.should == 403
         end
       end
     end

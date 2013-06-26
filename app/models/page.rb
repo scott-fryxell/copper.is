@@ -134,7 +134,7 @@ class Page < ActiveRecord::Base
     end
 
     after_transition any => :dead do |page,transition|
-      Resque.enqueue Page, page.id, :clean_up_dead_page!
+      Resque.enqueue Page, page.id, :refund_paid_tips!
     end
 
     after_transition :adopt => :adopt do |page,transition|

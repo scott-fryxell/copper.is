@@ -1,29 +1,30 @@
 require 'resque/server'
 Copper::Application.routes.draw do
 
+  resources :checks, except:[:new, :edit]
   resources :tips, except:[:new, :edit]
 
   resources :orders, except:[:new, :edit] do
-    resources :tips, only:[:index, :show]
+    resources :tips, only:[:index]
   end
 
   resources :authors, except:[:new] do
-    resources :pages, only:[:index, :show]
+    resources :pages, only:[:index]
   end
 
   resources :pages, except:[:new, :edit] do
     member do
        post 'reject'
      end
-    resources :tips, only:[:index, :show]
+    resources :tips, only:[:index]
   end
 
   resources :users, except:[:new, :edit] do
-    resources :tips, only:[:index, :show]
-    resources :authors, only:[:index, :show]
-    resources :pages, only:[:index, :show]
-    resources :orders, only:[:index, :show]
-    resources :checks, only:[:index, :show]
+    resources :tips, only:[:index]
+    resources :authors, only:[:index]
+    resources :pages, only:[:index]
+    resources :orders, only:[:index]
+    resources :checks, only:[:index]
   end
 
   get    'cards', to:'cards#show',   :as => :show_card

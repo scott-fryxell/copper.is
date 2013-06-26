@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   filter_access_to :all
+  filter_access_to :reject, :require => :manage
 
   def index
     if params[:state]
@@ -71,4 +72,11 @@ class PagesController < ApplicationController
 
   def destroy
   end
+
+  def reject
+    @page = Page.where(id:params[:id]).first
+    @page.reject!
+    render :action => 'update', :layout => false
+  end
+
 end

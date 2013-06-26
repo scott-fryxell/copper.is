@@ -34,6 +34,15 @@ describe PagesController do
         end
       end
     end
+
+    it "should not be able to change page state" do
+      @page = create!(:page,author_state:'manual')
+      post :reject, id:@page.id
+      response.status.should == 401
+      @page.reload
+      @page.dead?.should == false
+    end
+
   end
 
   describe 'as Fan' do
@@ -72,11 +81,20 @@ describe PagesController do
         end
       end
     end
+
+    it "should not be able to change page state" do
+      @page = create!(:page,author_state:'manual')
+      post_with @me, :reject, id:@page.id
+      response.status.should == 403
+      @page.reload
+      @page.dead?.should == false
+    end
   end
+
   describe 'as admin' do
     before :each do
       mock_user
-      @me = create!(:admin)
+      @admin = create!(:admin)
     end
 
     describe 'index' do
@@ -84,7 +102,7 @@ describe PagesController do
         it 'assigns pages in created order' do pending
           @page1 = create!(:page,author_state:'adopted')
           @page2 = create!(:page,author_state:'adopted')
-          get_with @me, :index
+          get_with @admin, :index
           response.status.should == 200
           assigns(:pages).should_not be_nil
           assigns(:pages).should eq([@page1, @page2])
@@ -93,9 +111,12 @@ describe PagesController do
     end
 
     it "should be able reject a page state" do
-      @page1 = create!(:page,author_state:'adopted')
-      post_with @me, :reject
-      assigns(:pages).should_not be_nil
+      @page = create!(:page,author_state:'manual')
+      post_with @admin, :reject, id:@page.id
+      assigns(:page).id.should == @page.id
+      response.status.should == 200
+      @page.reload
+      @page.dead?.should == true
     end
   end
 end
