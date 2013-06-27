@@ -6,7 +6,7 @@
     width:grid-width($rows);
   }
 }
-section.endless {
+section.endless, section.pages {
   @include page_rows(8);
   border:0.25em solid transparent;
   padding:0;
