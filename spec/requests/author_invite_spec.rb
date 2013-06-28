@@ -14,7 +14,8 @@ describe "a author being invited to the service", :slow do
 
   it 'should not see the user nav ' do
     click_link('Authorize twitter');
-    page.should have_css('#user_nav', visible:false)
+    page.should have_css('#fan_nav', visible:false)
+    page.should have_css('#admin_nav', visible:false)
   end
 
   it 'should be able to authorize with the service' do

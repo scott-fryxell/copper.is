@@ -14,6 +14,10 @@ class AuthorsController < ApplicationController
     render action:'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
+  def edit
+    @author = Author.where(id:params[:id]).first
+  end
+
   def show
     @author = Author.where(id:params[:id]).first
     render :action => 'show', :layout => false if request.headers['retrieve_as_data']
