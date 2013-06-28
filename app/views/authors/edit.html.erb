@@ -1,6 +1,6 @@
 <section id="banner">
   <figure>
-    <%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %>
+    <img src="<%=@author.profile_image%>">
     <figcaption><%=cents_to_dollars(@author.tips.sum(:amount_in_cents))%></figcaption>
   </figure>
   <hgroup>

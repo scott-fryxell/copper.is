@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
   filter_access_to :all
-  filter_access_to :show, attribute_check:true
+  filter_access_to :edit, attribute_check:true
   def index
     if params[:state]
       @authors = Author.send(params[:state]).endless(params[:endless])

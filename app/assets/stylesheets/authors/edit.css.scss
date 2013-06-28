@@ -13,9 +13,8 @@
     }
   }
 
-  #banner figure, #banner h1, #banner p {
-    display:inline-block;
-    vertical-align:top;
+  #guest_nav {
+    display:none;
   }
 
   #banner {
@@ -24,6 +23,8 @@
     background-color: transparent;
     border-color:transparent;
     & > figure {
+      vertical-align: top;
+      display:inline-block;
       margin-right:grid-width(1);
       & > figcaption {
         &:before {
