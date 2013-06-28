@@ -44,7 +44,7 @@
           <button itemprop="nsfw" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.nsfw?%>">nsfw</button>
         </nav>
         <nav>
-          <button formmethod="post" formaction="/pages/<%=page.id%>/reject">reject</button>
+          <button formmethod="put" formaction="/pages/<%=page.id%>/reject">reject</button>
         </nav>
       </fieldset>
     </div>

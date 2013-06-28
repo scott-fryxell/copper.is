@@ -129,9 +129,9 @@ class Page < ActiveRecord::Base
       Resque.enqueue Page, page.id, :find_author_from_page_links!
     end
 
-    after_transition any => :manual do |page,transition|
-      Resque.enqueue Page, page.id, :notify_admin_to_find_page_author!
-    end
+    # after_transition any => :manual do |page,transition|
+    #   Resque.enqueue Page, page.id, :notify_admin_to_find_page_author!
+    # end
 
     after_transition any => :dead do |page,transition|
       Resque.enqueue Page, page.id, :refund_paid_tips!
@@ -176,7 +176,7 @@ class Page < ActiveRecord::Base
                 return adopt!
               end
             end
-
+            output = lambda { |link| logger.info ":    adopted: #{link.href[0...100]}"}
             doc.links_with(:href => %r{twitter.com}).each do |link|
               # filter for known twitter links that are providerable but not good for spidering links
               unless %r{/status/|/intent/|/home|/share|/statuses/|/search/|/search|/bandcampstatus|/signup}.match(URI.parse(link.href).path)
@@ -196,7 +196,6 @@ class Page < ActiveRecord::Base
               end
             end
 
-            output = lambda { |link| logger.info ":    adopted: #{link.href[0...100]}"}
             doc.links_with(:href => %r{facebook.com}).each do |link|
               unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
                 if self.author = Author.find_or_create_from_url(link.href)

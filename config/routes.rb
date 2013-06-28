@@ -2,7 +2,7 @@ require 'resque/server'
 Copper::Application.routes.draw do
 
   resources :checks, except:[:new, :edit]
-  resources :tips, except:[:new, :edit]
+  resources :tips, except:[:edit]
 
   resources :orders, except:[:new, :edit] do
     resources :tips, only:[:index]
@@ -14,7 +14,7 @@ Copper::Application.routes.draw do
 
   resources :pages, except:[:new, :edit] do
     member do
-       post 'reject'
+       put 'reject'
      end
     resources :tips, only:[:index]
   end

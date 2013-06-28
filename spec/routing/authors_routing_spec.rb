@@ -7,16 +7,8 @@ describe AuthorsController do
       get("/authors").should route_to("authors#index")
     end
 
-    it "routes to #new" do
-      get("/authors/new").should route_to("authors#new")
-    end
-
     it "routes to #show" do
       get("/authors/1").should route_to("authors#show", :id => "1")
-    end
-
-    it "routes to #edit" do
-      get("/authors/1/edit").should route_to("authors#edit", :id => "1")
     end
 
     it "routes to #create" do
