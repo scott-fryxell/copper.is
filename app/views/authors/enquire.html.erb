@@ -1,0 +1,17 @@
+<section id="banner">
+  <figure>
+    <img src="<%=@author.profile_image%>" class="author"/>
+    <figcaption><%=cents_to_dollars(@author.tips.sum(:amount_in_cents))%></figcaption>
+  </figure>
+  <hgroup>
+    <h1><span>Hey there!</span> you’ve just received some tips</h1>
+  </hgroup>
+  <p>
+    Welcome to Copper! We’re a new online tipping service that
+    connects fans to the people who make content they love (that’s you!)
+    and allows them to send a tip to show their appreciation.
+    <br><br>
+    We just need a few things to make sure your tips wind up at your door.
+  </p>
+</section>
+
