@@ -48,6 +48,7 @@ describe PagesController do
   describe 'as Fan' do
     before :each do
       mock_user
+      mock_page
       @me = create!(:user)
     end
 
@@ -94,6 +95,7 @@ describe PagesController do
   describe 'as admin' do
     before :each do
       mock_user
+      mock_page
       @admin = create!(:admin)
     end
 

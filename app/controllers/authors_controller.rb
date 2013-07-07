@@ -1,6 +1,7 @@
 class AuthorsController < ApplicationController
   filter_access_to :all
-  filter_access_to :edit, attribute_check:true
+  filter_access_to :show, :update, :destroy, attribute_check:true
+
   def index
     if params[:state]
       @authors = Author.send(params[:state]).endless(params[:endless])
@@ -14,15 +15,9 @@ class AuthorsController < ApplicationController
     render action:'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
-  def edit
-    @author = Author.where(id:params[:id]).first
-  end
-
   def show
     @author = Author.where(id:params[:id]).first
     render :action => 'show', :layout => false if request.headers['retrieve_as_data']
-  rescue ActiveRecord::RecordNotFound
-    render nothing:true, status:401
   end
 
   def update
@@ -36,4 +31,16 @@ class AuthorsController < ApplicationController
     author.remove_user!
     render nothing:true, status:200
   end
+
+  def enquire
+    provider = params[:id].split('/').first
+    unless Author.providers.include?(provider.to_sym)
+      return render nothing:true, status:404
+    end
+
+    username = params[:id].split('/').last
+    @author = Author.where(username:username, provider:provider).first
+
+  end
+
 end

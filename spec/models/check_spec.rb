@@ -12,7 +12,7 @@ describe Check do
     @check.deliver!
     @check.paid?.should be_true
   end
-  
+
   it "transition to :paid to :cashed with a reconcile! event" do
     @check = FactoryGirl.create(:check_paid)
     @check.paid?.should be_true

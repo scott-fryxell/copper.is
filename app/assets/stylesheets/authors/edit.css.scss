@@ -41,8 +41,7 @@
         background-size:cover;
       }
       & > img {
-        width:grid-width(3);
-        height:grid-width(2);
+        margin-right: 0;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }

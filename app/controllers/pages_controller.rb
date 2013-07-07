@@ -67,12 +67,6 @@ class PagesController < ApplicationController
     render :action => 'update', :layout => false
   end
 
-  def create
-  end
-
-  def destroy
-  end
-
   def reject
     @page = Page.where(id:params[:id]).first
     @page.reject!

@@ -11,17 +11,5 @@ describe ChecksController do
       get("/checks/1").should route_to("checks#show", :id => "1")
     end
 
-    it "routes to #create" do
-      post("/checks").should route_to("checks#create")
-    end
-
-    it "routes to #update" do
-      put("/checks/1").should route_to("checks#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      delete("/checks/1").should route_to("checks#destroy", :id => "1")
-    end
-
   end
 end

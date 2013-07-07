@@ -5,17 +5,19 @@ describe "a author being invited to the service", :slow do
   before(:each) do
     mock_page_and_user
     twitter = FactoryGirl.create(:authors_twitter, identity_state:'wanted')
-    visit"/authors/#{twitter.id}/edit"
+    visit"/#{twitter.provider}/#{twitter.username}"
   end
 
   after(:each) do
-    page.driver.error_messages.should be_empty
+    # page.driver.error_messages.should be_empty
   end
 
-  it 'should not see the user nav ' do
+  it 'should not see the standard nav ' do
+    page.should have_css('#guest_nav', visible:false)
     click_link('Authorize twitter');
     page.should have_css('#fan_nav', visible:false)
     page.should have_css('#admin_nav', visible:false)
+
   end
 
   it 'should be able to authorize with the service' do

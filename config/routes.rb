@@ -1,25 +1,24 @@
 require 'resque/server'
 Copper::Application.routes.draw do
-
-  resources :checks, except:[:new, :edit]
   resources :tips, except:[:edit]
+  resources :checks, only:[:index, :show]
 
-  resources :orders, except:[:new, :edit] do
+  resources :orders, only:[:index, :show] do
     resources :tips, only:[:index]
   end
 
-  resources :authors, except:[:new] do
+  resources :authors, only:[:index, :show, :update, :destroy] do
     resources :pages, only:[:index]
   end
 
-  resources :pages, except:[:new, :edit] do
+  resources :pages, only:[:index, :show, :update] do
+    resources :tips, only:[:index]
     member do
        put 'reject'
      end
-    resources :tips, only:[:index]
   end
 
-  resources :users, except:[:new, :edit] do
+  resources :users, only:[:index, :update, :show] do
     resources :tips, only:[:index]
     resources :authors, only:[:index]
     resources :pages, only:[:index]
@@ -54,15 +53,17 @@ Copper::Application.routes.draw do
     get 'test',    to:'home#test'
   end
 
-  match "/auth/:provider/callback" => "sessions#create", :as => :provider_callback
-  match '/auth/failure'  => 'sessions#failure'
   match "/signout" => "sessions#destroy", :as => :signout
   match "/signin" => "sessions#new", :as => :signin
-
+  match "/auth/:provider/callback" => "sessions#create", :as => :provider_callback
+  match '/auth/failure'  => 'sessions#failure'
   match '/auth/facebook/setup', :to => 'sessions#facebook_setup'
   match '/auth/facebook/publish_actions', :to => 'sessions#publish_actions'
   match '/auth/facebook/manage_pages', :to => 'sessions#manage_pages'
 
-  # mount Resque::Server.new, :at => "/admin/resque"
+  mount Resque::Server.new, :at => "/admin/resque"
   root :to => 'home#index'
+
+  get "*id",  to:'authors#enquire'
+
 end

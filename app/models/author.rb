@@ -10,10 +10,9 @@ class Author < ActiveRecord::Base
 
   # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   # validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
-
   validates :provider, presence:true
-
   validate :validate_presence_of_username_or_uid
+
   def validate_presence_of_username_or_uid
     unless self.username or self.uid
       errors.add(:uid, "uid must exist")
@@ -29,7 +28,12 @@ class Author < ActiveRecord::Base
     end
   end
 
-  [:twitter, :facebook, :tumblr, :soundcloud, :github, :vimeo, :flickr, :google].each do |provider|
+  @@providers = [:twitter, :facebook, :tumblr, :soundcloud, :github, :vimeo, :flickr, :google]
+  def self.providers
+    @@providers
+  end
+
+  Author.providers.each do |provider|
     scope provider, where("provider = ?", provider)
   end
 
@@ -111,6 +115,10 @@ class Author < ActiveRecord::Base
     self.type = Author.subclass_from_provider(self.provider).to_s unless self.type
   end
 
+
+  def try_to_make_wanted!
+    self.publicize! if self.tips.charged.count > 0
+  end
 
   # --------------------------------------------------------------------
 
@@ -237,9 +245,5 @@ class Author < ActiveRecord::Base
   def profile_image
     raise "not implemented in subclass" unless block_given?
     yield
-  end
-
-  def try_to_make_wanted!
-    self.publicize! if self.tips.charged.count > 0
   end
 end

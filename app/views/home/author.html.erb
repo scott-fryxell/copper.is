@@ -1,7 +1,7 @@
 <%-cache current_user do-%>
   <section id="banner">
     <header>
-      <a href="/"><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+      <a href=/><img src="<%=current_user.authors.first.profile_image%>" class="author"></a>
     </header>
     <hgroup>
       <h1>Your pages</h1>

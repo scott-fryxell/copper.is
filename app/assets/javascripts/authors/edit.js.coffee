@@ -1,12 +1,10 @@
 $(document).on "load.authors_edit", ->
-  $('#user_nav').hide();
-
   $('body > nav > button').click ->
 
     $('#email form').trigger 'item.validate'
     $('#address form').trigger 'item.validate'
 
-    if $('input.invalid').size() is 0 or  $('select.invalid').size() is 0  
+    if $('input.invalid').size() is 0 or  $('select.invalid').size() is 0
       $(@).addClass 'working'
       jQuery.ajax
         url: '/users/me'

@@ -6,7 +6,7 @@ end
 
 def mock_page
   Page.any_instance.stub(:learn)
-  Page.any_instance.stub(:discover_author)
+  Page.any_instance.stub(:discover_author!)
 end
 
 def mock_order
@@ -41,14 +41,23 @@ def me_setup
   @my_tip = @me.tip(url:@page1.url)
 end
 
+def admin_setup
+  mock_page_and_user
+  @page1 = create!(:page,author_state:'adopted')
+  @admin = create!(:admin)
+  @admin_author = create!(:authors_phony)
+  @admin_author.user = @admin
+end
+
 def other_setup
   mock_page_and_user
-  @stranger = create!(:authors_phony)
+  @stranger = create!(:user)
+  @other = create!(:authors_twitter)
+  @other.user = @stranger
   @page1 = create!(:page,author_state:'adopted')
   @page2 = create!(:page,author_state:'adopted')
-  @wanted = create!(:authors_phony,identity_state:'wanted')
-  @wanted.pages << @page1
-  @wanted.pages << @page2
+  @other.pages << @page1
+  @other.pages << @page2
 end
 
 VCR.configure do |c|

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe TipsController do
   before :each do
+    mock_page_and_user
     me_setup
     her_setup
   end
@@ -31,20 +32,20 @@ describe TipsController do
     describe 'create' do
       describe 'POST /tips' do
         it 'creates a tip to given url with default amount' do
-          post_with @me, :create, tip:{url:'http://twitter.com/_ugly'}, format: :json
-          Tip.first.page.url.should == 'http://twitter.com/_ugly'
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com'}, format: :json
+          Tip.first.page.url.should == 'http://fasterlighterbetter.com'
           Tip.first.order.user_id.should == @me.id
         end
 
         it 'creates a tip to given url with given amount' do
-          post_with @me, :create, tip:{url:'http://twitter.com/_ugly', amount_in_cents:100}, format: :json
-          Tip.first.page.url.should == 'http://twitter.com/_ugly'
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', amount_in_cents:100}, format: :json
+          Tip.first.page.url.should == 'http://fasterlighterbetter.com'
           Tip.first.amount_in_cents.should == 100
         end
 
         it 'creates a tip to given url with given title' do
-          post_with @me, :create, tip:{url:'http://twitter.com/_ugly', title:'dude'}, format: :json
-          Tip.first.url.to_s.should == 'http://twitter.com/_ugly'
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', title:'dude'}, format: :json
+          Tip.first.url.to_s.should == 'http://fasterlighterbetter.com'
           Tip.first.title.should == 'dude'
         end
 
@@ -104,7 +105,7 @@ describe TipsController do
           end.should change(Tip, :count)
         end
 
-        it '403 a :charged tip' do 
+        it '403 a :charged tip' do
           me_setup
           @my_tip.pay!
           proc do
@@ -113,7 +114,7 @@ describe TipsController do
           end.should_not change(Tip, :count)
         end
 
-        it '403 a :kinged tip' do 
+        it '403 a :kinged tip' do
           me_setup
           mock_order
           proc do
