@@ -42,11 +42,11 @@ guard 'spork', wait: 60, cucumber: false, rspec: true, test_unit: false do
   watch(%r{^config/initializers/.+\.rb})
   watch('spec/spec_helper.rb')
   watch('spec/support.rb')
+  watch('spec/factories.rb')
   watch('.rspec')
 end
 
-guard 'rspec', :cli => '--color --format doc --drb',
-               :all_on_start => false, :all_after_pass => false do
+guard 'rspec', cli:'--color --format doc --drb', all_on_start:false, all_after_pass:false do
   watch(/^spec\/.+\.rb$/) { 'spec' }
   watch(/^app\/.+\.rb$/) { 'spec' }
   watch(/^lib\/.+\.rb$/) { 'spec' }

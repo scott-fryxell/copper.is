@@ -25,10 +25,13 @@ Spork.prefork do
   require 'omniauth/test'
   require 'support'
   require 'capybara/poltergeist'
+  require 'rack/utils'
 
-  Capybara.default_driver = :webkit
-  Capybara.javascript_driver = :webkit
-  # Capybara.javascript_driver = :poltergeist
+  Capybara.app = Rack::ShowExceptions.new(Copper::Application)
+  # Capybara.default_driver = :webkit
+  # Capybara.javascript_driver = :webkit
+  Capybara.default_driver = :poltergeist
+  Capybara.javascript_driver = :poltergeist
   Capybara.default_selector = :css
   Capybara.ignore_hidden_elements = false
   Capybara.server_port = 8080

@@ -6,9 +6,6 @@ describe TipsController do
     me_setup
     her_setup
   end
-  after(:each) do
-    page.driver.error_messages.should be_empty
-  end
 
   describe 'as Fan' do
     describe 'index' do

@@ -22,7 +22,7 @@ $(document).on "items.home_settings items.home_getting_started", ->
       console.error "invalid credit card number"
       $('#number').addClass "invalid"
 
-    unless Stripe.validateCVC $('#cvc').val()  
+    unless Stripe.validateCVC $('#cvc').val()
       console.error "invalid cvc"
       $('#cvc').addClass "invalid"
 
@@ -31,7 +31,7 @@ $(document).on "items.home_settings items.home_getting_started", ->
       $('#month').addClass("invalid");
       $('#year').addClass("invalid");
 
-    unless $("#site_terms:checked").length is 1 
+    unless $("#site_terms:checked").length is 1
       console.error "must agree to terms"
       $('#site_terms').addClass "invalid"
 
@@ -54,7 +54,7 @@ $(document).on "items.home_settings items.home_getting_started", ->
           $("#card > form input[type=submit]").removeClass('working')
           $("#card > form > h1").text response.error.message
           $("#card > form > h1").addClass "message"
-        else 
+        else
           $("#card > form > h1").removeClass "message"
           $("#card p.type").text response.card.type
           $("#card p.number").text response.card.last4

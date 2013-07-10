@@ -4,12 +4,8 @@ describe "Fan's settings", :slow do
   before(:each) do
     mock_user
     visit "/auth/facebook"
-    click_link 'Account settings'
-    page.execute_script("jQuery.fx.off = true")
-  end
-
-  after(:each) do
-    page.driver.error_messages.should be_empty
+    sleep 2
+    click_link 'Your account information'
   end
 
   describe 'Item.js' do
@@ -54,7 +50,7 @@ describe "Fan's settings", :slow do
       page.should have_css('div', :visible => true)
       find("div > p").should have_content("change@email.com")
     end
-    click_link 'Account settings'
+    visit '/settings'
     within("section#email") do
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
@@ -79,7 +75,9 @@ describe "Fan's settings", :slow do
       page.should have_css('div', :visible => true)
       find("div > p").should have_content("1")
     end
-    click_link 'Account settings'
+
+    visit '/settings'
+
     within("section#rate") do
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
@@ -98,7 +96,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be able to save their credit card information" do
+  it "should be able to save their credit card information", :network do
     within("#card") do
       page.should have_css('form', :visible => true)
       page.should have_css('div', :visible => false)
@@ -137,7 +135,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be told if their credit card info is bad", :broken do
+  it "should be told if their credit card info is bad", :network do
     within("#card") do
       page.should have_css('form', :visible => true)
       fill_in('number', :with => '4000000000000002')

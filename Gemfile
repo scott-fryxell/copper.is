@@ -56,6 +56,7 @@ group :development, :test do
   gem 'ruby_parser'
   gem 'rspec-rails'
   gem "capybara-webkit"
+  gem "poltergeist"
   gem 'database_cleaner', '~> 0.6.7'
   gem 'guard'
   gem 'guard-rspec'

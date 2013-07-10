@@ -1,18 +1,14 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "a guest who wants to learn how to get started with copper", :slow do
+describe "A guest ", :slow do
   before(:each) do
     visit "/getting_started"
   end
 
-  after(:each) do
-    page.driver.error_messages.should be_empty
-  end
-
   it "can view a general description of how to get started" do
-    page.should have_css('figure#any_url', visible:true)
-    page.should have_css('figure#sign_up_install_button', visible:true)
-    page.should have_css('figure#start_tipping', visible:true)
+    page.should have_css('section#step_one', visible:true)
+    page.should have_css('section#step_two', visible:true)
+    page.should have_css('section#step_three', visible:true)
   end
 
   it "can see instructions for any browser" do

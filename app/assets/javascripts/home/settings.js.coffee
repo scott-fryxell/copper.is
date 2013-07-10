@@ -1,7 +1,7 @@
 $(document).on "load.home_settings", ->
 
   $("section.setting > header > a").click (event) ->
-    console.debug('clicked');
+
     event.preventDefault();
     div = $(@).parents("section").find "div"
     form = $(@).parents("section").find "form"
@@ -33,7 +33,7 @@ $(document).on "load.home_settings", ->
 
   $("#card").on "bad_credit_card", ->
     credit_card_form = window.setTimeout( ->
-      console.debug('show the credit card form')
+      # console.debug('show the credit card form')
       $("#card > header > a").click()
     ,1000)
 
@@ -45,7 +45,8 @@ $(document).on "load.home_settings", ->
     $('#rate p[itemprop=tip_preference_in_cents]').text rate
 
   $("#address form").on 'item.validate', ->
-    if $('#address form .invalid').size == 0
+    # console.debug "validation check", $('#address form .invalid').size()
+    if $('#address form .invalid').size() == 0
       $('p[itemprop=payable_to]').text $(@).find('input[itemprop=payable_to]').val()
       $('p[itemprop=line1]').text $(@).find('input[itemprop=line1]').val()
       $('p[itemprop=line2]').text $(@).find('input[itemprop=line2]').val()

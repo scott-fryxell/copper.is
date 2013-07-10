@@ -8,10 +8,10 @@
     <link rel="author" href="<%=@page.author.url if @page.author %>">
     <link rel="canonical" href="<%=@page.url%>">
     <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>">
-    <meta property="og:type"   content="website"> 
+    <meta property="og:type"   content="website">
     <meta property="og:url"    content="https://www.copper.is/pages/<%=@page.id%>">
-    <meta property="og:title"  content="<%=@page.title%>"> 
-    <meta property="og:image"  content="<%=@page.thumbnail%>"> 
+    <meta property="og:title"  content="<%=@page.title%>">
+    <meta property="og:image"  content="<%=@page.thumbnail%>">
   </head>
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
     <%= render partial:"layouts/header"%>

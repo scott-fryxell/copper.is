@@ -7,10 +7,10 @@ class Me
         document.me = data;
         Item.update_page document.me
         if document.me.id is mixpanel.get_distinct_id()
-          console.debug('setting identity')
+          # console.debug('setting identity')
           mixpanel.identify(document.me.id)
         else
-          console.debug('registering new user')
+          # console.debug('registering new user')
           mixpanel.alias document.me.id
           mixpanel.people.set
             "$email": document.me.email

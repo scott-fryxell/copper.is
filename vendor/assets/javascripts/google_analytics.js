@@ -11,9 +11,9 @@ _gaq.push(['_trackPageview']);
 // document.ready
 $(function() {
   $('body').on('click', 'a[itemprop=url]', function() {
-    console.debug('outbound link');
-    try { 
-      _gaq.push(['_trackEvent', 'Outbound Links', $(this).attr('href')]); 
+    // console.debug('outbound link');
+    try {
+      _gaq.push(['_trackEvent', 'Outbound Links', $(this).attr('href')]);
     } catch(err){}
   });
 });

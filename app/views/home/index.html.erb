@@ -15,7 +15,7 @@
     </p>
     <%-end-%>
   </section>
-  <section id="stats" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
+  <section id="stats" itemref="/users/<%=current_user.id%>">
     <header></header>
     <div>
       <h2>Pages tipped</h2>
@@ -29,8 +29,8 @@
       <h2>Default tip</h2>
       <p>
         <span itemprop="tip_preference_in_cents" data-value="<%=current_user.tip_preference_in_cents%>"></span>
-        <%= image_tag "noun_project/5805.svg", alt:"increase defalut tip amount"%>
-        <%= image_tag "noun_project/5802.svg", alt:"decrease default tip amount"%>
+        <%= image_tag 'noun_project/5805.svg', alt:'increase default tip amount'%>
+        <%= image_tag 'noun_project/5802.svg', alt:'decrease default tip amount'%>
       </p>
     </div>
     <footer></footer>

@@ -21,7 +21,7 @@ class Endless
 
   next: =>
     @page++
-    console.debug("load_next_page", @page)
+    # console.debug("load_next_page", @page)
     $('body').off 'load.endless', document.endless.next
 
     jQuery.get "#{window.location}?endless=#{@page}",  (data) ->
