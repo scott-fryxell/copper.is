@@ -14,19 +14,19 @@ Copper::Application.configure do
   config.log_level = :info
   config.active_record.mass_assignment_sanitizer = :strict
   config.active_record.auto_explain_threshold_in_seconds = 0.25
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:facebook] = {
-    'provider' => 'facebook',
-    'uid' => '234567',
-    'info' => {
-      'name' => 'facebook user',
-      'nickname'=> 'facebook.user',
-      'email' => 'user@facebook.com'
-    },
-    'credentials' => {
-      'token' => '666_777_666',
-      'secret' => 'its_a_secret'
-    },
-  }
+  # OmniAuth.config.test_mode = true
+  # OmniAuth.config.mock_auth[:facebook] = {
+  #   'provider' => 'facebook',
+  #   'uid' => '234567',
+  #   'info' => {
+  #     'name' => 'facebook user',
+  #     'nickname'=> 'facebook.user',
+  #     'email' => 'user@facebook.com'
+  #   },
+  #   'credentials' => {
+  #     'token' => '666_777_666',
+  #     'secret' => 'its_a_secret'
+  #   },
+  # }
 
 end

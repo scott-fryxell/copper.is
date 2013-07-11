@@ -13,19 +13,17 @@ Spork.prefork do
   ENV["RAILS_ENV"] = 'test'
   if ENV['RCOV']
     require 'simplecov'
-    SimpleCov.start 'rails'
   end
-
   require File.expand_path("../../config/environment", __FILE__)
+  require 'rack/utils'
   require 'rspec'
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'declarative_authorization/maintenance'
   require 'omniauth'
   require 'omniauth/test'
-  require 'support'
   require 'capybara/poltergeist'
-  require 'rack/utils'
+  require 'support'
 
   Capybara.app = Rack::ShowExceptions.new(Copper::Application)
   # Capybara.default_driver = :webkit
@@ -62,6 +60,10 @@ Spork.prefork do
 end
 
 Spork.each_run do
+
+  if ENV['RCOV']
+    SimpleCov.start 'rails'
+  end
   FactoryGirl.reload
 
   load "#{Rails.root}/config/routes.rb"
