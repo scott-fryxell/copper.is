@@ -24,7 +24,7 @@ describe Order do
     order.reload
     order.unpaid?.should be_true
   end
-  
+
   it 'charge! moves a unpaid order to paid with good CC info' do
     order = FactoryGirl.create(:order_unpaid)
     order.unpaid?.should be_true
@@ -32,10 +32,10 @@ describe Order do
     order.reload
     order.paid?.should be_true
   end
-  
+
   it 'charge! moves a unpaid order to denied to bad CC info' do
     Stripe::Charge.stub(:create).and_raise(
-      Stripe::CardError.new('error[:message]', 'error[:param]', 402, 
+      Stripe::CardError.new('error[:message]', 'error[:param]', 402,
                             "foobar", "baz", Object.new))
     order = FactoryGirl.create(:order_unpaid)
     order.unpaid?.should be_true
@@ -43,7 +43,7 @@ describe Order do
     order.reload
     order.denied?.should be_true
   end
-  
+
   it 'moves a denied order to paid with good CC info' do
     # Stripe::Charge.stub(:create) { @charge_token }
     order = FactoryGirl.create(:order_denied)

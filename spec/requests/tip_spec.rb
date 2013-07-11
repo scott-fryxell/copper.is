@@ -11,12 +11,9 @@ describe "Tipping a page", :slow do
     end
 
     it "can display the tipped pages title" do
-      sleep 1
+      sleep 3
       page.save_screenshot('tmp/screenshots/tip/01.png')
-      # page.should have_selector('body > script')
-      # page.should have_selector('body > iframe')
       page.should have_selector('#copper_tip')
-      # save_and_open_page
       within_frame('copper') do
         page.should have_content("Thank You!")
         page.should have_content("You just tipped")
@@ -57,7 +54,6 @@ describe "Tipping a page", :slow do
     it "should be able to learn more about the service" do
       within_frame('copper') do
         click_on("Learn more")
-        # page.should have_content("Sign Up")
         page.should have_css('section.sign_in', visible:false)
       end
     end

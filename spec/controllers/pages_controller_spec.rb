@@ -42,7 +42,6 @@ describe PagesController do
       @page.reload
       @page.dead?.should == false
     end
-
   end
 
   describe 'as Fan' do
@@ -92,18 +91,21 @@ describe PagesController do
     end
   end
 
-  describe 'as admin' do
+  describe 'as Admin' do
     before :each do
-      mock_user
-      mock_page
+      mock_page_and_user
       @admin = create!(:admin)
     end
 
     describe 'index' do
       describe '/pages' do
-        it 'assigns pages in created order' do pending
-          @page1 = create!(:page,author_state:'adopted')
-          @page2 = create!(:page,author_state:'adopted')
+        it 'should show pages that have charged tips and need attention' do
+          Tip.count.should == 0
+          @page1 = create!(:page,author_state:'manual')
+          @page2 = create!(:page,author_state:'manual')
+          @tip1 = create!(:tip, paid_state:'charged', page_id:@page1.id)
+          @tip1 = create!(:tip, paid_state:'charged', page_id:@page2.id )
+          Tip.count.should == 2
           get_with @admin, :index
           response.status.should == 200
           assigns(:pages).should_not be_nil
@@ -112,13 +114,38 @@ describe PagesController do
       end
     end
 
-    it "should be able reject a page state" do
-      @page = create!(:page,author_state:'manual')
-      post_with @admin, :reject, id:@page.id
-      assigns(:page).id.should == @page.id
-      response.status.should == 200
-      @page.reload
-      @page.dead?.should == true
+    describe 'update' do
+      describe '/pages/:id' do
+
+        it "can update a page url and title" do
+          @page = create!(:page,author_state:'manual')
+          post_with @admin, :update, id:@page.id, url:'http://example.com', title:"raddest internet thing ever",
+          nsfw:'true', trending:'true', welcome:'true', onboarding:'true'
+          assigns(:page).id.should == @page.id
+          response.status.should == 200
+          @page.reload
+          @page.url.should == "http://example.com"
+          @page.title.should =="raddest internet thing ever"
+          @page.nsfw.should  be_true
+          @page.trending.should  be_true
+          @page.welcome.should  be_true
+          # @page.trending.should  be_true
+          @page.onboarding.should  be_true
+
+        end
+
+        it "can reject a page" do
+          @page = create!(:page,author_state:'manual')
+          post_with @admin, :reject, id:@page.id
+          assigns(:page).id.should == @page.id
+          response.status.should == 200
+          @page.reload
+          @page.dead?.should == true
+        end
+
+      end
     end
+
+
   end
 end

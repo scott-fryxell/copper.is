@@ -2,6 +2,11 @@ require 'rubygems'
 require 'spork'
 
 Spork.prefork do
+  if ENV['RCOV']
+    puts "gonna get your coverage"
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
   def create!(factory,*args)
     record = FactoryGirl.create(factory,*args)
     record.save!
@@ -11,9 +16,6 @@ Spork.prefork do
   end
 
   ENV["RAILS_ENV"] = 'test'
-  if ENV['RCOV']
-    require 'simplecov'
-  end
   require File.expand_path("../../config/environment", __FILE__)
   require 'rack/utils'
   require 'rspec'
@@ -60,8 +62,9 @@ Spork.prefork do
 end
 
 Spork.each_run do
-
   if ENV['RCOV']
+    puts "gonna get your coverage"
+    require 'simplecov'
     SimpleCov.start 'rails'
   end
   FactoryGirl.reload

@@ -18,7 +18,7 @@ describe Tip do
       @my_tip.save.should be_true
       @my_tip.order.should_not be_nil
     end
-    
+
     after do
       @my_tip.order = @me.current_order
     end

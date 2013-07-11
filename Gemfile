@@ -36,7 +36,7 @@ gem "vimeo"
 gem 'koala'
 gem 'mechanize'
 gem 'cache_digests'
-gem 'mandrill', :git => 'https://github.com/venioinc/mandrill/'
+gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
 
 
 # gem 'rack-mini-profiler'
@@ -50,8 +50,8 @@ end
 group :development, :test do
   gem 'thin'
   gem 'awesome_print'
-  gem 'simplecov', :require => false
-  gem 'sqlite3', :require => 'sqlite3'
+  gem 'simplecov', require:false
+  gem 'sqlite3', require:'sqlite3'
   gem 'pry'
   gem 'ruby_parser'
   gem 'rspec-rails'
