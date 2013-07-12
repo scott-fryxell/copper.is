@@ -93,4 +93,8 @@ class HomeController < ApplicationController
     render nothing:true, status:200
   end
 
+  def ping
+    render action:'ping', layout:false
+  end
+
 end

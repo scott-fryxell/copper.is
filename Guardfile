@@ -35,7 +35,7 @@ end
 #   watch(%r{^config/.+\.rb$})
 # end
 
-guard 'spork', wait: 60, cucumber: false, rspec: true, test_unit: false do
+guard 'spork', wait: 15, cucumber: false, rspec: true, test_unit: false do
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('config/application.rb')

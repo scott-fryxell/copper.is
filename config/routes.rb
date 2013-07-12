@@ -28,7 +28,7 @@ Copper::Application.routes.draw do
 
   get    'cards', to:'cards#show',   :as => :show_card
   post   'cards', to:'cards#create', :as => :create_card
-  put    'cards', to:'cards#update', :as => :update_card
+  put     'cards', to:'cards#update', :as => :update_card
   delete 'cards', to:'cards#delete', :as => :delete_card
 
   get 'tip_some_pages',  to:'home#tip_some_pages'
@@ -45,6 +45,7 @@ Copper::Application.routes.draw do
   get 'states',                to:'home#states'
   get 'getting_started',   to:'home#getting_started'
   get 'trending',             to:'home#trending'
+  get 'ping',                   to:'home#ping'
   get 'embed_iframe.js', to:'home#iframe', :as => :iframe
 
   post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
