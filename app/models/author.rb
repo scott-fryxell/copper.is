@@ -243,7 +243,7 @@ class Author < ActiveRecord::Base
   end
 
   def profile_image
-    raise "not implemented in subclass" unless block_given?
+    return "/assets/icons/silhouette.svg" unless block_given?
     yield
   end
 end
