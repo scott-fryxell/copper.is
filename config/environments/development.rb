@@ -14,6 +14,7 @@ Copper::Application.configure do
   config.log_level = :info
   config.active_record.mass_assignment_sanitizer = :strict
   config.active_record.auto_explain_threshold_in_seconds = 0.25
+  config.lograge.enabled = true
   # OmniAuth.config.test_mode = true
   # OmniAuth.config.mock_auth[:facebook] = {
   #   'provider' => 'facebook',

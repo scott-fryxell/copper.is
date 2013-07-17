@@ -204,7 +204,7 @@ class Author < ActiveRecord::Base
   def self.find_or_create_from_url(url)
     if provider = provider_from_url(url)
       i = subclass_from_provider(provider).discover_uid_and_username_from_url url
-      ident = Author.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid],i[:username]).first
+      ident = Author.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid].to_s,i[:username]).first
       unless ident
         ident = factory(provider:provider,username:i[:username],uid:i[:uid])
       end

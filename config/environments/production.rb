@@ -25,6 +25,7 @@ Copper::Application.configure do
   config.facebook_appname = "copper_is"
   config.facebook_appid = "340706775966925"
   config.honeybadger_js_app_id = "df5151fb675d4d4af78d117fab648540"
-  
+
   config.cache_store = :dalli_store
+  config.lograge.enabled = true
 end

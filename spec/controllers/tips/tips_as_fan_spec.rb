@@ -4,7 +4,7 @@ describe TipsController do
   before :each do
     mock_page_and_user
     me_setup
-    her_setup
+    # her_setup
   end
 
   describe 'as Fan' do
@@ -35,19 +35,19 @@ describe TipsController do
         end
 
         it 'creates a tip to given url with given amount' do
-          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', amount_in_cents:100}, format: :json
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', amount_in_cents:100}
           Tip.first.page.url.should == 'http://fasterlighterbetter.com'
           Tip.first.amount_in_cents.should == 100
         end
 
         it 'creates a tip to given url with given title' do
-          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', title:'dude'}, format: :json
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', title:'dude'}
           Tip.first.url.to_s.should == 'http://fasterlighterbetter.com'
           Tip.first.title.should == 'dude'
         end
 
         it 'requires a url' do
-          post_with @me, :create, tip:{title:'asldkjf'}, format: :json
+          post_with @me, :create, tip:{title:'asldkjf'}
           response.status.should == 403
         end
       end
@@ -61,6 +61,7 @@ describe TipsController do
         end
 
         it 'loads someone else\'s tip via json' do
+          her_setup
           get_with @me, :show, id:@her_tip1.id
           response.status.should == 403
         end
@@ -83,6 +84,7 @@ describe TipsController do
         end
 
         it 'does not update another fan\'s tip' do
+          her_setup
           put_with @me, :update, id:@her_tip2.id, tip:{amount_in_cents:200}, format: :json
           @her_tip2.reload
           @her_tip2.amount_in_cents.should_not == 200
@@ -112,7 +114,6 @@ describe TipsController do
         end
 
         it '403 a :kinged tip' do
-          me_setup
           mock_order
           proc do
             order = @me.current_order
@@ -129,6 +130,7 @@ describe TipsController do
         end
 
         it '403 her tip' do
+          her_setup
           proc do
             delete_with @me, :destroy, id:@her_tip1.id, format: :json
             Tip.find(@her_tip1.id).should_not be_nil
