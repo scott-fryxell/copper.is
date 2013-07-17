@@ -1,32 +1,7 @@
-class OpenStruct
-  def to_json(*args)
-    table.to_json
-  end
-end
-
-def mock_page
-  Page.any_instance.stub(:learn)
-  Page.any_instance.stub(:discover_author)
-end
-
-def mock_order
-  Order.any_instance.stub(:send_paid_order_message)
-end
-
-def mock_user
-  User.any_instance.stub(send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}])
-  Author.any_instance.stub(:create_page_for_author)
-end
-
-def mock_page_and_user
-  mock_page
-  mock_user
-end
-
 def her_setup
   mock_page_and_user
   @her = create!(:user_phony)
-  @her_author = @her.authors.first
+  @her_author = create!(:authors_phony)
   @page1 = create!(:page,author_state:'adopted')
   @page2 = create!(:page,author_state:'adopted')
   @her_tip1 = @her.tip(url:@page1.url)
@@ -37,18 +12,27 @@ def me_setup
   mock_page_and_user
   @page1 = create!(:page,author_state:'adopted')
   @me = create!(:user)
-  @my_author = @me.authors.first
+  @my_author = create!(:authors_phony)
   @my_tip = @me.tip(url:@page1.url)
+end
+
+def admin_setup
+  mock_page_and_user
+  @page1 = create!(:page,author_state:'adopted')
+  @admin = create!(:admin)
+  @admin_author = create!(:authors_phony)
+  @admin_author.user = @admin
 end
 
 def other_setup
   mock_page_and_user
-  @stranger = create!(:authors_phony)
+  @stranger = create!(:user)
+  @other = create!(:authors_twitter)
+  @other.user = @stranger
   @page1 = create!(:page,author_state:'adopted')
   @page2 = create!(:page,author_state:'adopted')
-  @wanted = create!(:authors_phony,author_state:'wanted')
-  @wanted.pages << @page1
-  @wanted.pages << @page2
+  @other.pages << @page1
+  @other.pages << @page2
 end
 
 VCR.configure do |c|

@@ -7,8 +7,12 @@ describe Authors::Twitter do
   end
 
   describe "Should discover author from url's " do
-    it "https://twitter.com/#!/nytopinion" do
+    it "https://twitter.com/#!/nytopinion", :network do
       Author.find_or_create_from_url("https://twitter.com/#!/nytopinion").should be_true
+    end
+
+    it "https://twitter.com/nytopinion", :network do
+      Author.find_or_create_from_url("https://twitter.com/nytopinion").should be_true
     end
   end
 

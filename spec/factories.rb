@@ -12,7 +12,7 @@ FactoryGirl.define do
   end
 
   sequence 'twitter_url_with_path' do |n|
-    "https://twitter.com/1#{n}"
+    "https://twitter.com/_1#{n}"
   end
 
   factory :authors_facebook, class: 'Authors::Facebook' do

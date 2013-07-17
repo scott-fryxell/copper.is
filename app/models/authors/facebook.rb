@@ -12,8 +12,8 @@ class Authors::Facebook < Author
         fb_photo = graph.get_object(id_from_url)
         username = fb_photo['from']['name']
         id = fb_photo['from']['id']
-      rescue 
-        id = id_from_url   
+      rescue
+        id = id_from_url
       end
     elsif match = %r{/profile.php}.match(url.path)
       id_from_url = url.query.split('id=')[1]
@@ -50,5 +50,12 @@ class Authors::Facebook < Author
       "https://facebook.com/#{self.uid}"
     end
   end
+
+  def profile_image
+    super do
+      "https://graph.facebook.com/#{self.uid}/picture?type=square"
+    end
+  end
+
 
 end

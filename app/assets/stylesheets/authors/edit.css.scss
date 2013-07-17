@@ -3,98 +3,104 @@
     display:inline-block;
     opacity:1;
   }
-  section.setting > div {
-    display:inline-block;
+
+  section.setting {
+    & > div {
+      display:inline-block;
+    }
+    & > form > input {
+      width:grid-width(8);
+    }
   }
-  section.setting > form > input {
-    width:grid-width(8);
-  }
-  #address > form > input[type=submit] {
+
+  #guest_nav {
     display:none;
   }
+
   #banner {
     margin-top:3em;
     position:inherit;
     background-color: transparent;
     border-color:transparent;
-  }
-  #banner figure, #banner h1, #banner p {
-    display:inline-block;
-    vertical-align:top;
-  }
-  #banner > figure {
-    margin-right:grid-width(1);
-  }
-  #banner > figure > img {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-  #banner > figure > figcaption {
-    text-align: center;
-    font-size:1.25em;
-    font-family: 'Bree Serif', serif;
-    color:$light;
-    padding:.7em .25em 1.25em .35em;
-    @include background-image( linear-gradient($text 0, $dark 75%, transparent 32%),image-url('icons/congrats.svg'));
-    background-repeat: no-repeat;
-    background-position:center;
-    background-size:cover;
-  }
-  #banner > figure > figcaption:before {
-    content:'$';
-  }
-  #banner > hgroup {
-    display:inline-block;
-    margin-right:grid-width(1);
-    width:grid-width(9);
-    vertical-align:top;
-    & > h1 {
-      vertical-align:top;
-      opacity:.85;
+    & > figure {
+      vertical-align: top;
+      display:inline-block;
+      margin-right:grid-width(1);
+      & > figcaption {
+        &:before {
+          content:'$';
+        }
+        text-align: center;
+        font-size:1.25em;
+        font-family: 'Bree Serif', serif;
+        color:$light;
+        padding:0.7em 0.25em 1.25em 0.35em;
+        @include background-image( linear-gradient($text 0, $dark 75%, transparent 32%),image-url('icons/congrats.svg'));
+        background-repeat: no-repeat;
+        background-position:center;
+        background-size:cover;
+      }
+      & > img {
+        margin-right: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+    & > p {
+      display:inline-block;
+      vertical-align: top;
       margin:0;
-      line-height:1.15em;
-      font-size:2.5em;
-      margin-top:-0.25em;
-      & > span {
-        color:$dark;
+      width:grid-width(8);
+    }
+    & > hgroup {
+      display:inline-block;
+      margin-right:grid-width(1);
+      width:grid-width(7);
+      vertical-align:top;
+      & > h1 {
+        vertical-align:top;
+        opacity:0.85;
+        margin:0;
+        line-height:1.15em;
+        font-size:1.75rem;
+        margin-top:-0.25em;
+        & > span {
+          color:$dark;
+        }
       }
     }
   }
 
-  
-  #banner > p {
-    display:inline-block;
-    vertical-align: top;
-    margin:0;
-    width:grid-width(10);
-  }
-
   #login {
     vertical-align:middle;
+    & > header {
+      vertical-align:middle;
+    }
+    & > figure {
+      vertical-align:middle;
+      display:inline-block;
+      & > figcaption{
+        position:relative;
+        line-height:1.25em;
+        width:grid-width(4);
+        display:inline-block;
+        vertical-align:top;
+        font-family: 'Nothing You Could Do', cursive;
+        @include help_text;
+      }
+      & > a {
+        display:inline-block;
+        margin-right:3em;
+        & > img {
+          height:2.5em;
+        }
+      }
+    }
   }
-  #login header {
-    vertical-align:middle;
-  }
-  #login > figure {
-    vertical-align:middle;
-    display:inline-block;
-  }
-  #login > figure > a {
-    display:inline-block;
-    margin-right:3em;
-  }
-  #login > figure > a > img {
-    height:2.5em;
-  }
-  #login > figure > figcaption{
-    position:relative;
-    padding-left:grid-width(3);
-    line-height:1.25em;
-    width:grid-width(4);
-    display:inline-block;
-    vertical-align:top;
-    font-family: 'Nothing You Could Do', cursive;
-    @include help_text;
+
+  #email > form {
+    display: inline-block;
+    opacity:1;
   }
 
   #address {
@@ -111,42 +117,24 @@
       border-right: 2em solid transparent;
       border-top: 1.5em solid $offset;
     }
-  }
-
-  #address > form, #email > form {
-    display: inline-block;
-    opacity:1;
+    & > form {
+      display: inline-block;
+      opacity:1;
+      & > input[type=submit] {
+        display:none;
+      }
+    }
   }
 
   & > nav {
-    height:7em;
+    padding:grid-width(1);
+    // height:7em;
     position:relative;
-    &:after {
-      content:"";
-      position:absolute;
-      bottom:4em;
-      margin-left:-2em;
-      left:50%;
-      width: 0;
-      height: 0;
-      border-left: 2em solid transparent;
-      border-right: 2em solid transparent;
-      border-bottom: 1.5em solid $offset;
+    & > button {
+      @include button($copper);
+      font-size:1.25em;
+      width:grid-width(4);
+      display:block;
     }
-    &:before{
-      content:"";
-      height:4em;
-      width:100%;
-      background-color:$offset;
-      position:absolute;
-      bottom:0;
-      left:0;
-    }
-  }
-  & > nav > button {
-    @include button($copper);
-    font-size:1.25em;
-    width:5em;
-    display:block;
   }
 }

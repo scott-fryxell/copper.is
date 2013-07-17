@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe AuthorsController do
+
   describe 'as Guest' do
+    before :each do
+      other_setup
+    end
+
     describe 'index' do
       describe '/authors' do
         it '401' do
@@ -10,58 +15,52 @@ describe AuthorsController do
         end
       end
     end
-    describe 'new' do
-      describe '/authors/new' do
-        it '401' do
-          get :new
-          response.status.should == 401
-        end
-      end
-    end
-    describe 'create' do
-      describe 'POST /authors' do
-        it 'does something' do
-          post :create
-          response.status.should == 401
-        end
-      end
-    end
+
     describe 'show' do
       describe '/authors/:id' do
         it '401 for random authors' do
-          get :new
+          get :show, id:@other.id
+          assigns(:author).id.should == @other.id
           response.status.should == 401
         end
       end
     end
-    describe 'edit' do
-      describe '/authors/:id/edit' do
-        it '401' do
-          get :new
-          response.status.should == 401
-        end
 
-        it 'should let a guest see an author that\'s wanted' do
-          twitter = FactoryGirl.create(:authors_twitter,identity_state: :wanted)
-          get :edit, id:twitter.id
-          response.status.should == 200
-        end
-      end
-    end
     describe 'update' do
       describe 'PUT /authors/:id' do
         it '401' do
-          get :new
+          post :update, id:@other.id
           response.status.should == 401
         end
       end
     end
+
     describe 'destroy' do
       describe 'DELETE /authors/:id' do
         it '401' do
-          get :new
+          delete :destroy, id:@other.id
           response.status.should == 401
         end
+      end
+    end
+
+    describe 'enquire' do
+      it 'should display information for an author' do
+        get :enquire, id:"twitter/copper_is"
+        assigns(:author).id.should == @other.id
+        response.status.should == 200
+      end
+      it 'should display info for unknown authors' do
+        Author.count.should ==1
+        get :enquire, id:"soundcloud/brokenbydawn"
+        # assigns(:author).provider.should == "soundcloud"
+        # assigns(:author).username.should == "brokenbydawn"
+        response.status.should == 200
+        Author.count == 2
+      end
+      it 'should 404 for invalid authors' do
+        get :enquire, id:"made_up/author"
+        response.status.should == 404
       end
     end
   end
@@ -73,19 +72,8 @@ describe AuthorsController do
 
     describe 'index' do
       describe '/authors' do
-        it 'assigns all authors for current user' do pending
-          get_with @me, :index, format: :json
-          response.should be_success
-          assigns(:authors).size.should == 1
-          response.status.should == 200
-        end
-      end
-    end
-
-    describe 'new' do
-      describe '/authors/new' do
-        it '403' do
-          get_with @me, :new, format: :json
+        it 'should not see authors index' do
+          get_with @me, :index
           response.status.should == 403
         end
       end
@@ -93,26 +81,9 @@ describe AuthorsController do
 
     describe 'show' do
       describe '/authors/:id' do
-
-        it 'assigns the author' do pending
-          get_with @me, :show, id:@my_author.id, format: :json
-          response.should be_success
-          assigns(:author).id.should == @my_author.id
-        end
-
-        it '401 for another user\'s author' do pending
-          her_setup
-          get_with @me, :show, id:@her_author.id, format: :json
-          response.status.should == 401
-        end
-      end
-    end
-
-    describe 'edit' do
-      describe '/authors/:id/edit' do
-        it '403' do pending
-          @my_author = @me.authors.first
-          get_with @me, :edit, id:@my_author.id, format: :json
+        it '403' do
+          other_setup
+          get_with @me, :show, id:@my_author.id
           response.status.should == 403
         end
       end
@@ -120,9 +91,8 @@ describe AuthorsController do
 
     describe 'update' do
       describe 'PUT /authors/:id' do
-        it '403' do pending
-          @my_author = @me.authors.first
-          get_with @me, :edit, id:@my_author.id
+        it '403' do
+          post_with @me, :update, id:@my_author.id
           response.status.should == 403
         end
       end
@@ -130,10 +100,10 @@ describe AuthorsController do
 
     describe 'destroy' do
       describe 'DELETE /authors/:id' do
-        it 'destroys the given author' do pending
+        it 'destroys the given author' do
           proc do
             delete :destroy, id:@my_author.id
-          end.should change(Author, :count)
+          end.should_not change(Author, :count)
         end
       end
     end

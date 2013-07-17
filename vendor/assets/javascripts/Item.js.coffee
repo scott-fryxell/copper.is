@@ -1,79 +1,75 @@
 class Items
 
   constructor: (element) ->
-    unless @items = document.items
-      @items = {}
+    document.items ?= {}
+    jQuery.ajaxPrefilter (options, originalOptions, xhr) ->
+      unless options.crossDomain
+        if token = $('meta[name="csrf-token"]').attr('content')
+          xhr.setRequestHeader('X-CSRF-Token', token)
 
     unless element
-      element = $('body') # parse the document for items
+      element = $('body')
 
-    # console.debug('gathering item data', element, @items)
     @discover_items element
     @apply_templates element
-    document.items = @items
 
   discover_items: (element) =>
-    items = @items
-    $(element).find("[itemscope]").each ->
-      @.get = ->
-        $(@).trigger('item.get')
-      @.patch = ->
-        $(@).trigger('item.patch')
-      @.post = ->
-        $(@).trigger('item.post')
-      @.delete = ->
-        $(@).trigger('item.delete')
-
-      item_type = $(@).attr 'itemtype'
-      item_id = $(@).attr 'itemid'
+    $(element).find("[itemscope], [itemref]").each ->
       item = {}
+      @.get = -> $(@).trigger('item.get')
+      @.patch = -> $(@).trigger('item.patch')
+      @.post = -> $(@).trigger('item.post')
+      @.delete = -> $(@).trigger('item.delete')
+
+      item.type = $(@).attr 'itemtype' if $(@).attr 'itemtype'
+
+      unless item_id = $(@).attr 'itemid'
+        item_id = $(@).attr 'itemref'
+
       $(@).find("[itemprop]").each ->
-        if item_id == $(@).parents("[itemscope]").first().attr('itemid')
+        parent = $(@).parents("[itemscope], [itemref]").first()
+
+        unless check_id = $(parent).attr 'itemid'
+          check_id = $(parent).attr 'itemref'
+
+        if item_id == check_id
           item_prop = $(@).attr 'itemprop'
           item[item_prop] = Item.get_value(@)
 
-      if item_type
-        unless items[item_type]
-          items[item_type] = {}
-        items[item_type][item_id] = item
-      else
-        items[item_id] = item
+      $(document.items[item_id]).extend(item)
+    return document.items
 
   apply_templates: (element) =>
     # console.debug "apply templates to #{element}"
 
-$('body').on 'item.get', "[itemscope]", ->
-  console.debug("get updated info about me", @)
-  # call the itemid with the get method
-$('body').on 'item.patch', "[itemscope]", ->
-  # call the itemid with the put method
-  console.debug("update the server about me", @)
-$('body').on 'item.post', "[itemscope]", ->
-  console.debug("create a new thing out of me", @)
-  # call the itemid with the post method
-$('body').on 'item.delete', "[itemscope]", ->
-  console.debug("delete me", @)
-  # call the itemid with the delete method
 $('body').on 'item.update', 'data#items', ->
   new Items(@)
   $(@).find('[itemscope]').each ->
     item_id = $(@).attr('itemid')
     $(@).remove()
     $("[itemid='#{item_id}']")
-$('body').on 'change', "[itemprop]", ->
-  parent = $(@).parents("[itemscope]").first()
-  jQuery.ajax
-    url: $(parent).attr('itemid')
-    headers: {retrieve_as_data: "true"}
-    type: 'put'
-    data: "#{$(@).attr('itemprop')}=#{Item.get_value(@)}"
-    success:  (data) ->
-      console.info "item.updated"
-      $('data#items').append(jQuery.parseHTML(data))
-      $('data#items').trigger('item.update')
 
-    error: (data, textStatus, jqXHR) ->
-      console.error "Error updating this item", data, textStatus, jqXHR
+$('body').on 'change', "[itemprop]", ->
+  # console.debug($(@).parents("form"))
+  unless $(@).parents("form").length > 0
+    parent = $(@).parents("[itemscope], [itemref]").first()
+
+    unless item_id = $(parent).attr 'itemid'
+      item_id = $(parent).attr 'itemref'
+
+    jQuery.ajax
+      url: item_id
+      headers: {retrieve_as_data: "true"}
+      type: 'put'
+      data: "#{$(@).attr('itemprop')}=#{Item.get_value(@)}"
+      success:  (data) ->
+        # console.info "item.updated"
+        $('data#items').append(jQuery.parseHTML(data))
+        $('data#items').trigger('item.update')
+
+      error: (data, textStatus, jqXHR) ->
+        console.error "Error updating this item", data, textStatus, jqXHR
+
 $('body').on 'click', 'details[itemscope]', ->
   # todo: instead of checking for elements i should just turn this event listener off
   unless $(@).find('section').length > 0 || $(@).find('details').length > 0

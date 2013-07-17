@@ -80,6 +80,7 @@ body {
     }
   }
   & > footer {
+    margin-top:grid-width(2);
     padding:1em 1em 1em 2em;
     @include full_width($header);
     &:before {

@@ -1,36 +1,29 @@
 class AuthorsController < ApplicationController
   filter_access_to :all
+  filter_access_to :show, :update, :destroy, attribute_check:true
 
   def index
     if params[:state]
-      @authors = Author.send(params[:state]).limit(25)
+      @authors = Author.send(params[:state]).endless(params[:endless])
     elsif params[:user_id]
-      @authors = Author.where(user_id:params[:user_id])
+      @authors = Author.where(user_id:params[:user_id]).endless(params[:endless])
     elsif params[:page_id]
-      @authors = Author.where(page_id:params[:page_id])
+      @authors = Author.where(page_id:params[:page_id]).endless(params[:endless])
     else
-      @authors = Author.all()
+      @authors = Author.twitter.stranger.pending_royalties.endless(params[:endless])
     end
-    render action:'index', layout:false if request.headers['retrieve_as_data']
-  end
-
-  def new
+    render action:'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
   def show
     @author = Author.where(id:params[:id]).first
     render :action => 'show', :layout => false if request.headers['retrieve_as_data']
-  rescue ActiveRecord::RecordNotFound
-    render nothing:true, status:401
-  end
-
-  def edit
-  end
-
-  def create
   end
 
   def update
+    @author = author.where(id:params[:id])
+    @author.update_attributes(params[:author])
+    @author.save!
   end
 
   def destroy
@@ -38,4 +31,16 @@ class AuthorsController < ApplicationController
     author.remove_user!
     render nothing:true, status:200
   end
+
+  def enquire
+    provider = params[:id].split('/').first
+    unless Author.providers.include?(provider.to_sym)
+      return render nothing:true, status:404
+    end
+
+    username = params[:id].split('/').last
+    @author = Author.where(username:username, provider:provider).first
+
+  end
+
 end

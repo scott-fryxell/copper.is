@@ -19,7 +19,7 @@ describe HomeController do
 
     describe '/author' do
       it '200' do
-        get :welcome
+        get :author
       end
     end
 
@@ -50,12 +50,6 @@ describe HomeController do
     describe '/faq' do
       it '200' do
         get :faq
-      end
-    end
-    
-    describe "/buckingthesystem" do
-      it '200' do
-        get :index
       end
     end
   end

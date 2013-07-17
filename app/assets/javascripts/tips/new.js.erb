@@ -69,7 +69,7 @@ $(document).bind({
       // }
   },
   "tip_details": function (event){
-    console.debug("tip_details")
+    // console.debug("tip_details")
     clearInterval(display_timer);
     clearInterval(frame_timer);
     document.postMessage({type:'show_details'});
@@ -94,7 +94,7 @@ $(document).bind({
 
 $('form').on('item.post', function(event, data, status, xhr){
   $(document).trigger("tip_display");
-  console.debug("item post");
+  // console.debug("item post");
   $(this).attr('method', 'put');
   $(this).attr('action', data);
   $(this).on('item.validate', function(){

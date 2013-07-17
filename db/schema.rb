@@ -50,16 +50,16 @@ ActiveRecord::Schema.define(:version => 20) do
 
   create_table "pages", :force => true do |t|
     t.string   "title"
-    t.text     "url",           :limit => 255,                    :null => false
+    t.text     "url",                              :null => false
     t.string   "author_state"
     t.integer  "author_id"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.text     "thumbnail_url"
-    t.boolean  "onboarding",                   :default => false
-    t.boolean  "welcome",                      :default => false
-    t.boolean  "trending",                     :default => false
-    t.boolean  "nsfw",                         :default => false
+    t.boolean  "onboarding",    :default => false
+    t.boolean  "welcome",       :default => false
+    t.boolean  "trending",      :default => false
+    t.boolean  "nsfw",          :default => false
     t.text     "description"
   end
 

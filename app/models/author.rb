@@ -10,10 +10,9 @@ class Author < ActiveRecord::Base
 
   # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   # validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
-
   validates :provider, presence:true
-
   validate :validate_presence_of_username_or_uid
+
   def validate_presence_of_username_or_uid
     unless self.username or self.uid
       errors.add(:uid, "uid must exist")
@@ -29,13 +28,19 @@ class Author < ActiveRecord::Base
     end
   end
 
-  [:twitter, :facebook, :tumblr, :soundcloud, :github, :vimeo, :flickr, :google].each do |provider|
+  @@providers = [:twitter, :facebook, :tumblr, :soundcloud, :github, :vimeo, :flickr, :google]
+  def self.providers
+    @@providers
+  end
+
+  Author.providers.each do |provider|
     scope provider, where("provider = ?", provider)
   end
 
   scope :stranger, where(identity_state:'stranger')
   scope :wanted, where(identity_state:'wanted')
   scope :known, where(identity_state:'known')
+  scope :pending_royalties, joins(:tips).where("tips.paid_state='charged'").group('authors.id').select("authors.*, count('tips') as charged_tips_count").order('charged_tips_count desc')
 
   state_machine :identity_state, initial: :stranger do
 
@@ -110,6 +115,10 @@ class Author < ActiveRecord::Base
     self.type = Author.subclass_from_provider(self.provider).to_s unless self.type
   end
 
+
+  def try_to_make_wanted!
+    self.publicize! if self.tips.charged.count > 0
+  end
 
   # --------------------------------------------------------------------
 
@@ -195,7 +204,7 @@ class Author < ActiveRecord::Base
   def self.find_or_create_from_url(url)
     if provider = provider_from_url(url)
       i = subclass_from_provider(provider).discover_uid_and_username_from_url url
-      ident = Author.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid],i[:username]).first
+      ident = Author.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid].to_s,i[:username]).first
       unless ident
         ident = factory(provider:provider,username:i[:username],uid:i[:uid])
       end
@@ -233,7 +242,8 @@ class Author < ActiveRecord::Base
     save!
   end
 
-  def try_to_make_wanted!
-    self.publicize! if self.tips.charged.count > 0
+  def profile_image
+    return "/assets/icons/silhouette.svg" unless block_given?
+    yield
   end
 end

@@ -5,7 +5,7 @@
       <%-if page.thumbnail_url -%>
         <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>" alt="tip image" title="<%=page.title%>"/>
       <%-else-%>
-          <%= image_tag "noun_project/6437.svg" %>
+          <img itemprop="thumbnail_url" src='<%= image_path 'noun_project/6437.svg'%>'/>
       <%-end-%>
       <figcaption>
         <p data-cents='<%=page.tips.sum(:amount_in_cents)%>'></p>
@@ -34,19 +34,17 @@
       <fieldset>
         <input placeholder="title" itemprop="title" value="<%=page.title%>" >
         <a target="_blank" href="<%=page.url%>"><%= image_tag "noun_project/13883.svg" %></a>
-        <input placeholder="url" itemprop="url" value="<%=page.url%>" >
-        <input placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">
-        <input placeholder="author" itemprop="author_url" value="<%=page.author.url if page.author %>">
+        <input type="url" placeholder="url" itemprop="url" value="<%=page.url%>" >
+        <input type="url" placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">
+        <input type="url" placeholder="author" itemprop="author_url" value="<%=page.author.url if page.author %>">
         <nav>
           <button itemprop="welcome" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.welcome?%>">welcome</button>
           <button itemprop="onboarding" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.onboarding?%>">onboarding</button>
           <button itemprop="trending" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.trending?%>">trending</button>
           <button itemprop="nsfw" formmethod="put" formaction="/pages/<%=page.id%>" value="<%=page.nsfw?%>">nsfw</button>
         </nav>
-        <nav style="display:none">
-          <button formmethod="delete" formaction="/pages/<%=page.id%>">delete</button>
-          <button formmethod="post" formaction="/pages/<%=page.id%>/adopt">adopt</button>
-          <button formmethod="post" formaction="/pages/<%=page.id%>/reject">reject</button>
+        <nav>
+          <button formmethod="put" formaction="/pages/<%=page.id%>/reject">reject</button>
         </nav>
       </fieldset>
     </div>

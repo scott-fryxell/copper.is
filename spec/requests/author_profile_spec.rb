@@ -2,14 +2,9 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe "Author settings", :slow do
   before :each  do
-    mock_user
-    mock_page
+    mock_page_and_user
     visit '/auth/facebook'
     visit "/author"
-  end
-
-  after(:each) do
-    page.driver.error_messages.should be_empty
   end
 
   it 'should be able to authorize facebook' do
@@ -33,32 +28,26 @@ describe "Author settings", :slow do
     within '#services' do
       page.execute_script("$('#services > details > summary').trigger('click')")
       page.should have_css('figure > figcaption', visible:true)
-      # page.should have_css('figure > form', visible:true) :broken
       page.should have_css('aside', visible:true)
-
       page.should have_css('figure > figcaption', visible:false)
-      # page.should have_css('figure > form', visible:false) :broken
       page.should have_css('aside', visible:false)
     end
   end
 
-  it "should be able to authorize multible authors" do
+  it "should be able to authorize multiple authors" do
     within '#services' do
       page.should have_css('figure', count:1)
-      page.execute_script("$('#services > details > summary').trigger('click')")
-      click_link 'Authorize twitter'
+      page.execute_script("$('#services > details').attr('open', 'open')")
+      page.find('a[title="Authorize twitter"]').click
       page.should have_css('figure', count:2)
     end
   end
 
   it "should be able to deauthorize authors", :broken do
-
-    page.should have_css('#services')
-    within '#services' do
-      page.execute_script("$('#services > details > summary').trigger('click')")
-      click_link 'Authorize twitter'
-    end
     page.execute_script("$('#services > details > summary').trigger('click')")
+    within '#services' do
+      page.find('a[href="/auth/twitter"]').click
+    end
     sleep 1
     page.save_screenshot('tmp/screenshots/author/02.png')
     within 'figure.twitter' do
@@ -67,5 +56,5 @@ describe "Author settings", :slow do
     page.should have_css('#services figure', count:1)
     page.should have_css('#services figure form', visible:false)
   end
-  
+
 end

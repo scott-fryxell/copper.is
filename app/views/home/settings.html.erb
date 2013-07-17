@@ -1,8 +1,7 @@
-
 <%-cache current_user do-%>
 <section id="banner">
   <header>
-    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+    <a href=/><img src="<%=current_user.authors.first.profile_image%>" class="author"></a>
   </header>
   <hgroup>
     <h1>Your Settings</h1>
@@ -13,14 +12,14 @@
     Hey, cool. You’ve found some great stuff to tip with Copper.
     Let’s get your tips to the creators...
     <br><br>
-    Please add your payment info so we can start getting your 
-    tips to the people whose content you’ve liked. Once we have 
+    Please add your payment info so we can start getting your
+    tips to the people whose content you’ve liked. Once we have
     your info we’ll charge you weekly.
   </p>
   <%-end-%>
 </section>
 
-<section id="email" class="setting" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
+<section id="email" class="setting" itemscope itemtype="users" itemid="/users/<%=current_user.id%>">
   <header>
     <h2>Contact Info</h2>
     <a href="#">Change</a>
@@ -29,7 +28,7 @@
     <h4>Email Address</h4>
     <p itemprop="email"><%=current_user.email%></p>
   </div>
-  <form method="put" action="/users/me" accept-charset="UTF-8">
+  <form method="put">
     <input itemprop="email" name='user[email]' type="email" required value="<%=current_user.email%>">
     <input type="submit" value="Save"/>
   </form>
@@ -37,7 +36,7 @@
 
 <%= render partial:"shared/button"%>
 
-<section id="sharing" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
+<section id="sharing" itemref="/users/<%=current_user.id%>">
   <header>
     <h2>Facebook</h2>
   </header>
@@ -48,7 +47,7 @@
   </form>
 </section>
 
-<section id="rate" class="setting" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
+<section id="rate" class="setting" itemref="/users/<%=current_user.id%>">
   <header>
     <h2>Default Tip</h2>
     <a href="#">Change</a>
@@ -56,7 +55,7 @@
   <div>
     <p itemprop="tip_preference_in_cents"></p>
   </div>
-  <form method="put" action="/users/me" accept-charset="UTF-8">
+  <form method="put">
     <select itemprop="tip_preference_in_cents" name="user[tip_preference_in_cents]">
       <option value="5" <%= 'selected ' if current_user.tip_preference_in_cents == 5%> >$0.05</option>
       <option value="10" <%= 'selected ' if current_user.tip_preference_in_cents == 10%>>$0.10</option>
@@ -75,7 +74,7 @@
   </form>
 </section>
 
-<section id="card" class="setting" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
+<section id="card" class="setting" itemref="/users/<%=current_user.id%>">
   <header>
     <h2>Payment Info</h2>
     <a href="#card">Change</a>
@@ -106,7 +105,7 @@
   </nav>
 </section>
 
-<section id="address" class="setting" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
+<section id="address" class="setting" itemref="/users/<%=current_user.id%>">
   <header>
     <h2>Your address</h2>
     <a href="#address">Change</a>
@@ -117,12 +116,13 @@
     <p itemprop="line2"></p>
     <p>
       <span itemprop='city'></span>
-      <span itemprop="subregion_code"></span> 
+      <span itemprop="subregion_code"></span>
       <span itemprop="postal_code"></span>
     </p>
   </div>
   <%= render partial:'shared/address' %>
 </section>
+
 <nav>
   <a href="/">return to profile</a>
 </nav>

@@ -38,7 +38,7 @@ class Page < ActiveRecord::Base
 
   def learn_title(content = self.agent.get(url))
     logger.info ":  title"
-    
+
     if title_tag = content.at('meta[property="og:title"]')
       logger.info ":    og:title=#{title_tag.attributes['content'].value[0...100]}"
       title = title_tag.attributes['content'].value
@@ -51,7 +51,7 @@ class Page < ActiveRecord::Base
     if url_tag = content.at('object[itemtype="#page"] > data[itemprop=url]')
       logger.info ":    itemprop=url=#{url_tag.attributes['value'].value[0...100]}"
       self.url = url_tag.attributes['value'].value
-    elsif url_tag = content.at('meta[property="og:url"]')   
+    elsif url_tag = content.at('meta[property="og:url"]')
       logger.info ":    og:url=#{url_tag.attributes['content'].value[0...100]}"
       self.url = url_tag.attributes['content'].value
     end
@@ -63,17 +63,17 @@ class Page < ActiveRecord::Base
 
     if thumbnail_tag = content.at('meta[property="og:image"]')
       logger.info ":    og:image=#{thumbnail_tag.attributes['content'].value[0...100]}"
-      self.thumbnail_url = thumbnail_tag.attributes['content'].value 
-    elsif thumbnail_tag = content.at('link[rel="image_src"]') 
+      self.thumbnail_url = thumbnail_tag.attributes['content'].value
+    elsif thumbnail_tag = content.at('link[rel="image_src"]')
       logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['href'].value
-    elsif thumbnail_tag = content.at('link[rel="thumbnailUrl"]') 
+    elsif thumbnail_tag = content.at('link[rel="thumbnailUrl"]')
       logger.info ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['href'].value
     end
     thumbnail_url
   end
-  
+
   def learn (content = self.agent.get(url))
     logger.info " "
     logger.info "<- Learn about  id:#{id}, url: #{url[0...100]} -> "
@@ -105,15 +105,15 @@ class Page < ActiveRecord::Base
     event :adopt do
       transition any => :adopted
     end
-    
-    # Pages are initially orphaned. An attempt is made to 
-    # deternime the author based on the url, failure means 
+
+    # Pages are initially orphaned. An attempt is made to
+    # deternime the author based on the url, failure means
     # page is put in foster care where all the links on
     # the page are spidered and a list of possible
-    # authors are determined. If none are found then the 
+    # authors are determined. If none are found then the
     # page is put into manual mode where a person is going to
-    # get involved to figure it out. If at any point in this 
-    # chain a page is adopted it has reached it's final state. 
+    # get involved to figure it out. If at any point in this
+    # chain a page is adopted it has reached it's final state.
     # a page is dead when we try to spider it and get a 404
     event :reject do
       transition :orphaned   => :fostered,
@@ -129,23 +129,23 @@ class Page < ActiveRecord::Base
       Resque.enqueue Page, page.id, :find_author_from_page_links!
     end
 
-    after_transition any => :manual do |page,transition|
-      Resque.enqueue Page, page.id, :notify_admin_to_find_page_author!
-    end
+    # after_transition any => :manual do |page,transition|
+    #   Resque.enqueue Page, page.id, :notify_admin_to_find_page_author!
+    # end
 
     after_transition any => :dead do |page,transition|
-      Resque.enqueue Page, page.id, :clean_up_dead_page!
+      Resque.enqueue Page, page.id, :refund_paid_tips!
     end
 
     after_transition :adopt => :adopt do |page,transition|
-      # respider the page for images 
+      # respider the page for images
       Resque.enqueue Page, page.id, :learn
     end
 
 
     state :orphaned do
-      
-      def discover_author! 
+
+      def discover_author!
         logger.info "discover_author for: id=#{self.id}, #{self.url[0...100]}"
         if self.author = Author.find_or_create_from_url(self.url)
           log_adopted
@@ -158,7 +158,7 @@ class Page < ActiveRecord::Base
     end
 
     state :fostered do
-     
+
       def find_author_from_page_links!
         begin
           logger.info "page_links for: id=#{id}, #{url[0...100]}"
@@ -176,21 +176,11 @@ class Page < ActiveRecord::Base
                 return adopt!
               end
             end
-
             output = lambda { |link| logger.info ":    adopted: #{link.href[0...100]}"}
-            doc.links_with(:href => %r{facebook.com}).each do |link|
-              unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
-                if self.author = Author.find_or_create_from_url(link.href) 
-                  output.call link
-                  return adopt!
-                end
-              end
-            end
-
             doc.links_with(:href => %r{twitter.com}).each do |link|
-              # filter for known twitter links that are providerable but not good for spidering links 
+              # filter for known twitter links that are providerable but not good for spidering links
               unless %r{/status/|/intent/|/home|/share|/statuses/|/search/|/search|/bandcampstatus|/signup}.match(URI.parse(link.href).path)
-                if self.author = Author.find_or_create_from_url(link.href) 
+                if self.author = Author.find_or_create_from_url(link.href)
                   output.call link
                   return adopt!
                 end
@@ -199,7 +189,16 @@ class Page < ActiveRecord::Base
 
             doc.links_with(:href => %r{tumblr.com}).each do |link|
               unless %r{/post/|/liked/|/share}.match(URI.parse(link.href).path)
-                if self.author = Author.find_or_create_from_url(link.href) 
+                if self.author = Author.find_or_create_from_url(link.href)
+                  output.call link
+                  return adopt!
+                end
+              end
+            end
+
+            doc.links_with(:href => %r{facebook.com}).each do |link|
+              unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
+                if self.author = Author.find_or_create_from_url(link.href)
                   output.call link
                   return adopt!
                 end
@@ -208,7 +207,7 @@ class Page < ActiveRecord::Base
 
             doc.links_with(:href => %r{plus.google.com}).each do |link|
               unless %r{/share/}.match(URI.parse(link.href).path)
-                if self.author = Author.find_or_create_from_url(link.href) 
+                if self.author = Author.find_or_create_from_url(link.href)
                   output.call link
                   return adopt!
                 end
@@ -228,23 +227,18 @@ class Page < ActiveRecord::Base
           logger.info ":    dead: #{self.url}"
           self.author_state = 'dead'
           save!
-        end  
+        end
       end
 
     end
 
     state :manual do
-
-      def notify_admin_to_find_page_author!
-        # TODO: update a list for admin's to look at of pages that need authors
-      end
-
     end
 
     state :dead do
 
-      def clean_up_dead_page!
-        #TODO: refund unpaid tips. 
+      def refund_paid_tips!
+        #TODO: refund unpaid tips.
       end
 
     end

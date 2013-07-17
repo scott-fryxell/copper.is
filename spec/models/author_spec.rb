@@ -54,7 +54,7 @@ describe Author do
     it "shouldn't try to find an author for tumblr.com" do
       Author.provider_from_url("http://www.tumblr.com/").should be_false
     end
-    
+
     it "shouldn't try to find an author for google.com" do
       Author.provider_from_url("http://google.com/").should be_false
     end
@@ -99,7 +99,7 @@ describe Author do
 
     it "http://www.tumblr.com/customize?redirect_to=http://brokenbydawn.tumblr.com/" do
       Author.provider_from_url("http://www.tumblr.com/customize?redirect_to=http://brokenbydawn.tumblr.com/").should be_false
-    end 
+    end
 
     it "http://code.flickr.net/2008/10/27/counting-timing/" do
       Author.provider_from_url("http://code.flickr.net/2008/10/27/counting-timing/").should be_false
@@ -107,11 +107,11 @@ describe Author do
 
     it "https://gist.github.com/1367918" do
       Author.provider_from_url("https://gist.github.com/1367918").should be_false
-    end 
+    end
 
     it "https://github.com/blog/1252-how-we-keep-github-fast?mkt_tok=3RkMMJWWfF9wsRoluqTIZKXonjHpfsX87essULHr08Yy0EZ5VunJEUWy2Yo" do
       Author.provider_from_url("https://github.com/blog/1252-how-we-keep-github-fast?mkt_tok=3RkMMJWWfF9wsRoluqTIZKXonjHpfsX87essULHr08Yy0EZ5VunJEUWy2Yo").should be_false
-    end 
+    end
 
     it "http://vimeo.com/groups/waza2012/videos/49720072" do
       Author.provider_from_url("http://vimeo.com/groups/waza2012/videos/49720072").should be_false

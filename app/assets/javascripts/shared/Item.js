@@ -110,7 +110,7 @@ document.getItems = function (type){
     return Item.items
   }
 }
-$("[itemscope] form").submit(function(event){
+$("[itemscope] form, [itemref] form").submit(function(event){
   // capture form submissions for items. Determine
   // their values and submit the data via ajax.
   // this means forms are submited with CSRF protection
@@ -123,20 +123,25 @@ $("[itemscope] form").submit(function(event){
   // if their are no Items in the form just end the submit.
   // this assumes that some other actor is going to be taking
   // care of business
-  if($(this).find("*[itemprop]").length == 0 && 'delete' != $(this).attr('method')){
+  if($(this).find("[itemprop]").length == 0 && 'delete' != $(this).attr('method')){
     return true
   }
-  var item_element = $(this).parents('*[itemscope]')
-  var id = $(item_element).attr('itemid')
+  var item_element = $(this).parents('[itemscope], [itemref]')
+  if ( $(item_element).attr('itemid')){
+    var id = $(item_element).attr('itemid')
+  }else {
+    var id = $(item_element).attr('itemref')
+  }
+
   var item_index = 0; // TODO get the index based on itemId
   var type = $(item_element).attr('itemtype')
   var form = this
-  var item_rolback = Item.items[type][item_index] //if form fails we can rollback to the original state
+  // var item_rolback = Item.items[type][item_index] //if form fails we can rollback to the original state
   var action = $(this).attr('action');
 
   if(!action){
     // determine the action from the itemscope
-    action = $(item_element).attr('itemId');
+    action = id
   }
   var method = $(this).attr('method').toLowerCase();
 
@@ -154,15 +159,13 @@ $("[itemscope] form").submit(function(event){
     error: function(data, textStatus, jqXHR) {
       // let any listeners know that there was a problem with the form submit
       $(form).trigger('item.error');
-      Item.items[type][item_index] = item_rolback;
+      // Item.items[type][item_index] = item_rolback;
       Item.update_page(Item.items[type][item_index]);
       console.error("error submiting item form " + id, data, textStatus, jqXHR);
     },
     success: function(data, textStatus, jqXHR){
-      // console.debug("successful item submission", data)
       // let any listeners know that any the form submited succesfully update.
       // TODO we leave updating the items to the listener of this method. this is risky
-      console.debug("form success")
       $(form).trigger('item.' + method, [data, textStatus, jqXHR]);
     }
   });
@@ -171,7 +174,7 @@ $("[itemscope] form").submit(function(event){
   return false;
 });
 $(document).ready(function (event){
-  $.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
+  jQuery.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
 
   if(Item.discover_items()){
     // let any listeners know that their are items on the page

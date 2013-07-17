@@ -1,14 +1,14 @@
 <%-cache current_user do-%>
   <section id="banner">
     <header>
-      <a href="/"><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+      <a href=/><img src="<%=current_user.authors.first.profile_image%>" class="author"></a>
     </header>
     <hgroup>
       <h1>Your pages</h1>
       <p><%=@current_user.name%><a href="/signout">not you?</a></p>
     </hgroup>
     <p>
-      Hi <%=@current_user.name%>! On this page, 
+      Hi <%=@current_user.name%>! On this page,
       you can see what content your fans are connecting with
       and the tips they’ve sent to show their appreciation.
     </p>
@@ -55,7 +55,7 @@
               <figcaption itemprop='username'><%=author.username%></figcaption>
             <%-else-%>
               <figcaption itemprop='uid'><%=author.uid%></figcaption>
-            <%-end-%> 
+            <%-end-%>
             <%-if current_user.authors.count > 1-%>
             <form action='<%=author_path(author)%>' method="delete">
               <input type="submit" name="submit" value="X">

@@ -38,7 +38,7 @@ class Order < ActiveRecord::Base
       end
 
     end
-    
+
     state :current do
       def rotate!
         process!
@@ -71,7 +71,7 @@ class Order < ActiveRecord::Base
       end
     end
   end
-  
+
 
   def tips_to_table_rows
     tip_rows = ""

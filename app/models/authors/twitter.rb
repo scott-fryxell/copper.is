@@ -25,10 +25,19 @@ class Authors::Twitter < Author
     end
   end
 
+  def profile_image
+    super do
+      begin
+        ::Twitter.user(self.username).profile_image_url_https.gsub(/_normal/, '')
+      rescue Exception
+        "/assets/icons/silhouette.svg"
+      end
+    end
+  end
   # private
 
-  def send_tweet(tweet)
-    raise 'tweet to long' if tweet.length + self.username.length + 2 > 140
-    Twitter.update('@' + self.username + ' ' + tweet )
-  end
+  # def send_tweet(tweet)
+  #   raise 'tweet to long' if tweet.length + self.username.length + 2 > 140
+  #   Twitter.update('@' + self.username + ' ' + tweet )
+  # end
 end

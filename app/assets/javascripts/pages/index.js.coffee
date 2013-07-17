@@ -7,7 +7,7 @@ $(document).on "load.pages_index", ->
     $('body').toggleClass($(@).text())
 
   $('body').on 'change', "input[itemprop=thumbnail_url]", ->
-    console.debug($(@).parents('[itemscope]').find('img[itemprop=thumbnail_url]'))
+    # console.debug($(@).parents('[itemscope]').find('img[itemprop=thumbnail_url]'))
     $(@).parents('[itemscope]').find('img[itemprop=thumbnail_url]').attr('src', $(@).val())
 
   $("button[formaction]").click ->
@@ -28,11 +28,11 @@ $(document).on "load.pages_index", ->
       data: prop
       success: (data) ->
         $('data#items').append(data)
-        console.debug('bam!')
+        # console.debug('bam!')
         new Items($('data#items'))
         $('data#items').empty()
       statusCode:
         401:=>
           $(@).trigger "401"
-          console.debug("you don't have rights to view this resource")
+          # console.debug("you don't have rights to view this resource")
 

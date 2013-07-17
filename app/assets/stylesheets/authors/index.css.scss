@@ -1,0 +1,21 @@
+#authors_index {
+  #admin_nav {
+    a[href="/authors"] > img{
+      opacity:0.99;
+    }
+  }
+
+  section.endless > details summary > figure > img {
+    height:grid-width(2);
+    width:grid-width(2);
+  }
+
+  section.endless > details > section > header > hgroup {
+    vertical-align: top;
+    margin-top:1em;
+    display:inline-block;
+    min-width:grid-width(3);
+    margin-right:1em;
+    // & > h4 {display:inline-block}
+  }
+}

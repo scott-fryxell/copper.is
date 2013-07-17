@@ -5,17 +5,17 @@
 
     var data = event.data
     if (data.type == 'show'){
-      console.debug("show")
+      // console.debug("show")
       f.width='425px'
       f.height='575px'
     }
     else if (data.type == 'show_details'){
-      console.debug("show_details")
+      // console.debug("show_details")
       f.width='550px'
       f.height='475px'
     }
     else if (data.type == 'hide'){
-      console.debug("hide")
+      // console.debug("hide")
       f.width='350px'
       f.height='0px'
     }
@@ -60,7 +60,7 @@
     f.style.background.color='transparent';
     f.style.border='none';
     f.allowtransparency='allowtransparency';
-    f.src='<%=request.scheme%>://<%=request.host%>/tips/new'
+    f.src='<%=request.scheme%>://<%=request.host%>:<%=request.port%>/tips/new'
     document.body.appendChild(f);
     f.width='0';
     f.height='0';

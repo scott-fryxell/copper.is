@@ -1,7 +1,25 @@
-require 'rubygems'
 require 'spork'
 
 Spork.prefork do
+
+end
+
+Spork.each_run do
+  require 'simplecov'
+  SimpleCov.start 'rails'
+
+  ENV["RAILS_ENV"] = 'test'
+  require File.expand_path("../../config/environment", __FILE__)
+  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+  # require 'rack/utils'
+  require 'rspec'
+  require 'rspec/rails'
+  require 'capybara/rspec'
+  require 'declarative_authorization/maintenance'
+  require 'omniauth'
+  require 'omniauth/test'
+  require 'capybara/poltergeist'
+
   def create!(factory,*args)
     record = FactoryGirl.create(factory,*args)
     record.save!
@@ -10,25 +28,11 @@ Spork.prefork do
     record
   end
 
-  ENV["RAILS_ENV"] = 'test'
-  if ENV['RCOV']
-    require 'simplecov'
-    SimpleCov.start 'rails'
-  end
-
-  require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec'
-  require 'rspec/rails'
-  require 'capybara/rspec'
-  require 'declarative_authorization/maintenance'
-  require 'omniauth'
-  require 'omniauth/test'
-  require 'support'
-  require 'capybara/poltergeist'
-
-  Capybara.default_driver = :webkit
-  Capybara.javascript_driver = :webkit
-  # Capybara.javascript_driver = :poltergeist
+  # Capybara.app = Rack::ShowExceptions.new(Copper::Application)
+  # Capybara.default_driver = :webkit
+  # Capybara.javascript_driver = :webkit
+  Capybara.default_driver = :poltergeist
+  Capybara.javascript_driver = :poltergeist
   Capybara.default_selector = :css
   Capybara.ignore_hidden_elements = false
   Capybara.server_port = 8080
@@ -50,24 +54,10 @@ Spork.prefork do
     # REDIS_CACHE_PATH = "#{Rails.root}/tmp/cache/"
 
     config.around(:each, :vcr) do |example|
-        name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
-        options = example.metadata.slice(:record, :match_requests_on).except(:example_group)
-        VCR.use_cassette(name, options) { example.call }
-      end
-  end
-
-end
-
-Spork.each_run do
-  FactoryGirl.reload
-
-  load "#{Rails.root}/config/routes.rb"
-  # load "#{Rails.root}/config/authorization_rules.rb"
-  Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
-  Dir["#{Rails.root}/lib/**/*.rb"].each {|f| load f}
-
-  RSpec.configure do |config|
-
+      name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
+      options = example.metadata.slice(:record, :match_requests_on).except(:example_group)
+      VCR.use_cassette(name, options) { example.call }
+    end
     # Request specs cannot use a transaction because Capybara runs in a
     # separate thread with a different database connection.
     config.before type: :request do
@@ -78,30 +68,21 @@ Spork.each_run do
       ResqueSpec.inline = true
       DatabaseCleaner.strategy = :transaction
       DatabaseCleaner.clean_with(:truncation, {:except => %w[roles]})
-      class Stripe::Customer
-        # def self.create(*args)
-        #   puts "create #{args}"
-        #   OpenStruct.new(id:'1', :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
-        # end
-        def self.retrieve(*args)
-          # puts "retrieve #{args}"
-          OpenStruct.new(id:'1', save:"", :active_card=>{type:'Visa', exp_year:'2015', exp_month:'4', last4:"4242"})
-        end
-      end
-
-      class Stripe::Charge
-        def self.create(*args)
-          # puts "charge #{args}"
-          OpenStruct.new(id:'1', :card => {last4:'4242'})
-        end
-      end
     end
     config.before :each do
-      Twitter.stub(:update)
       DatabaseCleaner.start
     end
     config.after :each do
       DatabaseCleaner.clean
     end
+
   end
+
+  FactoryGirl.reload
+
+  load "#{Rails.root}/config/routes.rb"
+  # load "#{Rails.root}/config/authorization_rules.rb"
+  Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
+  Dir["#{Rails.root}/lib/**/*.rb"].each {|f| load f}
+
 end

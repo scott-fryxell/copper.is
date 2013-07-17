@@ -1,23 +1,15 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "a author being invited to the service", :slow do
+describe "an Author profile page", :slow, :broken do
 
   before(:each) do
     mock_page_and_user
     twitter = FactoryGirl.create(:authors_twitter, identity_state:'wanted')
-    visit"/authors/#{twitter.id}/edit"
+    visit"/#{twitter.provider}/#{twitter.username}"
   end
 
-  after(:each) do
-    page.driver.error_messages.should be_empty
-  end
 
-  it 'should not see the user nav ' do
-    click_link('Authorize twitter');
-    page.should have_css('#user_nav', visible:false)
-  end
-
-  it 'should be able to authorize with the service' do
+  it 'a guest should sign up with their provider ' do
     page.should have_css('#banner', visible:true)
     page.should have_css('#login > figure > a', visible:true)
     page.should have_content 'Step 1: Login'
@@ -91,8 +83,6 @@ describe "a author being invited to the service", :slow do
     fill_in 'user[postal_code]', with:'94110'
     select('Andorra', :from => 'user[country_code]')
     click_on 'Submit!'
-
-    page.driver.error_messages.should be_empty
     page.should have_no_css(".invalid", visible:true)
     page.should have_content 'Your pages'
   end

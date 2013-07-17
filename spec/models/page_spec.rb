@@ -92,7 +92,7 @@ describe Page do
         @page.url = "http://staff.tumblr.com/"
       end
 
-      it "finds author for https://www.copper.is", :vcr do
+      it "finds author for https://www.copper.is", :vcr, :broken do
         @page.url = "https://www.copper.is"
       end
 

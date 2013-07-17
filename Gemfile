@@ -36,26 +36,27 @@ gem "vimeo"
 gem 'koala'
 gem 'mechanize'
 gem 'cache_digests'
-gem 'mandrill', :git => 'https://github.com/venioinc/mandrill/'
-
+gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
+gem "lograge"
 
 # gem 'rack-mini-profiler'
 # gem 'resque-scheduler', :require => 'resque_scheduler'
 # gem 'resque-heroku-scaling-canary'
 
-group :production do
+# group :production do
   gem "pg"
-end
+# end
 
 group :development, :test do
   gem 'thin'
   gem 'awesome_print'
-  gem 'simplecov', :require => false
-  gem 'sqlite3', :require => 'sqlite3'
+  gem 'simplecov', require:false
+
   gem 'pry'
   gem 'ruby_parser'
   gem 'rspec-rails'
   gem "capybara-webkit"
+  gem "poltergeist"
   gem 'database_cleaner', '~> 0.6.7'
   gem 'guard'
   gem 'guard-rspec'
