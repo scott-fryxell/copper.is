@@ -53,7 +53,12 @@ class Authors::Facebook < Author
 
   def profile_image
     super do
-      "https://graph.facebook.com/#{self.uid}/picture?type=square"
+      if self.username
+        pic_id = self.username
+      else
+        pic_id = self.uid
+      end
+      "https://graph.facebook.com/#{pic_id}/picture?type=square"
     end
   end
 

@@ -29,13 +29,15 @@ describe Author do
       @user.authors.create!(provider:'twitter', username:'_ugly')
     end
 
-    it 'steals auth from another user if it exists' do pending
+    it 'steals auth from another user if it exists' do
       twitter = @user.authors.create!(provider:'twitter', username:'_ugly')
-      @new_user = User.create!
-      twitter.reload
-      @new_user.authors.create!(provider:'twitter', username:'_ugly').should eq(twitter)
+      @new_user = create!(:user)
+      twitter.user = @new_user
+      twitter.join!
+      @new_user.reload
+      @user.reload
       @user.authors.should be_empty
-      @new_user.authors.size.should eq(1)
+      @new_user.authors.size.should == 1
     end
   end
 
@@ -43,11 +45,6 @@ describe Author do
     @user.authors.create!(provider:'twitter', username:'_ugly')
     @user.authors.create!(provider:'twitter', username:'dude')
   end
-
-  it 'a user can exist without an author, aka an author'
-
-  it 'only messages an author that doesn\'t have an author associated with it'
-
 
   describe "Root level url's" do
 
@@ -117,5 +114,4 @@ describe Author do
       Author.provider_from_url("http://vimeo.com/groups/waza2012/videos/49720072").should be_false
     end
   end
-
 end

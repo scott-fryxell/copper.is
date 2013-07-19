@@ -33,7 +33,7 @@ class CardsController < ApplicationController
       format.json { render :json => customer }
     end
   rescue Stripe::CardError => e
-    render text:e.message, status:500   
+    render text:e.message, status:500
   end
 
 end

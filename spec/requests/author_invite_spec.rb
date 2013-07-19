@@ -4,7 +4,7 @@ describe "an Author profile page", :slow, :broken do
 
   before(:each) do
     mock_page_and_user
-    twitter = FactoryGirl.create(:authors_twitter, identity_state:'wanted')
+    twitter = FactoryGirl.create(:author_twitter, identity_state:'wanted')
     visit"/#{twitter.provider}/#{twitter.username}"
   end
 

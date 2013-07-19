@@ -11,6 +11,11 @@ describe UsersController do
       get("/users/1").should route_to("users#show", :id => "1")
     end
 
+    it "routes to #show" do
+      get("/users/me").should route_to("users#show", :id => "me")
+    end
+
+
     it "routes to #update" do
       put("/users/1").should route_to("users#update", :id => "1")
     end

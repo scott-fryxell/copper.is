@@ -29,7 +29,7 @@ describe TipsController do
     describe 'create' do
       describe 'POST /tips' do
         it 'creates a tip to given url with default amount' do
-          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com'}, format: :json
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com'}
           Tip.first.page.url.should == 'http://fasterlighterbetter.com'
           Tip.first.order.user_id.should == @me.id
         end
@@ -71,21 +71,21 @@ describe TipsController do
     describe 'update' do
       describe 'PUT /tips/:id' do
         it 'update the amount of the tip' do
-          put_with @me, :update, id:@my_tip.id, tip:{amount_in_cents:200}, format: :json
+          put_with @me, :update, id:@my_tip.id, tip:{amount_in_cents:200}
           response.status.should == 200
           @my_tip.reload
           @my_tip.amount_in_cents.should == 200
         end
 
         it 'does not update a non-promised tip' do
-          put_with @me, :update, id:@my_tip.id, tip:{amount_in_cents:200}, format: :json
+          put_with @me, :update, id:@my_tip.id, tip:{amount_in_cents:200}
           @my_tip.reload
           @my_tip.amount_in_cents.should == 200
         end
 
         it 'does not update another fan\'s tip' do
           her_setup
-          put_with @me, :update, id:@her_tip2.id, tip:{amount_in_cents:200}, format: :json
+          put_with @me, :update, id:@her_tip2.id, tip:{amount_in_cents:200}
           @her_tip2.reload
           @her_tip2.amount_in_cents.should_not == 200
           response.status.should == 403
@@ -108,7 +108,7 @@ describe TipsController do
           me_setup
           @my_tip.pay!
           proc do
-            delete_with @me, :destroy, id:@my_tip.id, format: :json
+            delete_with @me, :destroy, id:@my_tip.id
             Tip.find(@my_tip.id).should_not be_nil
           end.should_not change(Tip, :count)
         end
@@ -132,7 +132,7 @@ describe TipsController do
         it '403 her tip' do
           her_setup
           proc do
-            delete_with @me, :destroy, id:@her_tip1.id, format: :json
+            delete_with @me, :destroy, id:@her_tip1.id
             Tip.find(@her_tip1.id).should_not be_nil
           end.should_not change(Tip, :count)
         end

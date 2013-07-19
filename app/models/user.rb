@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
     title  = CGI.unescapeHTML(args[:title])  if args[:title]
 
     tip = current_order.tips.build(amount_in_cents:amount_in_cents)
-    unless tip.page = Page.where(url:url).first
+    unless tip.page = Page.find_by_url(url)
       tip.page = Page.create(url:url,title:title)
     end
     tip.save!

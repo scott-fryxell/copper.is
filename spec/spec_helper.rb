@@ -7,11 +7,6 @@ end
 Spork.each_run do
   require 'simplecov'
   SimpleCov.start 'rails'
-
-  ENV["RAILS_ENV"] = 'test'
-  require File.expand_path("../../config/environment", __FILE__)
-  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-  # require 'rack/utils'
   require 'rspec'
   require 'rspec/rails'
   require 'capybara/rspec'
@@ -19,13 +14,18 @@ Spork.each_run do
   require 'omniauth'
   require 'omniauth/test'
   require 'capybara/poltergeist'
+  ENV["RAILS_ENV"] = 'test'
+  require File.expand_path("../../config/environment", __FILE__)
+  Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+  # require 'rack/utils'
 
   def create!(factory,*args)
-    record = FactoryGirl.create(factory,*args)
-    record.save!
-    record.reload
+    # record = FactoryGirl.create(factory,*args)
+    # record.save!
+    # record.reload
     # record.should be_valid
-    record
+    # record
+    FactoryGirl.create(factory,*args)
   end
 
   # Capybara.app = Rack::ShowExceptions.new(Copper::Application)
@@ -40,6 +40,7 @@ Spork.each_run do
   include Authorization::TestHelper
 
   RSpec.configure do |config|
+    config.render_views
     config.include Capybara::DSL
     config.filter_run_excluding :broken => true
     config.fail_fast = false

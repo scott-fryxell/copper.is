@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Authors::Phony do
   before do
     mock_page
-    @author = FactoryGirl.create(:authors_phony)
+    @author = create!(:author_phony)
   end
 
   describe '#populate_uid_and_username!' do

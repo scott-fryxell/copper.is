@@ -66,7 +66,7 @@ end
 
 module UserMessages
 
-  def send_fan_welcome_message 
+  def send_fan_welcome_message
     m = Mandrill::API.new(Copper::Application.config.mandrill_key)
     m.messages 'send-template', {
       template_name: "welcome-message-for-fans",
@@ -82,7 +82,7 @@ module UserMessages
 
   def send_message_to_fans_who_have_tipped
     User.have_tipped
-    
+
     m = Mandrill::API.new(Copper::Application.config.mandrill_key)
     m.messages 'send-template', {
       template_name: "fans who have tipped",
@@ -102,6 +102,6 @@ module UserMessages
   end
 end
 
-module AuthorMessage 
+module AuthorMessage
 
 end

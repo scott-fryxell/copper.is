@@ -4,13 +4,13 @@ class ChecksController < ApplicationController
   def index
     case params[:s]
     when 'paid'
-      @checks = current_user.checks.paid.all
+      @checks = current_user.checks.paid.endless(params[:endless])
     when 'earned'
-      @checks = current_user.checks.earned.all
+      @checks = current_user.checks.earned.endless(params[:endless])
     when 'cashed'
-      @checks = current_user.checks.cashed.all
+      @checks = current_user.checks.cashed.endless(params[:endless])
     else
-      @checks = current_user.checks.all
+      @checks = current_user.checks.endless(params[:endless])
     end
   end
 

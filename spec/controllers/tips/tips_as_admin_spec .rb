@@ -8,7 +8,7 @@ describe TipsController do
         it 'assigns all tips' do
           her_setup
           me_setup
-          get :index, format: :json
+          get :index
           tips = assigns(:tips)
           tips.include?(@her_tip2).should be_true
           tips.include?(@her_tip1).should be_true
@@ -39,9 +39,9 @@ describe TipsController do
 
     describe 'show' do
       describe '/tips/:id' do
-        it 'should display a tip' do 
+        it 'should display a tip' do
           me_setup
-          get :show, id:@my_tip.id, format: :json
+          get :show, id:@my_tip.id
           assigns(:tip).should eq(@my_tip)
           tip = assigns(:tip)
           response.should be_success
@@ -53,7 +53,7 @@ describe TipsController do
       describe '/tips/:id/edit' do
         it 'respond with not authorized' do
           me_setup
-          get :edit, id:@my_tip.id, format: :json
+          get :edit, id:@my_tip.id
           response.status.should == 401
         end
       end

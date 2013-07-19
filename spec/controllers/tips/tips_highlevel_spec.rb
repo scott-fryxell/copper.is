@@ -32,7 +32,7 @@ describe TipsController, :network do
     end
 
     it 'pays known authors' do
-      @her_author = create!(:authors_phony)
+      @her_author = create!(:author)
       post_with @me, :create, tip:{url:"http://example.com/#{@her_author.username}"}
       @page = Page.find_by_url("http://example.com/#{@her_author.username}")
       @page.author.should eq(@her_author)

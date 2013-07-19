@@ -15,133 +15,133 @@ FactoryGirl.define do
     "https://twitter.com/_1#{n}"
   end
 
-  factory :authors_facebook, class: 'Authors::Facebook' do
-    provider 'facebook'
-    username 'scott.fryxell'
-    uid '580281278'
-  end
-
-  factory :authors_phony, class: 'Authors::Phony' do
-    provider 'phony'
-    username { FactoryGirl.generate(:username) }
-    uid { FactoryGirl.generate(:uid) }
-  end
-
-  factory :authors_twitter, class: 'Authors::Twitter' do
-    provider 'twitter'
-    username 'copper_is'
-    uid '123545'
-  end
-
-  factory :authors_google, class: 'Authors::Google' do
-    provider 'google'
-    uid
-    username
-  end
-
-  factory :authors_vimeo, class: 'Authors::Vimeo' do
-    provider 'vimeo'
-    uid '1'
-    username 'foo'
-  end
-
-  factory :authors_flickr, class: 'Authors::Flickr' do
-    provider 'flickr'
-    uid
-    username
-  end
-
-  factory :authors_tumblr, class: 'Authors::Tumblr' do
-    provider 'tumblr'
-    uid
-    username
-  end
-
-  factory :authors_github, class: 'Authors::Github' do
-    provider 'github'
-    uid
-    username
-  end
-
-  factory :authors_soundcloud, class: 'Authors::Soundcloud' do
-    provider 'soundcloud'
-    uid '2'
-    username 'bar'
-  end
-
-  factory :authors_youtube, class: 'Authors::Youtube' do
-    provider 'youtube'
-    uid
-    username
-  end
-
   factory :role do
     name "Fan"
+  end
+
+  factory :author do
+    username { FactoryGirl.generate(:username) }
+    uid { FactoryGirl.generate(:uid) }
+
+    trait :phony do
+      provider 'phony'
+    end
+
+    trait :facebook do
+      provider 'facebook'
+    end
+
+    trait :twitter do
+      provider 'twitter'
+    end
+
+    trait :google do
+      provider 'google'
+    end
+
+    trait :vimeo do
+      provider 'vimeo'
+    end
+
+    trait :flickr do
+      provider 'flickr'
+    end
+
+    trait :tumblr do
+      provider 'tumblr'
+    end
+
+    trait :github do
+      provider 'github'
+    end
+
+    trait :soundcloud do
+      provider 'soundcloud'
+    end
+
+    trait :youtube do
+      provider 'youtube'
+    end
+
+    trait :stranger do
+      identity_state 'stranger'
+    end
+
+    trait :wanted do
+      identity_state 'wanted'
+    end
+
+    trait :known do
+      identity_state 'known'
+    end
+
+    factory :author_youtube, traits: [:youtube, :stranger], class: 'Authors::Youtube'
+    factory :author_soundcloud, traits: [:soundcloud, :stranger], class: 'Authors::Soundcloud'
+    factory :author_github, traits: [:github, :stranger], class: 'Authors::Github'
+    factory :author_tumblr, traits: [:tumblr, :stranger], class: 'Authors::Tumblr'
+    factory :author_flickr, traits: [:flickr, :stranger], class: 'Authors::Flickr'
+    factory :author_vimeo, traits: [:vimeo, :stranger], class: 'Authors::Vimeo'
+    factory :author_google, traits: [:google, :stranger], class: 'Authors::Google'
+    factory :author_twitter, traits: [:facebook, :stranger], class: 'Authors::Twitter'
+    factory :author_facebook,traits: [:facebook, :stranger],  class: 'Authors::Facebook'
+    factory :author_phony, traits: [:phony, :stranger], class: 'Authors::Phony'
   end
 
   factory :user do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
-    authors [FactoryGirl.create(:authors_phony,identity_state: :known)]
     roles [Role.find_or_create_by_name('Fan')]
+
+    factory :admin do
+      roles [Role.find_or_create_by_name('Admin')]
+    end
+
+    factory :user_with_email do
+      email 'scott+test@copper.is'
+    end
+
+    factory :user_with_facebook_author do
+      ignore do
+        authors_count 1
+      end
+      after(:create) do |user, evaluator|
+        FactoryGirl.create_list(:author_facebook, evaluator.authors_count, user: user)
+      end
+    end
   end
 
-  factory :admin, class:'User' do
-    name 'admin joe'
-    accept_terms true
-    tip_preference_in_cents 50
-    authors [FactoryGirl.create(:authors_phony,identity_state: :known)]
-    roles [Role.find_or_create_by_name('Admin')]
-  end
-
-
-  factory :user_email, class:'User' do
-    name 'Joe'
-    email 'scott+test@copper.is'
-    accept_terms true
-    tip_preference_in_cents 50
-    authors [FactoryGirl.create(:authors_phony,identity_state: :known)]
-    roles [Role.find_or_create_by_name('Fan')]
-  end
-
-
-  factory :user_phony, class:'User' do
-    name 'dude'
-    accept_terms true
-    tip_preference_in_cents 50
-    authors [FactoryGirl.create(:authors_phony,identity_state: :known, username:'her')]
-    roles [Role.find_or_create_by_name('Fan')]
-  end
-
-  factory :order_current, :class => 'Order' do
+  factory :order do
     association :user
-    order_state 'current'
-  end
 
-  factory :order_unpaid, :class => 'Order' do
-    association :user
-    order_state 'unpaid'
-  end
+    trait :current do
+      order_state 'current'
+    end
 
-  factory :order_paid, :class => 'Order' do
-    association :user
-    order_state 'paid'
-  end
+    trait :unpaid do
+      order_state 'unpaid'
+    end
 
-  factory :order_denied, :class => 'Order' do
-    association :user
-    order_state 'denied'
-  end
+    trait :paid do
+      order_state 'paid'
+    end
 
-  factory :authored_page, :class => 'Page' do
-    url { FactoryGirl.generate(:twitter_url_with_path) }
-    author_state 'adopted'
-    association :author, factory: :authors_google
+    trait :denied do
+      order_state 'denied'
+    end
+
+    factory :order_current, traits: [:current]
+    factory :order_unpaid, traits: [:unpaid]
+    factory :order_paid, traits: [:paid]
+    factory :order_denied, traits: [:denied]
   end
 
   factory :page do
     url { FactoryGirl.generate(:twitter_url_with_path) }
+    factory :authored_page do
+      author_state 'adopted'
+      association :author, factory: :author_twitter
+    end
   end
 
   factory :tip do
@@ -152,15 +152,21 @@ FactoryGirl.define do
 
   factory :check do
     association :user
-  end
 
-  factory :check_paid, :class => 'Check' do
-    association :user
-    check_state 'paid'
-  end
+    trait :earned do
+      check_state 'earned'
+    end
 
-  factory :check_cashed, :class => 'Check' do
-    association :user
-    check_state 'cashed'
+    trait :paid do
+      check_state 'paid'
+    end
+
+    trait :cashed do
+      check_state 'cashed'
+    end
+
+    factory :check_earned, traits: [:earned]
+    factory :check_paid, traits: [:paid]
+    factory :check_cashed, traits: [:cashed]
   end
 end

@@ -8,8 +8,8 @@ class Author < ActiveRecord::Base
 
   attr_accessible :provider, :uid, :username
 
-  # validates :username, uniqueness:{scope:'provider'}, allow_blank:true
-  # validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
+  validates :username, uniqueness:{scope:'provider'}, allow_blank:true
+  validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
   validates :provider, presence:true
   validate :validate_presence_of_username_or_uid
 
@@ -53,7 +53,7 @@ class Author < ActiveRecord::Base
     end
 
     #end relationship with user
-    event :remove_user do
+    event :forget do
       transition any => :stranger
     end
 
@@ -77,7 +77,7 @@ class Author < ActiveRecord::Base
       validates :user_id, presence:true
 
       def create_page_for_author
-        unless page = Page.where(url:self.url).first
+        unless page = Page.find_by_url(self.url)
           page = Page.create(url:self.url,title:self.username, author_state:'adopted')
         end
         page.author = self

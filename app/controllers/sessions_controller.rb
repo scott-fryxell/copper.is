@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
         # associate the author
         @author.user = current_user
         @author.join!
-        @author.save()
+        @author.save
         redirect_to '/author'
       end
     else

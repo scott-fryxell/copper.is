@@ -14,7 +14,7 @@ class PagesController < ApplicationController
   end
 
   def show
-    @page = Page.where(id:params[:id]).first
+    @page = Page.find(params[:id])
     if request.headers['retrieve_as_data']
       render :action => 'show', layout:false
     else
@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   end
 
   def update
-    @page = Page.where(id:params[:id]).first
+    @page = Page.find(params[:id])
 
     if params[:thumbnail_url]
       if params[:thumbnail_url].length > 0
@@ -68,7 +68,7 @@ class PagesController < ApplicationController
   end
 
   def reject
-    @page = Page.where(id:params[:id]).first
+    @page = Page.find(params[:id])
     @page.reject!
     render :action => 'update', :layout => false
   end

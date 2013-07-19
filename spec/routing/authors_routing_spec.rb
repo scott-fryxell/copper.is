@@ -20,7 +20,7 @@ describe AuthorsController do
     end
 
     it "routes to #enquire" do
-      get("/twitter/copper_is").should route_to("authors#enquire", :id => "twitter/copper_is")
+      get("/twitter/copper_is").should route_to("authors#enquire", provider:"twitter", username:"copper_is")
     end
 
   end

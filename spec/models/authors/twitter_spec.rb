@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Authors::Twitter do
   before do
-    @author = FactoryGirl.create(:authors_twitter, username:"_ugly")
+    @author = FactoryGirl.create(:author_twitter, username:"_ugly")
     @author.stub(:send_tweet)
   end
 

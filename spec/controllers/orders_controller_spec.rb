@@ -40,7 +40,7 @@ describe OrdersController do
   describe 'as fan', :broken do
     before :each do
       admin_setup
-      @her = create!(:user_phony)
+      @her = create!(:user)
       @her.current_order.rotate!
       @her.orders.unpaid.first.charge!
       @her_paid_order = @her.orders.paid.first
@@ -106,7 +106,7 @@ describe OrdersController do
   describe 'as Admin' do
     before :each do
       admin_setup
-      @her = create!(:user_phony)
+      @her = create!(:user)
       @her.current_order.rotate!
       @her.orders.unpaid.first.charge!
       @her_paid_order = @her.orders.paid.first

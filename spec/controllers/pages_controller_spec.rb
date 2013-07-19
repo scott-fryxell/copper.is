@@ -16,7 +16,7 @@ describe PagesController do
           @page1 = create!(:page,author_state:'adopted')
           @page2 = create!(:page,author_state:'adopted')
 
-          get :index, format: :json
+          get :index
           assigns(:pages).should_not be_nil
           assigns(:pages).should eq([@page1, @page2])
         end

@@ -4,7 +4,7 @@ describe Authors::Youtube do
 
   describe '#populate_uid_and_username!' do
     before do
-      @author = FactoryGirl.create(:authors_youtube, username:"_ugly")
+      @author = FactoryGirl.create(:author_youtube, username:"_ugly")
     end
 
     it 'finds the uid if username is set' # do

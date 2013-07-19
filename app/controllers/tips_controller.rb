@@ -3,19 +3,19 @@ class TipsController < ApplicationController
 
   def index
     if params[:state]
-      @tips = Tip.send(params[:state]).limit(25)
+      @tips = Tip.send(params[:state]).endless(params[:endless])
     elsif params[:user_id]
-      @tips = User.where(id:params[:user_id]).first.tips
+      @tips = User.find(params[:user_id]).tips
     elsif params[:order_id]
       @tips = Tip.where(order_id:params[:order_id])
     elsif params[:page_id]
       @tips = Tip.where(page_id:params[:page_id])
     end
-    render action:'index', layout:false if request.headers['retrieve_as_data']
+    render action:'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
   def show
-    @tip = Tip.where(id:params[:id]).first
+    @tip = Tip.find(params[:id])
     render action:'show', layout:false if request.headers['retrieve_as_data']
   end
 
@@ -47,8 +47,6 @@ class TipsController < ApplicationController
       @tip.save
     end
     render nothing:true, status:200
-  rescue ActiveRecord::RecordNotFound
-    render nothing:true, status:403
   end
 
   def destroy

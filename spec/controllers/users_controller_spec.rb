@@ -52,8 +52,14 @@ describe UsersController do
 
     describe 'show' do
       describe '/users/:id' do
-        it 'assigns user with id current' do
-          get_with @me, :show, id:'me', format: :json
+        it 'assigns user with id ' do
+          get_with @me, :show, id:@me.id
+          response.status.should == 200
+          assigns(:user).id.should == @me.id
+        end
+
+        it 'assigns user with id me' do
+          get_with @me, :show, id:'me'
           response.status.should == 200
           assigns(:user).id.should == @me.id
         end
@@ -90,7 +96,7 @@ describe UsersController do
 
         describe 'her' do
           before :each do
-            @her = create!(:user_phony)
+            @her = create!(:user)
           end
           it 'does not update email' do
             put_with @me, :update, id:@her.id, user:{email:'dude@place.com'}

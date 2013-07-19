@@ -77,7 +77,7 @@ class HomeController < ApplicationController
   def claim_facebook_pages
     if pages = params[:facebook_objects]
 
-      facebook = Author.where(provider:"facebook").first
+      facebook = Author.where(provider:"facebook", user_id:current_user.id).first
       graph = Koala::Facebook::API.new(facebook.token)
 
       puts "getting facebook pages owned by author #{current_user.name}"

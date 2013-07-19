@@ -35,7 +35,7 @@ end
 #   watch(%r{^config/.+\.rb$})
 # end
 
-guard 'spork', wait: 15, cucumber: false, rspec: true, test_unit: false do
+guard 'spork', wait: 20, cucumber: false, rspec: true, test_unit: false do
   watch('Gemfile')
   watch('Gemfile.lock')
   watch('config/application.rb')
@@ -43,12 +43,11 @@ guard 'spork', wait: 15, cucumber: false, rspec: true, test_unit: false do
   watch(%r{^config/environments/.+\.rb})
   watch(%r{^config/initializers/.+\.rb})
   watch('spec/spec_helper.rb')
-  watch('spec/support.rb')
   watch('spec/factories.rb')
   watch('.rspec')
 end
 
-guard 'rspec', cli:'--color --format doc --drb --profile', all_on_start:false, all_after_pass:false do
+guard 'rspec', cli:'--color --format doc --drb', all_on_start:false, all_after_pass:false do
   watch(/^spec\/.+\.rb$/) { 'spec' }
   watch(/^app\/.+\.rb$/) { 'spec' }
   watch(/^lib\/.+\.rb$/) { 'spec' }

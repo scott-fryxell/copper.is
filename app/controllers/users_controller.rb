@@ -2,15 +2,15 @@ class UsersController < ApplicationController
   filter_access_to :all
   filter_access_to :update, attribute_check:true
   def index
-    @users = User.order("created_at DESC").limit(25)
-    render :action => 'index', :layout => false if request.headers['retrieve_as_data']
+    @users = User.order("created_at DESC").endless(params[:endless])
+    render :action => 'index', :layout => false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
   def update
     if 'me' == params[:id]
       @user = current_user
     else
-      @user = User.where(id:params[:id]).first()
+      @user = User.find(params[:id])
     end
 
     @user.update_attributes(params[:user])
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     if params[:id] == 'me'
       @user = current_user
     else
-      @user = User.where(id:params[:id]).first
+      @user = User.find(params[:id])
     end
     render :action => 'show', :layout => false if request.headers['retrieve_as_data']
   end

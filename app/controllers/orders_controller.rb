@@ -9,11 +9,11 @@ class OrdersController < ApplicationController
     else
       @orders = Order.order("created_at DESC").endless(params[:endless])
     end
-    render :action => 'index', :layout => false if request.headers['retrieve_as_data']
+    render :action => 'index', :layout => false if request.headers['retrieve_as_data'] or params[:endless]
   end
 
   def show
-    @order = Order.where(id:params[:id]).first
+    @order = Order.find(params[:id])
     render :action => 'show', :layout => false if request.headers['retrieve_as_data']
   end
 end

@@ -16,31 +16,31 @@ class AuthorsController < ApplicationController
   end
 
   def show
-    @author = Author.where(id:params[:id]).first
+    @author = Author.find(params[:id])
     render :action => 'show', :layout => false if request.headers['retrieve_as_data']
   end
 
   def update
-    @author = author.where(id:params[:id])
+    @author = author.find(params[:id])
     @author.update_attributes(params[:author])
     @author.save!
   end
 
   def destroy
     author = Author.find(params[:id])
-    author.remove_user!
+    author.forget!
     render nothing:true, status:200
   end
 
   def enquire
-    provider = params[:id].split('/').first
-    unless Author.providers.include?(provider.to_sym)
+
+    unless Author.providers.include?(params[:provider].to_sym)
       return render nothing:true, status:404
     end
-
-    username = params[:id].split('/').last
-    @author = Author.where(username:username, provider:provider).first
-
+    @author = Author.where(provider:params[:provider], username:params[:username]).first
+    unless @author
+      @author = Author.factory(provider:params[:provider],username:params[:username])
+    end
   end
 
 end

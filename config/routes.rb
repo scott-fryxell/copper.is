@@ -65,6 +65,7 @@ Copper::Application.routes.draw do
   mount Resque::Server.new, :at => "/admin/resque"
   root :to => 'home#index'
 
-  get "*id",  to:'authors#enquire'
+  # constraints allow usernames to have periods
+  get "/:provider/:username",  to:'authors#enquire', constraints:{username:/[^\/]+/}
 
 end
