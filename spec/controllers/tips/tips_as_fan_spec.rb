@@ -4,7 +4,6 @@ describe TipsController do
   before :each do
     mock_page_and_user
     me_setup
-    # her_setup
   end
 
   describe 'as Fan' do
