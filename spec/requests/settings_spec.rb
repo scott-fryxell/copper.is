@@ -96,7 +96,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be able to save their credit card information", :vcr do
+  it "should be able to save their credit card information" do
     within("#card") do
       page.should have_css('form', :visible => true)
       page.should have_css('div', :visible => false)
@@ -122,7 +122,7 @@ describe "Fan's settings", :slow do
       find("div p.type").should have_content("Visa")
       find("div p.expiration").should have_content("4/2015")
     end
-    click_link 'Account settings'
+    visit '/settings'
     sleep 2
     page.save_screenshot('tmp/screenshots/settings/02.png')
 
@@ -135,7 +135,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be told if their credit card info is bad", :vcr do
+  it "should be told if their credit card info is bad" do
     within("#card") do
       page.should have_css('form', :visible => true)
       fill_in('number', :with => '4000000000000002')

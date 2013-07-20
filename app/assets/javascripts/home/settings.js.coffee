@@ -67,16 +67,16 @@ $(document).on "me.home_settings", ->
 
   $("#email > header > a").click() unless document.me.email
 
-  # if document.me.stripe_id
-  #   jQuery.ajax
-  #     url: '/cards'
-  #     type: 'get'
-  #     success:  (data) ->
-  #       $("#card p.type").text data.active_card.type
-  #       $("#card p.number").text data.active_card.last4
-  #       $("#card p.expiration").text "#{data.active_card.exp_month}/#{data.active_card.exp_year}"
-  #       $("#card > div").css 'display', 'inline-block'
-  #     error: (data, textStatus, jqXHR) ->
-  #       console.error "error getting stripe info", data, textStatus, jqXHR ;
-  # else
-  #   $("#card").trigger "bad_credit_card"
+  if document.me.stripe_id
+    jQuery.ajax
+      url: '/cards'
+      type: 'get'
+      success:  (data) ->
+        $("#card p.type").text data.active_card.type
+        $("#card p.number").text data.active_card.last4
+        $("#card p.expiration").text "#{data.active_card.exp_month}/#{data.active_card.exp_year}"
+        $("#card > div").css 'display', 'inline-block'
+      error: (data, textStatus, jqXHR) ->
+        console.error "error getting stripe info", data, textStatus, jqXHR ;
+  else
+    $("#card").trigger "bad_credit_card"

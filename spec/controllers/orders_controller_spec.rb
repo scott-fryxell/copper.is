@@ -102,7 +102,6 @@ describe OrdersController do
     end
   end
 
-
   describe 'as Admin' do
     before :each do
       admin_setup
