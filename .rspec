@@ -2,4 +2,3 @@
 --tag focus
 --fail-fast
 --tag ~@slow
---tag ~@network

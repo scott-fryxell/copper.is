@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe TipsController, :network do
+describe TipsController do
   describe 'high level' do
     before :each do
       mock_user
@@ -8,7 +8,7 @@ describe TipsController, :network do
       Author.any_instance.stub(:_send_wanted_message)
     end
 
-    it 'tips pages' do
+    it 'tips pages', :vcr do
       proc do
         post_with @me, :create, tip:{url:'http://twitter.com/ableton'}
         @page = Page.find_by_url('http://twitter.com/ableton')
@@ -18,21 +18,21 @@ describe TipsController, :network do
       end.should change(Tip,:count).by(1)
     end
 
-    it 'finds authors of tipped pages' do
+    it 'finds authors of tipped pages', :vcr do
       post_with @me, :create, tip:{url:'https://twitter.com/ableton'}
       @page = Page.find_by_url('https://twitter.com/ableton')
       @page.author.should_not be_nil
       @page.author.username.should eq('ableton')
     end
 
-    it 'messages wanted authors' do
+    it 'messages wanted authors', :vcr do
       post_with @me, :create, tip:{url:'http://twitter.com/ableton'}
       @me.current_order.tips.first.destroy
       @page = Page.find_by_url('http://twitter.com/ableton')
     end
 
-    it 'pays known authors' do
-      @her_author = create!(:author)
+    it 'pays known authors', :vcr do
+      @her_author = create!(:author_phony)
       post_with @me, :create, tip:{url:"http://example.com/#{@her_author.username}"}
       @page = Page.find_by_url("http://example.com/#{@her_author.username}")
       @page.author.should eq(@her_author)

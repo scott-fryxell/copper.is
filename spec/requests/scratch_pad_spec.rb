@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-describe "some shit that needs doin'" do
+describe "scratch_pad'" do
 
   describe "/:provider/:username" do
     it "should display all the pages that have been tipped"

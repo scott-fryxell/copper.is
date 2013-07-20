@@ -96,7 +96,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be able to save their credit card information", :network do
+  it "should be able to save their credit card information", :vcr do
     within("#card") do
       page.should have_css('form', :visible => true)
       page.should have_css('div', :visible => false)
@@ -135,7 +135,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be told if their credit card info is bad", :network do
+  it "should be told if their credit card info is bad", :vcr do
     within("#card") do
       page.should have_css('form', :visible => true)
       fill_in('number', :with => '4000000000000002')

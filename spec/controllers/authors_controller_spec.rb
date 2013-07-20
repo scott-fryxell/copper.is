@@ -115,35 +115,35 @@ describe AuthorsController do
     end
   end
 
-  describe 'as Admin', :broken do
+  describe 'as Admin' do
     before :each do
-      me_setup
-      @author = create!(:author)
+      admin_setup
+      @author = create!(:author_phony)
     end
 
     describe 'index' do
       describe '/authors' do
-        it 'should not see authors index' do
-          get_with @me, :index
-          response.status.should == 403
+        it 'should see authors index' do
+          get_with @admin, :index
+          response.status.should == 200
         end
       end
     end
 
     describe 'show' do
       describe '/authors/:id' do
-        it '403' do
-          get_with @me, :show, id:@author.id
-          response.status.should == 403
+        it '200' do
+          get_with @admin, :show, id:@author.id
+          response.status.should == 200
         end
       end
     end
 
     describe 'update' do
       describe 'PUT /authors/:id' do
-        it '403' do
-          put_with @me, :update, id:@author.id
-          response.status.should == 403
+        it '200' do
+          put_with @admin, :update, id:@author.id
+          response.status.should == 200
         end
       end
     end
@@ -152,9 +152,9 @@ describe AuthorsController do
       describe 'DELETE /authors/:id' do
         it 'destroys the given author' do
           proc do
-            delete :destroy, id:@author.id
+            delete_with @admin, :destroy, id:@author.id
           end.should_not change(Author, :count)
-          response.status.should == 403
+          response.status.should == 200
         end
       end
     end

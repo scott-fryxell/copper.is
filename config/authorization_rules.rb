@@ -5,11 +5,11 @@ authorization do
 
   role :admin do
     includes :fan
-    has_permission_on :users,   :to => :manage
+    has_permission_on :users,    :to => :manage
     has_permission_on :pages,   :to => :manage
     has_permission_on :authors, :to => :manage
-    has_permission_on :tips,    :to => :manage
-    has_permission_on :home,   :to => :manage
+    has_permission_on :tips,      :to => :manage
+    has_permission_on :home,    :to => :manage
   end
 
   role :fan do

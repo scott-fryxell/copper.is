@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe Authors::Twitter do
   before do
-    @author = FactoryGirl.create(:author_twitter, username:"_ugly")
+    @author = create!(:author_twitter, username:"_ugly")
     @author.stub(:send_tweet)
   end
 
   describe "Should discover author from url's " do
-    it "https://twitter.com/#!/nytopinion", :network do
+    it "https://twitter.com/#!/nytopinion", :vcr do
       Author.find_or_create_from_url("https://twitter.com/#!/nytopinion").should be_true
     end
 
-    it "https://twitter.com/nytopinion", :network do
+    it "https://twitter.com/nytopinion", :vcr do
       Author.find_or_create_from_url("https://twitter.com/nytopinion").should be_true
     end
   end

@@ -148,6 +148,34 @@ FactoryGirl.define do
     association :order, factory: :order_current
     association :page
     amount_in_cents 100
+
+    trait :promised do
+      paid_state 'promised'
+    end
+
+    trait :charged do
+      paid_state 'charged'
+    end
+
+    trait :kinged do
+      paid_state 'kinged'
+    end
+
+    factory :tip_promised do
+      promised
+      association :order, factory: :order_current
+    end
+
+    factory :tip_charged do
+      charged
+      association :order, factory: :order_paid
+    end
+
+    factory :tip_kinged do
+      kinged
+      association :order, factory: :order_paid
+      association :check, factory: :check_paid
+   end
   end
 
   factory :check do
