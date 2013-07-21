@@ -22,9 +22,9 @@ class Author < ActiveRecord::Base
 
   def url
     if self.username
-      "#{self.provider}.com/#{self.username}"
+      "https://#{self.provider}.com/#{self.username}"
     else
-      "#{self.provider}.com/#{self.uid}"
+      "https://#{self.provider}.com/#{self.uid}"
     end
   end
 

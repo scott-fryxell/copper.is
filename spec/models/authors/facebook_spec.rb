@@ -18,7 +18,6 @@ describe Authors::Facebook do
     it "finds user on facebook.com old style id" do
       Author.provider_from_url("https://www.facebook.com/profile.php?id=1340075098").should be_true
     end
-
   end
 
   describe "Should return nil for url's that don't provide user information" do
@@ -55,44 +54,58 @@ describe Authors::Facebook do
     end
   end
 
-  describe "Messaging creators" do
-    it "has a method to send an email" #do
-    #   @author.respond_to?(:send_email).should be_true
-    # end
-
-    it "should send a non copper user an email that they have royalties" # do
-    #  Twitter.stub(:update).with("@#{@author.username} Somebody loves you. You have money waiting for you go to copper.is/p/7657658675 to see")
-    #  @author.inform_non_user_of_promised_tips
-    # end
-
-    it "should not send a copper user an email that we're trying to get them to use the service" # do
-    #  @author.user = FactoryGirl.create(:user)
-    #   Twitter.should_not_receive(:update)
-    #   @author.inform_non_user_of_promised_tips
-    # end
-  end
-
   describe '#populate_uid_and_username!' do
     before do
-      @author = FactoryGirl.create(:author_facebook, username:"mgarriss")
+      @author = FactoryGirl.create(:author_facebook, username:"scott.fryxell")
     end
 
     after do
       @author.save.should be_true
       @author.populate_uid_and_username!
-      @author.username.should == 'mgarriss'
-      @author.uid.should == '597463246'
+      @author.username.should == 'scott.fryxell'
+      @author.uid.should == '580281278'
     end
 
-    it 'finds the uid if usenname is set' # do
-     #      @author.uid = nil
-     #      @author.username = 'mgarriss'
-     #    end
+    it 'finds the uid if usenname is set'  do
+      @author.uid = nil
+      @author.username = 'scott.fryxell'
+    end
 
-    it 'finds the username if uid is set' # do
-     #      @author.uid = '597463246'
-     #      @author.username = nil
-     #    end
+    it 'finds the username if uid is set' do
+      @author.uid = '580281278'
+      @author.username = nil
+    end
   end
+
+  describe 'asset paths by username' do
+    before do
+      @author = FactoryGirl.create(:author_facebook, username:"scott.fryxell")
+    end
+
+    it "should return the users profile_img", :vcr do
+      @author.profile_image.should == "https://graph.facebook.com/scott.fryxell/picture?type=square"
+    end
+
+    it "should return the users profile url", :vcr do
+      @author.url.should == "https://www.facebook.com/scott.fryxell"
+    end
+
+  end
+
+  describe 'asset paths by uid' do
+    before do
+      @author = FactoryGirl.create(:author_facebook, uid:'580281278')
+    end
+
+    it "should return the users profile_img" do pending
+      @author.profile_image.should == "https://graph.facebook.com/scott.fryxell/picture?type=square"
+    end
+
+    it "should return the users profile url" do pending
+      @author.url.should == "https://www.facebook.com/scott.fryxell"
+    end
+
+  end
+
 
 end

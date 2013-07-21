@@ -16,6 +16,30 @@ describe Authors::Twitter do
     end
   end
 
+  describe '#populate_uid_and_username!' do
+    before do
+      @author = FactoryGirl.create(:author_twitter, username:"copper_is")
+    end
+
+    after do
+      @author.save.should be_true
+      @author.populate_uid_and_username!
+      @author.username.should == 'copper_is'
+      @author.uid.should == '398095666'
+    end
+
+    it 'finds the uid if usenname is set', :vcr do
+      @author.uid = nil
+      @author.username = 'copper_is'
+    end
+
+    it 'finds the username if uid is set', :vcr do
+      @author.uid = '398095666'
+      @author.username = nil
+    end
+  end
+
+
   describe "Should return nil for url's that don't provide user information" do
     it "https://www.twitter.com/" do
       Author.provider_from_url("https://www.twitter.com/").should be_false
@@ -25,5 +49,14 @@ describe Authors::Twitter do
       Author.provider_from_url("http://twitter.com/share").should be_false
     end
   end
+
+  it "should render a profile url", :vcr do
+    @author.url.should == "https://twitter.com/_ugly"
+  end
+
+  it "should render a profile image", :vcr do
+    @author.profile_image.should == "https://si0.twimg.com/profile_images/1303637209/nostrals.jpg"
+  end
+
 
 end

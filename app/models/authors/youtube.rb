@@ -4,19 +4,19 @@ class Authors::Youtube < Author
 
   def self.discover_uid_and_username_from_url url
     path = URI.parse(url).path
-    
-    if %r{/watch}.match(path) 
+
+    if %r{/watch}.match(path)
       video = connect_to_api.video_by(url)
       author_name = URI.parse(video.author.uri).path.split('/')[4]
       { :username => author_name }
     elsif %r{/user/}.match(path)
       user = %r{/user/}.match(path).post_match
-      { :username => user }  
+      { :username => user }
     elsif user = %r{/}.match(path).post_match
-      { :username => user }  
+      { :username => user }
     end
   end
-  
+
   private
 
   # def self.discover_uid_from_video url

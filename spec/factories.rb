@@ -82,7 +82,7 @@ FactoryGirl.define do
     factory :author_flickr, traits: [:flickr, :stranger], class: 'Authors::Flickr'
     factory :author_vimeo, traits: [:vimeo, :stranger], class: 'Authors::Vimeo'
     factory :author_google, traits: [:google, :stranger], class: 'Authors::Google'
-    factory :author_twitter, traits: [:facebook, :stranger], class: 'Authors::Twitter'
+    factory :author_twitter, traits: [:twitter, :stranger], class: 'Authors::Twitter'
     factory :author_facebook,traits: [:facebook, :stranger],  class: 'Authors::Facebook'
     factory :author_phony, traits: [:phony, :stranger], class: 'Authors::Phony'
   end

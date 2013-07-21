@@ -44,23 +44,36 @@ class Authors::Facebook < Author
   end
 
   def url
-    if self.username
-      "https://facebook.com/#{self.username}"
-    else
-      "https://facebook.com/#{self.uid}"
+    unless self.username
+      populate_username_from_uid
+      save!
     end
+    "https://www.facebook.com/#{self.username}"
   end
 
   def profile_image
     super do
-      if self.username
-        pic_id = self.username
-      else
-        pic_id = self.uid
+      unless self.username
+        populate_username_from_uid
+        save!
       end
-      "https://graph.facebook.com/#{pic_id}/picture?type=square"
+      "https://graph.facebook.com/#{self.username}/picture?type=square"
     end
   end
 
+  def populate_username_from_uid!
+    fb_object = graph.get_object(self.uid)
+    self.username = fb_object['username']
+  end
 
+  def populate_uid_from_username!
+    fb_object = graph.get_object(self.username)
+    self.uid = fb_object['id']
+  end
+
+private
+  def graph
+    @oauth ||= Koala::Facebook::OAuth.new(Copper::Application.config.facebook_appid, Copper::Application.config.facebook_secret, "/auth/facebook/callback")
+    @graph ||= Koala::Facebook::API.new(@oauth.get_app_access_token)
+  end
 end

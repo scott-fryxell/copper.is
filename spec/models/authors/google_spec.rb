@@ -2,8 +2,16 @@ require 'spec_helper'
 # http://plus.google.com/110547857076579322423/
 describe Authors::Google do
   before do
-    @author = FactoryGirl.create(:author_google, username:"_ugly")
+    @author = FactoryGirl.create(:author_google, username:"_ugly", uid:'666')
     # http://plus.google.com/110547857076579322423/
+  end
+
+  it "should render a profile url" do
+    @author.url.should == "https:///plus.google.com/666"
+  end
+
+  it "should render a profile image" do
+    @author.profile_image.should == "https://plus.google.com/s2/photos/profile/666"
   end
 
   describe '#populate_uid_and_username!' do

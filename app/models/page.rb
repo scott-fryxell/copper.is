@@ -48,10 +48,7 @@ class Page < ActiveRecord::Base
 
   def learn_url (content = self.agent.get(url))
     logger.info ":  url"
-    if url_tag = content.at('object[itemtype="#page"] > data[itemprop=url]')
-      logger.info ":    itemprop=url=#{url_tag.attributes['value'].value[0...100]}"
-      self.url = url_tag.attributes['value'].value
-    elsif url_tag = content.at('meta[property="og:url"]')
+    if url_tag = content.at('meta[property="og:url"]')
       logger.info ":    og:url=#{url_tag.attributes['content'].value[0...100]}"
       self.url = url_tag.attributes['content'].value
     end

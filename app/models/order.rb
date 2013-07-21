@@ -25,18 +25,6 @@ class Order < ActiveRecord::Base
     end
 
     state :current do
-      def time_to_pay?
-        if ( self.tiped_enough_to_pay? )
-          return true
-        else
-          return false
-        end
-      end
-
-      def tiped_enough_to_pay?
-        self.tips.sum(:amount_in_cents) >= 1000
-      end
-
     end
 
     state :current do
