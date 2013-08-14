@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '1.9.3'
+ruby '2.0.0'
 gem 'rails', '3.2.13'
 gem 'jquery-rails'
 
@@ -45,6 +45,7 @@ gem "lograge"
 
 # group :production do
   gem "pg"
+  gem 'sqlite3'
 # end
 
 group :development, :test do
@@ -55,7 +56,6 @@ group :development, :test do
   gem 'pry'
   gem 'ruby_parser'
   gem 'rspec-rails'
-  gem "capybara-webkit"
   gem "poltergeist"
   gem 'database_cleaner', '~> 0.6.7'
   gem 'guard'
@@ -73,7 +73,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'poltergeist'
   gem 'factory_girl_rails'
   gem 'resque_spec'
   gem 'hashugar'
