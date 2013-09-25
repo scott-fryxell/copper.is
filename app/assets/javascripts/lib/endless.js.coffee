@@ -18,6 +18,8 @@ class Endless
           document.endless.check = false
           if $(window).scrollTop() > $(document).height() - $(window).height() - 350
             $('body').trigger('next.endless')
+    
+    $(window).scroll()
 
   next: =>
     @page++
@@ -35,7 +37,3 @@ class Endless
 
   wait: =>
     @check = true
-
-$(document).ready ->
-  new Endless()
-  $(window).scroll()

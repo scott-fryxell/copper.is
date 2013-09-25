@@ -1,4 +1,5 @@
 #= require mixpanel_analytics
+#= require honeybadger.min
 #= require jquery
 #= require jquery.cookie
 #= require jquery.timeago
@@ -6,16 +7,14 @@
 #= require jquery.browser
 #= require jquery.details
 #= require Item
-#= require shared/Item
-#= require shared/Me
-#= require shared/tips
-#= require shared/copper
-#= require shared/button
-#= require shared/address
-#= require shared/card
-#= require shared/email
-#= require shared/honeybadger
-#= require shared/endless
+#= require lib/Item
+#= require lib/Me
+#= require lib/tips
+#= require lib/button
+#= require lib/address
+#= require lib/card
+#= require lib/email
+#= require lib/endless
 #= require home/index
 #= require home/author
 #= require home/settings
@@ -30,3 +29,28 @@
 #= require authors/edit
 #= require orders/index
 #= require olark
+
+$(document).ready ->
+  $.fn.app_init($('body'))
+  new Endless()
+  $(document).trigger "load.#{$('body').attr('id')}"
+  $(document).trigger(window.location.hash)
+
+$(document).on 'load.endless', ->
+  $.fn.app_init(@)
+
+Honeybadger.configure
+  api_key: '<%=Copper::Application.config.honeybadger_js_app_id%>'
+  project_root: '<%=Copper::Application.config.hostname%>'
+  environment: '<%=Rails.env%>'
+  <%= "disabled: true" unless Rails.env == "production" %>
+
+window.onerror =  (message, url, line) -> 
+  Honeybadger.notify(new Error(message, url, line));
+  return true     
+
+$.fn.init_cotent: (@) ->
+  $(@).find('time').timeago()
+  $(@).find('[data-cents]').each -> $.fn.show_dollars(@)
+  $.fn.discover_items(@) # return the items created
+

@@ -21,87 +21,6 @@
 // not what's being maintained in a seperate javascript object.
 // every time you access the items on the page this state is re-created
 // from the dom.
-Item = {
-  items: {},
-  discover_items: function(element){
-    // Determine what elements on the page
-    // are available to be managed.
-    $("*[itemscope]").each(function (index){
-      if(!Item.items[$(this).attr("itemtype")]){
-        Item.items[$(this).attr("itemtype")] = []
-      }
-      // each item must populate itemtype and itemId
-      var i = {}
-      i['id'] = $(this).attr('itemid');
-      $(this).find("*[itemprop]").each(function (){
-        if(Item.get_value(this)){
-          i[$(this).attr('itemprop')] = Item.get_value(this);
-        }
-      });
-      Item.items[$(this).attr("itemtype")].push(i);
-
-    });
-    return Item.items;
-  },
-  get_value: function (element){
-    if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
-      if ($(element).val())
-        return $(element).val().trim();
-      else
-        return ""
-    }
-    else if ($(element).attr('data-value')){
-      return $(element).attr('data-value');
-    }
-    else if( $(element).is("a") || $(element).is("link")){
-      return $(element).attr('href');
-    }
-    else if( $(element).is("img") || $(element).is("object") || $(element).is("embed")){
-      return $(element).attr('src');
-    }
-    else if( $(element).is("meta")){
-      return $(element).attr('content');
-    }
-    else if( $(element).is("time")){
-      return $(element).attr('datetime');
-    }
-    else {
-      if($(element).text()){
-        return $(element).text().trim();
-      }
-    }
-  },
-  update_page: function(item){
-    // update exsisting items on the page itemid
-    // is assumed to be unique identifier
-    $.each(item, function(key, value){
-      if(value != null){
-        $('[itemprop=' + key + ']').each(function(){
-          if($(this).is("input") || $(this).is("select") || $(this).is("textarea") ){
-            $(this).val(value);
-          }
-          else if ($(this).attr('data-value')){
-            $(this).attr('data-value', value)
-          }
-          else if( $(this).is("a") || $(this).is("link")){
-            $(this).attr('href', value);
-          }
-          else if( $(this).is("img") ||  $(this).is("object") ||  $(this).is("embed")){
-            $(this).attr('src', value);
-          }
-          else {
-            $(this).text(value);
-          }
-          $(this).trigger('item.changed');
-        });
-      }
-    });
-  },
-  CSRFProtection: function (xhr){
-    var token = $('meta[name="csrf-token"]').attr('content');
-    if (token) xhr.setRequestHeader('X-CSRF-Token', token);
-  }
-}
 document.getItems = function (type){
   if(type){
     return Item.items[type]
@@ -174,11 +93,95 @@ $("[itemscope] form, [itemref] form").submit(function(event){
   return false;
 });
 $(document).ready(function (event){
-  jQuery.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { Item.CSRFProtection(xhr); }});
+  jQuery.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { $.fn.CSRFProtection(xhr); }});
 
-  if(Item.discover_items()){
+  if($.fn.discover_items()){
     // let any listeners know that their are items on the page
     $(document).trigger("items." + $('body').attr('id'));
   }
 });
+
+(function($) {
+  $.fn.extend({
+    discover_items: function(element){
+      // Determine what elements on the page
+      // are available to be managed.
+      $("*[itemscope]").each(function (index){
+        if(!Item.items[$(this).attr("itemtype")]){
+          Item.items[$(this).attr("itemtype")] = []
+        }
+        // each item must populate itemtype and itemId
+        var i = {}
+        i['id'] = $(this).attr('itemid');
+        $(this).find("*[itemprop]").each(function (){
+          if(Item.get_value(this)){
+            i[$(this).attr('itemprop')] = Item.get_value(this);
+          }
+        });
+        Item.items[$(this).attr("itemtype")].push(i);
+
+      });
+      return Item.items;
+    },
+    get_value: function (element){
+      if($(element).is("input") || $(element).is("textarea") || $(element).is("select")){
+        if ($(element).val())
+          return $(element).val().trim();
+        else
+          return ""
+      }
+      else if ($(element).attr('data-value')){
+        return $(element).attr('data-value');
+      }
+      else if( $(element).is("a") || $(element).is("link")){
+        return $(element).attr('href');
+      }
+      else if( $(element).is("img") || $(element).is("object") || $(element).is("embed")){
+        return $(element).attr('src');
+      }
+      else if( $(element).is("meta")){
+        return $(element).attr('content');
+      }
+      else if( $(element).is("time")){
+        return $(element).attr('datetime');
+      }
+      else {
+        if($(element).text()){
+          return $(element).text().trim();
+        }
+      }
+    },
+    update_page: function(item){
+      // update exsisting items on the page itemid
+      // is assumed to be unique identifier
+      $.each(item, function(key, value){
+        if(value != null){
+          $('[itemprop=' + key + ']').each(function(){
+            if($(this).is("input") || $(this).is("select") || $(this).is("textarea") ){
+              $(this).val(value);
+            }
+            else if ($(this).attr('data-value')){
+              $(this).attr('data-value', value)
+            }
+            else if( $(this).is("a") || $(this).is("link")){
+              $(this).attr('href', value);
+            }
+            else if( $(this).is("img") ||  $(this).is("object") ||  $(this).is("embed")){
+              $(this).attr('src', value);
+            }
+            else {
+              $(this).text(value);
+            }
+            $(this).trigger('item.changed');
+          });
+        }
+      });
+    },
+    CSRFProtection: function (xhr){
+      var token = $('meta[name="csrf-token"]').attr('content');
+      if (token) xhr.setRequestHeader('X-CSRF-Token', token);
+    }
+  });
+})(jQuery);
+
 
