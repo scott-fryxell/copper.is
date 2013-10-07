@@ -39,20 +39,16 @@ gem 'cache_digests'
 gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
 gem "lograge"
 
-# gem 'rack-mini-profiler'
-# gem 'resque-scheduler', :require => 'resque_scheduler'
-# gem 'resque-heroku-scaling-canary'
-
 # group :production do
   gem "pg"
 # end
 
 group :development, :test do
+  gem 'reek'
   gem 'sqlite3'
   gem 'thin'
   gem 'awesome_print'
   gem 'simplecov', require:false
-
   gem 'pry'
   gem 'ruby_parser'
   gem 'rspec-rails'
@@ -61,11 +57,11 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'guard-spork'
   gem 'guard-pow'
   gem 'guard-process'
+  gem 'guard-zeus'
+  gem 'guard-bundler'
   gem 'rb-fsevent'
-  gem 'spork-rails'
   gem 'launchy'
   gem 'ruby-graphviz', '~> 0.9.17'
   gem 'rails-erd'
@@ -73,6 +69,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'fuubar'
   gem 'factory_girl_rails'
   gem 'resque_spec'
   gem 'hashugar'
