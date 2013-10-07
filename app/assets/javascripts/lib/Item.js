@@ -92,6 +92,7 @@ $("[itemscope] form, [itemref] form").submit(function(event){
   //don't submit the form so that the page redraws
   return false;
 });
+
 $(document).ready(function (event){
   jQuery.ajaxPrefilter(function(options, originalOptions, xhr){ if ( !options.crossDomain ) { $.fn.CSRFProtection(xhr); }});
 
