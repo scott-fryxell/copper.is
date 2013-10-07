@@ -8,4 +8,3 @@ jQuery ->
   new Me()
   $(document).trigger "load.#{$('body').attr('id')}"
   $(document).trigger window.location.hash
-
