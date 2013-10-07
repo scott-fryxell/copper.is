@@ -57,7 +57,6 @@ $(document).on "load.home_settings", ->
       $("#address > header > a").click()
 
 $(document).on "me.home_settings", ->
-
   $("#rate > form > select > option[value=#{document.me.tip_preference_in_cents}]").attr 'selected', true
 
   if document.me.country_code

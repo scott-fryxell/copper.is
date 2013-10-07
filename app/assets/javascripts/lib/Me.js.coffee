@@ -58,6 +58,3 @@ class Me
       url: '/users/me.json'
       type: 'put'
       data: jQuery.param document.me
-
-$(document).ready ->
-  new Me()
