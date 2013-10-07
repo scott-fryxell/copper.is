@@ -12,6 +12,3 @@ jQuery.ajaxPrefilter (options, originalOptions, xhr) ->
 window.onerror =  (message, url, line) -> 
   Honeybadger.notify(new Error(message, url, line));
   return true
-
-$(document).on 'load.endless', ->
-  $(@).fn.page_init()
