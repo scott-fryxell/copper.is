@@ -1,12 +1,12 @@
 #= require mixpanel_analytics
 #= require honeybadger.min
+#= require olark
 #= require jquery
 #= require jquery.cookie
 #= require jquery.timeago
 #= require jquery.tmpl
 #= require jquery.browser
 #= require jquery.details
-#= require Item
 #= require lib/Item
 #= require lib/Me
 #= require lib/tips
@@ -28,29 +28,6 @@
 #= require authors/index
 #= require authors/edit
 #= require orders/index
-#= require olark
-
-$(document).ready ->
-  $.fn.app_init($('body'))
-  new Endless()
-  $(document).trigger "load.#{$('body').attr('id')}"
-  $(document).trigger(window.location.hash)
-
-$(document).on 'load.endless', ->
-  $.fn.app_init(@)
-
-Honeybadger.configure
-  api_key: '<%=Copper::Application.config.honeybadger_js_app_id%>'
-  project_root: '<%=Copper::Application.config.hostname%>'
-  environment: '<%=Rails.env%>'
-  <%= "disabled: true" unless Rails.env == "production" %>
-
-window.onerror =  (message, url, line) -> 
-  Honeybadger.notify(new Error(message, url, line));
-  return true     
-
-$.fn.init_cotent: (@) ->
-  $(@).find('time').timeago()
-  $(@).find('[data-cents]').each -> $.fn.show_dollars(@)
-  $.fn.discover_items(@) # return the items created
-
+#= require config
+#= require setup
+#= require init
