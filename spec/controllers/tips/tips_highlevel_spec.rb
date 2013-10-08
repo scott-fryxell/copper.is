@@ -31,7 +31,8 @@ describe TipsController do
       @page = Page.find_by_url('http://twitter.com/ableton')
     end
 
-    it 'pays known authors', :vcr do
+    it 'assign tips to known authors' do
+      Page.any_instance.stub(:learn)
       @her_author = create!(:author_phony)
       post_with @me, :create, tip:{url:"http://example.com/#{@her_author.username}"}
       @page = Page.find_by_url("http://example.com/#{@her_author.username}")

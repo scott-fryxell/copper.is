@@ -19,7 +19,10 @@ require 'omniauth/test'
 
 require 'declarative_authorization/maintenance'
 
+load "#{Rails.root}/config/routes.rb"
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
+Dir["#{Rails.root}/lib/**/*.rb"].each {|f| load f}
 
 def create!(factory,*args)
   FactoryGirl.create(factory,*args)
@@ -37,17 +40,17 @@ RSpec.configure do |config|
   config.include(Reek::Spec)
   config.render_views
   config.include Capybara::DSL
-  config.filter_run_excluding :broken => true
+  config.filter_run_excluding broken:true
   config.fail_fast = false
   config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
   config.mock_with :rspec
   config.profile_examples = false
   config.treat_symbols_as_metadata_keys_with_true_values = true
-  config.filter_run :focus => true
+  config.filter_run focus:true
+  config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
   config.run_all_when_everything_filtered = true
   config.use_transactional_fixtures = false
-  # REDIS_PID = "#{Rails.root}/tmp/pids/redis-test.pid"
-  # REDIS_CACHE_PATH = "#{Rails.root}/tmp/cache/"
+  config.infer_base_class_for_anonymous_controllers = false
 
   config.around(:each, :vcr) do |example|
     name = example.metadata[:full_description].split(/\s+/, 2).join("/").underscore.gsub(/[^\w\/]+/, "_")
@@ -59,6 +62,7 @@ RSpec.configure do |config|
   config.before type: :request do
     DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
   end
+  
   config.before :suite do
     ResqueSpec.reset!
     ResqueSpec.inline = true
@@ -74,10 +78,6 @@ RSpec.configure do |config|
 
 end
 
-FactoryGirl.reload
+# FactoryGirl.reload
 
-load "#{Rails.root}/config/routes.rb"
-# load "#{Rails.root}/config/authorization_rules.rb"
-Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
-Dir["#{Rails.root}/lib/**/*.rb"].each {|f| load f}
 

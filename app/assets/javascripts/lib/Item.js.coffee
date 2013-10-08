@@ -123,9 +123,8 @@ $('body').on 'submit', '[itemscope] form, [itemref] form', ->
 
   item_element = $(@).parents '[itemscope], [itemref]'
 
-  unless id = $(item_element).attr'itemid'
-    var id = $(item_element).attr('itemref')
-
+  unless id = $(item_element).attr 'itemid'
+    id = $(item_element).attr 'itemref'
 
   item_index = 0;  # TODO get the index based on itemId
   type = $(item_element).attr 'itemtype'
@@ -151,12 +150,11 @@ $('body').on 'submit', '[itemscope] form, [itemref] form', ->
       # let any listeners know that there was a problem with the form submit
       $(form).trigger 'item.error'
       Item.update_page(Item.items[type][item_index]);
-      console.error("error submiting item form " + id, data, textStatus, jqXHR);
+      console.error("error submiting item form #{id}", data, textStatus, jqXHR);
     
     success: (data, textStatus, jqXHR) ->
       # let any listeners know that any the form submited succesfully update.
       # TODO we leave updating the items to the listener of this method. this is risky
       $(form).trigger "item.#{method}", [data, textStatus, jqXHR]
     
-  # don't submit the form so that the page redraws
-  return false
+  return false # don't submit the form let the ajax do the talking

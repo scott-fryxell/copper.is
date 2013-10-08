@@ -1,7 +1,6 @@
 $(document).on "load.home_settings", ->
 
   $("section.setting > header > a").click (event) ->
-
     event.preventDefault();
     div = $(@).parents("section").find "div"
     form = $(@).parents("section").find "form"
