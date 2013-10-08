@@ -17,7 +17,7 @@ Copper::Application.configure do
   config.hostname = "http://127.0.0.1:8080"
   config.facebook_appname = "copper-dev"
   config.facebook_appid = "180829622036113"
-  config.honeybadger_js_app_id = "df5151fb675d4d4af78d117fab648540"
+  
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = {
     'provider' => 'twitter',
