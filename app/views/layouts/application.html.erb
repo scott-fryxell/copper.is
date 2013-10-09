@@ -20,7 +20,7 @@
       <%= stylesheet_link_tag "test", media:"all" %>
     <%-end-%>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" >
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" class='<%= params[:controller].parameterize%> <%= params[:action].parameterize%>' >
     <%= render partial:"layouts/header"%>
     <%= yield %>
     <%= render partial:"layouts/footer"%>

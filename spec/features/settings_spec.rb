@@ -21,7 +21,7 @@ describe "Fan's settings", :slow do
       within("section#email") do
         find("div > p").should have_content("user@facebook.com")
         page.execute_script("document.me.email = 'change@email.com'")
-        page.execute_script("Item.update_page(document.me)")
+        page.execute_script("$('body').update_page(document.me)")
         find("div > p").should have_content("change@email.com")
         click_link "Change"
         find_field('user[email]').value.should == 'change@email.com'

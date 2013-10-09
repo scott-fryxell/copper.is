@@ -1,11 +1,11 @@
 $(document).on "load.home_index load.home_author #orders_index", ->
   $("[itemtype=tips] span[itemprop=amount_in_cents]").each ->
-    $(@).text document.copper.cents_to_dollars($(@).attr('data-value'))
+    $(@).cents_to_dollars($(@).attr('data-value'))
 
 $(document).on "load.home_index #orders_index", ->
   # format tips into dollars
   $("[itemtype=tips] input[type=text]").each ->
-    $(@).val document.copper.cents_to_dollars($(@).val())
+    $(@).cents_to_dollars($(@).val())
 
   $("[itemtype=tips] form[method=delete]").on 'item.delete', ->
     tip = $(@).parents('*[itemscope]')[0]

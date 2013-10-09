@@ -1,8 +1,8 @@
 $ ->
-  $('body').fn.page_init()
+  $('body').page_init()
 
   $(@).on 'load.endless', ->
-    $(@).fn.page_init()
+    $(@).page_init()
 
   new Me()
   new Endless()

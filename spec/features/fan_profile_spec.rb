@@ -64,9 +64,9 @@ describe "A Fan", :slow do
       # VCR.use_cassette('nytimes') do :broken
         User.first.tip({url:'http://www.nytimes.com', title:'nytimes homepage', amount_in_cents:'50'})
       # end
-      VCR.use_cassette('fasterlighterbetter') do
+      # VCR.use_cassette('fasterlighterbetter') do
         User.first.tip({url:'http://www.fasterlighterbetter.com', title:'faster lighter better', amount_in_cents:'50'})
-      end
+      # end
       visit "/"
     end
 

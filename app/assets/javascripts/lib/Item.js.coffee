@@ -16,10 +16,11 @@ jQuery.fn.extend
 
         if item_id == check_id
           item_prop = $(@).attr 'itemprop'
-          item[item_prop] = Item.get_value(@)
+          item[item_prop] = $(@).get_value()
 
       $(document.items[item_id]).extend(item)
     return document.items
+
   get_value: (element) ->
     if $(element).is("input") or $(element).is("textarea") or $(element).is("select")
       if $(element).val()
@@ -38,6 +39,7 @@ jQuery.fn.extend
       $(element).attr "datetime"
     else
       $(element).text().trim()  if $(element).text()
+
   update_page: (item) ->
     
     # update exsisting items on the page itemid
@@ -149,7 +151,7 @@ $('body').on 'submit', '[itemscope] form, [itemref] form', ->
     error: (data, textStatus, jqXHR) ->
       # let any listeners know that there was a problem with the form submit
       $(form).trigger 'item.error'
-      Item.update_page(Item.items[type][item_index]);
+      $(item_element).update_page(Item.items[type][item_index]);
       console.error("error submiting item form #{id}", data, textStatus, jqXHR);
     
     success: (data, textStatus, jqXHR) ->

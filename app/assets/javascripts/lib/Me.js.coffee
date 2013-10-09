@@ -1,11 +1,13 @@
-class Me
+class @Me
   constructor: ->
     jQuery.ajax
       url:'/users/me.json',
       dataType:'json',
       success: (data) =>
         document.me = data;
-        Item.update_page document.me
+        
+        $('body').update_page document.me
+
         if document.me.id is mixpanel.get_distinct_id()
           # console.debug('setting identity')
           mixpanel.identify(document.me.id)
