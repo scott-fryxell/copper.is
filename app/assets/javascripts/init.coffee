@@ -10,3 +10,6 @@ $ ->
   $(document).trigger "load.#{$('body').attr('class').replace(' ','.')}".trim()
   $(document).trigger "load.#{$('body').attr('id')}"
   $(document).trigger window.location.hash
+
+window.onhashchange ->
+  $(document).trigger window.location.hash
