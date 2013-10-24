@@ -1,0 +1,56 @@
+#home_faq {
+
+  & > section {
+    width:grid-width(18);
+
+    & > header {
+      margin-top:2em;
+      & > h1 {
+        text-align:center;
+      }
+    }
+    & > article {
+      margin-top:grid-width(1);
+
+      &:nth-child(3){
+        margin-bottom:grid-width(2)
+      }
+      header {
+        text-align:center;
+        margin-top:grid-width(1);
+        padding-bottom:grid-width(1);
+      }
+
+      & > dl {
+        border-top: 0.5em solid $offset;
+        border-radius:2em;
+        border-bottom: 0.5em solid $offset;
+        width:grid-width(14);
+        margin:0 auto;
+        padding: grid-width(1);
+
+        & > dt {
+          &:first-child {
+            margin-top:0;
+          }
+          text-shadow: 3px 3px $offset;
+          font-weight:bold;
+          margin: grid-width(1) 0;
+        }
+        & > dd {
+          line-height:1.5em;
+           // padding:0 0.5em;
+          & > ol {
+            list-style-type:lower-alpha;
+            list-style: auto; 
+            & > li {
+              margin-left:grid-width(1);
+              margin-bottom:1em;
+            }
+          }
+           
+        }
+      }
+    }
+  }
+}

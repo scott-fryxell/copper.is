@@ -1,0 +1,43 @@
+#home_settings, #authors_edit {
+
+  #address {
+    position:relative;
+
+    & > form > input {
+      width:grid-width(13);
+      margin-bottom:1em;
+    }
+    & > form > input[type=submit] {
+      width:grid-width(3);
+    }
+    & > form > input[itemprop=city] {
+      width:13em;
+    }
+    & > form > fieldset > select[itemprop=country_code] {
+      width:grid-width(6);
+      margin-bottom:1em;
+    }
+    & > form > fieldset > select[itemprop=subregion_code] {
+      max-width:grid-width(6);
+    }
+    & > form > input[itemprop=postal_code] {
+      width:grid-width(3);
+    }
+    & > form > p {
+      position:absolute;
+      top:5em;
+      right:4em;
+      padding-bottom:3em;
+      padding-left:0;
+      width:10em;
+      &:before {
+        @include transform(rotate(140deg));
+        background-image: image-url('arrows/swoop_down.svg');
+        background-repeat: no-repeat;
+        background-position-x: 90%;
+        background-position-y: 100%;
+      }
+    }
+  }
+
+}

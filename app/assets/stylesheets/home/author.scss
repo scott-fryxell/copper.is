@@ -1,0 +1,151 @@
+#home_author {
+
+  #stats > div {
+    width:8em;
+    padding-left:1em;
+    &:nth-child(2){
+      width:6em;
+    }
+    &:nth-child(7){
+      @include left_width($offset)
+    }
+
+    p[data-cents]:before {
+      content: "$";
+    }
+  }
+
+  #facebook_pages {
+    opacity:0;
+    display:none;
+    margin-top:1em;
+    padding:1em;
+    border-radius:0.5em;
+    background-color:$offset;
+    &.show{
+      opacity:1;
+      transition-property: opacity;
+      transition-duration: 2s;
+      transition-delay: 0.5s;
+    }
+    & > header {
+      margin-bottom:1em;
+      & > p {
+        font-size:0.75em;
+        margin-left:1em;
+        width:auto;
+        margin-top:1em;
+      }
+    }
+    & a.button {
+      display:block;
+      width:7em;
+      font-size:0.75em;
+      margin: 2em 0 1em 2em;
+    }
+    & > form {
+      fieldset {
+        margin-left:1em;
+        width:12em;
+        & > input {
+          margin:0;
+          display:inline-block;
+          width:0.75em;
+          margin-bottom:0.5em;
+        }
+        & > label {
+          margin-bottom:0.5em;
+          display: inline-block;
+          width:10em;
+        }
+      }
+    }
+  }
+
+  #services {
+    margin-bottom:1em;
+    & > details {
+      & summary {
+        outline:none;
+        text-align: right;
+      }
+
+      & > section  {
+        margin-top:1em;
+        padding-top:2em;
+        padding-bottom:2em;
+        display:block;
+        & > div {
+          margin-left:2em;
+          vertical-align:top;
+          display:inline-block;
+          width:18em
+        }
+        & > div > h2 {
+          margin-bottom:1em
+        }
+        & > aside {
+          display:inline-block;
+        }
+        & > div > figure {
+          display:inline-block;
+          padding:.5em 0;
+          margin-right:.5em;
+        }
+        & > div > figure * {
+          display:inline-block;
+          vertical-align:middle
+        }
+        & > div > figure > form,
+        & > div > figure > figcaption {
+          opacity:0;
+          width:0;   
+        } 
+
+        & > div > figure > figcaption > a {
+          display:block;
+          font-size:0.5em;
+          text-decoration: underline;
+        }
+       
+        & > div > figure > form > input {
+          padding:0 .2em;
+          font-size:1em;
+        }
+
+        & > aside > header {
+          height:1em;
+          margin-bottom:1.5em
+        }
+        & > aside > nav {
+          margin-bottom:1em;
+        }
+        & > aside > a {
+          text-decoration: underline;
+        }
+        & > aside  > nav a {
+          margin-right:.65em
+        }
+
+        & > div > figure > figcaption {
+          opacity:1;
+          @include transition (width 0.5s ease-in 0s);
+          margin-left:0.5em; 
+          min-width:7em;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        & > div > figure > form {
+          opacity:1;
+          @include transition (opacity 0.3s ease-in 0.5s);
+        }
+        & > div > figure > form.hide {
+          opacity:0;
+          @include transition (opacity 0.3s ease-in 0.25s);
+        }
+      }
+    }
+  }  
+
+}
