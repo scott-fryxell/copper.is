@@ -11,7 +11,6 @@
 //= require lib/currency
 //= require lib/tips
 //= require lib/button
-//= require lib/address
 //= require lib/card
 //= require lib/email
 //= require lib/endless

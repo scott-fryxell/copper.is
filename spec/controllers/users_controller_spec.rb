@@ -84,8 +84,6 @@ describe UsersController do
             response.status.should == 200
           end
 
-          it 'updates address'
-
           it 'updates default tip amount' do
             put_with @me, :update, id:@me.id, user:{tip_preference_in_cents:500}
             @me.reload

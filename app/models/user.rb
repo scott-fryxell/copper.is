@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_paper_trail
 
-  attr_accessible :name, :email, :tip_preference_in_cents, :accept_terms, :payable_to, :line1, :line2, :city, :postal_code, :country_code, :subregion_code, :share_on_facebook
+  attr_accessible :name, :email, :tip_preference_in_cents, :accept_terms, :share_on_facebook
 
   scope :tipped, joins(:tips)
   scope :payment_info, where('stripe_id IS NOT NULL')

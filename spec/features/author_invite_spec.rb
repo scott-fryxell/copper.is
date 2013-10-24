@@ -40,40 +40,6 @@ describe "An Author", :slow do
     page.should have_no_css("#email > form input.invalid", visible:true)
   end
 
-  it 'should validate the address' do
-    click_on 'Submit!'
-    page.should have_css("input[itemprop=payable_to].invalid", visible:true)
-    page.should have_css("input[itemprop=line1].invalid", visible:true)
-    page.should have_css("input[itemprop=city].invalid", visible:true)
-    page.should have_css("input[itemprop=postal_code].invalid", visible:true)
-    page.should have_css("select[itemprop=country_code].invalid", visible:true)
-    page.should have_no_css("body > nav button.working", visible:true)
-
-    fill_in 'user[payable_to]', with:'joe strummer'
-    click_on 'Submit!'
-    page.should have_no_css("input[itemprop=payable_to].invalid", visible:true)
-
-    fill_in 'user[line1]', with:'643 big ass street'
-    click_on 'Submit!'
-    page.should have_no_css("input[itemprop=payable_to].invalid", visible:true)
-
-    fill_in 'user[city]', with:'san francisco'
-    click_on 'Submit!'
-    page.should have_no_css("input[itemprop=city].invalid", visible:true)
-
-    fill_in 'user[postal_code]', with:'94110'
-    click_on 'Submit!'
-    page.should have_no_css("input[itemprop=postal_code].invalid", visible:true)
-
-    fill_in 'user[postal_code]', with:'94110'
-    click_on 'Submit!'
-    page.should have_no_css("input[itemprop=postal_code].invalid", visible:true)
-
-    select('Andorra', :from => 'user[country_code]')
-    click_on 'Submit!'
-    page.should have_no_css("select[itemprop=country_code].invalid", visible:true)
-  end
-
   it 'will be introduced to their profile page after signing up' do
     click_link('Authorize twitter');
     fill_in 'user[email]', with:'user@example.com'

@@ -145,53 +145,11 @@ describe "A Fan", :slow do
       check('terms')
       click_on('Save')
       sleep 3
-      page.save_screenshot('tmp/screenshots/
+      page.save_screenshot('tmp/screenshots/settings/o3')
       page.should have_css('form', :visible => true)
       page.should have_css('form > h1', :visible => true)
       page.should have_content('Your card was declined');
     end
   end
 
-  it 'can change their address' do
-    page.should have_css('#address form', visible:true)
-
-    within '#address' do
-      click_on 'Save'
-      page.save_screenshot('tmp/screenshots/settings/04.png')
-      page.should have_css('form', visible:true)
-      page.should have_css("input[itemprop=payable_to].invalid")
-      page.should have_css("input[itemprop=line1].invalid")
-      page.should have_css("input[itemprop=city].invalid")
-      page.should have_css("input[itemprop=postal_code].invalid")
-      page.should have_css("select[itemprop=country_code].invalid")
-
-      fill_in 'user[payable_to]', with:'joe strummer'
-      click_on 'Save'
-      page.should have_no_css("input[itemprop=payable_to].invalid", visible:true)
-
-      fill_in 'user[line1]', with:'643 big ass street'
-      click_on 'Save'
-      page.should have_no_css("input[itemprop=payable_to].invalid", visible:true)
-
-      fill_in 'user[city]', with:'san francisco'
-      click_on 'Save'
-      page.should have_no_css("input[itemprop=city].invalid", visible:true)
-
-      fill_in 'user[postal_code]', with:'94110'
-      click_on 'Save'
-      page.should have_no_css("input[itemprop=postal_code].invalid", visible:true)
-
-      fill_in 'user[postal_code]', with:'94110'
-      click_on 'Save'
-      page.should have_no_css("input[itemprop=postal_code].invalid", visible:true)
-
-      select('Andorra', :from => 'user[country_code]')
-      click_on 'Save'
-      page.should have_no_css("select[itemprop=country_code].invalid", visible:true)
-
-      page.should have_css('form', visible:false)
-      page.should have_css('div', visible:true)
-      page.save_screenshot('tmp/screenshots/settings/05.png')
-    end
-  end
 end

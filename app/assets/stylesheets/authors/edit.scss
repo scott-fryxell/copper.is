@@ -103,29 +103,6 @@
     opacity:1;
   }
 
-  #address {
-    padding-bottom:3em;
-    &:after {
-      margin-left:-2em;
-      position:absolute;
-      bottom:-1.5em;
-      left:50%;
-      content:"";
-      width: 0;
-      height: 0;
-      border-left: 2em solid transparent;
-      border-right: 2em solid transparent;
-      border-top: 1.5em solid $offset;
-    }
-    & > form {
-      display: inline-block;
-      opacity:1;
-      & > input[type=submit] {
-        display:none;
-      }
-    }
-  }
-
   & > nav {
     padding:grid-width(1);
     // height:7em;

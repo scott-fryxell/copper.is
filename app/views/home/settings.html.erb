@@ -105,24 +105,6 @@
   </nav>
 </section>
 
-<section id="address" class="setting" itemref="/users/<%=current_user.id%>">
-  <header>
-    <h2>Your address</h2>
-    <a href="#address">Change</a>
-  </header>
-  <div>
-    <p itemprop="payable_to"></p>
-    <p itemprop="line1"></p>
-    <p itemprop="line2"></p>
-    <p>
-      <span itemprop='city'></span>
-      <span itemprop="subregion_code"></span>
-      <span itemprop="postal_code"></span>
-    </p>
-  </div>
-  <%= render partial:'shared/address' %>
-</section>
-
 <nav>
   <a href="/">return to profile</a>
 </nav>
