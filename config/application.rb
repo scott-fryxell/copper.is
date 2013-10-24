@@ -67,6 +67,10 @@ module Copper
       redistogo_url
       mandrill_key
 
+      mixpanel_key
+      olark_key
+      honeybadger_key
+
     ].each do |env|
       raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?
       config.send(env.to_s + '=', ENV[env.to_s.upcase])

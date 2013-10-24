@@ -11,6 +11,6 @@ module Bookmarklet
     source.gsub!(/\s+$/m, '')          # Kill line-ending whitespace
     source.gsub!(/\n/m,   '')          # Kill newlines
     # "javascript:" + URI.escape(source, /['" \x00-\x1f\x7f-\xff]/)
-    "javascript:" + source
+    "javascript:#{source}" 
   end
 end

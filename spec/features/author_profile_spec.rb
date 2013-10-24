@@ -1,13 +1,13 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
-describe "Author settings", :slow do
+describe "An Author", :slow do
   before :each  do
     mock_page_and_user
     visit '/auth/facebook'
     visit "/author"
   end
 
-  it 'should be able to authorize facebook' do
+  it 'can login with facebook' do
     within '#services figure.facebook > figcaption' do
       page.save_screenshot('tmp/screenshots/author/01.png')
       page.should have_content('facebook.user');
@@ -20,11 +20,11 @@ describe "Author settings", :slow do
     end
   end
 
-  it "should always have at least one author authorized" do
+  it "will always have at least one OAuth service authorized" do
     page.should have_no_css('#services figure form')
   end
 
-  it "should be able to show and hide identies that can be added" do
+  it "can see what OAauth providers Copper supports" do
     within '#services' do
       page.execute_script("$('#services > details > summary').trigger('click')")
       page.should have_css('figure > figcaption', visible:true)
@@ -34,7 +34,7 @@ describe "Author settings", :slow do
     end
   end
 
-  it "should be able to authorize multiple authors" do
+  it "can authorize multiple providers" do
     within '#services' do
       page.should have_css('figure', count:1)
       page.execute_script("$('#services > details').attr('open', 'open')")
@@ -43,7 +43,7 @@ describe "Author settings", :slow do
     end
   end
 
-  it "should be able to deauthorize authors", :broken do
+  it "can deauthorize a provider" do
     page.execute_script("$('#services > details > summary').trigger('click')")
     within '#services' do
       page.find('a[href="/auth/twitter"]').click

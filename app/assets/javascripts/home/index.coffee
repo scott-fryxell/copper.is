@@ -1,29 +1,29 @@
 $(document).on "load.home_index", ->
   # set up page stats.
   $('span[itemprop=tip_preference_in_cents]').on 'item.changed', ->
-    $(@).text document.copper.cents_to_dollars($(@).attr('data-value'))
+    $(@).cents_to_dollars($(@).attr('data-value'))
 
   if '' is $('#stats > div:nth-child(3) > p').attr('data-cents').trim()
     $('#stats > div:nth-child(3)').hide()
 
   $('#stats > div > p > img:nth-child(2)').click ->
-    for amount in document.copper.tip_amount_options
+    for amount in jQuery.tip_amount_options()
       unless 2000 is document.me.tip_preference_in_cents
         if amount > document.me.tip_preference_in_cents
           document.me.tip_preference_in_cents = amount
           $('#stats > div > p > span').attr('data-value', amount)
-          $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
+          $('#stats > div > p > span').cents_to_dollars(amount)
           $('#stats > div > p > span').change()
           return
 
   $('#stats > div > p > img:nth-child(3)').click ->
-    reversed = document.copper.tip_amount_options.slice(0).reverse()
+    reversed = jQuery.tip_amount_options.slice(0).reverse()
     for amount in reversed
       unless 5 is document.me.tip_preference_in_cents
         if amount < document.me.tip_preference_in_cents
           document.me.tip_preference_in_cents = amount
           $('#stats > div > p > span').attr('data-value', amount)
-          $('#stats > div > p > span').text document.copper.cents_to_dollars(amount)
+          $('#stats > div > p > span').cents_to_dollars(amount)
           $('#stats > div > p > span').change()
           return
   $(document).on '#latest_tip', ->

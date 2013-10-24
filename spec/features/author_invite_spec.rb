@@ -1,15 +1,15 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
-describe "an Author profile page", :slow, :broken do
+describe "An Author", :slow do
 
   before(:each) do
     mock_page_and_user
     twitter = FactoryGirl.create(:author_twitter, identity_state:'wanted')
     visit"/#{twitter.provider}/#{twitter.username}"
   end
+  it 'Can view a page with their tips before signing up'
 
-
-  it 'a guest should sign up with their provider ' do
+  it 'Can register for their tips through an OAuth provider ' do
     page.should have_css('#banner', visible:true)
     page.should have_css('#login > figure > a', visible:true)
     page.should have_content 'Step 1: Login'
@@ -21,7 +21,7 @@ describe "an Author profile page", :slow, :broken do
     page.should have_content 'Step 3: Get Check'
   end
 
-  it 'should validate the email address' do
+  it 'provide their email address' do
     page.should have_css("#email > form input[name='user[email]']")
     click_on 'Submit!'
     page.should have_css("#email > form input.invalid", visible:true)
@@ -74,7 +74,7 @@ describe "an Author profile page", :slow, :broken do
     page.should have_no_css("select[itemprop=country_code].invalid", visible:true)
   end
 
-  it 'should take Author to their profile page after submit', :broken do
+  it 'will be introduced to their profile page after signing up' do
     click_link('Authorize twitter');
     fill_in 'user[email]', with:'user@example.com'
     fill_in 'user[payable_to]', with:'joe strummer'

@@ -23,6 +23,28 @@ namespace :copper do
     end
   end
 
+  namespace :order do
+
+    task :rotate_orders => :environment do
+      Order.current.where('created_at <= ?', 1.week.ago).each do |order|
+        if order.user.stripe_id and order.tips.count > 0 and order.tips.sum(:amount_in_cents) > 50 and order.user.email
+          # puts order.tips.sum(:amount_in_cents)
+          Resque.enqueue Order, order.id, :rotate!
+        end
+      end
+    end
+
+    task :charge_unpaid_orders => :environment do
+      Order.unpaid.each do |order|
+        if order.user.stripe_id
+          # puts order.tips.sum(:amount_in_cents)
+          Resque.enqueue Order, order.id, :charge!
+        end
+      end
+    end   
+
+  end
+
   namespace :messaging do
     task :fans_who_have_tipped => :environment do
       User.where('users.stripe_id IS NOT NULL').each do |user|
@@ -34,23 +56,6 @@ namespace :copper do
     end
   end
 
-  task :rotate_orders => :environment do
-    Order.current.where('created_at <= ?', 1.week.ago).each do |order|
-      if order.user.stripe_id and order.tips.count > 0 and order.tips.sum(:amount_in_cents) > 50 and order.user.email
-        # puts order.tips.sum(:amount_in_cents)
-        Resque.enqueue Order, order.id, :rotate!
-      end
-    end
-  end
-
-  task :charge_unpaid_orders => :environment do
-    Order.unpaid.each do |order|
-      if order.user.stripe_id
-        # puts order.tips.sum(:amount_in_cents)
-        Resque.enqueue Order, order.id, :charge!
-      end
-    end
-  end
 
   namespace :dev do
     task :reset_page => :environment do

@@ -1,7 +1,6 @@
 $(document).on "load.home_settings", ->
 
   $("section.setting > header > a").click (event) ->
-
     event.preventDefault();
     div = $(@).parents("section").find "div"
     form = $(@).parents("section").find "form"
@@ -38,11 +37,10 @@ $(document).on "load.home_settings", ->
     ,1000)
 
   $('p[itemprop=tip_preference_in_cents]').on 'item.changed', ->
-    $(@).text document.copper.cents_to_dollars($(@).text().trim())
+    $(@).cents_to_dollars($(@).text().trim())
 
   $("#rate form").on 'item.validate', ->
-    rate = document.copper.cents_to_dollars $('select[itemprop=tip_preference_in_cents]').val()
-    $('#rate p[itemprop=tip_preference_in_cents]').text rate
+    $('#rate p[itemprop=tip_preference_in_cents]').cents_to_dollars $('select[itemprop=tip_preference_in_cents]').val()
 
   $("#address form").on 'item.validate', ->
     # console.debug "validation check", $('#address form .invalid').size()
@@ -57,7 +55,6 @@ $(document).on "load.home_settings", ->
       $("#address > header > a").click()
 
 $(document).on "me.home_settings", ->
-
   $("#rate > form > select > option[value=#{document.me.tip_preference_in_cents}]").attr 'selected', true
 
   if document.me.country_code

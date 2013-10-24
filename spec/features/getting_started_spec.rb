@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
-describe "A guest ", :slow do
+describe "A guest", :slow do
   before(:each) do
     visit "/getting_started"
   end

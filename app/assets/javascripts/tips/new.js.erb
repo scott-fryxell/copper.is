@@ -2,10 +2,8 @@
 //= require jquery.cookie
 //= require jquery.timeago
 //= require jquery.tmpl
-//= require shared/Item
-//= require shared/Me
-//= require shared/copper
-//= require shared/honeybadger
+//= require lib/Item
+//= require lib/Me
 //= require mixpanel_analytics
 
 var display_timer, frame_timer;
@@ -50,7 +48,7 @@ $(document).bind({
     new_tip = document.getItems('tips')[0]
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
-    Item.update_page(new_tip)
+    jQuery.update_page(new_tip)
     $("form").submit()
     $(document).trigger("tip_display");
   },
