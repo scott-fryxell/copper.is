@@ -16,6 +16,7 @@
                                                        find the person who made it and pay them.">
 
     <%= stylesheet_link_tag "application", media:"all" %>
+    <%= javascript_include_tag "application" %>
     <%-if Rails.env.test?-%>
       <%= stylesheet_link_tag "test", media:"all" %>
     <%-end-%>
@@ -24,7 +25,6 @@
     <%= render partial:"layouts/header"%>
     <%= yield %>
     <%= render partial:"layouts/footer"%>
-    <%= javascript_include_tag "application" %>
   </body>
   <data id="items"></data>
 </html>
