@@ -1,9 +1,6 @@
 guard 'process', :name => 'worker', :command => 'rake jobs:work', :stop_signal => 'TERM' do
-  # watch('Gemfile')
-  # watch('Gemfile.lock')
   watch('config/application.rb')
   watch('config/environment.rb')
-  # watch('config/routes.rb')
   watch('config/authorization_rules.rb')
   watch(%r{^config/environments/.+\.rb})
   watch(%r{^config/initializers/.+\.rb})
@@ -13,27 +10,12 @@ guard 'process', :name => 'worker', :command => 'rake jobs:work', :stop_signal =
   watch('/lib/**/*.rb')
 end
 
-guard 'process', :name => 'web', :command => 'rails s thin', :stop_signal => 'TERM' do
+guard 'process', :name => 'web', :command => 'rails s -p 3001', :stop_signal => 'TERM' do
   watch('Gemfile')
   watch('Gemfile.lock')
-  # watch('config/application.rb')
-  # watch('config/environment.rb')
   watch('config/routes.rb')
   watch('config/authorization_rules.rb')
-  # watch(%r{^config/environments/.+\.rb})
-  # watch(%r{^config/initializers/.+\.rb})
-  # watch('/app/**/*.rb')
-  # watch('/lib/**/*.rb')
 end
-
-# since pow is just proxying requests to thin,
-# we don't need to restart it when files change
-# guard :pow do
-#   watch('.rvmrc')
-#   watch(%r{^\.pow(rc|env)$})
-#   watch('Gemfile.lock')
-#   watch(%r{^config/.+\.rb$})
-# end
 
 guard 'spork', wait: 20, cucumber: false, rspec: true, test_unit: false do
   watch('Gemfile')
@@ -55,13 +37,9 @@ guard 'rspec', cli:'--color --format doc --drb', all_on_start:false, all_after_p
   watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/requests'}
 end
 
-guard 'livereload' do
-  # default rails 3.1
-  watch(%r{app/.+\.(erb|haml)})
-  watch(%r{app/helpers/.+\.rb})
-  watch(%r{(public/|app/assets).+\.(css|js|html|svg)})
-  watch(%r{(app/assets/.+\.css)\.scss}) { |m| m[1] }
-  watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
-  watch(%r{(app/assets/.+\.svg)}) { |m| m[1] }
-  watch(%r{config/locales/.+\.yml})
+guard :livereload do
+  watch(%r{^app/.+\.(erb|haml|js|css|scss|sass|coffee|svg|png|gif|jpg)})
+  watch(%r{^app/helpers/.+\.rb})
+  watch(%r{^public/.+\.html})
+  watch(%r{^config/locales/.+\.yml})
 end
