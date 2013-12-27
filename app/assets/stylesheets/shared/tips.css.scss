@@ -74,14 +74,9 @@
   [itemtype=tips] form {
     display:none;
   }
-
 }
 
 #home_index, #orders_index {
-  [itemtype=tips] form {
-    display:none;
-  }
-
   [data-state=promised]{
     & form {
       display:block
@@ -90,5 +85,4 @@
       display:none;
     }
   }
-
 }
