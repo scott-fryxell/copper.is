@@ -45,7 +45,7 @@ class Authors::Facebook < Author
 
   def url
     unless self.username
-      populate_username_from_uid
+      populate_username_from_uid!
       save!
     end
     "https://www.facebook.com/#{self.username}"
@@ -54,7 +54,7 @@ class Authors::Facebook < Author
   def profile_image
     super do
       unless self.username
-        populate_username_from_uid
+        populate_username_from_uid!
         save!
       end
       "https://graph.facebook.com/#{self.username}/picture?type=square"
