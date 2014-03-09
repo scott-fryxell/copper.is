@@ -41,7 +41,7 @@ class Tip < ActiveRecord::Base
     raise CantDestroyException unless tip.promised?
   end
 
-  def post_tip_to_facebook_feed
+  def see_about_facebook_feed
     if self.user.share_on_facebook
       self.user.authors.where(provider:'facebook').each do |author|
         if author.token
