@@ -83,6 +83,7 @@ class Page < ActiveRecord::Base
     learn_title(content)
     learn_image(content)
     self.save!
+    self
   end
 
   def agent
@@ -251,5 +252,4 @@ class Page < ActiveRecord::Base
   def log_adopted
     logger.info ":    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
   end
-
 end
