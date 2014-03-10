@@ -1,8 +1,7 @@
 jQuery.fn.extend
   page_init: (element) ->
     $(element).find('time').timeago()
-    $(element).find('[data-cents]').each -> $.fn.show_dollars(element)
-    $(element).discover_items()
+    $(element).find('[data-cents]').show_dollars(element)
 
 jQuery.ajaxPrefilter (options, originalOptions, xhr) ->
   unless options.crossDomain

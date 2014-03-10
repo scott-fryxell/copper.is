@@ -1,5 +1,5 @@
 <%-cache current_user do-%>
-  <section id="banner" itemscope itemtype="/users" itemid="/users/<%=current_user.id%>">
+  <section id="banner" itemscope itemtype="/users" itemid="me">
     <header>
       <a href=/><img src="<%=current_user.authors.first.profile_image%>" class="author"></a>
     </header>
@@ -15,7 +15,7 @@
     </p>
     <%-end-%>
   </section>
-  <section id="stats" itemref="/users/<%=current_user.id%>">
+  <section id="stats" itemref="me">
     <header></header>
     <div>
       <h2>Pages tipped</h2>
@@ -23,14 +23,14 @@
     </div>
     <div>
       <h2>Average tip</h2>
-      <p data-cents='<%=current_user.tips.average(:amount_in_cents).round() if current_user.tips.size > 0%>'></p>
+      <p data-cents='<%=current_user.tips.average(:amount_in_cents).round() if current_user.tips.count > 0%>'></p>
     </div>
     <div>
       <h2>Default tip</h2>
       <p>
         <span itemprop="tip_preference_in_cents" data-value="<%=current_user.tip_preference_in_cents%>"></span>
-        <%= image_tag 'noun_project/5805.svg', alt:'increase default tip amount'%>
-        <%= image_tag 'noun_project/5802.svg', alt:'decrease default tip amount'%>
+        <%= image_tag 'noun_project/5805.svg', alt:'increase default tip amount', class:'increase' %>
+        <%= image_tag 'noun_project/5802.svg', alt:'decrease default tip amount', class:'decrease' %>
       </p>
     </div>
     <footer></footer>

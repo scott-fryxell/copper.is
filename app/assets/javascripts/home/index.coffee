@@ -3,11 +3,11 @@ $(document).on "load.home_index", ->
   $('span[itemprop=tip_preference_in_cents]').on 'item.changed', ->
     $(@).cents_to_dollars($(@).attr('data-value'))
 
-  if '' is $('#stats > div:nth-child(3) > p').attr('data-cents').trim()
+  if document.me.tip_count is 0
     $('#stats > div:nth-child(3)').hide()
 
-  $('#stats > div > p > img:nth-child(2)').click ->
-    for amount in jQuery.tip_amount_options()
+  $('#stats img.increase').click ->
+    for amount in jQuery.tip_amount_options
       unless 2000 is document.me.tip_preference_in_cents
         if amount > document.me.tip_preference_in_cents
           document.me.tip_preference_in_cents = amount
@@ -16,7 +16,7 @@ $(document).on "load.home_index", ->
           $('#stats > div > p > span').change()
           return
 
-  $('#stats > div > p > img:nth-child(3)').click ->
+  $('#stats img.decrease').click ->
     reversed = jQuery.tip_amount_options.slice(0).reverse()
     for amount in reversed
       unless 5 is document.me.tip_preference_in_cents
@@ -28,7 +28,7 @@ $(document).on "load.home_index", ->
           return
 
   $(document).on '#latest_tip', ->
-    $('#pages > details:nth-child(2) > summary').click()
+    $('#pages > details:first-of-type > summary').click()
 
 $(document).on "me.home_index", ->
   # mixpanel.track('View profile')
