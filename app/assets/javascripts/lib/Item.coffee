@@ -40,7 +40,14 @@ jQuery.fn.extend
     else if $(@).is 'time'
       return $(@).attr 'datetime'
     else
-      return $(@).text().trim() if $(@).text()
+      if $(@).text()
+        val = $(@).text().trim()
+        if val == 'true'
+          return true
+        if val is 'false'
+          return false
+        else
+          return val
 
   update_itemprop: (item) ->
      $.each item, (key, value) ->
@@ -142,7 +149,7 @@ $(document).on 'submit', '[itemscope] form, [itemref] form', ->
 
   if $(form).find('.invalid').size() > 0
     return false;
-  
+
   jQuery.ajax
     url: action
     type: method
@@ -152,10 +159,10 @@ $(document).on 'submit', '[itemscope] form, [itemref] form', ->
       $(form).trigger 'item.error'
       $(item_element).update_page(Item.items[type][item_index]);
       console.error("error submiting item form #{id}", data, textStatus, jqXHR);
-    
+
     success: (data, textStatus, jqXHR) ->
       # let any listeners know that any the form submited succesfully update.
       # TODO we leave updating the items to the listener of this method. this is risky
       $(form).trigger "item.#{method}", [data, textStatus, jqXHR]
-    
+
   return false # don't submit the form let the ajax do the talking

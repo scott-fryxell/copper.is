@@ -4,7 +4,7 @@ $ ->
   $(@).on 'load.endless', ->
     $(@).page_init()
 
-  new Me()
+  document.me = new Me()
   new Endless()
 
   $(document).trigger "load.#{$('body').attr('class').replace(' ','.')}".trim()

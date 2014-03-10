@@ -26,8 +26,9 @@ $(document).on "load.home_index", ->
           $('#stats > div > p > span').cents_to_dollars(amount)
           $('#stats > div > p > span').change()
           return
+
   $(document).on '#latest_tip', ->
     $('#pages > details:nth-child(2) > summary').click()
 
 $(document).on "me.home_index", ->
-  mixpanel.track('View profile')
+  # mixpanel.track('View profile')
