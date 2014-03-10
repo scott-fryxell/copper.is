@@ -17,13 +17,13 @@ jQuery.fn.extend
         unless check_id = $(parent).attr 'itemid'
           check_id = $(parent).attr 'itemref'
 
-        item[$(@).attr 'itemprop'] = $(@).get_itemprop_value() if item_id == check_id
+        item[$(@).attr 'itemprop'] = $(@).get_value() if item_id == check_id
 
         $(items[item_id]).extend(item)
 
     return items
 
-  get_itemprop_value: ->
+  get_value: ->
     if $(@).is 'input' or $(@).is 'textarea' or $(@).is 'select'
       if $(@).val()
         return $(@).val().trim()
@@ -84,7 +84,7 @@ $(document).on 'change', "[itemprop]", ->
       url: item_id
       headers: {retrieve_as_data: "true"}
       type: 'put'
-      data: "#{$(@).attr('itemprop')}=#{Item.get_value(@)}"
+      data: "#{$(@).attr('itemprop')}=#{$(@).get_value(@)}"
       success:  (data) ->
         # console.info "item.updated"
         $('data#items').append(jQuery.parseHTML(data))
