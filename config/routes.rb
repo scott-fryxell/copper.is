@@ -28,7 +28,7 @@ Copper::Application.routes.draw do
 
   get    'cards', to:'cards#show',   :as => :show_card
   post   'cards', to:'cards#create', :as => :create_card
-  put     'cards', to:'cards#update', :as => :update_card
+  put    'cards', to:'cards#update', :as => :update_card
   delete 'cards', to:'cards#delete', :as => :delete_card
 
   get 'tip_some_pages',  to:'home#tip_some_pages'
