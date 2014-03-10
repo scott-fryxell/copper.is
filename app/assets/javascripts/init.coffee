@@ -11,5 +11,5 @@ $ ->
   $(document).trigger "load.#{$('body').attr('id')}"
   $(document).trigger window.location.hash
 
-window.onhashchange ->
+window.onhashchange = ->
   $(document).trigger window.location.hash

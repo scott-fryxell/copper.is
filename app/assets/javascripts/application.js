@@ -1,5 +1,3 @@
-//= require mixpanel_analytics
-//= require honeybadger.min
 //= require jquery
 //= require jquery.cookie
 //= require jquery.timeago
@@ -19,15 +17,12 @@
 //= require home/author
 //= require home/settings
 //= require home/badge
-//= require home/welcome
 //= require home/getting_started
 //= require home/tip_some_pages
-//= require home/trending
 //= require pages/index
 //= require pages/show
 //= require authors/index
 //= require authors/edit
 //= require orders/index
-//= require config
 //= require setup
 //= require init

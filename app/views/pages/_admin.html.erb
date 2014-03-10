@@ -5,7 +5,7 @@
       <%-if page.thumbnail_url -%>
         <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>" alt="tip image" title="<%=page.title%>"/>
       <%-else-%>
-          <img itemprop="thumbnail_url" src='<%= image_path 'noun_project/6437.svg'%>'/>
+        <img itemprop="thumbnail_url" src='<%= image_path 'noun_project/6437.svg'%>'/>
       <%-end-%>
       <figcaption>
         <p data-cents='<%=page.tips.sum(:amount_in_cents)%>'></p>

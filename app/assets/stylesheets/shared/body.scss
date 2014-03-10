@@ -9,6 +9,9 @@ html {
   }
 }
 body {
+  & > data {
+    display:none;
+  }
   section.admin {
     display:none;
   }

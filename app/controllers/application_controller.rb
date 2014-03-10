@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery
 
-  helper_method :current_user, :item_scope
+  helper_method :current_user, :item_scope, :user_url
   before_filter :set_current_user
 
   before_filter do
@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def user_url(user)
+    if  current_user.id == user.id
+      return 'me'
+    else
+      return "/users/#{user.id}"
+    end
+  end
 
   def set_current_user
     Authorization.current_user = current_user

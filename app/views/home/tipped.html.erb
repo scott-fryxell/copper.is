@@ -1,0 +1,5 @@
+<%-cache("homepage_pages", :expires_in => 1.minute) do-%>
+<section class="pages">
+  <%= render partial:"pages/as_figure", collection:Page.scott.limit(9), as: :page %>
+</section>
+<%-end-%>

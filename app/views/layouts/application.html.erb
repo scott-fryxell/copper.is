@@ -11,9 +11,9 @@
     <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" />
     <meta name="keywords" content="Copper.is San Francisco, music, tipping, appreciation, copper">
     <meta name="description" content="Copper. – Support artists through tipping.
-                                                       You find something cool anywhere online.
-                                                       You click a button to tip the content.We
-                                                       find the person who made it and pay them.">
+                                                You find something cool anywhere online.
+                                                You click a button to tip the content.We
+                                                find the person who made it and pay them.">
 
     <%= stylesheet_link_tag "application", media:"all" %>
     <%= javascript_include_tag "application" %>
@@ -24,7 +24,8 @@
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" class='<%= params[:controller].parameterize%> <%= params[:action].parameterize%>' >
     <%= render partial:"layouts/header"%>
     <%= yield %>
-    <%= render partial:"layouts/footer"%>
+    <data>
+      <%= render partial:"users/model", object:current_user, as: :user if current_user%>
+    </data>
   </body>
-  <data id="items"></data>
 </html>

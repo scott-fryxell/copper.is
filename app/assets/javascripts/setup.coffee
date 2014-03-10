@@ -9,6 +9,6 @@ jQuery.ajaxPrefilter (options, originalOptions, xhr) ->
     if token = $('meta[name="csrf-token"]').attr('content')
       xhr.setRequestHeader('X-CSRF-Token', token)
 
-window.onerror =  (message, url, line) -> 
-  Honeybadger.notify(new Error(message, url, line));
-  return true
+# window.onerror =  (message, url, line) ->
+#   Honeybadger.notify(new Error(message, url, line));
+#   return true

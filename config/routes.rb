@@ -31,22 +31,21 @@ Copper::Application.routes.draw do
   put    'cards', to:'cards#update', :as => :update_card
   delete 'cards', to:'cards#delete', :as => :delete_card
 
-  get 'tip_some_pages',  to:'home#tip_some_pages'
-  get "integrations",       to:'home#integrations'
+  get 'tip_some_pages',       to:'home#tip_some_pages'
+  get "integrations",         to:'home#integrations'
   get 'badge',                to:'home#badge'
   get 'author',               to:'home#author'
   get 'settings',             to:'home#settings'
   get 'about',                to:'home#about'
-  get 'welcome',            to:'home#welcome'
+  get 'getting_started',      to:'home#getting_started'
+  get 'tipped',               to:'home#tipped'
   get 'contact',              to:'home#contact'
   get 'terms',                to:'home#terms'
   get 'privacy',              to:'home#privacy'
-  get 'faq',                    to:'home#faq'
-  get 'states',                to:'home#states'
-  get 'getting_started',   to:'home#getting_started'
-  get 'trending',             to:'home#trending'
-  get 'ping',                   to:'home#ping'
-  get 'embed_iframe.js', to:'home#iframe', :as => :iframe
+  get 'faq',                  to:'home#faq'
+  get 'states',               to:'home#states'
+  get 'ping',                 to:'home#ping'
+  get 'embed_iframe.js',      to:'home#iframe', :as => :iframe
 
   post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
 
