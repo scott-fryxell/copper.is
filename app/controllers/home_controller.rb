@@ -7,7 +7,7 @@ class HomeController < ApplicationController
 
   def index
     unless current_user
-      redirect_to :action => 'welcome', :status => 302
+      redirect_to :action => 'tipped', :status => 302
     end
   end
 
@@ -26,13 +26,10 @@ class HomeController < ApplicationController
   def tip_some_pages
   end
 
-  def trending
-  end
-
   def integrations
   end
 
-  def welcome
+  def tipped
     response.headers['Cache-Control'] = 'public, max-age=300'
   end
 

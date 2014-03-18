@@ -1,4 +1,4 @@
-class Endless
+class @Endless
 
   constructor: ->
     document.endless = @

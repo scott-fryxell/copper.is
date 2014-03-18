@@ -39,46 +39,8 @@ gem 'cache_digests'
 gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
 gem "lograge"
 
-# gem 'rack-mini-profiler'
-# gem 'resque-scheduler', :require => 'resque_scheduler'
-# gem 'resque-heroku-scaling-canary'
-
-# group :production do
-  gem "pg"
-# end
-
-group :development, :test do
-  gem 'sqlite3'
-  gem 'thin'
-  gem 'awesome_print'
-  gem 'simplecov', require:false
-
-  gem 'pry'
-  gem 'ruby_parser'
-  gem 'rspec-rails'
-  gem "poltergeist"
-  gem 'database_cleaner', '~> 0.6.7'
-  gem 'guard'
-  gem 'guard-rspec'
-  gem 'guard-livereload'
-  gem 'guard-spork'
-  gem 'guard-pow'
-  gem 'guard-process'
-  gem 'rb-fsevent'
-  gem 'spork-rails'
-  gem 'launchy'
-  gem 'ruby-graphviz', '~> 0.9.17'
-  gem 'rails-erd'
-  gem 'quiet_assets'
-end
-
-group :test do
-  gem 'factory_girl_rails'
-  gem 'resque_spec'
-  gem 'hashugar'
-  gem 'vcr'
-  gem 'webmock'
-end
+gem 'pry'
+gem 'pry-rails'
 
 gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
 gem 'bourbon'
@@ -88,8 +50,49 @@ group :assets do
   gem 'yui-compressor'
 end
 
+group :production do
+  # gem "pg"
+end
+
 group :development do
   gem 'guard-rake'
   gem 'redcarpet'
   gem 'yard'
 end
+
+group :test do
+  gem 'fuubar'
+  gem 'factory_girl_rails'
+  gem 'resque_spec'
+  gem 'hashugar'
+  gem 'vcr'
+  gem 'webmock'
+end
+
+group :development, :test do
+  gem 'seedbank'
+  gem 'reek'
+  gem 'sqlite3'
+  gem 'thin'
+  gem 'awesome_print'
+  gem 'simplecov', require:false
+  gem 'ruby_parser'
+  gem 'rspec-rails'
+  gem "poltergeist"
+  gem 'database_cleaner', '~> 0.6.7'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'guard-pow'
+  gem 'guard-process'
+  gem 'guard-zeus'
+  gem 'guard-bundler'
+  gem 'rb-fsevent'
+  gem 'launchy'
+  gem 'ruby-graphviz', '~> 0.9.17'
+  gem 'rails-erd'
+  gem 'quiet_assets'
+end
+
+
+

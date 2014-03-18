@@ -24,6 +24,11 @@ class Page < ActiveRecord::Base
   scope :charged_tips, joins(:tips).where('tips.paid_state=?', 'charged')
   scope :order_by_tips, joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc')
 
+
+  def self.scott
+    User.find_by_email('scott@copper.is').pages
+  end
+
   def self.adoption_rate
     (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round
   end
@@ -78,6 +83,7 @@ class Page < ActiveRecord::Base
     learn_title(content)
     learn_image(content)
     self.save!
+    self
   end
 
   def agent
@@ -246,5 +252,4 @@ class Page < ActiveRecord::Base
   def log_adopted
     logger.info ":    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
   end
-
 end

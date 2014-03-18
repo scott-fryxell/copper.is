@@ -1,6 +1,6 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+require 'spec_helper'
 
-describe "Fan's settings", :slow do
+describe "A Fan", :slow do
   before(:each) do
     mock_user
     visit "/auth/facebook"
@@ -21,7 +21,7 @@ describe "Fan's settings", :slow do
       within("section#email") do
         find("div > p").should have_content("user@facebook.com")
         page.execute_script("document.me.email = 'change@email.com'")
-        page.execute_script("Item.update_page(document.me)")
+        page.execute_script("$('body').update_page(document.me)")
         find("div > p").should have_content("change@email.com")
         click_link "Change"
         find_field('user[email]').value.should == 'change@email.com'
@@ -29,12 +29,12 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should have the fan's name in the title" do
+  it "Can see their name" do
     page.save_screenshot('tmp/screenshots/settings/01.png')
     find("#banner > hgroup > p").should have_content("facebook user")
   end
 
-  it "should be able to change email" do
+  it "can change their email address" do
     within("#email") do
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
@@ -58,7 +58,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be able to change tip amount preference" do
+  it "can change their default tip amount" do
     within("section#rate") do
       page.should have_css('form', :visible => false)
       page.should have_css('div', :visible => true)
@@ -85,7 +85,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it 'should add a zero for any tip amount less then a dollar' do
+  it 'will see their default tip amount formated corectly'  do
     within("section#rate") do
       find("div > p").should have_content("0.75")
       click_link "Change"
@@ -96,7 +96,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be able to save their credit card information" do
+  it "can update their credit card information" do
     within("#card") do
       page.should have_css('form', :visible => true)
       page.should have_css('div', :visible => false)
@@ -135,7 +135,7 @@ describe "Fan's settings", :slow do
     end
   end
 
-  it "should be told if their credit card info is bad" do
+  it "will be told if their credit card info is bad" do
     within("#card") do
       page.should have_css('form', :visible => true)
       fill_in('number', :with => '4000000000000002')
@@ -145,20 +145,20 @@ describe "Fan's settings", :slow do
       check('terms')
       click_on('Save')
       sleep 3
-      page.save_screenshot('tmp/screenshots/settings/03.png')
+      page.save_screenshot('tmp/screenshots/')
       page.should have_css('form', :visible => true)
       page.should have_css('form > h1', :visible => true)
       page.should have_content('Your card was declined');
     end
   end
 
-  it 'should be able to change their address' do
+  it 'can change their address' do
     page.should have_css('#address form', visible:true)
 
     within '#address' do
       click_on 'Save'
       page.save_screenshot('tmp/screenshots/settings/04.png')
-      # page.should have_css('form', visible:true) wtf headless webkit. :broken
+      page.should have_css('form', visible:true)
       page.should have_css("input[itemprop=payable_to].invalid")
       page.should have_css("input[itemprop=line1].invalid")
       page.should have_css("input[itemprop=city].invalid")
@@ -194,5 +194,4 @@ describe "Fan's settings", :slow do
       page.save_screenshot('tmp/screenshots/settings/05.png')
     end
   end
-
 end

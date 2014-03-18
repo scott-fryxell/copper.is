@@ -22,5 +22,4 @@ $(document).on "load.authors_index", ->
   # $("[itemscope][type=authors]").each ->
     # # get the username
     # username = document.items[$(@).attr('itemid')].username
-    # console.debug('user')
     # $(@).find('figure > img').attr('src', "http://api.twitter.com/1/users/profile_image/#{username}.png")

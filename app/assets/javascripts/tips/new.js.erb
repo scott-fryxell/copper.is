@@ -2,10 +2,9 @@
 //= require jquery.cookie
 //= require jquery.timeago
 //= require jquery.tmpl
-//= require shared/Item
-//= require shared/Me
-//= require shared/copper
-//= require shared/honeybadger
+//= require lib/Item
+//= require lib/Me
+//= require lib/currency
 //= require mixpanel_analytics
 
 var display_timer, frame_timer;
@@ -21,7 +20,7 @@ $(document).ready(function (){
   });
 
   $("#twitter").click(function(){
-    url=encodeURIComponent(document.getItems('tips')[0].url)
+    url=encodeURIComponent($('html').items().new.url)
     href="https://twitter.com/intent/tweet?source=webclient&hashtags=tipping&url=" + url;
     $(this).attr('href', href);
   });
@@ -35,7 +34,8 @@ $(document).ready(function (){
     FB.ui(obj);
   });
   $("#tumblr_button_abc123").click(function(){
-    href = "http://www.tumblr.com/share/link?url=" + encodeURIComponent(document.getItems('tips')[0].url) +  "&name=" + encodeURIComponent(document.getItems('tips')[0].title) + "&tags=tipping%20copper_is";
+    var tip = $('html').items().new
+    href = "http://www.tumblr.com/share/link?url=" + encodeURIComponent(tip.url) +  "&name=" + encodeURIComponent(tip.title) + "&tags=tipping%20copper_is";
     $(this).attr('href', href);
   });
 
@@ -43,21 +43,19 @@ $(document).ready(function (){
     if (e.keyCode == 27) { $(document).trigger("tip_hide"); }   // esc
   });
 });
+
 $(document).bind({
   "tip_info": function (event){
-
-    title = decodeURIComponent(event.title)
-    new_tip = document.getItems('tips')[0]
+    new_tip = $('html').items().new
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
-    Item.update_page(new_tip)
+    $('html').update_page(new_tip)
     $("form").submit()
     $(document).trigger("tip_display");
   },
   "tip_display": function (event){
     var cents = $("input[itemprop=amount_in_cents]").attr('value');
-    var dollars = document.copper.cents_to_dollars(cents);
-    $("input[itemprop=amount_in_dollars]").attr('value', dollars);
+    $("[itemprop=amount_in_dollars]").cents_to_dollars(cents);
     document.postMessage({type:'show'})
     $("body > section").addClass("show");
     $("a[href=#close]").focus();
@@ -69,6 +67,7 @@ $(document).bind({
       // }
   },
   "tip_details": function (event){
+    var tip = $('html').items().new
     // console.debug("tip_details")
     clearInterval(display_timer);
     clearInterval(frame_timer);
@@ -76,12 +75,9 @@ $(document).bind({
     $("body > section").addClass("details");
 
     // embed the twitter iframe
-    $('#share > a').attr('data-url', document.getItems('tips')[0].url);
-    $('#share > div').attr('data-href', document.getItems('tips')[0].url);
-    $("input[itemprop=amount_in_dollars]").focus();
-    var cents = $("input[itemprop=amount_in_cents]").attr('value');
-    var dollars = document.copper.cents_to_dollars(cents);
-    $("input[itemprop=amount_in_dollars]").val(dollars);
+    $('#share > a').attr('data-url', tip.url);
+    $('#share > div').attr('data-href', tip.url);
+    $("[itemprop=amount_in_dollars]").focus();
   },
   "tip_hide": function(event){
     $("body > section").removeClass('show')

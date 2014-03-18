@@ -2,6 +2,7 @@ class Authors::Tumblr < Author
   def url
     "#{self.uid}.#{self.provider}.com"
   end
+
   def self.discover_uid_and_username_from_url url
     uri = URI.parse(url)
     if %r{/follow/}.match(uri.path)
@@ -11,4 +12,5 @@ class Authors::Tumblr < Author
     end
     { :uid => username, :username => username}
   end
+
 end
