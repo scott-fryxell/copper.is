@@ -9,9 +9,12 @@ jQuery.fn.extend
       $(@).cents_to_dollars(cents)
 
   cents_to_dollars: (cents) ->
+    console.log 'cents to dollars', cents
+
     dollars = (parseFloat(cents) / 100.00).toFixed(2)
+
     if $(@).is('input')
-      $(@).val = dollars
+      $(@).val dollars
     else
       $(@).text dollars
 

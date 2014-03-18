@@ -27,7 +27,6 @@ $(document).on '#claim_pages', ->
 
 
 $('#facebook_pages > form').submit ->
-  # console.debug('claiming pages');
   $(@).find('input[type=submit]').attr('disabled', 'disabled')
 
   jQuery.ajax

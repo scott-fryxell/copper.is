@@ -9,8 +9,6 @@ jQuery.fn.extend
     items = {}
 
     $(@).find("[itemscope], [itemref]").each ->
-      console.log 'found one', @
-
       item = {}
       item.type = $(@).attr 'itemtype' if $(@).attr 'itemtype'
 
