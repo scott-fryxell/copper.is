@@ -145,7 +145,7 @@ describe "A Fan", :slow do
       check('terms')
       click_on('Save')
       sleep 3
-      page.save_screenshot('tmp/screenshots/
+      page.save_screenshot('tmp/screenshots/')
       page.should have_css('form', :visible => true)
       page.should have_css('form > h1', :visible => true)
       page.should have_content('Your card was declined');
