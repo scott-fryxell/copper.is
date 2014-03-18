@@ -3,11 +3,11 @@ jQuery.ajaxPrefilter (options, originalOptions, xhr) ->
     if token = $('meta[name="csrf-token"]').attr('content')
       xhr.setRequestHeader('X-CSRF-Token', token)
 
-jQuery.update_view(item) ->
+jQuery.update_view = (item) ->
   $('html').update_view(item)
 
-jQuery.items(filter) ->
-  $('html').items(filter)
+jQuery.items = ->
+  $('html').items()
 
 jQuery.fn.extend
 
@@ -35,8 +35,8 @@ jQuery.fn.extend
 
         $(document.items[item_id]).extend(item)
 
-    document.items = items
-    return items
+
+    return document.items
 
   get_value: ->
     if $(@).is 'input' or $(@).is 'textarea' or $(@).is 'select'
