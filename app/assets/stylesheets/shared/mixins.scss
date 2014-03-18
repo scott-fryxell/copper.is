@@ -39,7 +39,6 @@ $shadow:rgba(0, 0, 0, 0.5);
   position:relative;
   text-decoration:none;
   border: solid 1px darken($color, 60%);
-  box-shadow: inset 0px 1px 0px lighten($color, 1%), 0px 1px 0px lighten($color, 1%);
   @include background-image(linear-gradient($color 0%, shade($color, 25%) 100%));
   &:active {
     padding-top:0.27em;
@@ -63,20 +62,19 @@ $shadow:rgba(0, 0, 0, 0.5);
       z-index:-1;
       outline: 1px solid $light;
       border-radius: 0.25em;
-      box-shadow: inset 0px 1px 1px darken($color, 10%), 0px 1px 0px lighten($color, 40%);
   }
 }
 @mixin button_with_img($color, $img) {
   @include button($color);
   position:relative;
-  padding:0.5em 1em 0.5em 1.75em;
+  padding:0.5rem 1rem 0.5rem 1.75rem;
   &:before {
     content: "";
-    width:1.25em;
-    height:1.25em;
+    width:1.25rem;
+    height:1.25rem;
     position: absolute;
-    top:0.6em;
-    left:0.25em;
+    top:0.6rem;
+    left:0.25rem;
     opacity:0.3;
     background: image-url($img) no-repeat 0% 0%;
   }
@@ -87,16 +85,13 @@ $shadow:rgba(0, 0, 0, 0.5);
   cursor:pointer;
   text-decoration:none;
   color:$light;
-  border-radius: 0.25em;
+  border-radius: 0.25rem;
   vertical-align: middle;
   display: inline-block;
-  padding:0.5em 1em 0.5em 1em;
-  box-shadow: 2px 2px 2px $shadow;
+  padding:0.5rem 1rem 0.5rem 1rem;
   background-color:$color;
   @include background-image(linear-gradient($color 25%, shade($color, 20%) 100%));
-
   &:active {
-    box-shadow: 1px 1px 2px 2px $shadow;
   }
 }
 @mixin ribbon {

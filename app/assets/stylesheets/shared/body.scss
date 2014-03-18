@@ -9,6 +9,8 @@ html {
   }
 }
 body {
+  max-width: 25rem;
+  margin:0 auto;
   & > data {
     display:none;
   }
@@ -45,6 +47,7 @@ body {
     list-style: none;
   }
   a {
+    color:$text;
     text-decoration:none;
     cursor:pointer;
     &[itemprop=url] {
@@ -74,17 +77,16 @@ body {
 
   & > section,
   & > article {
-    width:grid-width(24);
-    margin: 0 auto 0 auto;
-    padding: 0 grid-width(2);
+    width:100%;
+    padding: 0 2rem;
     & a {
       font-family: 'Doppio One', sans-serif;
       color:$text;
     }
   }
   & > footer {
-    margin-top:grid-width(2);
-    padding:1em 1em 1em 2em;
+    margin-top:1rem;;
+    padding:1em;
     @include full_width($header);
     &:before {
       content:"";

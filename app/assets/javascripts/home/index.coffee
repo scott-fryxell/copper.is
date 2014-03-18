@@ -30,5 +30,3 @@ $(document).on "load.home_index", ->
   $(document).on '#latest_tip', ->
     $('#pages > details:first-of-type > summary').click()
 
-$(document).on "me.home_index", ->
-  # mixpanel.track('View profile')

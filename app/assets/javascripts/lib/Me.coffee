@@ -1,6 +1,6 @@
 class @Me
   constructor: ->
-    @.me = $('body > data').items().me
+    @.me = document.users.me
 
     if @.me
       if @.me.admin
