@@ -1,8 +1,16 @@
+jQuery.ajaxPrefilter = (options, originalOptions, xhr) ->
+  unless options.crossDomain
+    if token = $('meta[name="csrf-token"]').attr('content')
+      xhr.setRequestHeader('X-CSRF-Token', token)
+
 jQuery.fn.extend
 
-  discover_items: ->
+  items: ->
     items = {}
+
     $(@).find("[itemscope], [itemref]").each ->
+      console.log 'found one', @
+
       item = {}
       item.type = $(@).attr 'itemtype' if $(@).attr 'itemtype'
 
@@ -49,8 +57,8 @@ jQuery.fn.extend
         else
           return val
 
-  update_itemprop: (item) ->
-     $.each item, (key, value) ->
+  update_page: (item) ->
+    $.each item, (key, value) ->
       if value?
         $("[itemprop='#{key}']").each ->
           if $(@).is 'input' or $(@).is 'select' or $(@).is 'textarea'
@@ -64,6 +72,8 @@ jQuery.fn.extend
           else
             $(@).text value
           $(@).trigger 'item.changed'
+
+
 
 $(document).on 'item.update', 'data#items', ->
   new Items(@)
@@ -157,7 +167,7 @@ $(document).on 'submit', '[itemscope] form, [itemref] form', ->
     error: (data, textStatus, jqXHR) ->
       # let any listeners know that there was a problem with the form submit
       $(form).trigger 'item.error'
-      $(item_element).update_page(Item.items[type][item_index]);
+      $(item_element).update_page(item_element.items());
       console.error("error submiting item form #{id}", data, textStatus, jqXHR);
 
     success: (data, textStatus, jqXHR) ->
@@ -166,3 +176,5 @@ $(document).on 'submit', '[itemscope] form, [itemref] form', ->
       $(form).trigger "item.#{method}", [data, textStatus, jqXHR]
 
   return false # don't submit the form let the ajax do the talking
+
+

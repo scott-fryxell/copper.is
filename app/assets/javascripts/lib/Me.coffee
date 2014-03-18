@@ -1,6 +1,6 @@
 class @Me
   constructor: ->
-    @.me = $('body > data').discover_items().me
+    @.me = $('body > data').items().me
 
     if @.me
       if @.me.admin
