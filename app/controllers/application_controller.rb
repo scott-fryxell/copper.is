@@ -41,8 +41,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  #TODO: => "value",  this should be specfic to user or model agnostic
   def item_scope
     return nil unless current_user
-    "itemscope itemtype=users itemid=/users/#{current_user.id}"
+    "itemscope itemtype=user itemid=/users/#{current_user.id}"
   end
 end

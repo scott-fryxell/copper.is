@@ -49,7 +49,7 @@ $(document).bind({
     new_tip = $('html').items().new
     new_tip.title = decodeURIComponent(event.title)
     new_tip.url = decodeURIComponent(event.url)
-    $('html').update_page(new_tip)
+    $.update_view(new_tip)
     $("form").submit()
     $(document).trigger("tip_display");
   },

@@ -9,16 +9,16 @@
     <dd><time itemprop="updated_at" datetime="<%=order.updated_at.getutc.iso8601%>"/></dd>
     <dt>State</dt>
     <dd itemprop="order_state"><%=order.order_state%></dd>
-    <dt>stripe token</dt>      
+    <dt>stripe token</dt>
     <dd itemprop="charge_token">
       <a target="_blank" href="https://manage.stripe.com/payments/<%=order.charge_token%>"><%=order.charge_token%></a>
     </dd>
   </dl>
   <footer>
-    <details itemscope itemtype='users' itemid='/users/<%=order.user_id%>'>
+    <details itemscope itemtype='user' itemid='/users/<%=order.user_id%>'>
       <summary>User</summary>
     </details>
-    <details itemscope itemtype='tips' itemid='/orders/<%=order.id%>/tips'>
+    <details itemscope itemtype='tip' itemid='/orders/<%=order.id%>/tips'>
       <summary>tips</summary>
     </details>
   </footer>

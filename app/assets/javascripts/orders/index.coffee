@@ -1,14 +1,14 @@
 $(document).on "load.orders_index", ->
-  $('*[itemtype="tips"] form').each ->
+  $('*[itemtype=tip] form').each ->
     cents = $(@).find("input[itemprop=amount_in_cents]").attr('value')
     $(@).find("input[itemprop=amount_in_dollars]").cents_to_dollars(cents)
 
 
   # format tips into dollars
-  $("*[itemtype=tips] input[type=text]").each ->
+  $("*[itemtype=tip] input[type=text]").each ->
     $(@).cents_to_dollars($(@).val())
 
-  $("*[itemtype=tips] form[method=delete]").on 'item.delete', ->
+  $("*[itemtype=tip] form[method=delete]").on 'item.delete', ->
     tip = $(@).parents('*[itemscope]')[0]
     order = $(@).parents('*[itemscope]')[1]
     $(tip).remove()
@@ -28,12 +28,12 @@ $(document).on "load.orders_index", ->
       new_total = new_total + Number($(@).val())
     $(order).find('section > header > h4 > span').cents_to_dollars(new_total)
 
-  $('*[itemtype=tips] form[method=put]').on 'item.validate', ->
+  $('*[itemtype=tip] form[method=put]').on 'item.validate', ->
     tip_amount_in_cents = (parseFloat($(@).find('input[type=text]').val()) * 100);
     $(@).find('input[itemprop=amount_in_cents]').val tip_amount_in_cents
 
   # TODO update the pages tip totals
-  $('*[itemtype=tips] form[method=put]').on 'item.put', ->
+  $('*[itemtype=tip] form[method=put]').on 'item.put', ->
     order = $(@).parents('*[itemscope]')[1]
     new_total = 0
     $(order).find('input[type=text]').each -> new_total += Number($(@).val())

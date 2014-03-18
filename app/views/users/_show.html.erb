@@ -16,7 +16,7 @@
     <dd itemprop="tip_preference_in_cents"><%=user.tip_preference_in_cents%></dd>
     <dt>stripe id</dt>
     <dd itemprop="stripe_id">
-      <a target="_blank" href="https://manage.stripe.com/customers/<%=user.stripe_id%>"><%=user.stripe_id%></a>   
+      <a target="_blank" href="https://manage.stripe.com/customers/<%=user.stripe_id%>"><%=user.stripe_id%></a>
     </dd>
     <dt>accepts terms</dt>
     <dd itemprop='accept_terms'><%=user.accept_terms?%></dd>
@@ -45,16 +45,16 @@
         </dl>
       </section>
     </details>
-    <details itemscope itemtype='tips' itemid='/users/<%=user.id%>/tips'>
+    <details itemscope itemtype='tip' itemid='/users/<%=user.id%>/tips'>
       <summary>tips</summary>
     </details>
-    <details itemscope itemtype='authors' itemid='/users/<%=user.id%>/authors'>
+    <details itemscope itemtype='author' itemid='/users/<%=user.id%>/authors'>
       <summary>authors</summary>
     </details>
-    <details itemscope itemtype='orders' itemid='/users/<%=user.id%>/orders'>
+    <details itemscope itemtype='order' itemid='/users/<%=user.id%>/orders'>
       <summary>orders</summary>
     </details>
-    <details itemscope itemtype='checks' itemid='/users/<%=user.id%>/checks'>
+    <details itemscope itemtype='check' itemid='/users/<%=user.id%>/checks'>
       <summary>checks</summary>
     </details>
   </footer>

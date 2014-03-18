@@ -3,11 +3,19 @@ jQuery.ajaxPrefilter (options, originalOptions, xhr) ->
     if token = $('meta[name="csrf-token"]').attr('content')
       xhr.setRequestHeader('X-CSRF-Token', token)
 
+jQuery.update_view(item) ->
+  $('html').update_view(item)
+
+jQuery.items(filter) ->
+  $('html').items(filter)
+
 jQuery.fn.extend
 
   items: ->
-    items = {}
+    document.items ?= {}
 
+    # make sure that root dom is part of the find
+    # should set by type. that way we can use the id
     $(@).find("[itemscope], [itemref]").each ->
       item = {}
       item.type = $(@).attr 'itemtype' if $(@).attr 'itemtype'
@@ -15,7 +23,7 @@ jQuery.fn.extend
       unless item_id = $(@).attr 'itemid'
         item_id = $(@).attr 'itemref'
 
-      items[item_id] = item
+      document.items[item_id] = item
 
       $(@).find("[itemprop]").each ->
         parent = $(@).parents("[itemscope], [itemref]").first()
@@ -25,8 +33,9 @@ jQuery.fn.extend
 
         item[$(@).attr 'itemprop'] = $(@).get_value() if item_id == check_id
 
-        $(items[item_id]).extend(item)
+        $(document.items[item_id]).extend(item)
 
+    document.items = items
     return items
 
   get_value: ->
@@ -55,7 +64,7 @@ jQuery.fn.extend
         else
           return val
 
-  update_page: (item) ->
+  update_view: (item) ->
     $.each item, (key, value) ->
       if value?
         $("[itemprop='#{key}']").each ->
@@ -70,8 +79,6 @@ jQuery.fn.extend
           else
             $(@).text value
           $(@).trigger 'item.changed'
-
-
 
 $(document).on 'item.update', 'data#items', ->
   new Items(@)
@@ -165,7 +172,7 @@ $(document).on 'submit', '[itemscope] form, [itemref] form', ->
     error: (data, textStatus, jqXHR) ->
       # let any listeners know that there was a problem with the form submit
       $(form).trigger 'item.error'
-      $(item_element).update_page(item_element.items());
+      $(item_element).update_view(item_element.items());
       console.error("error submiting item form #{id}", data, textStatus, jqXHR);
 
     success: (data, textStatus, jqXHR) ->

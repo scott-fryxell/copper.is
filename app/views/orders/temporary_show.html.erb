@@ -1,5 +1,5 @@
 <%-cache order do-%>
-<details itemscope itemtype='orders' itemid='<%=order.id%>' date-order_state="<%=order.order_state%>" >
+<details itemscope itemtype='order' itemid='<%=order.id%>' date-order_state="<%=order.order_state%>" >
   <summary>
     <h2>
       <span><%=pluralize(order.tips.count, 'tip')%></span>
@@ -10,7 +10,7 @@
       <%-else-%>
         <time datetime="<%=order.updated_at.getutc.iso8601%>" />
       <%-end-%>
-    </p>  
+    </p>
   </summary>
   <section>
     <header>

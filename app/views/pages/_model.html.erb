@@ -1,5 +1,5 @@
 <%-cache page do-%>
-<dl itemscope itemtype='pages' itemid='/pages/<%=page.id%>'>
+<dl itemscope itemtype='page' itemid='/pages/<%=page.id%>'>
   <dd itemprop="created_at"><%=page.created_at.getutc.iso8601%></dd>
   <dd itemprop="updated_at"><%=page.updated_at.getutc.iso8601%></dd>
   <dd itemprop='url'><%=page.url%></dd>
