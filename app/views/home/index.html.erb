@@ -1,11 +1,8 @@
 <%-cache current_user do-%>
-  <section id="banner">
-    <nav>
-      <a class='selected' href="#trending" title='Tips that have been happening'>Trending</a>
-      <a href="#given" title='Tips pages you have given'>given</a>
-      <a href="#recieved" title="Tips for the pages you own">recieved</a>
-    </nav>
-  </section>
+  <menu class='fan'>
+    <input id="tip" type="text"  placeholder="tip" >
+    <a href="#trending" >Trending</a>
+  </menu>
   <section class="pages" >
     <%-if current_user.pages.count > 0 -%>
       <%= render partial:"pages/current_user", collection:current_user.tipped_pages.endless(params[:endless]), as: :page %>

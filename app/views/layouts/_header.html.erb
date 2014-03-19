@@ -1,8 +1,10 @@
 <header>
-  <a href="/"><%= image_tag "icons/logo.svg", :title => "View your profile" %></a>
-  <h1>Tips</h1>
-  <figure>
-    <img src="<%=current_user.authors.first.profile_image if current_user%>" class="author">
-  </figure>
+  <nav class="guest">
+    <a href="/auth/facebook">Sign In</a>
+  </nav>
+  <menu class='fan'>
+    <a href="#tips_i_have_given">Given</a>
+    <a href="#tips_i_have_recieved">Recieved</a>
+  </menu>
 </header>
 

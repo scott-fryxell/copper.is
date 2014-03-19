@@ -1,5 +1,6 @@
 <%-cache("homepage_pages", :expires_in => 1.minute) do-%>
-<section class="pages">
-  <%= render partial:"pages/as_figure", collection:Page.scott.limit(9), as: :page %>
-</section>
+  <menu class='guest'>
+    <input id="tip" type="text"  placeholder="tip">
+    <a href="#trending" >Trending</a>
+  </menu>
 <%-end-%>

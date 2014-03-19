@@ -39,13 +39,11 @@ $shadow:rgba(0, 0, 0, 0.5);
   position:relative;
   text-decoration:none;
   border: solid 1px darken($color, 60%);
-  @include background-image(linear-gradient($color 0%, shade($color, 25%) 100%));
   &:active {
     padding-top:0.27em;
     padding-right:0.25em;
     padding-bottom:0.20em;
     padding-left:0.25em;
-    @include background-image(linear-gradient(bottom, shade($color, 7%) 20%, shade($color, 15%) 95%) );
     background-color:$color;
   }
   &:before {

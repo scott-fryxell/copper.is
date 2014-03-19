@@ -1,90 +1,79 @@
 body > header {
-  font-size:0;
+  font-size: 0;
   vertical-align: top;
-  padding:0.5rem;
   margin:0;
-  background-color:$offset_color;
-  margin-top:0.5rem;
-  border-radius:0.5rem;
-  & > a {
-    opacity: 0.1;
-    width:33.33%;
-    line-height:1;
-    font-size: 2rem;
-    vertical-align: middle;
-    display:inline-block;
-    text-decoration:none;
-    text-align: center;
-    color:$shadow;
-    & > img {
-      vertical-align: middle;
-      width:5rem;
-    }
-  }
-  & > h1 {
-    display:inline-block;
-    vertical-align: middle;
-    text-align: left;
-    padding-left:2rem;
-    margin:0;
-    width:66.66%;
-    font-size:2rem;
-    color:$dark;
-  }
-  & > figure {
-    max-width:10%;
-    vertical-align: top;
-    display:inline-block;
-    display:none;
-    img {
-      width:3rem;
-      height:3rem;
-      border-radius:0.25rem;
-      border:2px solid $dark;
-    }
-  }
-}
 
-body.guest > header {
-  hgroup {
-    width:75%;
-  }
-  nav.guest {
-    display:block;
-    opacity:1;
-    width:auto;
-    text-align: right;
-    a {
-      @include transition (opacity 0.2s ease-out 0s);
-      &:hover {
-        opacity:0.99;
-        @include transition (opacity 0.2s ease-in 0s);
+  menu.fan {
+    margin: 0;
+    margin-bottom:-1rem;
+    & > a {
+      width:48%;
+      display:inline-block;
+      &:first-of-type {
+        margin-right:4%;
       }
-      font-size:1.5rem;
-      opacity:0.75;
-      color:$dark;
-      font-family: 'Nothing You Could Do', cursive !important;
     }
-  }
-  figure {
-    display:none;
   }
 }
 
-body.fan nav.fan {
+nav, menu {
+  display:none;
+  padding:1rem;
+  padding-bottom:0;
+  margin:0;
+  & > a,
+  & > input {
+    transition: all 0.5s ease-in;
+    // letter-spacing: 1px;
+    font-family: 'Nothing You Could Do', cursive;
+    font-family: 'Bree Serif', serif;
+    font-family: 'Patua One', cursive;
+    font-family: 'Cantarell', sans-serif;
+    font-family: 'Doppio One', sans-serif;
+    text-transform:capitalize;
+    font-size:1.75rem;
+    font-weight: 400;
+    padding:1rem;
+    text-align:center;
+    background-color:$offset_color;
+    color:$header;
+    border: 2px solid $shadow;
+    border-radius:0.5rem;
+    display:block;
+    margin-bottom:1rem;
+
+    &:focus,
+    &:active {
+      border:2px solid $copper;
+      color:$copper;
+      outline:none;
+    }
+
+  }
+  a:last-child,
+  input:last-child
+  button:last-child {
+   margin-bottom:0rem;
+  }
+}
+
+body.guest  menu.guest
+body.guest  nav.guest {
   display:block;
   opacity:1;
-  width:auto;
 }
 
-body.admin > nav.admin {
+body.fan {
+  nav.fan, menu.fan {
+    display:block;
+    opacity:1;
+  }
+}
+
+
+body.admin  menu.admin
+body.admin  nav.admin {
   display:block;
   opacity:0.99;
-  a > img {
-    width:2rem;
-    height:2rem;
-    &:hover {
-      opacity:1;
-    }
-  }
+
 }
