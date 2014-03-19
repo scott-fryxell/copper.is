@@ -1,6 +1,5 @@
 #home_index, #home_tipped {
   height:100%;
-
   input {
     width:100%;
     height:100%;
@@ -35,10 +34,6 @@
     }
   }
 
-  section.pages {
-    display:none;
-  }
-
   ::-webkit-input-placeholder {
      color:$header;
   }
@@ -53,6 +48,10 @@
 
   :-ms-input-placeholder {
      color:$header;
+  }
+
+  section.pages {
+    display:none;
   }
 
 }

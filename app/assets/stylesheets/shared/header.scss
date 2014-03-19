@@ -22,13 +22,10 @@ nav, menu {
   padding-bottom:0;
   margin:0;
   & > a,
-  & > input {
-    transition: all 0.5s ease-in;
+  & > input,
+  & > button {
+    transition: all 0.25s ease-in;
     // letter-spacing: 1px;
-    font-family: 'Nothing You Could Do', cursive;
-    font-family: 'Bree Serif', serif;
-    font-family: 'Patua One', cursive;
-    font-family: 'Cantarell', sans-serif;
     font-family: 'Doppio One', sans-serif;
     text-transform:capitalize;
     font-size:1.75rem;
@@ -41,39 +38,37 @@ nav, menu {
     border-radius:0.5rem;
     display:block;
     margin-bottom:1rem;
-
     &:focus,
     &:active {
       border:2px solid $copper;
       color:$copper;
       outline:none;
     }
-
-  }
-  a:last-child,
-  input:last-child
-  button:last-child {
-   margin-bottom:0rem;
+    &:last-child {
+      margin-bottom:0rem;
+    }
   }
 }
 
-body.guest  menu.guest
-body.guest  nav.guest {
-  display:block;
-  opacity:1;
+body.guest {
+  nav.guest, menu.guest {
+    display:block;
+    opacity:0.99;
+  }
 }
 
 body.fan {
   nav.fan, menu.fan {
     display:block;
-    opacity:1;
+    opacity:0.99;
   }
 }
 
 
-body.admin  menu.admin
-body.admin  nav.admin {
-  display:block;
-  opacity:0.99;
-
+body.admin {
+  nav.admin, menu.admin {
+    display:block;
+    opacity:0.99;
+  }
 }
+
