@@ -13,9 +13,7 @@
     <h2><%= URI.parse(page.url).path.delete("/")%></h2>
     <%-end-%>
     <menu>
-      <a href='<%=page.url%>' ref="_blank" itemprop="url">Visit</a>
-      <a href='#tip'>Tip</a>
-      <a href='#more' ref="_blank" itemprop="url">More</a>
+      <a href='<%=page.url%>' target="_blank" itemprop="url">Visit</a>
     </menu>
   </footer>
   <%-page.nested=false-%>
