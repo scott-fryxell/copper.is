@@ -1,7 +1,7 @@
 #home_index {
   input {
     @include button;
-    margin-bottom:1rem;
+    margin-bottom:0.75rem;
     &:active,
     &:focus {
       border:2px solid $copper;
@@ -49,13 +49,13 @@
   section.trending.pages {
     vertical-align: top;
     display:block;
-    margin-top:0.5rem;
-    padding: 0.5rem 1rem;
+    margin-top:0.25rem;
+    padding: 0.5rem 0.75rem;
     & > article {
       height:7.5rem;
       overflow:hidden;
       border-radius: 0.15rem;
-      border:0.1rem solid $input_border;
+      border:0.1rem solid $header;
       background-color:$offset_color;
       vertical-align: top;
       margin-bottom:0.75rem;
