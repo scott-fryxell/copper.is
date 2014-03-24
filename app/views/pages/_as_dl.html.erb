@@ -1,0 +1,15 @@
+<%-cache page do-%>
+<dl <%=page.as_item_attributes%> >
+  <dd itemprop='title'><%=page.title%></dd>
+  <dd itemprop='url'><%=page.url%></dd>
+  <dd itemprop='thumbnail_url'><%=page.thumbnail%></dd>
+  <dd itemprop="created_at"><%=page.created_at.getutc.iso8601%></dd>
+  <dd itemprop="updated_at"><%=page.updated_at.getutc.iso8601%></dd>
+  <dd class="admin" itemprop='author_state'><%=page.author_state%></dd>
+  <dd class="admin" itemprop='author_id'><%=page.author_id%></dd>
+  <dd class="admin" itemprop='onboarding'><%=page.onboarding%></dd>
+  <dd class="admin" itemprop='welcome'><%=page.welcome%></dd>
+  <dd class="admin" itemprop='trending'><%=page.trending%></dd>
+  <dd class="admin" itemprop='nsfw'><%=page.nsfw%></dd>
+</dl>
+<%-end-%>

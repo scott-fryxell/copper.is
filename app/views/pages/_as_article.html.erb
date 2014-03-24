@@ -1,0 +1,23 @@
+<%-cache page do-%>
+
+<article <%=page.as_item_attributes%>>
+  <%-page.nested=true-%>
+  <header>
+    <%= render partial:"pages/as_figure", object:page, as: :page %>
+  </header>
+  <footer>
+    <h3><%= URI.parse(page.url).host%></h3>
+    <%-if page.title-%>
+    <h2 itemprop="title"><%=page.title%></h2>
+    <%-else-%>
+    <h2><%= URI.parse(page.url).path.delete("/")%></h2>
+    <%-end-%>
+    <menu>
+      <a href='<%=page.url%>' ref="_blank" itemprop="url">Visit</a>
+      <a href='#tip'>Tip</a>
+      <a href='#more' ref="_blank" itemprop="url">More</a>
+    </menu>
+  </footer>
+  <%-page.nested=false-%>
+</article>
+<%-end-%>

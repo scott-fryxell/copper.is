@@ -1,11 +1,10 @@
-<%-cache current_user do-%>
-  <menu class='fan'>
-    <input id="tip" type="text"  placeholder="tip" >
-    <a href="#trending" >Trending</a>
+<%-cache("homepage_pages", :expires_in => 1.minute) do-%>
+  <menu>
+    <input id="tip" type="text"  placeholder="tip">
+    <a href="/trending" >Trending</a>
   </menu>
-  <section class="pages" >
-    <%-if current_user.pages.count > 0 -%>
-      <%= render partial:"pages/current_user", collection:current_user.tipped_pages.endless(params[:endless]), as: :page %>
-    <%-end-%>
+
+  <section class='endless trending pages'>
+    <%= render partial:"pages/as_article", collection:Page.scott, as: :page %>
   </section>
 <%-end-%>

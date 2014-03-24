@@ -1,11 +1,12 @@
 class Page < ActiveRecord::Base
   include Enqueueable
+
   has_paper_trail
   belongs_to :author
   has_many :tips
   has_many :checks, :through => :tips
   attr_accessible :title, :url, :author_state
-
+  attr_accessor :nested
   validates :url, :presence => true
   validate :url_points_to_real_site
   def url_points_to_real_site
@@ -19,11 +20,16 @@ class Page < ActiveRecord::Base
   scope :welcome, where(welcome:true)
   scope :onboarding, where(onboarding:true)
   scope :trending, where(trending:true)
+
   scope :safe, where(nsfw:false)
   scope :recent, order("pages.created_at DESC")
   scope :charged_tips, joins(:tips).where('tips.paid_state=?', 'charged')
   scope :order_by_tips, joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc')
 
+  def initialize(attributes={})
+    super
+    @nested ||= false
+  end
 
   def self.scott
     User.find_by_email('scott@copper.is').pages
@@ -33,12 +39,32 @@ class Page < ActiveRecord::Base
     (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round
   end
 
+  def as_item_attributes
+    unless @nested
+      "itemscope itemtype='page' itemid='#{self.item_id}' itemprop='author_state' data-author_state='#{self.author_state}'"
+    end
+  end
+
+  def item_id
+    "/pages/#{self.id}"
+  end
+
+  def nested?
+    return nested
+  end
+
+
+
   def thumbnail
     if thumbnail_url
       thumbnail_url
     else
-      "http://img.bitpixels.com/getthumbnail?code=59482&size=200&url=#{url}"
+      "/assets/noun_project/6437.svg"
     end
+  end
+
+  def tips_by_fan_in_cents (user)
+    user.tips.where(page_id:self.id).sum(:amount_in_cents)
   end
 
   def learn_title(content = self.agent.get(url))

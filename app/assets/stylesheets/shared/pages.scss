@@ -1,5 +1,4 @@
 @mixin page_rows($rows) {
-
   & > details, & > figure {
     @include transition (height 0.2s ease 0s,width 0.2s ease 0s);
     height:grid-width($rows);
@@ -51,7 +50,6 @@ section.endless, section.pages {
           }
 
           & > p {
-            @include ribbon;
             @include header_text;
             opacity:0.8;
             text-align:center;

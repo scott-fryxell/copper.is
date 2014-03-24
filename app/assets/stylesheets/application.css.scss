@@ -1,33 +1,8 @@
 @import "shared/mixins";
 @import "shared/device";
 @import "shared/body";
-@import "shared/header";
-@import "shared/banner";
-@import "shared/stats";
-@import "shared/tips";
-@import "shared/pages";
-@import "shared/button";
-@import "shared/address";
-@import "shared/forms";
-@import "shared/card";
+@import "shared/menu";
 
 @import "home/index";
-@import "home/integrations";
-@import "home/welcome";
-@import "home/badge";
-@import "home/author";
-@import "home/settings";
-@import "home/trending";
-@import "home/faq";
-@import "home/getting_started";
-@import "home/tip_some_pages";
 
-@import "pages/show";
-@import "pages/index";
 
-@import "authors/edit";
-@import "authors/index";
-
-@import "orders/index";
-
-@import "users/index";

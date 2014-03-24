@@ -5,6 +5,7 @@
     <%= render partial:"layouts/head_links"%>
     <%= csrf_meta_tag %>
     <link rel="author"  href="http://twitter.com/copper_is >
+
     <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>" />
     <meta property="og:type"   content="website" />
     <meta property="og:title"  content="¢:tip" />
@@ -23,6 +24,12 @@
   </head>
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" class='<%= params[:controller].parameterize%> <%= params[:action].parameterize%>' >
     <%= render partial:"layouts/header"%>
+    <aside>
+      <menu class="fan">
+        <a href="#tips_i_have_given">Given</a>
+        <a href="#tips_i_have_recieved">Recieved</a>
+      </menu>
+    </aside>
     <main>
       <%= yield %>
     </main>

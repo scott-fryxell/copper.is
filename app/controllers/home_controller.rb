@@ -6,9 +6,6 @@ class HomeController < ApplicationController
   respond_to :html
 
   def index
-    unless current_user
-      redirect_to :action => 'tipped', :status => 302
-    end
   end
 
   def author
