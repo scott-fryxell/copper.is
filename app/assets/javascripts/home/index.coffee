@@ -1,33 +1,20 @@
-$(document).on "load.home_index", ->
-  # set up page stats.
-  $('span[itemprop=tip_preference_in_cents]').on 'item.changed', ->
-    $(@).cents_to_dollars($(@).attr('data-value'))
+$(document).on "load.home_index load.home_tipped", ->
+  $("#tip").focus ->
+    $("#tip").attr("placeholder", "Paste to tip")
 
-  if '' is $('#stats > div:nth-child(3) > p').attr('data-cents').trim()
-    $('#stats > div:nth-child(3)').hide()
+  $("#tip").blur ->
+    $("#tip").attr("placeholder", "Tiped!")
+    $("#tip").val("")
 
-  $('#stats > div > p > img:nth-child(2)').click ->
-    for amount in jQuery.tip_amount_options()
-      unless 2000 is document.me.tip_preference_in_cents
-        if amount > document.me.tip_preference_in_cents
-          document.me.tip_preference_in_cents = amount
-          $('#stats > div > p > span').attr('data-value', amount)
-          $('#stats > div > p > span').cents_to_dollars(amount)
-          $('#stats > div > p > span').change()
-          return
+$(document).on 'view_latest_tip', ->
+  $('#pages > details:first-of-type > summary').click()
 
-  $('#stats > div > p > img:nth-child(3)').click ->
-    reversed = jQuery.tip_amount_options.slice(0).reverse()
-    for amount in reversed
-      unless 5 is document.me.tip_preference_in_cents
-        if amount < document.me.tip_preference_in_cents
-          document.me.tip_preference_in_cents = amount
-          $('#stats > div > p > span').attr('data-value', amount)
-          $('#stats > div > p > span').cents_to_dollars(amount)
-          $('#stats > div > p > span').change()
-          return
-  $(document).on '#latest_tip', ->
-    $('#pages > details:nth-child(2) > summary').click()
+$(document).on "paste", (e) ->
+  $('body').addClass('working')
+  url =  e.originalEvent.clipboardData.getData('text/plain')
+  console.log url
+  $("#tip").blur()
 
-$(document).on "me.home_index", ->
-  mixpanel.track('View profile')
+# Switch back to tip view in 3.seconds switch to
+
+

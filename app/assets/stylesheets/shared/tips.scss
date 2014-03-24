@@ -31,7 +31,7 @@
     & > tbody > tr > td:first-child {
       width:15em;
     }
-    & > tbody > tr > td:nth-child(2) > form { 
+    & > tbody > tr > td:nth-child(2) > form {
       & input[type=text] {
         padding:0 0 0 0.25em;
         width:3em;
@@ -71,17 +71,12 @@
     }
   }
 
-  [itemtype=tips] form {
+  [itemtype=tip] form {
     display:none;
   }
-
 }
 
 #home_index, #orders_index {
-  [itemtype=tips] form {
-    display:none;
-  }
-
   [data-state=promised]{
     & form {
       display:block
@@ -90,5 +85,4 @@
       display:none;
     }
   }
-
 }

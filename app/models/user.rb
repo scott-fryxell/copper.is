@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     create! do |user|
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
-      user.roles << Role.find_by_name('Fan')
+      user.roles << Role.find_by_name('fan')
     end
   end
 
@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
     pages.group('pages.id').includes(:tips).except(:order).order('MAX(tips.created_at) DESC')
   end
 
+
   def tip(args = {})
     url    = args[:url]
     amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
@@ -89,7 +90,7 @@ class User < ActiveRecord::Base
       tip.page = Page.create(url:url,title:title)
     end
     tip.save!
-    Resque.enqueue Tip, tip.id, :post_tip_to_facebook_feed
+    Resque.enqueue Tip, tip.id, :see_about_facebook_feed
     tip
   end
 

@@ -1,5 +1,5 @@
 <%-cache tip do-%>
-<tr itemscope itemtype='tips' itemid='/tips/<%=tip.id%>' data-state="<%=tip.paid_state%>">
+<tr itemscope itemtype='tip' itemid='/tips/<%=tip.id%>' data-state="<%=tip.paid_state%>">
   <td><time datetime="<%=tip.created_at.getutc.iso8601%>" /></td>
   <td>
     <form method="put">

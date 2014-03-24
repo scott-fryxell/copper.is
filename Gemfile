@@ -39,17 +39,43 @@ gem 'cache_digests'
 gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
 gem "lograge"
 
-# group :production do
-  gem "pg"
-# end
+gem 'pry'
+gem 'pry-rails'
+
+gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
+gem 'bourbon'
+group :assets do
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier'
+  gem 'yui-compressor'
+end
+
+group :production do
+  # gem "pg"
+end
+
+group :development do
+  gem 'guard-rake'
+  gem 'redcarpet'
+  gem 'yard'
+end
+
+group :test do
+  gem 'fuubar'
+  gem 'factory_girl_rails'
+  gem 'resque_spec'
+  gem 'hashugar'
+  gem 'vcr'
+  gem 'webmock'
+end
 
 group :development, :test do
+  gem 'seedbank'
   gem 'reek'
   gem 'sqlite3'
   gem 'thin'
   gem 'awesome_print'
   gem 'simplecov', require:false
-  gem 'pry'
   gem 'ruby_parser'
   gem 'rspec-rails'
   gem "poltergeist"
@@ -68,25 +94,5 @@ group :development, :test do
   gem 'quiet_assets'
 end
 
-group :test do
-  gem 'fuubar'
-  gem 'factory_girl_rails'
-  gem 'resque_spec'
-  gem 'hashugar'
-  gem 'vcr'
-  gem 'webmock'
-end
 
-gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
-gem 'bourbon'
-group :assets do
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier'
-  gem 'yui-compressor'
-end
 
-group :development do
-  gem 'guard-rake'
-  gem 'redcarpet'
-  gem 'yard'
-end

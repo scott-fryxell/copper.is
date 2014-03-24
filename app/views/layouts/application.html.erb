@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>copper.is – The currency of appreciation</title>
+    <title>Copper</title>
     <%= render partial:"layouts/head_links"%>
     <%= csrf_meta_tag %>
     <link rel="author"  href="http://twitter.com/copper_is >
+
     <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>" />
     <meta property="og:type"   content="website" />
-    <meta property="og:title"  content="Copper.is – The currency of appreciation" />
+    <meta property="og:title"  content="¢:tip" />
     <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" />
-    <meta name="keywords" content="Copper.is San Francisco, music, tipping, appreciation, copper">
+    <meta name="keywords" content="Copper.is, tip, gratitude, San Francisco, music, tipping, appreciation, copper">
     <meta name="description" content="Copper. – Support artists through tipping.
-                                                       You find something cool anywhere online.
-                                                       You click a button to tip the content.We
-                                                       find the person who made it and pay them.">
+                                                You find something cool anywhere online.
+                                                You click a button to tip the content.We
+                                                find the person who made it and pay them.">
 
     <%= stylesheet_link_tag "application", media:"all" %>
     <%= javascript_include_tag "application" %>
@@ -23,8 +24,17 @@
   </head>
   <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" class='<%= params[:controller].parameterize%> <%= params[:action].parameterize%>' >
     <%= render partial:"layouts/header"%>
-    <%= yield %>
-    <%= render partial:"layouts/footer"%>
+    <aside>
+      <menu class="fan">
+        <a href="#tips_i_have_given">Given</a>
+        <a href="#tips_i_have_recieved">Recieved</a>
+      </menu>
+    </aside>
+    <main>
+      <%= yield %>
+    </main>
+    <data>
+      <%= render partial:"users/model", object:current_user, as: :user if current_user%>
+    </data>
   </body>
-  <data id="items"></data>
 </html>

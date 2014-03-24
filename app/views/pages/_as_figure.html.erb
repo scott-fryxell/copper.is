@@ -1,13 +1,5 @@
 <%-cache page do-%>
-<figure itemscope itemtype='pages' itemid='/pages/<%=page.id%>'>
-  <a itemprop="url" target="_blank" href="/pages/<%=page.id%>">
-    <img itemprop="thumbnail_url" src="<%=page.thumbnail%>" />
-  </a>
-  <%-if page.author -%>
-  <figcaption>
-    <p itemprop="title"><%=page.title%></p>
-    <p><%=page.author.username%></p>
-  </figcaption>
-  <%-end-%>
+<figure <%=page.as_item_attributes%> >
+  <img itemprop="thumbnail_url" src="<%=page.thumbnail%>" />
 </figure>
 <%-end-%>

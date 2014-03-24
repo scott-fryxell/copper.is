@@ -34,7 +34,7 @@
   </nav>
 </section>
 <%-if author.user_id -%>
-<details itemscope itemtype='users' itemid='/users/<%=author.user_id%>'>
+<details itemscope itemtype='user' itemid='/users/<%=author.user_id%>'>
   <summary>User</summary>
 </details>
 <%-end-%>
@@ -51,7 +51,7 @@
 <details>
   <summary>charged tips</summary>
   <%-author.tips.charged.each  do |tip| -%>
-  <details itemscope itemtype='tips' itemid='/tips/<%=tip.id%>'>
+  <details itemscope itemtype='tip' itemid='/tips/<%=tip.id%>'>
     <summary>
       <time datetime="<%=tip.created_at.getutc.iso8601%>"/>
     </summary>

@@ -3,17 +3,17 @@ $gw-gutter:0.5rem;
 $gutter:$gw-gutter;
 $offset_color:rgba(182, 195, 181, 0.2);
 $offset:rgba(182, 195, 181, 0.2);
-$dark:rgba(41, 11, 5, 1);
-$light:rgba(251, 250, 248, 1);
-$header:rgba(82,52,45,1);
+$dark:rgba(41, 11, 5, 0.99);
+$light:rgba(251, 250, 248, 0.99);
+$header:rgba(82,52,45,0.99);
 // 78  54  47
 $header_transparent:rgba(82,52,45,0.1);
-$title:rgba(102,102,102,1);
+$title:rgba(102,102,102,0.99);
 $text:rgba(102,102,102,0.8);
 $input_border:rgba(42, 41, 41, 0.3);
 $input_background:rgba(251, 250, 248, 0.2);
 
-$copper_text:rgba(204, 154, 0, 1);
+$copper_text:rgba(204, 154, 0, 0.99);
 // #ff9c00
 $copper:rgba(212, 154, 72, 1);
 $green:rgba(0, 128, 0, 0.7);
@@ -27,84 +27,39 @@ $shadow:rgba(0, 0, 0, 0.5);
 @import "bourbon";
 @import "details";
 
-@mixin inset_button($color) {
-  text-transform:uppercase;
-  text-decoration:none;
-  text-align:center;
-  /** http://tympanus.net/codrops/2012/01/11/css-buttons-with-pseudo-elements/ **/
-  color:lighten($color, 75%);
-  background-color:$color;
-  padding:0.25em;
-  border-radius: 0.25em;
-  position:relative;
-  text-decoration:none;
-  border: solid 1px darken($color, 60%);
-  box-shadow: inset 0px 1px 0px lighten($color, 1%), 0px 1px 0px lighten($color, 1%);
-  @include background-image(linear-gradient($color 0%, shade($color, 25%) 100%));
-  &:active {
-    padding-top:0.27em;
-    padding-right:0.25em;
-    padding-bottom:0.20em;
-    padding-left:0.25em;
-    @include background-image(linear-gradient(bottom, shade($color, 7%) 20%, shade($color, 15%) 95%) );
-    background-color:$color;
-  }
-  &:before {
-      background-color:lighten($color, 30%);
-      opacity:0.3;
-      content:"";
-      display:block;
-      position:absolute;
-      width:100%;
-      height:100%;
-      padding:0.5em;
-      left:-0.5em;
-      top:-0.5em;
-      z-index:-1;
-      outline: 1px solid $light;
-      border-radius: 0.25em;
-      box-shadow: inset 0px 1px 1px darken($color, 10%), 0px 1px 0px lighten($color, 40%);
-  }
-}
-@mixin button_with_img($color, $img) {
-  @include button($color);
-  position:relative;
-  padding:0.5em 1em 0.5em 1.75em;
-  &:before {
-    content: "";
-    width:1.25em;
-    height:1.25em;
-    position: absolute;
-    top:0.6em;
-    left:0.25em;
-    opacity:0.3;
-    background: image-url($img) no-repeat 0% 0%;
-  }
-}
-@mixin button($color) {
-  @include header_text;
-  font-family: 'Doppio One', sans-serif;
-  cursor:pointer;
-  text-decoration:none;
-  color:$light;
-  border-radius: 0.25em;
-  vertical-align: middle;
-  display: inline-block;
-  padding:0.5em 1em 0.5em 1em;
-  box-shadow: 2px 2px 2px $shadow;
-  background-color:$color;
-  @include background-image(linear-gradient($color 25%, shade($color, 20%) 100%));
+@mixin button {
+  display: block;
+  width:100%;
+  height:100%;
 
+  font-size:2rem;
+  font-weight: 400;
+  font-family: 'Doppio One', sans-serif;
+
+  padding:1rem;
+  text-transform:capitalize;
+  text-align:center;
+  text-decoration:none;
+  vertical-align: middle;
+
+  border-radius: 0.25rem;
+  border:0.1rem solid $header;
+  background-color:$offset_color;
+  color:$header;
+  cursor:pointer;
+  transition: all 0.25s ease;
+
+  &:focus,
   &:active {
-    box-shadow: 1px 1px 2px 2px $shadow;
+    border:0.15rem solid $copper;
+    color:$copper;
+    outline:none;
+  }
+  &:last-child {
+    margin-bottom:0rem;
   }
 }
-@mixin ribbon {
-  @include background-image( linear-gradient(black 0, $dark 75%, transparent 32%),image-url('icons/congrats.svg'));
-  background-repeat: no-repeat;
-  background-position:center;
-  background-size:cover;
-}
+
 @mixin text {
   font-size:1em;
   font-family: 'Cantarell', sans-serif;
@@ -123,57 +78,7 @@ $shadow:rgba(0, 0, 0, 0.5);
   font-size:1em !important;
   display:inline-block;
 }
-@mixin help_arrow {
-  padding-left:grid-width(2);
-  position:relative;
-  &:before {
-    content:"";
-    position:absolute;
-    z-index:-1;
-    top:0;
-    bottom:0;
-    left:0em;
-    right:0;
-    opacity:0.3;
-    background: image-url('arrows/slight_down.svg') no-repeat 1% 60%;
-    background-size:3em;
-  }
-}
-@mixin settings_pointer {
-  text-transform:uppercase;
-  text-decoration:none;
-  text-align:center;
-  &:after {
-    content:"";
-    width:0.75em;
-    height:0.75em;
-    margin-left:0.35em;
-    display:inline-block;
-    opacity:0.5;
-    @include transform(rotate(-90deg));
-    background: image-url('shared/triangles/isosceles.svg') no-repeat 0% 0%;
-    background-size:0.75em;
-  }
-}
-@mixin settings_pointer_down {
-  text-transform:uppercase;
-  text-decoration:none;
-  text-align:center;
-  &:after {
-    content:"";
-    width:0.75em;
-    height:0.75em;
-    width:3em;
-    margin:0 auto 0 auto;
-    display:block;
-    opacity:.5;
-    @include transform(rotate(0deg));
-    background: image-url('shared/triangles/isosceles.svg') no-repeat 50% 100%;
-    background-size: .75em;
-  }
-}
 @mixin keyframes($name) {
-  @-moz-keyframes #{$name} { @content; }
   @-webkit-keyframes #{$name} { @content; }
   @-o-keyframes #{$name} { @content; }
   @-ms-keyframes #{$name} { @content; }

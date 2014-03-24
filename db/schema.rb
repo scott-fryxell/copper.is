@@ -27,7 +27,9 @@ ActiveRecord::Schema.define(:version => 21) do
     t.datetime "updated_at",     :null => false
   end
 
+  add_index "authors", ["provider", "uid"], :name => "index_authors_on_provider_and_uid"
   add_index "authors", ["provider", "uid"], :name => "index_identities_on_provider_and_uid"
+  add_index "authors", ["provider", "username"], :name => "index_authors_on_provider_and_username"
   add_index "authors", ["provider", "username"], :name => "index_identities_on_provider_and_username"
 
   create_table "checks", :force => true do |t|

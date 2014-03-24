@@ -75,7 +75,7 @@ display: none;
 */
 
 html {
-  font-size: 100%; 
+  font-size: 100%;
   -webkit-text-size-adjust: 100%; /* 2 */
   -ms-text-size-adjust: 100%; /* 2 */
 }
@@ -83,7 +83,7 @@ html {
 @-moz-document url-prefix() {
 
   html {
-    font-size: 99%;   
+    font-size: 99%;
   }
 }
 
@@ -214,7 +214,7 @@ color: #000;
 
 p,
 pre {
-margin: 1em 0;
+margin: 0;
 }
 
 /*

@@ -6,9 +6,6 @@ class HomeController < ApplicationController
   respond_to :html
 
   def index
-    unless current_user
-      redirect_to :action => 'welcome', :status => 302
-    end
   end
 
   def author
@@ -26,13 +23,10 @@ class HomeController < ApplicationController
   def tip_some_pages
   end
 
-  def trending
-  end
-
   def integrations
   end
 
-  def welcome
+  def tipped
     response.headers['Cache-Control'] = 'public, max-age=300'
   end
 
@@ -94,6 +88,7 @@ class HomeController < ApplicationController
   end
 
   def ping
+    Page.count
     render action:'ping', layout:false
   end
 

@@ -1,0 +1,58 @@
+// media queries for phone tablet laptop ad large screens
+// all queries are additive. in that if available on phone 
+// will be available on table laptop and screen.
+@mixin minimum($device) {
+
+  @if $device == display {
+    @media only screen 
+    and (min-width: 90rem){
+      @content;
+    }
+  }
+
+  @else if $device == laptop {
+    @media only screen
+    and (min-width: 65rem){
+      @content;
+    }
+  }
+
+  @else if $device == tablet {
+    @media only screen 
+    and (min-width: 41rem) {
+      @content;
+    }
+  }
+  @else if $device == phone {
+    @media only screen 
+    and (max-width: 41rem)
+    and (min-width: 1rem) {
+      @content;
+    }
+  }
+}
+
+@mixin only($device){
+
+  @if $device == phone {
+    @media only screen 
+    and (max-width : 41rem)
+    and (min-width: 1rem) {
+      @content;
+    }
+  }
+  @else if $device == phone+tablet {
+    @media only screen 
+    and (max-width : 65rem)
+    and (min-width: 1rem) {
+      @content;
+    }
+  }
+  @else if $device == tablet {
+    @media only screen 
+    and (min-width: 41rem)
+    and (max-width : 65rem) {
+      @content;
+    }
+  }
+}

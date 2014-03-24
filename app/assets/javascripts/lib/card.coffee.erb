@@ -2,8 +2,8 @@ $(document).on "items.home_settings items.home_getting_started", ->
   $("#month > option[value=#{new String(new Date().getMonth() + 1)}]").attr 'selected', 'true'
   # console.debug("#month > option[value=#{new String(new Date().getMonth() + 1)}]");
 
-  if document.getItems()['users']
-    user = document.getItems()['users'][0]
+  if document.me
+    user = document.me
   else
     user = {}
     # $('#card input').attr('disabled', 'disabled')

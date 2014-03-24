@@ -1,0 +1,9 @@
+<%-cache page do-%>
+<fieldset class="admin" <%=page.as_item_attributes%>>
+  <input placeholder="title" itemprop="title" value="<%=page.title%>" >
+  <a target="_blank" href="<%=page.url%>"><%= image_tag "noun_project/13883.svg" %></a>
+  <input type="url" placeholder="url"       itemprop="url"           value="<%=page.url%>" >
+  <input type="url" placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail%>">
+  <input type="url" placeholder="author"    itemprop="author_url"    value="<%=page.author.url if page.author %>">
+</fieldset>
+<%-end-%>

@@ -1,5 +1,5 @@
 <%-cache author do-%>
-<dl itemscope itemtype='authors' itemid='/authors/<%=author.id%>'>
+<dl itemscope itemtype='author' itemid='/authors/<%=author.id%>'>
   <dd itemprop="created_at"><%=author.created_at.getutc.iso8601%></dd>
   <dd itemprop="updated_at"><%=author.updated_at.getutc.iso8601%></dd>
   <dd itemprop="provider"><%=author.provider%></dd>

@@ -1,7 +1,21 @@
+jQuery.ajaxPrefilter (options, originalOptions, xhr) ->
+  unless options.crossDomain
+    if token = $('meta[name="csrf-token"]').attr('content')
+      xhr.setRequestHeader('X-CSRF-Token', token)
+
+jQuery.update_view = (item) ->
+  $('html').update_view(item)
+
+jQuery.items = ->
+  $('html').items()
+
 jQuery.fn.extend
 
-  discover_items: ->
-    items = {}
+  items: ->
+    document.items ?= {}
+
+    # make sure that root dom is part of the find
+    # should set by type. that way we can use the id
     $(@).find("[itemscope], [itemref]").each ->
       item = {}
       item.type = $(@).attr 'itemtype' if $(@).attr 'itemtype'
@@ -9,7 +23,7 @@ jQuery.fn.extend
       unless item_id = $(@).attr 'itemid'
         item_id = $(@).attr 'itemref'
 
-      items[item_id] = item
+      document.items[item_id] = item
 
       $(@).find("[itemprop]").each ->
         parent = $(@).parents("[itemscope], [itemref]").first()
@@ -17,13 +31,14 @@ jQuery.fn.extend
         unless check_id = $(parent).attr 'itemid'
           check_id = $(parent).attr 'itemref'
 
-        item[$(@).attr 'itemprop'] = $(@).get_itemprop_value() if item_id == check_id
+        item[$(@).attr 'itemprop'] = $(@).get_value() if item_id == check_id
 
-        $(items[item_id]).extend(item)
+        $(document.items[item_id]).extend(item)
 
-    return items
 
-  get_itemprop_value: ->
+    return document.items
+
+  get_value: ->
     if $(@).is 'input' or $(@).is 'textarea' or $(@).is 'select'
       if $(@).val()
         return $(@).val().trim()
@@ -40,10 +55,17 @@ jQuery.fn.extend
     else if $(@).is 'time'
       return $(@).attr 'datetime'
     else
-      return $(@).text().trim() if $(@).text()
+      if $(@).text()
+        val = $(@).text().trim()
+        if val == 'true'
+          return true
+        if val is 'false'
+          return false
+        else
+          return val
 
-  update_itemprop: (item) ->
-     $.each item, (key, value) ->
+  update_view: (item) ->
+    $.each item, (key, value) ->
       if value?
         $("[itemprop='#{key}']").each ->
           if $(@).is 'input' or $(@).is 'select' or $(@).is 'textarea'
@@ -77,7 +99,7 @@ $(document).on 'change', "[itemprop]", ->
       url: item_id
       headers: {retrieve_as_data: "true"}
       type: 'put'
-      data: "#{$(@).attr('itemprop')}=#{Item.get_value(@)}"
+      data: "#{$(@).attr('itemprop')}=#{$(@).get_value(@)}"
       success:  (data) ->
         # console.info "item.updated"
         $('data#items').append(jQuery.parseHTML(data))
@@ -142,7 +164,7 @@ $(document).on 'submit', '[itemscope] form, [itemref] form', ->
 
   if $(form).find('.invalid').size() > 0
     return false;
-  
+
   jQuery.ajax
     url: action
     type: method
@@ -150,12 +172,14 @@ $(document).on 'submit', '[itemscope] form, [itemref] form', ->
     error: (data, textStatus, jqXHR) ->
       # let any listeners know that there was a problem with the form submit
       $(form).trigger 'item.error'
-      $(item_element).update_page(Item.items[type][item_index]);
+      $(item_element).update_view(item_element.items());
       console.error("error submiting item form #{id}", data, textStatus, jqXHR);
-    
+
     success: (data, textStatus, jqXHR) ->
       # let any listeners know that any the form submited succesfully update.
       # TODO we leave updating the items to the listener of this method. this is risky
       $(form).trigger "item.#{method}", [data, textStatus, jqXHR]
-    
+
   return false # don't submit the form let the ajax do the talking
+
+
