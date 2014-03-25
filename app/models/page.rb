@@ -22,7 +22,7 @@ class Page < ActiveRecord::Base
   scope :trending, where(trending:true)
 
   scope :safe, where(nsfw:false)
-  scope :recent, order("pages.created_at DESC")
+  scope :recent, order("pages.updated_at DESC")
   scope :charged_tips, joins(:tips).where('tips.paid_state=?', 'charged')
   scope :order_by_tips, joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc')
 

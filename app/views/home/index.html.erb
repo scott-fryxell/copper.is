@@ -4,6 +4,6 @@
   </menu>
 
   <section class='endless trending pages'>
-    <%= render partial:"pages/as_article", collection:Page.all.limit(40), as: :page %>
+    <%= render partial:"pages/as_article", collection:Page.recent.safe.endless(params[:endless]), as: :page %>
   </section>
 <%-end-%>
