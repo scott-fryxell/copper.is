@@ -1,27 +1,46 @@
+
 $gw-column:2rem;
 $gw-gutter:0.5rem;
 $gutter:$gw-gutter;
-$offset_color:rgba(182, 195, 181, 0.2);
-$offset:rgba(182, 195, 181, 0.2);
-$dark:rgba(41, 11, 5, 0.99);
-$light:rgba(251, 250, 248, 0.99);
-$header:rgba(82,52,45,0.99);
-// 78  54  47
-$header_transparent:rgba(82,52,45,0.1);
-$title:rgba(102,102,102,0.99);
-$text:rgba(102,102,102,0.8);
-$input_border:rgba(42, 41, 41, 0.3);
-$input_background:rgba(251, 250, 248, 0.2);
 
-$copper_text:rgba(204, 154, 0, 0.99);
-// #ff9c00
-$copper:rgba(212, 154, 72, 1);
-$green:rgba(0, 128, 0, 0.7);
-$yellow:rgba(255, 255, 0, 0.7);
-$brown:rgba(165, 42, 42, 0.7);
-$blue:rgba(0, 0, 255, 0.7);
-$red:rgba(255, 0, 0, 0.7);
-$shadow:rgba(0, 0, 0, 0.5);
+
+
+
+
+
+$black:              hsla(  0,   0%,  0%, 0.99);
+  $shadow:           hsla(  0,   0%,  0%, 0.50);
+  $border:           hsla(  0,   0%, 16%, 0.30);
+  $title:            hsla(  0,   0%, 40%, 0.99);
+  $text:             hsla(  0,   0%, 40%, 0.80);
+
+$red:                hsla(  0,  50%, 50%, 0.70);
+  $brown:            hsla(  0,  59%, 41%, 0.70);
+
+  $dark:             hsla( 10,  78%,  9%, 0.99);
+  $header:           hsla( 11,  29%, 25%, 0.99);
+  $copper:           hsla( 29,  57%, 46%, 0.99);   //http://www.99colors.net/name/copper
+
+$sepia:              hsla( 30,  70%,  2%, 0.99);    //http://www.99colors.net/name/sepia
+
+  $copper:           hsla( 35,  62%, 56%, 0.99);   //from style guide
+  $light:            hsla( 40,  27%, 98%, 0.99);
+  $input_background: hsla( 40,  27%, 98%, 0.20);
+  $text_highlight:   hsla( 45, 100%, 40%, 0.99);
+
+
+$yellow:             hsla( 60, 100%, 50%, 0.70);
+  $offset:           hsla(116,  10%, 74%, 0.20);
+
+$green:              hsla(120, 100%, 25%, 0.70);
+
+$blue:               hsla(240, 100%, 50%, 0.70);
+
+
+
+
+
+
 
 @import "normalize";
 @import "bourbon";
@@ -44,7 +63,7 @@ $shadow:rgba(0, 0, 0, 0.5);
 
   border-radius: 0.25rem;
   border:0.1rem solid $header;
-  background-color:$offset_color;
+  background-color:$offset;
   color:$header;
   cursor:pointer;
   transition: all 0.25s ease;

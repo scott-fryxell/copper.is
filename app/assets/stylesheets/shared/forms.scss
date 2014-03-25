@@ -8,15 +8,15 @@ body {
     // line-height: 1.2em;
     color:$header;
     border-radius:0.25em;
-    border:2px solid $input_border;
-    background-color:$input_background;  
+    border:2px solid $border;
+    background-color:$input_background;
   }
 
   input[type=submit] {
     display:inline-block;
     @include button($copper);
     font-size: 0.9em;
-    border:none;  
+    border:none;
   }
 
   select {
@@ -46,7 +46,7 @@ body {
     display: inline-block;
     margin: 0 .25em 0 0;
     border-radius: 0.25em;
-    border-color:$input_border;
+    border-color:$border;
   }
   input:disabled {
     opacity:.6;
@@ -60,7 +60,7 @@ body {
   }
 }
 
-section.setting, 
+section.setting,
 #home_settings > #button,
 #services > details > section, #sharing {
   margin-bottom: 0.5em;
