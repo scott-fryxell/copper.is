@@ -26,11 +26,6 @@ class Page < ActiveRecord::Base
   scope :charged_tips, joins(:tips).where('tips.paid_state=?', 'charged')
   scope :order_by_tips, joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc')
 
-  def initialize(attributes={})
-    super
-    @nested ||= false
-  end
-
   def self.scott
     User.find_by_email('scott@copper.is').pages
   end
@@ -40,6 +35,7 @@ class Page < ActiveRecord::Base
   end
 
   def as_item_attributes
+    @nested ||= false
     unless @nested
       "itemscope itemtype='page' itemid='#{self.item_id}' itemprop='author_state' data-author_state='#{self.author_state}'"
     end
@@ -50,10 +46,8 @@ class Page < ActiveRecord::Base
   end
 
   def nested?
-    return nested
+    return @nested
   end
-
-
 
   def thumbnail
     if thumbnail_url
