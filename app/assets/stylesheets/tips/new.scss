@@ -106,8 +106,7 @@ $subtle_text: #999999;
         }
       }
       & > a.button {
-        @include button($copper);
-
+        @include button;
         display:none;
         margin-left:1rem;
         vertical-align:middle;
@@ -240,7 +239,7 @@ $subtle_text: #999999;
       }
     }
     #learn {
-      @include button($copper);
+      @include button;
     }
     #close {
       color:$light;
