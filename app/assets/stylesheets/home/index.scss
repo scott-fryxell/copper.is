@@ -55,7 +55,7 @@
       height:7.5rem;
       overflow:hidden;
       border-radius: 0.15rem;
-      border:0.1rem solid $header;
+      border:0.1rem solid darken($offset, 15%);
       background-color:$offset;
       vertical-align: top;
       margin-bottom:0.75rem;

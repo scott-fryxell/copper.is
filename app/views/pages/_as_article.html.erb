@@ -1,6 +1,6 @@
 <%-cache page do-%>
 
-<article <%=page.as_item_attributes%>>
+<article <%= raw page.as_item_attributes%>>
   <%-page.nested=true-%>
   <header>
     <%= render partial:"pages/as_figure", object:page, as: :page %>
