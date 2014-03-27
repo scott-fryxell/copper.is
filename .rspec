@@ -2,4 +2,4 @@
 --format Fuubar
 --colour
 --tag focus
---tag @slow
+--tag ~!@slow
