@@ -4,6 +4,7 @@
 //= require jquery.tmpl
 //= require jquery.browser
 //= require jquery.details
+//= require jquery.imgLiquid
 //= require lib/Item
 //= require lib/Me
 //= require lib/currency
