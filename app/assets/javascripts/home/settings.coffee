@@ -42,25 +42,8 @@ $(document).on "load.home_settings", ->
   $("#rate form").on 'item.validate', ->
     $('#rate p[itemprop=tip_preference_in_cents]').cents_to_dollars $('select[itemprop=tip_preference_in_cents]').val()
 
-  $("#address form").on 'item.validate', ->
-    # console.debug "validation check", $('#address form .invalid').size()
-    if $('#address form .invalid').size() == 0
-      $('p[itemprop=payable_to]').text $(@).find('input[itemprop=payable_to]').val()
-      $('p[itemprop=line1]').text $(@).find('input[itemprop=line1]').val()
-      $('p[itemprop=line2]').text $(@).find('input[itemprop=line2]').val()
-      $('span[itemprop=city]').text $(@).find('input[itemprop=city]').val()
-      $('span[itemprop=subregion_code]').text $(@).find('select[itemprop=subregion_code]').val()
-      $('span[itemprop=postal_code]').text $(@).find('input[itemprop=postal_code]').val()
-    else
-      $("#address > header > a").click()
-
 $(document).on "me.home_settings", ->
   $("#rate > form > select > option[value=#{document.me.tip_preference_in_cents}]").attr 'selected', true
-
-  if document.me.country_code
-    $("select[itemprop=country_code]").change()
-  else
-    $("#address > header > a").click()
 
   $("#email > header > a").click() unless document.me.email
 

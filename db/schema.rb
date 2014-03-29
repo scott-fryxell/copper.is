@@ -98,13 +98,6 @@ ActiveRecord::Schema.define(:version => 21) do
     t.string   "email"
     t.string   "stripe_id"
     t.boolean  "accept_terms",            :default => false
-    t.string   "payable_to"
-    t.string   "line1"
-    t.string   "line2"
-    t.string   "city"
-    t.string   "postal_code"
-    t.string   "subregion_code"
-    t.string   "country_code"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
     t.boolean  "share_on_facebook"

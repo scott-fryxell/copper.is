@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe 'Item.js', :slow do
-  before(:each) do
+
+  before :each do
     mock_user
     visit "/auth/facebook"
     sleep 2
@@ -17,7 +18,7 @@ describe 'Item.js', :slow do
   end
 
   it "should be able to change email from the command line" do
-    within("section#email") do
+    within "section#email" do
       find("div > p").should have_content("user@facebook.com")
       page.execute_script("document.me.email = 'change@email.com'")
       page.execute_script("$.update_view(document.items.me)")
