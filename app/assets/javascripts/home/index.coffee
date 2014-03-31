@@ -6,7 +6,6 @@ $(document).on "load.home_index load.home_tipped", ->
     $("#tip").attr("placeholder", "Tiped!")
     $("#tip").val("")
 
-  console.log $("img[itemprop=thumbnail_url")
   $("article[itemtype=page] figure").imgLiquid()
 
 $(document).on 'view_latest_tip', ->
