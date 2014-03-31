@@ -7,7 +7,6 @@ $(document).on "load.pages_index", ->
     $('body').toggleClass($(@).text())
 
   $('body').on 'change', "input[itemprop=thumbnail_url]", ->
-    # console.debug($(@).parents('[itemscope]').find('img[itemprop=thumbnail_url]'))
     $(@).parents('[itemscope]').find('img[itemprop=thumbnail_url]').attr('src', $(@).val())
 
   $("button[formaction]").click ->
