@@ -1,4 +1,4 @@
-guard 'process', :name => 'worker', :command => 'rake jobs:work', :stop_signal => 'TERM' do
+guard 'process', :name => 'worker', :command => 'rake jobs:work', :stop_signal => 'KILL' do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/authorization_rules.rb')
@@ -10,7 +10,7 @@ guard 'process', :name => 'worker', :command => 'rake jobs:work', :stop_signal =
   watch('/lib/**/*.rb')
 end
 
-guard 'process', :name => 'web', :command => 'rails s thin -p 3003', :stop_signal => 'TERM' do
+guard 'process', :name => 'web', :command => 'rails s thin -p 3003', :stop_signal => 'KILL' do
   watch('config/routes.rb')
   watch('config/authorization_rules.rb')
 end
@@ -33,10 +33,6 @@ guard 'rspec', all_on_start:false, all_after_pass:false, zeus:false, bundler: fa
   watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/features'}
 end
 
-guard 'bundler' do
-  watch('Gemfile')
-end
-
 guard :livereload do
   watch(%r{^app/.+\.(erb|haml|js|css|scss|sass|coffee|svg|png|gif|jpg)})
   watch(%r{^app/helpers/.+\.rb})
@@ -44,12 +40,3 @@ guard :livereload do
   watch(%r{^config/locales/.+\.yml})
 end
 
-# guard 'zeus' do
-#   # uses the .rspec file
-#   # --colour --fail-fast --format documentation --tag ~slow
-#   watch(%r{^spec/.+_spec\.rb$})
-#   watch(%r{^app/(.+)\.rb$})                           { |m| "spec/#{m[1]}_spec.rb" }
-#   watch(%r{^app/(.+)\.haml$})                         { |m| "spec/#{m[1]}.haml_spec.rb" }
-#   watch(%r{^lib/(.+)\.rb$})                           { |m| "spec/lib/#{m[1]}_spec.rb" }
-#   watch(%r{^app/controllers/(.+)_(controller)\.rb$})  { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb", "spec/requests/#{m[1]}_spec.rb"] }
-# end
