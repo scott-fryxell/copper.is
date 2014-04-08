@@ -1,69 +1,26 @@
 require 'resque/server'
 Copper::Application.routes.draw do
-  resources :tips, except:[:edit]
-  resources :checks, only:[:index, :show]
 
-  resources :orders, only:[:index, :show] do
-    resources :tips, only:[:index]
-  end
+  resources :tips, except:[:edit, :show]
 
-  resources :authors, only:[:index, :show, :update, :destroy] do
-    resources :pages, only:[:index]
-  end
+  get "admin",                            to:'home#admin',   :as => :admin
+  get 'ping',                             to:'home#ping',   :as => :ping
+  get 'embed_iframe.js',                  to:'home#iframe', :as => :iframe
+  get 'test',                             to:'home#test' unless Rails.env.production?
+  post 'claim_facebook_pages',            to:'home#claim_facebook_pages'
 
-  resources :pages, only:[:index, :show, :update] do
-    resources :tips, only:[:index]
-    member do
-       put 'reject'
-     end
-  end
-
-  resources :users, only:[:index, :update, :show] do
-    resources :tips, only:[:index]
-    resources :authors, only:[:index]
-    resources :pages, only:[:index]
-    resources :orders, only:[:index]
-    resources :checks, only:[:index]
-  end
-
-  get    'cards', to:'cards#show',   :as => :show_card
-  post   'cards', to:'cards#create', :as => :create_card
-  put    'cards', to:'cards#update', :as => :update_card
-  delete 'cards', to:'cards#delete', :as => :delete_card
-
-  get 'tip_some_pages',       to:'home#tip_some_pages'
-  get "integrations",         to:'home#integrations'
-  get 'badge',                to:'home#badge'
-  get 'author',               to:'home#author'
-  get 'settings',             to:'home#settings'
-  get 'about',                to:'home#about'
-  get 'trending',             to:'home#index'
-  get 'contact',              to:'home#contact'
-  get 'terms',                to:'home#terms'
-  get 'privacy',              to:'home#privacy'
-  get 'faq',                  to:'home#faq'
-  get 'states',               to:'home#states'
-  get 'ping',                 to:'home#ping'
-  get 'embed_iframe.js',      to:'home#iframe', :as => :iframe
-
-  post '/claim_facebook_pages',      to:'home#claim_facebook_pages'
-
-  if Rails.env.test? || Rails.env.development? || Rails.env.staging?
-    get 'test',    to:'home#test'
-  end
-
-  match "/signout" => "sessions#destroy", :as => :signout
-  match "/signin" => "sessions#new", :as => :signin
-  match "/auth/:provider/callback" => "sessions#create", :as => :provider_callback
-  match '/auth/failure'  => 'sessions#failure'
-  match '/auth/facebook/setup', :to => 'sessions#facebook_setup'
-  match '/auth/facebook/publish_actions', :to => 'sessions#publish_actions'
-  match '/auth/facebook/manage_pages', :to => 'sessions#manage_pages'
+  match "signout",                        to:"sessions#destroy", :as => :signout
+  match "signin",                         to:"sessions#new",     :as => :signin
+  match "/auth/:provider/callback",       to:"sessions#create",  :as => :provider_callback
+  match '/auth/failure',                  to:'sessions#failure'
+  match '/auth/facebook/setup',           to:'sessions#facebook_setup'
+  match '/auth/facebook/publish_actions', to:'sessions#publish_actions'
+  match '/auth/facebook/manage_pages',    to:'sessions#manage_pages'
+  root                                    to:'home#index'
 
   mount Resque::Server.new, :at => "/admin/resque"
-  root :to => 'home#index'
 
   # constraints allow usernames to have periods
-  get "/:provider/:username",  to:'authors#enquire', constraints:{username:/[^\/]+/}
+  # get "/:provider/:username",  to:'authors#enquire', constraints:{username:/[^\/]+/}
 
 end

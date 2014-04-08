@@ -3,16 +3,8 @@ require "spec_helper"
 describe TipsController do
   describe "routing" do
 
-    it "routes to #index" do
-      get("/tips").should route_to("tips#index")
-    end
-
     it "routes to #new" do
       get("/tips/new").should route_to("tips#new")
-    end
-
-    it "routes to #show" do
-      get("/tips/1").should route_to("tips#show", :id => "1")
     end
 
     it "routes to #create" do
@@ -25,10 +17,6 @@ describe TipsController do
 
     it "routes to #destroy" do
       delete("/tips/1").should route_to("tips#destroy", :id => "1")
-    end
-
-    it 'routes /pages/1/royalties to all royalties for given page' do
-      get('/pages/1/tips').should route_to('tips#index', :page_id => '1')
     end
 
   end

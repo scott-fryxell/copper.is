@@ -1,26 +1,6 @@
 class TipsController < ApplicationController
   filter_access_to :all
 
-  def index
-    if params[:state]
-      @tips = Tip.send(params[:state]).endless(params[:endless])
-    elsif params[:user_id]
-      @tips = User.find(params[:user_id]).tips.endless(params[:endless])
-    elsif params[:order_id]
-      @tips = Tip.where(order_id:params[:order_id]).endless(params[:endless])
-    elsif params[:page_id]
-      @tips = Tip.where(page_id:params[:page_id]).endless(params[:endless])
-    else
-      @tips = Tip.promised.endless(params[:endless])
-    end
-    render action:'index', layout:false if request.headers['retrieve_as_data'] or params[:endless]
-  end
-
-  def show
-    @tip = Tip.find(params[:id])
-    render action:'show', layout:false if request.headers['retrieve_as_data']
-  end
-
   def new
     if current_user
       render action:'new', layout:'tip_layout'

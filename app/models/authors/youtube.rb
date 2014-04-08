@@ -7,7 +7,7 @@ class Authors::Youtube < Author
 
     if %r{/watch}.match(path)
       video = connect_to_api.video_by(url)
-      author_name = URI.parse(video.author.uri).path.split('/')[4]
+      author_name = URI.parse(video.author.uri).path.split('/')[2]
       { :username => author_name }
     elsif %r{/user/}.match(path)
       user = %r{/user/}.match(path).post_match

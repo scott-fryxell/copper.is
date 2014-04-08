@@ -38,7 +38,7 @@ gem 'mechanize'
 gem 'cache_digests'
 gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
 gem "lograge"
-
+gem 'rails_12factor'
 gem 'pry'
 gem 'pry-rails'
 
@@ -52,7 +52,7 @@ end
 
 group :production do
   gem "pg"
-  gem 'rails_12factor'
+
 end
 
 group :development do
