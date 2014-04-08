@@ -26,13 +26,13 @@ describe Page do
     after do
       @page.save!
       @page.reload
-      # puts @page.url
+      puts @page.url
       @page.adopted?.should be_true
       Author.count.should == 1
     end
 
     describe "from a provider service" do
-      it "finds author on facebook.com", :vcr do
+      it "finds author on facebook.com" do
         @page.url = "https://www.facebook.com/scott.fryxell"
       end
 
@@ -44,8 +44,8 @@ describe Page do
         @page.url = "https://www.facebook.com/profile.php?id=1340075098"
       end
 
-      it "finds author on twitter.com", :vcr do
-        ::Twitter.stub(:user).and_return(double('user', screen_name:'ChloesThinking'))
+      it "finds author on twitter.com" do
+        ::Twitter.stub(:user).and_return(double('user',id:666, screen_name:'ChloesThinking'))
         Page.any_instance.stub(:learn)
         @page.url = "https://twitter.com/ChloesThinking"
       end
@@ -54,8 +54,11 @@ describe Page do
         @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
       end
 
-      it "finds author on youtube.com from a video url", :vcr do
+      it "finds author on youtube.com from a video url" do
         @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
+        author = double('author',  uri:'http://www.youtube.com/user/BHVthe81st', author_name:'BHVthe81st' )
+        Authors::Youtube.stub_chain(:connect_to_api, :video_by, :author).and_return(author)
+        Page.any_instance.stub(:learn)
       end
 
       it "finds author on youtube.com from a user profile", :vcr do
@@ -99,8 +102,7 @@ describe Page do
       end
 
       it "finds author for http://www.missionmission.org/", :vcr do
-        @twitter_user = double('user', id:398095666, screen_name:'ChloesThinking')
-        ::Twitter.stub(:user).and_return(@twitter_user)
+        ::Twitter.stub(:user).and_return(double('user', id:398095666, screen_name:'ChloesThinking'))
         Page.any_instance.stub(:learn)
         @page.url = "http://www.missionmission.org/"
       end
