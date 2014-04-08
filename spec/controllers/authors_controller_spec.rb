@@ -46,7 +46,7 @@ describe AuthorsController do
     end
 
     describe 'enquire' do
-      it 'should display information for a known author', :vcr do
+      it 'should display information for a known author' do
         Author.count.should == 1
         get :enquire, provider:@author.provider, username:@author.username
         assigns(:author).id.should == @author.id

@@ -7,12 +7,8 @@ describe HomeController do
       get("/").should route_to("home#index")
     end
 
-    it "routes to #trending" do
-      get("/trending").should route_to("home#trending")
-    end
-
-    it "routes to #welcome" do
-      get("/welcome").should route_to("home#welcome")
+    it "routes to #author" do
+      get("/author").should route_to("home#author")
     end
 
     it "routes to #ping" do

@@ -45,6 +45,8 @@ describe Page do
       end
 
       it "finds author on twitter.com", :vcr do
+        ::Twitter.stub(:user).and_return(double('user', screen_name:'ChloesThinking'))
+        Page.any_instance.stub(:learn)
         @page.url = "https://twitter.com/ChloesThinking"
       end
 
@@ -92,21 +94,24 @@ describe Page do
         @page.url = "http://staff.tumblr.com/"
       end
 
-      it "finds author for https://www.copper.is", :vcr, :broken do
+      it "finds author for https://www.copper.is", :vcr do
         @page.url = "https://www.copper.is"
       end
 
       it "finds author for http://www.missionmission.org/", :vcr do
+        @twitter_user = double('user', id:398095666, screen_name:'ChloesThinking')
+        ::Twitter.stub(:user).and_return(@twitter_user)
+        Page.any_instance.stub(:learn)
         @page.url = "http://www.missionmission.org/"
       end
 
     end
 
-    describe "transitions from :orphaned to :adopted if from a page that's fostered", :vcr do
-      it 'spiders a fostered page' do
-        @page.url = 'http://prettypennyrecords.com/woodsboro/pocket_comb'
-      end
-    end
+    # describe "transitions from :orphaned to :adopted if from a page that's fostered", :vcr do
+    #   it 'spiders a fostered page' do
+
+    #   end
+    # end
   end
 
   describe "transitions from :orphaned to :manual" do
