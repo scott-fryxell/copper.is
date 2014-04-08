@@ -1,14 +1,17 @@
 require 'spec_helper'
 
 describe TipsController do
-  describe 'high level' do
+  describe 'high level'do
     before :each do
       mock_user
       @me = create!(:user)
       Author.any_instance.stub(:_send_wanted_message)
+      Page.any_instance.stub(:learn)
+      @twitter_user = double('user', id:666, username:'ableton')
+      ::Twitter.stub(:user).and_return(@twitter_user)
     end
 
-    it 'tips pages', :vcr do
+    it 'tips pages' do
       proc do
         post_with @me, :create, tip:{url:'http://twitter.com/ableton'}
         @page = Page.find_by_url('http://twitter.com/ableton')
@@ -18,21 +21,20 @@ describe TipsController do
       end.should change(Tip,:count).by(1)
     end
 
-    it 'finds authors of tipped pages', :vcr do
+    it 'finds authors of tipped pages' do
       post_with @me, :create, tip:{url:'https://twitter.com/ableton'}
       @page = Page.find_by_url('https://twitter.com/ableton')
       @page.author.should_not be_nil
       @page.author.username.should eq('ableton')
     end
 
-    it 'messages wanted authors', :vcr do
+    it 'messages wanted authors' do
       post_with @me, :create, tip:{url:'http://twitter.com/ableton'}
       @me.current_order.tips.first.destroy
       @page = Page.find_by_url('http://twitter.com/ableton')
     end
 
     it 'assign tips to known authors' do
-      Page.any_instance.stub(:learn)
       @her_author = create!(:author_phony)
       post_with @me, :create, tip:{url:"http://example.com/#{@her_author.username}"}
       @page = Page.find_by_url("http://example.com/#{@her_author.username}")
