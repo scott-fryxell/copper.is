@@ -36,10 +36,4 @@ describe HomeController do
     end
   end
 
-  describe '/faq' do
-    it '200' do
-      get :faq
-    end
-  end
-
 end

@@ -60,19 +60,6 @@ class Order < ActiveRecord::Base
     end
   end
 
-
-  def tips_to_table_rows
-    tip_rows = ""
-    self.tips.find_each do |tip|
-      title = tip.title
-      if title.length == 0
-        title = tip.url
-      end
-      tip_rows += "<tr><td width='400'><a href='#{tip.url}'>#{title[0...75]}</a><br/></td><td>$#{tip.amount_in_dollars}</td></tr>"
-    end
-    tip_rows
-  end
-
   def subtotal
     self.tips.sum(:amount_in_cents)
   end

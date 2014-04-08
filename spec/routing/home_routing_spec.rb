@@ -7,8 +7,8 @@ describe HomeController do
       get("/").should route_to("home#index")
     end
 
-    it "routes to #author" do
-      get("/author").should route_to("home#author")
+    it "routes to #admin" do
+      get("/admin").should route_to("home#admin")
     end
 
     it "routes to #ping" do
