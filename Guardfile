@@ -15,22 +15,22 @@ guard 'process', :name => 'web', :command => 'rails s thin -p 3003', :stop_signa
   watch('config/authorization_rules.rb')
 end
 
-guard 'rspec', all_on_start:false, all_after_pass:false, zeus:false, bundler: false, parallel: false do
-  watch(%r{^spec/.+_spec\.rb$})
-  watch(%r{^lib/(.+)\.rb$})                                              { |m| "spec/lib/#{m[1]}_spec.rb" }
-  watch('spec/spec_helper.rb')                                           { "spec" }
-  watch('.rspec')                                                        { "spec" }
-  watch(%r{^app/(.+)\.rb$})                                              { |m| "spec/#{m[1]}_spec.rb" }
-  watch(%r{^app/(.*)(\.erb|\.haml)$})                                    { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
-  watch(%r{^app/controllers/(.+)_(controller)\.rb$})                     { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb"] }
-  watch(%r{^spec/support/(.+)\.rb$})                                     { "spec" }
-  watch('config/routes.rb')                                              { "spec/routing" }
-  watch('app/controllers/application_controller.rb')                     { "spec/controllers" }
-  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})                             { |m| "spec/features/#{m[1]}_spec.rb" }
-  watch(/^spec\/.+\.rb$/)                                                { 'spec' }
-  watch(/^app\/.+\.rb$/)                                                 { 'spec' }
-  watch(/^config\/.+\.rb$/)                                              { 'spec' }
-  watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/features'}
+guard 'rspec', all_on_start:false, all_after_pass:false, parallel: false do
+  # watch(%r{^spec/.+_spec\.rb$})
+  # watch(%r{^lib/(.+)\.rb$})                                              { |m| "spec/lib/#{m[1]}_spec.rb" }
+  # watch('spec/spec_helper.rb')                                           { "spec" }
+  # watch('.rspec')                                                        { "spec" }
+  # watch(%r{^app/(.+)\.rb$})                                              { |m| "spec/#{m[1]}_spec.rb" }
+  # watch(%r{^app/(.*)(\.erb|\.haml)$})                                    { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
+  # watch(%r{^app/controllers/(.+)_(controller)\.rb$})                     { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb"] }
+  # watch(%r{^spec/support/(.+)\.rb$})                                     { "spec" }
+  # watch('config/routes.rb')                                              { "spec/routing" }
+  # watch('app/controllers/application_controller.rb')                     { "spec/controllers" }
+  # watch(%r{^app/views/(.+)/.*\.(erb|haml)$})                             { |m| "spec/features/#{m[1]}_spec.rb" }
+  # watch(/^spec\/.+\.rb$/)                                                { 'spec' }
+  # watch(/^app\/.+\.rb$/)                                                 { 'spec' }
+  # watch(/^config\/.+\.rb$/)                                              { 'spec' }
+  # watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/features'}
 end
 
 guard :livereload do
