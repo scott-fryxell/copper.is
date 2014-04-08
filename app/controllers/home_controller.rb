@@ -14,15 +14,6 @@ class HomeController < ApplicationController
   def settings
   end
 
-  def getting_started
-  end
-
-  def badge
-  end
-
-  def tip_some_pages
-  end
-
   def integrations
   end
 
