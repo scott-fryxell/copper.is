@@ -3,15 +3,6 @@ require 'spec_helper'
 describe TipsController do
   describe 'as Guest' do
 
-    describe 'index' do
-      describe '/tips' do
-        it 'should respond with 401' do
-          get :index
-          response.status.should == 401
-        end
-      end
-    end
-
     describe 'new' do
       describe '/tips/new' do
         it 'should respond with 200' do
@@ -28,16 +19,6 @@ describe TipsController do
             post :create
             response.status.should == 401
           end.should_not change(Tip, :count)
-        end
-      end
-    end
-
-    describe 'show' do
-      describe '/tips/:id' do
-        it 'should respond with 401' do
-          me_setup
-          get :show, id:@my_tip.id
-          response.status.should == 401
         end
       end
     end

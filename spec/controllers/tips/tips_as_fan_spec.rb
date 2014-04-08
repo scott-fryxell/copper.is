@@ -7,14 +7,6 @@ describe TipsController do
   end
 
   describe 'as Fan' do
-    describe 'index' do
-      describe '/tips' do
-        it 'should respond with 401' do
-          get_with @me, :index
-          response.status.should == 403
-        end
-      end
-    end
 
     describe 'new' do
       describe '/tips/new' do
@@ -47,21 +39,6 @@ describe TipsController do
 
         it 'requires a url' do
           post_with @me, :create, tip:{title:'asldkjf'}
-          response.status.should == 403
-        end
-      end
-    end
-
-    describe 'show' do
-      describe '/tips/:id' do
-        it 'loads my tip' do
-          get_with @me, :show, id:@my_tip.id
-          response.status.should == 403
-        end
-
-        it 'loads someone else\'s tip via json' do
-          her_setup
-          get_with @me, :show, id:@her_tip1.id
           response.status.should == 403
         end
       end

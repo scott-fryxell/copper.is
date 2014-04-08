@@ -8,19 +8,6 @@ describe HomeController do
     end
   end
 
-  describe '/about' do
-    it '200' do
-      get :about
-    end
-  end
-
-  #TODO belongs in users_controller
-  describe '/author' do
-    it '200' do
-      get :author
-    end
-  end
-
   #TODO belongs in users_controller
   describe '/claim_facebook_pages' do
     it '200' do pending
@@ -30,46 +17,10 @@ describe HomeController do
     end
   end
 
-  #TODO belongs in users_controller
-  describe '/settings' do
-    it '200' do
-      get :settings
-    end
-  end
-
-  #TODO remove
-  describe '/states' do
-    it '200' do
-      get :states, country_code:'US'
-    end
-  end
-
   #TODO:  belongs in tips controller
   describe '/iframe' do
     it '200' do
       get :iframe, format:'js'
-    end
-  end
-
-
-
-#
-
-  describe '/contact' do
-    it '200' do
-      get :contact
-    end
-  end
-
-  describe '/terms' do
-    it '200' do
-      get :terms
-    end
-  end
-
-  describe '/privacy' do
-    it '200' do
-      get :privacy
     end
   end
 
