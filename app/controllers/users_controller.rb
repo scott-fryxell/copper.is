@@ -1,22 +1,6 @@
-class HomeController < ApplicationController
+class UsersController < ApplicationController
+  filter_access_to :all
   filter_access_to :claim_facebook_pages, :require => :read
-  filter_access_to :admin, :require => :manage
-  respond_to :html
-
-  def index
-  end
-
-  def admin
-  end
-
-  def iframe
-    response.headers['Cache-Control'] = 'public, max-age=300'
-    render :action => 'embed_iframe', :format => [:js], :layout => false
-  end
-
-  def test
-    render :action => 'test', :layout => false
-  end
 
   def claim_facebook_pages
     if pages = params[:facebook_objects]
@@ -35,11 +19,6 @@ class HomeController < ApplicationController
       end
     end
     render nothing:true, status:200
-  end
-
-  def ping
-    Page.count
-    render action:'ping', layout:false
   end
 
 end

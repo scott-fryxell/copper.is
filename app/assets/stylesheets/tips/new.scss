@@ -1,9 +1,12 @@
-@import "shared/mixins";
+@import "normalize";
 @import "bourbon";
+@import "details";
+@import "shared/mixins";
 
 $background_color: #313130;
 $subtle_text: #999999;
-#tips_new {
+
+body.tips.new {
   margin-left:1rem;
   width:350px;
   font-size:16px;
