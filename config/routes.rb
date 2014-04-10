@@ -29,7 +29,9 @@ Copper::Application.routes.draw do
     cache ActionController::Base.helpers.asset_path("tips/new.css")
     cache ActionController::Base.helpers.asset_path("tips/new.js")
     cache ActionController::Base.helpers.asset_path("noun_project/37233.svg")
-
+    cache "https://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One"
+    cache "https://cdn.mxpnl.com/libs/mixpanel-2.2.min.js"
+    cache "https://js-agent.newrelic.com/nr-380.min.js"
     network "*"
   end
 
