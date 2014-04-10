@@ -5,12 +5,15 @@
 //= require jquery.browser
 //= require jquery.details
 //= require jquery.imgLiquid
+
 //= require analytics
+
 //= require lib/Item
 //= require lib/Me
 //= require lib/currency
 //= require lib/card
 //= require lib/endless
-//= require home/index
+
+//= require pages/index
 //= require setup
 //= require init

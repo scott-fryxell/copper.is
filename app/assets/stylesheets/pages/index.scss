@@ -1,4 +1,4 @@
-#home_index {
+body.pages.index {
   input {
     @include button;
     margin-bottom:0.75rem;
@@ -45,7 +45,7 @@
   }
 }
 
-#home_index {
+body.pages.index {
   section.trending.pages {
     vertical-align: top;
     display:block;

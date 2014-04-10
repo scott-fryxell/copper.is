@@ -41,4 +41,10 @@ class TipsController < ApplicationController
     redirect_to tips_path, notice:'Tips can not be changed after they have been paid for'
   end
 
+  def iframe
+    response.headers['Cache-Control'] = 'public, max-age=300'
+    render :action => 'embed_iframe', :format => [:js], :layout => false
+  end
+
+
 end
