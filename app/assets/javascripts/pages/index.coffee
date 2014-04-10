@@ -1,4 +1,4 @@
-$(document).on "load.home_index load.home_tipped", ->
+$(document).on "load.pages_index", ->
   $("#tip").focus ->
     $("#tip").attr("placeholder", "Paste to tip")
 

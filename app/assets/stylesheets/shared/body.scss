@@ -1,6 +1,5 @@
 html {
-  height:100%;
-  overflow-x:hidden;
+  -webkit-text-size-adjust: 100%; // don't resize text on orientation change
   background-color: $light;
   background-image: image-url('shared/texture_light.png');
   @include user-select(none);
