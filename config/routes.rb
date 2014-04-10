@@ -3,8 +3,8 @@ Copper::Application.routes.draw do
 
   resources :tips, except:[:edit, :show]
 
-  get "admin",                            to:'admin#index',   :as => :admin
-  get 'ping',                             to:'admin#ping',   :as => :ping
+  get "admin",                            to:'admin#index', :as => :admin
+  get 'ping',                             to:'admin#ping',  :as => :ping
   get 'embed_iframe.js',                  to:'tips#iframe', :as => :iframe
   get 'test',                             to:'admin#test' unless Rails.env.production?
   post 'claim_facebook_pages',            to:'users#claim_facebook_pages'
@@ -22,5 +22,17 @@ Copper::Application.routes.draw do
 
   # constraints allow usernames to have periods
   # get "/:provider/:username",  to:'authors#enquire', constraints:{username:/[^\/]+/}
+
+  offline = Rack::Offline.configure do
+    cache ActionController::Base.helpers.asset_path("application.css")
+    cache ActionController::Base.helpers.asset_path("application.js")
+    cache ActionController::Base.helpers.asset_path("tips/new.css")
+    cache ActionController::Base.helpers.asset_path("tips/new.js")
+    cache ActionController::Base.helpers.asset_path("noun_project/37233.svg")
+
+    network "/"
+  end
+
+  match "/application.manifest" => offline
 
 end
