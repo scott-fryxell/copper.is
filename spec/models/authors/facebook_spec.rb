@@ -66,12 +66,12 @@ describe Authors::Facebook do
       @author.uid.should == '580281278'
     end
 
-    it 'finds the uid if usenname is set'  do
+    it 'finds the uid if usenname is set', :vcr do
       @author.uid = nil
       @author.username = 'scott.fryxell'
     end
 
-    it 'finds the username if uid is set' do
+    it 'finds the username if uid is set', :vcr do
       @author.uid = '580281278'
       @author.username = nil
     end

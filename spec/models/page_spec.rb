@@ -26,13 +26,13 @@ describe Page do
     after do
       @page.save!
       @page.reload
-      # puts @page.url
+      puts @page.url
       @page.adopted?.should be_true
       Author.count.should == 1
     end
 
     describe "from a provider service" do
-      it "finds author on facebook.com", :vcr do
+      it "finds author on facebook.com" do
         @page.url = "https://www.facebook.com/scott.fryxell"
       end
 
@@ -44,7 +44,9 @@ describe Page do
         @page.url = "https://www.facebook.com/profile.php?id=1340075098"
       end
 
-      it "finds author on twitter.com", :vcr do
+      it "finds author on twitter.com" do
+        ::Twitter.stub(:user).and_return(double('user',id:666, screen_name:'ChloesThinking'))
+        Page.any_instance.stub(:learn)
         @page.url = "https://twitter.com/ChloesThinking"
       end
 
@@ -52,8 +54,11 @@ describe Page do
         @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
       end
 
-      it "finds author on youtube.com from a video url", :vcr do
+      it "finds author on youtube.com from a video url" do
         @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
+        author = double('author',  uri:'http://www.youtube.com/user/BHVthe81st', author_name:'BHVthe81st' )
+        Authors::Youtube.stub_chain(:connect_to_api, :video_by, :author).and_return(author)
+        Page.any_instance.stub(:learn)
       end
 
       it "finds author on youtube.com from a user profile", :vcr do
@@ -92,21 +97,23 @@ describe Page do
         @page.url = "http://staff.tumblr.com/"
       end
 
-      it "finds author for https://www.copper.is", :vcr, :broken do
+      it "finds author for https://www.copper.is", :vcr do
         @page.url = "https://www.copper.is"
       end
 
       it "finds author for http://www.missionmission.org/", :vcr do
+        ::Twitter.stub(:user).and_return(double('user', id:398095666, screen_name:'ChloesThinking'))
+        Page.any_instance.stub(:learn)
         @page.url = "http://www.missionmission.org/"
       end
 
     end
 
-    describe "transitions from :orphaned to :adopted if from a page that's fostered", :vcr do
-      it 'spiders a fostered page' do
-        @page.url = 'http://prettypennyrecords.com/woodsboro/pocket_comb'
-      end
-    end
+    # describe "transitions from :orphaned to :adopted if from a page that's fostered", :vcr do
+    #   it 'spiders a fostered page' do
+
+    #   end
+    # end
   end
 
   describe "transitions from :orphaned to :manual" do

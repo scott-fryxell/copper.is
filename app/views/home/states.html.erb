@@ -1,6 +1,0 @@
-<select name="user[subregion_code]" itemprop='subregion_code'>
-  <option value="" disabled><%=@country.subregions.first.type%></option>
-  <%-@country.subregions.each do |state|-%>
-    <option value="<%=state.code%>"><%=state.name%></option>
-  <%-end-%>
-</select>

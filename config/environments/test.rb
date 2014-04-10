@@ -4,7 +4,7 @@ Copper::Application.configure do
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.action_dispatch.show_exceptions = true
-  config.action_controller.allow_forgery_protection = false
+  config.action_controller.allow_forgery_protection = true
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
   config.assets.compress = false
@@ -13,11 +13,11 @@ Copper::Application.configure do
   config.assets.compile = true
   config.assets.debug = true
   config.assets.digest = false
-  config.log_level = :debug
+  config.log_level = :info
   config.hostname = "http://127.0.0.1:8080"
   config.facebook_appname = "copper-dev"
   config.facebook_appid = "180829622036113"
-  
+
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = {
     'provider' => 'twitter',

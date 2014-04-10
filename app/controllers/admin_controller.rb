@@ -1,53 +1,12 @@
 class HomeController < ApplicationController
-  filter_access_to :author, :require => :read
-  filter_access_to :settings, :require => :read
   filter_access_to :claim_facebook_pages, :require => :read
-  filter_access_to :integrations, :require => :manage
+  filter_access_to :admin, :require => :manage
   respond_to :html
 
   def index
   end
 
-  def author
-  end
-
-  def settings
-  end
-
-  def getting_started
-  end
-
-  def badge
-  end
-
-  def tip_some_pages
-  end
-
-  def integrations
-  end
-
-  def tipped
-    response.headers['Cache-Control'] = 'public, max-age=300'
-  end
-
-  def about
-    response.headers['Cache-Control'] = 'public, max-age=300'
-  end
-
-  def faq
-    response.headers['Cache-Control'] = 'public, max-age=300'
-  end
-
-  def privacy
-    response.headers['Cache-Control'] = 'public, max-age=300'
-  end
-
-  def terms
-    response.headers['Cache-Control'] = 'public, max-age=300'
-  end
-
-  def contact
-    response.headers['Cache-Control'] = 'public, max-age=300'
+  def admin
   end
 
   def iframe
@@ -57,15 +16,6 @@ class HomeController < ApplicationController
 
   def test
     render :action => 'test', :layout => false
-  end
-
-  def states
-    @country = Country.coded(params['country_code'])
-    if @country.subregions?
-      render :action => 'states', :layout => false
-    else
-      render nothing:true, status:200
-    end
   end
 
   def claim_facebook_pages

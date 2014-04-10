@@ -1,17 +1,9 @@
-<%-unless params[:endless]-%>
-  <section id="banner">
-  <header>
-    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
-  </header>
-  <hgroup>
-    <h1>pages</h1>
-    <p><%=current_user.name%><a href="/signout">not you?</a></p>
-  </hgroup>
-  <details class='admin'>
-    <summary><img class="admin" src='<%= image_path 'noun_project/8233.svg'%>'/></summary>
-  </details>
-</section>
+<%-cache("homepage_pages", :expires_in => 1.minute) do-%>
+  <menu>
+    <a href="/trending" >Trending</a>
+  </menu>
+
+  <section class='endless trending pages'>
+    <%= render partial:"pages/as_article", collection:Page.recent.safe.endless(params[:endless]), as: :page %>
+  </section>
 <%-end-%>
-<section class='endless pages'>
-  <%= render partial:"as_article", collection:@pages, as: :page %>
-</section>

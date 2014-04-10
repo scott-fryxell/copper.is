@@ -1,9 +1,0 @@
-<%-cache order do-%>
-<dl itemscope itemtype='order' itemid='/orders/<%=order.id%>'>
-  <dd itemprop="created_at"><%=order.created_at.getutc.iso8601%></dd>
-  <dd itemprop="updated_at"><%=order.updated_at.getutc.iso8601%></dd>
-  <dd itemprop="order_state"><%=order.order_state%></dd>
-  <dd itemprop="charge_token"><%=order.charge_token%></dd>
-  <dd itemprop='user_id'><%=order.user_id%></dd>
-</dl>
-<%-end-%>

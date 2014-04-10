@@ -4,14 +4,15 @@
     <title>Copper</title>
     <%= render partial:"layouts/head_links"%>
     <%= csrf_meta_tag %>
-    <link rel="author"  href="http://twitter.com/copper_is">
 
     <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>" />
     <meta property="og:type"   content="website" />
-    <meta property="og:title"  content="¢:tip" />
+    <meta property="og:title"  content="copper.is – a currency of apreceation" />
     <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" />
-    <meta name="keywords" content="Copper.is, tip, gratitude, San Francisco, music, tipping, appreciation, copper">
-    <meta name="description" content="Copper. – Support artists through tipping.
+
+    <link rel="author"  href="http://twitter.com/copper_is">
+    <meta name="keywords"      content="Copper.is, tip, gratitude, San Francisco, music, tipping, appreciation, copper">
+    <meta name="description"   content="Copper. – Support artists through tipping.
                                                 You find something cool anywhere online.
                                                 You click a button to tip the content.We
                                                 find the person who made it and pay them.">
@@ -34,7 +35,7 @@
       <%= yield %>
     </main>
     <data>
-      <%= render partial:"users/model", object:current_user, as: :user if current_user%>
+      <%= render partial:"users/as_dl", object:current_user, as: :user if current_user%>
     </data>
   </body>
 </html>
