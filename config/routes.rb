@@ -30,9 +30,9 @@ Copper::Application.routes.draw do
     cache ActionController::Base.helpers.asset_path("tips/new.js")
     cache ActionController::Base.helpers.asset_path("noun_project/37233.svg")
 
-    network "/"
+    network "*"
   end
 
-  match "/application.manifest" => offline
+  match "/application.appcache" => offline
 
 end
