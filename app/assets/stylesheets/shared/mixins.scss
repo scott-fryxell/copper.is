@@ -31,9 +31,7 @@ $green:              hsla(120, 100%, 25%, 0.70);
 
 $blue:               hsla(240, 100%, 50%, 0.70);
 
-@import "normalize";
-@import "bourbon";
-@import "details";
+
 
 @mixin button {
   display: block;

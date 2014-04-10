@@ -8,7 +8,6 @@ menu {
   & > li {
     text-transform: capitalize;
     text-decoration: none;
-    color:black;
     @include button;
     margin-bottom:0.75rem;
   }
