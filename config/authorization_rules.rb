@@ -24,7 +24,7 @@ authorization do
   end
 
   role :guest do
-    has_permission_on :pages,       :to => [:index]
+    has_permission_on :pages,       :to => [:read, :appcache]
     has_permission_on :tips,        :to => [:new, :iframe]
     has_permission_on :authors,     :to => [:enquire]
   end
