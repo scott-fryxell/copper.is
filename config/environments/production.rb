@@ -7,9 +7,10 @@ Copper::Application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
 
-  config.assets.compress = true
+
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :yui
+  config.assets.compress = true
   config.assets.compile = true
   config.assets.debug = false
   config.assets.digest = true

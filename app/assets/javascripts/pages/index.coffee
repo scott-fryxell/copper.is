@@ -17,6 +17,5 @@ $(document).on "paste", (e) ->
   console.log url
   $("#tip").blur()
 
-# Switch back to tip view in 3.seconds switch to
 
 

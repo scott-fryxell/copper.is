@@ -5,8 +5,12 @@ Copper::Application.configure do
   config.action_controller.perform_caching = false
   config.active_support.deprecation = :log
   config.action_dispatch.best_standards_support = :builtin
+
   config.assets.compress = false
   config.assets.debug = true
+  config.assets.compile = true
+  config.assets.digest = false
+
   config.hostname = "http://copper.dev"
   config.facebook_appname = "copper-dev"
   config.facebook_appid = "180829622036113"

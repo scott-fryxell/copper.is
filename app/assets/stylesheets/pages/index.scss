@@ -1,4 +1,7 @@
 body.pages.index {
+  main > menu {
+    display:none;
+  }
   input {
     @include button;
     margin-bottom:0.75rem;

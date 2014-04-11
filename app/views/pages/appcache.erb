@@ -1,10 +1,16 @@
 CACHE MANIFEST
-# 9
-<%= asset_path('application.js') %>
+# <%= SecureRandom.hex(13) unless Rails.env.production? %>
+
 <%= asset_path('application.css') %>
+//fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One
+
 <%= asset_path('noun_project/37233.svg') %>
 <%= asset_path('shared/texture_light.png') %>
-//fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One
+<%= asset_path('icons/logo.svg') %>
+<%= asset_path('home_screen/v5.png') %>
+<%= asset_path('startup_image/640x1096.png') %>
+
+# <%= asset_path('application.js') %>
 //cdn.mxpnl.com/libs/mixpanel-2.2.min.js
 //js-agent.newrelic.com/nr-380.min.js
 
@@ -12,4 +18,4 @@ NETWORK:
 *
 
 FALLBACK:
-/assets /assets/noun_project/37233.svg
+/assets <%= asset_path('noun_project/37233.svg') %>
