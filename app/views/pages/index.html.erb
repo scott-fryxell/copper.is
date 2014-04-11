@@ -1,8 +1,7 @@
-<%-cache("homepage_pages", :expires_in => 1.minute) do-%>
+<%-cache("pages_index", :expires_in => 1.minute) do-%>
   <menu>
-    <a href="/trending" >Trending</a>
+    <a href="#recent">Recent</a>
   </menu>
-
   <section class='endless trending pages'>
     <%= render partial:"pages/as_article", collection:Page.recent.safe.endless(params[:endless]), as: :page %>
   </section>

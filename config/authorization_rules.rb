@@ -15,6 +15,7 @@ authorization do
   role :fan do
     includes :guest
     has_permission_on :sessions,   :to => :delete
+    has_permission_on :pages,      :to => :read
     has_permission_on :tips,       :to => [:create]
     has_permission_on :tips,       :to => [:update, :destroy] do
       if_attribute :user => is { user }
