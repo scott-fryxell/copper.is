@@ -16,6 +16,8 @@ Copper::Application.routes.draw do
   match '/auth/facebook/setup',           to:'sessions#facebook_setup'
   match '/auth/facebook/publish_actions', to:'sessions#publish_actions'
   match '/auth/facebook/manage_pages',    to:'sessions#manage_pages'
+
+  get 'pages.appcache',                   to:'pages#appcache'
   root                                    to:'pages#index'
 
   mount Resque::Server.new, :at => "/admin/resque"
@@ -23,18 +25,6 @@ Copper::Application.routes.draw do
   # constraints allow usernames to have periods
   # get "/:provider/:username",  to:'authors#enquire', constraints:{username:/[^\/]+/}
 
-  offline = Rack::Offline.configure do
-    cache ActionController::Base.helpers.asset_path("application.css")
-    cache ActionController::Base.helpers.asset_path("application.js")
-    cache ActionController::Base.helpers.asset_path("tips/new.css")
-    cache ActionController::Base.helpers.asset_path("tips/new.js")
-    cache ActionController::Base.helpers.asset_path("noun_project/37233.svg")
-    cache "https://fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One"
-    cache "https://cdn.mxpnl.com/libs/mixpanel-2.2.min.js"
-    cache "https://js-agent.newrelic.com/nr-380.min.js"
-    network "*"
-  end
-
-  match "/application.appcache" => offline
+  # match "/application.appcache" => offline
 
 end

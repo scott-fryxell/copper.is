@@ -41,7 +41,6 @@ gem "lograge"
 gem 'rails_12factor'
 gem 'pry'
 gem 'pry-rails'
-gem 'rack-offline'
 gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
 gem 'bourbon'
 group :assets do
