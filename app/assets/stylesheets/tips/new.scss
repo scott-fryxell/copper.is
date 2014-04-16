@@ -23,7 +23,7 @@ body.tips.new {
     border:2px solid $dark;
     border-top:none;
     @include text;
-    box-shadow: 2px 3px 8px 0px hsla(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 0px 0px hsla(0, 0, 0, 0.5);
     @include transition(min-height 0.5s ease-out 0.25s,  padding 0.5s);
 
     & > header {
@@ -230,7 +230,7 @@ body.tips.new {
         color:$light;
         font-size:1.5em;
         opacity:0.5;
-        text-shadow: 3px -3px $dark;
+        text-shadow: 1px -1px $dark;
         font-weight:normal;
       }
     }
