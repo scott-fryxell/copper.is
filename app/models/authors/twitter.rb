@@ -10,30 +10,43 @@ class Authors::Twitter < Author
       screen_name = uri.path.split('/')[1]
     end
 
-    twitter_id = ::Twitter.user(screen_name).id.to_s
+    twitter_id = twitter.user(screen_name).id.to_s
     { username:screen_name, uid: twitter_id}
   end
 
   def populate_uid_from_username!
     super do
-      self.uid = ::Twitter.user(self.username).id.to_s
+      self.uid = twitter.user(self.username).id.to_s
     end
   end
 
   def populate_username_from_uid!
     super do
-      self.username = ::Twitter.user(self.uid.to_i).screen_name
+      self.username = twitter.user(self.uid.to_i).screen_name
     end
   end
 
   def profile_image
     super do
       begin
-        ::Twitter.user(self.username).profile_image_url_https.gsub(/_normal/, '')
+        twitter.user(self.username).profile_image_url_https.gsub(/_normal/, '')
       rescue Exception
         "/assets/icons/silhouette.svg"
       end
     end
+  end
+
+
+private
+  def twitter
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key = Copper::Application.config.twitter_key
+      config.consumer_secret = Copper::Application.config.twitter_secret
+      config.oauth_token = Copper::Application.config.twitter_oauth_key
+      config.oauth_token_secret = Copper::Application.config.twitter_oauth_secret
+    end
+
+    return client
   end
 
 end

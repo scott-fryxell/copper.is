@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '2.0.0'
+ruby '2.1.1'
 gem 'rails', '3.2.13'
 gem 'jquery-rails'
 
@@ -43,6 +43,7 @@ gem 'pry'
 gem 'pry-rails'
 gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
 gem 'bourbon'
+
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier'
@@ -51,7 +52,6 @@ end
 
 group :production do
   gem "pg"
-
 end
 
 group :development do
