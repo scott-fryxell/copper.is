@@ -1,6 +1,6 @@
 class TipsController < ApplicationController
   filter_access_to :all
-
+  protect_from_forgery except: [:iframe, :new]
   def new
     if current_user
       render action:'new', layout:'tip_layout'

@@ -7,7 +7,6 @@ describe Authors::Twitter do
     # Page.any_instance.stub(:learn)
     @twitter_user = double('user', id:398095666, screen_name:'copper_is', profile_image_url_https:'https://si0.twimg.com/profile_images/1303637209/nostrals.jpg')
     ::Twitter.stub(:user).and_return(@twitter_user)
-
   end
 
   describe "Should discover author from url's " do

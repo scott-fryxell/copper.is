@@ -7,8 +7,8 @@ Todo's
     - copy the flow from embed_iframe.js
     
 - Tests passing
-- Badge works for authors to embed 
-- Include honeybadger for javascript (so rad)
+
+
 - Jobs scheduled
     - Charging fans 
     - copper:pages:adopt running on production

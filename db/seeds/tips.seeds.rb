@@ -1,7 +1,7 @@
 after :users do
   Page.reset_column_information
   puts('creating tips')
-  scott = User.find_by_email('scott@copper.is')
+  scott = User.find_by(email:'scott@copper.is')
 
   scott.tip(url:'http://www.lrb.co.uk/v36/n04/rebecca-solnit/diary')
   scott.tip(url:'http://tintbrainzane.tumblr.com/?og=1')

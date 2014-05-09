@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <%= csrf_meta_tag %>
     <%= stylesheet_link_tag "tips/new" %>
+    <%= javascript_include_tag "tips/new" %>
   </head>
   <body class="tips new" itemscope itemtype='tip' itemid="new">
     <%= yield %>
-    <%= javascript_include_tag "tips/new" %>
   </body>
 </html>

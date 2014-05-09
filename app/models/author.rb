@@ -1,17 +1,16 @@
 class Author < ActiveRecord::Base
   include Enqueueable
   has_paper_trail
+
   belongs_to :user, touch:true
   has_many :pages
   has_many :tips, :through => :pages
   has_many :checks, :through => :pages
 
-  attr_accessible :provider, :uid, :username
-
   validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
   validates :provider, presence:true
-  validate :validate_presence_of_username_or_uid
+  validate  :validate_presence_of_username_or_uid
 
   def validate_presence_of_username_or_uid
     unless self.username or self.uid
@@ -34,13 +33,13 @@ class Author < ActiveRecord::Base
   end
 
   Author.providers.each do |provider|
-    scope provider, where("provider = ?", provider)
+    scope provider, -> { where("provider = ?", provider) }
   end
 
-  scope :stranger, where(identity_state:'stranger')
-  scope :wanted, where(identity_state:'wanted')
-  scope :known, where(identity_state:'known')
-  scope :pending_royalties, joins(:tips).where("tips.paid_state='charged'").group('authors.id').select("authors.*, count('tips') as charged_tips_count").order('charged_tips_count desc')
+  scope :stranger,          -> { where(identity_state:'stranger') }
+  scope :wanted,            -> { where(identity_state:'wanted') }
+  scope :known,             -> { where(identity_state:'known') }
+  scope :pending_royalties, -> { joins(:tips).where("tips.paid_state='charged'").group('authors.id').select("authors.*, count('tips') as charged_tips_count").order('charged_tips_count desc') }
 
   state_machine :identity_state, initial: :stranger do
 
@@ -77,7 +76,7 @@ class Author < ActiveRecord::Base
       validates :user_id, presence:true
 
       def create_page_for_author
-        unless page = Page.find_by_url(self.url)
+        unless page = Page.find_by(url:self.url)
           page = Page.create(url:self.url,title:self.username, author_state:'adopted')
         end
         page.author = self

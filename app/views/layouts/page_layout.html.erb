@@ -13,7 +13,7 @@
     <meta property="og:title"  content="<%=@page.title%>">
     <meta property="og:image"  content="<%=@page.thumbnail%>">
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" >
     <%= render partial:"layouts/header"%>
     <%= yield %>
     <%= render partial:"layouts/footer"%>
