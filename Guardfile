@@ -1,4 +1,4 @@
-guard 'process', :name => 'worker', :command => 'rake jobs:work', :stop_signal => 'KILL' do
+guard 'process', :name => 'worker', :command => 'foreman start worker', :stop_signal => 'KILL' do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/authorization_rules.rb')
@@ -10,7 +10,7 @@ guard 'process', :name => 'worker', :command => 'rake jobs:work', :stop_signal =
   watch('/lib/**/*.rb')
 end
 
-guard 'process', :name => 'web', :command => 'rails s thin -p 3003', :stop_signal => 'KILL' do
+guard 'process', :name => 'web', :command => 'foreman start web', :stop_signal => 'KILL' do
   watch('config/routes.rb')
   watch('config/authorization_rules.rb')
 end
@@ -39,4 +39,3 @@ guard :livereload do
   watch(%r{^public/.+\.html})
   watch(%r{^config/locales/.+\.yml})
 end
-
