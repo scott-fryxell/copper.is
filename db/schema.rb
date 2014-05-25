@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 21) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authors", force: true do |t|
     t.string   "provider",       null: false
     t.string   "uid"
@@ -27,8 +30,8 @@ ActiveRecord::Schema.define(version: 21) do
     t.datetime "updated_at"
   end
 
-  add_index "authors", ["provider", "uid"], name: "index_authors_on_provider_and_uid"
-  add_index "authors", ["provider", "username"], name: "index_authors_on_provider_and_username"
+  add_index "authors", ["provider", "uid"], name: "index_authors_on_provider_and_uid", using: :btree
+  add_index "authors", ["provider", "username"], name: "index_authors_on_provider_and_username", using: :btree
 
   create_table "checks", force: true do |t|
     t.integer  "user_id"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 21) do
     t.datetime "updated_at"
   end
 
-  add_index "checks", ["user_id"], name: "index_checks_on_user_id"
+  add_index "checks", ["user_id"], name: "index_checks_on_user_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.integer  "user_id",      null: false
@@ -50,20 +53,20 @@ ActiveRecord::Schema.define(version: 21) do
 
   create_table "pages", force: true do |t|
     t.string   "title"
-    t.text     "url",           limit: 255,                 null: false
+    t.text     "url",                           null: false
     t.string   "author_state"
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "thumbnail_url"
-    t.boolean  "onboarding",                default: false
-    t.boolean  "welcome",                   default: false
-    t.boolean  "trending",                  default: false
-    t.boolean  "nsfw",                      default: false
+    t.boolean  "onboarding",    default: false
+    t.boolean  "welcome",       default: false
+    t.boolean  "trending",      default: false
+    t.boolean  "nsfw",          default: false
     t.text     "description"
   end
 
-  add_index "pages", ["url"], name: "index_pages_on_url"
+  add_index "pages", ["url"], name: "index_pages_on_url", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -76,7 +79,7 @@ ActiveRecord::Schema.define(version: 21) do
     t.integer "role_id"
   end
 
-  add_index "roles_users", ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id", unique: true
+  add_index "roles_users", ["user_id", "role_id"], name: "index_roles_users_on_user_id_and_role_id", unique: true, using: :btree
 
   create_table "tips", force: true do |t|
     t.integer  "order_id",        null: false
@@ -88,7 +91,7 @@ ActiveRecord::Schema.define(version: 21) do
     t.datetime "updated_at"
   end
 
-  add_index "tips", ["order_id"], name: "index_tips_on_order_id"
+  add_index "tips", ["order_id"], name: "index_tips_on_order_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -101,7 +104,7 @@ ActiveRecord::Schema.define(version: 21) do
     t.boolean  "share_on_facebook"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
   create_table "versions", force: true do |t|
     t.string   "item_type",  null: false
@@ -112,6 +115,6 @@ ActiveRecord::Schema.define(version: 21) do
     t.datetime "created_at"
   end
 
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
+  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id", using: :btree
 
 end
