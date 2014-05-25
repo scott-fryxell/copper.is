@@ -10,6 +10,7 @@ authorization do
     has_permission_on :authors, :to => :manage
     has_permission_on :tips,    :to => :manage
     has_permission_on :home,    :to => :manage
+    has_permission_on :admin,   :to => :manage
   end
 
   role :fan do
