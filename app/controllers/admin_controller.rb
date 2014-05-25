@@ -1,6 +1,5 @@
 class AdminController < ApplicationController
-  filter_access_to :claim_facebook_pages, :require => :read
-  filter_access_to :admin, :require => :manage
+  filter_access_to :index, :require => :manage
   respond_to :html
 
   def index

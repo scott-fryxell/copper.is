@@ -65,6 +65,7 @@ jQuery.fn.extend
           return val
 
   update_view: (item) ->
+    console.debug('updating view')
     $.each item, (key, value) ->
       if value?
         $("[itemprop='#{key}']").each ->
@@ -181,5 +182,3 @@ $(document).on 'submit', '[itemscope] form, [itemref] form', ->
       $(form).trigger "item.#{method}", [data, textStatus, jqXHR]
 
   return false # don't submit the form let the ajax do the talking
-
-
