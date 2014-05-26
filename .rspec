@@ -1,5 +1,5 @@
 --color
---format Fuubar
+--format doc
 --colour
 --tag focus
 --tag ~!@slow
