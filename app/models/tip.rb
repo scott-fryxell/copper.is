@@ -2,34 +2,34 @@ class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 class Tip < ActiveRecord::Base
   include Enqueueable
+  has_paper_trail
+
   belongs_to :page, touch:true
   belongs_to :order, touch:true
   belongs_to :check
-  has_one :user, :through => :order #, as:'fan' TODO:
-  has_paper_trail
-  default_scope :order => 'created_at DESC'
+  has_one :user, :through => :order #TODO: as:'fan'
+
+  default_scope  { order('created_at DESC') }
 
   attr_accessor :url,:title
 
-  attr_accessible :amount_in_cents,:url,:title
-
-  scope :promised, where(paid_state:'promised')
-  scope :charged, where(paid_state:'charged')
-  scope :kinged, where(paid_state:'kinged').readonly
-  scope :for_author, where(paid_state:['kinged','charged']).readonly
+  scope :promised,   -> { where(paid_state:'promised') }
+  scope :charged,    -> { where(paid_state:'charged') }
+  scope :kinged,     -> { where(paid_state:'kinged').readonly }
+  scope :for_author, -> { where(paid_state:['kinged','charged']).readonly }
 
   MINIMUM_TIP_VALUE = 1
   MAXIMUM_TIP_VALUE = 2000
+
   validates :amount_in_cents,
     :numericality => { in:(MINIMUM_TIP_VALUE..MAXIMUM_TIP_VALUE) },
     :presence => true
-
   validates_associated :page
-
   validates :page, presence:true
   validates :order, presence:true
   validates :amount_in_cents, presence:true
   validate :validate_only_being_added_to_current_order, :on => :create
+
   def validate_only_being_added_to_current_order
     unless self.order.current?
       errors.add(:order_id,"can only add a tip to a current order")

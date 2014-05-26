@@ -1,6 +1,7 @@
 Copper::Application.configure do
+  config.eager_load = false
   config.cache_classes = false
-  config.whiny_nils = true
+
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.action_dispatch.show_exceptions = true
@@ -8,8 +9,6 @@ Copper::Application.configure do
   config.action_mailer.delivery_method = :test
   config.active_support.deprecation = :stderr
   config.assets.compress = false
-  config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :yui
   config.assets.compile = true
   config.assets.debug = true
   config.assets.digest = false
@@ -17,8 +16,8 @@ Copper::Application.configure do
   config.hostname = "http://127.0.0.1:8080"
   config.facebook_appname = "copper-dev"
   config.facebook_appid = "180829622036113"
-
   OmniAuth.config.test_mode = true
+
   OmniAuth.config.mock_auth[:twitter] = {
     'provider' => 'twitter',
     'uid' => '123545',
@@ -110,8 +109,5 @@ Copper::Application.configure do
       'secret' => 'its_a_secret'
     },
   }
-
-  # Raise exception on mass assignment protection for Active Record models
-  config.active_record.mass_assignment_sanitizer = :strict
 
 end

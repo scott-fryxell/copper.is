@@ -91,10 +91,10 @@ FactoryGirl.define do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
-    roles [Role.find_or_create_by_name('Fan')]
+    roles [Role.find_or_create_by(name:'Fan')]
 
     factory :admin do
-      roles [Role.find_or_create_by_name('Admin')]
+      roles [Role.find_or_create_by(name:'Admin')]
     end
 
     factory :user_with_email do

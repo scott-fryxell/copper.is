@@ -1,7 +1,15 @@
 source 'http://rubygems.org'
 ruby '2.1.2'
-gem 'rails', '3.2.13'
+gem 'rails', '4.1.0'
+
+gem 'sass-rails', '~> 4.0.3'
+gem 'bourbon'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'turbolinks'
+gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'spring',           group: :development
 
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -14,11 +22,7 @@ gem 'omniauth-soundcloud'
 gem 'omniauth-google-oauth2'
 
 gem 'kaminari'
-gem 'newrelic_rpm'
-gem 'honeybadger'
 gem 'declarative_authorization'
-gem 'mustache'
-gem 'jbuilder'
 gem 'stripe'
 gem 'memcachier'
 gem 'dalli'
@@ -26,14 +30,13 @@ gem "foreman"
 gem 'unicorn'
 gem 'redis'
 gem 'resque', "~> 1.22.0"
-gem 'state_machine'
+gem 'state_machine', git:'https://github.com/seuros/state_machine'
 gem 'nokogiri'
 gem 'twitter'
 gem 'youtube_it'
-gem 'paper_trail', '~> 2'
-gem 'carmen-rails'
 gem "vimeo"
 gem 'koala'
+gem 'paper_trail', '~> 3'
 gem 'mechanize'
 gem 'cache_digests'
 gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
@@ -41,14 +44,6 @@ gem "lograge"
 gem 'rails_12factor'
 gem 'pry'
 gem 'pry-rails'
-gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
-gem 'bourbon'
-
-group :assets do
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier'
-  gem 'yui-compressor'
-end
 
 group :production do
   gem "pg"
@@ -78,8 +73,8 @@ group :development, :test do
   gem 'simplecov', require:false
   gem 'ruby_parser'
   gem 'rspec-rails'
-  gem "poltergeist"
-  gem 'database_cleaner', '~> 0.6.7'
+  gem 'poltergeist'
+  gem 'database_cleaner'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
@@ -89,7 +84,5 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'rb-fsevent'
   gem 'launchy'
-  gem 'ruby-graphviz', '~> 0.9.17'
-  gem 'rails-erd'
   gem 'quiet_assets'
 end

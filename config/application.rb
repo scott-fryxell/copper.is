@@ -1,33 +1,27 @@
 require File.expand_path('../boot', __FILE__)
 require 'rails/all'
-
 require 'open-uri'
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require *Rails.groups(:assets => %w(development test))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
+
+Bundler.require(:default, Rails.env)
 
 module Copper
   class Application < Rails::Application
+
     config.sass.load_paths += %w(vendor lib).map {|l| Rails.root.join(l, 'assets', 'stylesheets') }
+
     config.encoding = "utf-8"
     config.cache_store = :dalli_store
     config.active_record.timestamped_migrations = false
     config.action_view.embed_authenticity_token_in_remote_forms = false
-    config.active_record.whitelist_attributes= true
 
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.filter_parameters += [:password]
 
-    config.assets.enabled = true
-    config.assets.version = '1.1'
     config.assets.prefix = "/assets"
 
-    config.assets.initialize_on_precompile= false
+    config.assets.initialize_on_precompile=false
 
     %w[
       copper_secret_key
@@ -68,8 +62,6 @@ module Copper
       mandrill_key
 
       mixpanel_key
-      olark_key
-      honeybadger_key
 
     ].each do |env|
       raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?
@@ -77,5 +69,5 @@ module Copper
     end
   end
 end
-
 require 'messages'
+

@@ -1,33 +1,33 @@
 class Page < ActiveRecord::Base
   include Enqueueable
-
   has_paper_trail
+
   belongs_to :author
   has_many :tips
   has_many :checks, :through => :tips
-  attr_accessible :title, :url, :author_state
+
   attr_accessor :nested
   validates :url, :presence => true
   validate :url_points_to_real_site
+
   def url_points_to_real_site
     errors.add(:url, "must point to a real site") unless self.url =~ /\./
   end
 
   [:adopted, :orphaned, :fostered, :dead, :manual].each do |state|
-    scope state, where("author_state = ?", state)
+    scope state, -> { where("author_state = ?", state) }
   end
 
-  scope :welcome, where(welcome:true)
-  scope :onboarding, where(onboarding:true)
-  scope :trending, where(trending:true)
-
-  scope :safe, where(nsfw:false)
-  scope :recent, order("pages.updated_at DESC")
-  scope :charged_tips, joins(:tips).where('tips.paid_state=?', 'charged')
-  scope :order_by_tips, joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc')
+  scope :welcome,       -> { where(welcome:true) }
+  scope :onboarding,    -> { where(onboarding:true) }
+  scope :trending,      -> { where(trending:true) }
+  scope :safe,          -> { where(nsfw:false) }
+  scope :recent,        -> { order("pages.updated_at DESC") }
+  scope :charged_tips,  -> { joins(:tips).where('tips.paid_state=?', 'charged') }
+  scope :order_by_tips, -> { joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc') }
 
   def self.scott
-    User.find_by_email('scott@copper.is').pages
+    User.find_by(email:'scott@copper.is').pages
   end
 
   def self.adoption_rate

@@ -1,12 +1,13 @@
 Copper::Application.configure do
+
+  config.eager_load = false
+
+
   config.cache_classes = false
-  config.whiny_nils = true
+
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-  config.active_support.deprecation = :log
-  config.action_dispatch.best_standards_support = :builtin
 
-  config.assets.compress = false
   config.assets.debug = true
   config.assets.compile = true
   config.assets.digest = false
@@ -15,11 +16,9 @@ Copper::Application.configure do
   config.facebook_appname = "copper-dev"
   config.facebook_appid = "180829622036113"
 
-  config.log_level = :info
-  config.active_record.mass_assignment_sanitizer = :strict
-  config.active_record.auto_explain_threshold_in_seconds = 0.25
+  config.active_support.deprecation = :log
   config.lograge.enabled = true
-
+  config.log_level = :debug
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = {

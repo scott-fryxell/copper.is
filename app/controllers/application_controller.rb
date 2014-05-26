@@ -1,16 +1,10 @@
-require 'carmen'
-include Carmen
-
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery
 
-  helper_method :current_user, :item_scope, :user_url
-  before_filter :set_current_user
-  before_filter :set_default_cache_headers
-
-  before_filter do
-  end
+  helper_method :current_user, :user_url, :layout
+  before_action :set_current_user
+  before_action :set_default_cache_headers
 
   protected
 
@@ -21,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def user_url(user)
     if  current_user.id == user.id
-      return 'me'
+      return '/me'
     else
       return "/users/#{user.id}"
     end
@@ -43,9 +37,4 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  #TODO: => "value",  this should be specfic to user or model agnostic
-  def item_scope
-    return nil unless current_user
-    "itemscope itemtype=user itemid=/users/#{current_user.id}"
-  end
 end

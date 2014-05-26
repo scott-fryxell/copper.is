@@ -67,7 +67,7 @@ class SessionsController < ApplicationController
         else
           @author.join!
           @author.save()
-          redirect_to "/getting_started#one_of_us"
+          redirect_to "/#{root_url}#new"
         end
       end
     end

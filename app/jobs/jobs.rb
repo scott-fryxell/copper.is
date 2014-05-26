@@ -1,5 +1,3 @@
-# ======  Check observers =======
-
 class UsersJob
   @queue = :high
   def self.perform
@@ -17,7 +15,7 @@ class EarnedChecksJob
     end
   end
 end
-    
+
 class WantedAuthorsJob
   @queue = :high
   def self.perform
