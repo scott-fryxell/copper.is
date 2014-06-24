@@ -1,3 +1,5 @@
+# fuck it.
+
 copper.is was a service for giving.
 
 I spent four years working on this shit. I shut it down last august.
