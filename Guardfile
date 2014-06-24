@@ -1,4 +1,4 @@
-guard 'process', :name => 'worker', :command => 'foreman start worker', :stop_signal => 'KILL' do
+guard 'process', name:'worker', command:'bundle exec bin/rake jobs:work COUNT=1', stop_signal:'KILL' do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/authorization_rules.rb')
@@ -10,12 +10,16 @@ guard 'process', :name => 'worker', :command => 'foreman start worker', :stop_si
   watch('/lib/**/*.rb')
 end
 
-guard 'process', :name => 'web', :command => 'foreman start web', :stop_signal => 'KILL' do
+guard 'process', name:'web', command:'bundle exec unicorn -p 5000 -c ./config/unicorn.rb', stop_signal:'KILL' do
   watch('config/routes.rb')
+  watch('config/application.rb')
+  watch('config/environment.rb')
   watch('config/authorization_rules.rb')
+  watch(%r{^config/environments/.+\.rb})
+  watch(%r{^config/initializers/.+\.rb})
 end
 
-guard 'rspec', all_on_start:false, all_after_pass:false, parallel: false do
+guard :rspec, cmd:"bin/rspec --tty", all_on_start:false, all_after_pass:false, parallel: false do
   # watch(%r{^spec/.+_spec\.rb$})
   # watch(%r{^lib/(.+)\.rb$})                                              { |m| "spec/lib/#{m[1]}_spec.rb" }
   # watch('spec/spec_helper.rb')                                           { "spec" }

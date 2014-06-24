@@ -32,7 +32,7 @@ describe Page do
     end
 
     describe "from a provider service" do
-      it "finds author on facebook.com" do
+      it "finds author on facebook.com", :vcr do
         @page.url = "https://www.facebook.com/scott.fryxell"
       end
 

@@ -9,7 +9,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'spring',           group: :development
 
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -44,16 +43,13 @@ gem "lograge"
 gem 'rails_12factor'
 gem 'pry'
 gem 'pry-rails'
+gem 'pry-git'
+gem 'awesome_print'
+gem 'coolline'
+gem 'coderay'
+gem "pg"
+gem 'hirb'
 
-group :production do
-  gem "pg"
-end
-
-group :development do
-  gem 'guard-rake'
-  gem 'redcarpet'
-  gem 'yard'
-end
 
 group :test do
   gem 'fuubar'
@@ -65,11 +61,10 @@ group :test do
 end
 
 group :development, :test do
+  gem 'spring-commands-rspec'
+  gem 'spring'
   gem 'seedbank'
   gem 'reek'
-  gem 'sqlite3'
-  gem 'thin'
-  gem 'awesome_print'
   gem 'simplecov', require:false
   gem 'ruby_parser'
   gem 'rspec-rails'
@@ -78,11 +73,11 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'guard-pow'
   gem 'guard-process'
-  gem 'guard-zeus'
-  gem 'guard-bundler'
-  gem 'rb-fsevent'
+
   gem 'launchy'
+  gem 'rb-inotify', :require => false
+  gem 'rb-fsevent', :require => false
+  gem 'terminal-notifier-guard', :require => false # sends guard notifications to the OS X Notification Center.
   gem 'quiet_assets'
 end
