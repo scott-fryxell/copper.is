@@ -12,3 +12,5 @@ TAGS
 .DS_Store
 public/favicon.ico
 .powder
+
+.ruby-version
