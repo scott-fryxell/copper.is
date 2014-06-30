@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery
 
-  helper_method :current_user, :user_url, :layout
+  helper_method :current_user, :user_url, :set_scope, :layout
   before_action :set_current_user
   before_action :set_default_cache_headers
 
@@ -36,5 +36,11 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
+
+  def set_scope
+    "#{params[:controller].parameterize} #{params[:action].parameterize}"
+  end
+
+
 
 end

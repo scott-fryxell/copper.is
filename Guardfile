@@ -10,7 +10,7 @@ guard 'process', name:'worker', command:'bundle exec bin/rake jobs:work COUNT=1'
   watch('/lib/**/*.rb')
 end
 
-guard 'process', name:'web', command:'bundle exec unicorn -p 5000 -c ./config/unicorn.rb', stop_signal:'KILL' do
+guard 'process', name:'web', command:'bundle exec unicorn -p 3000 -c ./config/unicorn.rb', stop_signal:'KILL' do
   watch('config/routes.rb')
   watch('config/application.rb')
   watch('config/environment.rb')

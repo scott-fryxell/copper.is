@@ -4,7 +4,8 @@ class @Endless
     document.endless = @
     @page = 1
     @check = false
-
+    # todo add a check for current scroll down the page and a distance gate
+    # that will need to be triggerd before another endless attempt is made
     $('input[type=range].endless').change ->
       for column in ['2','3','4','6','8','12']
         if column is @.value
@@ -12,13 +13,13 @@ class @Endless
 
     if $('section.endless').length
       $('body').on 'next.endless', document.endless.next
-      setInterval(document.endless.wait, 500)
+      setInterval(document.endless.wait, 1000)
       $(window).scroll ->
         if document.endless.check
           document.endless.check = false
           if $(window).scrollTop() > $(document).height() - $(window).height() - 350
             $('body').trigger('next.endless')
-    
+
     $(window).scroll()
 
   next: =>

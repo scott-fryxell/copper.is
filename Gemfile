@@ -52,7 +52,7 @@ gem 'hirb'
 
 
 group :test do
-  gem 'fuubar'
+
   gem 'factory_girl_rails'
   gem 'resque_spec'
   gem 'hashugar'

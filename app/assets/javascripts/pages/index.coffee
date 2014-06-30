@@ -1,4 +1,5 @@
-$(document).on "load.pages_index", ->
+$(document).on "load.pages.index", ->
+
   $("#tip").focus ->
     $("#tip").attr("placeholder", "Paste to tip")
 
@@ -16,6 +17,3 @@ $(document).on "paste", (e) ->
   url =  e.originalEvent.clipboardData.getData('text/plain')
   console.log url
   $("#tip").blur()
-
-
-

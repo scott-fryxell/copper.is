@@ -41,7 +41,7 @@ namespace :copper do
           Resque.enqueue Order, order.id, :charge!
         end
       end
-    end   
+    end
 
   end
 
@@ -92,6 +92,5 @@ end
 
 namespace :db do
   task :bounce => %w{drop:all create:all migrate seed} do
-    system("rake db:test:prepare")
   end
 end

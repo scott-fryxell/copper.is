@@ -2,12 +2,11 @@ class @Me
   constructor: ->
     document.me = $.items().me
     if document.items?.me?.admin?
-      $('body').addClass("admin")
-      $(document).trigger "admin.#{$('body').attr('id')}"
+      $('body').attr("data-admin", true)
+      $(document).trigger "admin.#{$.get_page_scope()}"
     if document.items?.me?.fan?
-      $('body').addClass("fan")
-      $(document).trigger "fan.#{$('body').attr('id')}"
+      $('body').attr("data-fan", true)
+      $(document).trigger "fan.#{$.get_page_scope()}"
     else
-      $('body').addClass("guest")
-      $(document).trigger "guest.#{$('body').attr('id')}"
-
+      $('body').attr("data-guest", true)
+      $(document).trigger "guest.#{$.get_page_scope()}"

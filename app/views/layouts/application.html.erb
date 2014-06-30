@@ -19,11 +19,8 @@
 
     <%= stylesheet_link_tag "application", media:"all" %>
     <%= javascript_include_tag "application" %>
-    <%-if Rails.env.test?-%>
-      <%= stylesheet_link_tag "test", media:"all" %>
-    <%-end-%>
   </head>
-  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" class='<%= params[:controller].parameterize%> <%= params[:action].parameterize%>' >
+  <body class='<%=set_scope%>'>
     <%= render partial:"layouts/header"%>
     <aside>
       <menu class="fan">

@@ -4,7 +4,6 @@ after :users do
   scott = User.find_by(email:'scott@copper.is')
 
   scott.tip(url:'http://www.lrb.co.uk/v36/n04/rebecca-solnit/diary')
-  scott.tip(url:'http://tintbrainzane.tumblr.com/?og=1')
   scott.tip(url:'http://vimeo.com/52443205')
 
   scott.tip(url:'http://www.nytimes.com/2014/02/28/us/politics/obama-will-announce-initiative-to-empower-young-black-men.html')
