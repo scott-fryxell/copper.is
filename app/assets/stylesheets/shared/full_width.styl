@@ -1,0 +1,30 @@
+// expand a backroud color the full width of the page
+full_width(color)
+  @include left_width(color)
+  @include right_width(color)
+
+left_width(color)
+  background-color:color
+  position:relative
+  overflow:visible
+  &:before
+    content:""
+    position:absolute
+    top:0
+    bottom:0
+    left:100%
+    background-color: color
+    width: 9999px   /* some huge width */
+
+right_width(color)
+  background-color:color
+  position:relative
+  overflow:visible
+  &:after
+    content:""
+    position:absolute
+    top:0
+    bottom:0
+    right:100%
+    background-color: color
+    width: 9999px   /* some huge width */

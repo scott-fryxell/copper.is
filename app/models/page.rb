@@ -144,23 +144,23 @@ class Page < ActiveRecord::Base
                  :manual     => :dead
     end
 
-    after_transition any => :orphaned do |page,transition|
+    after_transition any => :orphaned do |page, transition|
       Resque.enqueue Page, page.id, :discover_author!
     end
 
-    after_transition any => :fostered do |page,transition|
+    after_transition any => :fostered do |page, transition|
       Resque.enqueue Page, page.id, :find_author_from_page_links!
     end
 
-    # after_transition any => :manual do |page,transition|
+    # after_transition any => :manual do |page, transition|
     #   Resque.enqueue Page, page.id, :notify_admin_to_find_page_author!
     # end
 
-    after_transition any => :dead do |page,transition|
+    after_transition any => :dead do |page, transition|
       Resque.enqueue Page, page.id, :refund_paid_tips!
     end
 
-    after_transition :adopt => :adopt do |page,transition|
+    after_transition :adopt => :adopt do |page, transition|
       # respider the page for images
       Resque.enqueue Page, page.id, :learn
     end
@@ -256,6 +256,7 @@ class Page < ActiveRecord::Base
     end
 
     state :manual do
+      # do some stuff here
     end
 
     state :dead do

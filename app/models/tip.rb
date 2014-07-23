@@ -88,6 +88,7 @@ class Tip < ActiveRecord::Base
     amount = Float(self.amount_in_cents) / 100
     sprintf('%.2f', amount)
   end
+
   def thumbnail
     page.thumbnail
   end

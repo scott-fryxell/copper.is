@@ -8,7 +8,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'stylus'
 gem 'sdoc', '~> 0.4.0', group: :doc
+
 
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -28,7 +30,7 @@ gem 'dalli'
 gem "foreman"
 gem 'unicorn'
 gem 'redis'
-gem 'resque', "~> 1.22.0"
+gem 'resque'
 gem 'state_machine', git:'https://github.com/seuros/state_machine'
 gem 'nokogiri'
 gem 'twitter'

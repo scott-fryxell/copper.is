@@ -12,7 +12,6 @@ class ApplicationController < ActionController::Base
     expires_in 1.minute, :public => true
   end
 
-
   def user_url(user)
     if  current_user.id == user.id
       return '/me'
@@ -40,7 +39,5 @@ class ApplicationController < ActionController::Base
   def set_scope
     "#{params[:controller].parameterize} #{params[:action].parameterize}"
   end
-
-
 
 end
