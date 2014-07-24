@@ -1,10 +1,10 @@
 // expand a backroud color the full width of the page
-full_width(color)
-  @include left_width(color)
-  @include right_width(color)
+ful-width()
+  left-full-width(arguments)
+  right-full-width(arguments)
 
-left_width(color)
-  background-color:color
+left-full-width()
+  background-color:arguments
   position:relative
   overflow:visible
   &:before
@@ -13,11 +13,11 @@ left_width(color)
     top:0
     bottom:0
     left:100%
-    background-color: color
+    background-color: arguments
     width: 9999px   /* some huge width */
 
-right_width(color)
-  background-color:color
+right-full-width()
+  background-color:arguments
   position:relative
   overflow:visible
   &:after
@@ -26,5 +26,5 @@ right_width(color)
     top:0
     bottom:0
     right:100%
-    background-color: color
+    background-color: arguments
     width: 9999px   /* some huge width */

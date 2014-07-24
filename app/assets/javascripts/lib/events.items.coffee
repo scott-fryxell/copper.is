@@ -19,7 +19,7 @@ $(document).on 'change', "[itemprop]", ->
       type: 'put'
       data: "#{$(@).attr('itemprop')}=#{$(@).get_value(@)}"
       success:  (data) ->
-        # console.info "item.updated"
+        console.log "item.update"
         $('data#items').append(jQuery.parseHTML(data))
         $('data#items').trigger('item.update')
 

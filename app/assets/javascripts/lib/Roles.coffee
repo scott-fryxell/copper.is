@@ -1,4 +1,5 @@
-class @Me
+class @Roles
+
   constructor: ->
     document.me = $.items().me
     if document.items?.me?.admin?

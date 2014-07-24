@@ -1,14 +1,15 @@
 $ ->
+
+  # log
+  console.log('initializing app', @)
+
+  # bind
+  $(@).on 'load.endless', -> $(@).page_init()
+
+  # trigger
   $('html').page_init()
 
-  new Me()
+  new Item($('html'))
+  new Roles()
   new Endless()
-
-  console.log(@)
-
-  $(@).on 'load.endless', ->
-    $(@).page_init()
-
-  $(@).trigger "load.#{$.get_page_scope()}"
-
-  window.onhashchange()
+  new Fragment()

@@ -1,0 +1,16 @@
+@require 'lib/device'
+
+flex-progressive()
+  body > main
+    min-height:72%
+
+  +laptop()
+    body > menu
+      display:inline-block
+      min-width:16%
+      height:90%
+
+    body > main
+      display:inline-block
+      min-width:80%
+      min-height:90%
