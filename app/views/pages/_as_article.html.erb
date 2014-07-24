@@ -4,16 +4,22 @@
   <header>
     <%= render partial:"pages/as_figure", object:page, as: :page %>
   </header>
-  <footer>
+  <section>
     <h3><%= URI.parse(page.url).host%></h3>
     <%-if page.title-%>
-    <h2 itemprop="title"><%=page.title%></h2>
+      <h2 itemprop="title"><%=page.title%></h2>
     <%-else-%>
-    <h2><%= URI.parse(page.url).path.delete("/")%></h2>
+      <h2><%= URI.parse(page.url).path.delete("/")%></h2>
     <%-end-%>
-    <menu>
+    <nav>
       <a href='<%=page.url%>' target="_blank" itemprop="url">Visit</a>
-    </menu>
+    <nav>
+  </section>
+  <aside>
+    <%= render partial:"pages/as_form", object:page, as: :page %>
+  </aside>
+  <footer>
+    <%= render partial:"pages/as_menu", object:page, as: :page %>
   </footer>
   <%-page.nested=false-%>
 </article>
