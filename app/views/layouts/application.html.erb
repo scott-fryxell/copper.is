@@ -22,15 +22,15 @@
     <%= javascript_include_tag "application" %>
   </head>
   <body class='<%=set_scope%>'>
+
     <%= render partial:"/header"%>
+    <%= render partial:"/menu"%>
     <main>
       <%= yield %>
-    </main>
-    <data>
-      <section itemprop type='users' itemref='/users'>
-        <%= render partial:"users/as_dl", object:current_user, as: :user if current_user%>
+      <section itemprop type='users' itemid='/users'>
+        <%= render partial:"/current_user"%>
       </section>
-
-    </data>
+    </main>
+    <%= render partial:"/footer"%>
   </body>
 </html>
