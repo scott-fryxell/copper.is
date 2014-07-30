@@ -1,21 +1,19 @@
+@require 'typography'
 @require 'lib/user-select'
 @require 'lib/box-sizing'
 
 *
-  background-color: hsla(5,100%,99%,0.25) /* nested items will have a natural offset because of opacity */
   box-sizing border-box
   margin:0
-  text-transform:capitalize
-  line-height:3
+  line-height:1.33
   text-align:center
-
 
 html
   background-color:transparent
   width:100%
   height:100%
   font-size:100%
-  font-family:"Helvetica Neue Ultralight", "Helvetica Neue Light","Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif
+  text()
   color: hsla(0,3%,55%,0.90)
   letter-spacing:1
   user-select none
