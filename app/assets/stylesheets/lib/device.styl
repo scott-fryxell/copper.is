@@ -10,19 +10,18 @@ laptop()
   @media (min-width:65rem)
     {block}
 
-display()
-  @media (min-width:90rem){
-    block
-  }
+monitor()
+  @media (min-width:90rem)
+    {block}
 
-only_phone()
+phone-only()
   @media (max-width:41rem) and (min-width:1rem)
     {block}
 
-only_tablet()
+tablet-only()
   @media (min-width:41rem) and (max-width:65rem)
     {block}
 
-only_phone_and_tablet()
+phone-and-tablet-only()
   @media (max-width:65rem) and (min-width:1rem)
     {block}

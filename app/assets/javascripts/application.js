@@ -14,7 +14,6 @@
 
 //= require lib/Roles
 //= require lib/Fragment
-//= require lib/Endless
 
 //= require pages/index
 

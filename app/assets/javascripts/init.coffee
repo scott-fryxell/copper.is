@@ -11,5 +11,5 @@ $ ->
 
   new Item($('html'))
   new Roles()
-  new Endless()
-  new Fragment()
+  # new Endless()
+  # new Fragment()
