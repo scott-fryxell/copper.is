@@ -1,0 +1,38 @@
+roles()
+  body[data-guest="true"]
+    .guest
+      display:block
+
+    .fan
+      display:none
+
+    .admin
+      display:none
+
+  body[data-fan="true"]
+    .guest
+      display:none
+
+    .fan
+      display:block
+
+    .admin
+      display:none
+
+  body[data-admin="true"]
+    .guest
+      display:none
+
+    .fan
+      display:none
+
+    .admin
+      display:block
+
+  body[data-fan="true"],
+  body[data-admin="true"]
+    .fan
+      display:block
+
+    .admin
+      display:block

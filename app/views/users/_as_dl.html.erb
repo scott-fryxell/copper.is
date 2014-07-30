@@ -11,6 +11,7 @@
   <dd itemprop='share_on_facebook'><%=user.share_on_facebook%></dd>
   <dd itemprop="created_at"><%=user.created_at.getutc.iso8601%></dd>
   <dd itemprop="updated_at"><%=user.updated_at.getutc.iso8601%></dd>
+  <%= '<dd itemprop="current_user">true</dd>' if current_user%>
   <%-user.roles.each do |role| -%>
   <dd itemprop="<%=role.name%>">true</dd>
   <%-end-%>

@@ -27,7 +27,9 @@ class Author < ActiveRecord::Base
     end
   end
 
-  @@providers = [:twitter, :facebook, :tumblr, :phony, :soundcloud, :github, :vimeo, :flickr, :google]
+  @@providers = [ :twitter, :facebook, :tumblr,
+    :phony, :soundcloud, :github, :vimeo,
+    :flickr, :google ]
   def self.providers
     @@providers
   end

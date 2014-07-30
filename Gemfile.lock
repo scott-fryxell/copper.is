@@ -366,6 +366,10 @@ GEM
       json (~> 1.8.1)
       mime-types (~> 1.25)
       rest-client (~> 1.4)
+    stylus (1.0.1)
+      execjs
+      stylus-source
+    stylus-source (0.42.2)
     terminal-notifier-guard (1.5.3)
     thor (0.19.1)
     thread_safe (0.3.3)
@@ -478,7 +482,7 @@ DEPENDENCIES
   rb-inotify
   redis
   reek
-  resque (~> 1.22.0)
+  resque
   resque_spec
   rspec-rails
   ruby_parser
@@ -490,6 +494,7 @@ DEPENDENCIES
   spring-commands-rspec
   state_machine!
   stripe
+  stylus
   terminal-notifier-guard
   turbolinks
   twitter
