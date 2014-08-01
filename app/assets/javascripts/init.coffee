@@ -9,7 +9,7 @@ $ ->
   # trigger
   $('html').page_init()
 
-  new Item($('html'))
+  new Item(document)
   new Roles()
   # new Endless()
   # new Fragment()
