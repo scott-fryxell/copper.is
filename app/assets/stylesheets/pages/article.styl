@@ -1,25 +1,23 @@
 article[itemtype=page]
-  padding:0.5rem
   font-size:0;
+  padding:0.5rem
+  margin-bottom:0.75rem
   overflow:hidden
+  vertical-align: top
   border-radius: 0.15rem
-  border:0.1rem solid riser
   border-gradient()
 
-
-  vertical-align: top
-  margin-bottom:0.75rem
-
   & > figure
-    margin-right:1rem;
     display:inline-block
-    border-radius: 50%
-    background-color: tan
     width:4rem
     height:4rem
-    -webkit-filter: sepia(15%)
+
+    border-radius: 50%
+    background-color: tan
+    margin-right:1rem;
     overflow:hidden
     vertical-align: middle
+    -webkit-filter: sepia(15%)
 
     & > img
       vertical-align: middle
@@ -28,10 +26,10 @@ article[itemtype=page]
       z-index:-1
 
   & > header
-    font-size:1rem;
-    vertical-align: middle
     display:inline-block
-    width:14rem;
+    vertical-align: middle
+    width:14rem
+    font-size:1rem;
 
     +laptop()
       width:50%
@@ -42,13 +40,10 @@ article[itemtype=page]
       line-height: 1.45
       overflow:hidden
       font-size: 1rem
-      font-family: 'Patua One', sans-serif
-      font-family: 'Doppio One', sans-serif
       font-family: 'Cantarell', sans-serif
-      letter-spacing: 0
-      // color:header
+
     h2
-      text-align: left
+      text-align:left
       max-height:3rem;
       a
         header-text()
@@ -56,11 +51,9 @@ article[itemtype=page]
     h3
       margin: 0.25rem 0
       font-size: 0.75rem
-      opacity: 0.75
+      opacity: 0.6
       text-align: left
       text-transform: lowercase
-
-
 
   & > footer
     vertical-align: top

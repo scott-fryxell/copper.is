@@ -2,14 +2,32 @@
 @require 'typography'
 
 body
-  // background-color: tan 
+  // background-color: tan
   & > menu
+    +phone-only()
+      border:0px solid transparent
+      padding:0
+      background-color:riser
+      max-height:0
+      height:0;
+      overflow-y:hidden
+      transition-property: max-height height
+      transition-duration: .5s
+      transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1)
+
     & > a
       letter-spacing:1px
       text-align:center
       text-decoration:none
       border-radius:0.25em
       text()
+
+  & > menu.show
+    +phone-only()
+      border:1px inset riser
+      height:14rem
+      max-height: 14rem
+
 
   & > header
     padding:0.5rem 0

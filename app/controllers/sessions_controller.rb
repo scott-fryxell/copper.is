@@ -101,6 +101,4 @@ class SessionsController < ApplicationController
     render :text => "Setup complete.", :status => 404
   end
 
-  def new
-  end
 end
