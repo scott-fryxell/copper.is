@@ -2,8 +2,10 @@
 @require 'typography'
 
 body
+  border-image-width:0
   // background-color: tan
   & > menu
+
     +phone-only()
       border:0px solid transparent
       padding:0
@@ -15,6 +17,16 @@ body
       transition-duration: .5s
       transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1)
 
+    h6
+      text-align:center
+      opacity:0.1
+      font-size:1.2rem
+      header-text()
+      font-family: 'Bree Serif', serif
+      +phone-only()
+        opacity:0.2
+        margin-top:1rem
+
     & > a
       letter-spacing:1px
       text-align:center
@@ -25,8 +37,8 @@ body
   & > menu.show
     +phone-only()
       border:1px inset riser
-      height:14rem
-      max-height: 14rem
+      height:20rem
+      max-height: 20rem
 
 
   & > header
