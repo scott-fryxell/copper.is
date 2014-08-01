@@ -1,38 +1,35 @@
 roles()
   body[data-guest="true"]
     .guest
-      display:block
+      height:auto
 
     .fan
-      display:none
+      hide()
 
     .admin
-      display:none
+      hide()
 
   body[data-fan="true"]
     .guest
-      display:none
+      hide()
 
-    .fan
-      display:block
 
     .admin
-      display:none
+      hide()
 
   body[data-admin="true"]
     .guest
-      display:none
+      hide()
 
     .fan
-      display:none
+      hide()
 
-    .admin
-      display:block
 
-  body[data-fan="true"],
-  body[data-admin="true"]
-    .fan
-      display:block
 
-    .admin
-      display:block
+
+  // body[data-fan="true"],
+  // body[data-admin="true"]
+  //   .fan
+  //
+  //
+  //   .admin

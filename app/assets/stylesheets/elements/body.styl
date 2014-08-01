@@ -2,29 +2,24 @@
 @require 'typography'
 
 body
-  background-color: hsla(5,5%,90%,0.5)
+  background-color: tan
   & > menu
-    -webkit-padding-start:0
-
-
     & > a
-      color: hsla(0,13%,55%,0.9)
-      font-weight:100
-      font-size:1.1rem
       letter-spacing:1px
-      border:none
       text-align:center
       text-decoration:none
       border-radius:0.25em
+      text()
 
   & > header
     padding:0.5rem 0
 
     & > figure
-      width:14.5%
-      padding:0.25rem
-      display:inline-block
-      text-align:center;
+      text-align:center
+
+      +tablet()
+        padding:0.5rem
+        width:10rem
       img
         width:6rem;
 

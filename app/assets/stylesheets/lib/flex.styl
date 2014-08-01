@@ -12,14 +12,14 @@ flex()
     & > menu
       order:2
 
-    & > footer
-      order:4
-
     & > main
       flex-grow:1
       order:3
 
-  +laptop()
+    & > footer
+      order:4
+
+  +tablet()
     body
       flex-wrap:wrap
       flex-direction:row
@@ -35,7 +35,7 @@ flex()
 
       & > menu
         order:2
-        flex-grow:1.33
+        flex-grow:0.22
         flex-direction:column
         flex-wrap:wrap
 
