@@ -1,5 +1,5 @@
 roles()
-  body[data-guest="true"]
+  body[data-role="guest"]
 
     .fan
       hide()
@@ -7,7 +7,7 @@ roles()
     .admin
       hide()
 
-  body[data-fan="true"]
+  body[data-role="fan"]
 
     .guest
       hide()
@@ -15,7 +15,6 @@ roles()
     .admin
       hide()
 
-  body[data-admin="true"]
-
+  body[data-role="admin"]
     .guest
       hide()
