@@ -1,7 +1,6 @@
 $ ->
 
   $('body > header > figure').click ->
-    console.info('toggler')
     $('body > menu').toggleClass('show')
 
   # log

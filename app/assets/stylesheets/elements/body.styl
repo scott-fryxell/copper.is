@@ -2,10 +2,8 @@
 @require 'typography'
 
 body
-  border-image-width:0
-  // background-color: tan
-  & > menu
 
+  & > menu
     +phone-only()
       border:0px solid transparent
       padding:0
@@ -22,17 +20,15 @@ body
       opacity:0.1
       font-size:1.2rem
       header-text()
-      font-family: 'Bree Serif', serif
       +phone-only()
         opacity:0.2
         margin-top:1rem
 
-    & > a
+    a
       letter-spacing:1px
       text-align:center
       text-decoration:none
       border-radius:0.25em
-      text()
 
   & > menu.show
     +phone-only()
@@ -51,7 +47,7 @@ body
         padding:0.5rem
         width:10rem
       img
-        width:6rem;
+        width:6rem
 
   & > footer
     background-color: hsla(5,3%,0%,0.9)

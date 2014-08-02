@@ -6,8 +6,14 @@ menu
 
   & > a,
   & > button,
+  & > input,
   & > li
+    display:block
     text-transform: capitalize
     text-decoration: none
-    button()
-    text()
+
+menu menu
+  +phone-only()
+    display:inline-block
+    width:50%
+    font-size:1rem

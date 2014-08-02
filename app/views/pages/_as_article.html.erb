@@ -10,7 +10,11 @@
         </a>
       </h2>
     <%-else-%>
-      <h2><%= URI.parse(page.url).path.delete("/")%></h2>
+      <h2>
+        <a href='<%=page.url%>' target="_blank" itemprop="url">
+        <%= URI.parse(page.url).path.delete("/")%>
+        </a>
+      </h2>
     <%-end-%>
     <h3><%= URI.parse(page.url).host%></h3>
   </header>
