@@ -1,50 +1,20 @@
+@require 'lib/device'
+@require 'lib/flex'
+
 body
+  margin:0
+  display-flex()
+  flex-direction:column
 
-  & > menu
-    +phone-only()
-      border:0px solid transparent
-      padding:0
-      background-color:riser
-      max-height:0
-      height:0;
-      overflow-y:hidden
-      transition-property: max-height height
-      transition-duration: .5s
-      transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1)
+  +tablet()
+    flex-flow row wrap
 
-    h6
-      text-align:center
-      opacity:0.1
-      font-size:1.2rem
-      header-text()
-      +phone-only()
-        opacity:0.2
-        margin-top:1rem
+    & > header,
+    & > footer
+      flexx: 0 1 100%
 
-    a
-      letter-spacing:1px
-      text-align:center
-      text-decoration:none
-      border-radius:0.25em
+    & > menu
+      flexx: 1 0.22 15%
 
-  & > menu.show
-    +phone-only()
-      border:1px inset riser
-      height:20rem
-      max-height: 20rem
-
-
-  & > header
-    padding:0.5rem 0
-
-    & > figure
-      text-align:center
-
-      +tablet()
-        padding:0.5rem
-        width:10rem
-      img
-        width:6rem
-
-  & > footer
-    background-color: hsla(5,3%,0%,0.9)
+    & > main
+      flexx: 1.618 1 85%

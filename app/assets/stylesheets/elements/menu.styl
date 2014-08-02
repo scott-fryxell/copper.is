@@ -1,6 +1,7 @@
 menu
+  font-size:0rem
   -webkit-padding-start:0
-  padding:0.5rem
+  padding:0.5rem 0
 
   & > a,
   & > button,
@@ -14,4 +15,35 @@ menu menu
   +phone-only()
     display:inline-block
     width:50%
+
+
+body > menu
+  &.show
+    +phone-only()
+      border:1px inset riser
+      height:20rem
+      max-height: 20rem
+
+  +phone-only()
+    border:0px solid transparent
+    padding:0
+    background-color:riser
+    max-height:0
+    height:0;
+    overflow-y:hidden
+    transition-property: max-height height
+    transition-duration: .5s
+    transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1)
+
+  h6
+    text-align:center
+    opacity:0.1
     font-size:1rem
+    header-text()
+    +phone-only()
+      opacity:0.2
+      margin-top:1rem
+
+  a
+    text-align:center
+    margin:0.25rem 0

@@ -1,0 +1,15 @@
+@require 'lib/device'
+
+body > header
+  +tablet()
+    display-flex()
+
+  & > figure
+    text-align:center
+    padding:0.5rem 0
+    
+    +tablet()
+      flexx: 0 0.22 15%
+      width:11rem
+    img
+      width:6rem

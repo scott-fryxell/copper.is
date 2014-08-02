@@ -1,46 +1,10 @@
-flex-layout()
-  body
-    margin:0
-    flex-direction:column
-    display:flex
-
-    & > header
-      order:1
-
-    & > menu
-      order:2
-
-    & > main
-      order:3
-
-    & > footer
-      order:4
-
-  +tablet()
-    body
-      flex-direction:row
-      flex-wrap:wrap
-
-      & > header,
-      & > footer
-        width:100%
-        min-height:5%
-        vertical-align:middle
-
-      & > menu
-        flex-grow:0.22
-
-      & > main
-        flex-grow:2.618
-        min-height:90%
-
 display-flex()
-  display: -webkit-box
-  display: -moz-box
-  display: -ms-flexbox
+  display: -ms-Flexbox
+  -ms-box-orient: horizontal
   display: -webkit-flex
+  display: -moz-fle
+  display: -ms-flex
   display: flex
-
 
 order()
   -webkit-box-ordinal-group: arguments
@@ -49,20 +13,11 @@ order()
   -webkit-order: arguments
   order: arguments
 
-
 flex-wrap()
   -moz-flex-wrap: arguments
   -ms-flex-wrap: arguments
   -webkit-flex-wrap: arguments
   flex-wrap: arguments
-
-
-flex-grow()
-  -moz-flex-grow: arguments
-  -ms-flex-grow: arguments
-  -webkit-flex-grow: arguments
-  flex-grow: arguments
-
 
 flex-direction()
   -moz-flex-direction: arguments
@@ -70,8 +25,32 @@ flex-direction()
   -webkit-flex-direction: arguments
   flex-direction: arguments
 
+flex-flow()
+  -webkit-flex-flow: arguments
+  -moz-flex-flow: arguments
+  -ms-flex-flow: arguments
+  flex-flow: arguments
+
+flexx()
+  -webkit-flex: arguments
+  -moz-flex: arguments
+	-ms-flex: arguments
+  flex: arguments
+
+flex-grow()
+  -webkit-flex-grow: arguments
+  -moz-flex-grow: arguments
+  -ms-flex-grow: arguments
+  flex-grow: arguments
+
 flex-shrink()
+  -webkit-flex-shrink: arguments
   -moz-flex-shrink: arguments
   -ms-flex-shrink: arguments
-  -webkit-flex-shrink: arguments
   flex-shrink: arguments
+
+flex-basis()
+  -webkit-flex-basis: arguments
+  -moz-flex-basis: arguments
+  -ms-flex-basis: arguments
+  flex-basis: arguments
