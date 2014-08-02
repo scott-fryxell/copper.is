@@ -1,5 +1,3 @@
-@require "shared/*"
-
 body.tips.new
   margin-left:1rem
   width:350px
@@ -9,7 +7,7 @@ body.tips.new
 
   section
     position:relative
-    background-color: overlay_color
+    background-color: overlay-color
     color:$light
     height:0
     border-radius: 0 0 0.5rem 0.5rem
@@ -49,13 +47,12 @@ body.tips.new
         vertical-align: middle
         font-size: 2rem
         text-align: center
-        color: $copper
 
       & > h2
         margin-bottom: 0
         font-size: 1rem
-        color: $light
-        color: $subtle_text
+        color: input-background-color
+        color: subtle-text
         text-align: center
 
     & > form
