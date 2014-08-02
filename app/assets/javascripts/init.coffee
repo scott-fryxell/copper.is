@@ -1,10 +1,9 @@
 $ ->
+  # log
+  console.log('initializing app', @)
 
   $('body > header > figure').click ->
     $('body > menu').toggleClass('show')
-
-  # log
-  console.log('initializing app', @)
 
   # bind
   $(@).on 'load.endless', -> $(@).page_init()
