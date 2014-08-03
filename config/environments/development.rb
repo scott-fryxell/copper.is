@@ -2,7 +2,6 @@ Copper::Application.configure do
 
   config.eager_load = false
 
-
   config.cache_classes = false
 
   config.consider_all_requests_local       = true
@@ -10,7 +9,7 @@ Copper::Application.configure do
 
   config.assets.debug = false
   config.assets.compile = true
-  config.assets.digest = false
+  config.assets.digest = true
 
   config.hostname = "http://copper.dev"
   config.facebook_appname = "copper-dev"
@@ -112,6 +111,5 @@ Copper::Application.configure do
       'secret' => 'its_a_secret'
     },
   }
-
-
+  ``
 end
