@@ -17,14 +17,7 @@ menu menu
     display:inline-block
     width:50%
 
-
 body > menu
-  &.show
-    +phone-only()
-      border:1px inset riser
-      height:15rem
-      max-height:15rem
-
   +phone-only()
     border:0px solid transparent
     padding:0
@@ -33,14 +26,21 @@ body > menu
     height:0;
     overflow-y:hidden
     transition-property: max-height height
-    transition-duration: .5s
+    transition-duration: 0.5s
     transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1)
+
+  &.show
+    +phone-only()
+      border:1px inset riser
+      height:15rem
+      max-height:15rem
 
   h6
     text-align:center
-    opacity:0.1
-    font-size:1rem
+    opacity:0.15
     header-text()
+    text-shadow: 1px 0px 0px copper
+    font-size:1rem
     +phone-only()
       opacity:0.2
       margin-top:1rem
