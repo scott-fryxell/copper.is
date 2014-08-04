@@ -49,14 +49,6 @@ class Page < ActiveRecord::Base
     return @nested
   end
 
-  def thumbnail
-    if thumbnail_url
-      thumbnail_url
-    else
-      "/assets/pages/default.svg"
-    end
-  end
-
   def tips_by_fan_in_cents (user)
     user.tips.where(page_id:self.id).sum(:amount_in_cents)
   end
