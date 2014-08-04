@@ -1,3 +1,4 @@
+<%-cache("application_appcache", :expires_in => 1.minute) do-%>
 CACHE MANIFEST
 //fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One
 http://fonts.gstatic.com/s/cantarell/v5/V86VyqXbc09Sss3BPsMj17O3LdcAZYWl9Si6vvxL-qU.woff
@@ -21,3 +22,4 @@ NETWORK:
 
 FALLBACK:
 /assets <%= asset_path('noun_project/37233.svg') %>
+<%-end-%>

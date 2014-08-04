@@ -6,9 +6,19 @@ class PagesController < ApplicationController
 
   end
 
-
-  def appcache
+  def application_appcache
     expires_in 1.second, :public => true
     render action:'appcache', layout:false, content_type:'text/cache-manifest'
   end
+
+  def pages_appcache
+    expires_in 1.second, :public => true
+    render action:'appcache', layout:false, content_type:'text/cache-manifest'
+  end
+
+  def page_appcache
+    expires_in 1.second, :public => true
+    render action:'appcache', layout:false, content_type:'text/cache-manifest'
+  end
+
 end
