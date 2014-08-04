@@ -10,7 +10,8 @@ Copper::Application.configure do
   config.assets.debug = false
   config.assets.compile = true
   config.assets.digest = true
-
+  config.static_cache_control = "public, max-age=31536000"
+  
   config.hostname = "http://copper.dev"
   config.facebook_appname = "copper-dev"
   config.facebook_appid = "180829622036113"
