@@ -1,8 +1,10 @@
-<%-cache("application_appcache", :expires_in => 1.minute) do-%>
+<%-cache("pages_appcache", :expires_in => 1.minute) do-%>
 CACHE MANIFEST
+# <%=Time.now unless Rails.env.development?%>
+
 //fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One
-http://fonts.gstatic.com/s/cantarell/v5/V86VyqXbc09Sss3BPsMj17O3LdcAZYWl9Si6vvxL-qU.woff
-http://fonts.gstatic.com/s/doppioone/v3/DGr_HuCg-_zePcleoqvEX73hpw3pgy2gAi-Ip7WPMi0.woff
+//fonts.gstatic.com/s/cantarell/v5/V86VyqXbc09Sss3BPsMj17O3LdcAZYWl9Si6vvxL-qU.woff
+//fonts.gstatic.com/s/doppioone/v3/DGr_HuCg-_zePcleoqvEX73hpw3pgy2gAi-Ip7WPMi0.woff
 
 <%= asset_path('application.js') %>
 <%= asset_path('application.css') %>
@@ -15,11 +17,10 @@ http://fonts.gstatic.com/s/doppioone/v3/DGr_HuCg-_zePcleoqvEX73hpw3pgy2gAi-Ip7WP
 <%= asset_path('noun_project/2966.svg') %>
 <%= asset_path('noun_project/624.svg') %>
 <%= asset_path('icons/logo.svg') %>
-/assets/noun_project/37233.svg
 
 NETWORK:
 *
 
-FALLBACK:
-/assets <%= asset_path('noun_project/37233.svg') %>
+FALLBACK
+/assets/pages/default.svg <%= asset_path('noun_project/37233.svg') %>
 <%-end-%>

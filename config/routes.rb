@@ -9,11 +9,11 @@ Copper::Application.routes.draw do
 
   resources :pages, only:[:index] do
     member do
-      get "member.appcache", to:"pages#pages_appcache"
+      get "member.appcache", to:"pages#member_appcache"
     end
 
     collection do
-      get "collection.appcache", to:"pages#pages_appcache"
+      get "collection.appcache", to:"pages#collection_appcache"
     end
   end
 

@@ -53,7 +53,7 @@ class Page < ActiveRecord::Base
     if thumbnail_url
       thumbnail_url
     else
-      "/assets/noun_project/37233.svg"
+      "/assets/pages/default.svg"
     end
   end
 
