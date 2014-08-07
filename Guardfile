@@ -19,7 +19,7 @@ guard 'process', name:'web', command:'bundle exec unicorn -p 3000 -c ./config/un
   watch(%r{^config/initializers/.+\.rb})
 end
 
-guard :rspec, cmd:"bin/rspec --tty", all_on_start:false, all_after_pass:false, parallel: false do
+guard :rspec, cmd:"spring rspec", all_on_start:false, all_after_pass:false, parallel: false do
   # watch(%r{^spec/.+_spec\.rb$})
   # watch(%r{^lib/(.+)\.rb$})                                              { |m| "spec/lib/#{m[1]}_spec.rb" }
   # watch('spec/spec_helper.rb')                                           { "spec" }
@@ -38,7 +38,7 @@ guard :rspec, cmd:"bin/rspec --tty", all_on_start:false, all_after_pass:false, p
 end
 
 guard :livereload do
-  watch(%r{^app/.+\.(erb|haml|js|css|scss|sass|coffee|svg|png|gif|jpg)})
+  watch(%r{^app/.+\.(erb|haml|js|css|scss|sass|styl|coffee|svg|png|gif|jpg)})
   watch(%r{^app/helpers/.+\.rb})
   watch(%r{^public/.+\.html})
   watch(%r{^config/locales/.+\.yml})

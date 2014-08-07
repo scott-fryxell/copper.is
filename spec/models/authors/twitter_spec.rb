@@ -5,8 +5,9 @@ describe Authors::Twitter do
     @author = create!(:author_twitter, username:"_ugly")
     @author.stub(:send_tweet)
     # Page.any_instance.stub(:learn)
-    @twitter_user = double('user', id:398095666, screen_name:'copper_is', profile_image_url_https:'https://si0.twimg.com/profile_images/1303637209/nostrals.jpg')
+    @twitter_user = double('user', id:398095666, screen_name:'copper_is', profile_image_url:'https://pbs.twimg.com/profile_images/1303637209/nostrals.jpg')
     ::Twitter.stub(:user).and_return(@twitter_user)
+    puts
   end
 
   describe "Should discover author from url's " do
@@ -42,7 +43,6 @@ describe Authors::Twitter do
     end
   end
 
-
   describe "Should return nil for url's that don't provide user information" do
     it "https://www.twitter.com/" do
       Author.provider_from_url("https://www.twitter.com/").should be_false
@@ -58,8 +58,7 @@ describe Authors::Twitter do
   end
 
   it "should render a profile image", :vcr do
-    @author.profile_image.should == "https://si0.twimg.com/profile_images/1303637209/nostrals.jpg"
+    @author.profile_image.should == "https://pbs.twimg.com/profile_images/1303637209/nostrals.jpg"
   end
-
 
 end

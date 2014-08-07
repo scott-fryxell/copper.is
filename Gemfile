@@ -30,7 +30,7 @@ gem 'dalli'
 gem "foreman"
 gem 'unicorn'
 gem 'redis'
-gem 'resque'
+gem 'resque', "~> 1.22.0"
 gem 'state_machine', git:'https://github.com/seuros/state_machine'
 gem 'nokogiri'
 gem 'twitter'
@@ -54,7 +54,6 @@ gem 'hirb'
 
 
 group :test do
-
   gem 'factory_girl_rails'
   gem 'resque_spec'
   gem 'hashugar'

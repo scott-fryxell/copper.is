@@ -210,6 +210,7 @@ class Page < ActiveRecord::Base
 
             doc.links_with(:href => %r{facebook.com}).each do |link|
               unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
+                puts link.href
                 if self.author = Author.find_or_create_from_url(link.href)
                   output.call link
                   return adopt!

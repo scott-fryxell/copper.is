@@ -1,17 +1,46 @@
 after :users do
+
   Page.reset_column_information
   puts('creating tips')
   scott = User.find_by(email:'scott@copper.is')
 
-  scott.tip(url:'http://www.lrb.co.uk/v36/n04/rebecca-solnit/diary')
-  scott.tip(url:'http://vimeo.com/52443205')
+  trending = [
+    'http://www.lrb.co.uk/v36/n04/rebecca-solnit/diary',
+    'http://vimeo.com/52443205',
+    'http://www.nytimes.com/2014/02/28/us/politics/obama-will-announce-initiative-to-empower-young-black-men.html',
+    'http://www.thebolditalic.com/articles/4391-video-time-capsule-4-days-before-the-1906-earthquake',
+    'http://blog.hull.io/post/47939445232/reconciling-svg-and-icon-fonts',
+    'http://www.nytimes.com/2014/03/09/opinion/sunday/can-we-learn-about-privacy-from-porn-stars.html',
+    'http://www.redbullmusicacademy.com/magazine/razormaid-feature',
+    'http://yourslownewsday.com/okay-the-google-glass-lady-needs-to-zip-it',
+    'http://www.nytimes.com/interactive/2014/06/27/world/legacy-of-world-war-i.html'
+  ]
 
-  scott.tip(url:'http://www.nytimes.com/2014/02/28/us/politics/obama-will-announce-initiative-to-empower-young-black-men.html')
-  scott.tip(url:'http://www.thebolditalic.com/articles/4391-video-time-capsule-4-days-before-the-1906-earthquake')
-  scott.tip(url:'http://blog.hull.io/post/47939445232/reconciling-svg-and-icon-fonts')
+  for url in trending
+    scott.tip(url:url)
+    scott.tip(url:url)
+  end
 
-  scott.tip(url:'http://www.nytimes.com/2014/03/09/opinion/sunday/can-we-learn-about-privacy-from-porn-stars.html')
-  scott.tip(url:'http://www.redbullmusicacademy.com/magazine/razormaid-feature')
-  scott.tip(url:'http://yourslownewsday.com/okay-the-google-glass-lady-needs-to-zip-it')
+  recent = [
+    'http://www.nytimes.com/2014/08/05/opinion/frank-bruni-plato-and-the-promise-of-college.html',
+    'http://www.nytimes.com/2014/08/06/technology/russian-gang-said-to-amass-more-than-a-billion-stolen-internet-credentials.html',
+    'http://www.thedailybeast.com/articles/2014/08/03/five-lessons-the-faltering-music-industry-could-learn-from-tv.html',
+    'http://www.nytimes.com/2014/08/05/world/europe/buildup-makes-russia-battle-ready-for-ukraine.html',
+    'http://www.nytimes.com/2014/08/06/upshot/alarm-on-income-inequality-from-a-mainstream-source.html',
+    'http://www.nytimes.com/2014/08/06/upshot/luck-and-a-little-mystery-the-economy-grows-faster-under-democratic-presidents.html',
+    'http://dealbook.nytimes.com/2014/08/05/new-strategy-as-tech-giants-transform-into-conglomerates',
+    'http://www.newyorker.com/magazine/1940/04/13/the-old-house-at-home',
+    'http://www.nytimes.com/2014/08/03/technology/how-facebook-sold-you-krill-oil.html',
+    'http://www.html5rocks.com/en/tutorials/security/sandboxed-iframes/',
+    'http://www.thedailybeast.com/articles/2014/08/03/five-lessons-the-faltering-music-industry-could-learn-from-tv.html',
+    'http://www.vice.com/read/german-cat-breeder-websites-876',
+    'http://www.google.com/design/spec/material-design/introduction.html',
+    'http://www.broken-links.com/2012/08/14/better-svg-sprites-with-fragment-identifiers/',
+    'http://daringfireball.net/'
+  ]
+
+  for url in recent
+    scott.tip(url:url)
+  end
 
 end

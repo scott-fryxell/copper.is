@@ -10,8 +10,8 @@ Copper::Application.configure do
   config.active_support.deprecation = :stderr
   config.assets.compress = false
   config.assets.compile = true
-  config.assets.debug = true
-  config.assets.digest = false
+  config.assets.debug = false
+  config.assets.digest = true
   config.log_level = :info
   config.hostname = "http://127.0.0.1:8080"
   config.facebook_appname = "copper-dev"

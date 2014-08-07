@@ -1,3 +1,6 @@
+@require 'color'
+@require 'typography'
+
 body.tips.new
   margin-left:1rem
   width:350px
@@ -8,7 +11,7 @@ body.tips.new
   section
     position:relative
     background-color: overlay-color
-    color:$light
+    color:body-text-color
     height:0
     border-radius: 0 0 0.5rem 0.5rem
     padding:0 1rem
@@ -36,9 +39,9 @@ body.tips.new
         & > img
           height:1.25em
           opacity:0.25
-          @include transition(opacity 0.5s)
+          // @include transition(opacity 0.5s)
           &:hover
-            @include transition(opacity 0.5s)
+            // @include transition(opacity 0.5s)
             opacity:1
 
       & > h1
@@ -66,7 +69,7 @@ body.tips.new
         width:grid-width(3)
         text-align: center
         &:before
-          color:$light
+          color:body-text-color
           content:"$"
           font-family: 'Bree Serif', serif
           font-size:1.85em
@@ -77,7 +80,7 @@ body.tips.new
         position:relative
         width:1.85em
         background-color:transparent
-        color:$light
+        color:body-text-color
         font-family: 'Bree Serif', serif
         margin:0
         padding:0
@@ -86,14 +89,14 @@ body.tips.new
         line-height: 1rem
         display: inline-block
         vertical-align: middle
-        border: 0px solid $background_color
+        border: 0px solid riser
         border-radius: 0.25em
         &:focus
           outline:none
 
         &.invalid
-          box-shadow: 0px 0px 0.75rem 2px $red
-          border-color:$red
+          box-shadow: 0px 0px 0.75rem 2px red
+          border-color:red
 
       & > a.button
         @include button
@@ -108,18 +111,18 @@ body.tips.new
         font-size:0.75rem
         text-align:center
         & > a
-          color:$text
+          color:body-text-color
 
     & > header,
     & > footer,
     &.sign_in > nav
-      @include transition(opacity 0.25s ease-in)
+      // @include transition(opacity 0.25s ease-in)
       opacity:0
 
     & footer > nav
       text-align:center
       & > a
-        color:$subtle_text
+        color:copper
         text-decoration: none
         font-size:0.75rem
         &:focus
@@ -127,7 +130,7 @@ body.tips.new
 
       &:first-child
         a
-          color:$copper
+          color:copper
         a:before
           content:"["
         a:after
@@ -150,26 +153,26 @@ body.tips.new
             width:2rem
             padding-top:0.25rem
             &:hover
-              @include transition(opacity 0.5s ease-out 0s)
+              // @include transition(opacity 0.5s ease-out 0s)
               opacity:0.95
 
   section.show,
   section.details
     min-height:21rem
-    @include transition( min-height 0.25s, padding 0.25s)
+    // @include transition( min-height 0.25s, padding 0.25s)
     & > header
-      @include transition(min-height 1s)
+      // @include transition(min-height 1s)
       min-height:2.5em
       overflow:hidden
 
     & > header,
     & > form,
     &.sign_in > nav
-      @include transition(opacity 0.25s ease-in 0.1s)
+      // @include transition(opacity 0.25s ease-in 0.1s)
       opacity:1
 
     & > footer
-      @include transition(opacity 0.25s ease-in 0.1s)
+      // @include transition(opacity 0.25s ease-in 0.1s)
       opacity:1
 
   section.details
@@ -179,7 +182,7 @@ body.tips.new
 
     & > form
       width:13em
-       & > input[itemprop=amount_in_dollars]
+      & > input[itemprop=amount_in_dollars]
         border:2px solid text
         padding:0 0.25rem
 
@@ -193,7 +196,7 @@ body.tips.new
       & > h1
         margin:1em 0 1em 0
         text-align:center
-        color:$light
+        color:body-text-color
         font-size:1.5em
         opacity:0.5
         text-shadow: 1px -1px dark

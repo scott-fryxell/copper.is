@@ -91,6 +91,6 @@ namespace :copper do
 end
 
 namespace :db do
-  task :bounce => %w{drop:all create:all migrate seed} do
+  task :bounce => %w{db:reset db:test:prepare} do
   end
 end

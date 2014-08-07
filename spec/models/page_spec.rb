@@ -44,7 +44,7 @@ describe Page do
         @page.url = "https://www.facebook.com/profile.php?id=1340075098"
       end
 
-      it "finds author on twitter.com" do
+      it "finds author on twitter.com", :vcr do
         ::Twitter.stub(:user).and_return(double('user',id:666, screen_name:'ChloesThinking'))
         Page.any_instance.stub(:learn)
         @page.url = "https://twitter.com/ChloesThinking"
@@ -54,7 +54,7 @@ describe Page do
         @page.url = "http://www.flickr.com/photos/floridamemory/7067827087/"
       end
 
-      it "finds author on youtube.com from a video url" do
+      it "finds author on youtube.com from a video url", :vcr do
         @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
         author = double('author',  uri:'http://www.youtube.com/user/BHVthe81st', author_name:'BHVthe81st' )
         Authors::Youtube.stub_chain(:connect_to_api, :video_by, :author).and_return(author)
@@ -89,16 +89,8 @@ describe Page do
         @page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
       end
 
-      it "finds author for facebook.com/home.php", :vcr do
-        @page.url = "https://www.facebook.com/home.php"
-      end
-
       it "finds author from a tumblr.com subdomain", :vcr do
         @page.url = "http://staff.tumblr.com/"
-      end
-
-      it "finds author for https://www.copper.is", :vcr do
-        @page.url = "https://www.copper.is"
       end
 
       it "finds author for http://www.missionmission.org/", :vcr do

@@ -3,16 +3,16 @@ if ENV['COVERAGE_REPORT']
   SimpleCov.start 'rails'
 end
 
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+
 require 'active_support/core_ext'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'webmock/rspec'
 
-ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
-
-require 'rspec'
 require 'rspec/rails'
+require 'rspec/autorun'
 
 require 'omniauth'
 require 'omniauth/test'
@@ -20,6 +20,7 @@ require 'omniauth/test'
 require 'declarative_authorization/maintenance'
 
 load "#{Rails.root}/config/routes.rb"
+
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
 Dir["#{Rails.root}/lib/**/*.rb"].each {|f| load f}
@@ -35,6 +36,8 @@ Capybara.ignore_hidden_elements = false
 Capybara.server_port = 8080
 Capybara.app_host = "http://127.0.0.1:8080"
 include Authorization::TestHelper
+
+ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   config.include(Reek::Spec)
@@ -62,7 +65,7 @@ RSpec.configure do |config|
   config.before type: :request do
     DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
   end
-  
+
   config.before :suite do
     ResqueSpec.reset!
     ResqueSpec.inline = true
@@ -77,7 +80,3 @@ RSpec.configure do |config|
   end
 
 end
-
-# FactoryGirl.reload
-
-
