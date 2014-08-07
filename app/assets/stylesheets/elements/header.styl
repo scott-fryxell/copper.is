@@ -4,12 +4,27 @@ body > header
   +tablet()
     display-flex()
 
+  & > img
+    opacity:0.25
+    width:1.5rem
+    height:1.5rem
+    position:absolute
+    top:1rem
+    left:1rem
+    standard-transition opacity
+    &.show
+      opacity:0.8
+
+    +tablet()
+      display:none
+
   & > figure
     text-align:center
     padding:0.5rem 0
-    
+
     +tablet()
       flexx: 0 0.22 15%
       width:11rem
-    img
+
+    a > img
       width:6rem

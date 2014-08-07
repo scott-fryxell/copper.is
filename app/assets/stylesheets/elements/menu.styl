@@ -17,34 +17,45 @@ menu menu
     display:inline-block
     width:50%
 
-body > menu
-  +phone-only()
-    border:0px solid transparent
-    padding:0
-    background-color:riser
-    max-height:0
-    height:0;
-    overflow-y:hidden
-    transition-property: max-height height
-    transition-duration: 0.5s
-    transition-timing-function: cubic-bezier(0.25, 1, 0.5, 1)
+body
+  &.pages.recent > menu a[href="/pages/recent"],
+  &.pages.trending > menu a[href="/pages/trending"]
+    font-weight:bold
+    color:copper
 
-  &.show
+  &[data-role=guest] > menu.show
     +phone-only()
-      border:1px inset riser
+      height:8rem
+      max-height:8rem
+
+  &[data-role=fan] > menu.show
+    +phone-only()
       height:15rem
       max-height:15rem
 
-  h6
-    text-align:center
-    opacity:0.15
-    header-text()
-    text-shadow: 1px 0px 0px copper
-    font-size:1rem
+  & > menu
     +phone-only()
-      opacity:0.2
-      margin-top:1rem
+      border:0px solid transparent
+      padding:0
+      background-color:riser
+      max-height:0
+      height:0;
+      overflow-y:hidden
+      standard-transition: max-height height
 
-  a
-    text-align:center
-    margin:0.25rem 0
+    &.show
+      border:1px inset riser
+
+    h6
+      text-align:center
+      opacity:0.15
+      header-text()
+      text-shadow: 1px 0px 0px copper
+      font-size:1rem
+      +phone-only()
+        opacity:0.2
+        margin-top:1rem
+
+    a
+      text-align:center
+      margin:0.25rem 0
