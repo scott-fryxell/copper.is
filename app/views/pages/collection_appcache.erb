@@ -1,9 +1,10 @@
 <%-cache("pages_appcache", :expires_in => 1.minute) do-%>
 CACHE MANIFEST
-# <%=Time.now%>
+# <%=Page.last.updated_at%>
 
 //fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One
-
+/pages/trending
+/pages/recent
 <%= asset_path('application.js') %>
 <%= asset_path('application.css') %>
 <%= asset_path('noun_project/13883.svg') %>
