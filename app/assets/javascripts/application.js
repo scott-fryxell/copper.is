@@ -6,7 +6,7 @@
 //= require lib/Item
 //= require lib/jquery.items
 //= require lib/events.items
-
+//= require lib/appcache
 //= require lib/Roles
 //= require lib/Fragment
 
