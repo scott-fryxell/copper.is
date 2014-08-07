@@ -27,7 +27,8 @@ Copper::Application.routes.draw do
 
   get  '/signout',                       to:'sessions#destroy', :as => :signout
   get  '/signin',                        to:'sessions#new',     :as => :signin
-  post '/auth/:provider/callback',       to:'sessions#create',  :as => :provider_callback
+  get  '/auth/:provider/callback',       to:'sessions#create',  :as => :provider_callback
+
   post '/auth/failure',                  to:'sessions#failure'
   post '/auth/facebook/setup',           to:'sessions#facebook_setup'
   post '/auth/facebook/publish_actions', to:'sessions#publish_actions'
