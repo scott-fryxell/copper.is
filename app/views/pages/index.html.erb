@@ -1,5 +1,2 @@
 <%-cache("pages_index", :expires_in => 1.minute) do-%>
-  <section class='endless trending pages'>
-    <%= render partial:"pages/as_article", collection:Page.recent.safe.endless(params[:endless]), as: :page %>
-  </section>
 <%-end-%>

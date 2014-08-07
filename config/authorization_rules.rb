@@ -28,7 +28,9 @@ authorization do
     has_permission_on :pages,       :to => [:read,
                                             :application_appcache,
                                             :member_appcache,
-                                            :collection_cache
+                                            :collection_cache,
+                                            :trending,
+                                            :recent
                                            ]
     has_permission_on :tips,        :to => [:new, :iframe]
     has_permission_on :authors,     :to => [:enquire]

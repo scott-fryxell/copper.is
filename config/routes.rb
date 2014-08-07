@@ -14,6 +14,8 @@ Copper::Application.routes.draw do
 
     collection do
       get "collection.appcache", to:"pages#collection_appcache"
+      get "trending"
+      get "recent"
     end
   end
 
