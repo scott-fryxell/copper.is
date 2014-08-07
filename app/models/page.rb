@@ -15,16 +15,13 @@ class Page < ActiveRecord::Base
   end
 
   [:adopted, :orphaned, :fostered, :dead, :manual].each do |state|
-    scope state, -> { where("author_state = ?", state) }
+    scope state, -> { where(author_state:state) }
   end
 
-  scope :welcome,       -> { where(welcome:true) }
-  scope :onboarding,    -> { where(onboarding:true) }
-  scope :trending,      -> { where(trending:true) }
   scope :safe,          -> { where(nsfw:false) }
   scope :recent,        -> { order("pages.updated_at DESC") }
   scope :charged_tips,  -> { joins(:tips).where('tips.paid_state=?', 'charged') }
-  scope :order_by_tips, -> { joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc') }
+  scope :trending,      -> { joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc') }
 
   def self.scott
     User.find_by(email:'scott@copper.is').pages
