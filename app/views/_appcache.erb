@@ -1,7 +1,4 @@
-<%-cache("application_appcache", :expires_in => 1.minute) do-%>
-CACHE MANIFEST
-//fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One
-
+<%-cache do-%>
 <%= asset_path('application.js') %>
 <%= asset_path('application.css') %>
 <%= asset_path('noun_project/13883.svg') %>
@@ -13,7 +10,6 @@ CACHE MANIFEST
 <%= asset_path('noun_project/2966.svg') %>
 <%= asset_path('noun_project/624.svg') %>
 <%= asset_path('icons/logo.svg') %>
-
-NETWORK:
-*
+<%= asset_path('icons/hamburger.svg') %>
+//fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One
 <%-end-%>
