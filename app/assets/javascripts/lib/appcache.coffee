@@ -1,9 +1,12 @@
 appCache = window.applicationCache
 appCache.addEventListener 'updateready', ->
   if appCache.status == appCache.UPDATEREADY
-    console.log 'Browser downloaded a new app cache.'
+    console.log 'cache update ready'
+    appCache.update()
+    console.log 'swap ready'
+    appCache.swapCache()
     window.location.reload()
- 
+
 
 # switch (appCache.status)
 #   case appCache.UNCACHED: # UNCACHED == 0
