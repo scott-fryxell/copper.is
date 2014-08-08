@@ -2,7 +2,7 @@
 <article <%= raw page.as_item_attributes%>>
   <%-page.nested=true-%>
   <%= render partial:"pages/as_figure", object:page, as: :page %>
-  <header>
+  <footer>
     <%-if page.title-%>
       <h2 itemprop="title">
         <a href='<%=page.url%>' target="_blank" itemprop="url">
@@ -17,10 +17,9 @@
       </h2>
     <%-end-%>
     <h3><%= URI.parse(page.url).host%></h3>
-  </header>
-  <%= render partial:"pages/as_form", object:page, as: :page %>
-  <footer>
-    <%= render partial:"pages/as_menu", object:page, as: :page %>
+    <nav>
+      <a href="<%="/pages/#{page.id}"%>">more..</a>
+    </nav>
   </footer>
   <%-page.nested=false-%>
 </article>

@@ -1,23 +1,20 @@
-<%-cache("pages_appcache", expires_in: 10.seconds) do-%>
 CACHE MANIFEST
-# <%=Page.maximum(:updated_at)%>
 # <%=current_user.updated_at if current_user%>
+<%= render partial:"/appcache"%>
 
-//fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One
-/pages/trending
-/pages/recent
-<%= asset_path('application.js') %>
-<%= asset_path('application.css') %>
-<%= asset_path('noun_project/13883.svg') %>
-<%= asset_path('noun_project/2966.svg') %>
-<%= asset_path('noun_project/37233.svg') %>
-<%= asset_path('noun_project/3879.svg') %>
-<%= asset_path('noun_project/4534.svg') %>
-<%= asset_path('noun_project/4203.svg') %>
-<%= asset_path('noun_project/2966.svg') %>
-<%= asset_path('noun_project/624.svg') %>
-<%= asset_path('icons/logo.svg') %>
+<%-cache("pages_appcache", expires_in: 10.seconds) do-%>
+  /pages/trending
+  <%-for page in Page.trending-%>
+    #<%="#{page.updated_at}"%>
+    <%="/pages/#{page.id}"%>
+  <%-end-%>
+
+  /pages/recent
+  <%-for page in Page.recent-%>
+    #<%="#{page.updated_at}"%>
+    <%="/pages/#{page.id}"%>
+  <%-end-%>
+<%-end-%>
 
 NETWORK:
 *
-<%-end-%>

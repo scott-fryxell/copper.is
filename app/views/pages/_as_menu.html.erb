@@ -1,6 +1,5 @@
 <%-cache page do-%>
 <menu class="admin" <%=page.as_item_attributes%>>
-  <button itemprop="trending"   formmethod="patch" formaction="<%=page.item_id%>" value="<%=page.trending?%>">trending</button>
   <button itemprop="nsfw"       formmethod="patch" formaction="<%=page.item_id%>" value="<%=page.nsfw?%>">nsfw</button>
   <button                       formmethod="patch" formaction="<%=page.item_id%>/reject">reject</button>
 </menu>

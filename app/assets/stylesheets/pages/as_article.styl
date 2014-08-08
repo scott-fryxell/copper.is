@@ -30,7 +30,7 @@ article[itemtype=page]
       height: 100%
       z-index:-1
 
-  & > header
+  & > footer
     display:inline-block
     vertical-align: middle
     width:14rem
@@ -53,11 +53,17 @@ article[itemtype=page]
         header-text()
 
     h3
-      margin: 0.25rem 0
+      display:inline-block;
+      margin: 0.25rem 0.5rem 0 0
       font-size: 0.75rem
       opacity: 0.6
       text-align: left
       text-transform: lowercase
-
-  & > footer
-    vertical-align: top
+    nav
+      display:inline-block
+      vertical-align:top
+      opacity:0.5
+      font-size:0.75rem
+      line-height:1
+      a
+        color:copper
