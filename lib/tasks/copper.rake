@@ -56,7 +56,6 @@ namespace :copper do
     end
   end
 
-
   namespace :dev do
     task :reset_page => :environment do
       Page.all.each do |page|
