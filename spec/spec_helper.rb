@@ -29,6 +29,11 @@ def create!(factory,*args)
   FactoryGirl.create(factory,*args)
 end
 
+def build!(factory,*args)
+  FactoryGirl.build(factory,*args)
+end
+
+
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
 Capybara.default_selector = :css

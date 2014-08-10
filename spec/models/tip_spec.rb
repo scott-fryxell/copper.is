@@ -26,14 +26,14 @@ describe Tip do
 
   it 'should not allow a tip of 0 cents' do
     @my_tip = Tip.new(:amount_in_cents => 0)
-    @my_tip.order = FactoryGirl.create(:order_unpaid)
+    @my_tip.order = create!(:order_unpaid)
     @my_tip.save
     @my_tip.valid?.should be_false
   end
 
   it 'should not allow a tip of -1 cents' do
     @my_tip = Tip.new(:amount_in_cents => -1)
-    @my_tip.order = FactoryGirl.create(:order_unpaid)
+    @my_tip.order = create!(:order_unpaid)
     @my_tip.save.should be_false
   end
 end

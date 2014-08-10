@@ -7,7 +7,6 @@ describe Authors::Twitter do
     # Page.any_instance.stub(:learn)
     @twitter_user = double('user', id:398095666, screen_name:'copper_is', profile_image_url:'https://pbs.twimg.com/profile_images/1303637209/nostrals.jpg')
     ::Twitter.stub(:user).and_return(@twitter_user)
-    puts
   end
 
   describe "Should discover author from url's " do
@@ -22,7 +21,7 @@ describe Authors::Twitter do
 
   describe '#populate_uid_and_username!' do
     before do
-      @author = FactoryGirl.create(:author_twitter, username:"copper_is")
+      @author = create!(:author_twitter, username:"copper_is")
     end
 
     after do

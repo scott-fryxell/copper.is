@@ -19,16 +19,18 @@ describe Page do
   end
 
   describe "transitions from :orphaned to :adopted" do
+
     before do
-      @page = FactoryGirl.build(:page)
+      puts " "
+      @page = build!(:page)
     end
 
     after do
       @page.save!
       @page.reload
-      puts @page.url
       @page.adopted?.should be_true
       Author.count.should == 1
+      puts "      #{@page.url}"
     end
 
     describe "from a provider service" do
@@ -110,7 +112,7 @@ describe Page do
 
   describe "transitions from :orphaned to :manual" do
     before do
-      @page = FactoryGirl.build(:page)
+      @page = build!(:page)
     end
 
     after do
@@ -126,7 +128,7 @@ describe Page do
 
   describe "transitions from :orphaned to :manual" do
     before do
-      @page = FactoryGirl.build(:page)
+      @page = build!(:page)
     end
 
     after do
@@ -176,4 +178,10 @@ describe Page do
     end
   end
 
+  it "can discover the page author" do
+    @page = build!(:page)
+    @page.url = "https://www.facebook.com/scott.fryxell"
+    @page.discover_author!
+    @page.author.should_not be_nil
+  end
 end
