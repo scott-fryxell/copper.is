@@ -63,7 +63,35 @@ class Page < ActiveRecord::Base
     user.tips.where(page_id:self.id).sum(:amount_in_cents)
   end
 
-  def learn_title ( content = self.agent.get(url) )
+
+  def learn (content = self.spider.get(url))
+    logger.info " "
+    logger.info "<- Learn about  id:#{id}, url: #{url[0...100]} -> "
+
+    learn_url(content)
+
+    learn_image(content)
+
+    learn_title(content)
+
+    learn_description(content)
+
+    logger.info "->"
+    self.save!
+
+  end
+
+  def learn_description ( content = self.spider.get(url) )
+    if description_tag = content.at('meta[property="og:description"]')
+
+      logger.info "    og:description=#{description_tag.attributes['content'].value[0...100]}"
+
+      self.description = description_tag.attributes['content'].value
+    end
+    self.description
+  end
+
+  def learn_title ( content = self.spider.get(url) )
     logger.info "  title"
     if title_tag = content.at('meta[property="og:title"]')
 
@@ -73,9 +101,7 @@ class Page < ActiveRecord::Base
 
     elsif title_tag = content.at('title')
 
-      logger.info "    title=#{title_tag[0...100]}"
-
-      puts title_tag.text.strip
+      logger.info "    title=#{title_tag.text.strip[0...100]}"
 
       self.title = title_tag.text.strip
 
@@ -83,16 +109,16 @@ class Page < ActiveRecord::Base
     self.title
   end
 
-  def learn_url ( content = self.agent.get(url) )
+  def learn_url ( content = self.spider.get(url) )
     logger.info "  url"
     if url_tag = content.at('meta[property="og:url"]')
       logger.info "    og:url=#{url_tag.attributes['content'].value[0...100]}"
       self.url = url_tag.attributes['content'].value
     end
-    url
+    self.url
   end
 
-  def learn_image ( content = self.agent.get(url) )
+  def learn_image ( content = self.spider.get(url) )
     logger.info "  thumbnail"
 
     if thumbnail_tag = content.at('meta[property="og:image"]')
@@ -105,21 +131,7 @@ class Page < ActiveRecord::Base
       logger.info "    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['href'].value
     end
-    thumbnail_url
-  end
-
-  def learn (content = self.agent.get(url))
-    logger.info " "
-    logger.info "<- Learn about  id:#{id}, url: #{url[0...100]} -> "
-
-    learn_url(content)
-
-    learn_title(content)
-
-    learn_image(content)
-
-    logger.info "->"
-    self.save!
+    self.thumbnail_url
   end
 
   after_create do |page|
@@ -191,7 +203,7 @@ class Page < ActiveRecord::Base
       def find_author_from_page_links!
         begin
           logger.info "page_links for: id=#{id}, #{url[0...100]}"
-          self.agent.get(url) do |doc|
+          self.spider.get(url) do |doc|
             if doc.title
               self.title = doc.title
             end
@@ -279,7 +291,7 @@ class Page < ActiveRecord::Base
     end
   end
 
-  def agent
+  def spider
     return Mechanize.new do |a|
       a.post_connect_hooks << lambda do |_,_,response,_|
         if response.content_type.nil? || response.content_type.empty?
