@@ -43,4 +43,15 @@ after :users do
     scott.tip(url:url)
   end
 
+  not_safe_for_work = [
+    'http://www.vintagespankings.com/fetish/dianaslip.html',
+  ]
+
+  for url in not_safe_for_work
+    scott.tip(url:url, nsfw:true)
+    scott.tip(url:url)
+    scott.tip(url:url)
+    scott.tip(url:url)
+  end
+
 end
