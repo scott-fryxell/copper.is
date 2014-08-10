@@ -1,0 +1,9 @@
+<section <%= raw @page.as_item_attributes%> >
+  <%-@page.nested=true-%>
+  <header>
+    <h1 itemprop='title' contenteditable><%=@page.title%></h1>
+  </header>
+
+
+  <%-@page.nested=false-%>
+</section>

@@ -7,7 +7,7 @@ Copper::Application.routes.draw do
     end
   end
 
-  resources :pages, only:[:index] do
+  resources :pages, only:[:index, :show, :update] do
     member do
       get "member.appcache", to:"pages#member_appcache"
     end

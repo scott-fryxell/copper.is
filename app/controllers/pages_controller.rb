@@ -5,6 +5,10 @@ class PagesController < ApplicationController
   filter_access_to :member_appcache, :require => :read
 
 
+  def show
+    @page = Page.find(params[:id])
+  end
+
   def application_appcache
     expires_in 1.second, :public => true
     render action:'appcache',layout:false, content_type:'text/cache-manifest'
