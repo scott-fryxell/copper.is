@@ -18,7 +18,7 @@ Copper::Application.configure do
 
   config.active_support.deprecation = :log
   config.lograge.enabled = true
-  config.log_level = :debug
+  config.log_level = :info
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = {
