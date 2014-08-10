@@ -3,20 +3,12 @@
   <%-page.nested=true-%>
   <%= render partial:"pages/as_figure", object:page, as: :page %>
   <footer>
-    <%-if page.title-%>
-      <h2 itemprop="title">
-        <a href='<%=page.url%>' target="_blank" itemprop="url">
-          <%=page.title%>
-        </a>
-      </h2>
-    <%-else-%>
-      <h2>
-        <a href='<%=page.url%>' target="_blank" itemprop="url">
-        <%= URI.parse(page.url).path.delete("/")%>
-        </a>
-      </h2>
-    <%-end-%>
-    <h3><%= URI.parse(page.url).host%></h3>
+    <h2>
+      <a href='<%=page.url%>' target="_blank" itemprop="title">
+        <%=page.title%>
+      </a>
+    </h2>
+    <h3><%=page.host%></h3>
     <nav>
       <a href="<%="/pages/#{page.id}"%>">more..</a>
     </nav>
