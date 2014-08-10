@@ -21,7 +21,11 @@ class Page < ActiveRecord::Base
   scope :safe,          -> { where(nsfw:false) }
   scope :recent,        -> { order("pages.updated_at DESC") }
   scope :charged_tips,  -> { joins(:tips).where('tips.paid_state=?', 'charged') }
-  scope :trending,      -> { joins(:tips).select('pages.*, count("tips") as tips_pending_count').group('pages.id').order('tips_pending_count desc') }
+  scope :trending,      -> {
+    joins(:tips).select('pages.*, count("tips") as tip_count')
+      .group('pages.id').having('count("tips") > 1' )
+      .order('tip_count desc')
+  }
 
   def self.scott
     User.find_by(email:'scott@copper.is').pages
@@ -34,8 +38,17 @@ class Page < ActiveRecord::Base
   def as_item_attributes
     @nested ||= false
     unless @nested
-      "itemscope itemtype='page' itemid='#{self.item_id}' itemprop='author_state' data-author_state='#{self.author_state}'"
+      %Q[
+        itemscope itemtype='page'
+        itemid='#{self.item_id}'
+        itemprop='author_state'
+        data-author_state='#{self.author_state}'
+      ]
     end
+  end
+
+  def host
+    URI.parse(url).host
   end
 
   def item_id
@@ -50,36 +63,46 @@ class Page < ActiveRecord::Base
     user.tips.where(page_id:self.id).sum(:amount_in_cents)
   end
 
-  def learn_title(content = self.agent.get(url))
-    logger.info ":  title"
-
+  def learn_title ( content = self.agent.get(url) )
+    logger.info "  title"
     if title_tag = content.at('meta[property="og:title"]')
-      logger.info ":    og:title=#{title_tag.attributes['content'].value[0...100]}"
-      title = title_tag.attributes['content'].value
+
+      logger.info "    og:title=#{title_tag.attributes['content'].value[0...100]}"
+
+      self.title = title_tag.attributes['content'].value
+
+    elsif title_tag = content.at('title')
+
+      logger.info "    title=#{title_tag[0...100]}"
+
+      puts title_tag.text.strip
+
+      self.title = title_tag.text.strip
+
     end
-    title
+    self.title
   end
 
-  def learn_url (content = self.agent.get(url))
-    logger.info ":  url"
+  def learn_url ( content = self.agent.get(url) )
+    logger.info "  url"
     if url_tag = content.at('meta[property="og:url"]')
-      logger.info ":    og:url=#{url_tag.attributes['content'].value[0...100]}"
+      logger.info "    og:url=#{url_tag.attributes['content'].value[0...100]}"
       self.url = url_tag.attributes['content'].value
     end
-    self.url
+    url
   end
 
-  def learn_image(content = self.agent.get(url))
-    logger.info ":  thumbnail"
+  def learn_image ( content = self.agent.get(url) )
+    logger.info "  thumbnail"
 
     if thumbnail_tag = content.at('meta[property="og:image"]')
-      logger.info ":    og:image=#{thumbnail_tag.attributes['content'].value[0...100]}"
+      logger.info "    og:image=#{thumbnail_tag.attributes['content'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['content'].value
     elsif thumbnail_tag = content.at('link[rel="image_src"]')
-      logger.info ":    image_src=#{thumbnail_tag.attributes['href'].value[0...100]}"
+      logger.info "    image_src=#{thumbnail_tag.attributes['href'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['href'].value
     elsif thumbnail_tag = content.at('link[rel="thumbnailUrl"]')
-      logger.info ":    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...100]}"
+      logger.info "    thumbnailUrl=#{thumbnail_tag.attributes['href'].value[0...100]}"
       self.thumbnail_url = thumbnail_tag.attributes['href'].value
     end
     thumbnail_url
@@ -88,22 +111,16 @@ class Page < ActiveRecord::Base
   def learn (content = self.agent.get(url))
     logger.info " "
     logger.info "<- Learn about  id:#{id}, url: #{url[0...100]} -> "
-    learn_url(content)
-    learn_title(content)
-    learn_image(content)
-    self.save!
-    self
-  end
 
-  def agent
-    return Mechanize.new do |a|
-      a.post_connect_hooks << lambda do |_,_,response,_|
-        if response.content_type.nil? || response.content_type.empty?
-          response.content_type = 'text/html'
-        end
-      end
-    end
-   end
+    learn_url(content)
+
+    learn_title(content)
+
+    learn_image(content)
+
+    logger.info "->"
+    self.save!
+  end
 
   after_create do |page|
     if page.orphaned?
@@ -181,14 +198,16 @@ class Page < ActiveRecord::Base
 
             if author_link = doc.at('link[rel=author]')
               href = author_link.attributes['href'].value
-              output = ":    author: #{href[0...100]}"
+              output = "    author: #{href[0...100]}"
               logger.info output
               if self.author = Author.find_or_create_from_url(href)
                 log_adopted
                 return adopt!
               end
             end
+
             output = lambda { |link| logger.info ":    adopted: #{link.href[0...100]}"}
+
             doc.links_with(:href => %r{twitter.com}).each do |link|
               # filter for known twitter links that are providerable but not good for spidering links
               unless %r{/status/|/intent/|/home|/share|/statuses/|/search/|/search|/bandcampstatus|/signup}.match(URI.parse(link.href).path)
@@ -210,11 +229,12 @@ class Page < ActiveRecord::Base
 
             doc.links_with(:href => %r{facebook.com}).each do |link|
               unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
-                puts link.href
+
                 if self.author = Author.find_or_create_from_url(link.href)
                   output.call link
                   return adopt!
                 end
+
               end
             end
 
@@ -229,15 +249,16 @@ class Page < ActiveRecord::Base
 
             reject! unless self.author
           end
+
         rescue Mechanize::ResponseCodeError => e
-          logger.info ":    ResponseCodeError: #{e.response_code}"
+          logger.info "    ResponseCodeError: #{e.response_code}"
           if '404' == e.response_code or '410' == e.response_code
-            logger.info ":    dead: #{self.url}"
+            logger.info "    dead: #{self.url}"
             self.author_state = 'dead'
             save!
           end
         rescue Net::HTTP::Persistent::Error => e
-          logger.info ":    dead: #{self.url}"
+          logger.info "    dead: #{self.url}"
           self.author_state = 'dead'
           save!
         end
@@ -258,9 +279,18 @@ class Page < ActiveRecord::Base
     end
   end
 
-  private
+  def agent
+    return Mechanize.new do |a|
+      a.post_connect_hooks << lambda do |_,_,response,_|
+        if response.content_type.nil? || response.content_type.empty?
+          response.content_type = 'text/html'
+        end
+      end
+    end
+   end
 
+private
   def log_adopted
-    logger.info ":    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
+    logger.info "    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
   end
 end
