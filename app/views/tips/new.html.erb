@@ -12,20 +12,20 @@
   <form action='/tips' method="post" accept-charset="utf-8">
     <input itemprop="url" name="tip[url]" type="hidden"/>
     <input itemprop="title" name="tip[title]" type="hidden" />
-    <input itemprop="amount_in_cents" name="tip[amount_in_cents]" type="hidden" value="<%=current_user.tip_preference_in_cents%>"/>
+    <input itemprop="amount_in_cents" name="tip[amount_in_cents]" type="hidden" value="<%=current_user.tip_preference_in_cents if current_user%>"/>
     <fieldset>
       <input itemprop="amount_in_dollars" type="text" value=""/>
     </fieldset>
   </form>
   <footer>
     <nav>
-      <a href="/#latest_tip" target="blank">I want to tip more show me how</a>
+      <a href="#latest_tip" target="blank">I want to tip more show me how</a>
     </nav>
-    <nav>
+    <menu>
       <a id="facebook" title="Share your tip on facebook" target="blank"><%= image_tag "share/Facebook.png" %></a>
       <a id="twitter" title="Tweet your tip" target="blank"><%= image_tag "share/Twitter.png" %></a>
       <a id="tumblr_button_abc123" title="Blog about your tip on tumblr" target="blank" href="http://www.tumblr.com/share"><%= image_tag "share/Tumblr.png" %></a>
-    </nav>
+    </menu>
     <p>Oops, I didn't mean to make that tip. <a href="/#latest_tip" target="blank">Help me undo</a></p>
     <nav>
       <a href="#close">Close</a>

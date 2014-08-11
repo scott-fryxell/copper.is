@@ -4,7 +4,7 @@ describe Order do
   before do
     mock_user
     mock_order
-    @order = FactoryGirl.build(:order_unpaid)
+    @order = build!(:order_unpaid)
 
   end
 
@@ -18,7 +18,7 @@ describe Order do
   end
 
   it 'process! moves a current order to unpaid' do
-    order = FactoryGirl.create(:order_current)
+    order = create!(:order_current)
     order.current?.should be_true
     order.process!
     order.reload
@@ -26,7 +26,7 @@ describe Order do
   end
 
   it 'charge! moves a unpaid order to paid with good CC info' do
-    order = FactoryGirl.create(:order_unpaid)
+    order = create!(:order_unpaid)
     order.unpaid?.should be_true
     order.charge!
     order.reload
@@ -37,7 +37,7 @@ describe Order do
     Stripe::Charge.stub(:create).and_raise(
       Stripe::CardError.new('error[:message]', 'error[:param]', 402,
                             "foobar", "baz", Object.new))
-    order = FactoryGirl.create(:order_unpaid)
+    order = create!(:order_unpaid)
     order.unpaid?.should be_true
     proc{ order.charge! }.should raise_error(Stripe::CardError)
     order.reload
@@ -46,11 +46,10 @@ describe Order do
 
   it 'moves a denied order to paid with good CC info' do
     # Stripe::Charge.stub(:create) { @charge_token }
-    order = FactoryGirl.create(:order_denied)
+    order = create!(:order_denied)
     order.denied?.should be_true
     order.charge!
     order.reload
     order.paid?.should be_true
   end
 end
-

@@ -1,20 +1,16 @@
 //= require jquery
-//= require jquery.cookie
 //= require jquery.timeago
-//= require jquery.tmpl
-//= require jquery.browser
-//= require jquery.details
-
 //= require jquery.imgLiquid
-//= require analytics
 
+//= require lib/jquery.currency
 //= require lib/Item
-//= require lib/Me
-//= require lib/currency
-//= require lib/card
-//= require lib/endless
+//= require lib/jquery.items
+//= require lib/events.items
+//= require lib/appcache
+//= require lib/Roles
+//= require lib/Fragment
 
 //= require pages/index
+
 //= require setup
 //= require init
-

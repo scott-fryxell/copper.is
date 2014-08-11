@@ -1,4 +1,5 @@
 $(document).on "load.pages.index", ->
+  $("article[itemtype=page] figure").imgLiquid()
 
   $("#tip").focus ->
     $("#tip").attr("placeholder", "Paste to tip")
@@ -7,7 +8,8 @@ $(document).on "load.pages.index", ->
     $("#tip").attr("placeholder", "Tiped!")
     $("#tip").val("")
 
-  $("article[itemtype=page] figure").imgLiquid()
+
+
 
 $(document).on 'view_latest_tip', ->
   $('#pages > details:first-of-type > summary').click()

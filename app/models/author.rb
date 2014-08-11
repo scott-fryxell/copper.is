@@ -27,7 +27,9 @@ class Author < ActiveRecord::Base
     end
   end
 
-  @@providers = [:twitter, :facebook, :tumblr, :phony, :soundcloud, :github, :vimeo, :flickr, :google]
+  @@providers = [ :twitter, :facebook, :tumblr,
+    :phony, :soundcloud, :github, :vimeo,
+    :flickr, :google ]
   def self.providers
     @@providers
   end
@@ -121,12 +123,15 @@ class Author < ActiveRecord::Base
 
   # --------------------------------------------------------------------
 
-  def self.find_with_omniauth(auth)
-    find_by_provider_and_uid(auth['provider'], auth['uid'].to_s)
-  end
+  # TODO: merge this into find_or_create_with_omniauth
+  def self.find_or_create_by_authorization(auth)
+    author = Author.find_or_create_by(provider:auth['provider'], uid:auth['uid'].to_s)
+    author.token = auth['credentials']['token']
+    author.secret = auth['credentials']['secret']
+    author.username = auth['info']['nickname']
+    author.save
 
-  def self.create_with_omniauth(auth)
-    Author.create(uid: auth['uid'].to_s, provider: auth['provider'])
+
   end
 
   def self.subclass_from_provider(provider)
@@ -202,7 +207,7 @@ class Author < ActiveRecord::Base
 
   def self.find_or_create_from_url(url)
     if provider = provider_from_url(url)
-      i = subclass_from_provider(provider).discover_uid_and_username_from_url url
+      i = Author.subclass_from_provider(provider).discover_uid_and_username_from_url url
       ident = Author.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid].to_s,i[:username]).first
       unless ident
         ident = factory(provider:provider,username:i[:username],uid:i[:uid])

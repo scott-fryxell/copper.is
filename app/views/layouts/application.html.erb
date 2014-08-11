@@ -1,38 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html manifest='<%=cache_url%>'>
   <head>
     <title>Copper</title>
-    <%= render partial:"layouts/head_links"%>
     <%= csrf_meta_tag %>
-
-    <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>" />
-    <meta property="og:type"   content="website" />
-    <meta property="og:title"  content="copper.is – a currency of apreceation" />
-    <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" />
-
-    <link rel="author"  href="http://twitter.com/copper_is">
-    <meta name="keywords"      content="Copper.is, tip, gratitude, San Francisco, music, tipping, appreciation, copper">
-    <meta name="description"   content="Copper. – Support artists through tipping.
-                                                You find something cool anywhere online.
-                                                You click a button to tip the content.We
-                                                find the person who made it and pay them.">
-
-    <%= stylesheet_link_tag "application", media:"all" %>
+    <%= render partial:"application/link" %>
+    <%= render partial:"application/meta" %>
+    <%= stylesheet_link_tag "application", media:"screen" %>
     <%= javascript_include_tag "application" %>
   </head>
-  <body class='<%=set_scope%>'>
-    <%= render partial:"layouts/header"%>
-    <aside>
-      <menu class="fan">
-        <a href="#tips_i_have_given">Given</a>
-        <a href="#tips_i_have_recieved">Recieved</a>
-      </menu>
-    </aside>
+  <body class='<%=set_scope%>' data-role="guest">
+    <%= render partial:"/application/header" %>
+    <%= render partial:"/application/menu" %>
     <main>
       <%= yield %>
     </main>
-    <data>
-      <%= render partial:"users/as_dl", object:current_user, as: :user if current_user%>
-    </data>
+    <%= render partial:"/application/footer" %>
   </body>
 </html>

@@ -39,13 +39,13 @@ describe TipsController do
 
         it 'requires a url' do
           post_with @me, :create, tip:{title:'asldkjf'}
-          response.status.should == 403
+          response.status.should == 400
         end
       end
     end
 
     describe 'update' do
-      describe 'PUT /tips/:id' do
+      describe 'update /tips/:id' do
         it 'update the amount of the tip' do
           put_with @me, :update, id:@my_tip.id, tip:{amount_in_cents:200}
           response.status.should == 200

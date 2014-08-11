@@ -15,14 +15,6 @@ describe SessionsController do
     delete_with @me, :destroy
   end
 
-  it 'Should let the user manage their facebook pages' do
-    post_with @me, :manage_pages
-  end
-
-  it 'let the user give permission to publish on their timeline' do
-    post_with @me, :publish_actions
-  end
-
   it 'handle a login failure' do
     post_with @me, :failure
   end

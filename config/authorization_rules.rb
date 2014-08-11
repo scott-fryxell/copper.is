@@ -5,29 +5,43 @@ authorization do
 
   role :admin do
     includes :fan
-    has_permission_on :users,   :to => :manage
-    has_permission_on :pages,   :to => :manage
-    has_permission_on :authors, :to => :manage
-    has_permission_on :tips,    :to => :manage
-    has_permission_on :home,    :to => :manage
-    has_permission_on :admin,   :to => :manage
+    has_permission_on :users,       to: :manage
+    has_permission_on :pages,       to: :manage
+    has_permission_on :authors,     to: :manage
+    has_permission_on :tips,        to: :manage
+    has_permission_on :home,        to: :manage
+    has_permission_on :admin,       to: [:test, :index]
   end
 
   role :fan do
     includes :guest
-    has_permission_on :sessions,   :to => :delete
-    has_permission_on :pages,      :to => :read
-    has_permission_on :tips,       :to => [:create]
-    has_permission_on :tips,       :to => [:update, :destroy] do
-      if_attribute :user => is { user }
+    has_permission_on :pages,       to: :read
+    has_permission_on :tips,        to: :create
+    has_permission_on :sessions,    to: [
+                                          :delete,
+                                          :publish_actions,
+                                          :manage_pages,
+                                          :facebook_setup
+                                        ]
+    has_permission_on :tips,        to: [:update, :destroy] do
+      if_attribute user: is { user }
     end
 
   end
 
   role :guest do
-    has_permission_on :pages,       :to => [:read, :appcache]
-    has_permission_on :tips,        :to => [:new, :iframe]
-    has_permission_on :authors,     :to => [:enquire]
+    has_permission_on :admin,       to: :ping
+    has_permission_on :authors,     to: :enquire
+    has_permission_on :application, to: [:appcache, :index]
+    has_permission_on :sessions,    to: [:create, :failure]
+    has_permission_on :tips,        to: [:new, :iframe]
+    has_permission_on :pages,       to: [
+                                         :read,
+                                         :member_appcache,
+                                         :collection_appcache,
+                                         :trending,
+                                         :recent
+                                        ]
   end
 end
 

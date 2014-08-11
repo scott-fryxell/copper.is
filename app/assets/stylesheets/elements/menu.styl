@@ -1,0 +1,63 @@
+menu
+  font-size:0rem
+  -webkit-padding-start:0
+  padding:0
+
+  & > a,
+  & > button,
+  & > input,
+  & > li
+    display:block
+    text-transform: capitalize
+    text-decoration: none
+
+menu menu
+  margin:1rem 0
+  &:first-of-type
+    margin-top:0
+  +phone-only()
+    vertical-align:middle;
+    display:inline-block
+    width:50%
+
+body
+  &.pages.recent > menu a[href="/pages/recent"],
+  &.pages.trending > menu a[href="/pages/trending"]
+    font-weight:bold
+    color:copper
+
+  &[data-role=guest] > menu.show
+    +phone-only()
+      height:8rem
+      max-height:8rem
+
+  &[data-role=fan] > menu.show
+    +phone-only()
+      height:15rem
+      max-height:15rem
+
+  & > menu
+    +phone-only()
+      border:0px solid transparent
+      padding:0
+      background-color:riser
+      max-height:0
+      height:0;
+      overflow-y:hidden
+      standard-transition: max-height height
+
+    &.show
+      border:1px inset riser
+
+    h6
+      padding:0.25rem 0
+      text-align:center
+      opacity:0.15
+      header-text()
+      text-shadow: 1px 0px 0px copper
+      font-size:1rem
+      +phone-only()
+        opacity:0.2
+    a
+      text-align:center
+      padding:0.25rem 0

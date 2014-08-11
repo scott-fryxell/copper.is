@@ -1,14 +1,18 @@
 $ ->
+  # log
+  console.log('initializing app', @)
+
+  $('body > header > img').click ->
+    $(@).toggleClass('show')
+    $('body > menu').toggleClass('show')
+
+  # bind
+  $(@).on 'load.endless', -> $(@).page_init()
+
+  # trigger
   $('html').page_init()
 
-  new Me()
-  new Endless()
-
-  console.log(@)
-
-  $(@).on 'load.endless', ->
-    $(@).page_init()
-
-  $(@).trigger "load.#{$.get_page_scope()}"
-
-  window.onhashchange()
+  new Item(document)
+  new Roles()
+  # new Endless()
+  # new Fragment()

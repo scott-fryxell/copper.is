@@ -1,27 +1,14 @@
 class SessionsController < ApplicationController
 
   def create
-    auth = request.env['omniauth.auth']
-    Rails.logger.info auth.to_yaml
-    # Find an author here
-    @author = Author.find_with_omniauth(auth)
-
-    if @author.nil?
-      # If no author was found, create a brand new one here
-      @author = Author.create_with_omniauth(auth)
-    end
-
-    @author.token = auth['credentials']['token']
-    @author.secret = auth['credentials']['secret']
-    @author.username = auth['info']['nickname']
-    @author.save
+    @author = Author.find_or_create_by_authorization(request.env['omniauth.auth'])
 
     if session[:fb_permissions] == 'publish_actions'
-      session[:fb_permissions] = nil
+      session.destroy(:fb_permissions)
       redirect_to '/settings#share' and return
     elsif session[:fb_permissions] == 'manage_pages'
-      session[:fb_permissions] = nil
-      redirect_to '/author#claim_pages' and return
+      session.destroy(:fb_permissions)
+      redirect_to '/facebook/manage_pages' and return
     end
 
     if current_user
@@ -81,26 +68,7 @@ class SessionsController < ApplicationController
 
   def failure
     # render :text => request.env["omniauth.auth"].to_yaml
-    # redirect_to root_url, :notice => params[:message]
     redirect_to root_url
   end
 
-  def publish_actions
-    session[:fb_permissions] = 'publish_actions'
-    redirect_to '/auth/facebook'
-  end
-
-  def manage_pages
-    session[:fb_permissions] = 'manage_pages'
-    redirect_to '/auth/facebook'
-  end
-
-  def facebook_setup
-    # :scope => 'email, offline_access, user_likes, publish_actions, manage_pages',
-    request.env['omniauth.strategy'].options[:scope] = session[:fb_permissions]
-    render :text => "Setup complete.", :status => 404
-  end
-
-  def new
-  end
 end

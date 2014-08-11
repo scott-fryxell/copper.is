@@ -1,0 +1,84 @@
+@require 'color'
+@require 'typography'
+@require 'lib/border-gradient'
+@require 'lib/device'
+
+article[itemtype=page]
+  font-size:0;
+  padding:0.5rem
+  margin-bottom:0.75rem
+  overflow:hidden
+  vertical-align: top
+  border-radius: 0.15rem
+  border-gradient()
+
+  &:first-of-type
+    padding-top:0
+
+  & > figure
+    display:inline-block
+    width:4rem
+    height:4rem
+    border-radius: 50%
+    background-color: tan
+    margin-right:1rem;
+    overflow:hidden
+    vertical-align: middle
+    -webkit-filter: sepia(15%)
+
+    & > img
+      vertical-align: middle
+      min-width: 100%
+      height: 100%
+      z-index:-1
+
+  & > footer
+    display:inline-block
+    vertical-align: middle
+    width:14rem
+    font-size:1rem
+
+    +laptop()
+      width:60%
+
+    h2,
+    h3
+      line-height: 1.45
+      overflow:hidden
+      font-size: 1rem
+
+    h2
+      text-align:left
+      a
+        header-text()
+        color:dark
+        opacity:0.9
+
+    h3
+      display:inline-block
+      margin-right: 0.25rem
+      font-size: 0.75rem
+      opacity: 0.3
+      vertical-align:top
+      text-align: left
+      text-transform: lowercase
+    p
+      body-text()
+      opacity:0.75
+      max-height:3.5rem
+      font-size:0.85rem
+      overflow:hidden;
+      +laptop()
+        width:75%
+    nav
+      display:inline-block
+      margin-top:-1rem
+      vertical-align:top
+      line-height:1
+      a
+        line-height:1
+        vertical-align:top
+        color:copper
+        font-family:'Bree Serif', serif
+        font-size:2rem
+        letter-spacing:1px

@@ -2,7 +2,7 @@ require 'spec_helper'
 # http://plus.google.com/110547857076579322423/
 describe Authors::Google do
   before do
-    @author = FactoryGirl.create(:author_google, username:"_ugly", uid:'666')
+    @author = create!(:author_google, username:"_ugly", uid:'666')
     # http://plus.google.com/110547857076579322423/
   end
 

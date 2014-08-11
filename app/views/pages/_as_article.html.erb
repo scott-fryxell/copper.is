@@ -1,19 +1,18 @@
 <%-cache page do-%>
 <article <%= raw page.as_item_attributes%>>
   <%-page.nested=true-%>
-  <header>
-    <%= render partial:"pages/as_figure", object:page, as: :page %>
-  </header>
+  <%= render partial:"pages/as_figure", object:page, as: :page %>
   <footer>
-    <h3><%= URI.parse(page.url).host%></h3>
-    <%-if page.title-%>
-    <h2 itemprop="title"><%=page.title%></h2>
-    <%-else-%>
-    <h2><%= URI.parse(page.url).path.delete("/")%></h2>
-    <%-end-%>
-    <menu>
-      <a href='<%=page.url%>' target="_blank" itemprop="url">Visit</a>
-    </menu>
+    <h2>
+      <a href='<%=page.url%>' target="_blank" itemprop="title">
+        <%=page.title%>
+      </a>
+    </h2>
+    <p><%= page.description %></p>
+    <h3><%=page.host%></h3>
+    <nav>
+      <a href="<%="/pages/#{page.id}"%>" target='_parent'>...</a>
+    </nav>
   </footer>
   <%-page.nested=false-%>
 </article>
