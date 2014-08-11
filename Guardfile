@@ -1,4 +1,4 @@
-guard 'process', name:'worker', command:'bundle exec bin/rake jobs:work COUNT=1', stop_signal:'KILL' do
+guard 'process', name:'worker', command:'env TERM_CHILD=1 COUNT=1 bundle exec rake resque:work', stop_signal:'KILL' do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/authorization_rules.rb')
@@ -19,26 +19,26 @@ guard 'process', name:'web', command:'bundle exec unicorn -p 3000 -c ./config/un
   watch(%r{^config/initializers/.+\.rb})
 end
 
-guard :rspec, cmd:"bin/rspec --tty", all_on_start:false, all_after_pass:false, parallel: false do
-  # watch(%r{^spec/.+_spec\.rb$})
-  # watch(%r{^lib/(.+)\.rb$})                                              { |m| "spec/lib/#{m[1]}_spec.rb" }
-  # watch('spec/spec_helper.rb')                                           { "spec" }
-  # watch('.rspec')                                                        { "spec" }
-  # watch(%r{^app/(.+)\.rb$})                                              { |m| "spec/#{m[1]}_spec.rb" }
-  # watch(%r{^app/(.*)(\.erb|\.haml)$})                                    { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
-  # watch(%r{^app/controllers/(.+)_(controller)\.rb$})                     { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb"] }
-  # watch(%r{^spec/support/(.+)\.rb$})                                     { "spec" }
-  # watch('config/routes.rb')                                              { "spec/routing" }
-  # watch('app/controllers/application_controller.rb')                     { "spec/controllers" }
-  # watch(%r{^app/views/(.+)/.*\.(erb|haml)$})                             { |m| "spec/features/#{m[1]}_spec.rb" }
-  # watch(/^spec\/.+\.rb$/)                                                { 'spec' }
-  # watch(/^app\/.+\.rb$/)                                                 { 'spec' }
-  # watch(/^config\/.+\.rb$/)                                              { 'spec' }
-  # watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/features'}
+guard :rspec, cmd:"spring rspec", all_on_start:false, all_after_pass:false, parallel: false do
+  watch(%r{^spec/.+_spec\.rb$})
+  watch(%r{^lib/(.+)\.rb$})                                              { |m| "spec/lib/#{m[1]}_spec.rb" }
+  watch('spec/spec_helper.rb')                                           { "spec" }
+  watch('.rspec')                                                        { "spec" }
+  watch(%r{^app/(.+)\.rb$})                                              { |m| "spec/#{m[1]}_spec.rb" }
+  watch(%r{^app/(.*)(\.erb|\.haml)$})                                    { |m| "spec/#{m[1]}#{m[2]}_spec.rb" }
+  watch(%r{^app/controllers/(.+)_(controller)\.rb$})                     { |m| ["spec/routing/#{m[1]}_routing_spec.rb", "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb"] }
+  watch(%r{^spec/support/(.+)\.rb$})                                     { "spec" }
+  watch('config/routes.rb')                                              { "spec/routing" }
+  watch('app/controllers/application_controller.rb')                     { "spec/controllers" }
+  watch(%r{^app/views/(.+)/.*\.(erb|haml)$})                             { |m| "spec/features/#{m[1]}_spec.rb" }
+  watch(/^spec\/.+\.rb$/)                                                { 'spec' }
+  watch(/^app\/.+\.rb$/)                                                 { 'spec' }
+  watch(/^config\/.+\.rb$/)                                              { 'spec' }
+  watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/features'}
 end
 
 guard :livereload do
-  watch(%r{^app/.+\.(erb|haml|js|css|scss|sass|coffee|svg|png|gif|jpg)})
+  watch(%r{^app/.+\.(erb|haml|js|css|scss|sass|styl|coffee|svg|png|gif|jpg)})
   watch(%r{^app/helpers/.+\.rb})
   watch(%r{^public/.+\.html})
   watch(%r{^config/locales/.+\.yml})

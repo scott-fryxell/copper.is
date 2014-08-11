@@ -56,7 +56,6 @@ namespace :copper do
     end
   end
 
-
   namespace :dev do
     task :reset_page => :environment do
       Page.all.each do |page|
@@ -91,6 +90,6 @@ namespace :copper do
 end
 
 namespace :db do
-  task :bounce => %w{drop:all create:all migrate seed} do
+  task :bounce => %w{db:reset db:test:prepare} do
   end
 end

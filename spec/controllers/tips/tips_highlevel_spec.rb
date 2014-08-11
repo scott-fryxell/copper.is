@@ -11,7 +11,7 @@ describe TipsController do
       ::Twitter.stub(:user).and_return(@twitter_user)
     end
 
-    it 'tips pages' do
+    it 'tips pages', :vcr do
       proc do
         post_with @me, :create, tip:{url:'http://twitter.com/ableton'}
         @page = Page.find_by(url:'http://twitter.com/ableton')
@@ -21,14 +21,14 @@ describe TipsController do
       end.should change(Tip,:count).by(1)
     end
 
-    it 'finds authors of tipped pages' do
+    it 'finds authors of tipped pages', :vcr do
       post_with @me, :create, tip:{url:'https://twitter.com/ableton'}
       @page = Page.find_by(url:'https://twitter.com/ableton')
       @page.author.should_not be_nil
       @page.author.username.should eq('ableton')
     end
 
-    it 'messages wanted authors' do
+    it 'messages wanted authors', :vcr do
       post_with @me, :create, tip:{url:'http://twitter.com/ableton'}
       @me.current_order.tips.first.destroy
       @page = Page.find_by(url:'http://twitter.com/ableton')

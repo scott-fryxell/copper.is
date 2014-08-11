@@ -22,6 +22,8 @@ module Copper
     config.assets.prefix = "/assets"
 
     config.assets.initialize_on_precompile=false
+    config.action_dispatch.cookies_serializer = :json
+
 
     %w[
       copper_secret_key
@@ -70,4 +72,3 @@ module Copper
   end
 end
 require 'messages'
-

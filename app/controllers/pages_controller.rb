@@ -1,14 +1,21 @@
 class PagesController < ApplicationController
-  filter_access_to :all
-  filter_access_to :appcache, :require => :read
 
-  def index
-
+  def patch
+    head :ok
   end
 
-
-  def appcache
-    expires_in 1.second, :public => true
-    render action:'appcache', layout:false, content_type:'text/cache-manifest'
+  def show
+    @page = Page.find(params[:id])
   end
+
+  # TODO: appcache methods could go into the application controller
+  def collection_appcache
+    render layout:false, content_type:'text/cache-manifest'
+  end
+
+  def member_appcache
+    @page = Page.find(params[:id])
+    render layout:false, content_type:'text/cache-manifest'
+  end
+
 end

@@ -4,7 +4,7 @@ describe "An Author", :slow do
 
   before(:each) do
     mock_page_and_user
-    twitter = FactoryGirl.create(:author_twitter, identity_state:'wanted')
+    twitter = create!(:author_twitter, identity_state:'wanted')
     visit"/#{twitter.provider}/#{twitter.username}"
   end
   it 'Can view a page with their tips before signing up'

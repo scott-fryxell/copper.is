@@ -1,5 +1,9 @@
 <%-cache page do-%>
-<figure <%=page.as_item_attributes%>>
-  <img itemprop="thumbnail_url" src="<%=page.thumbnail%>">
+<figure <%=page.as_item_attributes%> >
+  <%-if page.thumbnail_url-%>
+    <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>">
+  <%-else-%>
+    <img itemprop="thumbnail_url" src="<%=asset_path('noun_project/37233.svg') %>">
+  <%-end-%>
 </figure>
 <%-end-%>

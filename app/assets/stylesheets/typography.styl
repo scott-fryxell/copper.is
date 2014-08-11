@@ -1,19 +1,22 @@
-text()
+@require 'color'
+
+body-text()
+  font-size:1rem
+  font-family:'Cantarell', sans-serif
+  font-weight:100
   text-rendering: optimizeLegibility
   -webkit-font-smoothing: antialiased
-  font-size:1em
-  font-family: 'Cantarell', sans-serif
-  font-weight:normal
-  color:body_text
+  color:body-text-color
 
 header-text()
+  font-family:'Patua One', sans-serif
+  font-family:'Bree Serif', serif
+  font-family:'Doppio One', sans-serif
+  font-weight:200
+  // text-transform:capitalize
   letter-spacing: 1px
-  color:title
-  font-family: 'Bree Serif', serif
-  font-weight:normal
-  text-transform:capitalize
+  color:header-text-color
 
 help-text()
-  font-family: 'Nothing You Could Do', cursive !important
-  font-size:1em !important
-  display:inline-block
+  font-family: 'Nothing You Could Do', cursive
+  font-size:1rem

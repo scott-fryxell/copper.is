@@ -1,0 +1,11 @@
+<%-cache("application_appcache", expires_in:10.seconds) do-%>
+CACHE MANIFEST
+
+<%= render "appcache"%>
+
+/pages/trending
+/pages/recent
+
+NETWORK:
+*
+<%-end-%>

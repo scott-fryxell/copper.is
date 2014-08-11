@@ -1,6 +1,6 @@
 class @Endless
 
-  constructor:() ->
+  constructor: ->
     document.endless = @
     @page = 1
     @check = false
@@ -30,7 +30,7 @@ class @Endless
     # console.debug("load_next_page", @page)
     $('body').off 'load.endless', document.endless.next
 
-    jQuery.get "#{window.location}?endless=#{@page}",  (data) ->
+    jQuery.get "#{window.location}/endless/#{@page}",  (data) ->
       $('body > footer').before(data);
       $('body:last-child').trigger('load.endless')
       if $('section.endless').last().html().trim().length

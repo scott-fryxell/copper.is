@@ -1,7 +1,10 @@
 $ ->
-
   # log
   console.log('initializing app', @)
+
+  $('body > header > img').click ->
+    $(@).toggleClass('show')
+    $('body > menu').toggleClass('show')
 
   # bind
   $(@).on 'load.endless', -> $(@).page_init()
@@ -9,7 +12,7 @@ $ ->
   # trigger
   $('html').page_init()
 
-  new Item($('html'))
+  new Item(document)
   new Roles()
   # new Endless()
   # new Fragment()

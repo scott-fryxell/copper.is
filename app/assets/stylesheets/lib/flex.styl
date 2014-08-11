@@ -1,47 +1,56 @@
-@require 'lib/device'
+display-flex()
+  display: -ms-Flexbox
+  -ms-box-orient: horizontal
+  display: -webkit-flex
+  display: -moz-flex
+  display: -ms-flex
+  display: flex
 
-flex()
-  body
-    margin:0;
-    display:flex
-    flex-direction:column
+order()
+  -webkit-box-ordinal-group: arguments
+  -moz-box-ordinal-group: arguments
+  -ms-flex-order: arguments
+  -webkit-order: arguments
+  order: arguments
 
-    & > header
-      order:1
+flex-wrap()
+  -moz-flex-wrap: arguments
+  -ms-flex-wrap: arguments
+  -webkit-flex-wrap: arguments
+  flex-wrap: arguments
 
-    & > menu
-      order:2
+flex-direction()
+  -moz-flex-direction: arguments
+  -ms-flex-direction: arguments
+  -webkit-flex-direction: arguments
+  flex-direction: arguments
 
-    & > footer
-      order:4
+flex-flow()
+  -webkit-flex-flow: arguments
+  -moz-flex-flow: arguments
+  -ms-flex-flow: arguments
+  flex-flow: arguments
 
-    & > main
-      flex-grow:1
-      order:3
+flexx()
+  -webkit-flex:arguments
+  -moz-flex:arguments
+  -ms-flex:arguments
+  flex:arguments
 
-  +laptop()
-    body
-      flex-wrap:wrap
-      flex-direction:row
+flex-grow()
+  -webkit-flex-grow: arguments
+  -moz-flex-grow: arguments
+  -ms-flex-grow: arguments
+  flex-grow: arguments
 
-      & > header,
-      & > footer
-        width:100%
-        height:5%
-        vertical-align:middle
+flex-shrink()
+  -webkit-flex-shrink: arguments
+  -moz-flex-shrink: arguments
+  -ms-flex-shrink: arguments
+  flex-shrink: arguments
 
-      & > main
-        order:3
-
-      & > menu
-        order:2
-        flex-grow:0.33
-        flex-direction:column
-        flex-wrap:wrap
-
-        & > a
-          display:block
-
-      & > main
-        flex-grow:1.618
-        min-height:90%
+flex-basis()
+  -webkit-flex-basis: arguments
+  -moz-flex-basis: arguments
+  -ms-flex-basis: arguments
+  flex-basis: arguments

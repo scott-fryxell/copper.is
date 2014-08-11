@@ -482,7 +482,7 @@ DEPENDENCIES
   rb-inotify
   redis
   reek
-  resque
+  resque (~> 1.22.0)
   resque_spec
   rspec-rails
   ruby_parser

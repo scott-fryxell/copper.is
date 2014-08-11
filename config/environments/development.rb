@@ -2,7 +2,6 @@ Copper::Application.configure do
 
   config.eager_load = false
 
-
   config.cache_classes = false
 
   config.consider_all_requests_local       = true
@@ -10,7 +9,8 @@ Copper::Application.configure do
 
   config.assets.debug = false
   config.assets.compile = true
-  config.assets.digest = false
+  config.assets.digest = true
+  config.static_cache_control = "public, max-age=31536000"
 
   config.hostname = "http://copper.dev"
   config.facebook_appname = "copper-dev"
@@ -18,7 +18,7 @@ Copper::Application.configure do
 
   config.active_support.deprecation = :log
   config.lograge.enabled = true
-  config.log_level = :debug
+  config.log_level = :info
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = {
@@ -112,6 +112,4 @@ Copper::Application.configure do
       'secret' => 'its_a_secret'
     },
   }
-
-
 end

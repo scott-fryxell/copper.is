@@ -56,7 +56,7 @@ describe Authors::Facebook do
 
   describe '#populate_uid_and_username!' do
     before do
-      @author = FactoryGirl.create(:author_facebook, username:"scott.fryxell")
+      @author = create!(:author_facebook, username:"scott.fryxell")
     end
 
     after do
@@ -79,7 +79,7 @@ describe Authors::Facebook do
 
   describe 'asset paths by username' do
     before do
-      @author = FactoryGirl.create(:author_facebook, username:"scott.fryxell")
+      @author = create!(:author_facebook, username:"scott.fryxell")
     end
 
     it "should return the users profile_img", :vcr do
@@ -94,7 +94,7 @@ describe Authors::Facebook do
 
   describe 'asset paths by uid' do
     before do
-      @author = FactoryGirl.create(:author_facebook, uid:'580281278')
+      @author = create!(:author_facebook, uid:'580281278')
     end
 
     it "should return the users profile_img" do pending
