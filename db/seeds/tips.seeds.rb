@@ -23,6 +23,7 @@ after :users do
   end
 
   recent = [
+    'http://blog.atom.io/2014/03/13/git-integration.html',
     'http://blogs.villagevoice.com/music/2014/08/ask_andrew_wk_right_wing_dad.php',
     'http://www.sfgate.com/bayarea/article/Residential-development-threatens-S-F-s-music-5680418.php',
     'http://www.nytimes.com/2014/08/05/opinion/frank-bruni-plato-and-the-promise-of-college.html',
