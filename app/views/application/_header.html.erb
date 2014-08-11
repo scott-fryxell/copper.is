@@ -1,7 +1,9 @@
+<%-cache do-%>
 <header>
   <img src='<%=image_path('icons/hamburger.svg')%>'>
   <figure>
     <a href="/"><img src='<%=image_path('icons/logo.svg')%>'></a>
   </figure>
-  <%= render partial:"/current_user"%>
+  <%= render partial:"/application/current_user"%>
 </header>
+<%-end-%>

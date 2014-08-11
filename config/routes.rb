@@ -1,43 +1,49 @@
 require 'resque/server'
 Copper::Application.routes.draw do
 
-  resources :tips, except:[:edit, :show] do
+  resources :tips, only:[:create, :update, :show, :new, :destroy] do
     collection do
-      get  'embed_iframe.js',                to:'tips#iframe', :as => :iframe
+      get  'embed_iframe.js',            to:'tips#iframe', as: :iframe
     end
   end
 
-  resources :pages, only:[:index, :show, :update] do
+  resources :authors, only:[:show] do
     member do
-      get "member.appcache", to:"pages#member_appcache"
+      post 'claim_facebook_pages'
+      post 'authorize_facebook_privelege'
+      post 'can_post_to_facebook'
+      post 'can_view_facebook_pages'
+    end
+
+  end
+
+  resources :pages, only:[:show, :update] do
+    member do
+      get "appcache",                    to:"pages#member_appcache"
     end
 
     collection do
-      get "collection.appcache", to:"pages#collection_appcache"
+      get "appcache",                    to:"pages#collection_appcache"
       get "trending"
       get "recent"
     end
   end
 
-  get  'admin',                          to:'admin#index', :as => :admin
-  get  'ping',                           to:'admin#ping',  :as => :ping
-  get  'test',                           to:'admin#test'   unless Rails.env.production?
 
-  post 'claim_facebook_pages',           to:'users#claim_facebook_pages'
 
-  get  '/signout',                       to:'sessions#destroy', :as => :signout
-  get  '/signin',                        to:'sessions#new',     :as => :signin
-  get  '/auth/:provider/callback',       to:'sessions#create',  :as => :provider_callback
+  get  '/admin',                          to:'admin#index'
+  get  '/ping',                           to:'admin#ping'
+  get  '/test',                           to:'admin#test'   unless Rails.env.production?
 
+
+  get  '/signout',                       to:'sessions#destroy', as: :signout
+  get  '/auth/:provider/callback',       to:'sessions#create'
   post '/auth/failure',                  to:'sessions#failure'
-  post '/auth/facebook/setup',           to:'sessions#facebook_setup'
-  post '/auth/facebook/publish_actions', to:'sessions#publish_actions'
-  post '/auth/facebook/manage_pages',    to:'sessions#manage_pages'
 
-  get  'application.appcache',           to:'pages#application_appcache'
-  root                                   to:'pages#index'
+  get "/appcache",                       to:"application#appcache"
+  root                                   to:'application#index'
 
-  mount Resque::Server.new, :at => '/admin/resque'
+  mount Resque::Server.new,              at:'/admin/resque'
 
   # constraints allow usernames to have periods
   # get '/:provider/:username',  to:'authors#enquire', constraints:{username:/[^\/]+/}

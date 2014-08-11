@@ -1,20 +1,20 @@
-CACHE MANIFEST
-# <%=current_user.updated_at if current_user%>
-<%= render partial:"/appcache"%>
-
 <%-cache("pages_appcache", expires_in: 10.seconds) do-%>
-  /pages/trending
-  <%-for page in Page.trending-%>
-    #<%="#{page.updated_at}"%>
-    <%="/pages/#{page.id}"%>
-  <%-end-%>
+CACHE MANIFEST
+<%= render partial:"application/appcache"%>
 
-  /pages/recent
-  <%-for page in Page.recent-%>
-    #<%="#{page.updated_at}"%>
-    <%="/pages/#{page.id}"%>
-  <%-end-%>
+/pages/trending
+<%-for page in Page.trending-%>
+  #<%="#{page.updated_at}"%>
+  <%="/pages/#{page.id}"%>
 <%-end-%>
+
+/pages/recent
+<%-for page in Page.recent-%>
+  #<%="#{page.updated_at}"%>
+  <%="/pages/#{page.id}"%>
+<%-end-%>
+
 
 NETWORK:
 *
+<%-end-%>

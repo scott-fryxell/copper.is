@@ -18,14 +18,16 @@ class Page < ActiveRecord::Base
     scope state, -> { where(author_state:state) }
   end
 
-  scope :safe,          -> { where(nsfw:false) }
-  scope :recent,        -> { order("pages.updated_at DESC") }
-  scope :charged_tips,  -> { joins(:tips).where('tips.paid_state=?', 'charged') }
-  scope :trending,      -> {
-    joins(:tips).select('pages.*, count("tips") as tip_count')
-      .group('pages.id').having('count("tips") > 1' )
-      .order('tip_count desc')
-  }
+  scope :safe,         -> { where(nsfw:false) }
+  scope :recent,       -> { order("pages.updated_at DESC") }
+  scope :charged_tips, -> { joins(:tips).where('tips.paid_state=?', 'charged') }
+  scope :trending,     -> {
+                            joins(:tips)
+                            .select('pages.*, count("tips") as tip_count')
+                            .group('pages.id')
+                            .having('count("tips") > 1' )
+                            .order('tip_count desc')
+                          }
 
   def self.scott
     User.find_by(email:'scott@copper.is').pages
@@ -83,9 +85,10 @@ class Page < ActiveRecord::Base
 
   def learn_description ( content = self.spider.get(url) )
     if description_tag = content.at('meta[property="og:description"]')
-
       logger.info "    og:description=#{description_tag.attributes['content'].value[0...100]}"
-
+      self.description = description_tag.attributes['content'].value
+    elsif description_tag = content.at('meta[name="description"]')
+      logger.info "    description=#{description_tag.attributes['content'].value[0...100]}"
       self.description = description_tag.attributes['content'].value
     end
     self.description
@@ -94,17 +97,11 @@ class Page < ActiveRecord::Base
   def learn_title ( content = self.spider.get(url) )
     logger.info "  title"
     if title_tag = content.at('meta[property="og:title"]')
-
       logger.info "    og:title=#{title_tag.attributes['content'].value[0...100]}"
-
       self.title = title_tag.attributes['content'].value
-
     elsif title_tag = content.at('title')
-
       logger.info "    title=#{title_tag.text.strip[0...100]}"
-
       self.title = title_tag.text.strip
-
     end
     self.title
   end

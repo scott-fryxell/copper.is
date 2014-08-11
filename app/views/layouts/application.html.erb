@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html manifest='/pages/collection.appcache'>
+<html manifest='<%=cache_url%>'>
   <head>
     <title>Copper</title>
     <%= csrf_meta_tag %>
-    <%= render partial:"/link"%>
-    <%= render partial:"/meta"%>
+    <%= render partial:"application/link" %>
+    <%= render partial:"application/meta" %>
     <%= stylesheet_link_tag "application", media:"screen" %>
     <%= javascript_include_tag "application" %>
   </head>
   <body class='<%=set_scope%>' data-role="guest">
-    <%= render partial:"/header"%>
-    <%= render partial:"/menu"%>
+    <%= render partial:"/application/header" %>
+    <%= render partial:"/application/menu" %>
     <main>
       <%= yield %>
     </main>
-    <%= render partial:"/footer"%>
+    <%= render partial:"/application/footer" %>
   </body>
 </html>
