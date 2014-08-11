@@ -11,9 +11,8 @@
     <p><%= page.description %></p>
     <h3><%=page.host%></h3>
     <nav>
-      <a href="<%="/pages/#{page.id}"%>">more..</a>
+      <a href="<%="/pages/#{page.id}"%>" target='_parent'>...</a>
     </nav>
-
   </footer>
   <%-page.nested=false-%>
 </article>

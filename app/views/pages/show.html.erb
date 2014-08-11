@@ -1,12 +1,12 @@
 <section <%= raw @page.as_item_attributes%> >
   <%-@page.nested=true-%>
-  <figure>
-    <img src="<%= @page.thumbnail_url %>"/>
-  </figure>
-
   <header>
     <h1 itemprop='title' contenteditable><%=@page.title%></h1>
   </header>
+
+  <figure>
+    <img src="<%= @page.thumbnail_url %>"/>
+  </figure>
 
   <p contenteditable><%= @page.description %></p>
   <%= render "as_form", page:@page %>

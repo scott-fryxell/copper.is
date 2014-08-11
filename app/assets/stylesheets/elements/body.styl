@@ -6,6 +6,10 @@ body
   display-flex()
   flex-direction:column
 
+  & > main
+    +phone-only()
+      padding:0.5rem
+
   +tablet()
     flex-flow row wrap
 

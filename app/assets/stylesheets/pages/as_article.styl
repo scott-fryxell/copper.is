@@ -12,11 +12,13 @@ article[itemtype=page]
   border-radius: 0.15rem
   border-gradient()
 
+  &:first-of-type
+    padding-top:0
+
   & > figure
     display:inline-block
     width:4rem
     height:4rem
-
     border-radius: 50%
     background-color: tan
     margin-right:1rem;
@@ -47,23 +49,22 @@ article[itemtype=page]
 
     h2
       text-align:left
-      max-height:3rem
       a
         header-text()
-        // font-family:'Bree Serif', serif
-        font-size:1.1rem
+        color:dark
+        opacity:0.9
 
     h3
-      display:inline-block;
-      margin-right: 0.5rem
+      display:inline-block
+      margin-right: 0.25rem
       font-size: 0.75rem
-      opacity: 0.86
+      opacity: 0.3
+      vertical-align:top
       text-align: left
       text-transform: lowercase
     p
       body-text()
       opacity:0.75
-      margin:0.25rem 0
       max-height:3.5rem
       font-size:0.85rem
       overflow:hidden;
@@ -71,11 +72,13 @@ article[itemtype=page]
         width:75%
     nav
       display:inline-block
+      margin-top:-1rem
       vertical-align:top
-      opacity:0.85
-      font-size:0.75rem
       line-height:1
       a
         line-height:1
         vertical-align:top
         color:copper
+        font-family:'Bree Serif', serif
+        font-size:2rem
+        letter-spacing:1px

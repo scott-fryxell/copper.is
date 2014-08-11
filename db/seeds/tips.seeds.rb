@@ -14,6 +14,7 @@ after :users do
     'http://www.redbullmusicacademy.com/magazine/razormaid-feature',
     'http://yourslownewsday.com/okay-the-google-glass-lady-needs-to-zip-it',
     'http://www.nytimes.com/interactive/2014/06/27/world/legacy-of-world-war-i.html'
+    'http://www.nytimes.com/2014/08/10/magazine/staking-out-the-great-white-shark.html?src=dayp'
   ]
 
   for url in trending
@@ -22,6 +23,8 @@ after :users do
   end
 
   recent = [
+    'http://blogs.villagevoice.com/music/2014/08/ask_andrew_wk_right_wing_dad.php',
+    'http://www.sfgate.com/bayarea/article/Residential-development-threatens-S-F-s-music-5680418.php',
     'http://www.nytimes.com/2014/08/05/opinion/frank-bruni-plato-and-the-promise-of-college.html',
     'http://www.nytimes.com/2014/08/06/technology/russian-gang-said-to-amass-more-than-a-billion-stolen-internet-credentials.html',
     'http://www.thedailybeast.com/articles/2014/08/03/five-lessons-the-faltering-music-industry-could-learn-from-tv.html',

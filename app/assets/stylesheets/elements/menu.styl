@@ -1,7 +1,7 @@
 menu
   font-size:0rem
   -webkit-padding-start:0
-  padding:0.5rem 0
+  padding:0
 
   & > a,
   & > button,
@@ -12,6 +12,9 @@ menu
     text-decoration: none
 
 menu menu
+  margin:1rem 0
+  &:first-of-type
+    margin-top:0
   +phone-only()
     vertical-align:middle;
     display:inline-block
@@ -47,6 +50,7 @@ body
       border:1px inset riser
 
     h6
+      padding:0.25rem 0
       text-align:center
       opacity:0.15
       header-text()
@@ -54,8 +58,6 @@ body
       font-size:1rem
       +phone-only()
         opacity:0.2
-        margin-top:1rem
-
     a
       text-align:center
       padding:0.25rem 0
