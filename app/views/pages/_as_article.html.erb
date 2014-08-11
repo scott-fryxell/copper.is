@@ -8,10 +8,12 @@
         <%=page.title%>
       </a>
     </h2>
+    <p><%= page.description %></p>
     <h3><%=page.host%></h3>
     <nav>
       <a href="<%="/pages/#{page.id}"%>">more..</a>
     </nav>
+
   </footer>
   <%-page.nested=false-%>
 </article>

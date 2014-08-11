@@ -4,7 +4,6 @@ class AdminController < ApplicationController
   end
 
   def ping
-    Page.count
     render action:'ping', layout:false
   end
 

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  helper_method :current_user, :user_url, :set_scope, :cache_url, cents_to_dollars
+  helper_method :current_user, :user_url, :set_scope, :cache_url, :cents_to_dollars
   before_action :set_current_user
 
   def appcache

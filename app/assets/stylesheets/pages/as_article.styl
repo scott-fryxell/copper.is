@@ -37,7 +37,7 @@ article[itemtype=page]
     font-size:1rem
 
     +laptop()
-      width:50%
+      width:60%
 
     h2,
     h3
@@ -50,19 +50,32 @@ article[itemtype=page]
       max-height:3rem
       a
         header-text()
+        // font-family:'Bree Serif', serif
+        font-size:1.1rem
 
     h3
       display:inline-block;
-      margin: 0.25rem 0.5rem 0 0
+      margin-right: 0.5rem
       font-size: 0.75rem
-      opacity: 0.6
+      opacity: 0.86
       text-align: left
       text-transform: lowercase
+    p
+      body-text()
+      opacity:0.75
+      margin:0.25rem 0
+      max-height:3.5rem
+      font-size:0.85rem
+      overflow:hidden;
+      +laptop()
+        width:75%
     nav
       display:inline-block
       vertical-align:top
-      opacity:0.5
+      opacity:0.85
       font-size:0.75rem
       line-height:1
       a
+        line-height:1
+        vertical-align:top
         color:copper
