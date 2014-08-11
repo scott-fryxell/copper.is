@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  helper_method :current_user, :user_url, :set_scope, :cache_url
+  helper_method :current_user, :user_url, :set_scope, :cache_url, cents_to_dollars
   before_action :set_current_user
 
   def appcache
@@ -56,6 +56,10 @@ protected
     else
       "/#{params[:controller].parameterize}/appcache" # collection
     end
+  end
+
+  def cents_to_dollars(amount_in_cents)
+    amount_in_dollars = "%.2f" % (amount_in_cents / 100.0)
   end
 
 end
