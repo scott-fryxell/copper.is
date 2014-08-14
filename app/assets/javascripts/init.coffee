@@ -3,7 +3,13 @@ $ ->
   console.log('initializing app', @)
 
   $('body > header > figure > svg').click ->
-    $(@).toggleClass('show')
+    if $(@).attr('class') == 'show'
+      $(@).attr("class", "")
+      $(@).find('use').attr("class", "")
+    else
+      $(@).attr("class", "show")
+      $(@).find('use').attr("class", "show")
+
     $('body > menu').toggleClass('show')
 
   # bind
