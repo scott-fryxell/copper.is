@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <g class='triangles'>
+    <symbol id="isosceles" viewBox="0 0 16 16">
+      <polygon points="16,0 0,0 8,8 "/>
+    </symbol>
+    <symbol id="equilateral" viewBox="0 0 16 16">
+      <polygon points="16,0 0,0 8,13 "/>
+    </symbol>
+    <use xlink:href="#isosceles"   height="4em" y='0'/>
+    <use xlink:href="#equilateral" height="4em" y='5em'/>
+  </g>
+
+  <g class='hexagon'>
+    <symbol id='banner' viewBox="0 0 16 8">
+      <path d="M16,8H0V0h16V8z M0,8h16L8,6L0,8z"/>
+    </symbol>
+    <use xlink:href="#banner" height="4em" y='10em'/>
+  </g>
+
+</svg>

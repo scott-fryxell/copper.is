@@ -3,12 +3,12 @@
   <header>
     <h1 itemprop='title' contenteditable><%=@page.title%></h1>
   </header>
+  <p contenteditable><%= @page.description %></p>
 
   <figure>
     <img src="<%= @page.thumbnail_url %>"/>
   </figure>
-
-  <p contenteditable><%= @page.description %></p>
+  
   <%= render "as_form", page:@page %>
   <%-@page.nested=false-%>
 </section>

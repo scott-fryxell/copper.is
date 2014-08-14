@@ -1,5 +1,8 @@
 <%-cache("pages_trending", :expires_in => 1.minute) do-%>
   <section class='endless trending pages'>
+    <header>
+      <h1>Trending tips</h1>
+    </header>
     <%= render partial:"pages/as_article", collection:Page.trending.safe.endless(params[:endless]), as: :page %>
   </section>
 <%-end-%>

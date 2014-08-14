@@ -1,27 +1,35 @@
 @require 'lib/device'
 
 body > header
+  margin:gutter gutter 0 gutter
+
   +tablet()
+    margin-left:0
     display-flex()
 
-  & > img
-    opacity:0.25
-    width:1.5rem
-    height:1.5rem
-    position:absolute
-    top:1rem
-    left:1.75rem
-    standard-transition opacity
-    &.show
-      opacity:0.8
-
-    +tablet()
-      display:none
-
   & > figure
-    text-align:center
-    padding:0.5rem 0 0 0
     +tablet()
       flexx: 0 0.22 15%
-    a > img
+    a
+      display:inline-block
+      +tablet()
+        display: block;
+        text-align: center;
+      svg
+        display:inline-block;
         height:2rem
+        width:6rem
+
+    & > svg
+      display:inline-block
+      opacity:0.25
+      width:1.5rem
+      height:1.5rem
+      standard-transition opacity
+      margin:0 3.75rem 0 1.25rem
+
+      &.show
+        opacity:0.8
+
+      +tablet()
+        display:none

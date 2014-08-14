@@ -12,7 +12,7 @@ menu
     text-decoration: none
 
 menu menu
-  margin:1rem 0
+  margin: gutter 0
   &:first-of-type
     margin-top:0
   +phone-only()
@@ -48,13 +48,14 @@ body
 
     &.show
       border:1px inset riser
+      margin-bottom:1rem
 
     h6
       padding:0.25rem 0
       text-align:center
       opacity:0.15
       header-text()
-      text-shadow: 1px 0px 0px copper
+      text-shadow: 1px 0px 0px dark
       font-size:1rem
       +phone-only()
         opacity:0.2

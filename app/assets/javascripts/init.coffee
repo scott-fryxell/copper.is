@@ -2,7 +2,7 @@ $ ->
   # log
   console.log('initializing app', @)
 
-  $('body > header > img').click ->
+  $('body > header > figure > svg').click ->
     $(@).toggleClass('show')
     $('body > menu').toggleClass('show')
 

@@ -8,14 +8,11 @@ $(document).on "load.pages.index", ->
     $("#tip").attr("placeholder", "Tiped!")
     $("#tip").val("")
 
+  $(document).on 'view_latest_tip', ->
+    $('#pages > details:first-of-type > summary').click()
 
-
-
-$(document).on 'view_latest_tip', ->
-  $('#pages > details:first-of-type > summary').click()
-
-$(document).on "paste", (e) ->
-  $('body').addClass('working')
-  url =  e.originalEvent.clipboardData.getData('text/plain')
-  console.log url
-  $("#tip").blur()
+  $(document).on "paste", (e) ->
+    $('body').addClass('working')
+    url =  e.originalEvent.clipboardData.getData('text/plain')
+    console.log url
+    $("#tip").blur()

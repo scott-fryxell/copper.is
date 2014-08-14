@@ -3,7 +3,7 @@
   <%-if page.thumbnail_url-%>
     <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>">
   <%-else-%>
-    <img itemprop="thumbnail_url" src="<%=asset_path('noun_project/37233.svg') %>">
+    <svg><use xlink:href="<%= asset_path('icons/people.svg#picture') %>" /></svg>
   <%-end-%>
 </figure>
 <%-end-%>

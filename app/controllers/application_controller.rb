@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
 
-  helper_method :current_user, :user_url, :set_scope, :cache_url, :cents_to_dollars
+  helper_method :current_user, :user_url, :set_scope, :cache_url, :cents_to_dollars, :icons
   before_action :set_current_user
 
   def appcache
@@ -18,6 +18,12 @@ class ApplicationController < ActionController::Base
 
 
 protected
+
+  def icons
+    Dir.chdir('app/assets/images/') do
+      Dir['**/*.svg']
+    end
+  end
 
   def user_url(user)
     if  current_user.id == user.id
