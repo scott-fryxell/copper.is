@@ -2,7 +2,6 @@ class TipsController < ApplicationController
 
   protect_from_forgery except: [:iframe, :new]
 
-
   def create
     @tip = current_user.tip(params[:tip])
     head :create, location: "/tips/#{@tip.id}"
@@ -42,6 +41,14 @@ class TipsController < ApplicationController
   def iframe
     response.headers['Cache-Control'] = 'public, max-age=300'
     render :action => 'embed_iframe', :format => [:js], :layout => false
+  end
+
+  def given
+    head :ok
+  end
+
+  def received
+    head :ok
   end
 
 end

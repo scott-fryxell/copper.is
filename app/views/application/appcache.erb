@@ -6,6 +6,13 @@ CACHE MANIFEST
 /pages/trending
 /pages/recent
 
+<%-if current_user-%>
+  /tips/given
+  /tips/received
+  /my/settings
+  /my/authorizations
+<%-end-%>
+
 NETWORK:
 *
 <%-end-%>

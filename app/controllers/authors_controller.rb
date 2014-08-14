@@ -1,5 +1,9 @@
 class AuthorsController < ApplicationController
 
+  def settings
+    head :ok
+  end
+
   def authorize_facebook_privelege
     # :scope => 'email, offline_access, user_likes, publish_actions, manage_pages',
     request.env['omniauth.strategy'].options[:scope] = session[:fb_permissions]

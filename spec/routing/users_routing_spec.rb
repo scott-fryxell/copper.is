@@ -4,7 +4,7 @@ describe UsersController do
   describe "routing" do
 
     it "routes to settings" do
-      get("/settings").should route_to("users#settings")
+      get("/my/settings").should route_to("users#settings")
     end
 
     it "routes to profile" do

@@ -12,11 +12,19 @@ describe TipsController do
     end
 
     it "routes to #update" do
-      put("/tips/1").should route_to("tips#update", :id => "1")
+      put("/tips/1").should route_to("tips#update", id:"1")
     end
 
     it "routes to #destroy" do
-      delete("/tips/1").should route_to("tips#destroy", :id => "1")
+      delete("/tips/1").should route_to("tips#destroy", id:"1")
+    end
+
+    it "routes to #given" do
+      get("/tips/given").should route_to("tips#given")
+    end
+
+    it "routes to #received" do
+      get("/tips/received").should route_to("tips#received")
     end
 
   end

@@ -4,15 +4,17 @@ Copper::Application.routes.draw do
   resources :tips, only:[:create, :update, :show, :new, :destroy] do
     collection do
       get  'embed_iframe.js',            to:'tips#iframe', as: :iframe
+      get  'given'
+      get  'received'
     end
   end
 
   resources :authors, only:[:show] do
     member do
-      post 'claim_facebook_pages'
-      post 'authorize_facebook_privelege'
-      post 'can_post_to_facebook'
-      post 'can_view_facebook_pages'
+      get 'claim_facebook_pages'
+      get 'authorize_facebook_privelege'
+      get 'can_post_to_facebook'
+      get 'can_view_facebook_pages'
     end
 
   end
@@ -29,12 +31,12 @@ Copper::Application.routes.draw do
     end
   end
 
+  resources :users, only:[:update, :show]
+  get  '/my/settings',                   to:'users#settings'
+  get  '/my/authorizations',             to:'authors#settings'
 
-
-  get  '/admin',                          to:'admin#index'
-  get  '/ping',                           to:'admin#ping'
-  get  '/test',                           to:'admin#test'   unless Rails.env.production?
-
+  get  '/ping',                          to:'admin#ping'
+  get  '/test',                          to:'admin#test' unless Rails.env.production?
 
   get  '/signout',                       to:'sessions#destroy', as: :signout
   get  '/auth/:provider/callback',       to:'sessions#create'

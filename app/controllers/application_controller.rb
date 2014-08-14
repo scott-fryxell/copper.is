@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   respond_to :html
   filter_access_to :all
-
   protect_from_forgery
 
   helper_method :current_user, :user_url, :set_scope, :cache_url, :cents_to_dollars, :icons

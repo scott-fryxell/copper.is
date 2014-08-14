@@ -3,10 +3,6 @@ require "spec_helper"
 describe AdminController do
   describe "routing" do
 
-    it "routes to #admin" do
-      get("/admin").should route_to("admin#index")
-    end
-
     it "routes to #ping" do
       get("/ping").should route_to("admin#ping")
     end
