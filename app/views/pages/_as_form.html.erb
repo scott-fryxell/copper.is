@@ -1,6 +1,6 @@
 <%-cache page do-%>
-<form method="post" <%=page.as_item_attributes%>>
-  <fieldset class="admin" >
+<form method="post" class='admin' <%= raw page.as_item_attributes %> >
+  <fieldset>
     <input placeholder="title" itemprop="title" value="<%=page.title%>" >
     <input type="url" placeholder="url"       itemprop="url"           value="<%=page.url%>" >
     <input type="url" placeholder="thumbnail" itemprop="thumbnail_url" value="<%=page.thumbnail_url%>">

@@ -1,5 +1,4 @@
-$(document).on "load.pages.index", ->
-  $("article[itemtype=page] figure").imgLiquid()
+$(document).on "load.application.index", ->
 
   $("#tip").focus ->
     $("#tip").attr("placeholder", "Paste to tip")

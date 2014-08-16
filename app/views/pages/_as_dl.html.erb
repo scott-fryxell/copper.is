@@ -1,5 +1,5 @@
 <%-cache page do-%>
-<dl <%=page.as_item_attributes%> >
+<dl <%= raw page.as_item_attributes%> >
   <dd itemprop='title' contenteditable><%=page.title%></dd>
   <dd itemprop='url' contenteditable><%=page.url%></dd>
   <dd itemprop='thumbnail_url' contenteditable><%=page.thumbnail_url%></dd>
