@@ -1,19 +1,18 @@
 @require 'color'
 section[itemtype=page]
 
-
   & > header
-    margin-top:gutter
     +tablet()
+      margin-top:gutter
       display:inline-block;
+      max-width:34rem
       margin-top:3rem
       margin-right:gutter
-      max-width:34rem
-
     & > h1
-      text-align: center
-      margin-bottom:gutter
-      opacity:0.9
+      margin:gutter 0
+      font-family:'Doppio One', sans-serif
+      font-weight:100
+      letter-spacing:0
     & > p
       line-height:1.45
       font-size:1.1rem
@@ -27,13 +26,11 @@ section[itemtype=page]
         color:copper
 
   figure
-    margin-bottom:gutter
+    margin:gutter 0
     +tablet()
       display:inline-block;
       width:41rem
-
       vertical-align:top
-      // margin:gutter 0
       text-align: center
     img
       max-width:18.5rem

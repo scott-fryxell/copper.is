@@ -19,15 +19,9 @@ class Page < ActiveRecord::Base
   end
 
   scope :safe,         -> { where(nsfw:false) }
-  scope :recent,       -> { order("pages.updated_at DESC") }
   scope :charged_tips, -> { joins(:tips).where('tips.paid_state=?', 'charged') }
-  scope :trending,     -> {
-                            joins(:tips)
-                            .select('pages.*, count("tips") as tip_count')
-                            .group('pages.id')
-                            .having('count("tips") > 1' )
-                            .order('tip_count desc')
-                          }
+  scope :recent,       -> { joins(:tips).select('pages.*, count("tips") as tip_count').group('pages.id').having('count("tips") > 1' ).order("pages.updated_at DESC") }
+  scope :trending,     -> { joins(:tips).select('pages.*, count("tips") as tip_count').group('pages.id').having('count("tips") > 1' ).order('tip_count desc') }
 
   def self.scott
     User.find_by(email:'scott@copper.is').pages
