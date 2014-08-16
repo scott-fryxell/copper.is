@@ -16,7 +16,9 @@ authorization do
   role :fan do
     includes :guest
     has_permission_on :pages,       to: :read
-    has_permission_on :tips,        to: :create
+    has_permission_on :authors,     to: :settings
+    has_permission_on :users,       to: :settings
+    has_permission_on :tips,        to: [:create,:received,:given]
     has_permission_on :sessions,    to: [
                                           :delete,
                                           :publish_actions,
