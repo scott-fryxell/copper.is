@@ -130,8 +130,7 @@ class Author < ActiveRecord::Base
     author.secret = auth['credentials']['secret']
     author.username = auth['info']['nickname']
     author.save
-
-
+    author
   end
 
   def self.subclass_from_provider(provider)
