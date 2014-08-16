@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
 
   def create
-    @author = Author.find_or_create_by_authorization(request.env['omniauth.auth'])
+    auth = request.env['omniauth.auth']
+    @author = Author.find_or_create_by_authorization(auth)
 
     if session[:fb_permissions] == 'publish_actions'
       session.destroy(:fb_permissions)
