@@ -13,10 +13,9 @@ menu
 
 menu menu
   margin: gutter 0
-  &:first-of-type
-    margin-top:0
+
   +phone-only()
-    vertical-align:middle;
+    vertical-align:top;
     display:inline-block
     width:50%
 
@@ -32,8 +31,8 @@ body
 
   &[data-role=guest] > menu.show
     +phone-only()
-      height:8rem
-      max-height:8rem
+      height:10rem
+      max-height:10rem
 
   &[data-role=fan] > menu.show
     +phone-only()
@@ -66,3 +65,6 @@ body
     a
       text-align:center
       padding:0.25rem 0
+
+menu.fan.signout a
+  opacity:0.75

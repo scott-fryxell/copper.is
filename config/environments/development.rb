@@ -10,6 +10,7 @@ Copper::Application.configure do
   config.assets.debug = false
   config.assets.compile = true
   config.assets.digest = true
+  config.serve_static_assets = true
   config.static_cache_control = "public, max-age=31536000"
 
   config.hostname = "http://copper.dev"

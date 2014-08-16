@@ -8,6 +8,25 @@ body > header
     display-flex()
 
   & > figure
+    display:inline-block
+
+    &:first-of-type
+      width:1.5rem;
+      opacity:0.25
+      standard-transition opacity
+      &.show
+        opacity:0.8
+        standard-transition opacity
+
+      & > svg
+        width:1.5rem
+        height:1.5rem
+
+      +tablet()
+        display:none
+    &:nth-child(2)
+      +phone-only()
+        margin-left:4.5rem
     +tablet()
       flexx: 0 0.22 15%
     a
@@ -19,18 +38,3 @@ body > header
         display:inline-block;
         height:2rem
         width:6rem
-
-    & > svg
-      display:inline-block
-      opacity:0.25
-      width:1.5rem
-      height:1.5rem
-      standard-transition opacity
-      margin:0 3.75rem 0 1.25rem
-
-      &.show
-        opacity:0.8
-        standard-transition opacity
-
-      +tablet()
-        display:none

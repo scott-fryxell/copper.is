@@ -2,13 +2,8 @@ $ ->
   # log
   console.log('initializing app', @)
 
-  $('body > header > figure > svg').click ->
-    if $(@).attr('class') == 'show'
-      $(@).attr("class", "")
-      $(@).find('use').attr("class", "")
-    else
-      $(@).attr("class", "show")
-      $(@).find('use').attr("class", "show")
+  $('body > header > figure:first-of-type').click ->
+    $(@).toggleClass('show')
 
     $('body > menu').toggleClass('show')
 
