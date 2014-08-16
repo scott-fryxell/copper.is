@@ -1,6 +1,5 @@
 class Order < ActiveRecord::Base
-  include Enqueueable
-  include OrderMessages
+  include Enqueueable, Messageable::Order
   has_paper_trail
 
   has_many :tips

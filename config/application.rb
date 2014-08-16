@@ -71,4 +71,3 @@ module Copper
     end
   end
 end
-require 'messages'

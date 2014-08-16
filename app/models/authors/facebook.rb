@@ -1,6 +1,6 @@
 class Authors::Facebook < Author
   include Enqueueable
-  include FacebookMessages
+  include Messageable::Facebook
   # validates :username, presence: true
 
   def self.discover_uid_and_username_from_url url

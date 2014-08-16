@@ -1,6 +1,6 @@
 class Authors::Youtube < Author
   include Enqueueable
-  include YoutubeMessages
+  include Messageable::Youtube
 
   def self.discover_uid_and_username_from_url url
     path = URI.parse(url).path

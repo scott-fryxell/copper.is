@@ -1,7 +1,7 @@
 class Authors::Phony < Author
   include Enqueueable
-  include PhonyMessages
-  
+  include Messageable::Phony
+
   # validates :username, presence: true
 
   def self.discover_uid_and_username_from_url url
@@ -15,7 +15,7 @@ class Authors::Phony < Author
     end
   end
 
-  def populate_username_from_uid! 
+  def populate_username_from_uid!
     super do
       self.username = self.uid
     end

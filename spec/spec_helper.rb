@@ -4,7 +4,6 @@ if ENV['COVERAGE_REPORT']
 end
 
 ENV["RAILS_ENV"] ||= 'test'
-require File.expand_path("../../config/environment", __FILE__)
 
 require 'active_support/core_ext'
 require 'capybara/rspec'
@@ -19,11 +18,7 @@ require 'omniauth/test'
 
 require 'declarative_authorization/maintenance'
 
-load "#{Rails.root}/config/routes.rb"
-
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-Dir["#{Rails.root}/app/**/*.rb"].each {|f| load f}
-Dir["#{Rails.root}/lib/**/*.rb"].each {|f| load f}
 
 def create!(factory,*args)
   FactoryGirl.create(factory,*args)
@@ -32,7 +27,6 @@ end
 def build!(factory,*args)
   FactoryGirl.build(factory,*args)
 end
-
 
 Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :poltergeist
