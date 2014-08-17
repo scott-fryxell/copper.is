@@ -1,3 +1,8 @@
+@require 'lib/device'
+@require 'lib/transition'
+@require 'color'
+
+
 menu
   font-size:0rem
   -webkit-padding-start:0
@@ -31,8 +36,7 @@ body
 
   &[data-role=guest] > menu.show
     +phone-only()
-      height:10rem
-      max-height:10rem
+      height:7.5rem
 
   &[data-role=fan] > menu.show
     +phone-only()
@@ -44,7 +48,6 @@ body
       border:0px solid transparent
       padding:0
       background-color:riser
-      max-height:0
       height:0;
       overflow-y:hidden
       standard-transition: max-height height
@@ -66,16 +69,23 @@ body
       text-align:center
       padding:0.25rem 0
 
-    a[href='/auth/facebook'] svg,
-    a[href='/auth/google'] svg
-      width:2rem
-      height:2rem
-
     a[href='/auth/facebook'] svg
-      border:1px solid darken(riser,15%)
+      width:1.25rem
+      height:1.25rem
+      border:1px solid darken(riser,25%)
       border-radius:0.25rem
 
 
+    a[href='/auth/google'] svg
+      width:1.5rem
+      height:1.5rem
+  menu.authentication
+    +phone-only()
+      font-size:0
+      & > a
+        display:inline-block
+        width:33%
+        padding:0.15rem
 
 menu.fan.signout a
   opacity:0.75

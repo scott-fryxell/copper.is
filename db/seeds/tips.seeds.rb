@@ -5,6 +5,7 @@ after :users do
   scott = User.find_by(email:'scott@copper.is')
 
   trending = [
+    'http://reverberationradio.com/',
     'http://www.nytimes.com/2014/08/10/opinion/sunday/nicholas-kristof-is-a-hard-life-inherited.html',
     'http://www.lrb.co.uk/v36/n04/rebecca-solnit/diary',
     'http://vimeo.com/52443205',
