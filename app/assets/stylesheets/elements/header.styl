@@ -1,7 +1,7 @@
 @require 'lib/device'
 
 body > header
-  margin:gutter gutter 0 gutter
+  margin:gutter gutter 0 2rem
 
   +tablet()
     margin-left:0
@@ -15,7 +15,7 @@ body > header
       opacity:0.25
       standard-transition opacity
       &.show
-        opacity:0.8
+        opacity:1
         standard-transition opacity
 
       & > svg
@@ -26,7 +26,7 @@ body > header
         display:none
     &:nth-child(2)
       +phone-only()
-        margin-left:4.5rem
+        margin-left:3.5rem
     +tablet()
       flexx: 0 0.22 15%
     a

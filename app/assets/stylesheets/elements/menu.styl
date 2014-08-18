@@ -69,17 +69,16 @@ body
       text-align:center
       padding:0.25rem 0
 
-    a[href='/auth/facebook'] svg
-      border:1px solid darken(riser,25%)
-      border-radius:0.25rem
-
   menu.authentication
     +phone-only()
       font-size:0
       & > a
         display:inline-block
         width:33%
-        padding:0.15rem
+
 
 menu.fan.signout a
   opacity:0.75
+  svg
+    width:1.5rem
+    height:1.5rem
