@@ -1,6 +1,7 @@
 class @Roles
 
   constructor: ->
+    
     if $(document).items()['/me']?.admin?
       $('body').attr("data-role", 'admin')
       $(document).trigger "admin.#{$.get_page_scope()}"

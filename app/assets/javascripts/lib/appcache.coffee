@@ -1,13 +1,7 @@
 appCache = window.applicationCache
-appCache.addEventListener 'updateready', ->
-  if appCache.status == appCache.UPDATEREADY
-    console.log 'cache update ready'
-    appCache.update()
-    console.log 'swap ready'
-    appCache.swapCache()
-    window.location.reload()
 
-
+# Fired after the first download of the manifest.
+#
 # switch (appCache.status)
 #   case appCache.UNCACHED: # UNCACHED == 0
 #     return 'UNCACHED'

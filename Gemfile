@@ -37,7 +37,7 @@ gem 'twitter'
 gem 'youtube_it'
 gem "vimeo"
 gem 'koala'
-gem 'paper_trail', '~> 3'
+gem 'paper_trail', '~> 3.0.3'
 gem 'mechanize'
 gem 'cache_digests'
 gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
