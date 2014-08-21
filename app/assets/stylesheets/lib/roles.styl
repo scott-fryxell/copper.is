@@ -1,9 +1,14 @@
 roles()
-  body
-    // opacity:0.5
+
+  .guest,
+  .fan,
+  .admin
+    opacity:0
     short-transition: opacity
 
-  body[data-role]
+  body[data-role] .guest,
+  body[data-role] .fan,
+  body[data-role] .admin
     opacity:1
 
   body[data-role="guest"]
