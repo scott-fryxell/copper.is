@@ -6,3 +6,5 @@ jQuery.fn.extend
     $(@).find('body > header > figure:first-of-type').click ->
       $(@).toggleClass('show')
       $('body > menu').toggleClass('show')
+
+    # $("body > menu > a[href=]")

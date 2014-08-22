@@ -1,4 +1,4 @@
-appCache = window.applicationCache
+# appCache = window.applicationCache
 
 # Fired after the first download of the manifest.
 #
