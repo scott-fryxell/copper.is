@@ -38,9 +38,9 @@ protected
 
   def permission_denied
     if current_user
-      render nothing:true, status:403
+      head :forbidden
     else
-      render nothing:true, status:401
+      head :unauthorized
     end
   end
 
@@ -53,7 +53,6 @@ protected
   end
 
   def cache_url
-    puts params
     if params[:controller] == 'application'
       "/appcache" # domain
     elsif params[:id]
