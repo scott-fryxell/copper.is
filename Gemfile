@@ -28,7 +28,7 @@ gem 'stripe'
 gem 'memcachier'
 gem 'dalli'
 gem "foreman"
-gem 'unicorn'
+
 gem 'redis'
 gem 'resque', "~> 1.22.0"
 gem 'state_machine', git:'https://github.com/seuros/state_machine'
@@ -51,7 +51,9 @@ gem 'coolline'
 gem 'coderay'
 gem "pg"
 gem 'hirb'
-
+gem 'puma'
+gem 'unicorn'
+gem 'rb-fsevent'
 
 group :test do
   gem 'factory_girl_rails'
@@ -78,7 +80,7 @@ group :development, :test do
 
   gem 'launchy'
   gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
+  # gem 'rb-fsevent', :require => false
   gem 'terminal-notifier-guard', :require => false # sends guard notifications to the OS X Notification Center.
   gem 'quiet_assets'
 end
