@@ -59,12 +59,15 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    puts "************************* #{URI.parse(request.original_url).fragment_ment} **********************"
     session[:user_id] = nil
     reset_session
 
-    redirect_to URI.parse(request.original_url).fragment
-  end
+    if redirect_to = params[:redirect_to]
+      redirect_to redirect_to, notice: "goodbye pretty"
+    else
+      redirect_to root_url, notice: "goodbye pretty"
+    end
+end
 
   def failure
     # render :text => request.env["omniauth.auth"].to_yaml

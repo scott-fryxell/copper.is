@@ -7,4 +7,7 @@ jQuery.fn.extend
       $(@).toggleClass('show')
       $('body > menu').toggleClass('show')
 
-    # $("body > menu > a[href=]")
+    $("menu.fan.signout > a").attr 'href',
+      "/signout?redirect_to=#{window.location.pathname}"
+
+    return true
