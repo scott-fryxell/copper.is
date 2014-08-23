@@ -1,3 +1,16 @@
+# $ ->
+#   var source = new EventSource('/events');
+#   source.addEventListener('refresh_cache', ->
+#
+#
+# jQuery(document).ready(function() {
+#   setTimeout(function() {
+#   }, 1);
+
+
+
+
+
 # appCache = window.applicationCache
 
 # Fired after the first download of the manifest.

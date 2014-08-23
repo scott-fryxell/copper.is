@@ -37,9 +37,9 @@ guard :rspec, cmd:"spring rspec", all_on_start:false, all_after_pass:false, para
   watch(%r{(public/|app/assets|app/views).+\.(js|html|coffee|erb|json)}) {'spec/features'}
 end
 
-guard :livereload do
-  watch(%r{^app/.+\.(erb|haml|js|css|scss|sass|styl|coffee|svg|png|gif|jpg)})
-  watch(%r{^app/helpers/.+\.rb})
-  watch(%r{^public/.+\.html})
-  watch(%r{^config/locales/.+\.yml})
-end
+# guard :livereload do
+#   watch(%r{^app/.+\.(erb|haml|js|css|scss|sass|styl|coffee|svg|png|gif|jpg)})
+#   watch(%r{^app/helpers/.+\.rb})
+#   watch(%r{^public/.+\.html})
+#   watch(%r{^config/locales/.+\.yml})
+# end

@@ -33,6 +33,7 @@ authorization do
 
   role :guest do
     has_permission_on :admin,       to: :ping
+    has_permission_on :appcache,    to: :index
     has_permission_on :authors,     to: :enquire
     has_permission_on :application, to: [:appcache, :index]
     has_permission_on :sessions,    to: [:create, :failure]
