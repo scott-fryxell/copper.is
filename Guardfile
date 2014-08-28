@@ -10,13 +10,18 @@ guard 'process', name:'worker', command:'env TERM_CHILD=1 COUNT=1 bundle exec ra
   watch('/lib/**/*.rb')
 end
 
-guard 'process', name:'web', command:'bundle exec unicorn -p 3000 -c ./config/unicorn.rb', stop_signal:'KILL' do
+guard 'process', name:'web', command:'bundle exec puma -p 3000', stop_signal:'KILL' do
+  # puma requres caching files to run multithreaded.
+  # let's restart the server every time we change a ruby file.
+  # :sigh:
   watch('config/routes.rb')
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/authorization_rules.rb')
   watch(%r{^config/environments/.+\.rb})
   watch(%r{^config/initializers/.+\.rb})
+  watch('/app/**/*.rb')
+  watch('/lib/**/*.rb')
 end
 
 guard :rspec, cmd:"spring rspec", all_on_start:false, all_after_pass:false, parallel: false do
