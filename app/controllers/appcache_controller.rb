@@ -2,32 +2,22 @@ class AppcacheController < ApplicationController
 
   include ActionController::Live
 
-   def index
-    # SSE expects the `text/event-stream` content type
+  def index
     response.headers['Content-Type'] = 'text/event-stream'
 
-    sse = Reloader::SSE.new(response.stream)
-    puts 'server events started'
+    response.stream.write(sse({page: Page.first}, {event: 'page'}))
 
-    begin
-      directories = [
-        File.join(Rails.root, 'app', 'assets'),
-        File.join(Rails.root, 'app', 'views'),
-      ]
-      fsevent = FSEvent.new
-      # Watch the above directories
-      fsevent.watch(directories) do |dirs|
-        puts 'file changed'
-        # Send a message on the "refresh" channel on every update
-        sse.write({ :dirs => dirs }, event:'refresh_cache')
-      end
-      fsevent.run
+  rescue IOError
+    # Client Disconnected
+    logger.info "stream closed #{current_user.name}"
+  ensure
+    response.stream.close
+  end
 
-    rescue IOError
-      # When the client disconnects, we'll get an IOError on write
-    ensure
-      sse.close
-    end
+private
+
+  def sse(object, options = {})
+    (options.map{|k,v| "#{k}: #{v}" } << "data: #{JSON.dump object}").join("\n") + "\n\n"
   end
 
 end
