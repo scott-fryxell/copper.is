@@ -25,6 +25,7 @@ after :users do
   end
 
   recent = [
+    'https://signalvnoise.com/posts/3091-pssst-your-rails-application-has-a-secret-to-tell-you',
     'http://www.openculture.com/2010/07/tarkovksy.html',
     'http://blog.atom.io/2014/03/13/git-integration.html',
     'http://blogs.villagevoice.com/music/2014/08/ask_andrew_wk_right_wing_dad.php',
