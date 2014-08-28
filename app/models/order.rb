@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   include Enqueueable, Messageable::Order
-  has_paper_trail
+  include Historicle
 
   has_many :tips
   belongs_to :user,  touch:true
@@ -8,10 +8,10 @@ class Order < ActiveRecord::Base
   validates :user, presence:true
   validates_associated :user
 
-  scope :current, -> { where('order_state = ?', 'current') }
-  scope :unpaid,  -> { where('order_state = ?', 'unpaid') }
-  scope :denied,  -> { where('order_state = ?', 'denied') }
-  scope :paid,    -> { where('order_state = ?', 'paid') }
+  scope :current, -> { where(order_state:'current') }
+  scope :unpaid,  -> { where(order_state:'unpaid')  }
+  scope :denied,  -> { where(order_state:'denied')  }
+  scope :paid,    -> { where(order_state:'paid')    }
 
   state_machine :order_state, :initial => :current do
     event :process do

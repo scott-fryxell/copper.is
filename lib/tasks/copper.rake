@@ -11,14 +11,14 @@ namespace :copper do
 
     task :adopt => :environment do
       Page.orphaned.each do |page|
-        Resque.enqueue Page, page.id, :discover_author!
+        Resque.enqueue page.class, page.id, :discover_author!
       end
     end
 
     task :learn => :environment do
       Page.all.each do |page|
         puts "spidering page: #{page.id}"
-        Resque.enqueue Page, page.id, :learn
+        Resque.enqueue page.class, page.id, :learn
       end
     end
   end
@@ -29,7 +29,7 @@ namespace :copper do
       Order.current.where('created_at <= ?', 1.week.ago).each do |order|
         if order.user.stripe_id and order.tips.count > 0 and order.tips.sum(:amount_in_cents) > 50 and order.user.email
           # puts order.tips.sum(:amount_in_cents)
-          Resque.enqueue Order, order.id, :rotate!
+          Resque.enqueue order.class, order.id, :rotate!
         end
       end
     end
@@ -38,7 +38,7 @@ namespace :copper do
       Order.unpaid.each do |order|
         if order.user.stripe_id
           # puts order.tips.sum(:amount_in_cents)
-          Resque.enqueue Order, order.id, :charge!
+          Resque.enqueue order.class, order.id, :charge!
         end
       end
     end
@@ -50,7 +50,7 @@ namespace :copper do
       User.where('users.stripe_id IS NOT NULL').each do |user|
         if user.tips.count > 0
           # puts "gonna message #{user.email}"
-          Resque.enqueue User, user.id, :send_message_to_fans_who_have_tipped
+          Resque.enqueue user.class, user.id, :send_message_to_fans_who_have_tipped
         end
       end
     end

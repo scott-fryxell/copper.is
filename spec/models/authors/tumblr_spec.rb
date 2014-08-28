@@ -7,7 +7,7 @@ describe Authors::Tumblr do
 
   describe "Should return nil for url's that don't provide user information" do
     it "https://www.twitter.com/" do
-      Author.provider_from_url("https://www.tumblr.com/").should be_false
+      Author.authorizer_from_url("https://www.tumblr.com/").should be_false
     end
   end
 

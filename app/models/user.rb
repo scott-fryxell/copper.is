@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-  include Enqueueable, Messageable::User
-  has_paper_trail
+  include Enqueueable
+  include Messageable::User
+  include Historicle
 
   has_many :authors
   has_many :orders

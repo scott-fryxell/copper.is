@@ -2,7 +2,8 @@ class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 class Tip < ActiveRecord::Base
   include Enqueueable
-  has_paper_trail
+  include Payable
+  include Historicle
 
   belongs_to :page, touch:true
   belongs_to :order, touch:true
@@ -12,11 +13,6 @@ class Tip < ActiveRecord::Base
   default_scope  { order('created_at DESC') }
 
   attr_accessor :url,:title
-
-  scope :promised,   -> { where(paid_state:'promised') }
-  scope :charged,    -> { where(paid_state:'charged') }
-  scope :kinged,     -> { where(paid_state:'kinged').readonly }
-  scope :for_author, -> { where(paid_state:['kinged','charged']).readonly }
 
   MINIMUM_TIP_VALUE = 1
   MAXIMUM_TIP_VALUE = 2000
@@ -30,48 +26,17 @@ class Tip < ActiveRecord::Base
   validates :amount_in_cents, presence:true
   validate :validate_only_being_added_to_current_order, :on => :create
 
-  def validate_only_being_added_to_current_order
-    unless self.order.current?
-      errors.add(:order_id,"can only add a tip to a current order")
-    end
-  end
-
   before_destroy do |tip|
     tip.page.touch
     raise CantDestroyException unless tip.promised?
   end
 
-  def see_about_facebook_feed
-    if self.user.share_on_facebook
-      self.user.authors.where(provider:'facebook').each do |author|
-        if author.token
-          puts "Posting to facebook, tip_id=#{id}"
-          graph = Koala::Facebook::API.new(author.token)
-          graph.put_connections("me", "#{Copper::Application.config.facebook_appname}:tip", website:"#{Copper::Application.config.hostname}/pages/#{self.page.id}")
-          puts ":    tip posted"
-        end
-      end
+
+  def validate_only_being_added_to_current_order
+    unless self.order.current?
+      errors.add(:order_id,"can only add a tip to a current order")
     end
   end
-
-  state_machine :paid_state, :initial => :promised do
-    event :pay do
-      transition :promised => :charged
-    end
-
-    event :claim do
-      transition :charged => :kinged
-    end
-
-    state :charged, :kinged do
-      validate :validate_presence_of_paid_order
-    end
-
-    state :kinged do
-      validate :validate_presence_of_check
-    end
-  end
-
   def validate_presence_of_paid_order
     unless self.order.paid?
       errors.add(:order_id, "tip order must be :paid for :charged tips")
@@ -83,6 +48,21 @@ class Tip < ActiveRecord::Base
       errors.add(:check_id, "check_id must not be null for :kinged tips")
     end
   end
+
+
+  def see_about_facebook_feed
+    if self.user.share_on_facebook
+      self.user.authors.where(provider:'facebook').each do |author|
+        if author.token
+          logger.info "Posting to facebook, tip_id=#{id}"
+          graph = Koala::Facebook::API.new(author.token)
+          graph.put_connections("me", "#{Copper::Application.config.facebook_appname}:tip", website:"#{Copper::Application.config.hostname}/pages/#{self.page.id}")
+          logger.info ":    tip posted"
+        end
+      end
+    end
+  end
+
 
   def amount_in_dollars
     amount = Float(self.amount_in_cents) / 100
