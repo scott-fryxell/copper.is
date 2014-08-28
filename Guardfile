@@ -22,6 +22,7 @@ guard 'process', name:'web', command:'bundle exec puma -p 3000', stop_signal:'KI
   watch(%r{^config/initializers/.+\.rb})
   watch('/app/**/*.rb')
   watch('/lib/**/*.rb')
+  watch('/app/**/*.erb')
 end
 
 guard :rspec, cmd:"spring rspec", all_on_start:false, all_after_pass:false, parallel: false do
