@@ -10,7 +10,7 @@ guard 'process', name:'worker', command:'env TERM_CHILD=1 COUNT=1 bundle exec ra
   watch('/lib/**/*.rb')
 end
 
-guard 'process', name:'web', command:'bundle exec puma -p 3000', stop_signal:'KILL' do
+guard 'process', name:'web', command:'bundle exec puma -p 3000' do
   # puma requres caching files to run multithreaded.
   # let's restart the server every time we change a ruby file.
   # :sigh:
