@@ -3,6 +3,7 @@ module Itemable
 
   included do
     @nested = false
+    attr_accessor :nested
   end
 
   def as_item_attributes
