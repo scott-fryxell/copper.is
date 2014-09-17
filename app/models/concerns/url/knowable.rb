@@ -30,6 +30,11 @@ module URL
 
         state :stranger, :wanted do
           validate :validate_user_id_is_nil
+
+          def try_to_make_wanted!
+            self.publicize! if self.tips.charged.count > 0
+          end
+
         end
 
         state :wanted do
@@ -42,6 +47,8 @@ module URL
               save!
             end
           end
+
+
         end
 
         state :known do
@@ -61,18 +68,12 @@ module URL
         after_transition any => :wanted do |author,transition|
           Resque.enqueue author.class, author.id, :ask_author_to_join
         end
-        after_transition any => :known do |author,transition|
+        after_transition [:wanted, :stranger] => :known do |author,transition|
           Resque.enqueue author.class, author.id, :create_page_for_author
         end
       end
 
     end
-
-
-    def try_to_make_wanted!
-      self.publicize! if self.tips.charged.count > 0
-    end
-
 
   end
 end
