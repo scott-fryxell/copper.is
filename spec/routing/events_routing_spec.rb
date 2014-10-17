@@ -16,7 +16,7 @@ describe EventsController do
 
     # TODO: how do you write this test as a concern?
     it "routes to #member" do
-      get("/events").should route_to("events#memver")
+      get("/events/1").should route_to("events#member")
     end
 
   end
