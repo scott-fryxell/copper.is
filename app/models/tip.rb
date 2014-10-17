@@ -1,14 +1,16 @@
 class InvalidTipURL < Exception ; end
 class CantDestroyException < Exception ; end
 class Tip < ActiveRecord::Base
-  include Enqueueable
-  include Payable
-  include Historicle
 
   belongs_to :page, touch:true
   belongs_to :order, touch:true
   belongs_to :check
   has_one :user, :through => :order #TODO: as:'fan'
+
+
+  include Enqueueable
+  include Payable
+  include Historicle
 
   default_scope  { order('created_at DESC') }
 
