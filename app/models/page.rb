@@ -1,14 +1,14 @@
 class Page < ActiveRecord::Base
+  belongs_to :author
+  has_many :tips
+  has_many :checks, :through => :tips
+
   include Enqueueable
   include Itemable
   include Eventable
   include Historicle
   include URL::Learnable
   include URL::Ownable
-
-  belongs_to :author
-  has_many :tips
-  has_many :checks, :through => :tips
 
   scope :safe,         -> { where(nsfw:false) }
   scope :charged_tips, -> { joins(:tips).where('tips.paid_state=?', 'charged') }

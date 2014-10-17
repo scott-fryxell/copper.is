@@ -1,7 +1,10 @@
 module URL
   module Ownable
+
     extend ActiveSupport::Concern
+
     include URL::Spiderable
+
     included do
 
       after_create do |page|

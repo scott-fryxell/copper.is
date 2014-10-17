@@ -1,13 +1,14 @@
 class Author < ActiveRecord::Base
-  include Enqueueable
-  include Historicle
-  include URL::Authorizable
-  include URL::Knowable
 
   belongs_to :user, touch:true
   has_many :pages
   has_many :tips, :through => :pages
   has_many :checks, :through => :pages
+
+  include Enqueueable
+  include Historicle
+  include URL::Authorizable
+  include URL::Knowable
 
   validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
