@@ -1,10 +1,12 @@
-workers Integer(ENV['PUMA_WORKERS'] || 3)
+require 'resque/server'
+
+workers Integer(ENV['PUMA_WORKERS'] || 2)
 threads Integer(ENV['MIN_THREADS']  || 1), Integer(ENV['MAX_THREADS'] || 16)
 
 preload_app!
 
 rackup      DefaultRackup
-port        ENV['PORT']     || 9292
+port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
@@ -17,6 +19,11 @@ on_worker_boot do
   end
 
   if defined?(Resque)
-     Resque.redis = ENV["<redis-uri>"] || Copper::Application.config.redistogo_url
+    uri = URI.parse(Copper::Application.config.redistogo_url)
+    Resque.redis = Redis.new(host:uri.host, port:uri.port, password:uri.password)
+
+    Redis.current.client.reconnect
+    $eventer = Redis.current
+
   end
 end

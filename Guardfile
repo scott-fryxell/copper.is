@@ -1,4 +1,4 @@
-guard 'process', name:'worker', command:'env TERM_CHILD=1 COUNT=1 bundle exec rake resque:work', stop_signal:'KILL' do
+guard 'process', name:'worker', command:'env TERM_CHILD=1 COUNT=1 bundle exec rescue rake resque:work', stop_signal:'KILL' do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/authorization_rules.rb')
@@ -10,7 +10,7 @@ guard 'process', name:'worker', command:'env TERM_CHILD=1 COUNT=1 bundle exec ra
   watch('/lib/**/*.rb')
 end
 
-guard 'process', name:'web', command:'bundle exec puma -p 3000' do
+guard 'process', name:'web', command:'bundle exec puma -C config/puma.rb' do
   # puma requres caching files to run multithreaded.
   # let's restart the server every time we change a ruby file.
   # :sigh:
