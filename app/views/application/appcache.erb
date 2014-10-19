@@ -1,17 +1,17 @@
 <%-cache("application_appcache", expires_in:10.seconds) do-%>
 CACHE MANIFEST
 
-<%= render "common_appcache"%>
-
-/pages/trending
-/pages/recent
+/pages/trending #<%= Page.trending.first.updated_at %>
+/pages/recent   #<%= Page.recent.first.updated_at %>
 
 <%-if current_user-%>
-  /tips/given
-  /tips/received
-  /my/settings
-  /my/authorizations
+/tips/given
+/tips/received
+/my/settings
+/my/authorizations
 <%-end-%>
+
+<%= render "common_appcache"%>
 
 NETWORK:
 *
