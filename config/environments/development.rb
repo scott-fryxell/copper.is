@@ -1,8 +1,9 @@
 Copper::Application.configure do
 
-  config.eager_load = true
+  config.eager_load = false
 
-  config.cache_classes = true
+  config.cache_classes = false
+  config.middleware.delete Rack::Lock
 
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
@@ -10,6 +11,7 @@ Copper::Application.configure do
   config.assets.debug = false
   config.assets.compile = true
   config.assets.digest = true
+
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=31536000"
 
