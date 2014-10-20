@@ -1,4 +1,5 @@
 $(document).on "load.pages.show", ->
+  
   img = new Image()
   img.onload =  ->
     img_colors = Colibri.extractImageColors( img, 'css' )
