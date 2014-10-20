@@ -13,7 +13,7 @@ class Page < ActiveRecord::Base
   scope :safe,         -> { where(nsfw:false) }
   scope :charged_tips, -> { joins(:tips).where('tips.paid_state=?', 'charged') }
   scope :recent,       -> { joins(:tips).select('pages.*, count("tips") as tip_count').group('pages.id').having('count("tips") > 1' ).order("pages.updated_at DESC") }
-  scope :trending,     -> { joins(:tips).select('pages.*, count("tips") as tip_count').group('pages.id').having('count("tips") > 1' ).order('tip_count desc') }
+  scope :trending,     -> { joins(:tips).select('pages.*, count("tips") as tip_count').group('pages.id').having('count("tips") > 1' ).order('tip_count desc, pages.updated_at DESC') }
 
   def self.adoption_rate
     (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round
