@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
   filter_access_to :all
   protect_from_forgery
 
-  helper_method :current_user, :user_url, :set_scope, :cache_url, :cents_to_dollars, :icons
+  helper_method :current_user, :user_url,         :page_scope,
+                :cache_url,    :cents_to_dollars, :icons,
+                :bust_cache
+
   before_action :set_current_user
 
   def appcache
@@ -14,7 +17,6 @@ class ApplicationController < ActionController::Base
   def index
     # home page
   end
-
 
 protected
 
@@ -48,7 +50,7 @@ protected
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def set_scope
+  def page_scope
     "#{params[:controller].parameterize} #{params[:action].parameterize}"
   end
 
@@ -61,6 +63,13 @@ protected
       "/#{params[:controller].parameterize}/appcache" # collection
     end
   end
+
+  def bust_cache
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
 
   def cents_to_dollars(amount_in_cents)
     amount_in_dollars = "%.2f" % (amount_in_cents / 100.0)
