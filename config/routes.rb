@@ -1,6 +1,17 @@
 require 'resque/server'
 Copper::Application.routes.draw do
 
+  concern :apppcachable do
+    collection do
+
+    end
+
+    member do
+
+    end
+
+  end
+
   resources :tips, only:[:create, :update, :show, :new, :destroy] do
     collection do
       get  'embed_iframe.js',            to:'tips#iframe', as: :iframe
@@ -32,6 +43,7 @@ Copper::Application.routes.draw do
   end
 
   resources :users, only:[:update, :show]
+  
   get  '/my/settings',                   to:'users#settings'
   get  '/my/authorizations',             to:'authors#settings'
 
