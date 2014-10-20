@@ -9,7 +9,7 @@ jQuery.update_view = (item) ->
 jQuery.items = ->
   $('html').items()
 
-jQuery.get_page_scope = ->
+jQuery.page_scope = ->
   "#{$('body').attr('class').replace(' ','.')}".trim()
 
 jQuery.fn.extend
@@ -37,7 +37,6 @@ jQuery.fn.extend
         item[$(@).attr 'itemprop'] = $(@).get_value() if item_id == check_id
 
         $(document.items[item_id]).extend(item)
-
 
     return document.items
 
