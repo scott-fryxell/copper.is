@@ -123,6 +123,8 @@ GEM
     guard-rspec (4.2.9)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
+    guard-shell (0.6.1)
+      guard (>= 1.1.0)
     hashie (2.1.1)
     hashugar (0.0.6)
     hike (1.2.3)
@@ -461,6 +463,7 @@ DEPENDENCIES
   guard-livereload
   guard-process
   guard-rspec
+  guard-shell
   hashugar
   hirb
   jquery-rails

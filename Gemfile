@@ -57,7 +57,7 @@ gem 'rb-fsevent'
 
 group :development do
   gem 'pry-rescue'
-  gem 'pry-stack_explorer'  
+  gem 'pry-stack_explorer'
 end
 
 group :test do
@@ -82,6 +82,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-livereload'
   gem 'guard-process'
+  gem 'guard-shell'
 
   gem 'launchy'
   gem 'rb-inotify', :require => false
