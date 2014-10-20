@@ -43,8 +43,10 @@ Copper::Application.routes.draw do
   post '/auth/failure',                  to:'sessions#failure'
 
   get "/appcache",                       to:"application#appcache"
+  get "/events",                         to:"events#publisher"
+
   root                                   to:'application#index'
-  get "/events",                         to:"events#collection"
+
   mount Resque::Server.new,              at:'/admin/resque'
 
   # constraints allow usernames to have periods
