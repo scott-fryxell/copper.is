@@ -1,7 +1,11 @@
 class @Roles
 
   constructor: ->
-    
+    @.check()
+
+  check: ->
+    console.info "checking for roles"
+    $('body').attr("data-role", '')
     if $(document).items()['/me']?.admin?
       $('body').attr("data-role", 'admin')
       $(document).trigger "admin.#{$.page_scope()}"

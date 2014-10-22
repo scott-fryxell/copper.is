@@ -1,37 +1,46 @@
 class @Item
 
-  constructor: (@app_cache) ->
+  constructor: ->
+    $(document).app_init()
+    @app_cache = window.applicationCache
+    @role = new Roles()
+
     console.log "load.#{$.page_scope()}"
     $(document).trigger "load.#{$.page_scope()}"
 
+    $(@app_cache).on 'noupdate', =>
+      console.log @app_cache.status
+      # console.log "load.#{$.page_scope()}"
+      @role.check()
+      $(document).trigger "load.#{$.page_scope()}"
 
-    # appcache only runs if you pass it an app cache at startup.
-    if @app_cache
+    $(@app_cache).on 'updateready', =>
+      @app_cache.update()
+      @app_cache.swapCache()
+      # console.info("#{window.location.href} body")
+      $.get("#{window.location.pathname}").done (data) =>
+        html = $.parseHTML(data)
+        html = $(html).filter(':not(title, meta, link, script, style)')
+        console.info(html)
+        document.data = html
+        $('body').html(html)
+        @role.check()
+        $(document).app_init()
 
-      $(@app_cache).on 'cashed', =>
-        console.log @app_cache.status
-        # window.location.reload()
+      # window.location.reload()
 
-      $(@app_cache).on 'updateready', =>
-        if @app_cache.status == @app_cache.UPDATEREADY
-          console.log @app_cache.status
-          @app_cache.update()
-          @app_cache.swapCache()
-          # window.location.reload()
+    @events = new EventSource('/events')
 
-      @events = new EventSource('/events')
-      document.events = @events
+    $(@events).on "message", (event) =>
+      console.info 'message from /events', event.data
 
-      $(@events).on "message", (event) =>
-        console.info 'message from /events', event.data
+    $(@events).on "open", (event) =>
+      console.info 'bound to events server'
 
-      $(@events).on "open", (event) =>
-        console.info 'bound to events server'
+    $(@events).on "error", (event) =>
+      console.error 'server event error:', event.data
 
-      $(@events).on "error", (event) =>
-        console.error 'server event error:', event.data
-
-      @events.addEventListener "page.save", (event) =>
-        console.info 'refreshing appcash ', event.data
-        @app_cache.update()
-        @app_cache.swapCache()
+    @events.addEventListener "page.save", (event) =>
+      console.info 'refreshing appcash ', event.data
+      @app_cache.update()
+      @app_cache.swapCache()

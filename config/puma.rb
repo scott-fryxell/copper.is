@@ -8,6 +8,8 @@ port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'development'
 
 on_worker_boot do
+
+  puts "on worker boot"
   ActiveRecord::Base.connection_pool.disconnect!
   # worker specific setup
   ActiveSupport.on_load(:active_record) do
@@ -18,11 +20,11 @@ on_worker_boot do
   end
 
   if defined?(Resque)
-    # uri = URI.parse(Copper::Application.config.redistogo_url)
-    # Resque.redis = Redis.new(host:uri.host, port:uri.port, password:uri.password)
+    uri = URI.parse(Copper::Application.config.redistogo_url)
+    Resque.redis = Redis.new(host:uri.host, port:uri.port, password:uri.password)
 
     Redis.current.client.reconnect
-    $eventer = Redis.current
+    $eventer.reconnect
 
   end
 end

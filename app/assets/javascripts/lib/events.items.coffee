@@ -1,5 +1,5 @@
 $(document).on 'item.update', 'data#items', ->
-  new Items(@)
+  new Item()
   $(@).find('[itemscope]').each ->
     item_id = $(@).attr('itemid')
     $(@).remove()

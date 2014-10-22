@@ -1,5 +1,6 @@
 jQuery.fn.extend
   app_init: ->
+        
     $(@).find('time').timeago()
     $(@).find('[data-cents]').show_dollars(@)
 

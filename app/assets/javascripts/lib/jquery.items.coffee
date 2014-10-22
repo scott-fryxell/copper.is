@@ -15,7 +15,7 @@ jQuery.page_scope = ->
 jQuery.fn.extend
 
   items: ->
-    document.items ?= {}
+    document.items = {}
 
     # make sure that root dom is part of the find
     # should set by type. that way we can use the id
