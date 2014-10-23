@@ -9,9 +9,8 @@ class @Item
     $(document).trigger "load.#{$.page_scope()}"
 
     $(@app_cache).on 'noupdate', =>
-      console.log @app_cache.status
-      # console.log "load.#{$.page_scope()}"
       @role.check()
+      console.log "load.#{$.page_scope()}"
       $(document).trigger "load.#{$.page_scope()}"
 
     $(@app_cache).on 'updateready', =>
@@ -21,14 +20,10 @@ class @Item
       $.get("#{window.location.pathname}").done (data) =>
         html = $.parseHTML(data)
         html = $(html).filter(':not(title, meta, link, script, style)')
-        console.info(html)
-        document.data = html
         $('body').html(html)
         @role.check()
         $(document).app_init()
-
-      # window.location.reload()
-
+  
     @events = new EventSource('/events')
 
     $(@events).on "message", (event) =>
