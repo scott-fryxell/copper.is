@@ -44,11 +44,11 @@ describe Authors::Twitter do
 
   describe "Should return nil for url's that don't provide user information" do
     it "https://www.twitter.com/" do
-      Author.provider_from_url("https://www.twitter.com/").should be_false
+      Author.authorizer_from_url("https://www.twitter.com/").should be_false
     end
 
     it "http://twitter.com/share" do
-      Author.provider_from_url("http://twitter.com/share").should be_false
+      Author.authorizer_from_url("http://twitter.com/share").should be_false
     end
   end
 

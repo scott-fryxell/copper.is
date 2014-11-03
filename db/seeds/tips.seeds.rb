@@ -5,6 +5,7 @@ after :users do
   scott = User.find_by(email:'scott@copper.is')
 
   trending = [
+    'http://reverberationradio.com/',
     'http://www.nytimes.com/2014/08/10/opinion/sunday/nicholas-kristof-is-a-hard-life-inherited.html',
     'http://www.lrb.co.uk/v36/n04/rebecca-solnit/diary',
     'http://vimeo.com/52443205',
@@ -14,7 +15,7 @@ after :users do
     'http://www.nytimes.com/2014/03/09/opinion/sunday/can-we-learn-about-privacy-from-porn-stars.html',
     'http://www.redbullmusicacademy.com/magazine/razormaid-feature',
     'http://yourslownewsday.com/okay-the-google-glass-lady-needs-to-zip-it',
-    'http://www.nytimes.com/interactive/2014/06/27/world/legacy-of-world-war-i.html'
+    'http://www.nytimes.com/interactive/2014/06/27/world/legacy-of-world-war-i.html',
     'http://www.nytimes.com/2014/08/10/magazine/staking-out-the-great-white-shark.html?src=dayp'
   ]
 
@@ -24,6 +25,8 @@ after :users do
   end
 
   recent = [
+    'http://www.cloudstead.io/',
+    'https://signalvnoise.com/posts/3091-pssst-your-rails-application-has-a-secret-to-tell-you',
     'http://www.openculture.com/2010/07/tarkovksy.html',
     'http://blog.atom.io/2014/03/13/git-integration.html',
     'http://blogs.villagevoice.com/music/2014/08/ask_andrew_wk_right_wing_dad.php',

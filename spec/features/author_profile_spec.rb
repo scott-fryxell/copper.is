@@ -24,7 +24,7 @@ describe "An Author", :slow do
     page.should have_no_css('#services figure form')
   end
 
-  it "can see what OAauth providers Copper supports" do
+  it "can see what OAauth  Copper supports" do
     within '#services' do
       page.execute_script("$('#services > details > summary').trigger('click')")
       page.should have_css('figure > figcaption', visible:true)
@@ -34,7 +34,7 @@ describe "An Author", :slow do
     end
   end
 
-  it "can authorize multiple providers" do
+  it "can authorize multiple " do
     within '#services' do
       page.should have_css('figure', count:1)
       page.execute_script("$('#services > details').attr('open', 'open')")

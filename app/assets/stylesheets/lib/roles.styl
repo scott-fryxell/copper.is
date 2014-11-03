@@ -1,4 +1,17 @@
 roles()
+
+  .guest,
+  .fan,
+  .admin
+    opacity:0
+    long-transition: opacity
+
+  body[data-role] .guest,
+  body[data-role] .fan,
+  body[data-role] .admin
+    opacity:1
+    long-transition: opacity
+
   body[data-role="guest"]
 
     .fan

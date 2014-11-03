@@ -1,17 +1,19 @@
 <%-cache("pages_appcache", expires_in: 10.seconds) do-%>
 CACHE MANIFEST
 <%= render partial:"application/common_appcache"%>
+
 /pages/trending
 
 <%-for page in Page.trending-%>
-  #<%="#{page.updated_at}"%>
-  <%="/pages/#{page.id}"%>
+#updated_at: <%="#{page.updated_at}"%>, versions:<%="#{page.versions.count}"%>
+<%="/pages/#{page.id}"%>
 <%-end-%>
 
 /pages/recent
+
 <%-for page in Page.recent-%>
-  #<%="#{page.updated_at}"%>
-  <%="/pages/#{page.id}"%>
+#updated_at: <%="#{page.updated_at}"%>, versions:<%="#{page.versions.count}"%>
+<%="/pages/#{page.id}"%>
 <%-end-%>
 
 NETWORK:

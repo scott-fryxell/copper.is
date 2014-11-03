@@ -1,8 +1,13 @@
 <% cache current_user do %>
-# <%= current_user.name %>.updated_at: <%=current_user.updated_at if current_user%>
+<% if current_user %>
+# name=<%= current_user.name %>  updated_at: <%=current_user.updated_at %>
+<% end %>
+
+<%= asset_path('application.js') %>
+<%= asset_path('application.css') %>
 
 <%-for icon in icons -%>
-  <%= asset_path(icon) %>
+<%= asset_path(icon) %>
 <%-end-%>
 
 //fonts.googleapis.com/css?family=Cantarell|Nothing+You+Could+Do|Doppio+One|Bree+Serif|Patua+One

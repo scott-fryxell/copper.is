@@ -1,11 +1,14 @@
 class Author < ActiveRecord::Base
-  include Enqueueable
-  has_paper_trail
 
   belongs_to :user, touch:true
   has_many :pages
   has_many :tips, :through => :pages
   has_many :checks, :through => :pages
+
+  include Enqueueable
+  include Historicle
+  include URL::Authorizable
+  include URL::Knowable
 
   validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   validates :uid, uniqueness:{scope:'provider'}, allow_blank:true
@@ -27,74 +30,7 @@ class Author < ActiveRecord::Base
     end
   end
 
-  @@providers = [ :twitter, :facebook, :tumblr,
-    :phony, :soundcloud, :github, :vimeo,
-    :flickr, :google ]
-  def self.providers
-    @@providers
-  end
-
-  Author.providers.each do |provider|
-    scope provider, -> { where("provider = ?", provider) }
-  end
-
-  scope :stranger,          -> { where(identity_state:'stranger') }
-  scope :wanted,            -> { where(identity_state:'wanted') }
-  scope :known,             -> { where(identity_state:'known') }
   scope :pending_royalties, -> { joins(:tips).where("tips.paid_state='charged'").group('authors.id').select("authors.*, count('tips') as charged_tips_count").order('charged_tips_count desc') }
-
-  state_machine :identity_state, initial: :stranger do
-
-    event :publicize do
-      transition :stranger => :wanted
-    end
-
-    event :join do
-      transition any => :known
-    end
-
-    #end relationship with user
-    event :forget do
-      transition any => :stranger
-    end
-
-    state :stranger, :wanted do
-      validate :validate_user_id_is_nil
-    end
-
-    state :wanted do
-      def ask_author_to_join
-        raise "this author has a user" if self.user_id
-        unless self.message
-
-          send_wanted_message
-          self.message = Time.now
-          save!
-        end
-      end
-    end
-
-    state :known do
-      validates :user_id, presence:true
-
-      def create_page_for_author
-        unless page = Page.find_by(url:self.url)
-          page = Page.create(url:self.url,title:self.username, author_state:'adopted')
-        end
-        page.author = self
-        if self.user
-          self.user.touch
-        end
-      end
-    end
-
-    after_transition any => :wanted do |author,transition|
-      Resque.enqueue author.class, author.id, :ask_author_to_join
-    end
-    after_transition any => :known do |author,transition|
-      Resque.enqueue Author, author.id, :create_page_for_author
-    end
-  end
 
   def validate_user_id_is_nil
     if self.user_id
@@ -102,113 +38,14 @@ class Author < ActiveRecord::Base
     end
   end
 
-  # after_save do
-  #   if self.wanted? and !self.message
-  #     Resque.enqueue self.class, self.id, :ask_author_to_join
-  #   end
-  # end
-
-  before_save do
-    if self.stranger?
-      self.user = nil
-    end
-
-    self.type = Author.subclass_from_provider(self.provider).to_s unless self.type
-  end
-
-
-  def try_to_make_wanted!
-    self.publicize! if self.tips.charged.count > 0
-  end
-
-  # --------------------------------------------------------------------
-
-  # TODO: merge this into find_or_create_with_omniauth
-  def self.find_or_create_by_authorization(auth)
-    author = Author.find_or_create_by(provider:auth['provider'], uid:auth['uid'].to_s)
-    author.token = auth['credentials']['token']
-    author.secret = auth['credentials']['secret']
-    author.username = auth['info']['nickname']
-    author.save
-
-
-  end
-
-  def self.subclass_from_provider(provider)
-    provider = 'google' if provider == 'google_oauth2'
-    ("Authors::" + provider.to_s.capitalize).constantize
-  end
-
   def self.factory(opts = {})
-    Author.subclass_from_provider(opts[:provider]).create(opts)
-  end
-
-  def self.provider_from_url(url)
-    begin
-      uri = URI.parse(url)
-      return nil unless /tumblr\.com$/.match(uri.host) or uri.path.size > 1 or uri.query or uri.fragment
-    rescue => e
-      return nil
-    end
-
-    case uri.host
-    when /facebook\.com$/ then
-      if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter|application}.match(uri.path)
-        nil
-      else
-        'facebook'
-      end
-    when /tumblr\.com$/ then
-      if %r{www.tumblr.com}.match(uri.host) and uri.path.size < 3
-        nil
-      elsif  %r{/dashboard|/customize}.match(uri.path)
-        nil
-      else
-        'tumblr'
-      end
-    when /twitter\.com$/ then
-      if %r{/login|/share}.match(uri.path)
-        nil
-      elsif %r{2012.twitter.com|business.twitter.com}.match(uri.host)
-        nil
-      else
-        'twitter'
-      end
-    when /plus\.google\.com$/ then 'google'
-    when /vimeo\.com$/ then
-      if %r{/groups/}.match(uri.path)
-        nil
-      else
-        'vimeo'
-      end
-    when /flickr\.com$/ then 'flickr'
-    when /github\.com$/ then
-      if %r{gist.github.com}.match(uri.host)
-        nil
-      elsif %r{/blog}.match(uri.path)
-        nil
-      else
-        'github'
-      end
-    when /youtube\.com$/ then 'youtube'
-    when /soundcloud\.com$/ then
-      if  %r{/dashboard}.match(uri.path)
-        nil
-      else
-        'soundcloud'
-      end
-    when /example\.com$/ then 'phony'
-    else
-      nil
-    end
-  rescue URI::InvalidURIError => e
-    return nil
+    self.subclass_by_authorizer(opts[:provider]).create(opts)
   end
 
   def self.find_or_create_from_url(url)
-    if provider = provider_from_url(url)
-      i = Author.subclass_from_provider(provider).discover_uid_and_username_from_url url
-      ident = Author.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid].to_s,i[:username]).first
+    if provider = self.authorizer_from_url(url)
+      i = self.subclass_by_authorizer(provider).discover_uid_and_username_from_url url
+      ident = self.where('provider = ? and (uid = ? OR username = ?)', provider,i[:uid].to_s,i[:username]).first
       unless ident
         ident = factory(provider:provider,username:i[:username],uid:i[:uid])
       end
@@ -217,8 +54,6 @@ class Author < ActiveRecord::Base
       nil
     end
   end
-
-  # --------------------------------------------------------------------
 
   def populate_uid_and_username!
     if self.uid.blank? and self.username.blank?

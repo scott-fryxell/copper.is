@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Enqueueable
-  include UserMessages
-  has_paper_trail
+  include Historicle
+  include Messageable::User
 
   has_many :authors
   has_many :orders
@@ -27,9 +27,9 @@ class User < ActiveRecord::Base
     errors.add(:orders, "there must be only one") unless self.orders.current.size == 1
   end
 
-  after_create do
+  after_create do |user|
     create_current_order!
-    Resque.enqueue User, self.id, :send_welcome_message
+    Resque.enqueue user.class, user.id, :send_welcome_message
   end
 
   def create_current_order!

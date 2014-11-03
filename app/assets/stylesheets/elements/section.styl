@@ -1,12 +1,14 @@
 @require 'color'
 
-section
-  & > header > h1
-    text-align: center
-    header-text()
-    font-family:'Bree Serif', serif
-    text-transform:capitalize
-    font-family: 'Nothing You Could Do', cursive
-    color:copper
-    +tablet()
-      font-size:2rem
+main > section
+  & > header
+    // margin:gutter 0
+    & > h1
+      header-text()
+      font-family: 'Nothing You Could Do', cursive
+      margin:gutter 0
+      text-transform:capitalize
+      text-align: center
+      color:copper
+      +tablet()
+        font-size:2rem

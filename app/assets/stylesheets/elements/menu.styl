@@ -1,3 +1,8 @@
+@require 'lib/device'
+@require 'lib/transition'
+@require 'color'
+
+
 menu
   font-size:0rem
   -webkit-padding-start:0
@@ -13,23 +18,25 @@ menu
 
 menu menu
   margin: gutter 0
-  &:first-of-type
-    margin-top:0
+
   +phone-only()
-    vertical-align:middle;
+    vertical-align:top;
     display:inline-block
     width:50%
 
 body
   &.pages.recent > menu a[href="/pages/recent"],
-  &.pages.trending > menu a[href="/pages/trending"]
+  &.pages.trending > menu a[href="/pages/trending"],
+  &.users.settings > menu a[href="/my/settings"],
+  &.authors.settings > menu a[href="/my/authorizations"],
+  &.tips.given > menu a[href="/tips/given"],
+  &.tips.received > menu a[href="/tips/received"]
     font-weight:bold
     color:copper
 
   &[data-role=guest] > menu.show
     +phone-only()
-      height:8rem
-      max-height:8rem
+      height:7.5rem
 
   &[data-role=fan] > menu.show
     +phone-only()
@@ -41,7 +48,6 @@ body
       border:0px solid transparent
       padding:0
       background-color:riser
-      max-height:0
       height:0;
       overflow-y:hidden
       standard-transition: max-height height
@@ -62,3 +68,17 @@ body
     a
       text-align:center
       padding:0.25rem 0
+
+  menu.authentication
+    +phone-only()
+      font-size:0
+      & > a
+        display:inline-block
+        width:33%
+
+
+menu.fan.signout a
+  opacity:0.75
+  svg
+    width:1.5rem
+    height:1.5rem

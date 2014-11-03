@@ -1,7 +1,9 @@
 <%-cache page do-%>
-<details <%=page.as_item_attributes%> >
+<details <%= raw page.as_item_attributes%> >
+  <%-page.nested=true-%>
   <summary>
     <%= render partial:"pages/as_figure", object:page, as: :page %>
   </summary>
+  <%-page.nested=false-%>
 </details>
 <%-end-%>

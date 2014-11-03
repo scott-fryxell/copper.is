@@ -1,14 +1,16 @@
 class SessionsController < ApplicationController
 
   def create
-    @author = Author.find_or_create_by_authorization(request.env['omniauth.auth'])
+
+    auth = request.env['omniauth.auth']
+    @author = Author.find_or_create_by_authorization(auth)
 
     if session[:fb_permissions] == 'publish_actions'
       session.destroy(:fb_permissions)
-      redirect_to '/settings#share' and return
+      redirect_to '/my/authorizations#fb_permissions' and return
     elsif session[:fb_permissions] == 'manage_pages'
       session.destroy(:fb_permissions)
-      redirect_to '/facebook/manage_pages' and return
+      redirect_to '/my/authorizations#fb_manage_pages' and return
     end
 
     if current_user
@@ -16,16 +18,13 @@ class SessionsController < ApplicationController
         # User is signed in so they are trying to link an author with their
         # account. But we found the author and the user associated with it
         # is the current user. So the author is already associated with
-        # this user. We take them back to the author page
-        redirect_to '/author'
-
+        # this user.
       else
         # The author is not associated with the current_user so lets
         # associate the author
         @author.user = current_user
         @author.join!
         @author.save
-        redirect_to '/author'
       end
     else
       if @author.user
@@ -35,8 +34,6 @@ class SessionsController < ApplicationController
         current_user = @author.user
         @author.join!
         session[:user_id] = @author.user.id
-
-        redirect_to "#{root_url}#me"
       else
         # No user associated with the author so we need to create a new one
         user = User.create_with_omniauth(auth)
@@ -54,21 +51,27 @@ class SessionsController < ApplicationController
         else
           @author.join!
           @author.save()
-          redirect_to "/#{root_url}#new"
         end
       end
     end
+
+    redirect_to request.env['omniauth.origin'] || root_url
   end
 
   def destroy
     session[:user_id] = nil
     reset_session
-    redirect_to root_url
-  end
+
+    if redirect_to = params[:redirect_to]
+      redirect_to redirect_to, notice: "goodbye pretty"
+    else
+      redirect_to root_url, notice: "goodbye pretty"
+    end
+end
 
   def failure
     # render :text => request.env["omniauth.auth"].to_yaml
-    redirect_to root_url
+    # TODO: maybe actually send a message here
   end
 
 end

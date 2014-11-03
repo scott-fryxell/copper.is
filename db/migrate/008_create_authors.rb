@@ -1,6 +1,6 @@
-class CreateIdentities < ActiveRecord::Migration
+class CreateAuthors < ActiveRecord::Migration
   def change
-    create_table :identities do |t|
+    create_table :authors do |t|
       t.string :provider, :null => false
       t.string :uid
       t.string :username
@@ -8,11 +8,10 @@ class CreateIdentities < ActiveRecord::Migration
       t.string :secret
       t.string :type, :null => false
       t.string :identity_state
-      t.datetime :message
       t.references :user
       t.timestamps
     end
-    add_index :identities, [:provider, :uid]
-    add_index :identities, [:provider, :username]
+    add_index :authors, [:provider, :uid]
+    add_index :authors, [:provider, :username]
   end
 end

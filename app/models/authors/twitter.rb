@@ -1,6 +1,6 @@
   class Authors::Twitter < Author
   include Enqueueable
-  include TwitterMessages
+  include Messageable::Twitter
 
   def self.discover_uid_and_username_from_url url
 

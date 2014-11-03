@@ -26,6 +26,7 @@ gutter=0.75rem
 @import 'elements/img'
 @import 'elements/main'
 @import 'elements/menu'
+@import 'elements/p'
 @import 'elements/section'
 @import 'elements/svg'
 
@@ -36,3 +37,36 @@ gutter=0.75rem
 
 
 roles()
+
+
+body.application.index
+  & > menu menu.authentication
+    +laptop()
+      display:none
+  section.guest
+    max-width:35rem
+    h2
+      font-size:1.5rem
+      text-align:center
+      offset-text()
+    article
+      margin-bottom:1.5rem
+      +tablet()
+        font-size:1.2rem
+
+    h2,
+    menu
+      max-width:20rem
+      margin:gutter auto
+
+    menu
+      text-align:center
+      h6
+        display:none
+      a
+        display:inline-block
+        width:50%
+        padding:gutter
+        svg
+          width:2rem
+          height:2rem
