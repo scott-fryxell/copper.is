@@ -7,24 +7,20 @@ rackup      DefaultRackup
 port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'development'
 
-on_worker_boot do
+prune_bundler
 
-  puts "on worker boot"
-  ActiveRecord::Base.connection_pool.disconnect!
-  # worker specific setup
-  ActiveSupport.on_load(:active_record) do
-    config = ActiveRecord::Base.configurations[Rails.env] ||
-                Rails.application.config.database_configuration[Rails.env]
-    config['pool'] = ENV['MAX_THREADS'] || 16
-    ActiveRecord::Base.establish_connection(config)
-  end
+on_restart do
+  puts "***************** on puma restart ******************************º"
 
   if defined?(Resque)
-    uri = URI.parse(Copper::Application.config.redistogo_url)
-    Resque.redis = Redis.new(host:uri.host, port:uri.port, password:uri.password)
 
-    Redis.current.client.reconnect
-    $eventer.reconnect
+  end
+end
+
+on_worker_boot do
+
+  puts "***************** on worker boot ******************************º"
+  if defined?(Resque)
 
   end
 end

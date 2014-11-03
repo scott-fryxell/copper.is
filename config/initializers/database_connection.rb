@@ -1,4 +1,6 @@
 Rails.application.config.after_initialize do
+  puts "******************* after rails initialize ******************************"
+
   ActiveRecord::Base.connection_pool.disconnect!
 
   ActiveSupport.on_load(:active_record) do
@@ -11,11 +13,8 @@ Rails.application.config.after_initialize do
   end
 
   if defined?(Resque)
-    # uri = URI.parse(Copper::Application.config.redistogo_url)
-    # Resque.redis = Redis.new(host:uri.host, port:uri.port, password:uri.password)
 
-    Redis.current.client.reconnect
-    $eventer = Redis.current
-
+    uri = URI.parse(Copper::Application.config.redistogo_url)
+    Resque.redis = Redis.new(host:uri.host, port:uri.port, password:uri.password)
   end
 end
