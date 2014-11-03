@@ -2,7 +2,7 @@
 @require 'lib/flex'
 
 body
-  
+
   & > svg
     display:none
 
@@ -17,7 +17,14 @@ body
       flexx: 0 1 100%
 
     & > menu
-      flexx: 1 0.22 15%
+      flexx: 1 0.22 20%
 
     & > main
-      flexx: 1.618 1 85%
+      flexx: 1.618 1 80%
+
+  +laptop()
+    & > menu
+      flexx: 1 0.22 16%
+
+    & > main
+      flexx: 1.618 1 84%
