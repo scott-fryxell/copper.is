@@ -8,8 +8,11 @@ def mock_order
 end
 
 def mock_user
-  User.any_instance.stub(send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}])
-  Author.any_instance.stub(:create_page_for_author)
+  User.any_instance.stub send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}]
+
+  User.any_instance.stub :see_about_facebook_feed
+  
+  Author.any_instance.stub :create_page_for_author
 end
 
 def mock_page_and_user
