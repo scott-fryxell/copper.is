@@ -22,8 +22,10 @@ module URL
 
       learn_description(content)
 
+      logger.info self.author_state
       logger.info "->"
-      self.save!
+
+      save!
 
     end
 
