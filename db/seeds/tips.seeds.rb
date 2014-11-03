@@ -15,7 +15,7 @@ after :users do
     'http://www.nytimes.com/2014/03/09/opinion/sunday/can-we-learn-about-privacy-from-porn-stars.html',
     'http://www.redbullmusicacademy.com/magazine/razormaid-feature',
     'http://yourslownewsday.com/okay-the-google-glass-lady-needs-to-zip-it',
-    'http://www.nytimes.com/interactive/2014/06/27/world/legacy-of-world-war-i.html'
+    'http://www.nytimes.com/interactive/2014/06/27/world/legacy-of-world-war-i.html',
     'http://www.nytimes.com/2014/08/10/magazine/staking-out-the-great-white-shark.html?src=dayp'
   ]
 
