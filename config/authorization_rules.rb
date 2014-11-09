@@ -32,7 +32,7 @@ authorization do
   end
 
   role :guest do
-    has_permission_on :admin,       to: :ping
+    has_permission_on :admin,       to: [:ping, :test]
     has_permission_on :events,      to: :publisher
     has_permission_on :appcache,    to: :index
     has_permission_on :authors,     to: :enquire
