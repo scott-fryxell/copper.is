@@ -11,6 +11,7 @@ module URL
     end
 
     def learn (content = self.spider.get(url))
+      
       logger.info " "
       logger.info "<- Learn about  id:#{id}, url: #{url[0...100]} -> "
 
