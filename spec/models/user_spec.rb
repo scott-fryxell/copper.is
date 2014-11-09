@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe User do
+describe User, :type => :model do
   before :each do
     mock_user
     @me = create!(:user_with_facebook_author)
     @her = create!(:user)
   end
   describe 'authors' do
-    it 'there should be always one' do pending
-      Author.count.should == 1
-      @me.authors.count.should == 1
+    it 'there should be always one' do skip
+      expect(Author.count).to eq(1)
+      expect(@me.authors.count).to eq(1)
       author = @me.authors.first
       @her.authors << author
-      proc { @me.save! }.should raise_error
-      proc { author.save! }.should raise_error
-      @me.authors.count.should > 0
-      @her.authors.count.should > 0
+      expect { @me.save! }.to raise_error
+      expect { author.save! }.to raise_error
+      expect(@me.authors.count).to be > 0
+      expect(@her.authors.count).to be > 0
     end
   end
 
@@ -28,11 +28,11 @@ describe User do
   describe "lists" do
 
     it "should know all the fans who have tipped" do
-      User.should respond_to(:tipped)
+      expect(User).to respond_to(:tipped)
     end
 
     it "should know all the fans who have provided payment info" do
-      User.should respond_to(:payment_info)
+      expect(User).to respond_to(:payment_info)
     end
 
   end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Authors::Youtube do
+describe Authors::Youtube, :type => :model do
 
   describe '#populate_uid_and_username!' do
     before do
@@ -18,11 +18,11 @@ describe Authors::Youtube do
     # end
 
     after do
-      @author.save.should be_true
+      expect(@author.save).to be_truthy
       @author.reload
       @author.populate_uid_and_username!
-      @author.username.should == '_ugly'
-      @author.uid.should == '26368397'
+      expect(@author.username).to eq('_ugly')
+      expect(@author.uid).to eq('26368397')
     end
   end
 end

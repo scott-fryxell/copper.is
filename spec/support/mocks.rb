@@ -1,18 +1,18 @@
 def mock_page
-  Page.any_instance.stub(:learn)
-  Page.any_instance.stub(:discover_author!)
+  allow_any_instance_of(Page).to receive(:learn)
+  allow_any_instance_of(Page).to receive(:discover_author!)
 end
 
 def mock_order
-  Order.any_instance.stub(:send_paid_order_message)
+  allow_any_instance_of(Order).to receive(:send_paid_order_message)
 end
 
 def mock_user
   User.any_instance.stub send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}]
 
-  User.any_instance.stub :see_about_facebook_feed
+  allow_any_instance_of(User).to receive :see_about_facebook_feed
   
-  Author.any_instance.stub :create_page_for_author
+  allow_any_instance_of(Author).to receive :create_page_for_author
 end
 
 def mock_page_and_user

@@ -1,18 +1,18 @@
 require "spec_helper"
 
-describe SessionsController do
+describe SessionsController, :type => :routing do
   describe "routing" do
 
     it "routes to #signout" do
-      get("/signout").should route_to("sessions#destroy")
+      expect(get("/signout")).to route_to("sessions#destroy")
     end
 
     it "routes to #create" do
-      get("/auth/facebook/callback").should route_to("sessions#create", provider:'facebook')
+      expect(get("/auth/facebook/callback")).to route_to("sessions#create", provider:'facebook')
     end
 
     it "routes to #failure" do
-      post("/auth/failure").should route_to("sessions#failure")
+      expect(post("/auth/failure")).to route_to("sessions#failure")
     end
 
   end

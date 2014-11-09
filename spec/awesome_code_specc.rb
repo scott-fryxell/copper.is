@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe "the entire code base" do
   it 'contains no code smells' do
-    Dir['lib/**/*.rb'].should_not reek
-    Dir['app/**/*.rb'].should_not reek
+    expect(Dir['lib/**/*.rb']).not_to reek
+    expect(Dir['app/**/*.rb']).not_to reek
   end  
 end

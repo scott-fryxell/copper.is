@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe Check do
+describe Check, :type => :model do
   before(:each) do
     mock_user
     @order = build!(:check)
@@ -8,15 +8,15 @@ describe Check do
 
   it "transition from :earned to :paid on a deliver: event" do
     @check = create!(:check)
-    @check.earned?.should be_true
+    expect(@check.earned?).to be_truthy
     @check.deliver!
-    @check.paid?.should be_true
+    expect(@check.paid?).to be_truthy
   end
 
   it "transition to :paid to :cashed with a reconcile! event" do
     @check = create!(:check_paid)
-    @check.paid?.should be_true
+    expect(@check.paid?).to be_truthy
     @check.reconcile!
-    @check.cashed?.should be_true
+    expect(@check.cashed?).to be_truthy
   end
 end

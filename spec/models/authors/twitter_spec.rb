@@ -1,21 +1,21 @@
 require 'spec_helper'
 
-describe Authors::Twitter do
+describe Authors::Twitter, :type => :model do
   before do
     @author = create!(:author_twitter, username:"_ugly")
-    @author.stub(:send_tweet)
+    allow(@author).to receive(:send_tweet)
     # Page.any_instance.stub(:learn)
     @twitter_user = double('user', id:398095666, screen_name:'copper_is', profile_image_url:'https://pbs.twimg.com/profile_images/1303637209/nostrals.jpg')
-    ::Twitter.stub(:user).and_return(@twitter_user)
+    allow(::Twitter).to receive(:user).and_return(@twitter_user)
   end
 
   describe "Should discover author from url's " do
     it "https://twitter.com/#!/nytopinion", :vcr do
-      Author.find_or_create_from_url("https://twitter.com/#!/nytopinion").should be_true
+      expect(Author.find_or_create_from_url("https://twitter.com/#!/nytopinion")).to be_truthy
     end
 
     it "https://twitter.com/nytopinion", :vcr do
-      Author.find_or_create_from_url("https://twitter.com/nytopinion").should be_true
+      expect(Author.find_or_create_from_url("https://twitter.com/nytopinion")).to be_truthy
     end
   end
 
@@ -25,10 +25,10 @@ describe Authors::Twitter do
     end
 
     after do
-      @author.save.should be_true
+      expect(@author.save).to be_truthy
       @author.populate_uid_and_username!
-      @author.username.should == 'copper_is'
-      @author.uid.should == '398095666'
+      expect(@author.username).to eq('copper_is')
+      expect(@author.uid).to eq('398095666')
     end
 
     it 'finds the uid if usenname is set', :vcr do
@@ -44,20 +44,20 @@ describe Authors::Twitter do
 
   describe "Should return nil for url's that don't provide user information" do
     it "https://www.twitter.com/" do
-      Author.authorizer_from_url("https://www.twitter.com/").should be_false
+      expect(Author.authorizer_from_url("https://www.twitter.com/")).to be_falsey
     end
 
     it "http://twitter.com/share" do
-      Author.authorizer_from_url("http://twitter.com/share").should be_false
+      expect(Author.authorizer_from_url("http://twitter.com/share")).to be_falsey
     end
   end
 
   it "should render a profile url", :vcr do
-    @author.url.should == "https://twitter.com/_ugly"
+    expect(@author.url).to eq("https://twitter.com/_ugly")
   end
 
   it "should render a profile image", :vcr do
-    @author.profile_image.should == "https://pbs.twimg.com/profile_images/1303637209/nostrals.jpg"
+    expect(@author.profile_image).to eq("https://pbs.twimg.com/profile_images/1303637209/nostrals.jpg")
   end
 
 end

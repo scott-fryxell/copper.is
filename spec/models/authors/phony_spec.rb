@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Authors::Phony do
+describe Authors::Phony, :type => :model do
   before do
     mock_page
     @author = create!(:author_phony)
@@ -18,11 +18,11 @@ describe Authors::Phony do
     end
 
     after do
-      @author.save.should be_true
+      expect(@author.save).to be_truthy
       @author.reload
       @author.populate_uid_and_username!
-      @author.username.should == '1'
-      @author.uid.should == '1'
+      expect(@author.username).to eq('1')
+      expect(@author.uid).to eq('1')
     end
   end
 end

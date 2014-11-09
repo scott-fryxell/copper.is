@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AuthorsController do
+describe AuthorsController, :type => :controller do
   before :each do
     me_setup
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]

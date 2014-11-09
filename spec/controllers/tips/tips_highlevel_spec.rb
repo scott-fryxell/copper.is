@@ -1,31 +1,31 @@
 require 'spec_helper'
 
-describe TipsController do
+describe TipsController, :type => :controller do
   describe 'high level'do
     before :each do
       mock_user
       @me = create!(:user)
-      Author.any_instance.stub(:_send_wanted_message)
-      Page.any_instance.stub(:learn)
+      allow_any_instance_of(Author).to receive(:_send_wanted_message)
+      allow_any_instance_of(Page).to receive(:learn)
       @twitter_user = double('user', id:666, username:'ableton')
-      ::Twitter.stub(:user).and_return(@twitter_user)
+      allow(::Twitter).to receive(:user).and_return(@twitter_user)
     end
 
     it 'tips pages', :vcr do
-      proc do
+      expect do
         post_with @me, :create, tip:{url:'http://twitter.com/ableton'}
         @page = Page.find_by(url:'http://twitter.com/ableton')
-        @page.tips.size.should eq(1)
+        expect(@page.tips.size).to eq(1)
         @me.reload
-        @me.current_order.tips.first.page.should eq(@page)
-      end.should change(Tip,:count).by(1)
+        expect(@me.current_order.tips.first.page).to eq(@page)
+      end.to change(Tip,:count).by(1)
     end
 
     it 'finds authors of tipped pages', :vcr do
       post_with @me, :create, tip:{url:'https://twitter.com/ableton'}
       @page = Page.find_by(url:'https://twitter.com/ableton')
-      @page.author.should_not be_nil
-      @page.author.username.should eq('ableton')
+      expect(@page.author).not_to be_nil
+      expect(@page.author.username).to eq('ableton')
     end
 
     it 'messages wanted authors', :vcr do
@@ -38,7 +38,7 @@ describe TipsController do
       @her_author = create!(:author_phony)
       post_with @me, :create, tip:{url:"http://example.com/#{@her_author.username}"}
       @page = Page.find_by(url:"http://example.com/#{@her_author.username}")
-      @page.author.should eq(@her_author)
+      expect(@page.author).to eq(@her_author)
     end
   end
 end

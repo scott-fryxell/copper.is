@@ -1,6 +1,6 @@
  require 'spec_helper'
 
-describe Page do
+describe Page, :type => :model do
   describe "url" do
     before(:each) do
       mock_page
@@ -9,12 +9,12 @@ describe Page do
     end
 
     it "should save with a valid url" do
-      @page.save.should be_true
+      expect(@page.save).to be_truthy
     end
 
     it "should not save with an invalid url" do
       @page.url = '666'
-      @page.save.should be_false
+      expect(@page.save).to be_falsey
     end
   end
 
@@ -28,8 +28,8 @@ describe Page do
     after do
       @page.save!
       @page.reload
-      @page.adopted?.should be_true
-      Author.count.should == 1
+      expect(@page.adopted?).to be_truthy
+      expect(Author.count).to eq(1)
       puts "      #{@page.url}"
     end
 
@@ -47,8 +47,8 @@ describe Page do
       end
 
       it "finds author on twitter.com", :vcr do
-        ::Twitter.stub(:user).and_return(double('user',id:666, screen_name:'ChloesThinking'))
-        Page.any_instance.stub(:learn)
+        allow(::Twitter).to receive(:user).and_return(double('user',id:666, screen_name:'ChloesThinking'))
+        allow_any_instance_of(Page).to receive(:learn)
         @page.url = "https://twitter.com/ChloesThinking"
       end
 
@@ -60,7 +60,7 @@ describe Page do
         @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
         author = double('author',  uri:'http://www.youtube.com/user/BHVthe81st', author_name:'BHVthe81st' )
         Authors::Youtube.stub_chain(:connect_to_api, :video_by, :author).and_return(author)
-        Page.any_instance.stub(:learn)
+        allow_any_instance_of(Page).to receive(:learn)
       end
 
       it "finds author on youtube.com from a user profile", :vcr do
@@ -96,8 +96,8 @@ describe Page do
       end
 
       it "finds author for http://www.missionmission.org/", :vcr do
-        ::Twitter.stub(:user).and_return(double('user', id:398095666, screen_name:'ChloesThinking'))
-        Page.any_instance.stub(:learn)
+        allow(::Twitter).to receive(:user).and_return(double('user', id:398095666, screen_name:'ChloesThinking'))
+        allow_any_instance_of(Page).to receive(:learn)
         @page.url = "http://www.missionmission.org/"
       end
 
@@ -111,33 +111,33 @@ describe Page do
   it "transitions from adopted to adopted", :vcr do
     #  mock_page
     @page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:"adopted")
-    @page.adopted?.should be_true
+    expect(@page.adopted?).to be_truthy
     # @page.should_receive(:learn)
     @page.adopt!
-    @page.adopted?.should be_true
+    expect(@page.adopted?).to be_truthy
   end
 
   it "transitions from adopted to orphaned", :vcr do
     @page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:'adopted')
-    @page.adopted?.should be_true
+    expect(@page.adopted?).to be_truthy
     @page.reject!
     # @page.should_receive(:discover_author!)
-    @page.orphaned?.should be_true
+    expect(@page.orphaned?).to be_truthy
   end
 
   it "transitions from :manual to :dead", :vcr do
     @page = create!(:page, url:"http://ruby-doc.org/", author_state:"manual")
-    @page.manual?.should be_true
+    expect(@page.manual?).to be_truthy
     @page.reject!
-    @page.dead?.should be_true
+    expect(@page.dead?).to be_truthy
   end
 
   it 'transitions from :orphaned to :manual', :vcr do
     @page = build!(:page, url:"http://ruby-doc.org/")
-    @page.orphaned?.should be_true
+    expect(@page.orphaned?).to be_truthy
     @page.save!
     @page.reload
-    @page.manual?.should be_true
+    expect(@page.manual?).to be_truthy
   end
 
   it 'transitions to dead for a site that can\'t be reached', :broken do
@@ -153,13 +153,13 @@ describe Page do
     @page.nsfw = true
     @page.save!
     @page.reload
-    @page.nsfw?.should be_true
+    expect(@page.nsfw?).to be_truthy
   end
 
   it "can discover the page author", :vcr do
     @page = build!(:page)
     @page.url = "https://www.facebook.com/scott.fryxell"
     @page.discover_author!
-    @page.author.should_not be_nil
+    expect(@page.author).not_to be_nil
   end
 end

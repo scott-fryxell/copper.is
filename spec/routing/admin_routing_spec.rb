@@ -1,14 +1,14 @@
 require "spec_helper"
 
-describe AdminController do
+describe AdminController, :type => :routing do
   describe "routing" do
 
     it "routes to #ping" do
-      get("/ping").should route_to("admin#ping")
+      expect(get("/ping")).to route_to("admin#ping")
     end
 
     it "routes to #test" do
-      get("/test").should route_to("admin#test")
+      expect(get("/test")).to route_to("admin#test")
     end
 
   end
