@@ -103,58 +103,57 @@ describe Page do
 
     end
 
-    # describe "transitions from :orphaned to :adopted if from a page that's fostered", :vcr do
-    #   it 'spiders a fostered page' do
-
-    #   end
-    # end
-  end
-
-  describe "transitions from :orphaned to :manual" do
-    before do
-      @page = build!(:page)
-    end
-
-    after do
-      @page.save!
-      @page.reload
-      @page.manual?.should be_true
-    end
-
-    it 'http://ruby-doc.org/', :vcr do
-      @page.url = "http://ruby-doc.org/"
+    it "via link tag with with rel=author", :vcr do
+      @page.url = "#{Copper::Application.config.hostname}/test"
     end
   end
 
-  describe "transitions from :orphaned to :manual" do
-    before do
-      @page = build!(:page)
-    end
-
-    after do
-      @page.save!
-      @page.reload
-      @page.manual?.should be_true
-    end
-
-    it 'for a site that can\'t be reached', :broken do
-      @page.url = "http://test.com/"
-    end
+  it "transitions from adopted to adopted", :vcr do
+    #  mock_page
+    @page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:"adopted")
+    @page.adopted?.should be_true
+    # @page.should_receive(:learn)
+    @page.adopt!
+    @page.adopted?.should be_true
   end
 
-  describe "can be displayed on different pages" do
-    before(:each) do
-      mock_page
-      @page = Page.new
-      @page.url = 'http://example.com/path1'
-    end
+  it "transitions from adopted to orphaned", :vcr do
+    @page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:'adopted')
+    @page.adopted?.should be_true
+    @page.reject!
+    # @page.should_receive(:discover_author!)
+    @page.orphaned?.should be_true
+  end
 
-    it "can be marked as not safe for work" do
-      @page.nsfw = true
-      @page.save!
-      @page.reload
-      @page.nsfw?.should be_true
-    end
+  it "transitions from :manual to :dead", :vcr do
+    @page = create!(:page, url:"http://ruby-doc.org/", author_state:"manual")
+    @page.manual?.should be_true
+    @page.reject!
+    @page.dead?.should be_true
+  end
+
+  it 'transitions from :orphaned to :manual', :vcr do
+    @page = build!(:page, url:"http://ruby-doc.org/")
+    @page.orphaned?.should be_true
+    @page.save!
+    @page.reload
+    @page.manual?.should be_true
+  end
+
+  it 'transitions to dead for a site that can\'t be reached', :broken do
+    @page.url = "http://test.com/"
+  end
+
+
+  it "can be marked as not safe for work" do
+    mock_page
+    @page = Page.new
+    @page.url = 'http://example.com/path1'
+
+    @page.nsfw = true
+    @page.save!
+    @page.reload
+    @page.nsfw?.should be_true
   end
 
   it "can discover the page author", :vcr do
