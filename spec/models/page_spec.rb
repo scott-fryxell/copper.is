@@ -59,7 +59,7 @@ describe Page, :type => :model do
       it "finds author on youtube.com from a video url", :vcr do
         @page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
         author = double('author',  uri:'http://www.youtube.com/user/BHVthe81st', author_name:'BHVthe81st' )
-        Authors::Youtube.stub_chain(:connect_to_api, :video_by, :author).and_return(author)
+        allow(Authors::Youtube).to receive_message_chain(:connect_to_api, :video_by, :author).and_return(author)
         allow_any_instance_of(Page).to receive(:learn)
       end
 

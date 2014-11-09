@@ -8,7 +8,7 @@ def mock_order
 end
 
 def mock_user
-  User.any_instance.stub send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}]
+  allow_any_instance_of(User).to receive_messages send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}]
 
   allow_any_instance_of(User).to receive :see_about_facebook_feed
   
