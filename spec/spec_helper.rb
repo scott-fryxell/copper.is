@@ -39,7 +39,7 @@ include Authorization::TestHelper
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.include(Reek::Spec)
+  # config.include(Reek::Spec) TODO: figure out how to implement reek
   config.render_views
   config.include Capybara::DSL
   config.filter_run_excluding broken:true

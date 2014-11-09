@@ -76,7 +76,7 @@ group :development, :test do
   gem 'reek'
   gem 'simplecov', require:false
   gem 'ruby_parser'
-  gem 'rspec-rails', "2.99.0"
+  gem 'rspec-rails'
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'guard'

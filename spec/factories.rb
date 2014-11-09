@@ -102,7 +102,7 @@ FactoryGirl.define do
     end
 
     factory :user_with_facebook_author do
-      ignore do
+      transient do
         authors_count 1
       end
       after(:create) do |user, evaluator|
