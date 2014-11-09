@@ -32,6 +32,7 @@ gem "foreman"
 gem 'redis'
 gem 'resque', "~> 1.22.0"
 gem 'state_machine', git:'https://github.com/seuros/state_machine'
+gem 'ruby-graphviz', :require => 'graphviz' # Optional: only required for state_machine graphing
 gem 'nokogiri'
 gem 'twitter'
 gem 'youtube_it'
@@ -40,7 +41,7 @@ gem 'koala'
 gem 'paper_trail', '~> 3.0.3'
 gem 'mechanize'
 gem 'cache_digests'
-gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
+# gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
 gem "lograge"
 gem 'rails_12factor'
 gem 'pry'
@@ -75,7 +76,7 @@ group :development, :test do
   gem 'reek'
   gem 'simplecov', require:false
   gem 'ruby_parser'
-  gem 'rspec-rails'
+  gem 'rspec-rails', "2.99.0"
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'guard'
@@ -87,6 +88,6 @@ group :development, :test do
   gem 'launchy'
   gem 'rb-inotify', :require => false
   # gem 'rb-fsevent', :require => false
-  gem 'terminal-notifier-guard', :require => false # sends guard notifications to the OS X Notification Center.
+  # gem 'terminal-notifier-guard', :require => false # sends guard notifications to the OS X Notification Center.
   gem 'quiet_assets'
 end
