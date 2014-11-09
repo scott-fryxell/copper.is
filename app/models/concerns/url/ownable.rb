@@ -17,28 +17,30 @@ module URL
         scope state, -> { where(author_state:state) }
       end
 
+      # Pages are initially orphaned. An attempt is made to
+      # deternime the author based on the url, failure means
+      # page is put in foster care where all the links on
+      # the page are spidered and a list of possible
+      # authors are determined. If none are found then the
+      # page is put into manual mode where a person is going to
+      # get involved to figure it out. If at any point in this
+      # chain a page is adopted it has reached it's final state.
+      # a page is dead when we try to spider it and get a 404
       state_machine :author_state, initial: :orphaned do
 
         event :adopt do
           transition any => :adopted
         end
 
-        # Pages are initially orphaned. An attempt is made to
-        # deternime the author based on the url, failure means
-        # page is put in foster care where all the links on
-        # the page are spidered and a list of possible
-        # authors are determined. If none are found then the
-        # page is put into manual mode where a person is going to
-        # get involved to figure it out. If at any point in this
-        # chain a page is adopted it has reached it's final state.
-        # a page is dead when we try to spider it and get a 404
         event :reject do
-          transition :orphaned   => :fostered,
+          transition :adopted    => :orphaned,
+                     :orphaned   => :fostered,
                      :fostered   => :manual,
                      :manual     => :dead
         end
 
         after_transition any => :orphaned do |page, transition|
+          puts "discover_author!"
           Resque.enqueue page.class, page.id, :discover_author!
         end
 
@@ -47,15 +49,16 @@ module URL
         end
 
 
-        # after_transition any => :manual do |page, transition|
+        after_transition any => :manual do |page, transition|
         # TODO:   Resque.enqueue Page, page.id, :notify_admin_to_find_page_author!
-        # end
+        end
 
         after_transition any => :dead do |page, transition|
           Resque.enqueue page.class, page.id, :refund_paid_tips!
         end
 
-        after_transition :adopt => :adopt do |page, transition|
+        after_transition any => :adopted do |page, transition|
+          puts "***************** what the fuck ***********************"
           # respider the page for images
           Resque.enqueue page.class, page.id, :learn
         end
