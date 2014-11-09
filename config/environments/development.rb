@@ -16,12 +16,10 @@ Copper::Application.configure do
   config.static_cache_control = "public, max-age=31536000"
 
   config.hostname = "http://copper.dev"
-  config.facebook_appname = "copper-dev"
-  config.facebook_appid = "180829622036113"
 
   config.active_support.deprecation = :log
   config.lograge.enabled = true
-  config.log_level = :info
+  config.log_level = :debug
 
   OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = {
