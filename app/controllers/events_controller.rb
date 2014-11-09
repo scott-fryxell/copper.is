@@ -18,7 +18,6 @@ class EventsController < ApplicationController
     logger.info "client.Disconected #{current_user.name if current_user}"
   ensure
     puts "ensure redis closed"
-    redis.disconnect
     redis.quit
     response.stream.close
   end
