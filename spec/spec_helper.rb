@@ -11,7 +11,6 @@ require 'capybara/poltergeist'
 require 'webmock/rspec'
 
 require 'rspec/rails'
-require 'rspec/autorun'
 
 require 'omniauth'
 require 'omniauth/test'
@@ -47,7 +46,6 @@ RSpec.configure do |config|
   config.extend  OmniAuth::Test::StrategyMacros, :type => :strategy
   config.mock_with :rspec
   config.profile_examples = false
-  config.treat_symbols_as_metadata_keys_with_true_values = true
   config.filter_run focus:true
   config.filter_run_excluding :slow unless ENV["SLOW_SPECS"]
   config.run_all_when_everything_filtered = true
