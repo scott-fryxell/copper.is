@@ -98,6 +98,10 @@ describe Author, :type => :model do
       expect(Author.authorizer_from_url("http://www.tumblr.com/customize?redirect_to=http://brokenbydawn.tumblr.com/")).to be_falsey
     end
 
+    it "http://www.tumblr.com/share" do
+      expect(Author.authorizer_from_url("http://www.tumblr.com/share")).to be_falsey
+    end
+
     it "http://code.flickr.net/2008/10/27/counting-timing/" do
       expect(Author.authorizer_from_url("http://code.flickr.net/2008/10/27/counting-timing/")).to be_falsey
     end
