@@ -47,7 +47,7 @@ describe Page, :type => :model do
       end
 
       context "twitter.com" do
-        it "from a profile", :vcr do
+        it "from a profile",:vcr do
           allow(::Twitter).to receive(:user).and_return(double('user',id:666, screen_name:'ChloesThinking'))
           allow_any_instance_of(Page).to receive(:learn)
           page.url = "https://twitter.com/ChloesThinking"
@@ -61,29 +61,29 @@ describe Page, :type => :model do
       end
 
       context "youtube.com" do
-        it "from a video", :vcr do
+        it "from a video" do
           page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
           author = double('author',  uri:'http://www.youtube.com/user/BHVthe81st', author_name:'BHVthe81st' )
           allow(Authors::Youtube).to receive_message_chain(:connect_to_api, :video_by, :author).and_return(author)
           allow_any_instance_of(Page).to receive(:learn)
         end
 
-        it "finds author on youtube.com from a video url", :vcr do
+        it "finds author on youtube.com from a video url" do
           page.url = "http://www.youtube.com/watch?v=h8YlfYpnXL0"
           author = double('author',  uri:'http://www.youtube.com/user/BHVthe81st', author_name:'BHVthe81st' )
           allow(Authors::Youtube).to receive_message_chain(:connect_to_api, :video_by, :author).and_return(author)
           allow_any_instance_of(Page).to receive(:learn)
         end
 
-        it "finds author on youtube.com from a user profile", :vcr do
+        it "finds author on youtube.com from a user profile" do
           page.url = 'http://www.youtube.com/user/machinima?ob=4'
         end
 
-        it "finds author from a youtube.com channel", :vcr do
+        it "finds author from a youtube.com channel" do
           page.url = 'http://www.youtube.com/pitchforktv'
         end
 
-        it "finds author from a youtube.com embed link", :vcr do
+        it "finds author from a youtube.com embed link" do
           page.url = 'https://www.youtube.com/embed/DX0fX47rQMc'
         end
 
@@ -96,25 +96,25 @@ describe Page, :type => :model do
       end
 
       context "soundcloud.com" do
-        it "from a set", :vcr do
+        it "from a set" do
           page.url = "http://soundcloud.com/snoopdogg/sets/samples-106/"
         end
       end
 
       context "github.com" do
-        it "from a repo", :vcr do
+        it "from a repo" do
           page.url = "https://github.com/rails/commands"
         end
       end
 
       context "plus.google.com" do
-        it "prom a profile", :vcr do
+        it "prom a profile" do
           page.url = "https://plus.google.com/u/0/110700893861235018134/posts?hl=en"
         end
       end
 
       context "tumblr.com" do
-        it "from a subdomain", :vcr do
+        it "from a subdomain" do
           page.url = "http://staff.tumblr.com/"
         end
       end
@@ -148,51 +148,72 @@ describe Page, :type => :model do
 
     end
 
+    context "can't do it" do
+
+      it "init to orphaned" do
+        page = create!(:page, url:"https://www.facebook.com/scott.fryxell")
+        expect(Page).to have_queued(page.id, :learn).once
+        expect(Page).to have_queued(page.id, :discover_author!).once
+        expect(Page).to have_queue_size_of(2)
+        expect(page.orphaned?).to be_truthy
+      end
+
+      it 'from :orpaned to :fostered' do
+        # page = create!(:page, url:"http://ruby-doc.org/")
+        expect(page.orphaned?).to be_truthy
+        page.reject!
+        expect(page.fostered?).to be_truthy
+        expect(Page).to have_queued(page.id, :discover_author_from_page_links!).once
+        expect(Page).to have_queue_size_of(1)
+      end
+
+      it "from adopted to orphaned" do
+        page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:"adopted")
+        expect(page.adopted?).to be_truthy
+        page.reject!
+        expect(page.orphaned?).to be_truthy
+        expect(Page).to have_queued(page.id, :discover_author!).once
+        expect(Page).to have_queue_size_of(1)
+      end
+
+
+      it "from :manual to :dead" do
+        page = create!(:page, url:"http://ruby-doc.org/", author_state:"manual")
+        expect(page.manual?).to be_truthy
+        page.reject!
+        expect(page.dead?).to be_truthy
+        expect(Page).to have_queue_size_of(1)
+      end
+
+    end
+
   end
 
 
+  describe "learnable" do
+    it "learns everything" do
+      page.url = "#{Copper::Application.config.hostname}/test"
+      page.learn
 
-  context "un-ownable" do
-
-    it "init to orphaned" do
-      page = create!(:page, url:"https://www.facebook.com/scott.fryxell")
-      expect(Page).to have_queued(page.id, :learn).once
-      expect(Page).to have_queued(page.id, :discover_author!).once
-      expect(Page).to have_queue_size_of(2)
-      expect(page.orphaned?).to be_truthy
+      expect(page.title).to eq("copper-test page")
+      expect(page.description).to eq("I'm round")
+      expect(page.url).to eq("http://www.copper.is/test")
+      expect(page.thumbnail_url).to eq("http://www.copper.is/logo.svg")
     end
 
-    it 'from :orpaned to :fostered' do
-      # page = create!(:page, url:"http://ruby-doc.org/")
-      expect(page.orphaned?).to be_truthy
-      page.reject!
-      expect(page.fostered?).to be_truthy
-      expect(Page).to have_queued(page.id, :discover_author_from_page_links!).once
-      expect(Page).to have_queue_size_of(1)
+    context "learn title" do
+      it "by title tag"
+      it "by og:title"
     end
 
-    it "from adopted to orphaned" do
-      page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:"adopted")
-      expect(page.adopted?).to be_truthy
-      page.reject!
-      expect(page.orphaned?).to be_truthy
-      expect(Page).to have_queued(page.id, :discover_author!).once
-      expect(Page).to have_queue_size_of(1)
-    end
+    context "learn description"
 
+    context "learn image"
 
-    it "from :manual to :dead" do
-      page = create!(:page, url:"http://ruby-doc.org/", author_state:"manual")
-      expect(page.manual?).to be_truthy
-      page.reject!
-      expect(page.dead?).to be_truthy
-      expect(Page).to have_queue_size_of(1)
-    end
-
-
-
+    context "learn canonicle url"
 
   end
+
 
 
   it "from adopted to adopted" do
