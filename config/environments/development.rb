@@ -36,10 +36,10 @@ Copper::Application.configure do
   }
   OmniAuth.config.mock_auth[:facebook] = {
     'provider' => 'facebook',
-    'uid' => '234567',
+    'uid' => '580281278',
     'info' => {
-      'name' => 'facebook user',
-      'nickname'=> 'facebook.user',
+      'name' => 'scott fryxell',
+      'nickname'=> 'scott.fryxell',
       'email' => 'user@facebook.com'
     },
     'credentials' => {
