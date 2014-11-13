@@ -57,6 +57,7 @@ gem 'unicorn'
 gem 'rb-fsevent'
 
 group :development do
+  gem 'redcarpet', '~> 2.1.1', require:false
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
 end
@@ -82,7 +83,9 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'guard-process'
+  # gem 'guard-process', path:"/Users/scott/Code/guard-process"
+  gem 'guard-process', git:'https://github.com/scott-fryxell/guard-process'
+
   gem 'guard-shell'
 
   gem 'launchy'

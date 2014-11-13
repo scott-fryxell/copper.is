@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/scott-fryxell/guard-process
+  revision: bbeb3bf2e2a6a08899ee61f67a4027319aa47afc
+  specs:
+    guard-process (1.0.6)
+      guard (>= 0.4.2)
+      spoon (~> 0.0.1)
+
+GIT
   remote: https://github.com/seuros/state_machine
   revision: 1a373b2d23a21037d95cc369a4c5b0a9c551d326
   specs:
@@ -112,9 +120,6 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
-    guard-process (1.0.6)
-      guard (>= 0.4.2)
-      spoon (~> 0.0.1)
     guard-rspec (4.3.1)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
@@ -291,6 +296,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (4.1.2)
       json (~> 1.4)
+    redcarpet (2.1.1)
     redis (3.1.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
@@ -461,7 +467,7 @@ DEPENDENCIES
   foreman
   guard
   guard-livereload
-  guard-process
+  guard-process!
   guard-rspec
   guard-shell
   hashugar
@@ -497,6 +503,7 @@ DEPENDENCIES
   rails_12factor
   rb-fsevent
   rb-inotify
+  redcarpet (~> 2.1.1)
   redis
   reek
   resque (~> 1.22.0)
