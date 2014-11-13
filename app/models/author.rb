@@ -71,14 +71,12 @@ class Author < ActiveRecord::Base
     raise "not implemented in subclass" unless block_given?
     raise "uid is blank" if self.uid.blank?
     yield
-    save!
   end
 
   def populate_uid_from_username!
     raise "not implemented in subclass" unless block_given?
     raise "username is blank" if self.username.blank?
     yield
-    save!
   end
 
   def profile_image
