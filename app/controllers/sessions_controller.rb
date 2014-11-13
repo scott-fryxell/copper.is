@@ -36,21 +36,15 @@ class SessionsController < ApplicationController
         session[:user_id] = @author.user.id
       else
         # No user associated with the author so we need to create a new one
-        user = User.create_with_omniauth(auth)
+        @author.user = User.create_with_omniauth(auth)
 
-        session[:user_id] = user.id #was author.user.id
-
-        current_user = user
-
-        @author.user = current_user
+        session[:user_id] = @author.user.id #was author.user.id
 
         if @author.wanted?
           @author.join!
-          @author.save()
           redirect_to edit_author_url(@author)
         else
           @author.join!
-          @author.save()
         end
       end
     end
