@@ -9,6 +9,7 @@ module URL
 
       after_create do |page|
         if page.orphaned?
+          # puts "after create"
           Resque.enqueue page.class, page.id, :discover_author!
         end
       end
@@ -32,6 +33,11 @@ module URL
           transition any => :adopted
         end
 
+
+        event :kill do
+          transition any => :dead
+        end
+
         event :reject do
           transition :adopted    => :orphaned,
                      :orphaned   => :fostered,
@@ -40,7 +46,6 @@ module URL
         end
 
         after_transition any => :orphaned do |page, transition|
-          puts "discover_author!"
           Resque.enqueue page.class, page.id, :discover_author!
         end
 
@@ -48,17 +53,15 @@ module URL
           Resque.enqueue page.class, page.id, :discover_author_from_page_links!
         end
 
-
         after_transition any => :manual do |page, transition|
-        # TODO:   Resque.enqueue Page, page.id, :notify_admin_to_find_page_author!
+           Resque.enqueue page.class, page.id, :spider_page_for_leads
         end
 
         after_transition any => :dead do |page, transition|
           Resque.enqueue page.class, page.id, :refund_paid_tips!
         end
 
-        after_transition any => :adopted do |page, transition|
-          puts "***************** what the fuck ***********************"
+        after_transition :adopted => :adopted do |page, transition|
           # respider the page for images
           Resque.enqueue page.class, page.id, :learn
         end
@@ -81,60 +84,24 @@ module URL
 
           def discover_author_from_page_links!
             begin
-              logger.info "page_links for: id=#{id}, #{url[0...100]}"
+              logger.info "page links for: id=#{id}, #{url[0...100]}"
               self.spider.get(url) do |doc|
-                if doc.title
-                  self.title = doc.title
-                end
 
                 if author_link = doc.at('link[rel=author]')
                   href = author_link.attributes['href'].value
-                  output = "    author: #{href[0...100]}"
-                  logger.info output
+
+                  logger.info "    author: #{href[0...100]}"
                   if self.author = Author.find_or_create_from_url(href)
                     log_adopted
                     return adopt!
                   end
                 end
 
-                output = lambda { |link| logger.info ":    adopted: #{link.href[0...100]}"}
-
-                doc.links_with(:href => %r{twitter.com}).each do |link|
-                  # filter for known twitter links that are providerable but not good for spidering links
-                  unless %r{/status/|/intent/|/home|/share|/statuses/|/search/|/search|/bandcampstatus|/signup}.match(URI.parse(link.href).path)
-                    if self.author = Author.find_or_create_from_url(link.href)
-                      output.call link
-                      return adopt!
-                    end
-                  end
-                end
-
-                doc.links_with(:href => %r{tumblr.com}).each do |link|
-                  unless %r{/post/|/liked/|/share}.match(URI.parse(link.href).path)
-                    if self.author = Author.find_or_create_from_url(link.href)
-                      output.call link
-                      return adopt!
-                    end
-                  end
-                end
-
-                doc.links_with(:href => %r{facebook.com}).each do |link|
-                  unless %r{events|sharer.php|share.php|group.php}.match(URI.parse(link.href).path)
-
-                    if self.author = Author.find_or_create_from_url(link.href)
-                      output.call link
-                      return adopt!
-                    end
-
-                  end
-                end
-
-                doc.links_with(:href => %r{plus.google.com}).each do |link|
-                  unless %r{/share/}.match(URI.parse(link.href).path)
-                    if self.author = Author.find_or_create_from_url(link.href)
-                      output.call link
-                      return adopt!
-                    end
+                doc.links_with(:href => %r{twitter.com|tumblr.com|facebook.com|plus.google.com|soundcloud.com|git.com}).each do |link|
+                  if Author.authorizer_from_url(link.href)
+                    self.author = Author.find_or_create_from_url(link.href)
+                    log_adopted
+                    return adopt!
                   end
                 end
 
@@ -145,20 +112,21 @@ module URL
               logger.info "    ResponseCodeError: #{e.response_code}"
               if '404' == e.response_code or '410' == e.response_code
                 logger.info "    dead: #{self.url}"
-                self.author_state = 'dead'
-                save!
+                self.kill!
               end
             rescue Net::HTTP::Persistent::Error => e
               logger.info "    dead: #{self.url}"
-              self.author_state = 'dead'
-              save!
+              self.kill!
             end
           end
 
         end
 
         state :manual do
-          # do some stuff here
+          def spider_page_for_leads
+            #TODO: do some stuff here
+          end
+
         end
 
         state :dead do

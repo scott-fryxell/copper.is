@@ -5,13 +5,15 @@ module URL
 
     included do
       after_create do |page|
-        Resque.enqueue page.class, page.id, :learn
+        if page.orphaned?
+          Resque.enqueue page.class, page.id, :learn
+        end
       end
 
     end
 
     def learn (content = self.spider.get(url))
-      
+
       logger.info " "
       logger.info "<- Learn about  id:#{id}, url: #{url[0...100]} -> "
 

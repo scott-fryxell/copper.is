@@ -21,11 +21,13 @@ describe TipsController, :type => :controller do
       end.to change(Tip,:count).by(1)
     end
 
-    it 'finds authors of tipped pages', :vcr do
+    it 'finds authors of tipped pages' do
       post_with @me, :create, tip:{url:'https://twitter.com/ableton'}
       @page = Page.find_by(url:'https://twitter.com/ableton')
-      expect(@page.author).not_to be_nil
-      expect(@page.author.username).to eq('ableton')
+
+      expect(Page).to have_queued(@page.id, :discover_author!).once
+      expect(Page).to have_queued(@page.id, :learn).once
+
     end
 
     it 'messages wanted authors', :vcr do
@@ -38,6 +40,7 @@ describe TipsController, :type => :controller do
       @her_author = create!(:author_phony)
       post_with @me, :create, tip:{url:"http://example.com/#{@her_author.username}"}
       @page = Page.find_by(url:"http://example.com/#{@her_author.username}")
+      @page.discover_author!
       expect(@page.author).to eq(@her_author)
     end
   end

@@ -57,19 +57,19 @@ RSpec.configure do |config|
     options = example.metadata.slice(:record, :match_requests_on).except(:example_group)
     VCR.use_cassette(name, options) { example.call }
   end
+
   # Request specs cannot use a transaction because Capybara runs in a
   # separate thread with a different database connection.
-  config.before type: :request do
-    DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
-  end
+  # config.before type: :request do
+  #   DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
+  # end
 
   config.before :suite do
-    ResqueSpec.reset!
-    ResqueSpec.inline = true
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation, {:except => %w[roles]})
   end
   config.before :each do
+    ResqueSpec.reset!
     DatabaseCleaner.start
   end
   config.after :each do

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Authors::Facebook, :type => :model do
 
-  describe "Should find idetity's from facebook url's" do
+  describe "Should find identity's from facebook url's" do
     it "finds user on facebook.com" do
       expect(Author.authorizer_from_url("http://www.facebook.com/scott.fryxell")).to be_truthy
     end

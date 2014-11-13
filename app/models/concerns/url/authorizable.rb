@@ -48,7 +48,7 @@ module URL
 
         case uri.host
         when /facebook\.com$/ then
-          if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter|application}.match(uri.path)
+          if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter|application|events|sharer.php|share.php|group.php}.match(uri.path)
             nil
           else
             'facebook'
@@ -56,13 +56,13 @@ module URL
         when /tumblr\.com$/ then
           if %r{www.tumblr.com}.match(uri.host) and uri.path.size < 3
             nil
-          elsif  %r{/dashboard|/customize}.match(uri.path)
+          elsif %r{/dashboard|/customize|/post|/liked/|/share}.match(uri.path)
             nil
           else
             'tumblr'
           end
         when /twitter\.com$/ then
-          if %r{/login|/share}.match(uri.path)
+          if %r{/login|/share|/status/|/intent/|/home|/share|/statuses/|/search/|/search|/bandcampstatus|/signup}.match(uri.path)
             nil
           elsif %r{2012.twitter.com|business.twitter.com}.match(uri.host)
             nil
@@ -71,7 +71,7 @@ module URL
           end
         when /plus\.google\.com$/ then 'google'
         when /vimeo\.com$/ then
-          if %r{/groups/}.match(uri.path)
+          if %r{/groups/|/share/}.match(uri.path)
             nil
           else
             'vimeo'
