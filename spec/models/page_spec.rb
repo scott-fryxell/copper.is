@@ -215,6 +215,27 @@ describe Page, :type => :model do
   end
 
 
+  describe "itemable" do
+    it "gives you an item_id" do
+      expect(page.item_id).to eq("/pages/#{page.id}")
+    end
+
+    it "let's you know if it's nested insid an item" do
+      expect(page.nested?).to be_falsey
+    end
+
+    it "gives you the full item spec attributes" do
+      expect(page.as_item_attributes).to eq %Q[
+        itemscope itemtype='page'
+        itemid='#{page.item_id}'
+        itemprop='author_state'
+        data-author_state='#{page.author_state}'
+      ]
+
+
+    end
+
+  end
 
   it "from adopted to adopted" do
     page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:"adopted")

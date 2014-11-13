@@ -4,7 +4,7 @@ describe UsersController, :type => :routing do
   describe "routing" do
 
     it "routes to settings" do
-      expect(get("/my/settings")).to route_to("users#settings")
+      expect(get("/settings")).to route_to("users#settings")
     end
 
     it "routes to profile" do

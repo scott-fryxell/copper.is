@@ -36,6 +36,7 @@ Capybara.app_host = "http://127.0.0.1:8080"
 include Authorization::TestHelper
 
 ActiveRecord::Migration.maintain_test_schema!
+OmniAuth.config.test_mode = true
 
 RSpec.configure do |config|
   # config.include(Reek::Spec) TODO: figure out how to implement reek

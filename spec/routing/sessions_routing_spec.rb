@@ -12,7 +12,7 @@ describe SessionsController, :type => :routing do
     end
 
     it "routes to #failure" do
-      expect(post("/auth/failure")).to route_to("sessions#failure")
+      expect(get("/auth/failure")).to route_to("sessions#failure")
     end
 
   end

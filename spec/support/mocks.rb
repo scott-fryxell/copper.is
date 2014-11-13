@@ -43,5 +43,3 @@ class Stripe::Charge
     OpenStruct.new(id:'1', :card => {last4:'4242'})
   end
 end
-
-# Twitter.stub(:update)

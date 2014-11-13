@@ -5,14 +5,6 @@ class SessionsController < ApplicationController
     auth = request.env['omniauth.auth']
     @author = Author.find_or_create_by_authorization(auth)
 
-    if session[:fb_permissions] == 'publish_actions'
-      session.destroy(:fb_permissions)
-      redirect_to '/my/authorizations#fb_permissions' and return
-    elsif session[:fb_permissions] == 'manage_pages'
-      session.destroy(:fb_permissions)
-      redirect_to '/my/authorizations#fb_manage_pages' and return
-    end
-
     if current_user
       if @author.user == current_user
         # User is signed in so they are trying to link an author with their

@@ -16,15 +16,15 @@ authorization do
   role :fan do
     includes :guest
     has_permission_on :pages,       to: :read
-    has_permission_on :authors,     to: :settings
-    has_permission_on :users,       to: :settings
+    has_permission_on :authors,     to: [:settings,
+                                         :claim_facebook_pages,
+                                         :authorize_facebook_privelege,
+                                         :can_post_to_facebook,
+                                         :can_view_facebook_pages
+                                       ]
+    has_permission_on :users,       to: [:settings, :update]
     has_permission_on :tips,        to: [:create,:received,:given]
-    has_permission_on :sessions,    to: [
-                                          :delete,
-                                          :publish_actions,
-                                          :manage_pages,
-                                          :facebook_setup
-                                        ]
+    has_permission_on :sessions,    to: :delete
     has_permission_on :tips,        to: [:update, :destroy] do
       if_attribute user: is { user }
     end
@@ -35,6 +35,7 @@ authorization do
     has_permission_on :admin,       to: [:ping, :test]
     has_permission_on :events,      to: :publisher
     has_permission_on :appcache,    to: :index
+    has_permission_on :users,       to: :show
     has_permission_on :authors,     to: :enquire
     has_permission_on :application, to: [:appcache, :index]
     has_permission_on :sessions,    to: [:create, :failure]
