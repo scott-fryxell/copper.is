@@ -1,6 +1,4 @@
 def mock_page
-  allow_any_instance_of(Page).to receive(:learn)
-  allow_any_instance_of(Page).to receive(:discover_author!)
 end
 
 def mock_order
@@ -8,11 +6,6 @@ def mock_order
 end
 
 def mock_user
-  allow_any_instance_of(User).to receive_messages send_welcome_message:[{"email"=> "scott@copper.is","status" => "sent"}]
-
-  allow_any_instance_of(User).to receive :see_about_facebook_feed
-
-  allow_any_instance_of(Author).to receive :create_page_for_author
 end
 
 def mock_page_and_user
