@@ -49,6 +49,7 @@ class Order < ActiveRecord::Base
         end
         process!
         stripe_charge
+        # TODO: Resque.enqueue non_user.class, non_user.id, :try_to_add_to_wanted_list!
         send_paid_order_message stripe_charge.card['last4']
       rescue Stripe::CardError => e
         decline!
