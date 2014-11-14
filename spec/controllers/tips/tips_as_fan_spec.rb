@@ -31,12 +31,6 @@ describe TipsController, :type => :controller do
           expect(Tip.first.amount_in_cents).to eq(100)
         end
 
-        it 'creates a tip to given url with given title' do
-          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', title:'dude'}
-          expect(Tip.first.url.to_s).to eq('http://fasterlighterbetter.com')
-          expect(Tip.first.title).to eq('dude')
-        end
-
         it 'requires a url' do
           post_with @me, :create, tip:{title:'asldkjf'}
           expect(response.status).to eq(400)

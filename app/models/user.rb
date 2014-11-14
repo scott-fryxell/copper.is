@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
     create! do |user|
       user.name = auth["info"]["name"]
       user.email = auth["info"]["email"]
-      user.roles << Role.find_by(name:'fan')
+      user.roles << Role.find_by(name:'Fan')
     end
   end
 
@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
     Tip.where(page_id:authored_pages.pluck(:id))
   end
 
-  def average_royalties
+  def average_royalties_in_cents
     royalties = Tip.where(page_id:authored_pages.pluck(:id)).average(:amount_in_cents)
     royalties = 0 unless royalties
     royalties.round
@@ -81,14 +81,10 @@ class User < ActiveRecord::Base
 
 
   def tip(args = {})
-    url    = args[:url]
-    amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
-    title  = CGI.unescapeHTML(args[:title])  if args[:title]
 
-    tip = current_order.tips.build(amount_in_cents:amount_in_cents)
-    unless tip.page = Page.find_by(url:url)
-      tip.page = Page.create(url:url,title:title)
-    end
+    tip =                 current_order.tips.build()
+    tip.page =            Page.find_or_create_by(url:args[:url])
+    tip.amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
     tip.save!
 
     tip

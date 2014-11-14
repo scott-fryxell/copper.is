@@ -97,11 +97,11 @@ describe Authors::Facebook, :type => :model do
       @author = create!(:author_facebook, uid:'580281278')
     end
 
-    it "should return the users profile_img" do skip
+    it "should return the users profile_img", :broken do
       expect(@author.profile_image).to eq("https://graph.facebook.com/scott.fryxell/picture?type=square")
     end
 
-    it "should return the users profile url" do skip
+    it "should return the users profile url", :broken do
       expect(@author.url).to eq("https://www.facebook.com/scott.fryxell")
     end
 
