@@ -90,7 +90,7 @@ class User < ActiveRecord::Base
       tip.page = Page.create(url:url,title:title)
     end
     tip.save!
-    Resque.enqueue Tip, tip.id, :see_about_facebook_feed
+
     tip
   end
 

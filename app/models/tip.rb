@@ -51,28 +51,13 @@ class Tip < ActiveRecord::Base
     end
   end
 
-
-  def see_about_facebook_feed
-    if self.user.share_on_facebook
-      self.user.authors.where(provider:'facebook').each do |author|
-        if author.token
-          logger.info "Posting to facebook, tip_id=#{id}"
-          graph = Koala::Facebook::API.new(author.token)
-          graph.put_connections("me", "#{Copper::Application.config.facebook_appname}:tip", website:"#{Copper::Application.config.hostname}/pages/#{self.page.id}")
-          logger.info ":    tip posted"
-        end
-      end
-    end
-  end
-
-
   def amount_in_dollars
     amount = Float(self.amount_in_cents) / 100
     sprintf('%.2f', amount)
   end
 
   def thumbnail
-    page.thumbnail
+    page.thumbnail_url
   end
 
   def url
