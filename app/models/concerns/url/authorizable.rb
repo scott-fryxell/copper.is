@@ -4,10 +4,10 @@ module URL
 
     included do
       before_save do |authorized|
-        authorized.type = self.class.subclass_by_authorizer(authorized.provider).to_s unless authorized.type
+        authorized.type = self.class.subclass_as(authorized.provider).to_s unless authorized.type
       end
 
-      Author.authorizers.each do |provider|
+      self.authorizers.each do |provider|
         scope provider, -> { where(provider:provider) }
       end
 
@@ -23,83 +23,112 @@ module URL
         @@authorizers
       end
 
-      # TODO: merge this into find_or_create_with_omniauth
-      def find_or_create_by_authorization(auth)
-        author = self.find_or_create_by(provider:auth['provider'], uid:auth['uid'].to_s)
+      def subclass_as authorizer_name
+        authorizer_name = 'google' if authorizer_name == 'google_oauth2'
+        ("Authors::" + authorizer_name.to_s.capitalize).constantize
+      end
+
+      def authorizer_name url
+        begin
+          uri = URI.parse(url)
+        rescue
+          return nil
+        end
+
+        return nil unless /tumblr\.com$/.match(uri.host) or uri.path.size > 1 or uri.query or uri.fragment
+
+        case uri.host
+        when /facebook\.com$/ then
+          Authors::Facebook.filter_url uri
+        when /tumblr\.com$/ then
+          Authors::Tumblr.filter_url uri
+        when /twitter\.com$/ then
+          Authors::Twitter.filter_url uri
+        when /plus\.google\.com$/ then
+          'google'
+        when /vimeo\.com$/ then
+          Authors::Vimeo.filter_url uri
+        when /flickr\.com$/ then
+          'flickr'
+        when /github\.com$/ then
+          Authors::Github.filter_url uri
+        when /youtube\.com$/ then
+          'youtube'
+        when /soundcloud\.com$/ then
+          Authors::Soundcloud.filter_url uri
+        when /example\.com$/ then
+          'phony'
+        else
+          nil
+        end
+      end
+
+      def find_or_create_by_authorization auth
+        author = Author.find_or_create_by(provider:auth['provider'], uid:auth['uid'].to_s)
         author.token = auth['credentials']['token']
         author.secret = auth['credentials']['secret']
         author.username = auth['info']['nickname']
+        author.image = auth['info']['image']
         author.save
         author
       end
 
-      def subclass_by_authorizer(authorizer)
-        authorizer = 'google' if authorizer == 'google_oauth2'
-        ("Authors::" + authorizer.to_s.capitalize).constantize
-      end
+      def find_or_create_from_url url
 
-      def authorizer_from_url(url)
-        begin
-          uri = URI.parse(url)
-          return nil unless /tumblr\.com$/.match(uri.host) or uri.path.size > 1 or uri.query or uri.fragment
-        rescue => e
-          return nil
-        end
+        if identity = Author.identity_from_url(url)
 
-        case uri.host
-        when /facebook\.com$/ then
-          if %r{/sharer|/home|/login|/status/|/search|/dialog/|/signup|r.php|/recover/|/mobile/|find-friends|badges|directory|appcenter|application|events|sharer.php|share.php|group.php}.match(uri.path)
-            nil
-          else
-            'facebook'
+          i_uid      = identity[:uid].to_s
+          i_username = identity[:username]
+          i_provider = identity[:provider]
+
+          author = Author.where('provider = ? and (uid = ? OR username = ?)', i_provider, i_uid, i_username).first
+
+          unless author
+            author = subclass_as(i_provider).create( username:i_username, uid:i_uid, provider:i_provider )
           end
-        when /tumblr\.com$/ then
-          if %r{www.tumblr.com}.match(uri.host) and uri.path.size < 3
-            nil
-          elsif %r{/dashboard|/customize|/post|/liked/|/share}.match(uri.path)
-            nil
-          else
-            'tumblr'
-          end
-        when /twitter\.com$/ then
-          if %r{/login|/share|/status/|/intent/|/home|/share|/statuses/|/search/|/search|/bandcampstatus|/signup}.match(uri.path)
-            nil
-          elsif %r{2012.twitter.com|business.twitter.com}.match(uri.host)
-            nil
-          else
-            'twitter'
-          end
-        when /plus\.google\.com$/ then 'google'
-        when /vimeo\.com$/ then
-          if %r{/groups/|/share/}.match(uri.path)
-            nil
-          else
-            'vimeo'
-          end
-        when /flickr\.com$/ then 'flickr'
-        when /github\.com$/ then
-          if %r{gist.github.com}.match(uri.host)
-            nil
-          elsif %r{/blog}.match(uri.path)
-            nil
-          else
-            'github'
-          end
-        when /youtube\.com$/ then 'youtube'
-        when /soundcloud\.com$/ then
-          if  %r{/dashboard}.match(uri.path)
-            nil
-          else
-            'soundcloud'
-          end
-        when /example\.com$/ then 'phony'
+
+          author
         else
           nil
         end
-      rescue URI::InvalidURIError => e
-        return nil
       end
 
+      def identity_from_url url
+
+        unless provider = Author.authorizer_name(url)
+          return nil
+        end
+
+        Author.subclass_as(provider).identity_from_url url
+      end
+
+    end
+
+    def populate_uid_and_username!
+      if uid.blank? and username.blank?
+        raise "both uid and username can't be blank"
+      else
+        if uid.blank?
+          populate_uid_from_username!
+        else
+          populate_username_from_uid!
+        end
+
+        save!
+      end
+
+    end
+
+    def populate_username_from_uid!
+      raise "not implemented in subclass" unless block_given?
+      raise "uid is blank" if uid.blank?
+      yield
+    end
+
+    def populate_uid_from_username!
+      raise "not implemented in subclass" unless block_given?
+      raise "username is blank" if username.blank?
+      yield
     end
 
   end

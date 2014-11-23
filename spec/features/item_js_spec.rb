@@ -1,9 +1,6 @@
-require 'spec_helper'
-
 describe 'Item.js', :slow, :type => :feature do
 
   before :each do
-    mock_user
     visit "/auth/facebook"
     sleep 2
     click_link 'Your account information'
@@ -28,4 +25,3 @@ describe 'Item.js', :slow, :type => :feature do
     end
   end
 end
-

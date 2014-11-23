@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe SessionsController, :type => :controller do
   let(:me) { create!(:user) }
 
@@ -8,12 +6,12 @@ describe SessionsController, :type => :controller do
   end
 
   it 'should create a new account' do
-    expect(User).to receive(:create_with_omniauth).and_return(me)
+    expect(User).to receive(:create_from_authorizer).and_return(me)
     get :create, provider:'facebook'
   end
 
   it 'create a second account' do
-    # expect(User).to receive(:create_with_omniauth).and_return(me)
+    # expect(User).to receive(:create_from_authorizer).and_return(me)
     get_with me, :create, provider:"twitter", uid:'brokenbydawn'
   end
 

@@ -1,8 +1,5 @@
-require 'spec_helper'
-
 describe "A Fan", :slow, :type => :feature do
   before(:each) do
-    mock_user
     visit "/auth/facebook"
     sleep 2
     click_link 'Your account information'

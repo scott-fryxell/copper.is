@@ -1,11 +1,7 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-
 describe Order, :type => :model do
   before do
-    mock_user
     mock_order
     @order = build!(:order_unpaid)
-
   end
 
   it "should save correctly when all the required values are set" do

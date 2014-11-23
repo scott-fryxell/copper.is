@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   include Enqueueable
   include Historicle
-  include Messageable::User
+  include Fan::Onboardable
+  include Fan::Billable
 
   has_many :authors
   has_many :orders
@@ -32,19 +33,20 @@ class User < ActiveRecord::Base
     Resque.enqueue user.class, user.id, :send_welcome_message
   end
 
+  def self.create_from_authorizer auth
+    create! do |user|
+      user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
+      user.roles << Role.find_by(name:'fan')
+    end
+  end
+
+
   def create_current_order!
     if self.orders.unpaid.count > 0
       raise "there is already an unpaid Order for this user: #{self.inspect}"
     end
     self.orders.create!
-  end
-
-  def self.create_with_omniauth(auth)
-    create! do |user|
-      user.name = auth["info"]["name"]
-      user.email = auth["info"]["email"]
-      user.roles << Role.find_by(name:'Fan')
-    end
   end
 
   def role_symbols
@@ -79,12 +81,14 @@ class User < ActiveRecord::Base
     pages.group('pages.id').includes(:tips).except(:order).order('MAX(tips.created_at) DESC')
   end
 
+  def tip args = {}
 
-  def tip(args = {})
+    tip = current_order.tips.build()
 
-    tip =                 current_order.tips.build()
-    tip.page =            Page.find_or_create_by(url:args[:url])
-    tip.amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
+    tip.page = Page.find_or_create_by url:args[:url]
+
+    tip.amount_in_cents = args[:amount_in_cents] || tip_preference_in_cents
+
     tip.save!
 
     tip
@@ -94,20 +98,30 @@ class User < ActiveRecord::Base
     self.orders.current.first or self.orders.create
   end
 
-  # def try_to_create_check!
-  #   the_tips = []
-  #   self.authors.each do |ident|
-  #     the_tips += ident.tips.charged.all
-  #   end
-  #   unless the_tips.empty?
-  #     if check = self.checks.create
-  #       the_tips.each do |tip|
-  #         check.tips << tip
-  #         tip.claim!
-  #         tip.save!
-  #       end
-  #       check.save!
-  #     end
-  #   end
-  # end
+  def create_check!
+    the_tips = []
+    self.authors.each do |ident|
+      the_tips += ident.tips.charged.all
+    end
+    unless the_tips.empty?
+      if check = self.checks.create
+        the_tips.each do |tip|
+          check.tips << tip
+          tip.claim!
+          tip.save!
+        end
+        check.save!
+      end
+    end
+  end
+
+  def billable?
+    if stripe_id and email
+      true
+    else
+      false
+    end
+  end
+
+
 end

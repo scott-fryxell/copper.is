@@ -1,16 +1,6 @@
-def mock_page
-end
 
 def mock_order
   allow_any_instance_of(Order).to receive(:send_paid_order_message)
-end
-
-def mock_user
-end
-
-def mock_page_and_user
-  mock_page
-  mock_user
 end
 
 class OpenStruct

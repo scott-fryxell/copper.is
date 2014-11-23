@@ -3,7 +3,6 @@ require 'spec_helper'
 describe TipsController, :type => :controller do
   describe 'high level'do
     before :each do
-      mock_user
       @me = create!(:user)
       allow_any_instance_of(Author).to receive(:_send_wanted_message)
       allow_any_instance_of(Page).to receive(:learn)

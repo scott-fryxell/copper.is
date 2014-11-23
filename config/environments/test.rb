@@ -42,7 +42,7 @@ Copper::Application.configure do
       'secret' => 'its_a_secret'
     },
   }
-  
+
   OmniAuth.config.mock_auth[:google_oauth2] = {
     'provider' => 'google_oauth2',
     'uid' => '234567',

@@ -1,8 +1,5 @@
-require 'spec_helper'
-
 describe "An Author", :slow, :type => :feature do
   before :each  do
-    mock_page_and_user
     visit '/auth/facebook'
     visit "/author"
   end

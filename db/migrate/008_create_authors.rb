@@ -8,7 +8,9 @@ class CreateAuthors < ActiveRecord::Migration
       t.string :secret
       t.string :type, :null => false
       t.string :identity_state
+      t.text   :image
       t.references :user
+
       t.timestamps
     end
     add_index :authors, [:provider, :uid]

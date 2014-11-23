@@ -9,8 +9,8 @@ class Tip < ActiveRecord::Base
 
 
   include Enqueueable
-  include Payable
   include Historicle
+  include Artist::Payable
 
   default_scope  { order('created_at DESC') }
 

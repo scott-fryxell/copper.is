@@ -1,5 +1,4 @@
 def her_setup
-  mock_page_and_user
   @her = create!(:user, name:'josephene')
   @page1 = create!(:page,author_state:'adopted')
   @page2 = create!(:page,author_state:'adopted')
@@ -8,15 +7,9 @@ def her_setup
 end
 
 def me_setup
-  mock_page_and_user
   @me = create!(:user)
   @page1 = create!(:page,author_state:'adopted')
   @my_tip = @me.tip(url:@page1.url)
-end
-
-def admin_setup
-  mock_page_and_user
-  @admin = create!(:admin)
 end
 
 VCR.configure do |c|

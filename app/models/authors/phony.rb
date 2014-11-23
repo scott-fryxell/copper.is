@@ -1,12 +1,10 @@
 class Authors::Phony < Author
   include Enqueueable
-  include Messageable::Phony
+  include Artist::Desirable::Phony
 
-  # validates :username, presence: true
-
-  def self.discover_uid_and_username_from_url url
+  def self.identity_from_url url
     screen_name = URI.parse(url).path.gsub('/','')
-    { :uid => screen_name, :username => screen_name }
+    { provider:'phony', uid: screen_name, username:screen_name }
   end
 
   def populate_uid_from_username!

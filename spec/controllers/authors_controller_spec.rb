@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe AuthorsController, :type => :controller do
   let(:me) { create!(:user) }
 

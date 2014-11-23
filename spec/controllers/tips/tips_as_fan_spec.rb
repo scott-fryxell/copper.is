@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe TipsController, :type => :controller do
   before :each do
-    mock_page_and_user
     me_setup
   end
 

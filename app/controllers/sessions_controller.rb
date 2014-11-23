@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     else
 
       unless @author.user
-        @author.user = User.create_with_omniauth(auth) # create a user and assign it to author
+        @author.user = User.create_from_authorizer(auth) # create a user and assign it to author
       end
 
       session[:user_id] = @author.user.id # Log them in. author has a user associateds

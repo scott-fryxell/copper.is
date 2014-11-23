@@ -1,10 +1,7 @@
-require 'spec_helper'
-
 describe "Tipping a page", :slow, :type => :feature do
 
   describe "as a fan" do
     before(:each) do
-      mock_page_and_user
       visit "/auth/facebook"
       visit "/test"
       click_on "Copper."
@@ -28,7 +25,6 @@ describe "Tipping a page", :slow, :type => :feature do
 
   describe "as a guest" do
     before(:each) do
-      mock_page_and_user
       visit "/test"
       click_on "Copper."
     end

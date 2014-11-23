@@ -16,7 +16,7 @@ FactoryGirl.define do
   end
 
   factory :role do
-    name "Fan"
+    name "fan"
   end
 
   factory :author do
@@ -75,23 +75,23 @@ FactoryGirl.define do
       identity_state 'known'
     end
 
-    factory :author_youtube, traits: [:youtube, :stranger], class: 'Authors::Youtube'
+    factory :author_youtube,    traits: [:youtube, :stranger], class: 'Authors::Youtube'
     factory :author_soundcloud, traits: [:soundcloud, :stranger], class: 'Authors::Soundcloud'
-    factory :author_github, traits: [:github, :stranger], class: 'Authors::Github'
-    factory :author_tumblr, traits: [:tumblr, :stranger], class: 'Authors::Tumblr'
-    factory :author_flickr, traits: [:flickr, :stranger], class: 'Authors::Flickr'
-    factory :author_vimeo, traits: [:vimeo, :stranger], class: 'Authors::Vimeo'
-    factory :author_google, traits: [:google, :stranger], class: 'Authors::Google'
-    factory :author_twitter, traits: [:twitter, :stranger], class: 'Authors::Twitter'
-    factory :author_facebook,traits: [:facebook, :stranger],  class: 'Authors::Facebook'
-    factory :author_phony, traits: [:phony, :stranger], class: 'Authors::Phony'
+    factory :author_github,     traits: [:github, :stranger], class: 'Authors::Github'
+    factory :author_tumblr,     traits: [:tumblr, :stranger], class: 'Authors::Tumblr'
+    factory :author_flickr,     traits: [:flickr, :stranger], class: 'Authors::Flickr'
+    factory :author_vimeo,      traits: [:vimeo, :stranger], class: 'Authors::Vimeo'
+    factory :author_google,     traits: [:google, :stranger], class: 'Authors::Google'
+    factory :author_twitter,    traits: [:twitter, :stranger], class: 'Authors::Twitter'
+    factory :author_facebook,   traits: [:facebook, :stranger],  class: 'Authors::Facebook'
+    factory :author_phony,      traits: [:phony, :stranger], class: 'Authors::Phony'
   end
 
   factory :user do
     name 'Joe'
     accept_terms true
     tip_preference_in_cents 50
-    roles [Role.find_or_create_by(name:'Fan')]
+    roles [Role.find_or_create_by(name:'fan')]
 
     factory :admin do
       roles [Role.find_or_create_by(name:'Admin')]

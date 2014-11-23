@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
-  include Enqueueable, Messageable::Order
+  include Enqueueable
+  include Fan::Billable
   include Historicle
 
   has_many :tips
@@ -26,18 +27,23 @@ class Order < ActiveRecord::Base
     end
 
     state :current do
-    end
-
-    state :current do
       def rotate!
         process!
       end
+
+      def billable?
+        if tips.count > 0 and tips.sum(:amount_in_cents) > 50
+          true
+        else
+          false
+        end
+      end
     end
 
-    state :unpaid,:denied do
+    state :unpaid, :denied do
       def charge!
         stripe_charge = Stripe::Charge.create(
-          :amount => subtotal() +fees(),
+          :amount => subtotal() + fees(),
           :currency => "usd",
           :customer => self.user.stripe_id,
           :description => "order.id=" + self.id.to_s
@@ -49,7 +55,6 @@ class Order < ActiveRecord::Base
         end
         process!
         stripe_charge
-        # TODO: Resque.enqueue non_user.class, non_user.id, :try_to_add_to_wanted_list!
         send_paid_order_message stripe_charge.card['last4']
       rescue Stripe::CardError => e
         decline!

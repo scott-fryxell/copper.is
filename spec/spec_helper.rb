@@ -59,12 +59,6 @@ RSpec.configure do |config|
     VCR.use_cassette(name, options) { example.call }
   end
 
-  # Request specs cannot use a transaction because Capybara runs in a
-  # separate thread with a different database connection.
-  # config.before type: :request do
-  #   DatabaseCleaner.strategy = :truncation, {:except => %w[roles]}
-  # end
-
   config.before :suite do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation, {:except => %w[roles]})

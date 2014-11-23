@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe "scratch_pad'", :slow,  :type => :feature do
 
   describe "/:provider/:username" do

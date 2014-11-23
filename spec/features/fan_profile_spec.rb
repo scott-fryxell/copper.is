@@ -1,9 +1,6 @@
-require 'spec_helper'
-
 describe "A Fan", :slow, :type => :feature do
 
   before(:each) do
-    mock_page_and_user
     visit "/auth/facebook"
     expect(User.count).to eq(1)
 
@@ -139,7 +136,6 @@ describe "A Fan", :slow, :type => :feature do
   describe "right after signing up" do
 
     before(:each) do
-      mock_page_and_user
       visit "/auth/facebook"
       expect(User.count).to eq(1)
       page.execute_script("jQuery.fx.off = true")

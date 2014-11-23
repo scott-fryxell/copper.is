@@ -1,20 +1,13 @@
-require 'spec_helper'
-
 describe User, :type => :model do
   subject(:me){create!(:user_with_facebook_author)}
   let(:her){create!(:user)}
-
-  before :each do
-    mock_user
-  end
-
-  it "can be created with omniauth" do
+  
+  it "can be created with authorization" do
     auth = OmniAuth.config.mock_auth[:facebook]
-    User.create_with_omniauth auth
+    User.create_from_authorizer auth
   end
 
   describe 'authors' do
-
 
     context 'starting out' do
 

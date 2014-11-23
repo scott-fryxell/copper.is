@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe "A guest", :slow, :type => :feature do
   before(:each) do
     visit "/getting_started"

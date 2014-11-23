@@ -1,37 +1,41 @@
-require 'spec_helper'
-# http://plus.google.com/110547857076579322423/
 describe Authors::Google, :type => :model do
-  before do
-    @author = create!(:author_google, username:"_ugly", uid:'666')
-    # http://plus.google.com/110547857076579322423/
-  end
 
-  it "should render a profile url" do
-    expect(@author.url).to eq("https:///plus.google.com/666")
-  end
+  subject(:author){create!(:author_google, username:"_ugly", uid:'666')}
 
-  it "should render a profile image" do
-    expect(@author.profile_image).to eq("https://plus.google.com/s2/photos/profile/666")
-  end
+  describe '#itentity_from_url' do
 
-  describe '#populate_uid_and_username!' do
-    it 'finds the uid if username is set' # do
-    #   @author.uid = nil
-    #   @author.username = '_ugly'
-    # end
+    context 'identifiable' do
 
-    it 'finds the username if uid is set' # do
-    #   @author.uid = '26368397'
-    #   @author.username = nil
-    # end
+      it "from a profile" do
+        expect(Author.identity_from_url 'https://plus.google.com/u/0/110700893861235018134/posts?hl=en').to be_truthy
+      end
 
-    after do
-      expect(@author.save).to be_truthy
-      @author.reload
-      @author.populate_uid_and_username!
-      expect(@author.username).to eq('_ugly')
-      expect(@author.uid).to eq('26368397')
     end
-  end
-end
 
+    context 'unidentifiable' do
+
+      it "google.com" do
+        expect(Author.identity_from_url("http://google.com/")).to be_nil
+      end
+
+      it "www.google.com" do
+        expect(Author.identity_from_url("http://www.google.com/")).to be_nil
+      end
+
+      it "plus.google.com" do
+        expect(Author.identity_from_url("http://plus.google.com/")).to be_nil
+      end
+
+    end
+
+  end
+
+  it '#url' do
+    expect(author.url).to eq("https://plus.google.com/666")
+  end
+
+  it '#determine_image' do
+    expect(author.determine_image).to eq("https://plus.google.com/s2/photos/profile/666")
+  end
+
+end

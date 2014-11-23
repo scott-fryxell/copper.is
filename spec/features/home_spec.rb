@@ -1,8 +1,5 @@
-require 'spec_helper'
-
 describe "A guest", :slow, :type => :feature do
   before(:each) do
-    mock_user
     visit "/"
   end
 

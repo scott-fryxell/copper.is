@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe PagesController, :type => :controller do
   before :each do
     me_setup

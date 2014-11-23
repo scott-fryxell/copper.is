@@ -1,18 +1,23 @@
 class Authors::Google < Author
   include Enqueueable
+  include Artist::Desirable::Google
 
   def url
-    "https:///plus.google.com/#{self.uid}"
+    "https://plus.google.com/#{self.uid}"
   end
 
-  def self.discover_uid_and_username_from_url url
+  def self.identity_from_url url
     # http://plus.google.com/110547857076579322423/
-    { uid: URI.parse(url).path().split('/').last}
+    { provicer:'google', uid: URI.parse(url).path().split('/').last, }
   end
 
-  def profile_image
+  def determine_image
     super do
-      "https://plus.google.com/s2/photos/profile/#{self.uid}"
+      unless image
+        image = "https://plus.google.com/s2/photos/profile/#{self.uid}"
+        save
+      end
+      image
     end
   end
 

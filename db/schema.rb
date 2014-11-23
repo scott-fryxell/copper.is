@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 9) do
     t.string   "secret"
     t.string   "type",           null: false
     t.string   "identity_state"
+    t.text     "image"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"

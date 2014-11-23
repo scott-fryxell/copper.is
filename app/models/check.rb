@@ -20,14 +20,11 @@ class Check < ActiveRecord::Base
     end
 
     state :earned do
-      def message_author!
-        # if self.count == 0
-        #   self.user.message_about_check(self.id)
-        #   self.count = self.count + 1
-        #   save!
-        # end
-      end
     end
+
+    state :earned do
+    end
+    
   end
 
 end

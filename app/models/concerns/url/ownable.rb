@@ -9,7 +9,6 @@ module URL
 
       after_create do |page|
         if page.orphaned?
-          # puts "after create"
           Resque.enqueue page.class, page.id, :discover_author!
         end
       end
@@ -85,9 +84,9 @@ module URL
           def discover_author_from_page_links!
             begin
               logger.info "page links for: id=#{id}, #{url[0...100]}"
-              self.spider.get(url) do |doc|
+              self.spider.get(url) do |page|
 
-                if author_link = doc.at('link[rel=author]')
+                if author_link = page.at('link[rel=author]')
                   href = author_link.attributes['href'].value
 
                   logger.info "    author: #{href[0...100]}"
@@ -97,8 +96,17 @@ module URL
                   end
                 end
 
-                doc.links_with(:href => %r{twitter.com|tumblr.com|facebook.com|plus.google.com|soundcloud.com|git.com}).each do |link|
-                  if Author.authorizer_from_url(link.href)
+                if author_link = page.at('#follow-us a')
+                  href = author_link.attributes['href'].value
+                  logger.info "    author: #{href[0...100]}"
+                  if self.author = Author.find_or_create_from_url(href)
+                    log_adopted
+                    return adopt!
+                  end
+                end
+
+                page.links_with(:href => %r{twitter.com|tumblr.com|facebook.com|plus.google.com|soundcloud.com|git.com}).each do |link|
+                  if Author.identity_from_url(link.href)
                     self.author = Author.find_or_create_from_url(link.href)
                     log_adopted
                     return adopt!
@@ -143,7 +151,7 @@ module URL
   private
 
     def log_adopted
-      logger.info "    adopted: username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id}"
+      logger.info "    adopted:{ provider:#{self.author.provider}, username=#{self.author.username}, uid=#{self.author.uid}, id=#{self.author.id} }"
     end
 
   end

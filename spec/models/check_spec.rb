@@ -1,8 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-
 describe Check, :type => :model do
   before(:each) do
-    mock_user
     @order = build!(:check)
   end
 
