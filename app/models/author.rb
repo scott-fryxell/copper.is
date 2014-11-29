@@ -7,8 +7,8 @@ class Author < ActiveRecord::Base
 
   include Enqueueable
   include Historicle
-  include URL::Authorizable
-  include URL::Knowable
+  include Authorizable
+  include State::Knowable
 
   validates :username, uniqueness:{scope:'provider'}, allow_blank:true
   validates :uid, uniqueness:{scope:'provider'}, allow_blank:true

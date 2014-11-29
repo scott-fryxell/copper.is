@@ -1,4 +1,4 @@
-describe Authors::Twitter, :type => :model do
+describe Authorizer::Twitter, :type => :model do
   subject(:author) { create!(:author_twitter, username:'copper_is') }
   let(:user){double('user', id:398095666, screen_name:'copper_is', determine_image_url:'https://pbs.twimg.com/determine_images/1303637209/nostrals.jpg')}
 

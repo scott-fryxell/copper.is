@@ -1,6 +1,7 @@
-class Authors::Soundcloud < Author
+class Authorizer::Soundcloud < Author
+
   include Enqueueable
-  include Artist::Desirable::Soundcloud
+  include Message::Desirable::Soundcloud
 
   def self.identity_from_url url
     username = URI.parse(url).path.split('/')[1]

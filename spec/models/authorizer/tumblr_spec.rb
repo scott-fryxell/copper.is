@@ -1,4 +1,4 @@
-describe Authors::Tumblr, :type => :model do
+describe Authorizer::Tumblr, :type => :model do
 
   describe '#identity_from_url' do
 

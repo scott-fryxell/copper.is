@@ -1,4 +1,4 @@
-module Artist
+module Message
 
   module Desirable
 

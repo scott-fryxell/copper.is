@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe Authors::Facebook, :type => :model do
+describe Authorizer::Facebook, :type => :model do
 
   describe '#identity_from_url' do
 

@@ -1,4 +1,4 @@
-describe Authors::Google, :type => :model do
+describe Authorizer::Google, :type => :model do
 
   subject(:author){create!(:author_google, username:"_ugly", uid:'666')}
 

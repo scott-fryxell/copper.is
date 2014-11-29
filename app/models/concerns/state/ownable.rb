@@ -1,4 +1,4 @@
-module URL
+module State
   module Ownable
 
     extend ActiveSupport::Concern

@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   include Enqueueable
-  include Fan::Billable
   include Historicle
+  include Message::Billable
 
   has_many :tips
   belongs_to :user,  touch:true
@@ -28,11 +28,13 @@ class Order < ActiveRecord::Base
 
     state :current do
       def rotate!
-        process!
+        if billable?
+          process!
+        end
       end
 
       def billable?
-        if tips.count > 0 and tips.sum(:amount_in_cents) > 50
+        if user.can_give? and tips.sum(:amount_in_cents) > 50
           true
         else
           false
@@ -41,6 +43,7 @@ class Order < ActiveRecord::Base
     end
 
     state :unpaid, :denied do
+
       def charge!
         stripe_charge = Stripe::Charge.create(
           :amount => subtotal() + fees(),
@@ -48,6 +51,7 @@ class Order < ActiveRecord::Base
           :customer => self.user.stripe_id,
           :description => "order.id=" + self.id.to_s
         )
+
         self.charge_token = stripe_charge.id
         self.save!
         self.tips.find_each do |tip|
@@ -59,7 +63,7 @@ class Order < ActiveRecord::Base
       rescue Stripe::CardError => e
         decline!
         if e.code == 'expired_card'
-          user.message_
+          user.send_card_expired_messagef
         end
 
         raise e
@@ -83,10 +87,6 @@ class Order < ActiveRecord::Base
   def fees_in_dollars
     fees = Float(self.fees) / 100
     sprintf('%.2f', fees)
-  end
-
-  def fees
-    self.tips.sum(:amount_in_cents) / 10
   end
 
   def total

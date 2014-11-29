@@ -1,4 +1,4 @@
-module Artist
+module State
   module Payable
     extend ActiveSupport::Concern
 
@@ -29,14 +29,6 @@ module Artist
 
       end
 
-    end
-
-    def tell_them_about_payment
-      # TODO: send rails 4 email
-    end
-
-    def ask_for_bank_info
-      # TODO: send rails 4 email
     end
 
   end

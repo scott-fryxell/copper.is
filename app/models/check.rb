@@ -1,9 +1,11 @@
 class Check < ActiveRecord::Base
   include Enqueueable
   include Historicle
-
+  include Message::Payable
+  
   belongs_to :user
   has_many :tips, :as => :royalties
+
   validates :user, presence:true
 
   scope :earned, -> { where(check_state:'earned') }
@@ -24,7 +26,7 @@ class Check < ActiveRecord::Base
 
     state :earned do
     end
-    
+
   end
 
 end

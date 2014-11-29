@@ -5,16 +5,13 @@ class Tip < ActiveRecord::Base
   belongs_to :page, touch:true
   belongs_to :order, touch:true
   belongs_to :check
-  has_one :user, :through => :order #TODO: as:'fan'
-
+  has_one    :user, :through => :order #, :as => :fan
 
   include Enqueueable
   include Historicle
-  include Artist::Payable
+  include State::Payable
 
   default_scope  { order('created_at DESC') }
-
-  attr_accessor :url,:title
 
   MINIMUM_TIP_VALUE = 1
   MAXIMUM_TIP_VALUE = 2000
@@ -22,9 +19,13 @@ class Tip < ActiveRecord::Base
   validates :amount_in_cents,
     :numericality => { in:(MINIMUM_TIP_VALUE..MAXIMUM_TIP_VALUE) },
     :presence => true
+
   validates_associated :page
+
   validates :page, presence:true
+
   validates :order, presence:true
+
   validates :amount_in_cents, presence:true
   validate :validate_only_being_added_to_current_order, :on => :create
 
@@ -39,6 +40,7 @@ class Tip < ActiveRecord::Base
       errors.add(:order_id,"can only add a tip to a current order")
     end
   end
+
   def validate_presence_of_paid_order
     unless self.order.paid?
       errors.add(:order_id, "tip order must be :paid for :charged tips")

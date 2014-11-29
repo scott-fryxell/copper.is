@@ -1,4 +1,4 @@
-describe Authors::Flickr, :type => :model do
+describe Authorizer::Flickr, :type => :model do
 
   describe '#identity_from_url' do
 

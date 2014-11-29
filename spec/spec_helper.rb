@@ -62,7 +62,15 @@ RSpec.configure do |config|
   config.before :suite do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation, {:except => %w[roles]})
+
+    begin
+      DatabaseCleaner.start
+      FactoryGirl.lint
+    ensure
+      DatabaseCleaner.clean
+    end
   end
+
   config.before :each do
     ResqueSpec.reset!
     DatabaseCleaner.start

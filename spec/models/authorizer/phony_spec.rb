@@ -1,4 +1,4 @@
-describe Authors::Phony, :type => :model do
+describe Authorizer::Phony, :type => :model do
   subject(:author) {create!(:author_phony)}
 
   describe '#populate_uid_and_username!' do

@@ -1,6 +1,7 @@
-class Authors::Facebook < Author
+class Authorizer::Facebook < Author
+
   include Enqueueable
-  include Artist::Desirable::Facebook
+  include Message::Desirable::Facebook
 
   def self.identity_from_url url
     url = Author.parse_url url

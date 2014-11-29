@@ -1,6 +1,7 @@
-class Authors::Google < Author
+class Authorizer::Google < Author
+
   include Enqueueable
-  include Artist::Desirable::Google
+  include Message::Desirable::Google
 
   def url
     "https://plus.google.com/#{self.uid}"

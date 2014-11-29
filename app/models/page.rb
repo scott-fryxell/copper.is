@@ -4,11 +4,11 @@ class Page < ActiveRecord::Base
   has_many :checks, :through => :tips
 
   include Enqueueable
-  include Itemable
-  include Eventable
   include Historicle
+  include Eventable
+  include Itemable
+  include State::Ownable
   include URL::Learnable
-  include URL::Ownable
 
   scope :safe,         -> { where(nsfw:false) }
   scope :charged_tips, -> { joins(:tips).where('tips.paid_state=?', 'charged') }

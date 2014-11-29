@@ -1,4 +1,4 @@
-describe Authors::Soundcloud, :type => :model do
+describe Authorizer::Soundcloud, :type => :model do
 
   describe '#identity_from_url' do
 

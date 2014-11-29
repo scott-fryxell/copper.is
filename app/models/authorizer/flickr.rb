@@ -1,6 +1,7 @@
-class Authors::Flickr < Author
+class Authorizer::Flickr < Author
+
   include Enqueueable
-  include Artist::Desirable::Flickr
+  include Message::Desirable::Flickr
 
   def self.identity_from_url url
     user_name =  URI.parse(url).path.split('/')[2]

@@ -1,14 +1,14 @@
-module Fan
+module Message
 
-  module Billable
+  module Onboardable
 
     extend ActiveSupport::Concern
 
-    def send_paid_order_message card_number
+    def welcome_fan_to_the_service
       # TODO: send rails 4 email
     end
 
-    def send_card_expired_message
+    def recomend_some_stuff_to_tip
       # TODO: send rails 4 email
     end
 

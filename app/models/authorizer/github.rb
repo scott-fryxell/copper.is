@@ -1,6 +1,7 @@
-class Authors::Github < Author
+class Authorizer::Github < Author
+
   include Enqueueable
-  include Artist::Desirable::Github
+  include Message::Desirable::Github
 
   def self.identity_from_url url
     username = URI.parse(url).path.split('/')[1]

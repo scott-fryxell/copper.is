@@ -1,8 +1,8 @@
 describe User, :type => :model do
   subject(:me){create!(:user_with_facebook_author)}
   let(:her){create!(:user)}
-  
-  it "can be created with authorization" do
+
+  it '#create_from_authorizerx' do
     auth = OmniAuth.config.mock_auth[:facebook]
     User.create_from_authorizer auth
   end
@@ -47,7 +47,6 @@ describe User, :type => :model do
       end
     end
 
-
     describe 'with some royalties' do
       context "pending" do
         it "should have some authored pages"
@@ -84,7 +83,5 @@ describe User, :type => :model do
     end
 
   end
-
-
 
 end

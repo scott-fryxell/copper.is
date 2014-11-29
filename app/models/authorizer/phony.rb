@@ -1,6 +1,7 @@
-class Authors::Phony < Author
+class Authorizer::Phony < Author
+
   include Enqueueable
-  include Artist::Desirable::Phony
+  include Message::Desirable::Phony
 
   def self.identity_from_url url
     screen_name = URI.parse(url).path.gsub('/','')

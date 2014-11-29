@@ -1,8 +1,3 @@
-
-def mock_order
-  allow_any_instance_of(Order).to receive(:send_paid_order_message)
-end
-
 class OpenStruct
   def to_json(*args)
     table.to_json

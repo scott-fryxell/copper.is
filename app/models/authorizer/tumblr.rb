@@ -1,6 +1,7 @@
-class Authors::Tumblr < Author
+class Authorizer::Tumblr < Author
+
   include Enqueueable
-  include Artist::Desirable::Tumblr
+  include Message::Desirable::Tumblr
 
   def self.identity_from_url url
     uri = URI.parse(url)

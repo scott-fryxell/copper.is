@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   include Enqueueable
   include Historicle
-  include Fan::Onboardable
-  include Fan::Billable
+  include Message::Onboardable
 
   has_many :authors
   has_many :orders
@@ -116,6 +115,14 @@ class User < ActiveRecord::Base
   end
 
   def billable?
+    if stripe_id and email and can_give?
+      true
+    else
+      false
+    end
+  end
+
+  def payable?
     if stripe_id and email
       true
     else

@@ -1,6 +1,7 @@
-class Authors::Twitter < Author
+class Authorizer::Twitter < Author
+
   include Enqueueable
-  include Artist::Desirable::Twitter
+  include Message::Desirable::Twitter
 
   def self.identity_from_url url
 
