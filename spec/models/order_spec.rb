@@ -39,7 +39,6 @@ describe Order, :type => :model do
 
   describe '#charge' do
 
-
     context 'good CC info' do
       subject(:current) { create!(:order_billable) }
       subject(:unpaid) { create!(:order_unpaid) }
@@ -138,8 +137,17 @@ describe Order, :type => :model do
 
     context 'without tips' do
 
-      it 'should return zero' do
-        expect(subject.subtotal) == 0
+      it 'should return 0' do
+        expect(subject.subtotal).to eq(0)
+      end
+
+    end
+
+    context 'with tips' do
+      subject() {create!(:order_billable)}
+
+      it 'should return 500' do
+        expect(subject.subtotal).to eq(500)
       end
 
     end
@@ -150,12 +158,19 @@ describe Order, :type => :model do
 
     context 'without tips' do
 
-      it 'should return zero' do
-        expect(subject.subtotal_in_dollars) == 0
+      it 'should return 0.00' do
+        expect(subject.subtotal_in_dollars).to eq('0.00')
       end
 
     end
 
+    context 'with tips' do
+      subject() {create!(:order_billable)}
+      it 'should return 5.00' do
+        expect(subject.subtotal_in_dollars).to eq('5.00')
+      end
+
+    end
   end
 
   describe '#fees' do
@@ -163,7 +178,16 @@ describe Order, :type => :model do
     context 'without tips' do
 
       it 'should return zero' do
-        expect(subject.fees) == 0
+        expect(subject.fees).to eq(0)
+      end
+
+    end
+
+    context 'with tips' do
+
+      subject() {create!(:order_billable)}
+      it 'should return 50' do
+        expect(subject.fees).to eq(50)
       end
 
     end
@@ -173,20 +197,35 @@ describe Order, :type => :model do
 
     context 'without tips' do
 
-      it 'should return zero' do
-        expect(subject.fees_in_dollars) == 0
+      it 'should return 0.00' do
+        expect(subject.fees_in_dollars).to eq('0.00')
       end
 
     end
 
+    context 'without tips' do
+      subject() {create!(:order_billable)}
+      it 'should return 0.50' do
+        expect(subject.fees_in_dollars).to eq('0.50')
+      end
+
+    end
   end
 
   describe '#total' do
 
     context 'without tips' do
 
-      it 'should return zero' do
-        expect(subject.total) == 0
+      it 'should return 0' do
+        expect(subject.total).to eq(0)
+      end
+
+    end
+
+    context 'with tips' do
+      subject() {create!(:order_billable)}
+      it 'should return 550' do
+        expect(subject.total).to eq(550)
       end
 
     end
@@ -197,11 +236,20 @@ describe Order, :type => :model do
 
     context 'without tips' do
 
-      it 'should return zero' do
-        expect(subject.total_in_dollars) == 0
+      it 'should return 0.00' do
+        expect(subject.total_in_dollars).to eq('0.00')
       end
 
     end
+
+    context 'with tips' do
+
+      it 'should return 5.50' do
+        expect(subject.total_in_dollars) == '5.50'
+      end
+
+    end
+
 
   end
 
