@@ -79,9 +79,7 @@ describe Order, :type => :model do
       it ':unpaid => :denied' do
 
         allow(Stripe::Charge).to receive(:create).and_raise(
-          Stripe::CardError.new('error[:message]', 'error[:param]', 402,
-                                "foobar", "baz", Object.new)
-                                )
+          Stripe::CardError.new(':message', ':param', 'declined',  402, nil,nil) )
 
         expect(subject.unpaid?).to be_truthy
         expect{ subject.charge! }.to raise_error(Stripe::CardError)
@@ -89,6 +87,26 @@ describe Order, :type => :model do
         expect(subject.denied?).to be_truthy
 
       end
+
+    end
+
+    context 'expired CC' do
+
+      subject() { build!(:order_unpaid) }
+
+      it ':unpaid => :denied' do
+
+        allow(Stripe::Charge).to receive(:create).and_raise(
+        Stripe::CardError.new( ':message', ':param', 'expired_card', 402, nil,nil) )
+
+        expect(subject.unpaid?).to be_truthy
+        expect{ subject.charge! }.to raise_error(Stripe::CardError)
+        subject.reload
+        expect(subject.denied?).to be_truthy
+        expect(Order).to have_queued(subject.id, :send_card_expired_message)
+
+      end
+
 
     end
 

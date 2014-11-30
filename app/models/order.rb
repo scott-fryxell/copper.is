@@ -63,7 +63,7 @@ class Order < ActiveRecord::Base
       rescue Stripe::CardError => e
         decline!
         if e.code == 'expired_card'
-          user.send_card_expired_messagef
+          Resque.enqueue Order, id, :send_card_expired_message
         end
 
         raise e

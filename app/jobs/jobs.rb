@@ -4,21 +4,20 @@
 # billing fans for their tips
 # finding authorse to invite to the service
 # paying authors that have proviced their bank info
-
-class PayArtistsJob
+class CreateRoyaltiesJob
   @queue = :normal
   def self.perform
-    User.select(:id).find_each do |user|
-      Resque.enqueue user.class, user.id, :try_to_create_check!
+    User.select(:id).find_each do |id|
+      Resque.enqueue User, id, :try_to_create_check!
     end
   end
 end
 
-class EarnedChecksJob
+class PayRoyaltiesJob
   @queue = :normal
   def self.perform
-    Check.earned.select(:id).find_each do |check|
-      # Resque.enqueue check.class, check.id, :message_author!
+    Check.earned.pluck(:id).find_each do |id|
+      Resque.enqueue Check, id, :try_to_deposit
     end
   end
 end
@@ -26,8 +25,8 @@ end
 class InviteAuthorsJoin
   @queue = :normal
   def self.perform
-    Author.wanted.select(:id).find_each do |wanted|
-      Resque.enqueue wanted.class, wanted.id, :message_wanted!
+    Author.wanted.pluck(:id).find_each do |id|
+      Resque.enqueue Author, id, :message_wanted!
     end
   end
 end
@@ -35,8 +34,8 @@ end
 class StrangerAuthorsJob
   @queue = :normal
   def self.perform
-    Author.strangers.select(:id).find_each do |non_user|
-      Resque.enqueue non_user.class, non_user.id, :try_to_add_to_wanted_list!
+    Author.strangers.pluck(:id).find_each do |id|
+      Resque.enqueue Author, id, :try_to_add_to_wanted_list!
     end
   end
 end

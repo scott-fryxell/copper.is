@@ -97,7 +97,7 @@ class User < ActiveRecord::Base
     self.orders.current.first or self.orders.create
   end
 
-  def create_check!
+  def try_to_create_check!
     the_tips = []
     self.authors.each do |ident|
       the_tips += ident.tips.charged.all
@@ -113,22 +113,5 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-  def billable?
-    if stripe_id and email and can_give?
-      true
-    else
-      false
-    end
-  end
-
-  def payable?
-    if stripe_id and email
-      true
-    else
-      false
-    end
-  end
-
 
 end
