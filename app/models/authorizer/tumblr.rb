@@ -25,7 +25,7 @@ class Authorizer::Tumblr < Author
   end
 
   def url
-    "#{self.uid}.#{self.provider}.com"
+    "#{self.username}.#{self.provider}.com"
   end
 
 end

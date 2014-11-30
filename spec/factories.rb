@@ -109,10 +109,14 @@ FactoryGirl.define do
       identity_state 'known'
     end
 
+    trait :brokenbydawn do
+      username 'brokenbydawn'
+    end
+
     factory :author_youtube,    traits: [:youtube, :stranger],    class: 'Authorizer::Youtube'
     factory :author_soundcloud, traits: [:soundcloud, :stranger], class: 'Authorizer::Soundcloud'
     factory :author_github,     traits: [:github, :stranger],     class: 'Authorizer::Github'
-    factory :author_tumblr,     traits: [:tumblr, :stranger],     class: 'Authorizer::Tumblr'
+    factory :author_tumblr,     traits: [:tumblr, :stranger, :brokenbydawn],     class: 'Authorizer::Tumblr'
     factory :author_flickr,     traits: [:flickr, :stranger],     class: 'Authorizer::Flickr'
     factory :author_vimeo,      traits: [:vimeo, :stranger],      class: 'Authorizer::Vimeo'
     factory :author_google,     traits: [:google, :stranger],     class: 'Authorizer::Google'

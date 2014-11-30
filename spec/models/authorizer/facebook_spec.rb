@@ -31,6 +31,12 @@ describe Authorizer::Facebook, :type => :model do
         expect(Author.identity_from_url("http://facebook.com/")).to be_nil
       end
 
+
+      it "facebook.com" do
+        expect(Authorizer::Facebook.identity_from_url("http://facebook.com/")).to be_nil
+      end
+
+
       it "www.facebook.com" do
         expect(Author.identity_from_url("http://www.facebook.com/")).to be_nil
       end

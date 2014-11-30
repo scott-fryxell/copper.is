@@ -1,5 +1,13 @@
 describe Authorizer::Tumblr, :type => :model do
 
+  describe '#url' do
+    subject() {build!(:author_tumblr)}
+
+    it 'returns staff.tumblr.com' do
+      expect(subject.url).to eq('brokenbydawn.tumblr.com')
+    end
+  end
+
   describe '#identity_from_url' do
 
     context "identifiable " do

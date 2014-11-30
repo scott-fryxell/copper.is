@@ -1,21 +1,36 @@
 describe Authorizer::Phony, :type => :model do
-  subject(:author) {create!(:author_phony)}
+  subject {build!(:author_phony)}
 
   describe '#populate_uid_and_username!' do
-    it 'finds the uid if username is set' do
-      author.uid = nil
-      author.username = '1'
+    context 'has username' do
+
+      it 'finds the uid' do
+        subject.uid = nil
+        subject.username = '1'
+        subject.populate_uid_and_username!
+        expect(subject.uid).to eq('1')
+      end
+
     end
 
-    it 'finds the username if uid is set' do
-      author.uid = '1'
-      author.username = nil
+    context 'has uid' do
+
+      it 'finds the username' do
+        subject.uid = '1'
+        subject.username = nil
+        subject.populate_uid_and_username!
+        expect(subject.username).to eq('1')
+      end
+
     end
 
-    after do
-      author.populate_uid_and_username!
-      expect(author.username).to eq('1')
-      expect(author.uid).to eq('1')
+    context 'without uid or username' do
+      it 'throws an exception' do
+        subject.uid = nil
+        subject.username = nil
+        expect{subject.populate_uid_and_username!}.to raise_error(RuntimeError)
+      end
     end
+
   end
 end

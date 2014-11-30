@@ -4,7 +4,7 @@ describe Author, :type => :model do
   subject(:known_author) {create!(:author_phony, identity_state: :known)}
   subject(:user) {create!(:user)}
 
-  it "a page is created when an author joins" do
+  it '#create_page_for_author' do
 
     author.user = user
     author.join!
@@ -25,8 +25,21 @@ describe Author, :type => :model do
 
   end
 
-  it "can ask a wanted author to join" do
+  it '#invite_to_service' do
     author.invite_to_service
   end
+
+  describe '#authorzer_name' do
+
+    context 'malformed url' do
+
+      it 'should return nil' do
+        expect(Author.authorizer_name('%#sk4666')).to be_nil
+      end
+
+    end
+
+  end
+
 
 end
