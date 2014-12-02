@@ -1,9 +1,3 @@
-def me_setup
-  @me = create!(:user)
-  @page1 = create!(:page,author_state:'adopted')
-  @my_tip = @me.tip(url:@page1.url)
-end
-
 VCR.configure do |c|
   c.allow_http_connections_when_no_cassette = true
   c.ignore_localhost = true

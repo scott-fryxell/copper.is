@@ -1,6 +1,6 @@
-require 'spec_helper'
-
 describe TipsController, :type => :controller do
+  subject {create!(:tip)}
+
   describe 'as Guest' do
 
     describe 'new' do
@@ -26,8 +26,7 @@ describe TipsController, :type => :controller do
     describe 'update' do
       describe 'PUT /tips/:id' do
         it 'respond with not authorized' do
-          me_setup
-          put :update, id:@my_tip.id, tip:{url:'laskdjf'}
+          put :update, id:subject.id, tip:{url:'laskdjf'}
           expect(response.status).to eq(401)
         end
       end
@@ -36,9 +35,9 @@ describe TipsController, :type => :controller do
     describe 'destroy' do
       describe 'DELETE /tips/:id' do
         it 'should respond with not authorized' do
-          me_setup
+          subject.valid?
           expect do
-            delete :destroy, id:@my_tip.id
+            delete :destroy, id:subject.id
             expect(response.status).to eq(401)
           end.not_to change(Tip,:count)
         end

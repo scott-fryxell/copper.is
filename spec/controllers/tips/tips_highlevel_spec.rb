@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe TipsController, :type => :controller do
   describe 'high level'do
     before :each do

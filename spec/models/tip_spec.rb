@@ -1,70 +1,79 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-
 describe Tip, :type => :model do
 
-  subject(:tip) { create!(:tip) }
+  subject { build!(:tip) }
 
-  before :each do
-    me_setup
+  describe '#save' do
+
+    context 'with a order' do
+
+      it "should save" do
+        expect(subject.save).to be_truthy
+        expect(subject.order).not_to be_nil
+        expect(subject.amount_in_cents).to eq 100
+      end
+
+    end
+
+    context 'without an order' do
+
+      it "should not save" do
+        subject.order = build!(:order_paid)
+        expect(subject.save).to be_falsey
+      end
+
+    end
+
   end
 
-  context do
-    it "should always be associated with a tip order" do
-      @my_tip.order = nil
-      expect(@my_tip.save).to be_falsey
-    end
+  it '#amount_in_cents' do
+    expect(subject.amount_in_cents).to eq 100
+  end
 
-    it "should save" do
-      expect(@my_tip.save).to be_truthy
-    end
+  it '#thumbnail' do
+    expect(subject.thumbnail).to eq 'http://example.com/image.png'
+  end
 
-    it "should save correctly with defaults set"  do
-      expect(@my_tip.save).to be_truthy
-      expect(@my_tip.order).not_to be_nil
-    end
+  it '#title' do
+    expect(subject.title).to eq 'Page Title'
+  end
 
-    after do
-      @my_tip.order = @me.current_order
+  it '#url' do
+    expect(subject.url).to eq URI.parse(subject.page.url)
+  end
+
+  it '#amount_in_dollars' do
+    expect(subject.amount_in_dollars).to eq "1.00"
+  end
+
+  describe '#destroy' do
+    context 'promised'do
+      it 'should succeed' do
+        expect(subject.save).to be_truthy
+
+        expect(subject.destroy).to be_truthy
+      end
     end
   end
 
-  context 'tip info' do
-
-    it 'have an amount in cents' do
-      expect(@my_tip.amount_in_cents).to eq 50
-    end
-
-    it 'should have a thumbnail image' do
-      @my_tip.page.thumbnail_url = 'some_image.jpg'
-      expect(@my_tip.thumbnail).to eq 'some_image.jpg'
-    end
-
-    it 'should have a title' do
-      @my_tip.page.title = 'Huge whopper found!'
-      expect(@my_tip.title).to eq 'Huge whopper found!'
-    end
-
-    it 'should have a url' do
-      @my_tip.page.url = 'http://whopper.net/huge'
-      expect(@my_tip.url).to eq URI.parse('http://whopper.net/huge')
-    end
-
-    it 'should have an amount in dollard' do
-      expect(@my_tip.amount_in_dollars).to eq "0.50"
-    end
+  describe '#validate_presence_of_paid_order' do
   end
 
+  describe '#validate_presence_of_check' do
+
+  end
 
   it 'should not allow a tip of 0 cents' do
-    @my_tip = Tip.new(:amount_in_cents => 0)
-    @my_tip.order = create!(:order_unpaid)
-    @my_tip.save
-    expect(@my_tip.valid?).to be_falsey
+    tip = Tip.new(:amount_in_cents => 0)
+    subject.order = create!(:order_unpaid)
+    # subject.save
+    expect(subject.valid?).to be_falsey
   end
 
   it 'should not allow a tip of -1 cents' do
-    @my_tip = Tip.new(:amount_in_cents => -1)
-    @my_tip.order = create!(:order_unpaid)
-    expect(@my_tip.save).to be_falsey
+    tip = Tip.new(:amount_in_cents => -1)
+
+    subject.order = create!(:order_unpaid)
+
+    expect(subject.valid?).to be_falsey
   end
 end
