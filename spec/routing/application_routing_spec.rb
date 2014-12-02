@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe ApplicationController, :type => :routing do
   describe "routing" do
     it "routes to #appcache" do

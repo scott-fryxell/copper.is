@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe SessionsController, :type => :routing do
   describe "routing" do
 

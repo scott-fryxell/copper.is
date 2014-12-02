@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe TipsController, :type => :routing do
   describe "routing" do
 

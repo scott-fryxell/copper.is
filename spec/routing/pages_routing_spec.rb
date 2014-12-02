@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe PagesController, :type => :routing do
 
   describe "routing" do

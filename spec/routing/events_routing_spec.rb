@@ -1,7 +1,4 @@
-require "spec_helper"
-
 describe EventsController, :type => :routing do
-
 
   describe "routing" do
 

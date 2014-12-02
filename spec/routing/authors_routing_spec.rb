@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe AuthorsController, :type => :routing do
   describe "routing" do
 

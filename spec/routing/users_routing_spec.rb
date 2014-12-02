@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe UsersController, :type => :routing do
   describe "routing" do
 
