@@ -148,6 +148,12 @@ module State
 
     end
 
+    module ClassMethods
+      def adoption_rate
+        (Float(Page.adopted.count)/Float(Page.all.count - Page.dead.count) * 100).round
+      end
+    end
+
   private
 
     def log_adopted
