@@ -1,5 +1,3 @@
-require "spec_helper"
-
 describe AdminController, :type => :routing do
   describe "routing" do
 
