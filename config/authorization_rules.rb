@@ -16,14 +16,9 @@ authorization do
   role :fan do
     includes :guest
     has_permission_on :pages,       to: :read
-    has_permission_on :authors,     to: [:settings,
-                                         :claim_facebook_pages,
-                                         :authorize_facebook_privelege,
-                                         :can_post_to_facebook,
-                                         :can_view_facebook_pages
-                                       ]
+    has_permission_on :authors,     to: [:settings]
     has_permission_on :users,       to: [:settings, :update]
-    has_permission_on :tips,        to: [:create,:received,:given]
+    has_permission_on :tips,        to: [:create, :delete, :received, :given]
     has_permission_on :sessions,    to: :delete
     has_permission_on :tips,        to: [:update, :destroy] do
       if_attribute user: is { user }
