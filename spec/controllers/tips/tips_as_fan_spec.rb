@@ -2,7 +2,7 @@ describe TipsController, :type => :controller do
   let(:me) {create!(:user_can_give)}
   let(:page) {create!(:adopted_page)}
   let(:her) {create!(:user_can_give)}
-  let(:kinged_tip) {create!(:tip_kinged)}
+  let(:kinged_tip) {create!(:tip_kinged_unvalidated)}
 
   describe 'as Fan' do
 
@@ -86,7 +86,7 @@ describe TipsController, :type => :controller do
         end
 
         it '403 a :kinged tip' do
-          kinged_tip.reload
+
           expect(kinged_tip.kinged?).to be_truthy
           delete_with me, :destroy, id:kinged_tip.id
           expect(Tip.find(kinged_tip.id)).not_to be_nil

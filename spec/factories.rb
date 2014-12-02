@@ -55,7 +55,7 @@ FactoryGirl.define do
   factory :author do
     username { FactoryGirl.generate(:username) }
     uid { FactoryGirl.generate(:uid) }
-    provider:'phony'
+    provider 'phony'
 
     trait :phony do
       provider 'phony'
@@ -126,8 +126,10 @@ FactoryGirl.define do
   end
 
   factory :page do
+    title 'Page Title'
+    thumbnail_url 'http://example.com/image.png'
 
-    url { FactoryGirl.generate(:twitter_url_with_path) }
+    url 'http://example.com/artist'
 
     trait :adopted do
       author_state 'adopted'
@@ -161,26 +163,21 @@ FactoryGirl.define do
       association :order, factory: :order
     end
 
-    factory :tip_charged do
-      to_create {|instance| instance.save(validate: false) }
-      charged
-      association :order, factory: :order_paid
-    end
-
-    factory :tip_kinged do
+    factory :tip_kinged_unvalidated do
       to_create {|instance| instance.save(validate: false) }
       kinged
       association :order, factory: :order_paid
       association :check, factory: :check_cashed
-   end
-
+    end
   end
+
 
   factory :order do
 
     transient do
       tips_count 5
     end
+
     order_state 'current'
     association :user
 
