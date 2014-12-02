@@ -1,15 +1,12 @@
 describe PagesController, :type => :controller do
-  before :each do
-    me_setup
-    request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
-  end
+  subject {create!(:page)}
 
   it 'displays a single page' do
-    get :show, id:@page1.id
+    get :show, id:subject.id
   end
 
   it 'has an appcache ' do
-    get :member_appcache, id:@page1.id
+    get :member_appcache, id:subject.id
   end
 
   it 'has an collection appcache ' do
