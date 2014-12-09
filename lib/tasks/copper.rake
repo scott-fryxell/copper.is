@@ -11,7 +11,7 @@ namespace :copper do
 
     task :adopt => :environment do
       Page.orphaned.each do |page|
-        Resque.enqueue page.class, page.id, :discover_author!
+        Resque.enqueue page.class, page.id, :discover_author_from_url!
       end
     end
 

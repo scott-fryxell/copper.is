@@ -22,7 +22,7 @@ describe TipsController, :type => :controller do
       post_with @me, :create, tip:{url:'https://twitter.com/ableton'}
       @page = Page.find_by(url:'https://twitter.com/ableton')
 
-      expect(Page).to have_queued(@page.id, :discover_author!).once
+      expect(Page).to have_queued(@page.id, :discover_author_from_url!).once
       expect(Page).to have_queued(@page.id, :learn).once
 
     end
@@ -37,7 +37,7 @@ describe TipsController, :type => :controller do
       @her_author = create!(:author_phony)
       post_with @me, :create, tip:{url:"http://example.com/#{@her_author.username}"}
       @page = Page.find_by(url:"http://example.com/#{@her_author.username}")
-      @page.discover_author!
+      @page.discover_author_from_url!
       expect(@page.author).to eq(@her_author)
     end
   end
