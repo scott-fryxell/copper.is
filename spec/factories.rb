@@ -126,16 +126,37 @@ FactoryGirl.define do
   end
 
   factory :page do
+
     title 'Page Title'
     thumbnail_url 'http://example.com/image.png'
 
-    url 'http://example.com/artist'
+    url 'http://example.com/brokenbydawn'
 
     trait :adopted do
       author_state 'adopted'
     end
 
-    factory :adopted_page, traits:[:adopted]
+    trait :fostered do
+      author_state 'fostered'
+    end
+
+    trait :orphaned do
+      author_state 'orphaned'
+    end
+
+    trait :homeless do
+      author_state 'homeless'
+    end
+
+    trait :dead do
+      author_state 'dead'
+    end
+
+    factory :adopted,  traits:[:adopted]
+    factory :orphaned, traits:[:orphaned]
+    factory :fostered, traits:[:fostered]
+    factory :homeless, traits:[:homeless]
+    factory :dead,     traits:[:dead]
 
   end
 
@@ -154,8 +175,8 @@ FactoryGirl.define do
       paid_state 'charged'
     end
 
-    trait :kinged do
-      paid_state 'kinged'
+    trait :given do
+      paid_state 'given'
     end
 
     factory :tip_promised do
@@ -163,14 +184,14 @@ FactoryGirl.define do
       association :order, factory: :order
     end
 
-    factory :tip_kinged_unvalidated do
+    factory :tip_given_unvalidated do
       to_create {|instance| instance.save(validate: false) }
-      kinged
+      given
       association :order, factory: :order_paid
       association :check, factory: :check_cashed
     end
-  end
 
+  end
 
   factory :order do
 
@@ -178,7 +199,6 @@ FactoryGirl.define do
       tips_count 5
     end
 
-    order_state 'current'
     association :user
 
     trait :current do
@@ -187,31 +207,34 @@ FactoryGirl.define do
 
     trait :unpaid do
       order_state 'unpaid'
-      association :user, factory: :user_can_give, strategy: :build
     end
 
     trait :paid do
       order_state 'paid'
-      association :user, factory: :user_can_give, strategy: :build
     end
 
     trait :denied do
       order_state 'denied'
+    end
+
+    trait :can_give do
       association :user, factory: :user_can_give, strategy: :build
     end
 
     factory :order_billable do
       current
-      association :user, factory: :user_can_give, strategy: :build
+      can_give
+
       after(:create) do |order, evaluator|
         create_list(:tip, evaluator.tips_count, order:order)
       end
 
     end
 
-    factory :order_unpaid,  traits: [:unpaid]
-    factory :order_paid,    traits: [:paid]
-    factory :order_denied,  traits: [:denied]
+    factory :order_current, traits: [:current, :can_give]
+    factory :order_unpaid,  traits: [:unpaid, :can_give]
+    factory :order_paid,    traits: [:paid, :can_give]
+    factory :order_denied,  traits: [:denied, :can_give]
 
   end
 
@@ -223,8 +246,8 @@ FactoryGirl.define do
       check_state 'earned'
     end
 
-    trait :paid do
-      check_state 'paid'
+    trait :deposited do
+      check_state 'deposited'
     end
 
     trait :cashed do
@@ -232,7 +255,7 @@ FactoryGirl.define do
     end
 
     factory :check_earned, traits: [:earned]
-    factory :check_paid, traits: [:paid]
+    factory :check_deposited, traits: [:deposited]
     factory :check_cashed, traits: [:cashed]
 
   end

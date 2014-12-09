@@ -1,4 +1,5 @@
 class Page < ActiveRecord::Base
+
   belongs_to :author
   has_many :tips
   has_many :checks, :through => :tips

@@ -3,6 +3,7 @@ module State
     extend ActiveSupport::Concern
 
     included do
+
       validates :order, presence:true
       validate :validate_only_being_added_to_current_order, :on => :create
 
@@ -11,27 +12,26 @@ module State
         raise CantDestroyException unless tip.promised?
       end
 
-
-      scope :promised,   -> { where(paid_state:'promised') }
-      scope :charged,    -> { where(paid_state:'charged') }
-      scope :kinged,     -> { where(paid_state:'kinged').readonly }
-      scope :for_author, -> { where(paid_state:['kinged','charged']).readonly }
+      scope :promised, -> { where(paid_state:'promised') }
+      scope :paid,     -> { where(paid_state:'paid') }
+      scope :given,    -> { where(paid_state:'given').readonly }
+      scope :genuine,  -> { where(paid_state:['paid','given']).readonly }
 
       state_machine :paid_state, :initial => :promised do
 
         event :pay do
-          transition :promised => :charged
+          transition :promised => :paid
         end
 
         event :claim do
-          transition :charged => :kinged
+          transition :paid => :given
         end
 
-        state :charged, :kinged do
+        state :paid, :given do
           validate :validate_presence_of_paid_order
         end
 
-        state :kinged do
+        state :given do
           validate :validate_presence_of_check
         end
 
@@ -57,6 +57,6 @@ module State
       end
     end
 
-
   end
+
 end

@@ -55,11 +55,11 @@ class User < ActiveRecord::Base
   end
 
   def paid_royalties
-    Tip.kinged.where(page_id:authored_pages.pluck(:id))
+    Tip.given.where(page_id:authored_pages.pluck(:id))
   end
 
   def pending_royalties
-    Tip.charged.where(page_id:authored_pages.pluck(:id))
+    Tip.paid.where(page_id:authored_pages.pluck(:id))
   end
 
   def royalties
