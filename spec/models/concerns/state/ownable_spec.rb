@@ -1,86 +1,121 @@
 shared_examples_for "State::Ownable" do
 
-  describe '#discover_author!' do
+  describe 'ownable' do
 
-    after do
-      page.discover_author!
-      expect(page.adopted?) == true
-      expect(page.author).not_to be_nil
-      expect(Author.count).to == 1
-    end
+    context 'adopded' do
 
-  end
+      subject {create!(:adopted)}
 
-  describe '#discover_author_from_page_links!' do
-    after do
-      page.reject!
-      expect(page.fostered?) == true
-      page.discover_author_from_page_links!
-      expect(page.adopted?) == true
-      expect(page.author).not_to be_nil
-      expect(Author.count).to eq(1)
-      expect(Page).to have_queued(page.id, :discover_author_from_page_links!)
-      expect(Page).to have_queue_size_of(1)
-    end
+      it '#reject!' do
 
-    context "wordpress" do
-      it "for www.missionmission.org", :vcr do
-        page.url = "http://www.missionmission.org/"
+        subject.reject!
+        expect(subject.new_record?).to be_falsey
+        expect(subject.orphaned?).to be_truthy
+        expect(Page).to have_queued(subject.id, :discover_author_from_url!).once
+        expect(Page).to have_queue_size_of(1)
+
+      end
+
+      it '#adopt!' do
+
+        subject.adopt!
+        expect(subject.adopted?).to be_truthy
+        expect(Page).to have_queued(subject.id, :learn).once
+        expect(Page).to have_queue_size_of(1)
+
       end
     end
 
-    context "/test" do
-      it "for a <link rel=author >", :vcr do
-        page.url = "#{Copper::Application.config.hostname}/test"
+    context 'orphaned' do
+
+      subject {build!(:orphaned)}
+
+      before do
+        expect(subject.orphaned?).to be_truthy
       end
+
+      describe '#discover_author_from_url!' do
+
+        it 'http://example.com/brokenbydawn' do
+          subject.discover_author_from_url!
+          expect(subject.adopted?).to be_truthy
+          expect(subject.author).not_to be_nil
+          expect(Author.count).to eq(1)
+        end
+
+      end
+
+      it '#reject!' do
+        subject.reject!
+        expect(subject.fostered?).to be_truthy
+        expect(Page).to have_queued(subject.id, :discover_author_from_page!).once
+        expect(Page).to have_queue_size_of(1)
+      end
+
+      it '#adopt!'
+
     end
 
-  end
+    context 'fostered' do
+      subject {build!(:fostered)}
 
-  describe '#reject!' do
+      it '#reject' do
+        subject.reject!
+        expect(subject.homeless?).to be_truthy
 
-    it "adopted => orphaned" do
-      page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:"adopted")
-      expect(page.adopted?) == true
-      page.reject!
-      expect(page.orphaned?) == true
-      expect(Page).to have_queued(page.id, :discover_author!).once
-      expect(Page).to have_queue_size_of(1)
+        expect(Page).to have_queued(subject.id, :spider_page_for_leads)
+        expect(Page).to have_queue_size_of(1)
+      end
+
+      describe '#discover_author_from_page!' do
+
+
+        context 'undiscoverable' do
+          it 'Mechanize::ResponseCodeError'
+          it 'Net::HTTP::Persistent::Error'
+        end
+
+      end
+
+      describe '#discover_author_from_link_elements!' do
+        context "/test" do
+          it "author for <link rel=author >", :vcr do
+            subject.url = "#{Copper::Application.config.hostname}/test"
+          end
+
+          it "author from a elements", :vcr do
+            subject.url = "#{Copper::Application.config.hostname}/test"
+          end
+        end
+      end
+      describe '#discover_author_from_wordpress_blog!' do
+
+        it "for www.missionmission.org", :vcr do
+          subject.url = "http://www.missionmission.org/"
+        end
+
+      end
+
+      it '#discover_author_from_a_elements!'
+
     end
 
-    it 'orpaned => fostered' do
-      expect(page.orphaned?) == true
-      page.reject!
-      expect(page.fostered?) == true
-      expect(Page).to have_queued(page.id, :discover_author_from_page_links!).once
-      expect(Page).to have_queue_size_of(1)
+    context 'homeless' do
+
+      subject {build!(:homeless)}
+
+      it '#reject' do
+        subject.reject!
+        expect(subject.dead?).to be_truthy
+        expect(Page).to have_queued(subject.id, :refund_paid_tips!).once
+        expect(Page).to have_queue_size_of(1)
+      end
+
+      it '#adopt'
     end
 
-    it 'fostered => manual'
+    context 'dead'
 
-    it ":manual => :dead" do
-      page = create!(:page, url:"http://ruby-doc.org/", author_state:"manual")
-      expect(page.manual?) == true
-      page.reject!
-      expect(page.dead?) == true
-      expect(Page).to have_queue_size_of(1)
-    end
-
-  end
-
-  describe '#adopt!' do
-    it ":orphaned => :adopted"
-    it ":fostered => :adopted"
-    it ":manual => :adopted"
-
-    it ":adopted => :adopted" do
-      page = create!(:page, url:"https://www.facebook.com/scott.fryxell", author_state:"adopted")
-      expect(page.adopted?) == true
-      page.adopt!
-      expect(page.adopted?) == true
-      expect(Page).to have_queued(page.id, :learn)
-      expect(Page).to have_queue_size_of(1)
-    end
   end
 
 end

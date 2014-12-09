@@ -44,7 +44,7 @@ describe Order, :type => :model do
       subject(:unpaid) { create!(:order_unpaid) }
       subject(:denied) { create!(:order_denied) }
 
-      it 'current = > paid' do
+      it 'current => unpaid' do
 
         expect(current.billable?).to be_truthy
         current.rotate!

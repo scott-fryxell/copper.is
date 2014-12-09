@@ -1,28 +1,28 @@
 describe Page, :type => :model do
 
-  subject(:page) {build!(:page)}
+  subject {build!(:page)}
 
   describe '#save' do
     before(:each) do
-      page.url = 'http://example.com/path1'
+      subject.url = 'http://example.com/path1'
     end
 
     it "should save with a valid url" do
-      expect(page.save).to be_truthy
+      expect(subject.save).to be_truthy
     end
 
     it "should not save with an invalid url" do
-      page.url = '666'
-      expect(page.save).to be_falsey
+      subject.url = '666'
+      expect(subject.save).to be_falsey
     end
   end
 
   it '#create' do
-    page = create!(:page, url:"https://www.facebook.com/scott.fryxell")
-    expect(Page).to have_queued(page.id, :learn).once
-    expect(Page).to have_queued(page.id, :discover_author!).once
+    subject.save
+    expect(Page).to have_queued(subject.id, :learn).once
+    expect(Page).to have_queued(subject.id, :discover_author_from_url!).once
     expect(Page).to have_queue_size_of(2)
-    expect(page.orphaned?) == true
+    expect(subject.orphaned?) == true
   end
 
   it_behaves_like 'State::Ownable'
