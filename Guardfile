@@ -1,14 +1,14 @@
-# guard 'process', name:'worker', command:'env TERM_CHILD=1 COUNT=1 bundle exec rake resque:work', stop_signal:'KILL' do
-#   watch('config/application.rb')
-#   watch('config/environment.rb')
-#   watch('config/authorization_rules.rb')
-#   watch(%r{^config/environments/.+\.rb})
-#   watch(%r{^config/initializers/.+\.rb})
-#   watch('/app/models/**/*.rb')
-#   watch('/app/models/*.rb')
-#   watch('/app/jobs/*.rb')
-#   watch('/lib/**/*.rb')
-# end
+guard 'process', name:'worker', command:'env TERM_CHILD=1 COUNT=1 bundle exec rake resque:work', stop_signal:'KILL' do
+  watch('config/application.rb')
+  watch('config/environment.rb')
+  watch('config/authorization_rules.rb')
+  watch(%r{^config/environments/.+\.rb})
+  watch(%r{^config/initializers/.+\.rb})
+  watch('/app/models/**/*.rb')
+  watch('/app/models/*.rb')
+  watch('/app/jobs/*.rb')
+  watch('/lib/**/*.rb')
+end
 
 guard 'process', name:'web', command:'bundle exec rails s puma', stop_signal:'KILL' do
 # guard :shell, name:'restarter', command:'pumactl phased-restart --pid /usr/local/var/puma.pid' do
