@@ -81,7 +81,7 @@ module Message
     module Flickr
 
       def invite_to_service
-        # TODO: invite a vimeo user to the service
+        # TODO: invite a flickr user to the service
       end
 
     end
