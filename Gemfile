@@ -68,6 +68,7 @@ group :test do
   gem 'hashugar'
   gem 'vcr'
   gem 'webmock'
+  gem 'reek'
 end
 
 group :development, :test do

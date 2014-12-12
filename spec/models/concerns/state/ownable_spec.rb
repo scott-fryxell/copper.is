@@ -1,6 +1,17 @@
 shared_examples_for "State::Ownable" do
 
+
   describe 'ownable' do
+
+    describe '#adoption_rate' do
+      subject {create!(:adopted)}
+
+      it "/test", :vcr do
+        subject.save!
+        expect(Page.adoption_rate).to eq(100)
+      end
+
+    end
 
     context 'adopded' do
 
@@ -71,32 +82,57 @@ shared_examples_for "State::Ownable" do
 
 
         context 'undiscoverable' do
-          it 'Mechanize::ResponseCodeError'
+          it 'Mechanize::ResponseCodeError', :vcr do
+            expect(subject.discover_author_from_page!)
+            expect(subject.dead?).to be_truthy
+            expect(subject.author).to be_nil
+          end
+
           it 'Net::HTTP::Persistent::Error'
+
+          it 'http://fasterlighterbetter.com/', :vcr do
+            subject.url = 'http://fasterlighterbetter.com/'
+            subject.discover_author_from_page!
+            expect(subject.author).to be_nil
+          end
+
         end
 
       end
 
       describe '#discover_author_from_link_elements!' do
+
         context "/test" do
           it "author for <link rel=author >", :vcr do
-            subject.url = "#{Copper::Application.config.hostname}/test"
-          end
-
-          it "author from a elements", :vcr do
-            subject.url = "#{Copper::Application.config.hostname}/test"
+            page = subject.spider.get "#{Copper::Application.config.hostname}/test"
+            subject.discover_author_from_link_elements! page
+            expect(subject.author).to_not be_nil
           end
         end
+
       end
+
       describe '#discover_author_from_wordpress_blog!' do
 
         it "for www.missionmission.org", :vcr do
-          subject.url = "http://www.missionmission.org/"
+          page = subject.spider.get ('http://www.missionmission.org/')
+          subject.discover_author_from_wordpress_blog! page
+          expect(subject.author).to_not be_nil
         end
 
       end
 
-      it '#discover_author_from_a_elements!'
+      describe '#discover_author_from_a_elements!' do
+        context '/test' do
+          it "author from a elements", :vcr do
+            page = subject.spider.get "#{Copper::Application.config.hostname}/test"
+
+            subject.discover_author_from_a_elements! page
+            expect(subject.author).to_not be_nil
+
+          end
+        end
+      end
 
     end
 
