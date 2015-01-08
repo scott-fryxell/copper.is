@@ -5,7 +5,7 @@ class @Endless
     @page = 1
     @check = false
     @height = $('body > main').height()
-    # todo add a check for current scroll down the page and a distance gate
+    # TODO: add a check for current scroll down the page and a distance gate
     # that will need to be triggerd before another endless attempt is made
     # do not retrigger endless if the height hasn't changed
     $('input[type=range].endless').change ->

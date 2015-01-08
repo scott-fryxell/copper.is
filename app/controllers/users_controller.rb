@@ -1,20 +1,15 @@
 class UsersController < ApplicationController
 
   def settings
-  end
-
-  def tips_recieved
-  end
-
-  def tips_given
+    head :ok
   end
 
   def update
     head :ok
   end
 
-  # profile page
   def show
+    head :ok
   end
 
 end

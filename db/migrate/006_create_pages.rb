@@ -2,9 +2,12 @@ class CreatePages < ActiveRecord::Migration
   def change
     create_table :pages do |t|
       t.string  :title
-      t.string  :url,          :null => false
+      t.text    :description
+      t.text    :thumbnail_url
+      t.text    :url,          :null => false
       t.string  :author_state
-      t.references :identity
+      t.boolean :nsfw, default:false
+      t.references :author
       t.timestamps
     end
     add_index :pages, :url

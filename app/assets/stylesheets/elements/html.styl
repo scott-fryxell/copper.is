@@ -1,6 +1,7 @@
 @require 'typography'
+@require 'lib/box-sizing'
 
-*
+*:not(symbol)
   // outline: 1px dashed riser
   box-sizing: border-box
   margin:0
@@ -10,3 +11,5 @@ html
   user-select: none
   body-text()
   font-size:16px
+  head > svg
+    display:none

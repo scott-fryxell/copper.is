@@ -1,14 +1,1 @@
-<section <%= raw @page.as_item_attributes%> >
-  <%-@page.nested=true-%>
-  <header>
-    <h1 itemprop='title' contenteditable><%=@page.title%></h1>
-  </header>
-
-  <figure>
-    <img src="<%= @page.thumbnail_url %>"/>
-  </figure>
-
-  <p contenteditable><%= @page.description %></p>
-  <%= render "as_form", page:@page %>
-  <%-@page.nested=false-%>
-</section>
+<%= render partial:"pages/as_section", object:@page, as: :page %>

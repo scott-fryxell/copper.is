@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe "scratch_pad'" do
+describe "scratch_pad'", :slow,  :type => :feature do
 
   describe "/:provider/:username" do
     it " display all the pages that have been tipped"

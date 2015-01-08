@@ -2,7 +2,11 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <link rel="author" href="http://www.example.com/copper_dev">
-    <title>copper-test page. man there are a lot of words on here. titles are really really cool.</title>
+    <meta name="description" content="I'm round">
+    <meta property="og:url" content="http://www.copper.is/test">
+    <meta property="og:image" content="http://www.copper.is/logo.svg">
+    <title>copper-test page</title>
+
   </head>
   <style>
     html {
@@ -24,10 +28,16 @@
     }
   </style>
   <body>
+
     <main>
       <nav>
         <a href="<%= render :partial => 'tips/wrapped_launcher', :formats => [:js] %>">Copper.</a>
       </nav>
     </main>
+    <footer>
+      <nav>
+        <a href="http://twitter.com/brokenbydawn">follow us on twitter</a>
+      </nav>
+    </footer>
   </body>
 </html>

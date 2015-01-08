@@ -4,41 +4,39 @@
 @require 'lib/device'
 
 article[itemtype=page]
-  font-size:0;
-  padding:0.5rem
-  margin-bottom:0.75rem
-  overflow:hidden
+  font-size:0
+  margin-bottom:gutter
   vertical-align: top
-  border-radius: 0.15rem
-  border-gradient()
 
-  &:first-of-type
-    padding-top:0
+  border-gradient()
 
   & > figure
     display:inline-block
     width:4rem
     height:4rem
     border-radius: 50%
-    background-color: tan
-    margin-right:1rem;
+    border-color:tan
+    background-color:tan
+    margin-right:gutter
     overflow:hidden
     vertical-align: middle
     -webkit-filter: sepia(15%)
 
-    & > img
+    img
       vertical-align: middle
       min-width: 100%
       height: 100%
-      z-index:-1
+    svg
+      width:4rem
+      height:4rem
 
   & > footer
     display:inline-block
     vertical-align: middle
-    width:14rem
+    width:13.75rem
     font-size:1rem
 
-    +laptop()
+    +tablet()
       width:60%
 
     h2,
@@ -58,7 +56,7 @@ article[itemtype=page]
       display:inline-block
       margin-right: 0.25rem
       font-size: 0.75rem
-      opacity: 0.3
+      opacity: 0.5
       vertical-align:top
       text-align: left
       text-transform: lowercase

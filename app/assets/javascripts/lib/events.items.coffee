@@ -1,5 +1,5 @@
 $(document).on 'item.update', 'data#items', ->
-  new Items(@)
+  new Item()
   $(@).find('[itemscope]').each ->
     item_id = $(@).attr('itemid')
     $(@).remove()
@@ -27,7 +27,7 @@ $(document).on 'change', "[itemprop]", ->
         console.error "Error updating this item", data, textStatus, jqXHR
 
 $(document).on 'click', 'details[itemscope]', ->
-  # todo: instead of checking for elements i should just turn this event listener off
+  # TODO: instead of checking for elements i should just turn this event listener off
   unless $(@).find('section').length > 0 || $(@).find('details').length > 0
     # console.debug('getting info')
     jQuery.ajax

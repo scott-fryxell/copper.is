@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 21) do
+ActiveRecord::Schema.define(version: 9) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "authors", force: true do |t|
     t.string   "provider",       null: false
@@ -24,7 +25,8 @@ ActiveRecord::Schema.define(version: 21) do
     t.string   "secret"
     t.string   "type",           null: false
     t.string   "identity_state"
-    t.datetime "message"
+    t.text     "image"
+    t.hstore   "preferences"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -53,17 +55,14 @@ ActiveRecord::Schema.define(version: 21) do
 
   create_table "pages", force: true do |t|
     t.string   "title"
+    t.text     "description"
+    t.text     "thumbnail_url"
     t.text     "url",                           null: false
     t.string   "author_state"
+    t.boolean  "nsfw",          default: false
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "thumbnail_url"
-    t.boolean  "onboarding",    default: false
-    t.boolean  "welcome",       default: false
-    t.boolean  "trending",      default: false
-    t.boolean  "nsfw",          default: false
-    t.text     "description"
   end
 
   add_index "pages", ["url"], name: "index_pages_on_url", using: :btree
@@ -95,13 +94,15 @@ ActiveRecord::Schema.define(version: 21) do
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.integer  "tip_preference_in_cents", default: 75,    null: false
+    t.integer  "tip_preference_in_cents", default: 50,    null: false
+    t.hstore   "preferences"
     t.string   "email"
     t.string   "stripe_id"
     t.boolean  "accept_terms",            default: false
+    t.boolean  "can_give",                default: false
+    t.boolean  "can_receive",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "share_on_facebook"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

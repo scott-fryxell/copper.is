@@ -7,7 +7,6 @@ Copper::Application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
 
-
   config.eager_load = true
   config.assets.js_compressor = :uglifier
   config.assets.css_compressor = :yui
@@ -24,8 +23,6 @@ Copper::Application.configure do
   config.action_controller.asset_host = "dxs9q85fcnuty.cloudfront.net"
 
   config.hostname = "https://www.copper.is"
-  config.facebook_appname = "copper_is"
-  config.facebook_appid = "340706775966925"
 
   config.cache_store = :dalli_store
   config.lograge.enabled = true

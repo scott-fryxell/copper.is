@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include Enqueueable
-  include UserMessages
-  has_paper_trail
+  include Historicle
+  include Message::Onboardable
 
   has_many :authors
   has_many :orders
@@ -27,24 +27,25 @@ class User < ActiveRecord::Base
     errors.add(:orders, "there must be only one") unless self.orders.current.size == 1
   end
 
-  after_create do
+  after_create do |user|
     create_current_order!
-    Resque.enqueue User, self.id, :send_welcome_message
+    Resque.enqueue user.class, user.id, :send_welcome_message
   end
+
+  def self.create_from_authorizer auth
+    create! do |user|
+      user.name = auth["info"]["name"]
+      user.email = auth["info"]["email"]
+      user.roles << Role.find_by(name:'fan')
+    end
+  end
+
 
   def create_current_order!
     if self.orders.unpaid.count > 0
       raise "there is already an unpaid Order for this user: #{self.inspect}"
     end
     self.orders.create!
-  end
-
-  def self.create_with_omniauth(auth)
-    create! do |user|
-      user.name = auth["info"]["name"]
-      user.email = auth["info"]["email"]
-      user.roles << Role.find_by(name:'fan')
-    end
   end
 
   def role_symbols
@@ -54,18 +55,18 @@ class User < ActiveRecord::Base
   end
 
   def paid_royalties
-    Tip.kinged.where(page_id:authored_pages.pluck(:id))
+    Tip.given.where(page_id:authored_pages.pluck(:id))
   end
 
   def pending_royalties
-    Tip.charged.where(page_id:authored_pages.pluck(:id))
+    Tip.paid.where(page_id:authored_pages.pluck(:id))
   end
 
   def royalties
     Tip.where(page_id:authored_pages.pluck(:id))
   end
 
-  def average_royalties
+  def average_royalties_in_cents
     royalties = Tip.where(page_id:authored_pages.pluck(:id)).average(:amount_in_cents)
     royalties = 0 unless royalties
     royalties.round
@@ -79,18 +80,16 @@ class User < ActiveRecord::Base
     pages.group('pages.id').includes(:tips).except(:order).order('MAX(tips.created_at) DESC')
   end
 
+  def tip args = {}
 
-  def tip(args = {})
-    url    = args[:url]
-    amount_in_cents = args[:amount_in_cents] || self.tip_preference_in_cents
-    title  = CGI.unescapeHTML(args[:title])  if args[:title]
+    tip = current_order.tips.build()
 
-    tip = current_order.tips.build(amount_in_cents:amount_in_cents)
-    unless tip.page = Page.find_by(url:url)
-      tip.page = Page.create(url:url,title:title)
-    end
+    tip.page = Page.find_or_create_by url:args[:url]
+
+    tip.amount_in_cents = args[:amount_in_cents] || tip_preference_in_cents
+
     tip.save!
-    Resque.enqueue Tip, tip.id, :see_about_facebook_feed
+
     tip
   end
 
@@ -98,20 +97,21 @@ class User < ActiveRecord::Base
     self.orders.current.first or self.orders.create
   end
 
-  # def try_to_create_check!
-  #   the_tips = []
-  #   self.authors.each do |ident|
-  #     the_tips += ident.tips.charged.all
-  #   end
-  #   unless the_tips.empty?
-  #     if check = self.checks.create
-  #       the_tips.each do |tip|
-  #         check.tips << tip
-  #         tip.claim!
-  #         tip.save!
-  #       end
-  #       check.save!
-  #     end
-  #   end
-  # end
+  def try_to_create_check!
+    the_tips = []
+    self.authors.each do |ident|
+      the_tips += ident.tips.charged.all
+    end
+    unless the_tips.empty?
+      if check = self.checks.create
+        the_tips.each do |tip|
+          check.tips << tip
+          tip.claim!
+          tip.save!
+        end
+        check.save!
+      end
+    end
+  end
+
 end

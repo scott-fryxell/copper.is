@@ -2,10 +2,12 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   respond_to :html
   filter_access_to :all
-
   protect_from_forgery
 
-  helper_method :current_user, :user_url, :set_scope, :cache_url, :cents_to_dollars
+  helper_method :current_user, :user_url,         :page_scope,
+                :cache_url,    :cents_to_dollars, :icons,
+                :bust_cache
+
   before_action :set_current_user
 
   def appcache
@@ -16,8 +18,13 @@ class ApplicationController < ActionController::Base
     # home page
   end
 
-
 protected
+
+  def icons
+    Dir.chdir('app/assets/images/') do
+      Dir['**/*.svg']
+    end
+  end
 
   def user_url(user)
     if  current_user.id == user.id
@@ -33,9 +40,9 @@ protected
 
   def permission_denied
     if current_user
-      render nothing:true, status:403
+      head :forbidden
     else
-      render nothing:true, status:401
+      head :unauthorized
     end
   end
 
@@ -43,12 +50,11 @@ protected
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def set_scope
+  def page_scope
     "#{params[:controller].parameterize} #{params[:action].parameterize}"
   end
 
   def cache_url
-    puts params
     if params[:controller] == 'application'
       "/appcache" # domain
     elsif params[:id]
@@ -57,6 +63,13 @@ protected
       "/#{params[:controller].parameterize}/appcache" # collection
     end
   end
+
+  def bust_cache
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
 
   def cents_to_dollars(amount_in_cents)
     amount_in_dollars = "%.2f" % (amount_in_cents / 100.0)

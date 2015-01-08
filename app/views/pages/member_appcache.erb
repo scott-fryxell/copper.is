@@ -1,8 +1,10 @@
 <%-cache @page do-%>
 CACHE MANIFEST
-# <%=@page.updated_at%>
+# page.title:<%=@page.title%>
+# updated_at:<%=@page.updated_at%>
+# versions:<%=@page.versions.count%>
 
-<%= render partial:"application/appcache" %>
+<%= render partial:"application/common_appcache" %>
 
 NETWORK:
 *

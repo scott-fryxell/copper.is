@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   sequence 'uid' do |n|
     n.to_s
   end
@@ -15,13 +16,46 @@ FactoryGirl.define do
     "https://twitter.com/_1#{n}"
   end
 
-  factory :role do
-    name "Fan"
+  factory :user do
+
+    name 'Joe'
+    accept_terms true
+    tip_preference_in_cents 50
+    roles [Role.find_or_create_by(name:'fan')]
+
+    trait :can_give do
+      can_give true
+    end
+
+    trait :can_receive do
+      can_recieve true
+    end
+
+    factory :admin do
+      roles [Role.find_or_create_by(name:'admin')]
+    end
+
+    factory :user_with_email do
+      email 'scott+test@copper.is'
+    end
+
+    factory :user_can_give, traits:[:can_give]
+    factory :user_can_receive, traits:[:can_give]
+
+    factory :user_with_facebook_author do
+      transient do
+        authors_count 1
+      end
+      after(:create) do |user, evaluator|
+        FactoryGirl.create_list(:author_facebook, evaluator.authors_count, user: user)
+      end
+    end
   end
 
   factory :author do
     username { FactoryGirl.generate(:username) }
     uid { FactoryGirl.generate(:uid) }
+    provider 'phony'
 
     trait :phony do
       provider 'phony'
@@ -75,43 +109,96 @@ FactoryGirl.define do
       identity_state 'known'
     end
 
-    factory :author_youtube, traits: [:youtube, :stranger], class: 'Authors::Youtube'
-    factory :author_soundcloud, traits: [:soundcloud, :stranger], class: 'Authors::Soundcloud'
-    factory :author_github, traits: [:github, :stranger], class: 'Authors::Github'
-    factory :author_tumblr, traits: [:tumblr, :stranger], class: 'Authors::Tumblr'
-    factory :author_flickr, traits: [:flickr, :stranger], class: 'Authors::Flickr'
-    factory :author_vimeo, traits: [:vimeo, :stranger], class: 'Authors::Vimeo'
-    factory :author_google, traits: [:google, :stranger], class: 'Authors::Google'
-    factory :author_twitter, traits: [:twitter, :stranger], class: 'Authors::Twitter'
-    factory :author_facebook,traits: [:facebook, :stranger],  class: 'Authors::Facebook'
-    factory :author_phony, traits: [:phony, :stranger], class: 'Authors::Phony'
+    trait :brokenbydawn do
+      username 'brokenbydawn'
+    end
+
+    factory :author_youtube,    traits: [:youtube, :stranger],    class: 'Authorizer::Youtube'
+    factory :author_soundcloud, traits: [:soundcloud, :stranger], class: 'Authorizer::Soundcloud'
+    factory :author_github,     traits: [:github, :stranger],     class: 'Authorizer::Github'
+    factory :author_tumblr,     traits: [:tumblr, :stranger, :brokenbydawn],     class: 'Authorizer::Tumblr'
+    factory :author_flickr,     traits: [:flickr, :stranger],     class: 'Authorizer::Flickr'
+    factory :author_vimeo,      traits: [:vimeo, :stranger],      class: 'Authorizer::Vimeo'
+    factory :author_google,     traits: [:google, :stranger],     class: 'Authorizer::Google'
+    factory :author_twitter,    traits: [:twitter, :stranger],    class: 'Authorizer::Twitter'
+    factory :author_facebook,   traits: [:facebook, :stranger],   class: 'Authorizer::Facebook'
+    factory :author_phony,      traits: [:phony, :stranger],      class: 'Authorizer::Phony'
   end
 
-  factory :user do
-    name 'Joe'
-    accept_terms true
-    tip_preference_in_cents 50
-    roles [Role.find_or_create_by(name:'Fan')]
+  factory :page do
 
-    factory :admin do
-      roles [Role.find_or_create_by(name:'Admin')]
+    title 'Page Title'
+    thumbnail_url 'http://example.com/image.png'
+
+    url 'http://example.com/brokenbydawn'
+
+    trait :adopted do
+      author_state 'adopted'
     end
 
-    factory :user_with_email do
-      email 'scott+test@copper.is'
+    trait :fostered do
+      author_state 'fostered'
     end
 
-    factory :user_with_facebook_author do
-      ignore do
-        authors_count 1
-      end
-      after(:create) do |user, evaluator|
-        FactoryGirl.create_list(:author_facebook, evaluator.authors_count, user: user)
-      end
+    trait :orphaned do
+      author_state 'orphaned'
     end
+
+    trait :homeless do
+      author_state 'homeless'
+    end
+
+    trait :dead do
+      author_state 'dead'
+    end
+
+    factory :adopted,  traits:[:adopted]
+    factory :orphaned, traits:[:orphaned]
+    factory :fostered, traits:[:fostered]
+    factory :homeless, traits:[:homeless]
+    factory :dead,     traits:[:dead]
+
+  end
+
+  factory :tip do
+
+    association :order
+    association :page
+    amount_in_cents 100
+    created_at 1.week.ago
+
+    trait :promised do
+      paid_state 'promised'
+    end
+
+    trait :charged do
+      paid_state 'charged'
+    end
+
+    trait :given do
+      paid_state 'given'
+    end
+
+    factory :tip_promised do
+      promised
+      association :order, factory: :order
+    end
+
+    factory :tip_given_unvalidated do
+      to_create {|instance| instance.save(validate: false) }
+      given
+      association :order, factory: :order_paid
+      association :check, factory: :check_cashed
+    end
+
   end
 
   factory :order do
+
+    transient do
+      tips_count 5
+    end
+
     association :user
 
     trait :current do
@@ -130,63 +217,37 @@ FactoryGirl.define do
       order_state 'denied'
     end
 
-    factory :order_current, traits: [:current]
-    factory :order_unpaid, traits: [:unpaid]
-    factory :order_paid, traits: [:paid]
-    factory :order_denied, traits: [:denied]
-  end
-
-  factory :page do
-    url { FactoryGirl.generate(:twitter_url_with_path) }
-    factory :authored_page do
-      author_state 'adopted'
-      association :author, factory: :author_twitter
-    end
-  end
-
-  factory :tip do
-    association :order, factory: :order_current
-    association :page
-    amount_in_cents 100
-
-    trait :promised do
-      paid_state 'promised'
+    trait :can_give do
+      association :user, factory: :user_can_give, strategy: :build
     end
 
-    trait :charged do
-      paid_state 'charged'
+    factory :order_billable do
+      current
+      can_give
+
+      after(:create) do |order, evaluator|
+        create_list(:tip, evaluator.tips_count, order:order)
+      end
+
     end
 
-    trait :kinged do
-      paid_state 'kinged'
-    end
+    factory :order_current, traits: [:current, :can_give]
+    factory :order_unpaid,  traits: [:unpaid, :can_give]
+    factory :order_paid,    traits: [:paid, :can_give]
+    factory :order_denied,  traits: [:denied, :can_give]
 
-    factory :tip_promised do
-      promised
-      association :order, factory: :order_current
-    end
-
-    factory :tip_charged do
-      charged
-      association :order, factory: :order_paid
-    end
-
-    factory :tip_kinged do
-      kinged
-      association :order, factory: :order_paid
-      association :check, factory: :check_paid
-   end
   end
 
   factory :check do
+
     association :user
 
     trait :earned do
       check_state 'earned'
     end
 
-    trait :paid do
-      check_state 'paid'
+    trait :deposited do
+      check_state 'deposited'
     end
 
     trait :cashed do
@@ -194,7 +255,9 @@ FactoryGirl.define do
     end
 
     factory :check_earned, traits: [:earned]
-    factory :check_paid, traits: [:paid]
+    factory :check_deposited, traits: [:deposited]
     factory :check_cashed, traits: [:cashed]
+
   end
+
 end

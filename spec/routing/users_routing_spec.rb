@@ -1,18 +1,16 @@
-require "spec_helper"
-
-describe UsersController do
+describe UsersController, :type => :routing do
   describe "routing" do
 
     it "routes to settings" do
-      get("/settings").should route_to("users#settings")
+      expect(get("/settings")).to route_to("users#settings")
     end
 
     it "routes to profile" do
-      get("/users/1").should route_to("users#show", id:"1")
+      expect(get("/users/1")).to route_to("users#show", id:"1")
     end
 
     it "routes to #update" do
-      put("/users/1").should route_to("users#update", id:"1")
+      expect(put("/users/1")).to route_to("users#update", id:"1")
     end
 
   end

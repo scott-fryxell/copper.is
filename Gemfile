@@ -28,19 +28,20 @@ gem 'stripe'
 gem 'memcachier'
 gem 'dalli'
 gem "foreman"
-gem 'unicorn'
+
 gem 'redis'
 gem 'resque', "~> 1.22.0"
 gem 'state_machine', git:'https://github.com/seuros/state_machine'
+gem 'ruby-graphviz', :require => 'graphviz' # Optional: only required for state_machine graphing
 gem 'nokogiri'
 gem 'twitter'
 gem 'youtube_it'
 gem "vimeo"
 gem 'koala'
-gem 'paper_trail', '~> 3'
+gem 'paper_trail', '~> 3.0.3'
 gem 'mechanize'
 gem 'cache_digests'
-gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
+# gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
 gem "lograge"
 gem 'rails_12factor'
 gem 'pry'
@@ -51,7 +52,15 @@ gem 'coolline'
 gem 'coderay'
 gem "pg"
 gem 'hirb'
+gem 'puma'
+gem 'unicorn'
+gem 'rb-fsevent'
 
+group :development do
+  gem 'redcarpet', '~> 2.1.1', require:false
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
+end
 
 group :test do
   gem 'factory_girl_rails'
@@ -59,6 +68,7 @@ group :test do
   gem 'hashugar'
   gem 'vcr'
   gem 'webmock'
+  gem 'reek'
 end
 
 group :development, :test do
@@ -74,11 +84,14 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
-  gem 'guard-process'
+  # gem 'guard-process', path:"/Users/scott/Code/guard-process"
+  gem 'guard-process', git:'https://github.com/scott-fryxell/guard-process'
+
+  gem 'guard-shell'
 
   gem 'launchy'
   gem 'rb-inotify', :require => false
-  gem 'rb-fsevent', :require => false
-  gem 'terminal-notifier-guard', :require => false # sends guard notifications to the OS X Notification Center.
+  # gem 'rb-fsevent', :require => false
+  # gem 'terminal-notifier-guard', :require => false # sends guard notifications to the OS X Notification Center.
   gem 'quiet_assets'
 end

@@ -1,0 +1,40 @@
+@require 'color'
+section[itemtype=page]
+
+  & > header
+    +tablet()
+      margin-top:gutter
+      display:inline-block;
+      max-width:34rem
+      margin-top:3rem
+      margin-right:gutter
+    & > h1
+      margin:gutter 0
+      font-family:'Doppio One', sans-serif
+      font-weight:100
+      letter-spacing:0
+    & > p
+      line-height:1.45
+      font-size:1.1rem
+    nav
+      margin:gutter 0
+      text-align:center
+      a
+        font-size:1.5rem
+        header-text()
+        font-size:1.5rem
+        color:copper
+
+  figure
+    margin:gutter 0
+    +tablet()
+      display:inline-block;
+      width:40rem
+      vertical-align:top
+      text-align: center
+    img
+      max-width:18.5rem
+      border:1px solid riser
+      border-radius:0.25rem
+      +tablet()
+        max-width:40rem

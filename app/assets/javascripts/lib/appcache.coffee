@@ -1,13 +1,20 @@
-appCache = window.applicationCache
-appCache.addEventListener 'updateready', ->
-  if appCache.status == appCache.UPDATEREADY
-    console.log 'cache update ready'
-    appCache.update()
-    console.log 'swap ready'
-    appCache.swapCache()
-    window.location.reload()
+# $ ->
+#   var source = new EventSource('/events');
+#   source.addEventListener('refresh_cache', ->
+#
+#
+# jQuery(document).ready(function() {
+#   setTimeout(function() {
+#   }, 1);
 
 
+
+
+
+# appCache = window.applicationCache
+
+# Fired after the first download of the manifest.
+#
 # switch (appCache.status)
 #   case appCache.UNCACHED: # UNCACHED == 0
 #     return 'UNCACHED'

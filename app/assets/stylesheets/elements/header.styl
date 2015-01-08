@@ -1,27 +1,43 @@
 @require 'lib/device'
 
 body > header
+  margin:gutter gutter 0 2rem
+
   +tablet()
+    margin-left:0
     display-flex()
 
-  & > img
-    opacity:0.25
-    width:1.5rem
-    height:1.5rem
-    position:absolute
-    top:1rem
-    left:1.75rem
-    standard-transition opacity
-    &.show
-      opacity:0.8
-
-    +tablet()
-      display:none
-
   & > figure
-    text-align:center
-    padding:0.5rem 0 0 0
+    display:inline-block
+
+    &:first-of-type
+      width:1.5rem;
+      opacity:0.25
+      standard-transition opacity
+      &.show
+        opacity:1
+        standard-transition opacity
+
+      & > svg
+        width:1.5rem
+        height:1.5rem
+
+      +tablet()
+        display:none
+    &:nth-child(2)
+      +phone-only()
+        margin-left:3.5rem
     +tablet()
-      flexx: 0 0.22 15%
-    a > img
+      flexx: 0 0.22 20%
+    +laptop()
+      flexx: 0 0.22 16.5%
+
+    a
+      display:inline-block
+      +tablet()
+        display: block;
+        text-align: center;
+      svg
+        display:inline-block;
         height:2rem
+        width:6rem

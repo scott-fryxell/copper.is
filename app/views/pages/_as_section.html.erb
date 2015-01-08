@@ -1,0 +1,16 @@
+<section <%= raw page.as_item_attributes%> >
+  <%-page.nested=true-%>
+  <header>
+    <h1 itemprop='title' contenteditable><%=page.title%></h1>
+    <p contenteditable><%= page.description %></p>
+    <nav>
+      <a href="<%= @page.url %>" target='blank'>Visit</a>
+    </nav>
+  </header>
+  <figure>
+    <img itemprop='thumbnail_url' src="<%= page.thumbnail_url %>"/>
+  </figure>
+  <%= render "as_menu", page:page %>
+  <%= render "as_form", page:page %>
+  <%-@page.nested=false-%>
+</section>
