@@ -1,10 +1,6 @@
 class PagesController < ApplicationController
   before_action :bust_cache, only:[:collection_appcache, :member_appcache]
 
-  def patch
-    head :ok
-  end
-
   def show
     @page = Page.find(params[:id])
     fresh_when @page

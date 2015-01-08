@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 9) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "authors", force: true do |t|
     t.string   "provider",       null: false
@@ -24,6 +25,8 @@ ActiveRecord::Schema.define(version: 9) do
     t.string   "secret"
     t.string   "type",           null: false
     t.string   "identity_state"
+    t.text     "image"
+    t.hstore   "preferences"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -92,10 +95,12 @@ ActiveRecord::Schema.define(version: 9) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.integer  "tip_preference_in_cents", default: 50,    null: false
+    t.hstore   "preferences"
     t.string   "email"
     t.string   "stripe_id"
     t.boolean  "accept_terms",            default: false
-    t.boolean  "share_on_facebook",       default: false
+    t.boolean  "can_give",                default: false
+    t.boolean  "can_receive",             default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

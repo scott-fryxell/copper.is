@@ -13,9 +13,8 @@ Copper::Application.configure do
   config.assets.debug = false
   config.assets.digest = true
   config.log_level = :warn
-  config.hostname = "http://127.0.0.1:8080"
-  config.facebook_appname = "copper-dev"
-  config.facebook_appid = "180829622036113"
+  config.hostname = "http://0.0.0.0:3000"
+
   OmniAuth.config.test_mode = true
 
   OmniAuth.config.mock_auth[:twitter] = {
@@ -32,10 +31,10 @@ Copper::Application.configure do
   }
   OmniAuth.config.mock_auth[:facebook] = {
     'provider' => 'facebook',
-    'uid' => '234567',
+    'uid' => '580281278',
     'info' => {
-      'name' => 'facebook user',
-      'nickname'=> 'facebook.user',
+      'name' => 'scott fryxell',
+      'nickname'=> 'scott.fryxell',
       'email' => 'user@facebook.com'
     },
     'credentials' => {
@@ -43,6 +42,7 @@ Copper::Application.configure do
       'secret' => 'its_a_secret'
     },
   }
+
   OmniAuth.config.mock_auth[:google_oauth2] = {
     'provider' => 'google_oauth2',
     'uid' => '234567',

@@ -1,16 +1,23 @@
 module URL
+
   module Learnable
+
     extend ActiveSupport::Concern
+
     include URL::Spiderable
 
     included do
+
       after_create do |page|
-        Resque.enqueue page.class, page.id, :learn
+        if page.orphaned?
+          Resque.enqueue page.class, page.id, :learn
+        end
       end
 
     end
 
     def learn (content = self.spider.get(url))
+
       logger.info " "
       logger.info "<- Learn about  id:#{id}, url: #{url[0...100]} -> "
 
@@ -23,6 +30,7 @@ module URL
       learn_description(content)
 
       logger.info self.author_state
+
       logger.info "->"
 
       save!
@@ -30,14 +38,22 @@ module URL
     end
 
     def learn_description ( content = self.spider.get(url) )
+
+      logger.info "  description"
       if description_tag = content.at('meta[property="og:description"]')
+
         logger.info "    og:description=#{description_tag.attributes['content'].value[0...100]}"
         self.description = description_tag.attributes['content'].value
+
       elsif description_tag = content.at('meta[name="description"]')
+
         logger.info "    description=#{description_tag.attributes['content'].value[0...100]}"
         self.description = description_tag.attributes['content'].value
+
       end
+
       self.description
+
     end
 
     def learn_title ( content = self.spider.get(url) )

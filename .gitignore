@@ -4,6 +4,7 @@ log/*.log
 tmp/**/*
 tmp/**
 coverage
+doc
 config/database.yml
 TAGS
 .gitignore
@@ -16,3 +17,11 @@ public/favicon.ico
 .ruby-version
 
 .envrc
+
+.yardoc/checksums
+
+.yardoc/object_types
+
+.yardoc/objects/root.dat
+
+.yardoc/proxy_types

@@ -3,3 +3,4 @@
 --colour
 --tag focus
 --tag ~!@slow
+--require spec_helper

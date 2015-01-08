@@ -24,7 +24,6 @@ module Copper
     config.assets.initialize_on_precompile=false
     config.action_dispatch.cookies_serializer = :json
 
-
     %w[
       copper_secret_key
 
@@ -42,6 +41,8 @@ module Copper
 
       facebook_key
       facebook_secret
+      facebook_appname
+      facebook_appid
 
       tumblr_key
       tumblr_secret
@@ -59,11 +60,7 @@ module Copper
       flickr_secret
 
       resque_overview_password
-
       redistogo_url
-      mandrill_key
-
-      mixpanel_key
 
     ].each do |env|
       raise "#{env.to_s.upcase} must be defined" if ENV[env.to_s.upcase].blank?

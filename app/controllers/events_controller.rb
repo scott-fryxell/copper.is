@@ -5,8 +5,8 @@ class EventsController < ApplicationController
   def publisher
     response.headers['Content-Type'] = 'text/event-stream'
 
-    redis = Redis.new
-    redis.psubscribe('page.save') do |on|
+    publisher = Redis.new
+    publisher.psubscribe('page.save') do |on|
       on.pmessage do |pattern, event, data|
         response.stream.write("event: #{event}\n")
         response.stream.write("data: #{data}\n\n")
@@ -18,8 +18,7 @@ class EventsController < ApplicationController
     logger.info "client.Disconected #{current_user.name if current_user}"
   ensure
     puts "ensure redis closed"
-    redis.disconnect
-    redis.quit
+    publisher.quit
     response.stream.close
   end
 
