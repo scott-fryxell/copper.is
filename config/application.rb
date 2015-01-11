@@ -39,10 +39,8 @@ module Copper
       google_secret
       google_code_developer_key
 
-      facebook_key
-      facebook_secret
-      facebook_appname
       facebook_appid
+      facebook_secret
 
       tumblr_key
       tumblr_secret
