@@ -21,7 +21,7 @@ Copper::Application.configure do
   config.lograge.enabled = true
   config.log_level = :warn
 
-  OmniAuth.config.test_mode = false
+  OmniAuth.config.test_mode = true
   OmniAuth.config.mock_auth[:twitter] = {
     'provider' => 'twitter',
     'uid' => '123545',
