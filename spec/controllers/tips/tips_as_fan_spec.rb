@@ -1,16 +1,26 @@
-describe TipsController, :type => :controller do
-  let(:me) {create!(:user_can_give)}
-  let(:page) {create!(:adopted)}
-  let(:her) {create!(:user_can_give)}
-  let(:given_tip) {create!(:tip_given_unvalidated)}
+require 'spec_helper'
+
+describe TipsController do
+  before :each do
+    mock_page_and_user
+    me_setup
+  end
 
   describe 'as Fan' do
+    describe 'index' do
+      describe '/tips' do
+        it 'should respond with 401' do
+          get_with @me, :index
+          response.status.should == 403
+        end
+      end
+    end
 
     describe 'new' do
       describe '/tips/new' do
         it 'renders a form to specify a url to tip' do
-          get_with me, :new
-          expect(response.status).to eq(200)
+          get_with @me, :new
+          response.status.should == 200
         end
       end
     end
@@ -18,86 +28,112 @@ describe TipsController, :type => :controller do
     describe 'create' do
       describe 'POST /tips' do
         it 'creates a tip to given url with default amount' do
-          post_with me, :create, tip:{url:'http://fasterlighterbetter.com'}
-          expect(Tip.first.page.url).to eq('http://fasterlighterbetter.com')
-          expect(Tip.first.order.user_id).to eq(me.id)
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com'}
+          Tip.first.page.url.should == 'http://fasterlighterbetter.com'
+          Tip.first.order.user_id.should == @me.id
         end
 
         it 'creates a tip to given url with given amount' do
-          post_with me, :create, tip:{url:'http://fasterlighterbetter.com', amount_in_cents:100}
-          expect(Tip.first.page.url).to eq('http://fasterlighterbetter.com')
-          expect(Tip.first.amount_in_cents).to eq(100)
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', amount_in_cents:100}
+          Tip.first.page.url.should == 'http://fasterlighterbetter.com'
+          Tip.first.amount_in_cents.should == 100
+        end
+
+        it 'creates a tip to given url with given title' do
+          post_with @me, :create, tip:{url:'http://fasterlighterbetter.com', title:'dude'}
+          Tip.first.url.to_s.should == 'http://fasterlighterbetter.com'
+          Tip.first.title.should == 'dude'
         end
 
         it 'requires a url' do
-          post_with me, :create, tip:{amount_in_cents:100}
-          expect(response.status).to eq(400)
+          post_with @me, :create, tip:{title:'asldkjf'}
+          response.status.should == 403
+        end
+      end
+    end
+
+    describe 'show' do
+      describe '/tips/:id' do
+        it 'loads my tip' do
+          get_with @me, :show, id:@my_tip.id
+          response.status.should == 403
+        end
+
+        it 'loads someone else\'s tip via json' do
+          her_setup
+          get_with @me, :show, id:@her_tip1.id
+          response.status.should == 403
         end
       end
     end
 
     describe 'update' do
-      describe 'PATCH /tips/:id' do
+      describe 'PUT /tips/:id' do
         it 'update the amount of the tip' do
-          tip = me.tip(url:page.url)
-          put_with me, :update, id:tip.id, tip:{amount_in_cents:200}
-          expect(response.status).to eq(200)
-          tip.reload
-          expect(tip.amount_in_cents).to eq(200)
+          put_with @me, :update, id:@my_tip.id, tip:{amount_in_cents:200}
+          response.status.should == 200
+          @my_tip.reload
+          @my_tip.amount_in_cents.should == 200
         end
 
         it 'does not update a non-promised tip' do
-          tip = me.tip(url:page.url)
-          put_with me, :update, id:tip.id, tip:{amount_in_cents:200}
-          tip.reload
-          expect(tip.amount_in_cents).to eq(200)
+          put_with @me, :update, id:@my_tip.id, tip:{amount_in_cents:200}
+          @my_tip.reload
+          @my_tip.amount_in_cents.should == 200
         end
 
         it 'does not update another fan\'s tip' do
-          her_tip = her.tip(url:page.url)
-          put_with me, :update, id:her_tip.id, tip:{amount_in_cents:200}
-          her_tip.reload
-          expect(her_tip.amount_in_cents).not_to eq(200)
-          expect(response.status).to eq(403)
+          her_setup
+          put_with @me, :update, id:@her_tip2.id, tip:{amount_in_cents:200}
+          @her_tip2.reload
+          @her_tip2.amount_in_cents.should_not == 200
+          response.status.should == 403
         end
       end
     end
 
     describe 'destroy' do
-      describe 'DELETE /tips/:id' do
+      describe 'DELETE /t/:id' do
         it 'destroys a promised tip' do
-
-          tip = me.tip(url:page.url)
-          expect(tip.promised?).to be_truthy
-          expect(Tip.find(tip.id)).not_to be_nil
-          expect(Tip.count).to eq(1)
-          delete_with me, :destroy, id:tip.id
-          expect(Tip.count).to eq(0)
-
+          proc do
+            @my_tip.promised?.should be_true
+            Tip.find(@my_tip.id).should_not be_nil
+            delete_with @me, :destroy, id:@my_tip.id
+            # proc{Tip.find(@my_tip.id).should be_nil}.should raise_error(ActiveRecord::RecordNotFound)
+          end.should change(Tip, :count)
         end
 
         it '403 a :charged tip' do
-          tip = me.tip(url:page.url)
-          tip.pay!
-          expect do
-            delete_with me, :destroy, id:tip.id
-            expect(Tip.find(tip.id)).not_to be_nil
-          end.not_to change(Tip, :count)
+          me_setup
+          @my_tip.pay!
+          proc do
+            delete_with @me, :destroy, id:@my_tip.id
+            Tip.find(@my_tip.id).should_not be_nil
+          end.should_not change(Tip, :count)
         end
 
         it '403 a :kinged tip' do
-
-          expect(given_tip.given?).to be_truthy
-          delete_with me, :destroy, id:given_tip.id
-          expect(Tip.find(given_tip.id)).not_to be_nil
+          mock_order
+          proc do
+            order = @me.current_order
+            @me.current_order.rotate!
+            order.reload
+            order.charge!
+            @my_tip.reload
+            @my_tip.check_id = 1
+            @my_tip.claim!
+            @my_tip.kinged?.should be_true
+            delete_with @me, :destroy, id:@my_tip.id
+            Tip.find(@my_tip.id).should_not be_nil
+          end.should_not change(Tip, :count)
         end
 
         it '403 her tip' do
-          her_tip = her.tip(url:page.url)
-          expect do
-            delete_with me, :destroy, id:her_tip.id
-            expect(Tip.find(her_tip .id)).not_to be_nil
-          end.not_to change(Tip, :count)
+          her_setup
+          proc do
+            delete_with @me, :destroy, id:@her_tip1.id
+            Tip.find(@her_tip1.id).should_not be_nil
+          end.should_not change(Tip, :count)
         end
       end
     end

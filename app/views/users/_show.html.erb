@@ -1,0 +1,62 @@
+<%-cache user do-%>
+<section>
+  <header></header>
+  <dl>
+    <dt>ID</dt>
+    <dd itemprop="id"><%=user.id%></dd>
+    <dt>Created</dt>
+    <dd itemprop="created_at"><time itemprop="created_at" datetime="<%=user.created_at.getutc.iso8601%>"/></dd>
+    <dt>updated</dt>
+    <dd><time itemprop="updated_at" datetime="<%=user.updated_at.getutc.iso8601%>"/></dd>
+    <dt>name</dt>
+    <dd itemprop='name'><%=user.name%></dd>
+    <dt>email</dt>
+    <dd itemprop="email"><%=user.email%></dd>
+    <dt>tip preference</dt>
+    <dd itemprop="tip_preference_in_cents"><%=user.tip_preference_in_cents%></dd>
+    <dt>stripe id</dt>
+    <dd itemprop="stripe_id">
+      <a target="_blank" href="https://manage.stripe.com/customers/<%=user.stripe_id%>"><%=user.stripe_id%></a>
+    </dd>
+    <dt>accepts terms</dt>
+    <dd itemprop='accept_terms'><%=user.accept_terms?%></dd>
+    <dt>facebook sharing</dt>
+    <dd itemprop='share_on_facebook'><%=user.share_on_facebook?%></dd>
+  </dl>
+  <footer>
+    <details>
+      <summary>address</summary>
+      <section>
+        <dl>
+          <dt>payable to</dt>
+          <dd itemprop="payable_to"><%=user.payable_to%></dd>
+          <dt>line1</dt>
+          <dd itemprop="line1"><%=user.line1%></dd>
+          <dt>line2</dt>
+          <dd itemprop="line1"><%=user.line2%></dd>
+          <dt>city</dt>
+          <dd itemprop="city"><%=user.city%></dd>
+          <dt>state</dt>
+          <dd itemprop="subregion_code"><%=user.subregion_code%></dd>
+          <dt>zip</dt>
+          <dd itemprop="postal_code"><%=user.postal_code%></dd>
+          <dt>country</dt>
+          <dd itemprop="country_code"><%=user.country_code%></dd>
+        </dl>
+      </section>
+    </details>
+    <details itemscope itemtype='tip' itemid='/users/<%=user.id%>/tips'>
+      <summary>tips</summary>
+    </details>
+    <details itemscope itemtype='author' itemid='/users/<%=user.id%>/authors'>
+      <summary>authors</summary>
+    </details>
+    <details itemscope itemtype='order' itemid='/users/<%=user.id%>/orders'>
+      <summary>orders</summary>
+    </details>
+    <details itemscope itemtype='check' itemid='/users/<%=user.id%>/checks'>
+      <summary>checks</summary>
+    </details>
+  </footer>
+</section>
+<%-end-%>

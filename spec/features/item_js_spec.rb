@@ -1,27 +1,30 @@
-describe 'Item.js', :slow, :type => :feature do
+require 'spec_helper'
 
-  before :each do
+describe 'Item.js', :slow do
+  before(:each) do
+    mock_user
     visit "/auth/facebook"
     sleep 2
     click_link 'Your account information'
   end
 
   it "should be able to query items on the page" do
-    expect(page.evaluate_script("$.items('user')")).not_to be_nil
+    page.evaluate_script("$.items('user')").should_not be_nil
   end
 
   it "should be able to query for user email" do
-    expect(page.evaluate_script("('document.items.me.email")).to eq("user@facebook.com")
+    page.evaluate_script("('document.items.me.email").should == "user@facebook.com"
   end
 
   it "should be able to change email from the command line" do
-    within "section#email" do
-      expect(find("div > p")).to have_content("user@facebook.com")
+    within("section#email") do
+      find("div > p").should have_content("user@facebook.com")
       page.execute_script("document.me.email = 'change@email.com'")
       page.execute_script("$.update_view(document.items.me)")
-      expect(find("div > p")).to have_content("change@email.com")
+      find("div > p").should have_content("change@email.com")
       click_link "Change"
-      expect(find_field('user[email]').value).to eq('change@email.com')
+      find_field('user[email]').value.should == 'change@email.com'
     end
   end
 end
+

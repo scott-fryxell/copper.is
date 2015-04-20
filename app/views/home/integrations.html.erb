@@ -1,0 +1,58 @@
+<section id="banner">
+  <header>
+    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+  </header>
+  <hgroup>
+    <h1>pages</h1>
+    <p><%=current_user.name%><a href="/signout">not you?</a></p>
+  </hgroup>
+  <details class='admin'>
+    <summary><img width="2rem" height="2rem" class="admin" src='<%= image_path 'noun_project/8233.svg'%>'/></summary>
+    <h3>admin</h3>
+    <nav>
+      <a href="/pages">pages</a>
+      <a href="/authors">authors</a>
+      <a href="/orders">orders</a>
+      <a href="/users">users</a>
+      <a href="/tips">tips</a>
+      <a href="/checks">checks</a>
+    </nav>
+    <h3>services</h3>
+    <nav>
+      <a href="https://mixpanel.com/report/215574/funnels/#view/275542/from_date:-30,to_date:0" title="what up">Analytics</a>
+      <a href="https://rpm.newrelic.com/accounts/331900/applications/2068138">performance</a>
+      <a href="https://dashboard.heroku.com/apps/copper-production/resources">Heroku</a>
+      <a href="https://manage.stripe.com/dashboard">stripe</a>
+      <a href="https://www.copper.is/admin/resque/overview">resque</a>
+  </details>
+</section>
+<section id="statistics">
+  <figure>
+    <%= image_tag "noun_project/2966.svg" %>
+    <figcaption><%=User.count%> Fans</figcaption>
+    <figcaption><b><%=User.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
+  <figure>
+    <%= image_tag "noun_project/4060.svg" %>
+    <figcaption><%=Tip.count%> Tips</figcaption>
+    <figcaption><b><%=Tip.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
+  <figure>
+    <%= image_tag "noun_project/4534.svg" %>
+    <figcaption><%=Page.count%> Pages</figcaption>
+    <figcaption><b><%=Page.where('created_at >= ?', Date.today.at_beginning_of_month).count%></b> this month</figcaption>
+  </figure>
+</section>
+
+<section id='new_relic'>
+  <figure>
+    <iframe src="https://rpm.newrelic.com/public/charts/deCyaPDwlcU" width="100%" height="400" scrolling="no" frameborder="no"></iframe>
+  </figure>
+  <figure>
+    <iframe src="https://rpm.newrelic.com/public/charts/4iBaBw0QfAA" width="100%" height="400" scrolling="no" frameborder="no"></iframe>
+  </figure>
+  <figure>
+    <figcaption>Where people are coming from</figcaption>
+    <iframe src="https://rpm.newrelic.com/public/charts/cZPpS1ZQuCc" width="500" height="300" scrolling="no" frameborder="no"></iframe>
+  </figure>
+</section>

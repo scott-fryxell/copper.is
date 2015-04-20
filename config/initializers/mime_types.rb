@@ -7,4 +7,3 @@
 Mime::Type.register "application/x-chrome-extension", :crx
 Mime::Type.register "application/octet-stream", :safariextz
 Mime::Type.register "application/x-xpinstall", :xpi
-Mime::Type.register "text/cache-manifest", :appcache

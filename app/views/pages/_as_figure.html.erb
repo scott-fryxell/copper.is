@@ -1,11 +1,13 @@
 <%-cache page do-%>
-<figure <%=raw page.as_item_attributes%> >
-  <a href="<%= page_path(page) %>">
-    <%-if page.thumbnail_url-%>
-      <img itemprop="thumbnail_url" src="<%=page.thumbnail_url%>">
-    <%-else-%>
-      <svg><use xlink:href="<%= asset_path('icons/people.svg#picture') %>" /></svg>
-    <%-end-%>
+<figure itemscope itemtype='page' itemid='/pages/<%=page.id%>'>
+  <a itemprop="url" target="_blank" href="<%=page.url%>">
+    <img itemprop="thumbnail_url" src="<%=page.thumbnail%>" />
   </a>
+  <%-if page.author -%>
+  <figcaption>
+    <p itemprop="title"><%=page.title%></p>
+    <p><%=page.author.username%></p>
+  </figcaption>
+  <%-end-%>
 </figure>
 <%-end-%>

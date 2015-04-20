@@ -11,14 +11,14 @@ namespace :copper do
 
     task :adopt => :environment do
       Page.orphaned.each do |page|
-        Resque.enqueue page.class, page.id, :discover_author_from_url!
+        Resque.enqueue Page, page.id, :discover_author!
       end
     end
 
     task :learn => :environment do
       Page.all.each do |page|
         puts "spidering page: #{page.id}"
-        Resque.enqueue page.class, page.id, :learn
+        Resque.enqueue Page, page.id, :learn
       end
     end
   end
@@ -26,47 +26,36 @@ namespace :copper do
   namespace :order do
 
     task :rotate_orders => :environment do
-      User.billable
-
-      Order.current.where(created_at:1.week.ago).each do |order|
-
-        if order.user.billable?
-          if order.billable?
-            #TODO: this can be done as a scope. it will scale better scoped
-            Resque.enqueue order.class, order.id, :rotate!
-          end
-        else
-          Resque.enqueue User.class, order.user.id, :ask_user_for_payment_info
+      Order.current.where('created_at <= ?', 1.week.ago).each do |order|
+        if order.user.stripe_id and order.tips.count > 0 and order.tips.sum(:amount_in_cents) > 50 and order.user.email
+          # puts order.tips.sum(:amount_in_cents)
+          Resque.enqueue Order, order.id, :rotate!
         end
-
       end
     end
 
     task :charge_unpaid_orders => :environment do
-
       Order.unpaid.each do |order|
-        if order.user.billable?
-          Resque.enqueue order.class, order.id, :charge!
+        if order.user.stripe_id
+          # puts order.tips.sum(:amount_in_cents)
+          Resque.enqueue Order, order.id, :charge!
         end
       end
-    end
+    end   
 
   end
 
   namespace :messaging do
-
     task :fans_who_have_tipped => :environment do
-
       User.where('users.stripe_id IS NOT NULL').each do |user|
         if user.tips.count > 0
           # puts "gonna message #{user.email}"
-          Resque.enqueue user.class, user.id, :send_message_to_fans_who_have_tipped
+          Resque.enqueue User, user.id, :send_message_to_fans_who_have_tipped
         end
       end
-
     end
-
   end
+
 
   namespace :dev do
     task :reset_page => :environment do
@@ -102,6 +91,7 @@ namespace :copper do
 end
 
 namespace :db do
-  task :bounce => %w{db:reset db:test:prepare} do
+  task :bounce => %w{drop:all create:all migrate seed} do
+    system("rake db:test:prepare")
   end
 end

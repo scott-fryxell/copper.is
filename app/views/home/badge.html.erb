@@ -1,0 +1,42 @@
+
+<section id="banner">
+  <header>
+    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+  </header>
+  <hgroup>
+    <h1>Get the badge</h1>
+  </hgroup>
+  <p>
+    Select the size badge you want on your page. Then copy the code and 
+    paste it alongside content you create.
+  </p>
+</section>
+
+<section id="badge">
+  <div>
+    <header>
+      <h3>Get the badge</h3>
+      <p>
+        Place this on your site to drive tips to your work! Select a size.
+      </p>
+      <select name="size" id="size" size="1">
+        <option value="" disabled selected>Select Size</option>
+        <option value="100">Small</option>
+        <option value="145">Medium</option>
+        <option value="175">large</option>
+      </select>
+    </header>
+    <figure></figure>
+  </div>
+  <div>
+    <header>
+      <h3>Embed code</h3>
+    </header>
+    <textarea name=""></textarea>
+  </div>
+  <script id="badge_template" type="text/x-jquery-tmpl">
+    <img id="copper_badge" src="<%=request.scheme%>://<%=request.host%>:<%=request.port%>/assets/icons/button.png"
+         style="cursor:pointer; width:${size}px;" title="Tip This Page"
+         onclick="<%= render :partial=>'home/wrapped_launcher', :formats=>[:js] %>">
+  </script>
+</section>

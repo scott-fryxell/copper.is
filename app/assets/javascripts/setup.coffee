@@ -1,14 +1,8 @@
 jQuery.fn.extend
-  app_init: ->
-        
-    $(@).find('time').timeago()
-    $(@).find('[data-cents]').show_dollars(@)
+  page_init: (element) ->
+    $(element).find('time').timeago()
+    $(element).find('[data-cents]').show_dollars(element)
 
-    $(@).find('body > header > figure:first-of-type').click ->
-      $(@).toggleClass('show')
-      $('body > menu').toggleClass('show')
-
-    $("menu.fan.signout > a").attr 'href',
-      "/signout?redirect_to=#{window.location.pathname}"
-
-    return true
+# window.onerror =  (message, url, line) ->
+#   Honeybadger.notify(new Error(message, url, line));
+#   return true

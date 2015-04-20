@@ -1,0 +1,61 @@
+<%-cache author do-%>
+<section>
+  <header>
+    <h1 itemprop='author_state'><%=author.identity_state%></h1>
+    <hgroup>
+      <h4>id</h4>
+      <a href="/author/<%=author.id%>" itemprop="id"><%=author.id%></a>
+      <h4>uid</h4>
+      <p>&nbsp;<%=author.uid%></p>
+    </hgroup>
+    <hgroup>
+      <h4>provider</h4>
+      <a parent="_blank" href="//<%=author.url%>" itemprop="provider"><%=author.provider%></a>
+      <h4>username</h4>
+      <a parent="_blank" href="//<%=author.url%>" itemprop="url"><%=author.username%></a>
+    </hgroup>
+    <hgroup>
+      <h4>updated</h4>
+      <time itemprop="updated_at" datetime="<%=author.updated_at.getutc.iso8601%>"/>
+      <h4>Created</h4>
+      <time itemprop="created_at" datetime="<%=author.created_at.getutc.iso8601%>"/>
+    </hgroup>
+  </header>
+  <nav>
+    <%-if author.provider =='facebook' -%>
+      <a id="facebook" title="Share your tip on facebook" target="blank"><%= image_tag "share/Facebook.png" %></a>
+    <%-end-%>
+    <%-if author.provider =='twitter' -%>
+      <h3>Invite author</h3> <a id="twitter" title="Tweet your tip" target="blank"><%= image_tag "share/Twitter.png" %></a>
+    <%-end-%>
+    <%-if author.provider =='tumblr' -%>
+      <a id="tumblr_button_abc123" title="Blog about your tip on tumblr" target="blank" href="http://www.tumblr.com/share"><%= image_tag "share/Tumblr.png" %></a>
+    <%-end-%>
+  </nav>
+</section>
+<%-if author.user_id -%>
+<details itemscope itemtype='user' itemid='/users/<%=author.user_id%>'>
+  <summary>User</summary>
+</details>
+<%-end-%>
+
+<details>
+  <summary>pages</summary>
+  <nav>
+    <%-author.pages.each  do |page| -%>
+    <a href="/pages/<%=page.id%>"><%=page.url%></a>
+    <%-end-%>
+  </nav>
+</details>
+
+<details>
+  <summary>charged tips</summary>
+  <%-author.tips.charged.each  do |tip| -%>
+  <details itemscope itemtype='tip' itemid='/tips/<%=tip.id%>'>
+    <summary>
+      <time datetime="<%=tip.created_at.getutc.iso8601%>"/>
+    </summary>
+  </details>
+  <%-end-%>
+</details>
+<%-end-%>

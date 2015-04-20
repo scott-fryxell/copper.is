@@ -1,5 +1,8 @@
-describe "A Fan", :slow, :type => :feature do
+require 'spec_helper'
+
+describe "A Fan", :slow do
   before(:each) do
+    mock_user
     visit "/auth/facebook"
     sleep 2
     click_link 'Your account information'
@@ -7,96 +10,96 @@ describe "A Fan", :slow, :type => :feature do
 
   describe 'Item.js' do
     it "should be able to query items on the page" do
-      expect(page.evaluate_script("document.getItems('users')")).not_to be_nil
+      page.evaluate_script("document.getItems('users')").should_not be_nil
     end
 
     it "should be able to query for user email" do
-      expect(page.evaluate_script("document.me.email")).to eq("user@facebook.com")
+      page.evaluate_script("document.me.email").should == "user@facebook.com"
     end
 
     it "should be able to change email from the command line" do
       within("section#email") do
-        expect(find("div > p")).to have_content("user@facebook.com")
+        find("div > p").should have_content("user@facebook.com")
         page.execute_script("document.me.email = 'change@email.com'")
         page.execute_script("$('body').update_page(document.me)")
-        expect(find("div > p")).to have_content("change@email.com")
+        find("div > p").should have_content("change@email.com")
         click_link "Change"
-        expect(find_field('user[email]').value).to eq('change@email.com')
+        find_field('user[email]').value.should == 'change@email.com'
       end
     end
   end
 
   it "Can see their name" do
     page.save_screenshot('tmp/screenshots/settings/01.png')
-    expect(find("#banner > hgroup > p")).to have_content("facebook user")
+    find("#banner > hgroup > p").should have_content("facebook user")
   end
 
   it "can change their email address" do
     within("#email") do
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
-      expect(find("div > p")).to have_content("user@facebook.com")
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+      find("div > p").should have_content("user@facebook.com")
       click_link "Change"
-      expect(page).to have_css('form', :visible => true)
-      expect(page).to have_css('div', :visible => false)
+      page.should have_css('form', :visible => true)
+      page.should have_css('div', :visible => false)
 
-      expect(find_field('user[email]').value).to eq('user@facebook.com')
+      find_field('user[email]').value.should == 'user@facebook.com'
       fill_in('user[email]', :with => 'change@email.com')
       click_on 'Save'
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
-      expect(find("div > p")).to have_content("change@email.com")
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+      find("div > p").should have_content("change@email.com")
     end
     visit '/settings'
     within("section#email") do
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
-      expect(find("div > p")).to have_content("change@email.com")
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+      find("div > p").should have_content("change@email.com")
     end
   end
 
   it "can change their default tip amount" do
     within("section#rate") do
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
 
-      expect(find("div > p")).to have_content("0.75")
+      find("div > p").should have_content("0.75")
       click_link "Change"
-      expect(page).to have_css('form', :visible => true)
-      expect(page).to have_css('div', :visible => false)
+      page.should have_css('form', :visible => true)
+      page.should have_css('div', :visible => false)
 
-      expect(find_field('user[tip_preference_in_cents]').value).to eq('75')
+      find_field('user[tip_preference_in_cents]').value.should == '75'
       page.select '$1.00', :from => 'user[tip_preference_in_cents]'
       click_on "Save"
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
-      expect(find("div > p")).to have_content("1")
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+      find("div > p").should have_content("1")
     end
 
     visit '/settings'
 
     within("section#rate") do
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
-      expect(find("div > p")).to have_content("1")
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+      find("div > p").should have_content("1")
     end
   end
 
   it 'will see their default tip amount formated corectly'  do
     within("section#rate") do
-      expect(find("div > p")).to have_content("0.75")
+      find("div > p").should have_content("0.75")
       click_link "Change"
-      expect(find_field('user[tip_preference_in_cents]').value).to eq('75')
+      find_field('user[tip_preference_in_cents]').value.should == '75'
       page.select '$1.00', :from => 'user[tip_preference_in_cents]'
       click_on "Save"
-      expect(find("div > p")).to have_content("1")
+      find("div > p").should have_content("1")
     end
   end
 
   it "can update their credit card information" do
     within("#card") do
-      expect(page).to have_css('form', :visible => true)
-      expect(page).to have_css('div', :visible => false)
+      page.should have_css('form', :visible => true)
+      page.should have_css('div', :visible => false)
       fill_in('number', :with => '4242424242424242')
       fill_in('cvc', :with => '666')
       select('April', :from => 'month')
@@ -104,37 +107,37 @@ describe "A Fan", :slow, :type => :feature do
       check('terms')
       click_on('Save')
       sleep 2
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
       page.save_screenshot('tmp/screenshots/settings/03.png')
-      expect(find("div p.number")).to have_content("4242")
-      expect(find("div p.type")).to have_content("Visa")
-      expect(find("div p.expiration")).to have_content("4/2015")
+      find("div p.number").should have_content("4242")
+      find("div p.type").should have_content("Visa")
+      find("div p.expiration").should have_content("4/2015")
     end
 
     within("#card") do
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
-      expect(find("div p.number")).to have_content("4242")
-      expect(find("div p.type")).to have_content("Visa")
-      expect(find("div p.expiration")).to have_content("4/2015")
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+      find("div p.number").should have_content("4242")
+      find("div p.type").should have_content("Visa")
+      find("div p.expiration").should have_content("4/2015")
     end
     visit '/settings'
     sleep 2
     page.save_screenshot('tmp/screenshots/settings/02.png')
 
     within("#card") do
-      expect(page).to have_css('form', :visible => false)
-      expect(page).to have_css('div', :visible => true)
-      expect(find("div p.number")).to have_content("4242")
-      expect(find("div p.type")).to have_content("Visa")
-      expect(find("div p.expiration")).to have_content("4/2015")
+      page.should have_css('form', :visible => false)
+      page.should have_css('div', :visible => true)
+      find("div p.number").should have_content("4242")
+      find("div p.type").should have_content("Visa")
+      find("div p.expiration").should have_content("4/2015")
     end
   end
 
   it "will be told if their credit card info is bad" do
     within("#card") do
-      expect(page).to have_css('form', :visible => true)
+      page.should have_css('form', :visible => true)
       fill_in('number', :with => '4000000000000002')
       fill_in('cvc', :with => '666')
       select('April', :from => 'month')
@@ -142,11 +145,53 @@ describe "A Fan", :slow, :type => :feature do
       check('terms')
       click_on('Save')
       sleep 3
-      page.save_screenshot('tmp/screenshots/settings/03')
-      expect(page).to have_css('form', :visible => true)
-      expect(page).to have_css('form > h1', :visible => true)
-      expect(page).to have_content('Your card was declined');
+      page.save_screenshot('tmp/screenshots/')
+      page.should have_css('form', :visible => true)
+      page.should have_css('form > h1', :visible => true)
+      page.should have_content('Your card was declined');
     end
   end
 
+  it 'can change their address' do
+    page.should have_css('#address form', visible:true)
+
+    within '#address' do
+      click_on 'Save'
+      page.save_screenshot('tmp/screenshots/settings/04.png')
+      page.should have_css('form', visible:true)
+      page.should have_css("input[itemprop=payable_to].invalid")
+      page.should have_css("input[itemprop=line1].invalid")
+      page.should have_css("input[itemprop=city].invalid")
+      page.should have_css("input[itemprop=postal_code].invalid")
+      page.should have_css("select[itemprop=country_code].invalid")
+
+      fill_in 'user[payable_to]', with:'joe strummer'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=payable_to].invalid", visible:true)
+
+      fill_in 'user[line1]', with:'643 big ass street'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=payable_to].invalid", visible:true)
+
+      fill_in 'user[city]', with:'san francisco'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=city].invalid", visible:true)
+
+      fill_in 'user[postal_code]', with:'94110'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=postal_code].invalid", visible:true)
+
+      fill_in 'user[postal_code]', with:'94110'
+      click_on 'Save'
+      page.should have_no_css("input[itemprop=postal_code].invalid", visible:true)
+
+      select('Andorra', :from => 'user[country_code]')
+      click_on 'Save'
+      page.should have_no_css("select[itemprop=country_code].invalid", visible:true)
+
+      page.should have_css('form', visible:false)
+      page.should have_css('div', visible:true)
+      page.save_screenshot('tmp/screenshots/settings/05.png')
+    end
+  end
 end

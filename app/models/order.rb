@@ -1,18 +1,16 @@
 class Order < ActiveRecord::Base
   include Enqueueable
-  include Historicle
-  include Message::Billable
-
+  include OrderMessages
   has_many :tips
   belongs_to :user,  touch:true
-
+  has_paper_trail
   validates :user, presence:true
   validates_associated :user
 
-  scope :current, -> { where(order_state:'current') }
-  scope :unpaid,  -> { where(order_state:'unpaid')  }
-  scope :denied,  -> { where(order_state:'denied')  }
-  scope :paid,    -> { where(order_state:'paid')    }
+  scope :current, where('order_state = ?', 'current')
+  scope :unpaid, where('order_state = ?', 'unpaid')
+  scope :denied, where('order_state = ?', 'denied')
+  scope :paid, where('order_state = ?', 'paid')
 
   state_machine :order_state, :initial => :current do
     event :process do
@@ -27,31 +25,22 @@ class Order < ActiveRecord::Base
     end
 
     state :current do
-      def rotate!
-        if billable?
-          process!
-        end
-      end
+    end
 
-      def billable?
-        if user.can_give? and tips.sum(:amount_in_cents) > 50
-          true
-        else
-          false
-        end
+    state :current do
+      def rotate!
+        process!
       end
     end
 
-    state :unpaid, :denied do
-
+    state :unpaid,:denied do
       def charge!
         stripe_charge = Stripe::Charge.create(
-          :amount => subtotal() + fees(),
+          :amount => subtotal() +fees(),
           :currency => "usd",
           :customer => self.user.stripe_id,
           :description => "order.id=" + self.id.to_s
         )
-
         self.charge_token = stripe_charge.id
         self.save!
         self.tips.find_each do |tip|
@@ -63,12 +52,25 @@ class Order < ActiveRecord::Base
       rescue Stripe::CardError => e
         decline!
         if e.code == 'expired_card'
-          Resque.enqueue Order, id, :send_card_expired_message
+          user.message_
         end
 
         raise e
       end
     end
+  end
+
+
+  def tips_to_table_rows
+    tip_rows = ""
+    self.tips.find_each do |tip|
+      title = tip.title
+      if title.length == 0
+        title = tip.url
+      end
+      tip_rows += "<tr><td width='400'><a href='#{tip.url}'>#{title[0...75]}</a><br/></td><td>$#{tip.amount_in_dollars}</td></tr>"
+    end
+    tip_rows
   end
 
   def subtotal
@@ -89,6 +91,10 @@ class Order < ActiveRecord::Base
     sprintf('%.2f', fees)
   end
 
+  def fees
+    self.tips.sum(:amount_in_cents) / 10
+  end
+
   def total
     self.subtotal + self.fees
   end
@@ -96,5 +102,4 @@ class Order < ActiveRecord::Base
   def total_in_dollars
     sprintf('%.2f', Float(self.total)/100)
   end
-
 end

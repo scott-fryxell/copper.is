@@ -1,0 +1,15 @@
+<%-cache page do-%>
+<dl itemscope itemtype='page' itemid='/pages/<%=page.id%>'>
+  <dd itemprop="created_at"><%=page.created_at.getutc.iso8601%></dd>
+  <dd itemprop="updated_at"><%=page.updated_at.getutc.iso8601%></dd>
+  <dd itemprop='url'><%=page.url%></dd>
+  <dd itemprop='title'><%=page.title%></dd>
+  <dd itemprop='thumbnail_url'><%=page.thumbnail_url%></dd>
+  <dd itemprop='author_state'><%=page.author_state%></dd>
+  <dd itemprop='author_id'><%=page.author_id%></dd>
+  <dd itemprop='onboarding'><%=page.onboarding%></dd>
+  <dd itemprop='welcome'><%=page.welcome%></dd>
+  <dd itemprop='trending'><%=page.trending%></dd>
+  <dd itemprop='nsfw'><%=page.nsfw%></dd>
+</dl>
+<%-end-%>

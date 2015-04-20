@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
+    <title>copper – <%=@page.title%></title>
+    <%= render partial:"layouts/head_links"%>
+    <%= stylesheet_link_tag "application", media:"all" %>
+    <%= csrf_meta_tag %>
+    <link rel="author" href="<%=@page.author.url if @page.author %>">
+    <link rel="canonical" href="<%=@page.url%>">
+    <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>">
+    <meta property="og:type"   content="website">
+    <meta property="og:url"    content="https://www.copper.is/pages/<%=@page.id%>">
+    <meta property="og:title"  content="<%=@page.title%>">
+    <meta property="og:image"  content="<%=@page.thumbnail%>">
+  </head>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" <%=item_scope%>>
+    <%= render partial:"layouts/header"%>
+    <%= yield %>
+    <%= render partial:"layouts/footer"%>
+    <%= javascript_include_tag "application" %>
+   </body>
+ </html>

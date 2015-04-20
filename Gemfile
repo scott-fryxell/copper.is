@@ -1,16 +1,7 @@
 source 'http://rubygems.org'
-ruby '2.1.2'
-gem 'rails', '4.1.0'
-
-gem 'sass-rails', '~> 4.0.3'
-gem 'bourbon'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+ruby '2.0.0'
+gem 'rails', '3.2.13'
 gem 'jquery-rails'
-gem 'turbolinks'
-gem 'stylus'
-gem 'sdoc', '~> 0.4.0', group: :doc
-
 
 gem 'omniauth'
 gem 'omniauth-twitter'
@@ -23,75 +14,85 @@ gem 'omniauth-soundcloud'
 gem 'omniauth-google-oauth2'
 
 gem 'kaminari'
+gem 'newrelic_rpm'
+gem 'honeybadger'
 gem 'declarative_authorization'
+gem 'mustache'
+gem 'jbuilder'
 gem 'stripe'
 gem 'memcachier'
 gem 'dalli'
 gem "foreman"
-
+gem 'unicorn'
 gem 'redis'
 gem 'resque', "~> 1.22.0"
-gem 'state_machine', git:'https://github.com/seuros/state_machine'
-gem 'ruby-graphviz', :require => 'graphviz' # Optional: only required for state_machine graphing
+gem 'state_machine'
 gem 'nokogiri'
 gem 'twitter'
 gem 'youtube_it'
+gem 'paper_trail', '~> 2'
+gem 'carmen-rails'
 gem "vimeo"
 gem 'koala'
-gem 'paper_trail', '~> 3.0.3'
 gem 'mechanize'
 gem 'cache_digests'
-# gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
+gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
 gem "lograge"
-gem 'rails_12factor'
+
 gem 'pry'
 gem 'pry-rails'
-gem 'pry-git'
-gem 'awesome_print'
-gem 'coolline'
-gem 'coderay'
-gem "pg"
-gem 'hirb'
-gem 'puma'
-gem 'unicorn'
-gem 'rb-fsevent'
+
+gem 'sass-rails',   '~> 3.2.3' # needed global for heroku
+gem 'bourbon'
+group :assets do
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier'
+  gem 'yui-compressor'
+end
+
+group :production do
+  # gem "pg"
+end
 
 group :development do
-  gem 'redcarpet', '~> 2.1.1', require:false
-  gem 'pry-rescue'
-  gem 'pry-stack_explorer'
+  gem 'guard-rake'
+  gem 'redcarpet'
+  gem 'yard'
 end
 
 group :test do
+  gem 'fuubar'
   gem 'factory_girl_rails'
   gem 'resque_spec'
   gem 'hashugar'
   gem 'vcr'
   gem 'webmock'
-  gem 'reek'
 end
 
 group :development, :test do
-  gem 'spring-commands-rspec'
-  gem 'spring'
   gem 'seedbank'
   gem 'reek'
+  gem 'sqlite3'
+  gem 'thin'
+  gem 'awesome_print'
   gem 'simplecov', require:false
   gem 'ruby_parser'
   gem 'rspec-rails'
-  gem 'poltergeist'
-  gem 'database_cleaner'
+  gem "poltergeist"
+  gem 'database_cleaner', '~> 0.6.7'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-livereload'
-  # gem 'guard-process', path:"/Users/scott/Code/guard-process"
-  gem 'guard-process', git:'https://github.com/scott-fryxell/guard-process'
-
-  gem 'guard-shell'
-
+  gem 'guard-pow'
+  gem 'guard-process'
+  gem 'guard-zeus'
+  gem 'guard-bundler'
+  gem 'rb-fsevent'
   gem 'launchy'
-  gem 'rb-inotify', :require => false
-  # gem 'rb-fsevent', :require => false
-  # gem 'terminal-notifier-guard', :require => false # sends guard notifications to the OS X Notification Center.
+  gem 'ruby-graphviz', '~> 0.9.17'
+  gem 'rails-erd'
   gem 'quiet_assets'
 end
+
+
+

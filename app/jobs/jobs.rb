@@ -1,41 +1,37 @@
+# ======  Check observers =======
 
-# TODO: this is where i tie all the gears together.
-# once scheduled these jobs cycle through the service
-# billing fans for their tips
-# finding authorse to invite to the service
-# paying authors that have proviced their bank info
-class CreateRoyaltiesJob
-  @queue = :normal
+class UsersJob
+  @queue = :high
   def self.perform
-    User.select(:id).find_each do |id|
-      Resque.enqueue User, id, :try_to_create_check!
+    User.select(:id).find_each do |user|
+      Resque.enqueue User, user.id, :try_to_create_check!
     end
   end
 end
 
-class PayRoyaltiesJob
-  @queue = :normal
+class EarnedChecksJob
+  @queue = :high
   def self.perform
-    Check.earned.pluck(:id).find_each do |id|
-      Resque.enqueue Check, id, :try_to_deposit
+    Check.earned.select(:id).find_each do |check|
+      # Resque.enqueue Check, check.id, :message_author!
     end
   end
 end
-
-class InviteAuthorsJoin
-  @queue = :normal
+    
+class WantedAuthorsJob
+  @queue = :high
   def self.perform
-    Author.wanted.pluck(:id).find_each do |id|
-      Resque.enqueue Author, id, :message_wanted!
+    Author.wanted.select(:id).find_each do |wanted|
+      Resque.enqueue Author, wanted.id, :message_wanted!
     end
   end
 end
 
 class StrangerAuthorsJob
-  @queue = :normal
+  @queue = :high
   def self.perform
-    Author.strangers.pluck(:id).find_each do |id|
-      Resque.enqueue Author, id, :try_to_add_to_wanted_list!
+    Author.strangers.select(:id).find_each do |non_user|
+      Resque.enqueue Author, non_user.id, :try_to_add_to_wanted_list!
     end
   end
 end

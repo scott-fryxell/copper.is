@@ -1,28 +1,30 @@
-describe SessionsController, :type => :controller do
-  let(:me) { create!(:user) }
+require 'spec_helper'
 
+describe SessionsController do
   before :each do
+    me_setup
     request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
   end
 
-  it 'should create a new account' do
-    expect(User).to receive(:create_from_authorizer).and_return(me)
-    get :create, provider:'facebook'
-  end
-
-  it 'create a second account' do
-    # expect(User).to receive(:create_from_authorizer).and_return(me)
-    get_with me, :create, provider:"twitter", uid:'brokenbydawn'
+  it 'should let them log in' do pending
+    controller.session["omniauth.auth"][:uid].should == '234567'
+    post :create
   end
 
   it 'Should log the user out' do
-    delete_with me, :destroy
+    delete_with @me, :destroy
   end
 
-  it 'Should log the user out' do
-    delete_with me, :destroy, redirect_to:"/trending"
+  it 'Should let the user manage their facebook pages' do
+    post_with @me, :manage_pages
   end
 
-  it 'handle a login failure'
+  it 'let the user give permission to publish on their timeline' do
+    post_with @me, :publish_actions
+  end
+
+  it 'handle a login failure' do
+    post_with @me, :failure
+  end
 
 end

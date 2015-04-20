@@ -1,19 +1,31 @@
 <!DOCTYPE html>
-<html manifest='<%=cache_url%>'>
+<html>
   <head>
-    <title>Copper</title>
+    <title>copper.is – The currency of appreciation</title>
+    <%= render partial:"layouts/head_links"%>
     <%= csrf_meta_tag %>
-    <%= render partial:"application/link" %>
-    <%= render partial:"application/meta" %>
-    <%= stylesheet_link_tag "application", media:"screen" %>
+    <link rel="author"  href="http://twitter.com/copper_is >
+    <meta property="fb:app_id" content="<%=Copper::Application.config.facebook_appid%>" />
+    <meta property="og:type"   content="website" />
+    <meta property="og:title"  content="Copper.is – The currency of appreciation" />
+    <meta property="og:image"  content="<%=image_path('icons/logo.svg')%>" />
+    <meta name="keywords" content="Copper.is San Francisco, music, tipping, appreciation, copper">
+    <meta name="description" content="Copper. – Support artists through tipping.
+                                                You find something cool anywhere online.
+                                                You click a button to tip the content.We
+                                                find the person who made it and pay them.">
+
+    <%= stylesheet_link_tag "application", media:"all" %>
     <%= javascript_include_tag "application" %>
+    <%-if Rails.env.test?-%>
+      <%= stylesheet_link_tag "test", media:"all" %>
+    <%-end-%>
   </head>
-  <body class='<%=page_scope%>'>
-    <%= render partial:"/application/header" %>
-    <%= render partial:"/application/menu" %>
-    <main>
-      <%= yield %>
-    </main>
-    <%= render partial:"/application/footer" %>
+  <body id="<%= params[:controller].parameterize%>_<%= params[:action].parameterize%>" class='<%= params[:controller].parameterize%> <%= params[:action].parameterize%>' >
+    <%= render partial:"layouts/header"%>
+    <%= yield %>
+    <data>
+      <%= render partial:"users/model", object:current_user, as: :user if current_user%>
+    </data>
   </body>
 </html>

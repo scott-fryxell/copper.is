@@ -1,5 +1,5 @@
-worker_processes 1 # amount of unicorn workers to spin up
-timeout 10         # restarts workers that hang for 30 seconds
+worker_processes 6 # amount of unicorn workers to spin up
+timeout 30         # restarts workers that hang for 30 seconds
 preload_app true
 
 before_fork do |server, worker|

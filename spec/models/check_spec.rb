@@ -1,17 +1,22 @@
-describe Check, :type => :model do
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-  subject {build!(:check)}
+describe Check do
+  before(:each) do
+    mock_user
+    @order = FactoryGirl.build(:check)
+  end
 
   it "transition from :earned to :paid on a deliver: event" do
-    expect(subject.earned?).to be_truthy
-    subject.deliver!
-    expect(subject.deposited?).to be_truthy
+    @check = FactoryGirl.create(:check)
+    @check.earned?.should be_true
+    @check.deliver!
+    @check.paid?.should be_true
   end
 
   it "transition to :paid to :cashed with a reconcile! event" do
-    check = build!(:check_deposited)
-    expect(check.deposited?).to be_truthy
-    check.reconcile!
-    expect(check.cashed?).to be_truthy
+    @check = FactoryGirl.create(:check_paid)
+    @check.paid?.should be_true
+    @check.reconcile!
+    @check.cashed?.should be_true
   end
 end

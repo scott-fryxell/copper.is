@@ -4,7 +4,6 @@ log/*.log
 tmp/**/*
 tmp/**
 coverage
-doc
 config/database.yml
 TAGS
 .gitignore
@@ -13,15 +12,3 @@ TAGS
 .DS_Store
 public/favicon.ico
 .powder
-
-.ruby-version
-
-.envrc
-
-.yardoc/checksums
-
-.yardoc/object_types
-
-.yardoc/objects/root.dat
-
-.yardoc/proxy_types

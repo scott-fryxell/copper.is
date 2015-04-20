@@ -1,0 +1,28 @@
+<%-unless params[:endless]-%>
+  <section id="banner">
+  <header>
+    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+  </header>
+  <hgroup>
+    <h1>Authors</h1>
+    <p><%=current_user.name%><a href="/signout">not you?</a></p>
+  </hgroup>
+  <details class='admin'>
+    <summary><img class="admin" src='<%= image_path 'noun_project/8233.svg'%>'/></summary>
+    <nav>
+      <a>stranger</a>
+      <a>wanted</a>
+      <a>known</a>
+    </nav>
+    <fieldset>
+      <input class="endless" type="range" min="2" max="12" step="1" value="3" />
+    </fieldset>
+  </details>
+</section>
+<%-end-%>
+<section class="authors endless" data-per-row="4">
+<%= render partial:"as_details", collection:@authors, as: :author %>
+</section>
+<script src='//connect.facebook.net/en_US/all.js'></script>
+<script src="//platform.tumblr.com/v1/share.js"></script>
+<div id='fb-root'></div>

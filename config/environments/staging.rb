@@ -18,5 +18,10 @@ Copper::Application.configure do
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=31536000"
 
+  config.facebook_appname = "copper-staging"
+  config.facebook_appid = "180829622036113"
+
+  config.active_record.mass_assignment_sanitizer = :strict
+  config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.cache_store = :dalli_store
 end

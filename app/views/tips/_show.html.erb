@@ -1,0 +1,25 @@
+<%-cache tip do-%>
+<section>
+  <dl>
+    <dt>created</dt>
+    <dd><time itemprop="created_at" datetime="<%=tip.created_at.getutc.iso8601%>"/></dd>
+    <dt>updated</dt>
+    <dd><time itemprop="updated_at" datetime="<%=tip.updated_at.getutc.iso8601%>"/></dd>
+    <dt>amount in cents</dt>
+    <dd itemprop="amount_in_cents" data-value='<%=tip.amount_in_cents%>'></dd>
+    <dt>state</dt>
+    <dd itemprop="paid_state"><%=tip.paid_state%></dd>
+  </dl>
+  <footer>
+    <details itemscope itemtype='page' itemid='/pages/<%=tip.page_id%>'>
+      <summary>page</summary>
+    </details>
+    <details itemscope itemtype='order' itemid='/orders/<%=tip.order_id%>'>
+      <summary>order</summary>
+    </details>
+    <details itemscope itemtype='check' itemid='/checks/<%=tip.check_id%>'>
+      <summary>check</summary>
+    </details>
+  </footer>
+</section>
+<%-end-%>

@@ -1,34 +1,25 @@
+require 'carmen'
+include Carmen
+
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  respond_to :html
-  filter_access_to :all
   protect_from_forgery
 
-  helper_method :current_user, :user_url,         :page_scope,
-                :cache_url,    :cents_to_dollars, :icons,
-                :bust_cache
+  helper_method :current_user, :item_scope, :user_url
+  before_filter :set_current_user
 
-  before_action :set_current_user
-
-  def appcache
-    render action:'appcache', layout:false, content_type:'text/cache-manifest'
+  before_filter do
+    Honeybadger.context({
+      :user_id => current_user.id,
+      :user_email => current_user.email
+    }) if current_user
   end
 
-  def index
-    # home page
-  end
-
-protected
-
-  def icons
-    Dir.chdir('app/assets/images/') do
-      Dir['**/*.svg']
-    end
-  end
+  protected
 
   def user_url(user)
     if  current_user.id == user.id
-      return '/me'
+      return 'me'
     else
       return "/users/#{user.id}"
     end
@@ -40,9 +31,9 @@ protected
 
   def permission_denied
     if current_user
-      head :forbidden
+      render nothing:true, status:403
     else
-      head :unauthorized
+      render nothing:true, status:401
     end
   end
 
@@ -50,29 +41,9 @@ protected
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def page_scope
-    "#{params[:controller].parameterize} #{params[:action].parameterize}"
+  #TODO: => "value",  this should be specfic to user or model agnostic
+  def item_scope
+    return nil unless current_user
+    "itemscope itemtype=user itemid=/users/#{current_user.id}"
   end
-
-  def cache_url
-    if params[:controller] == 'application'
-      "/appcache" # domain
-    elsif params[:id]
-      "/#{params[:controller].parameterize}/#{params[:id]}/appcache" # member
-    else
-      "/#{params[:controller].parameterize}/appcache" # collection
-    end
-  end
-
-  def bust_cache
-    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
-    response.headers["Pragma"] = "no-cache"
-    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-  end
-
-
-  def cents_to_dollars(amount_in_cents)
-    amount_in_dollars = "%.2f" % (amount_in_cents / 100.0)
-  end
-
 end

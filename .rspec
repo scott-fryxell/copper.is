@@ -1,6 +1,5 @@
 --color
---format doc
+--format Fuubar
 --colour
 --tag focus
---tag ~!@slow
---require spec_helper
+--tag @slow

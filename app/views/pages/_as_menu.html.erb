@@ -1,6 +1,0 @@
-<%-cache page do-%>
-<menu class="admin" <%= raw page.as_item_attributes %> >
-  <button itemprop="nsfw"       formmethod="patch" formaction="<%=page.item_id%>" value="<%=page.nsfw?%>">nsfw</button>
-  <button                       formmethod="patch" formaction="<%=page.item_id%>/reject">reject</button>
-</menu>
-<%-end-%>

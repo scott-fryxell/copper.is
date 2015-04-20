@@ -5,43 +5,38 @@ authorization do
 
   role :admin do
     includes :fan
-    has_permission_on :users,       to: :manage
-    has_permission_on :pages,       to: :manage
-    has_permission_on :authors,     to: :manage
-    has_permission_on :tips,        to: :manage
-    has_permission_on :home,        to: :manage
-    has_permission_on :admin,       to: [:test, :index]
+    has_permission_on :users,    :to => :manage
+    has_permission_on :pages,   :to => :manage
+    has_permission_on :authors, :to => :manage
+    has_permission_on :tips,      :to => :manage
+    has_permission_on :home,    :to => :manage
   end
 
   role :fan do
     includes :guest
-    has_permission_on :pages,       to: :read
-    has_permission_on :authors,     to: [:settings]
-    has_permission_on :users,       to: [:settings, :update]
-    has_permission_on :tips,        to: [:create, :delete, :received, :given]
-    has_permission_on :sessions,    to: :delete
-    has_permission_on :tips,        to: [:update, :destroy] do
-      if_attribute user: is { user }
+    has_permission_on :sessions,   :to => :delete
+    has_permission_on :home,       :to => [:read]
+    has_permission_on :users,       :to => [:show,:update] do
+      if_attribute :id => is { user.id }
     end
 
+    has_permission_on :tips,       :to => [:create]
+    has_permission_on :tips,       :to => [:update, :destroy] do
+      if_attribute :user => is { user }
+    end
+
+    has_permission_on :checks,     :to => [:read]
+    has_permission_on :orders,     :to => [:read,:update]
+    has_permission_on :authors,    :to => [:edit, :destroy] do
+      if_attribute :user => is { user }
+    end
+    has_permission_on :cards,       :to => [:manage]
   end
 
   role :guest do
-    has_permission_on :admin,       to: [:ping, :test]
-    has_permission_on :events,      to: :publisher
-    has_permission_on :appcache,    to: :index
-    has_permission_on :users,       to: :show
-    has_permission_on :authors,     to: :enquire
-    has_permission_on :application, to: [:appcache, :index]
-    has_permission_on :sessions,    to: [:create, :failure]
-    has_permission_on :tips,        to: [:new, :iframe]
-    has_permission_on :pages,       to: [
-                                         :read,
-                                         :member_appcache,
-                                         :collection_appcache,
-                                         :trending,
-                                         :recent
-                                        ]
+    has_permission_on :pages,       :to => [:show]
+    has_permission_on :tips,          :to => [:new]
+    has_permission_on :authors,     :to => [:enquire]
   end
 end
 

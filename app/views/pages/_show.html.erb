@@ -1,0 +1,20 @@
+<%-cache page do-%>
+<section id="banner">
+  <hgroup>
+    <h1>Are you into <%=page.author.username if page.author%>?</h1>
+    <p class="fan">Your support matters. Tip them.</p>
+    <p class="guest">Get the Copper button to support them with a single click.</p>
+  </hgroup>
+  <hgroup>
+    <figure>
+      <%= image_tag "arrows/swoop_left_light.svg" %>
+      <figcaption>
+        <p>Your button is right there.</p>
+        <p>Clicks make tips.</p>
+       </figcaption>
+    </figure>
+    <a class="button guest" href="/getting_started">Sign Up</a>
+  </hgroup>
+</section>
+<iframe src="<%=page.url%>" scrollable="true"></iframe>
+<%-end-%>

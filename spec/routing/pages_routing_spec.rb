@@ -1,37 +1,23 @@
-describe PagesController, :type => :routing do
+require "spec_helper"
 
+describe PagesController do
   describe "routing" do
 
-    context "collection" do
-
-      it "routes to #trending" do
-        expect(get("/pages/trending")).to route_to("pages#trending")
-      end
-
-      it "routes to #recent" do
-        expect(get("/pages/recent")).to route_to("pages#recent")
-      end
-
-      it "routes to #collection.appcache" do
-        expect(get("/pages/appcache")).to route_to("pages#collection_appcache")
-      end
+    it "routes to #index" do
+      get("/pages").should route_to("pages#index")
     end
 
-    context 'member' do
-      it "routes to #update" do
-        expect(put("/pages/1")).to route_to("pages#update", id:"1")
-      end
+    it "routes to #show" do
+      get("/pages/1").should route_to("pages#show", :id => "1")
+    end
 
-      it "routes to #show" do
-        expect(get("/pages/1")).to route_to("pages#show", id:"1")
-      end
+    it "routes to #update" do
+      put("/pages/1").should route_to("pages#update", :id => "1")
+    end
 
-      it "routes to #member_appcache" do
-        expect(get("/pages/1/appcache")).to route_to("pages#member_appcache", id:"1")
-      end
-
+    it "routes to #reject" do
+      put("/pages/1/reject").should route_to("pages#reject", :id => "1")
     end
 
   end
-
 end

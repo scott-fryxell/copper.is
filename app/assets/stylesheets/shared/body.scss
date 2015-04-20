@@ -1,0 +1,174 @@
+html {
+  height:100%;
+  overflow-x:hidden;
+  background-color: $light;
+  background-image: image-url('shared/texture_light.png');
+  @include user-select(none);
+  * {
+    @include box-sizing(border-box);
+  }
+}
+body {
+  & > data {
+    display:none;
+  }
+  section.admin {
+    display:none;
+  }
+  @include text;
+  overflow-x:hidden;
+  &:after {
+    content:"";
+    position:fixed;
+    z-index:-1;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    opacity:0.11;
+    @include background-image(radial-gradient($light 22%, $copper 100%));
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @include header_text;
+    text-transform:capitalize;
+  }
+  nav > a, summary {
+    text-transform:capitalize;
+  }
+  h2 {
+    font-size:1.34rem;
+  }
+  p {
+    font-size:0.85rem;
+  }
+  ul, ol, dl {
+    list-style: none;
+  }
+  a {
+    text-decoration:none;
+    cursor:pointer;
+    &[itemprop=url] {
+      text-transform: lowercase;
+    }
+    &.button {
+      @include button($copper);
+    }
+  }
+
+  .help {
+    font-size:1rem;
+    margin:0;
+    display:inline-block;
+    width:grid-width(5);
+    @include help_text
+  }
+  .help_arrow {
+    @include help_arrow
+  }
+  .working {
+    @include animation-name(spinning);
+    @include animation-duration(1.5s);
+    @include animation-timing-function(ease);
+    @include animation-iteration-count(infinite);
+  }
+
+  & > section,
+  & > article {
+    width:grid-width(24);
+    margin: 0 auto 0 auto;
+    padding: 0 grid-width(2);
+    & a {
+      font-family: 'Doppio One', sans-serif;
+      color:$text;
+    }
+  }
+  & > footer {
+    margin-top:grid-width(2);
+    padding:1em 1em 1em 2em;
+    @include full_width($header);
+    &:before {
+      content:"";
+      position:absolute;
+      // z-index:1;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      opacity:0.9;
+      @include background-image(linear-gradient($header_transparent 50%, $header 100%), radial-gradient($dark 25%, $header_transparent 100%));
+    }
+
+    &.bottom {
+      position:fixed;
+      bottom:0;
+      left:0;
+    }
+
+    & > h3 {
+      font-size:0.85em;
+      display:inline-block;
+      font-family: 'Patua One', cursive;
+      color:$light;
+      opacity:0.5;
+    }
+    & > h4 {
+      font-family: 'Cantarell', sans-serif;
+      display:inline-block;
+      font-size:0.75em;
+      color:$light;
+      opacity:0.5;
+
+      &:before {
+        color:$light;
+        opacity:0.5;
+        display:inline-block;
+        content: '|';
+        margin-right:1em;
+        margin-left:1em;
+        text-decoration:none !important;
+      }
+    }
+    & > nav {
+      color:#A7A39B;
+      display:inline-block;
+      & > a {
+        letter-spacing: 1px;
+        font-family: 'Doppio One', sans-serif;
+        font-size:0.75em;
+        display:inline-block;
+        color:$light;
+        opacity:0.75;
+        &:before {
+          color:$offset;
+          display:inline-block;
+          content: '|';
+          margin-right:1em;
+          margin-left:1em;
+          text-decoration:none !important;
+        }
+      }
+    }
+  }
+  & > nav {
+    padding:5em;
+    & > a,
+    & > button {
+      font-size:0.85em;
+      display:block;
+      margin: 0 auto 0 auto;
+      width: 13em;
+      color:$text;
+    }
+    & > a {
+      @include settings_pointer;
+    }
+  }
+}
+body.guest {
+}
+
+body.fan {
+  & > header > hgroup > #fan_nav {
+    opacity:1;
+  }
+}

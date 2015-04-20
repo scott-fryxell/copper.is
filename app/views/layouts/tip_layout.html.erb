@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <%= csrf_meta_tag %>
-    <%= stylesheet_link_tag "tips/new", media:"screen" %>
-    <%= javascript_include_tag "tips/new" %>
+    <%= stylesheet_link_tag "tips/new" %>
+    <%-if Rails.env.test?-%>
+      <%= stylesheet_link_tag "test", media:"all" %>
+    <%-end-%>
   </head>
-  <body class="tips new" itemscope itemtype='tip' itemid="new">
+  <body id="tips_new" itemscope itemtype='tip' itemid="new">
     <%= yield %>
+    <%= javascript_include_tag "tips/new" %>
   </body>
 </html>

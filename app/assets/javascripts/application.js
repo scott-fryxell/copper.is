@@ -1,19 +1,28 @@
 //= require jquery
+//= require jquery.cookie
 //= require jquery.timeago
-//= require jquery.imgLiquid
-//= require colibri
-
-//= require lib/jquery.currency
+//= require jquery.tmpl
+//= require jquery.browser
+//= require jquery.details
 //= require lib/Item
-//= require lib/jquery.items
-//= require lib/events.items
-//= require lib/appcache
-//= require lib/Roles
-//= require lib/Fragment
-
-//= require pages/trending
-//= require pages/recent
+//= require lib/Me
+//= require lib/currency
+//= require lib/tips
+//= require lib/button
+//= require lib/address
+//= require lib/card
+//= require lib/email
+//= require lib/endless
+//= require home/index
+//= require home/author
+//= require home/settings
+//= require home/badge
+//= require home/getting_started
+//= require home/tip_some_pages
+//= require pages/index
 //= require pages/show
-
+//= require authors/index
+//= require authors/edit
+//= require orders/index
 //= require setup
 //= require init

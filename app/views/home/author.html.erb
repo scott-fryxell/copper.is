@@ -1,0 +1,124 @@
+<%-cache current_user do-%>
+  <section id="banner">
+    <header>
+      <a href=/><img src="<%=current_user.authors.first.profile_image%>" class="author"></a>
+    </header>
+    <hgroup>
+      <h1>Your pages</h1>
+      <p><%=@current_user.name%><a href="/signout">not you?</a></p>
+    </hgroup>
+    <p>
+      Hi <%=@current_user.name%>! On this page,
+      you can see what content your fans are connecting with
+      and the tips they’ve sent to show their appreciation.
+    </p>
+  </section>
+
+  <section id="stats" >
+    <header>
+    </header>
+    <div>
+      <h2>Tip count</h2>
+      <p><%=current_user.royalties.count%></p>
+    </div>
+    <div>
+      <h2>Tips Paid</h2>
+      <p data-cents="<%=current_user.paid_royalties.count%>"></p>
+    </div>
+    <div>
+      <h2>Tips pending</h2>
+      <p data-cents="<%=current_user.pending_royalties.sum :amount_in_cents%>"></p>
+    </div>
+    <div>
+      <h2>highest tip</h2>
+        <p data-cents="<%=current_user.royalties.maximum :amount_in_cents%>"></p>
+    </div>
+    <div>
+      <h2>Average tip</h2>
+      <p data-cents="<%=current_user.average_royalties%>"></p>
+    </div>
+    <div>
+      <h2>Total tips</h2>
+      <p data-cents="<%=current_user.royalties.sum :amount_in_cents %>"></p>
+    </div>
+  </section>
+
+  <section id="services" itemscope itemtype="user" itemid="/users/<%=current_user.id%>">
+    <details>
+      <summary>Authorize services</summary>
+      <section>
+        <div>
+          <%-current_user.authors.each do |author|-%>
+          <figure class="<%=author.provider%>" itemscope itemtype="author"  itemid="/authors/<%=author.id%>">
+            <%= image_tag "providers/#{author.provider}/sign_in.png", title:author.username%>
+            <%-if author.username-%>
+              <figcaption itemprop='username'><%=author.username%></figcaption>
+            <%-else-%>
+              <figcaption itemprop='uid'><%=author.uid%></figcaption>
+            <%-end-%>
+            <%-if current_user.authors.count > 1-%>
+            <form action='<%=author_path(author)%>' method="delete">
+              <input type="submit" name="submit" value="X">
+            </form>
+            <%-end-%>
+          </figure>
+          <%-end-%>
+        </div>
+        <aside>
+          <header>
+            <h2>Authorize other services</h2>
+          </header>
+          <nav>
+            <a href="/auth/facebook" title="Authorize facebook">
+              <%= image_tag "providers/facebook/sign_in.png"%>
+            </a>
+            <a href="/auth/twitter" title="Authorize twitter">
+              <%= image_tag "providers/twitter/sign_in.png"%>
+            </a>
+            <a href="/auth/google_oauth2" title="Authorize google">
+              <%= image_tag "providers/google/sign_in.png"%>
+            </a>
+            <a href="/auth/soundcloud" title="Authorize soundcloud">
+              <%= image_tag "providers/soundcloud/sign_in.png"%>
+            </a>
+            <a href="/auth/vimeo" title="Authorize vimeo">
+              <%= image_tag "providers/vimeo/sign_in.png"%>
+            </a>
+            <a href="/auth/tumblr" title="Authorize tumblr">
+              <%= image_tag "providers/tumblr/sign_in.png"%>
+            </a>
+            <a href="/auth/github" title="Authorize github">
+              <%= image_tag "providers/github/sign_in.png"%>
+            </a>
+            <a href="/auth/flickr" title="Authorize flickr">
+              <%= image_tag "providers/flickr/sign_in.png"%>
+            </a>
+          </nav>
+          <%-current_user.authors.each do |author|-%>
+            <%-if author.provider == 'facebook' and author.token -%>
+              <a href="/auth/facebook/manage_pages">Claim facebook pages</a>
+            <%-end-%>
+          <%-end-%>
+        </aside>
+      </section>
+    </details>
+    <aside id='facebook_pages'>
+      <header>
+        <h2>Facebook pages you admin</h2>
+        <p class='help'>check all the pages you want to recieve tips for</p>
+      </header>
+      <form method="post" action='/claim_facebook_pages'>
+        <fieldset>
+        </fieldset>
+        <input type='submit' value="Claim paiges">
+      </form>
+    </aside>
+  </section>
+
+  <section class="pages" >
+    <%= render partial:"pages/author_details", collection:current_user.authored_pages, as: :page %>
+  </section>
+  <nav>
+    <a href="/settings">Edit your settings</a>
+  </nav>
+  <%-end-%>

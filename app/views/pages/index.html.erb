@@ -1,0 +1,24 @@
+<%-unless params[:endless]-%>
+  <section id="banner">
+  <header>
+    <a href=/><%= image_tag "icons/silhouette.svg", class:"author", alt:'me' %></a>
+  </header>
+  <hgroup>
+    <h1>pages</h1>
+    <p><%=current_user.name%><a href="/signout">not you?</a></p>
+  </hgroup>
+  <details class='admin'>
+    <summary><img class="admin" src='<%= image_path 'noun_project/8233.svg'%>'/></summary>
+    <nav>
+      <a>manual</a>
+      <a>adopted</a>
+      <a>orphaned</a>
+      <a>fostered</a>
+      <a>dead</a>
+    </nav>
+  </details>
+</section>
+<%-end-%>
+<section class='endless pages manual'>
+  <%= render partial:"admin", collection:@pages, as: :page %>
+</section>
