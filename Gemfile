@@ -37,7 +37,7 @@ gem 'koala'
 gem 'mechanize'
 gem 'cache_digests'
 gem 'mandrill', git:'https://github.com/venioinc/mandrill/'
-gem "lograge"
+gem 'lograge'
 
 gem 'pry'
 gem 'pry-rails'
@@ -93,6 +93,3 @@ group :development, :test do
   gem 'rails-erd'
   gem 'quiet_assets'
 end
-
-
-
